@@ -1,0 +1,30 @@
+name: Feature Request
+description: Submit a new Feature Request
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+assignees:
+  - sig-console
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to provide your valuable feedback and insights for new amazing features!
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: What would you like the Console SDK to do?
+      description: Also tell us about alternatives you have considered or anything that comes to your mind?
+      placeholder: Tell us what you desire!
+      value: " "
+    validations:
+      required: true
+  - type: dropdown
+    id: package
+    attributes:
+      label: Libraries
+      multiple: true
+      description: What libraries should be affected by your feature proposal?
+      options:
+        - console-microfrontend-sdk
+    validations:
+      required: true
