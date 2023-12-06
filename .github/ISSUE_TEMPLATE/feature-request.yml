@@ -15,7 +15,7 @@ body:
       label: What would you like the Console SDK to do?
       description: Also tell us about alternatives you have considered or anything that comes to your mind?
       placeholder: Tell us what you desire!
-      value: " "
+      value: "I'd love this feature to be part of the sdk library"
     validations:
       required: true
   - type: dropdown
