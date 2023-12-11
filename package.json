@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "console-sdk",
   "license": "MIT",
   "private": true,
   "workspaces": [
@@ -8,22 +8,15 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.2",
-    "lerna": "7.3.0",
-    "prettier": "3.0.3",
-    "rimraf": "5.0.5",
-    "ts-node": "10.9.1",
-    "typescript": "5.2.2"
+    "lerna": "7.3.0"
   },
   "dependencies": {},
   "scripts": {
     "sdk": "yarn workspace @mia-platform/microfrontend-sdk",
     "build": "lerna run build",
     "changeset": "changeset",
-    "lint": "prettier --check '**/*.{ts,js,css,json}'",
-    "format": "prettier --write '**/*.{ts,js,css,json,md}'",
     "lerna": "lerna",
-    "release": "yarn build && changeset publish",
-    "test": "lerna run test -- --passWithNoTests --ci --coverage"
+    "release": "yarn build && changeset publish"
   },
   "version": "0.0.0"
 }

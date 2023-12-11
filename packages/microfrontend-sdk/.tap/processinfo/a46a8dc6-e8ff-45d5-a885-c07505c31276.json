@@ -1,0 +1,30 @@
+{
+  "date": "2023-12-11T17:20:22.152Z",
+  "argv": [
+    "/Users/danielecina/.nvm/versions/node/v18.18.2/bin/node",
+    "/Users/danielecina/Documents/console-sdk/packages/microfrontend-sdk/index.test.ts"
+  ],
+  "execArgv": [
+    "--loader=file:///Users/danielecina/Documents/console-sdk/node_modules/@isaacs/ts-node-temp-fork-for-pr-2009/esm.mjs",
+    "--loader=file:///Users/danielecina/Documents/console-sdk/node_modules/@tapjs/mock/dist/esm/legacy-loader.mjs",
+    "--no-warnings",
+    "--enable-source-maps",
+    "--loader=file:///Users/danielecina/Documents/console-sdk/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs"
+  ],
+  "NODE_OPTIONS": "\"--loader=file:///Users/danielecina/Documents/console-sdk/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs\" \"--no-warnings\"",
+  "cwd": "/Users/danielecina/Documents/console-sdk/packages/microfrontend-sdk",
+  "pid": 25710,
+  "ppid": 25709,
+  "parent": null,
+  "uuid": "a46a8dc6-e8ff-45d5-a885-c07505c31276",
+  "files": [
+    "/Users/danielecina/Documents/console-sdk/packages/microfrontend-sdk/index.test.ts",
+    "/Users/danielecina/Documents/console-sdk/packages/microfrontend-sdk/MicrofronendIntegrator.ts"
+  ],
+  "sources": {},
+  "root": "a46a8dc6-e8ff-45d5-a885-c07505c31276",
+  "externalID": "index.test.ts",
+  "code": 0,
+  "signal": null,
+  "runtime": 614.191005
+}
