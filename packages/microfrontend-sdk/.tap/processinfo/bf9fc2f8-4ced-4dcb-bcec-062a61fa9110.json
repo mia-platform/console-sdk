@@ -1,0 +1,30 @@
+{
+  "date": "2023-12-11T16:28:45.664Z",
+  "argv": [
+    "/Users/danielecina/.nvm/versions/node/v18.18.2/bin/node",
+    "/Users/danielecina/Desktop/Privata/Web/monorepo-setup/packages/microfrontend-sdk/index.test.ts"
+  ],
+  "execArgv": [
+    "--loader=file:///Users/danielecina/Desktop/Privata/Web/monorepo-setup/node_modules/@isaacs/ts-node-temp-fork-for-pr-2009/esm.mjs",
+    "--loader=file:///Users/danielecina/Desktop/Privata/Web/monorepo-setup/node_modules/@tapjs/mock/dist/esm/legacy-loader.mjs",
+    "--no-warnings",
+    "--enable-source-maps",
+    "--loader=file:///Users/danielecina/Desktop/Privata/Web/monorepo-setup/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs"
+  ],
+  "NODE_OPTIONS": "\"--loader=file:///Users/danielecina/Desktop/Privata/Web/monorepo-setup/node_modules/@tapjs/processinfo/dist/esm/loader-legacy.mjs\" \"--no-warnings\"",
+  "cwd": "/Users/danielecina/Desktop/Privata/Web/monorepo-setup/packages/microfrontend-sdk",
+  "pid": 22687,
+  "ppid": 22686,
+  "parent": null,
+  "uuid": "bf9fc2f8-4ced-4dcb-bcec-062a61fa9110",
+  "files": [
+    "/Users/danielecina/Desktop/Privata/Web/monorepo-setup/packages/microfrontend-sdk/index.test.ts",
+    "/Users/danielecina/Desktop/Privata/Web/monorepo-setup/packages/microfrontend-sdk/MicrofronendIntegrator.ts"
+  ],
+  "sources": {},
+  "root": "bf9fc2f8-4ced-4dcb-bcec-062a61fa9110",
+  "externalID": "index.test.ts",
+  "code": 0,
+  "signal": null,
+  "runtime": 672.731839
+}

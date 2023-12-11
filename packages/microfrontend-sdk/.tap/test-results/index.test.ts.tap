@@ -1,0 +1,11 @@
+TAP version 14
+# Subtest: Console SDK
+    # Subtest: getContainerId
+        ok 1 - should be equivalent strictly
+        1..1
+    ok 1 - getContainerId # time=5.884ms
+    
+    1..1
+ok 1 - Console SDK # time=34.857ms
+
+1..1

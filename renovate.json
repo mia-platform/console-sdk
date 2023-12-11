@@ -1,8 +1,6 @@
 {
-  "separateMajorMinor": false,
-  "extends": [":preserveSemverRanges", "group:all", "schedule:monthly", ":maintainLockFilesMonthly"],
-  "lockFileMaintenance": {
-    "extends": ["group:all"],
-    "commitMessageAction": "chore(dependencies): update dependencies"
-  }
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>platform/devops/renovate-bot"
+  ]
 }
