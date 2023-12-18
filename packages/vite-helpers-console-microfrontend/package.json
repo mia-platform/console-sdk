@@ -1,14 +1,8 @@
 {
-  "name": "@mia-platform/microfrontend-sdk",
+  "name": "@mia-platform/vite-helpers-console-microfrontend",
+  "version": "0.0.0",
   "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "prettier": "3.0.3",
-    "rimraf": "5.0.5",
-    "ts-node": "10.9.1",
-    "typescript": "5.2.2",
-    "tap": "^18.6.1"
-  },
   "scripts": {
     "build": "tsc --build",
     "lint": "prettier --check '**/*.{ts,js,css,json}'",
@@ -16,13 +10,23 @@
     "release": "yarn build && changeset publish",
     "test": "npx tap "
   },
+  "dependencies": {
+    "@mia-platform/microfrontend-sdk": "link:../microfrontend-sdk",
+    "vite-plugin-qiankun": "1.0.15"
+  },
+  "devDependencies": {
+    "prettier": "3.0.3",
+    "rimraf": "5.0.5",
+    "ts-node": "10.9.1",
+    "typescript": "5.2.2",
+    "tap": "^18.6.1"
+  },
   "engines": {
     "node": ">=v18.18.2"
   },
   "tap": {
     "allow-incomplete-coverage": true
   },
-  "version": "0.0.0",
   "main": "index.js",
   "keywords": [],
   "author": "",

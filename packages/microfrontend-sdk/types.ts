@@ -1,9 +1,14 @@
 
-export type IMountingProps = {}
+export type IMountingProps = {
+  container: string
+  console: {
+    eventBus: (event: Events) => void
+  }
+}
 
 export type IContextType = {
   HOTKEYS: "HOTKEYS"
-  FEATURE_TOGGLES:"FEATURE_TOGGLES"
+  FEATURE_TOGGLES: "FEATURE_TOGGLES"
 } 
 
 export type IConsoleCommand = {
@@ -33,4 +38,14 @@ export type IConfigurationScopes = {
   FAST_DATA: "FAST_DATA",
   MICROFRONTEND_PLUGIN: "MICROFRONTEND_PLUGIN",
   FORCE_CONFIG_UPDATE_CHECKSUM: "FORCE_CONFIG_UPDATE_CHECKSUM"
+}
+
+enum EventsTypes {
+  'SET_DYNAMIC_ROUTES'
+}
+
+export interface Events {
+  action: EventsTypes,
+  publisherId: string,
+  payload: unknown,
 }

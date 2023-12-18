@@ -1,26 +1,40 @@
-# OS X
-.DS_Store*
-Icon?
-._*
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Linux
-.directory
-*~
-
-# Build/Test/Dependencies
-coverage
+# dependencies
 node_modules
-dist
+package-lock.json
 
-# Dev env files
-*.log*
-*.sublime-project
-*.sublime-workspace
+# testing
+/coverage
+packages/*/coverage
+packages/*/stats.html
+.nyc_output
+packages/*/junit.xml
+
+# production
+/build
+packages/*/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+*.log
+.tap
+
+# ide
+.vscode
 .idea
-# .vscode
-.env
+.history
+
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

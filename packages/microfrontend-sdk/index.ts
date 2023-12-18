@@ -1,9 +1,10 @@
 import {IMountingProps, IContextType, IConsoleCommand} from './types'
-import MicrofronendIntegrator from './MicrofronendIntegrator'
+import ConsoleSDK, {IConsoleSDK} from './MicrofronendIntegrator'
 
 export {
   IMountingProps, 
   IContextType, 
   IConsoleCommand,
-  MicrofronendIntegrator
+  ConsoleSDK,
+  IConsoleSDK
 }
