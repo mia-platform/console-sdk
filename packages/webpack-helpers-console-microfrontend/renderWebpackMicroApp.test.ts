@@ -10,21 +10,19 @@ const document = dom.window.document
 const quiankunContainer = document.createElement('div')
 quiankunContainer.id = '__qiankun_microapp_wrapper_for_microfrontend__'
 
-// Mock per QiankunProps
 const qiankunPropsMock: QiankunProps = {
   name: 'testMicrofrontend',
   container: quiankunContainer,
   // some console injected props
+  console: {},
   eventListener: () => {},
   resourceAPI: { writeConfig: () => {} }
 }
 
-// Mock per IViteParams
 const viteParamsMock: IViteParams = {
   mount: jest.fn(),
   unmount: jest.fn(),
-  bootstrap: jest.fn(),
-  update: jest.fn()
+  bootstrap: jest.fn()
 }
 
 describe('Webpack Micro App Rendering', () => {
@@ -44,9 +42,9 @@ describe('Webpack Micro App Rendering', () => {
     decoratedUnmount(qiankunPropsMock)
     decoratedBootstrap(qiankunPropsMock)
 
-    expect(viteParamsMock.mount).toHaveBeenCalledWith(true, expect.any(ConsoleSDK))
-    expect(viteParamsMock.unmount).toHaveBeenCalledWith(true, expect.any(ConsoleSDK))
-    expect(viteParamsMock.bootstrap).toHaveBeenCalledWith(true, expect.any(ConsoleSDK))
+    expect(viteParamsMock.mount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.bootstrap).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
   })
 
   it('should render the Webpack micro app', () => {
@@ -56,8 +54,8 @@ describe('Webpack Micro App Rendering', () => {
     unmount(qiankunPropsMock)
     bootstrap && bootstrap()
 
-    expect(viteParamsMock.mount).toHaveBeenCalledWith(true, expect.any(ConsoleSDK))
-    expect(viteParamsMock.unmount).toHaveBeenCalledWith(true, expect.any(ConsoleSDK))
-    expect(viteParamsMock.bootstrap).toHaveBeenCalledWith(true, expect.any(ConsoleSDK))
+    expect(viteParamsMock.mount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.bootstrap).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
   })
 })

@@ -28,7 +28,7 @@ const SDKPropsMock: ISDKProps = {
       forceConfigUpdateChecksum: '',
       microfrontendPluginConfig: {},
 
-      selectedEnvironments: {},
+      selectedEnvironment: {},
       selectedProject: {},
 
       _version: '0.0.0'
@@ -79,7 +79,7 @@ describe('ConsoleSDK', () => {
     expect(configObservable).toHaveProperty('configMaps')
     expect(configObservable).toHaveProperty('services')
     expect(configObservable).toHaveProperty('fastDataConfig')
-    expect(configObservable).toHaveProperty('unsecretedVarialbles')
+    expect(configObservable).toHaveProperty('unsecretedVariables')
     expect(configObservable).toHaveProperty('selectedProject')
     expect(configObservable).toHaveProperty('selectedEnvironment')
     expect(configObservable).toHaveProperty('_version')

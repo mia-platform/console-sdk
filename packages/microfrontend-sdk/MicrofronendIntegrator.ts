@@ -17,7 +17,7 @@ type IConfigObservable = {
   forceConfigUpdateChecksum: string
   microfrontendPluginConfig: Record<string, unknown>
 
-  selectedEnvironments: IEnvironment
+  selectedEnvironment: IEnvironment
   selectedProject: IProject
 
   _version: string

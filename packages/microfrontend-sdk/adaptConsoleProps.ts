@@ -22,7 +22,7 @@ export function getConsoleProps (props: QiankunProps): ISDKProps {
     unsecretedVariables,
     forceConfigUpdateChecksum,
     microfrontendPluginConfig,
-    selectedEnvironments,
+    selectedEnvironment,
     selectedProject
   } = resourceAPI
 
@@ -47,7 +47,7 @@ export function getConsoleProps (props: QiankunProps): ISDKProps {
         forceConfigUpdateChecksum,
         microfrontendPluginConfig,
 
-        selectedEnvironments,
+        selectedEnvironment,
         selectedProject,
 
         _version: pkg.version
