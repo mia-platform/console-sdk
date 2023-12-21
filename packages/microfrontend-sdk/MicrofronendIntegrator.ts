@@ -1,35 +1,93 @@
-import {Subject} from 'rxjs'
+import { Subject } from 'rxjs'
+import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
+import { Endpoints, Collections, ServiceConfigMap, Services, PublicVariable, IEnvironment, IProject } from '@mia-platform-internal/console-types'
 
-import {IMountingProps, IContextType, IConsoleCommand, Events} from './types'
+import { Events } from './types'
 
-export interface IConsoleSDK {
-  getContext(): Record<string, unknown>
-  getContainerId(): string,
+type IConfigObservable = {
+  endpoints: Endpoints
+  collections: Collections
+  configMaps: ServiceConfigMap
+  services: Services
+  unsecretedVariables: PublicVariable[]
+
+  // TOFIX: add correct fast data type
+  fastDataConfig: Record<string, unknown>
+
+  forceConfigUpdateChecksum: string
+  microfrontendPluginConfig: Record<string, unknown>
+
+  selectedEnvironments: IEnvironment
+  selectedProject: IProject
+
+  _version: string
+}
+
+export enum ContextsType {
+  FEATURE_TOGGLE_CONTEXT = 'featureTogglesProxyContext',
+  HOTKEYS_CONTEXT = 'hotkeysContext'
+}
+
+type IContexts = {
+  featureTogglesProxyContext: Record<string, unknown>
+  hotkeysContext: Record<string, unknown>
+}
+
+export type IConsole = {
+  writeConfig: (payload: unknown) => void
+  eventBus: (event: Events) => void
+  configObservables: IConfigObservable
+  contexts: IContexts
+  _signals: {mount: () => void}
+}
+
+export type ISDKProps = QiankunProps & {
+  console: IConsole
+}
+
+export type IConsoleSDK = {
   sendEvent(event: Events): void
 }
 
 export default class MicrofronendIntegrator implements IConsoleSDK {
-  private mountingProps: IMountingProps
   private events: Subject<Events>
 
-  constructor(mountingProps: IMountingProps) {
-    const {console} = mountingProps
-    const {eventBus} = console
+  name: string
+  contexts: IContexts
+  configObservable: IConfigObservable
+
+  constructor (mountingProps: QiankunProps) {
+    const { console, name } = mountingProps
+    const { eventBus, contexts } = console
+
+    this.name = name
+    this.contexts = contexts
+    this.configObservable = console.configObservables
+
     this.events = new Subject()
     this.events.subscribe(eventBus)
-
-    this.mountingProps = mountingProps
   }
 
-  getContext() {
-    return {}
+  getContext (contextType: ContextsType): IContexts[keyof IContexts] | undefined {
+    switch (contextType) {
+      case ContextsType.FEATURE_TOGGLE_CONTEXT:
+        return {} as IContexts['featureTogglesProxyContext']
+      case ContextsType.HOTKEYS_CONTEXT:
+        return {} as IContexts['hotkeysContext']
+      default:
+        return undefined
+    }
   }
 
-  getContainerId() {
-    return ''
+  getContainerId (): string {
+    return this.name
   }
 
-  sendEvent(event: Events) {
+  getConsoleConfigObservable (): IConfigObservable {
+    return this.configObservable
+  }
+
+  sendEvent (event: Events): void {
     this.events.next(event)
   }
 }

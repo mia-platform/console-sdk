@@ -1,10 +1,13 @@
-import {IMountingProps, IContextType, IConsoleCommand} from './types'
-import ConsoleSDK, {IConsoleSDK} from './MicrofronendIntegrator'
+import { Events, EventsTypes } from './types'
+import ConsoleSDK, { IConsoleSDK, ISDKProps } from './MicrofronendIntegrator'
+
+export type {
+  ISDKProps,
+  IConsoleSDK,
+  Events,
+  EventsTypes
+}
 
 export {
-  IMountingProps, 
-  IContextType, 
-  IConsoleCommand,
-  ConsoleSDK,
-  IConsoleSDK
+  ConsoleSDK
 }

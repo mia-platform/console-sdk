@@ -1,10 +1,52 @@
 {
+  "root": true,
   "extends": [
+    "standard",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
-  ]
+    "@typescript-eslint",
+    "unused-imports"
+  ],
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json", 
+      "./packages/*/tsconfig.json"
+    ]
+  },
+  "ignorePatterns": [
+    "compiled/",
+    "typings/tap.d.ts",
+    "tap-snapshots",
+    "tests/integration/all/data"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.ts",
+        "**/*.tsx"
+      ],
+      "extends": [
+        "standard",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript"
+      ],
+      "rules": {
+        "no-use-before-define": "off",
+        "import/order": ["error", {
+          "groups": [
+            ["builtin", "external"]
+          ],
+          "newlines-between": "always"
+        }],
+        "unused-imports/no-unused-imports": "error"
+      }
+    }
+  ],
+  "rules": {
+    "no-console": "error"
+  }
 }

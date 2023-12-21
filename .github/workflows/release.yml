@@ -1,30 +1,16 @@
 name: Release
-
 on:
   push:
-    branches:
-      - main
-
+    tags:
+      - '*'
 jobs:
   release:
-    # TODO: change upon setting up a new project
-    # disable release action on forks
-    if: github.repository == 'p-j/typescript-monorepo-template'
-
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: yarn --pure-lockfile
-      - uses: changesets/action@master
-        with:
-          publish: yarn release
-          commit: 'chore(release): publish'
-          title: Publish next versions
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          generate_release_notes: true
+          prerelease: ${{ startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-rc.') }}

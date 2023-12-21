@@ -8,11 +8,20 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.2",
-    "lerna": "7.3.0"
+    "lerna": "7.3.0",
+    "eslint": "^8.42.0",
+
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unused-imports": "^2.0.0"
   },
   "dependencies": {},
   "scripts": {
     "sdk": "yarn workspace @mia-platform/microfrontend-sdk",
+    "vite-helper": "yarn workspace @mia-platform/vite-helpers-console-microfrontend",
+    "webpack-helper": "yarn workspace @mia-platform/webpack-helpers-console-microfrontend",
     "build": "lerna run build",
     "changeset": "changeset",
     "lerna": "lerna",

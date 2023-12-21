@@ -24,6 +24,7 @@ packages/*/build
 
 *.log
 .tap
+tsconfig.tsbuildinfo
 
 # ide
 .vscode

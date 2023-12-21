@@ -1,6 +1,3 @@
-
 import renderViteMicroApp from './renderViteMicroApp'
 
-export {
-  renderViteMicroApp
-}
+export { renderViteMicroApp }

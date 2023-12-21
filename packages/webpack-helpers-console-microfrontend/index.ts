@@ -1,4 +1,4 @@
-import renderWebpackMicroApp from "./renderWebpackMicroApp"
+import renderWebpackMicroApp from './renderWebpackMicroApp'
 
 export {
   renderWebpackMicroApp
