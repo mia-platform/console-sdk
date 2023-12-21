@@ -23,11 +23,12 @@
     "vite-helper": "yarn workspace @mia-platform/vite-helpers-console-microfrontend",
     "webpack-helper": "yarn workspace @mia-platform/webpack-helpers-console-microfrontend",
     
-    "build": "lerna run build",
-    "changeset": "changeset",
     "lerna": "lerna",
     "clean": "lerna clean",
-    "release": "yarn build && changeset publish"
+    "build": "lerna run build",
+    
+    "release": "yarn build && changeset publish",
+    "changeset": "changeset"
   },
   "version": "0.0.0"
 }
