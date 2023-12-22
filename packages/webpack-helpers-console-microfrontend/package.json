@@ -28,6 +28,15 @@
   "engines": {
     "node": ">=v18.18.2"
   },
+  "main": "index.js",
+  "homepage": "https://github.com/mia-platform/console-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mia-platform/console-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mia-platform/console-sdk/issues"
+  },
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.+(ts|js)",
@@ -36,9 +45,5 @@
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     }
-  },
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "description": ""
+  }
 }

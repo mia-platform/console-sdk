@@ -31,7 +31,12 @@
   },
   "version": "0.0.0",
   "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "description": ""
+  "homepage": "https://github.com/mia-platform/console-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mia-platform/console-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mia-platform/console-sdk/issues"
+  }
 }
