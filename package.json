@@ -30,6 +30,5 @@
     "release": "yarn build && changeset publish",
     "changeset": "changeset"
   },
-  "version": "0.0.0",
-  "packageManager": "yarn@3.4.1"
+  "version": "0.0.0"
 }
