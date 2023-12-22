@@ -25,6 +25,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Login to Mia NPM Internal  Registry
+      run: |
+        echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
+        echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
+        echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:_password=${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}" >> .npmrc
     - run: yarn
     - run: yarn sdk build
     - run: yarn sdk test
