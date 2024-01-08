@@ -1,6 +1,6 @@
 {
   "name": "console-sdk",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -21,7 +21,15 @@
     "vite-helper": "npm --workspace=@mia-platform/vite-helpers-console-microfrontend",
     "webpack-helper": "npm --workspace=@mia-platform/webpack-helpers-console-microfrontend",
     "release": "npm build && changeset publish",
+
+    "addlicense": "addlicense -c 'Mia srl' -s -ignore src/**/*.ts",
+    "check-license": "addlicense -c 'Mia srl' -check -s -ignore src/**/*.ts",
     "changeset": "changeset"
   },
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "contributors": [
+    "Daniele Cinà <daniele.cina@mia-platform.eu>",
+    "Davide Bianchi <davide.bianchi@mia-platform.eu>",
+    "Federico Maggi <federico.maggi@mia-platform.eu>"
+  ]
 }
