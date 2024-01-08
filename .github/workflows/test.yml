@@ -22,25 +22,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        registry-url: "https://nexus.mia-platform.eu/"
-    # - name: Checks Secrets
-    #   env:
-    #     mia-internal-registry: ${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}
-    #     mia-internal-username: ${{ secrets.MIA_NPM_INTERNAL_USERNAME }}
-    #     mia-internal-password: ${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}
-    #   if: |
-    #     ${{ env.mia-internal-registry == '' || env.mia-internal-username == '' || env.mia-internal-password == ''}}
-    #   run: |
-    #     echo "some secrets has not been made"
-    # - name: Login to Mia NPM Internal Registry
-    #   run: |
-    #     echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
-    #     echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
-    #     echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:_password=${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}" >> .npmrc
+    - name: Login to Mia NPM Internal Registry
+      run: |
+        echo -e "@mia-platform-internal:registry=https://nexus.mia-platform.eu" > .npmrc
+        echo -e "@mia-platform-internal:_authToken=${{secrets.MIA_NPM_REGISTRY_TOKEN}}" > .npmrc
     - name: Install Packages
       run: npm ci; rm -f .npmrc
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
     - run: npm run sdk build
     - run: npm run sdk test
     - run: npm run vite-helper build
