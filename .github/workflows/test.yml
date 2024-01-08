@@ -29,7 +29,8 @@ jobs:
         mia-internal-password: ${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}
       if: |
         ${{ env.mia-internal-registry == '' || env.mia-internal-username == '' || env.mia-internal-password == ''}}
-      run: 'echo "echo some secrets has not been made"' 
+      run: |
+        echo "some secrets has not been made"
     - name: Login to Mia NPM Internal Registry
       run: |
         echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
