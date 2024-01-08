@@ -24,8 +24,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Login to Mia NPM Internal Registry
       run: |
-        echo -e "@mia-platform-internal:registry=https://nexus.mia-platform.eu" > .npmrc
-        echo -e "@mia-platform-internal:_authToken=${{secrets.MIA_NPM_REGISTRY_TOKEN}}" > .npmrc
+        echo "https://nexus.mia-platform.eu:_authToken=${{ secrets.NPM_INTERNAL_REGISTRY_TOKEN }}" > .npmrc
     - name: Install Packages
       run: npm ci; rm -f .npmrc
     - run: npm run sdk build
