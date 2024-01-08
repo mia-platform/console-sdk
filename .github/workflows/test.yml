@@ -28,11 +28,11 @@ jobs:
       run: npm ci; rm -f .npmrc
       env:
         NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
-    - run: npm run sdk build
+    - run: npm run sdk run build
     - run: npm run sdk test
-    - run: npm run vite-helper build
+    - run: npm run vite-helper run build
     - run: npm run vite-helper test
-    - run: npm run webpack-helper build
+    - run: npm run webpack-helper run build
     - run: npm run webpack-helper test
     - name: Check License
       run: npm run check-license
