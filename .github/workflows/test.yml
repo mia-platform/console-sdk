@@ -28,7 +28,7 @@ jobs:
         echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
         echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
         echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:_password=${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}" >> .npmrc
-    - run: npm ci --ignore-scripts
+    - run: npm run ci --ignore-scripts
       env:
         NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
     - run: npm run sdk build
