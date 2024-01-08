@@ -4,8 +4,7 @@
 
 This template is intended for OSS (NPM published) Typescript based projects and is centered around a few tools:
 
-- **npm** for dependency management and running other tools like `lerna` or `changeset`
-- **lerna** for running package level commands (like `build` or `lint`)
+- **npm** for dependency management and running other tools like `changeset`
 - **changeset** for managing changelog generation, release creation and auto publication to NPM
 - **codecov** for code coverage reporting
 - **jest** to test your code
@@ -22,7 +21,7 @@ _AKA: "Note to self"_
 
 - Get started by clicking [Use this template](https://github.com/p-j/typescript-monorepo-template/generate)
 - Update the required files as [described below](https://github.com/p-j/typescript-monorepo-template#what-you-need-to-change)
-- Browse the scripts to understand how `lerna` `changeset` and `npm` play together to `build` `test` and `publish` releases.
+- Browse the scripts to understand how `changeset` and `npm` play together to `build` `test` and `publish` releases.
 - [Setup integration](https://github.com/settings/installations) with [Changeset](https://github.com/atlassian/changesets)
 - [Setup integration](https://github.com/settings/installations) with [CodeCov](https://github.com/codecov)
 - Add the necessary `SECRETS` (`NPM_TOKEN` & `CODECOV_TOKEN`)
