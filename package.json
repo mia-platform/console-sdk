@@ -17,10 +17,9 @@
   },
   "dependencies": {},
   "scripts": {
-    "sdk": "yarn workspace @mia-platform/microfrontend-sdk",
-    "vite-helper": "yarn workspace @mia-platform/vite-helpers-console-microfrontend",
-    "webpack-helper": "yarn workspace @mia-platform/webpack-helpers-console-microfrontend",
-    
+    "sdk": "npm --workspace=@mia-platform/microfrontend-sdk",
+    "vite-helper": "npm --workspace=@mia-platform/vite-helpers-console-microfrontend",
+    "webpack-helper": "npm --workspace=@mia-platform/webpack-helpers-console-microfrontend",
     "release": "npm build && changeset publish",
     "changeset": "changeset"
   },
