@@ -27,7 +27,7 @@
     "clean": "lerna clean",
     "build": "lerna run build",
     
-    "release": "yarn build && changeset publish",
+    "release": "npm build && changeset publish",
     "changeset": "changeset"
   },
   "version": "0.0.0"
