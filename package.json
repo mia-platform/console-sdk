@@ -22,8 +22,8 @@
     "webpack-helper": "npm --workspace=@mia-platform/webpack-helpers-console-microfrontend",
     "release": "npm build && changeset publish",
 
-    "addlicense": "addlicense -c 'Mia srl' -s -ignore src/**/*.ts",
-    "check-license": "addlicense -c 'Mia srl' -check -s -ignore src/**/*.ts",
+    "addlicense": "addlicense -c 'Mia srl' -s -ignore src/**/*.ts -v",
+    "check-license": "addlicense -c 'Mia srl' -check -s -ignore src/**/*.ts -v",
     "changeset": "changeset"
   },
   "version": "0.0.0",
