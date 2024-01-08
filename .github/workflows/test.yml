@@ -34,9 +34,24 @@ jobs:
     - run: npm run vite-helper test
     - run: npm run webpack-helper run build
     - run: npm run webpack-helper test
-    - name: Check License
-      run: npm run check-license
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  check-license:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use golang 1.20
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.20'
+    - name: Use Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    - name: install addlicense
+      run: go install github.com/google/addlicense@latest
+    - name: check license
+      run: npm run check-license
