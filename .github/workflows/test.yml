@@ -14,7 +14,7 @@ on:
       - main
 
 jobs:
-  microfrontend-sdk-test:
+  cache:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: "npm"
-    - name: Login to Mia NPM Internal  Registry
+    - name: Login to Mia npm ci nternal Registry
       run: |
         echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
         echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
@@ -36,10 +36,22 @@ jobs:
       uses: actions/cache@v3
       with:
         path: node_modules
-        key: node-modules-${{ hashFiles('package.lock') }}
+        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
+
+  microfrontend-sdk-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+    - name: Use Cached Node Modules
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
     - name: Install & Test
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm i
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      run: npm ci 
     - run: npm sdk build
     - run: npm sdk test
     - name: Coveralls
@@ -53,12 +65,14 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+    - name: Use Cached Node Modules
+      uses: actions/cache@v3
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm i
+        path: node_modules
+        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
+    - name: Install & Test
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      run: npm ci
     - run: npm vite build
     - run: npm vite test
     - name: Coveralls
@@ -72,12 +86,14 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+    - name: Use Cached Node Modules
+      uses: actions/cache@v3
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm i
+        path: node_modules
+        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
+    - name: Install & Test
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      run: npm ci
     - run: npm webpack-helper build
     - run: npm webpack-helper test
     - name: Coveralls
@@ -129,7 +145,7 @@ jobs:
           node-version: '20.x'
           registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
       - run: npm install --frozen-lockfile
-      - run: npm webpack build
+      - run: npm vite build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
@@ -145,7 +161,7 @@ jobs:
           node-version: '20.x'
           registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
       - run: npm install --frozen-lockfile
-      - run: npm webpack build
+      - run: npm webpack-helper build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
