@@ -25,7 +25,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: "yarn"
+        cache: "npm"
     - name: Login to Mia NPM Internal  Registry
       run: |
         echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
@@ -36,12 +36,12 @@ jobs:
       uses: actions/cache@v3
       with:
         path: node_modules
-        key: node-modules-${{ hashFiles('yarn.lock') }}
+        key: node-modules-${{ hashFiles('package.lock') }}
     - name: Install & Test
       if: steps.cache.outputs.cache-hit != 'true'
-      run: yarn
-    - run: yarn sdk build
-    - run: yarn sdk test
+      run: npm i
+    - run: npm sdk build
+    - run: npm sdk test
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
@@ -58,9 +58,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn
-    - run: yarn vite build
-    - run: yarn vite test
+    - run: npm i
+    - run: npm vite build
+    - run: npm vite test
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
@@ -77,9 +77,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn
-    - run: yarn webpack-helper build
-    - run: yarn webpack-helper test
+    - run: npm i
+    - run: npm webpack-helper build
+    - run: npm webpack-helper test
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
@@ -112,8 +112,8 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn sdk build
+      - run: npm install --frozen-lockfile
+      - run: npm sdk build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
@@ -128,8 +128,8 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn webpack build
+      - run: npm install --frozen-lockfile
+      - run: npm webpack build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
@@ -144,8 +144,8 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn webpack build
+      - run: npm install --frozen-lockfile
+      - run: npm webpack build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
