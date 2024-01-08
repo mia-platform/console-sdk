@@ -19,12 +19,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - name: Login to Mia NPM Internal Registry
       run: |
-        echo "https://nexus.mia-platform.eu:_authToken=${{ secrets.NPM_INTERNAL_REGISTRY_TOKEN }}" > .npmrc
+        echo "//nexus.mia-platform.eu:_authToken=${{ secrets.NPM_INTERNAL_REGISTRY_TOKEN }}" > .npmrc
     - name: Install Packages
       run: npm ci; rm -f .npmrc
     - run: npm run sdk build
