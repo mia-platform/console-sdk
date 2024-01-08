@@ -28,7 +28,8 @@ jobs:
         echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
         echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
         echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:_password=${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}" >> .npmrc
-    - run: npm ci --ignore-scripts
+    - name: Install Packages
+      run: npm ci; rm -f .npmrc
     - run: npm run sdk build
     - run: npm run sdk test
     - run: npm run vite-helper build
