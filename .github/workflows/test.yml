@@ -24,9 +24,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         registry-url: "https://nexus.mia-platform.eu/repository/npm-internal/"
         scope: "mia-platform-internal"
-        token: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
     - name: Install Packages
       run: npm ci; rm -f .npmrc
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
     - run: npm run sdk build
     - run: npm run sdk test
     - run: npm run vite-helper build
