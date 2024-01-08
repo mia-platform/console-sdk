@@ -14,3 +14,27 @@ jobs:
         with:
           generate_release_notes: true
           prerelease: ${{ startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-rc.') }}
+      - name: Publish SDK Helper
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          npm install --frozen-lockfile
+          npm sdk build
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
+      - name: Publish Vite Helper
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          npm install --frozen-lockfile
+          npm vite-helper build
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
+      - name: Publish Webpack Helper
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          npm install --frozen-lockfile
+          npm webpack-helper build
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}

@@ -1,7 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and and then publish a package to npm when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: Test and Publish
+name: Test
 
 on:
   push:
@@ -14,154 +11,39 @@ on:
       - main
 
 jobs:
-  cache:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [16.x, 18.x, 20.x]
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: "npm"
-    - name: Login to Mia npm ci nternal Registry
+    - name: Use Cached Node Modules
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: node-modules-${{ hashFiles('package-lock.json') }}
+    - name: Login to Mia npm internal Registry
       run: |
         echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
         echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
         echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:_password=${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}" >> .npmrc
-    - name: Cache Node Modules
-      id: cache-node-modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
-
-  microfrontend-sdk-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-    steps:
-    - name: Use Cached Node Modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
-    - name: Install & Test
-      if: steps.cache-node-modules.outputs.cache-hit != 'true'
-      run: npm ci 
-    - run: npm sdk build
-    - run: npm sdk test
-    - name: Coveralls
-      uses: coverallsapp/github-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-
-  vite-helper-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-    steps:
-    - name: Use Cached Node Modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
-    - name: Install & Test
-      if: steps.cache-node-modules.outputs.cache-hit != 'true'
-      run: npm ci
-    - run: npm vite build
-    - run: npm vite test
-    - name: Coveralls
-      uses: coverallsapp/github-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-
-  webpack-helper-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-    steps:
-    - name: Use Cached Node Modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: node-${{ matrix.node-version }}-modules-${{ hashFiles('package-lock.json') }}
-    - name: Install & Test
-      if: steps.cache-node-modules.outputs.cache-hit != 'true'
-      run: npm ci
-    - run: npm webpack-helper build
-    - run: npm webpack-helper test
-    - name: Coveralls
-      uses: coverallsapp/github-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-
-  check-license:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Use golang 1.20
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.20'
-    - name: Use Node.js 20
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-    - name: install addlicense
-      run: go install github.com/google/addlicense@latest
-    - name: check license
+    - run: npm ci --ignore-scripts
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
+    - run: npm run sdk build
+    - run: npm run sdk test
+    - run: npm run vite-helper build
+    - run: npm run vite-helper test
+    - run: npm run webpack-helper build
+    - run: npm run webpack-helper test
+    - name: Check License
       run: npm run check-license
-
-  publish-sdk:
-    runs-on: ubuntu-latest
-    needs: [microfrontend-sdk-test]
-    if: ${{ startsWith(github.ref, 'refs/tags/') }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
-      - run: npm install --frozen-lockfile
-      - run: npm sdk build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
-
-  publish-vite-helper:
-    runs-on: ubuntu-latest
-    needs: [vite-helper-test]
-    if: ${{ startsWith(github.ref, 'refs/tags/') }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
-      - run: npm install --frozen-lockfile
-      - run: npm vite build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
-
-  publish-webpack-helper:
-    runs-on: ubuntu-latest
-    needs: [webpack-helper-test]
-    if: ${{ startsWith(github.ref, 'refs/tags/') }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
-      - run: npm install --frozen-lockfile
-      - run: npm webpack-helper build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
