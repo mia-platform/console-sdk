@@ -31,11 +31,11 @@ jobs:
     #     ${{ env.mia-internal-registry == '' || env.mia-internal-username == '' || env.mia-internal-password == ''}}
     #   run: |
     #     echo "some secrets has not been made"
-    # - name: Login to Mia NPM Internal Registry
-    #   run: |
-    #     echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
-    #     echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
-    #     echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:_password=${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}" >> .npmrc
+    - name: Login to Mia NPM Internal Registry
+      run: |
+        echo -e "@mia-platform-internal:registry=https://${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}" > .npmrc
+        echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:username=${{ secrets.MIA_NPM_INTERNAL_USERNAME }}" >> .npmrc
+        echo -e "//${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}:_password=${{ secrets.MIA_NPM_INTERNAL_PASSWORD }}" >> .npmrc
     - name: Install Packages
       run: npm ci; rm -f .npmrc
       env:
