@@ -22,7 +22,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        registry-url: "nexus.mia-platform.eu"
+        registry-url: "https://nexus.mia-platform.eu/"
     # - name: Checks Secrets
     #   env:
     #     mia-internal-registry: ${{ secrets.MIA_NPM_INTERNAL_REGISTRY }}
