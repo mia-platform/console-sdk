@@ -51,9 +51,7 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
-        debug: true
         base-path: 'packages/*/coverage/lcov.info'
-        parallel: true
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Go to check license
