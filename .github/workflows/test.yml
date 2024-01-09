@@ -46,7 +46,7 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
-        base-path: 'packages/*/coverage/clover.xml'
+        base-path: 'packages/*/coverage/coverage-final.json'
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Go to check license
