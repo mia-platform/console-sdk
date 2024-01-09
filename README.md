@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href=https://www.mia-platform.eu/>
-<img alt="logo" src="./src/assets/mia-platform-logo.png" height="96">
+<img alt="logo" src="https://raw.githubusercontent.com/mia-platform/.github/master/profile/img/mia-platform_logo_color.png" height="96">
 </a>
 
 # Console SDK
