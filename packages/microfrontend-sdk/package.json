@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/microfrontend-sdk",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "private": true,
   "dependencies": {
     "@mia-platform-internal/console-types": "^0.16.0",
