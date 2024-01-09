@@ -62,6 +62,6 @@ jobs:
       uses: coverallsapp/github-action@v2
       with:
         debug: true
-        path-to-lcov: 'packages/*/coverage/lcov.info'
+        base-path: 'packages/*/'
         parallel: true
         github-token: ${{ secrets.GITHUB_TOKEN }}
