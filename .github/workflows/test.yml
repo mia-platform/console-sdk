@@ -62,5 +62,5 @@ jobs:
       uses: coverallsapp/github-action@v2
       with:
         base-path: 'packages/*/'
-        file: './coverage/lcov.info'
+        file: 'coverage/lcov.info'
         github-token: ${{ secrets.GITHUB_TOKEN }}
