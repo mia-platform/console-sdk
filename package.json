@@ -23,6 +23,7 @@
     "webpack-helper": "npm --workspace=@mia-platform/webpack-helpers-console-microfrontend",
     "release": "npm build && changeset publish",
     "test": "npm run sdk test --coverage && npm run vite-helper test --coverage && npm run webpack-helper test --coverage",
+    "lint:fix": "npm run sdk run lint --fix && npm run vite-helper run lint --fix && npm run webpack-helper run lint --fix",
     "lint": "npm run sdk run lint && npm run vite-helper run lint && npm run webpack-helper run lint",
     "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/**/*.ts",
