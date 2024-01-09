@@ -48,6 +48,13 @@ jobs:
     - run: npm run vite-helper test
     - run: npm run webpack-helper run build
     - run: npm run webpack-helper test
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        debug: true
+        base-path: 'packages/*/'
+        parallel: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: actions/checkout@v4
     - name: Setup Go to check license
@@ -57,11 +64,4 @@ jobs:
     - name: Check license
       run: go install github.com/google/addlicense@latest
     - run: npm run check-license
-
-    - name: Coveralls
-      uses: coverallsapp/github-action@v2
-      with:
-        debug: true
-        base-path: 'packages/*/'
-        parallel: true
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    
