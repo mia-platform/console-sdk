@@ -1,0 +1,35 @@
+{
+  "name": "console-sdk",
+  "license": "Apache-2.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@changesets/changelog-github": "0.4.8",
+    "@changesets/cli": "2.26.2",
+    "eslint": "^8.42.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unused-imports": "^2.0.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "sdk": "npm --workspace=@mia-platform/microfrontend-sdk",
+    "vite-helper": "npm --workspace=@mia-platform/vite-helpers-console-microfrontend",
+    "webpack-helper": "npm --workspace=@mia-platform/webpack-helpers-console-microfrontend",
+    "release": "npm build && changeset publish",
+    "test": "npm run sdk test --coverage && npm run vite-helper test --coverage && npm run webpack-helper test --coverage",
+    "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/**/*.ts",
+    "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/**/*.ts",
+    "changeset": "changeset"
+  },
+  "version": "0.0.0",
+  "contributors": [
+    "Daniele Cinà <daniele.cina@mia-platform.eu>",
+    "Davide Bianchi <davide.bianchi@mia-platform.eu>",
+    "Federico Maggi <federico.maggi@mia-platform.eu>"
+  ]
+}
