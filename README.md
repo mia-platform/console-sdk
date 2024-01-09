@@ -10,6 +10,9 @@
 [![javascript style guide][standard-mia-svg]][standard-mia]  
 [![Coverage Status][coverall-svg]][coverall-io]
 
+</div>
+
+
 This repository is used to configure your microfrontend, as Mia platform Console extensions, easily
 See the specific monorepo readme to using this library
 
