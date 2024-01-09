@@ -46,8 +46,7 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
-        file: 'coverage/clover.xml'
-        base-path: 'packages/*/'
+        files: 'packages/microfrontend-sdk/coverage/clover.xml packages/vite-helper/coverage/clover.xml packages/webpack-helper/coverage/clover.xml'
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Go to check license
