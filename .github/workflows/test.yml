@@ -61,4 +61,5 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
+        file: './packages/**/coverage'
         github-token: ${{ secrets.GITHUB_TOKEN }}
