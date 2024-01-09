@@ -21,7 +21,7 @@
     "vite-helper": "npm --workspace=@mia-platform/vite-helpers-console-microfrontend",
     "webpack-helper": "npm --workspace=@mia-platform/webpack-helpers-console-microfrontend",
     "release": "npm build && changeset publish",
-
+    "test": "npm run sdk test --coverage && npm run vite-helper test --coverage && npm run webpack-helper test --coverage",
     "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/**/*.ts",
     "changeset": "changeset"

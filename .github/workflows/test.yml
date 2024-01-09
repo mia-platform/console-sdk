@@ -42,12 +42,7 @@ jobs:
       run: npm ci; rm -f .npmrc
       env:
         NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
-    - run: npm run sdk run build
-    - run: npm run sdk test
-    - run: npm run vite-helper run build
-    - run: npm run vite-helper test
-    - run: npm run webpack-helper run build
-    - run: npm run webpack-helper test
+    - run: npm test
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
