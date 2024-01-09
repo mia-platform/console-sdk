@@ -22,7 +22,7 @@ See the specific monorepo readme to using this library
 An abstract interface used within helper repositories. 
 [Read more](./packages/microfrontend-sdk)                     
 
-### Screw helpers.
+### Vite helpers.
 Used to configure the microfrontend with vite. 
 [Read more](./packages/vite-helpers-console-microfrontend)    
 
