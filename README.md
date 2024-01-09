@@ -20,15 +20,15 @@ See the specific monorepo readme to using this library
 
 ### Console SDK. 
 An abstract interface used within helper repositories. 
-[Read more](https://github.com/mia-platform/console-sdk/packages/microfrontend-sdk)                     
+[Read more](./packages/microfrontend-sdk)                     
 
 ### Screw helpers.
 Used to configure the microfrontend with vite. 
-[Read more](https://github.com/mia-platform/console-sdk/packages/vite-helpers-console-microfrontend)    
+[Read more](./packages/vite-helpers-console-microfrontend)    
 
 ### Webpack helpers. 
 Used to configure the microfrontend with webpack. 
-[Read more](https://github.com/mia-platform/console-sdk/packages/webpack-helpers-console-microfrontend)
+[Read more](./packages/webpack-helpers-console-microfrontend)
 
 ## Install
 
