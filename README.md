@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href=https://www.mia-platform.eu/>
-<img alt="logo" src="https://raw.githubusercontent.com/mia-platform/.github/master/profile/img/mia-platform_logo_color.png" height="96">
+<img alt="logo" src="https://raw.githubusercontent.com/mia-platform/.github/master/profile/img/mia-platform_logo_color.png" height="200">
 </a>
 
 # Console SDK
@@ -10,13 +10,26 @@
 [![javascript style guide][standard-mia-svg]][standard-mia]  
 [![Coverage Status][coverall-svg]][coverall-io]
 
-|    Monorepos    |                                                            Links                                                            |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| SDK             | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/microfrontend-sdk)                     |
-| Vite helpers    | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/vite-helpers-console-microfrontend)    |
-| Webpack helpers | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/webpack-helpers-console-microfrontend) |
+This repository is used to configure your microfrontend, as Mia platform Console extensions, easily
+See the specific monorepo readme to using this library
+
+## Monorepos
+
+### Console SDK. 
+An abstract interface used within helper repositories. 
+[Read more](https://github.com/mia-platform/console-sdk/packages/microfrontend-sdk)                     
+
+### Screw helpers.
+Used to configure the microfrontend with vite. 
+[Read more](https://github.com/mia-platform/console-sdk/packages/vite-helpers-console-microfrontend)    
+
+### Webpack helpers. 
+Used to configure the microfrontend with webpack. 
+[Read more](https://github.com/mia-platform/console-sdk/packages/webpack-helpers-console-microfrontend)
 
 ## Install
+
+To use this repository 
 
 ```bash
 npm install @mia-platform-internal/console-sdk
