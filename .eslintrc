@@ -1,7 +1,7 @@
 {
   "root": true,
   "extends": [
-    "standard",
+    "@mia-platform/eslint-config-mia",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
