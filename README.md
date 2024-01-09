@@ -1,43 +1,39 @@
-# Typescript Monorepo Template
+<div align="center">
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fp-j%2Ftypescript-monorepo-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fp-j%2Ftypescript-monorepo-template?ref=badge_shield)
+<a href=https://www.mia-platform.eu/>
+<img alt="logo" src="./src/assets/mia-platform-logo.png" height="96">
+</a>
 
-This template is intended for OSS (NPM published) Typescript based projects and is centered around a few tools:
+# Console SDK
 
-- **npm** for dependency management and running other tools like `changeset`
-- **changeset** for managing changelog generation, release creation and auto publication to NPM
-- **codecov** for code coverage reporting
-- **jest** to test your code
-- **typescript** as the name would have suggested
+[![NPM publish CI][action-status-svg]][github-action]
+[![javascript style guide][standard-mia-svg]][standard-mia]  
+[![Coverage Status][coverall-svg]][coverall-io]
 
-It's a template that I tend to use for my own projects like
+|   Monorepos    |                                                            Links                                                            |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| SDK            | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/microfrontend-sdk)                     |
+| vite helpers   | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/vite-helpers-console-microfrontend)    |
+| webpack helper | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/webpack-helpers-console-microfrontend) |
 
-- [EAPI](https://github.com/p-j/eapi): a suite of middleware & utility to build scalable cloudflare workers backend/proxy
-- [GeocodeJSON](https://github.com/p-j/geocodejson): a suite of adapter & utility for geocoding API that maps to [GeocodeJSON](https://github.com/geocoders/geocodejson-spec/tree/master/draft) resutls
+## Install
 
-## How to use this template
+```bash
+npm install @mia-platform-internal/console-sdk
+```
 
-_AKA: "Note to self"_
+## Local Development
 
-- Get started by clicking [Use this template](https://github.com/p-j/typescript-monorepo-template/generate)
-- Update the required files as [described below](https://github.com/p-j/typescript-monorepo-template#what-you-need-to-change)
-- Browse the scripts to understand how `changeset` and `npm` play together to `build` `test` and `publish` releases.
-- [Setup integration](https://github.com/settings/installations) with [Changeset](https://github.com/atlassian/changesets)
-- [Setup integration](https://github.com/settings/installations) with [CodeCov](https://github.com/codecov)
-- Add the necessary `SECRETS` (`NPM_TOKEN` & `CODECOV_TOKEN`)
+For local development, you can run:
 
-## What you need to change
-
-- `package.json`: change project name, author etc...
-- `LICENSE`: change the copyright holder
-- `CODE_OF_CONDUCT.md`: change the contact address in the `Enforcement` paragraph
-- `.github/workflows/release.yml`: change the guard to your repository name
-- `.changeset/config.json`: change the repository name
-
-## TODO
+```bash
+npm install && npm test
+```
 
 
-
-## License
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fp-j%2Ftypescript-monorepo-template.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fp-j%2Ftypescript-monorepo-template?ref=badge_large)
+[action-status-svg]: https://github.com/mia-platform/console-sdk/actions/workflows/test.yml/badge.svg
+[github-action]: https://github.com/mia-platform/console-sdk/actions/workflows/test.yml
+[standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
+[standard-mia]: https://github.com/mia-platform/eslint-config-mia
+[coverall-svg]: https://coveralls.io/repos/github/mia-platform/console-sdk/badge.svg
+[coverall-io]: https://coveralls.io/github/mia-platform/console-sdk
