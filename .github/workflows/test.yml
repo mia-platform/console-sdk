@@ -46,6 +46,7 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
+        flag-name: coverage for node:${{ matrix.node-version }}
         files: 'packages/*/coverage/clover.xml'
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
