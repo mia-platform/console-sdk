@@ -61,5 +61,7 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
-        base-path: 'packages/*/coverage/lcov.info'
+        debug: true
+        path-to-lcov: 'packages/*/coverage/lcov.info'
+        parallel: true
         github-token: ${{ secrets.GITHUB_TOKEN }}
