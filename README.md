@@ -10,11 +10,11 @@
 [![javascript style guide][standard-mia-svg]][standard-mia]  
 [![Coverage Status][coverall-svg]][coverall-io]
 
-|   Monorepos    |                                                            Links                                                            |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| SDK            | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/microfrontend-sdk)                     |
-| vite helpers   | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/vite-helpers-console-microfrontend)    |
-| webpack helper | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/webpack-helpers-console-microfrontend) |
+|    Monorepos    |                                                            Links                                                            |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| SDK             | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/microfrontend-sdk)                     |
+| Vite helpers    | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/vite-helpers-console-microfrontend)    |
+| Webpack helpers | [link](https://github.com/mia-platform/console-sdk/tree/feat/MNHC-131-setup/packages/webpack-helpers-console-microfrontend) |
 
 ## Install
 
