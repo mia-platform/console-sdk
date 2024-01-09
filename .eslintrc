@@ -38,9 +38,16 @@
         "no-use-before-define": "off",
         "import/order": ["error", {
           "groups": [
-            ["builtin", "external"]
-          ],
+            ["builtin", "external"],
+            ["internal", "parent", "sibling", "index"],
+          ],      
           "newlines-between": "always"
+        }],
+        "max-statements": "off",
+        "no-underscore-dangle": "off",
+        "no-shadow": "off",
+        "sort-imports": ["error", {
+          "allowSeparatedGroups": true
         }],
         "unused-imports/no-unused-imports": "error"
       }

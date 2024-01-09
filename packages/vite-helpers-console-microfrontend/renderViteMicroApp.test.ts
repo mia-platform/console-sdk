@@ -16,14 +16,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { JSDOM } from 'jsdom'
 import { ConsoleSDK } from '@mia-platform/microfrontend-sdk'
+import { JSDOM } from 'jsdom'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 
-import { decorateLifecycleFunction, IViteParams, getSDK } from './renderViteMicroApp'
+import { IViteParams, decorateLifecycleFunction, getSDK } from './renderViteMicroApp'
 
 const dom = new JSDOM()
-const document = dom.window.document
+const { document } = dom.window
 
 const quiankunContainer = document.createElement('div')
 quiankunContainer.id = '__qiankun_microapp_wrapper_for_microfrontend__'
@@ -33,8 +33,8 @@ const qiankunPropsMock: QiankunProps = {
   container: quiankunContainer,
   // some console injected props
   console: {},
-  eventListener: () => {},
-  resourceAPI: { writeConfig: () => {} }
+  eventListener: jest.fn(),
+  resourceAPI: { writeConfig: jest.fn() }
 }
 
 const viteParamsMock: IViteParams = {

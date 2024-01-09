@@ -17,7 +17,7 @@
  */
 
 import { ConsoleSDK, IConsoleSDK } from '@mia-platform/microfrontend-sdk'
-import { qiankunWindow, QiankunProps } from 'vite-plugin-qiankun/dist/helper'
+import { QiankunProps, qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
 
 export type ConsoleLifecycleFunction = (
   isConnectedToConsole: boolean,

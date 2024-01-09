@@ -16,14 +16,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { JSDOM } from 'jsdom'
 import { ConsoleSDK } from '@mia-platform/microfrontend-sdk'
+import { JSDOM } from 'jsdom'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 
 import renderWebpackMicroApp, { IViteParams, decorateLifecycleFunction, getSDK } from './renderWebpackMicroApp'
 
 const dom = new JSDOM()
-const document = dom.window.document
+const { document } = dom.window
 
 const quiankunContainer = document.createElement('div')
 quiankunContainer.id = '__qiankun_microapp_wrapper_for_microfrontend__'
@@ -33,8 +33,8 @@ const qiankunPropsMock: QiankunProps = {
   container: quiankunContainer,
   // some console injected props
   console: {},
-  eventListener: () => {},
-  resourceAPI: { writeConfig: () => {} }
+  eventListener: jest.fn(),
+  resourceAPI: { writeConfig: jest.fn() }
 }
 
 const viteParamsMock: IViteParams = {
@@ -47,7 +47,7 @@ describe('Webpack Micro App Rendering', () => {
   it('should create a ConsoleSDK instance', () => {
     const { consoleSDK, isConnectedToConsole } = getSDK(qiankunPropsMock)
     expect(consoleSDK).toBeInstanceOf(ConsoleSDK)
-    expect(isConnectedToConsole).toBe(false) // Potrebbe essere false in questo esempio
+    expect(isConnectedToConsole).toBe(false)
   })
 
   it('should decorate a lifecycle function', () => {

@@ -16,8 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Events, EventsTypes } from './types'
 import ConsoleSDK, { IConsoleSDK, ISDKProps } from './MicrofronendIntegrator'
+import { Events, EventsTypes } from './types'
 
 export type {
   ISDKProps,

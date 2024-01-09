@@ -18,11 +18,11 @@
 
 import { JSDOM } from 'jsdom'
 
-import ConsoleSDK, { ISDKProps, ContextsType } from './MicrofronendIntegrator'
-import { EventsTypes, Events } from './types'
+import ConsoleSDK, { ContextsType, ISDKProps } from './MicrofronendIntegrator'
+import { Events, EventsTypes } from './types'
 
 const dom = new JSDOM()
-const document = dom.window.document
+const { document } = dom.window
 
 const container = document.createElement('div')
 container.id = '__quiankun_container__'
@@ -32,8 +32,8 @@ const quiankunProps = { name: 'testMicrofrontend', container }
 const SDKPropsMock: ISDKProps = {
   ...quiankunProps,
   console: {
-    writeConfig: () => {},
-    _signals: { mount: () => {} },
+    writeConfig: jest.fn(),
+    _signals: { mount: jest.fn() },
     eventBus,
     configObservables: {
       endpoints: {},

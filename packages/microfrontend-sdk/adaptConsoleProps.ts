@@ -16,8 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 import { ISDKProps } from '@mia-platform/microfrontend-sdk'
+import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 import { omit } from 'ramda'
 
 import pkg from './package.json'

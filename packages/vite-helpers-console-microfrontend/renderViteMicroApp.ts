@@ -17,7 +17,7 @@
  */
 
 import { ConsoleSDK, IConsoleSDK } from '@mia-platform/microfrontend-sdk'
-import { renderWithQiankun, qiankunWindow, QiankunProps } from 'vite-plugin-qiankun/dist/helper'
+import { QiankunProps, qiankunWindow, renderWithQiankun } from 'vite-plugin-qiankun/dist/helper'
 
 export type ConsoleLifecycleFunction = (
   isConnectedToConsole: boolean,
@@ -55,7 +55,7 @@ export default function renderViteMicroApp ({ mount, unmount }: IViteParams) {
   renderWithQiankun({
     mount: decorateLifecycleFunction(mount),
     unmount: decorateLifecycleFunction(unmount),
-    bootstrap () {},
-    update () {}
+    bootstrap: () => undefined,
+    update: () => undefined
   })
 }

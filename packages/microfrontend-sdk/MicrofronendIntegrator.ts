@@ -16,9 +16,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Subject } from 'rxjs'
+import {
+  Collections,
+  Endpoints,
+  IEnvironment,
+  IProject,
+  PublicVariable,
+  ServiceConfigMap,
+  Services
+} from '@mia-platform-internal/console-types'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
-import { Endpoints, Collections, ServiceConfigMap, Services, PublicVariable, IEnvironment, IProject } from '@mia-platform-internal/console-types'
+import { Subject } from 'rxjs'
 
 import { Events } from './types'
 
