@@ -50,18 +50,13 @@ jobs:
     - run: npm run webpack-helper test
 
     - uses: actions/checkout@v4
-    - name: Use golang 1.20
+    - name: Setup Go to check license
       uses: actions/setup-go@v5
       with:
         go-version: '1.20'
-    - name: Use Node.js 18
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-    - name: install addlicense
+    - name: Check license
       run: go install github.com/google/addlicense@latest
-    - name: check license
-      run: npm run check-license
+    - run: npm run check-license
 
     - name: Coveralls
       uses: coverallsapp/github-action@v2

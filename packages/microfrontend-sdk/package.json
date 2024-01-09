@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc --build",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "engines": {
     "node": ">=v18.18.2"

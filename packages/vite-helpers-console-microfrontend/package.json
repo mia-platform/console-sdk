@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc --build",
     "lint": "eslint . --ext .ts",
-    "test": "jest",
+    "test": "jest --coverage",
     "addlicense": "addlicense -c 'Mia srl' -s -ignore src/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s -ignore src/**/*.ts"
   },
