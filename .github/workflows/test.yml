@@ -39,10 +39,10 @@ jobs:
         registry-url: "https://nexus.mia-platform.eu/repository/npm-internal/"
         scope: "mia-platform-internal"
     - name: Install Packages
-      run: npm ci; rm -f .npmrc
+      run: pnpm i; rm -f .npmrc
       env:
         NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
-    - run: npm test
+    - run: pnpm test
     - name: Coveralls
       uses: coverallsapp/github-action@v2
       with:
