@@ -6,7 +6,7 @@
   "main": "build/src/index.js",
   "module": "src/index.ts",
   "scripts": {
-    "build": "rm -rf build && tsc",
+    "build": "rm -rf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "test": "jest --coverage",
     "addlicense": "addlicense -c 'Mia srl' -s -ignore src/**/*.ts",
@@ -42,8 +42,8 @@
   },
   "jest": {
     "testMatch": [
-      "**/__tests__/**/*.+(ts|js)",
-      "**/?(*.)+(spec|test).+(ts|js)"
+      "**/__tests__/**/*.+(ts)",
+      "**/?(*.)+(spec|test).+(ts)"
     ],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"

@@ -22,13 +22,13 @@
   "dependencies": {},
   "scripts": {
     "sdk": "pnpm --filter @mia-platform/microfrontend-sdk",
-    "vite-helper": "pnpm --filter @mia-platform/vite-helpers-console-microfrontend",
-    "webpack-helper": "pnpm --filter @mia-platform/webpack-helpers-console-microfrontend",
+    "vite-helpers": "pnpm --filter @mia-platform/vite-helpers-console-microfrontend",
+    "webpack-helpers": "pnpm --filter @mia-platform/webpack-helpers-console-microfrontend",
     
-    "build": "tsc --build --verbose",
-    "test": "pnpm sdk test --coverage && pnpm run vite-helper test --coverage && pnpm run webpack-helper test --coverage",
-    "lint:fix": "pnpm sdk run lint --fix && pnpm run vite-helper run lint --fix && pnpm run webpack-helper run lint --fix",
-    "lint": "pnpm run sdk run lint && pnpm run vite-helper run lint && pnpm run webpack-helper run lint",
+    "build": "pnpm sdk build && pnpm vite-helpers build && pnpm webpack-helpers build",
+    "test": "pnpm sdk test && pnpm vite-helpers test && pnpm webpack-helpers test",
+    "lint:fix": "pnpm sdk lint --fix && pnpm vite-helpers lint --fix && pnpm webpack-helpers lint --fix",
+    "lint": "pnpm sdk lint && pnpm vite-helpers lint && pnpm webpack-helpers lint",
 
     "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/**/*.ts",
