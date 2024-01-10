@@ -23,7 +23,7 @@ import {
   IProject,
   PublicVariable,
   ServiceConfigMap,
-  Services
+  Services,
 } from '@mia-platform-internal/console-types'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 import { Subject } from 'rxjs'
@@ -82,7 +82,7 @@ export default class MicrofronendIntegrator implements IConsoleSDK {
   contexts: IContexts
   configObservable: IConfigObservable
 
-  constructor (mountingProps: QiankunProps) {
+  constructor(mountingProps: QiankunProps) {
     const { console, name } = mountingProps
     const { eventBus, contexts } = console
 
@@ -94,26 +94,26 @@ export default class MicrofronendIntegrator implements IConsoleSDK {
     this.events.subscribe(eventBus)
   }
 
-  getContext (contextType: ContextsType): IContexts[keyof IContexts] | undefined {
+  getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined {
     switch (contextType) {
-      case ContextsType.FEATURE_TOGGLE_CONTEXT:
-        return {} as IContexts['featureTogglesProxyContext']
-      case ContextsType.HOTKEYS_CONTEXT:
-        return {} as IContexts['hotkeysContext']
-      default:
-        return undefined
+    case ContextsType.FEATURE_TOGGLE_CONTEXT:
+      return {} as IContexts['featureTogglesProxyContext']
+    case ContextsType.HOTKEYS_CONTEXT:
+      return {} as IContexts['hotkeysContext']
+    default:
+      return undefined
     }
   }
 
-  getContainerId (): string {
+  getContainerId(): string {
     return this.name
   }
 
-  getConsoleConfigObservable (): IConfigObservable {
+  getConsoleConfigObservable(): IConfigObservable {
     return this.configObservable
   }
 
-  sendEvent (event: Events): void {
+  sendEvent(event: Events): void {
     this.events.next(event)
   }
 }

@@ -34,12 +34,12 @@ const qiankunPropsMock: QiankunProps = {
   // some console injected props
   console: {},
   eventListener: jest.fn(),
-  resourceAPI: { writeConfig: jest.fn() }
+  resourceAPI: { writeConfig: jest.fn() },
 }
 
 const viteParamsMock: IViteParams = {
   mount: jest.fn(),
-  unmount: jest.fn()
+  unmount: jest.fn(),
 }
 
 describe('Vite Micro App Rendering', () => {

@@ -2,8 +2,11 @@
   "name": "console-sdk",
   "license": "Apache-2.0",
   "private": true,
+  "sideEffects": false,
   "workspaces": [
-    "packages/*"
+    "packages/microfrontend-sdk",
+    "packages/vite-helpers-console-microfrontend",
+    "packages/webpack-helpers-console-microfrontend"
   ],
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
@@ -18,13 +21,15 @@
   },
   "dependencies": {},
   "scripts": {
-    "sdk": "npm --workspace=@mia-platform/microfrontend-sdk",
-    "vite-helper": "npm --workspace=@mia-platform/vite-helpers-console-microfrontend",
-    "webpack-helper": "npm --workspace=@mia-platform/webpack-helpers-console-microfrontend",
-    "release": "npm build && changeset publish",
-    "test": "npm run sdk test --coverage && npm run vite-helper test --coverage && npm run webpack-helper test --coverage",
-    "lint:fix": "npm run sdk run lint --fix && npm run vite-helper run lint --fix && npm run webpack-helper run lint --fix",
-    "lint": "npm run sdk run lint && npm run vite-helper run lint && npm run webpack-helper run lint",
+    "sdk": "pnpm --filter @mia-platform/microfrontend-sdk",
+    "vite-helper": "pnpm --filter @mia-platform/vite-helpers-console-microfrontend",
+    "webpack-helper": "pnpm --filter @mia-platform/webpack-helpers-console-microfrontend",
+    
+    "build": "tsc --build --verbose",
+    "test": "pnpm sdk test --coverage && pnpm run vite-helper test --coverage && pnpm run webpack-helper test --coverage",
+    "lint:fix": "pnpm sdk run lint --fix && pnpm run vite-helper run lint --fix && pnpm run webpack-helper run lint --fix",
+    "lint": "pnpm run sdk run lint && pnpm run vite-helper run lint && pnpm run webpack-helper run lint",
+
     "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/**/*.ts",
     "changeset": "changeset"

@@ -17,7 +17,7 @@
  */
 
 import { ConsoleSDK, IConsoleSDK } from '@mia-platform/microfrontend-sdk'
-import { QiankunProps, qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
+import { QiankunProps, qiankunWindow, renderWithQiankun } from 'vite-plugin-qiankun/dist/helper'
 
 export type ConsoleLifecycleFunction = (
   isConnectedToConsole: boolean,
@@ -31,7 +31,7 @@ export interface IViteParams {
   update?: () => void
 }
 
-export function getSDK (props: QiankunProps): {
+export function getSDK(props: QiankunProps): {
   consoleSDK: IConsoleSDK
   isConnectedToConsole: boolean
 } {
@@ -40,21 +40,24 @@ export function getSDK (props: QiankunProps): {
 
   return {
     consoleSDK,
-    isConnectedToConsole
+    isConnectedToConsole,
   }
 }
 
 export const decorateLifecycleFunction = (lifecycleFunction: IViteParams[keyof IViteParams]) => {
   return (props: QiankunProps): void => {
     const { isConnectedToConsole, consoleSDK } = getSDK(props)
-    lifecycleFunction && lifecycleFunction(isConnectedToConsole, consoleSDK)
+    if (lifecycleFunction) {
+      lifecycleFunction(isConnectedToConsole, consoleSDK)
+    }
   }
 }
 
-export default function renderWebpackMicroApp ({ mount, unmount, bootstrap }: IViteParams) {
-  return {
+export default function renderViteMicroApp({ mount, unmount }: IViteParams) {
+  renderWithQiankun({
     mount: decorateLifecycleFunction(mount),
     unmount: decorateLifecycleFunction(unmount),
-    bootstrap
-  }
+    bootstrap: () => undefined,
+    update: () => undefined,
+  })
 }

@@ -34,13 +34,13 @@ const qiankunPropsMock: QiankunProps = {
   // some console injected props
   console: {},
   eventListener: jest.fn(),
-  resourceAPI: { writeConfig: jest.fn() }
+  resourceAPI: { writeConfig: jest.fn() },
 }
 
 const viteParamsMock: IViteParams = {
   mount: jest.fn(),
   unmount: jest.fn(),
-  bootstrap: jest.fn()
+  bootstrap: jest.fn(),
 }
 
 describe('Webpack Micro App Rendering', () => {
@@ -70,7 +70,10 @@ describe('Webpack Micro App Rendering', () => {
 
     mount(qiankunPropsMock)
     unmount(qiankunPropsMock)
-    bootstrap && bootstrap()
+
+    if (bootstrap) {
+      bootstrap()
+    }
 
     expect(viteParamsMock.mount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
     expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))

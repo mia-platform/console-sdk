@@ -3,15 +3,17 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "private": true,
+  "main": "build/src/index.js",
+  "module": "src/index.ts",
   "scripts": {
-    "build": "tsc --build",
+    "build": "rm -rf build && tsc",
     "lint": "eslint . --ext .ts",
     "test": "jest --coverage",
     "addlicense": "addlicense -c 'Mia srl' -s -ignore src/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s -ignore src/**/*.ts"
   },
   "dependencies": {
-    "@mia-platform/microfrontend-sdk": "0.0.0",
+    "@mia-platform/microfrontend-sdk": "workspace:*",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {
@@ -30,7 +32,6 @@
   "engines": {
     "node": ">=v18.18.2"
   },
-  "main": "index.js",
   "homepage": "https://github.com/mia-platform/console-sdk#readme",
   "repository": {
     "type": "git",

@@ -16,18 +16,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ISDKProps } from '@mia-platform/microfrontend-sdk'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 import { omit } from 'ramda'
 
-import pkg from './package.json'
+import { ISDKProps } from './MicrofronendIntegrator'
+import pkg from '../package.json'
 
-export function getConsoleProps (props: QiankunProps): ISDKProps {
+export function getConsoleProps(props: QiankunProps): ISDKProps {
   const {
     eventListener,
     resourceAPI,
     featureTogglesProxyContext,
-    hotkeysContext
+    hotkeysContext,
   } = props
 
   const {
@@ -41,7 +41,7 @@ export function getConsoleProps (props: QiankunProps): ISDKProps {
     forceConfigUpdateChecksum,
     microfrontendPluginConfig,
     selectedEnvironment,
-    selectedProject
+    selectedProject,
   } = resourceAPI
 
   return {
@@ -52,7 +52,7 @@ export function getConsoleProps (props: QiankunProps): ISDKProps {
       eventBus: eventListener,
       contexts: {
         featureTogglesProxyContext,
-        hotkeysContext
+        hotkeysContext,
       },
       configObservables: {
         collections,
@@ -68,8 +68,8 @@ export function getConsoleProps (props: QiankunProps): ISDKProps {
         selectedEnvironment,
         selectedProject,
 
-        _version: pkg.version
-      }
-    }
+        _version: pkg.version,
+      },
+    },
   }
 }

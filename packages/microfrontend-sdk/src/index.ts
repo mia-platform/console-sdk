@@ -23,9 +23,9 @@ export type {
   ISDKProps,
   IConsoleSDK,
   Events,
-  EventsTypes
+  EventsTypes,
 }
 
 export {
-  ConsoleSDK
+  ConsoleSDK,
 }
