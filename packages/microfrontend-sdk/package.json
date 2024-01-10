@@ -5,24 +5,36 @@
   "private": true,
   "main": "./build/src/index.js",
   "module": "./src/index.ts",
-  "dependencies": {
-    "@mia-platform-internal/console-types": "^0.16.0",
-    "rxjs": "7.8.1"
-  },
-  "devDependencies": {
-    "@types/jsdom": "21.1.6",
-    "jsdom": "23.0.1",
-    "jest": "29.7.0",
-    "ts-node": "10.9.1",
-    "typescript": "^5.3.3"
-  },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "rm -rf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "test": "jest --coverage"
   },
+  "dependencies": {
+    "@mia-platform-internal/console-types": "^0.16.0",
+    "rxjs": "^7.8.1",
+    "ramda": "^0.29.1"
+  },
+  "devDependencies": {
+    "@types/jsdom": "21.1.6",
+    "@types/ramda": "0.29.9",
+    "jsdom": "23.0.1",
+    "jest": "29.7.0",
+    "ts-node": "10.9.1",
+    "typescript": "^5.3.3",
+    "vite-plugin-qiankun": "1.0.15"
+  },
   "engines": {
     "node": ">=v18.18.2"
+  },
+  "homepage": "https://github.com/mia-platform/console-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mia-platform/console-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mia-platform/console-sdk/issues"
   },
   "jest": {
     "testMatch": [
@@ -32,13 +44,5 @@
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     }
-  },
-  "homepage": "https://github.com/mia-platform/console-sdk#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mia-platform/console-sdk.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mia-platform/console-sdk/issues"
   }
 }

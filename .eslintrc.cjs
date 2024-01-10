@@ -10,6 +10,7 @@ module.exports = {
   ],
   ignorePatterns: [
     ".eslintrc.cjs",
+    "jest.config.js",
     "compiled",
     "build",
   ],

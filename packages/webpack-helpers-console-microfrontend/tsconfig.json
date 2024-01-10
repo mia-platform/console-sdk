@@ -8,7 +8,7 @@
     "node_modules", 
     "coverage",
     "build", 
-    "tsconfig.*",
+    "tsconfig.json",
     "src/**/*.test.ts"
   ],
   "include": [
