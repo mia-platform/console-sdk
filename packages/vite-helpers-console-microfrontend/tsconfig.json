@@ -3,9 +3,6 @@
   "compilerOptions": {
     "outDir": "./build",
     "rootDir": ".",
-    "paths": {
-      "@mia-platform/microfrontend-sdk": ["./../microfrontend-sdk/src/*"],
-    }
   },
   "exclude": [
     "./node_modules", 

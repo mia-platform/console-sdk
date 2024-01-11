@@ -37,17 +37,10 @@
     "url": "https://github.com/mia-platform/console-sdk/issues"
   },
   "jest": {
+    "preset": "ts-jest",
     "testMatch": [
       "**/__tests__/**/*.+(ts)",
       "**/?(*.)+(spec|test).+(ts)"
-    ],
-    "moduleNameMapper": {
-      "@mia-platform/microfrontend-sdk": "<rootDir>/../microfrontend-sdk/src/$1"
-    },
-    "transform": {
-      "^.+\\.(ts|tsx)$": ["ts-jest", {
-        "tsconfig": "<rootDir>/tsconfig.json"
-      }]
-    }
+    ]
   }
 }

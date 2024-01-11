@@ -8,6 +8,7 @@
     "./node_modules", 
     "./coverage",
     "./build", 
+    "**/*.test.ts",
     "tsconfig.json"
   ],
   "include": [
