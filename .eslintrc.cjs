@@ -10,7 +10,6 @@ module.exports = {
   ],
   ignorePatterns: [
     ".eslintrc.cjs",
-    "jest.config.js",
     "compiled",
     "build",
   ],
@@ -19,8 +18,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
     project: [
-      "./tsconfig.json",
-      "./tsconfig.node.json"
+      "./tsconfig.json"
     ],
     tsconfigRootDir: __dirname
   },
