@@ -9,7 +9,6 @@
     "coverage",
     "build", 
     "tsconfig.json",
-    "src/**/*.test.ts"
   ],
   "include": [
     "./**/*.ts"
