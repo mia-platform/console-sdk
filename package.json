@@ -30,8 +30,8 @@
     "lint:fix": "pnpm sdk lint --fix && pnpm vh lint --fix && pnpm wh lint --fix",
     "lint": "pnpm sdk lint && pnpm vh lint && pnpm wh lint",
 
-    "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/**/*.ts",
-    "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/**/*.ts",
+    "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/*/src/**/*.ts",
+    "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/*/src/**/*.ts",
     "changeset": "changeset"
   },
   "version": "0.0.0",
