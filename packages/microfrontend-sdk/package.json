@@ -40,14 +40,5 @@
   },
   "bugs": {
     "url": "https://github.com/mia-platform/console-sdk/issues"
-  },
-  "jest": {
-    "testMatch": [
-      "**/__tests__/**/*.+(ts)",
-      "**/?(*.)+(spec|test).+(ts)"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    }
   }
 }
