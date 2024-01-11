@@ -46,10 +46,6 @@
       "**/__tests__/**/*.+(ts)",
       "**/?(*.)+(spec|test).+(ts)"
     ],
-    "moduleDirectories": [
-      "src",
-      "node_modules"
-    ],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     }
