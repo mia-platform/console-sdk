@@ -44,9 +44,10 @@ jobs:
         version: 8
         run_install: false
     - name: Install Packages
-      run: pnpm i --no-frozen-lockfile; rm -f .npmrc
+      run: pnpm i; rm -f .npmrc
       env:
         NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
+    - run: pnpm build
     - run: pnpm test
     - name: Coveralls
       uses: coverallsapp/github-action@v2
