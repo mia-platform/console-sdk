@@ -5,10 +5,10 @@
     "rootDir": "."
   },
   "exclude": [
-    "node_modules", 
-    "coverage",
-    "build", 
-    "tsconfig.json",
+    "./node_modules", 
+    "./coverage",
+    "./build", 
+    "tsconfig.json"
   ],
   "include": [
     "./**/*.ts"

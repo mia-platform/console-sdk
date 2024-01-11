@@ -9,7 +9,8 @@
     "preinstall": "npx only-allow pnpm",
     "build": "rm -rf ./build && tsc",
     "lint": "eslint . --ext .ts",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "unit": "jest"
   },
   "dependencies": {
     "@mia-platform-internal/console-types": "^0.16.0",

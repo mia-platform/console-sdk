@@ -5,9 +5,9 @@
     "rootDir": "."
   },
   "exclude": [
-    "node_modules", 
-    "coverage",
-    "build", 
+    "./node_modules", 
+    "./coverage",
+    "./build", 
     "tsconfig.json"
   ],
   "include": [
