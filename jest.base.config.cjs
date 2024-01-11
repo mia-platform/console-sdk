@@ -1,7 +1,3 @@
-/** 
- * @type {import('ts-jest').JestConfigWithTsJest} 
- */
-
 module.exports = {
   testMatch: [
     "**/__tests__/**/*.+(ts)",
