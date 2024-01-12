@@ -14,7 +14,7 @@
     "unit": "jest"
   },
   "dependencies": {
-    "@mia-platform/microfrontend-sdk": "0.0.0",
+    "@mia-platform/console-sdk-microfrontend": "0.0.0",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {
@@ -31,13 +31,13 @@
   "engines": {
     "node": ">=v18.18.2"
   },
-  "homepage": "https://github.com/mia-platform/microfrontend-sdk#readme",
+  "homepage": "https://github.com/mia-platform/console-sdk-microfrontend#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mia-platform/microfrontend-sdk.git"
+    "url": "git+https://github.com/mia-platform/console-sdk-microfrontend.git"
   },
   "bugs": {
-    "url": "https://github.com/mia-platform/microfrontend-sdk/issues"
+    "url": "https://github.com/mia-platform/console-sdk-microfrontend/issues"
   },
   "jest": {
     "preset": "ts-jest",

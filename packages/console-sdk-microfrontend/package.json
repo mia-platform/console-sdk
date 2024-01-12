@@ -1,5 +1,5 @@
 {
-  "name": "@mia-platform/microfrontend-sdk",
+  "name": "@mia-platform/console-sdk-microfrontend",
   "license": "Apache-2.0",
   "version": "0.0.0",
   "private": true,
@@ -32,13 +32,13 @@
   "engines": {
     "node": ">=v18.18.2"
   },
-  "homepage": "https://github.com/mia-platform/microfrontend-sdk#readme",
+  "homepage": "https://github.com/mia-platform/console-sdk-microfrontend#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mia-platform/microfrontend-sdk.git"
+    "url": "git+https://github.com/mia-platform/console-sdk-microfrontend.git"
   },
   "bugs": {
-    "url": "https://github.com/mia-platform/microfrontend-sdk/issues"
+    "url": "https://github.com/mia-platform/console-sdk-microfrontend/issues"
   },
   "jest": {
     "preset": "ts-jest",

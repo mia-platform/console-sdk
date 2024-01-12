@@ -16,7 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ConsoleSDK, IConsoleSDK } from '@mia-platform/microfrontend-sdk'
+import { ConsoleSDK, IConsoleSDK } from '@mia-platform/console-sdk-microfrontend'
 import { QiankunProps, qiankunWindow, renderWithQiankun } from 'vite-plugin-qiankun/dist/helper'
 
 export type ConsoleLifecycleFunction = (
