@@ -11,6 +11,7 @@ coverage
 .gitignore
 .nvmrc
 .yarnrc.yml
+.changeset
 CONTRIBUTING.md
 index.html
 jest.config.js

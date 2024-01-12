@@ -7,7 +7,7 @@
   "module": "./src/index.ts",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "rm -rf ./build && tsc",
+    "build": "rm -rf ./build && tsc --build",
     "lint": "eslint . --ext .ts",
     "test": "jest --coverage",
     "unit": "jest"
