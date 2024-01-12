@@ -27,10 +27,12 @@
     "vh": "pnpm --filter @mia-platform/vite-helpers-console-microfrontend",
     "wh": "pnpm --filter @mia-platform/webpack-helpers-console-microfrontend",
     
-    "build": "pnpm sdk build && pnpm vh build && pnpm wh build",
-    "test": "pnpm sdk test && pnpm vh test && pnpm wh test",
-    "lint:fix": "pnpm sdk lint --fix && pnpm vh lint --fix && pnpm wh lint --fix",
-    "lint": "pnpm sdk lint && pnpm vh lint && pnpm wh lint",
+    "postinstall": "pnpm sdk build",
+
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint:fix": "pnpm -r lint --fix",
+    "lint": "pnpm -r lint",
 
     "addlicense": "addlicense -c 'Mia srl' -s packages/*/src/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s packages/*/src/**/*.ts",
