@@ -30,7 +30,7 @@ jobs:
         version: 8
         run_install: false
     - name: Install Packages
-      run: pnpm i; rm -f .npmrc
+      run: pnpm i
       env:
         NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
     - run: pnpm build
