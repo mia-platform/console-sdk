@@ -14,9 +14,14 @@
 
 name: Release
 on:
+  workflow_run:
+    workflows: ["Test"]
+    types:
+      - completed
   push:
     tags:
       - '*'
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -39,7 +44,6 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm sdk build
-          pnpm vh test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
       - name: Publish Vite Helper
@@ -47,7 +51,6 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm vh build
-          pnpm vh test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
       - name: Publish Webpack Helper
@@ -55,8 +58,7 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm wh build
-          pnpm wh test
 
-      - run: pnpm publish
+      - run: pnpm -r publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
