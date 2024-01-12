@@ -33,27 +33,30 @@ jobs:
         with:
           generate_release_notes: true
           prerelease: ${{ startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-rc.') }}
+      
       - name: Publish SDK Helper
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           pnpm install --frozen-lockfile
           pnpm sdk build
-          pnpm publish
+          pnpm vh test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
       - name: Publish Vite Helper
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           pnpm install --frozen-lockfile
-          pnpm vite-helper build
-          pnpm publish
+          pnpm vh build
+          pnpm vh test
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
       - name: Publish Webpack Helper
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           pnpm install --frozen-lockfile
-          pnpm webpack-helper build
-          pnpm publish
+          pnpm wh build
+          pnpm wh test
+
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
