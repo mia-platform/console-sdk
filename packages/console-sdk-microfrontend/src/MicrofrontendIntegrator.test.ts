@@ -18,8 +18,8 @@
 
 import { JSDOM } from 'jsdom'
 
-import ConsoleSDK, { ContextsType, ISDKProps } from './MicrofrontendIntegrator'
-import { Events, EventsTypes } from './types'
+import { ContextsType, Events, EventsTypes, ISDKProps } from './types'
+import ConsoleSDK from './MicrofrontendIntegrator'
 
 const dom = new JSDOM()
 const { document } = dom.window

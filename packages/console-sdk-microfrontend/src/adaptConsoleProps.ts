@@ -16,13 +16,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 import { omit } from 'ramda'
 
-import { ISDKProps } from './MicrofrontendIntegrator'
+import { IConsoleProps, ISDKProps } from './types'
 import pkg from '../package.json'
 
-export function getConsoleProps(props: QiankunProps): ISDKProps {
+export function getConsoleProps(props: IConsoleProps): ISDKProps {
   const {
     eventListener,
     resourceAPI,

@@ -16,6 +16,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  Collections,
+  Endpoints,
+  IEnvironment,
+  IProject,
+  PublicVariable,
+  ServiceConfigMap,
+  Services,
+} from '@mia-platform-internal/console-types'
+
 export enum EventsTypes {
   SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT',
   HIDE_ENVIRONMENT_SELECTION = 'HIDE_ENVIRONMENT_SELECTION',
@@ -37,3 +47,56 @@ export type Events = {
   publisherId: string,
   payload: unknown,
 }
+
+export enum ContextsType {
+  FEATURE_TOGGLE_CONTEXT = 'featureTogglesProxyContext',
+  HOTKEYS_CONTEXT = 'hotkeysContext'
+}
+
+export type IContexts = {
+  featureTogglesProxyContext: Record<string, unknown>
+  hotkeysContext: Record<string, unknown>
+}
+
+export type ISDKConsoleObservable = {
+  endpoints: Endpoints
+  collections: Collections
+  configMaps: ServiceConfigMap
+  services: Services
+  unsecretedVariables: PublicVariable[]
+
+  forceConfigUpdateChecksum: string
+  microfrontendPluginConfig: Record<string, unknown>
+
+  selectedEnvironment: IEnvironment
+  selectedProject: IProject
+
+  _version: string
+}
+
+export type ISDKProps = {
+  name: string
+  console: {
+    writeConfig: (payload: unknown) => void
+    _signals: {mount: () => void}
+    eventBus: (event: Events) => void
+    configObservables: ISDKConsoleObservable
+    contexts: IContexts
+  }
+}
+
+export type IConsoleSDK = {
+  sendEvent(event: Events): void
+}
+
+export type IConsoleProps = IContexts & {
+  name: string
+  eventListener: (event: Events) => void,
+  resourceAPI: ISDKConsoleObservable & {
+    writeConfig: (payload: unknown) => void
+    _signals: {mount: () => void}
+  },
+  hotkeysContext: IContexts['hotkeysContext'],
+  featureTogglesProxyContext: IContexts['featureTogglesProxyContext']
+}
+

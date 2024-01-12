@@ -16,70 +16,24 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import {
-  Collections,
-  Endpoints,
-  IEnvironment,
-  IProject,
-  PublicVariable,
-  ServiceConfigMap,
-  Services,
-} from '@mia-platform-internal/console-types'
-import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 import { Subject } from 'rxjs'
 
-import { Events } from './types'
+import { ContextsType, Events, IContexts, ISDKConsoleObservable, ISDKProps } from './types'
 
-type IConfigObservable = {
-  endpoints: Endpoints
-  collections: Collections
-  configMaps: ServiceConfigMap
-  services: Services
-  unsecretedVariables: PublicVariable[]
-
-  forceConfigUpdateChecksum: string
-  microfrontendPluginConfig: Record<string, unknown>
-
-  selectedEnvironment: IEnvironment
-  selectedProject: IProject
-
-  _version: string
-}
-
-export enum ContextsType {
-  FEATURE_TOGGLE_CONTEXT = 'featureTogglesProxyContext',
-  HOTKEYS_CONTEXT = 'hotkeysContext'
-}
-
-type IContexts = {
-  featureTogglesProxyContext: Record<string, unknown>
-  hotkeysContext: Record<string, unknown>
-}
-
-export type IConsole = {
-  writeConfig: (payload: unknown) => void
-  eventBus: (event: Events) => void
-  configObservables: IConfigObservable
-  contexts: IContexts
-  _signals: {mount: () => void}
-}
-
-export type ISDKProps = QiankunProps & {
-  console: IConsole
-}
-
-export type IConsoleSDK = {
+export type IMicrofronendIntegrator = {
+  getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined
+  getContainerId(): string
+  getConsoleConfigObservable(): ISDKConsoleObservable
   sendEvent(event: Events): void
 }
-
-export default class MicrofronendIntegrator implements IConsoleSDK {
+export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
   private events: Subject<Events>
 
   name: string
   contexts: IContexts
-  configObservable: IConfigObservable
+  configObservable: ISDKConsoleObservable
 
-  constructor(mountingProps: QiankunProps) {
+  constructor(mountingProps: ISDKProps) {
     const { console, name } = mountingProps
     const { eventBus, contexts } = console
 
@@ -106,7 +60,7 @@ export default class MicrofronendIntegrator implements IConsoleSDK {
     return this.name
   }
 
-  getConsoleConfigObservable(): IConfigObservable {
+  getConsoleConfigObservable(): ISDKConsoleObservable {
     return this.configObservable
   }
 
