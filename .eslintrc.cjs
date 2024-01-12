@@ -24,8 +24,6 @@ module.exports = {
   },
   plugins: [
     "import",
-    "react",
-    "react-refresh",
     "@typescript-eslint"
   ],
   settings: {
