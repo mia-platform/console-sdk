@@ -37,7 +37,7 @@
     "allowSyntheticDefaultImports": true,
   },
   "references": [
-    {"path": "./packages/microfrontend-sdk"},
+    {"path": "./packages/console-sdk"},
     {"path": "./packages/vite-helpers-console-microfrontend"},
     {"path": "./packages/webpack-helpers-console-microfrontend"}
   ]

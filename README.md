@@ -20,7 +20,7 @@ See the specific monorepo readme to using this library
 
 ### Console SDK. 
 An abstract interface used within helper repositories. 
-[Read more](./packages/microfrontend-sdk)                     
+[Read more](./packages/console-sdk)                     
 
 ### Vite helpers.
 Used to configure the microfrontend with vite. 
@@ -36,6 +36,8 @@ To use this repository
 
 ```bash
 npm install @mia-platform-internal/console-sdk
+npm install @mia-platform-internal/vite-helpers-console-microfrontend
+npm install @mia-platform-internal/webapack-helpers-console-microfrontend
 ```
 
 ## Local Development
