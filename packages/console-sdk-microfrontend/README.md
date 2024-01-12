@@ -1,2 +1,2 @@
-# Console SDK
+# Microfrontend SDK
 
