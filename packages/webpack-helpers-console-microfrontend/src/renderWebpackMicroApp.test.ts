@@ -55,7 +55,6 @@ describe('Webpack Micro App Rendering', () => {
     const decoratedUnmount = decorateLifecycleFunction(viteParamsMock.unmount)
     const decoratedBootstrap = decorateLifecycleFunction(viteParamsMock.bootstrap)
 
-    // Chiamare le funzioni decorate non dovrebbe generare errori
     decoratedMount(qiankunPropsMock)
     decoratedUnmount(qiankunPropsMock)
     decoratedBootstrap(qiankunPropsMock)
