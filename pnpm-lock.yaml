@@ -17,6 +17,9 @@ importers:
       '@mia-platform/eslint-config-mia':
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.56.0)
+      '@types/jest':
+        specifier: ^29.5.11
+        version: 29.5.11
       eslint:
         specifier: ^8.42.0
         version: 8.56.0
