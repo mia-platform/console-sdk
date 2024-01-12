@@ -1,7 +1,7 @@
 {
   "name": "@mia-platform/microfrontend-sdk",
   "license": "Apache-2.0",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "main": "./build/src/index.js",
   "module": "./src/index.ts",
@@ -42,7 +42,9 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "modulePathIgnorePatterns": ["<rootDir>/build"],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/build"
+    ],
     "testMatch": [
       "**/__tests__/**/*.+(ts)",
       "**/?(*.)+(spec|test).+(ts)"

@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/vite-helpers-console-microfrontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "Apache-2.0",
   "private": true,
   "main": "./build/src/index.js",
@@ -12,7 +12,7 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@mia-platform/microfrontend-sdk": "0.0.0",
+    "@mia-platform/microfrontend-sdk": "0.0.1",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {
