@@ -1,3 +1,3 @@
-# @mia-platform/microfronent-sdk
+# @mia-platform/microfrontend-sdk
 
 ## Unreleased

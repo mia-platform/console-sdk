@@ -16,11 +16,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ConsoleSDK } from '@mia-platform/microfronent-sdk'
+import { ConsoleSDK } from '@mia-platform/microfrontend-sdk'
 import { JSDOM } from 'jsdom'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 
-import { IViteParams, decorateLifecycleFunction, getSDK } from './renderViteMicroApp'
+import renderWebpackMicroApp, { IViteParams, decorateLifecycleFunction, getSDK } from './renderWebpackMicroApp'
 
 const dom = new JSDOM()
 const { document } = dom.window
@@ -40,22 +40,42 @@ const qiankunPropsMock: QiankunProps = {
 const viteParamsMock: IViteParams = {
   mount: jest.fn(),
   unmount: jest.fn(),
+  bootstrap: jest.fn(),
 }
 
-describe('Vite Micro App Rendering', () => {
-  it('should get lifecycle function params', () => {
-    const { isConnectedToConsole, consoleSDK } = getSDK(qiankunPropsMock)
-    expect(isConnectedToConsole).toBe(false)
+describe('Webpack Micro App Rendering', () => {
+  it('should create a ConsoleSDK instance', () => {
+    const { consoleSDK, isConnectedToConsole } = getSDK(qiankunPropsMock)
     expect(consoleSDK).toBeInstanceOf(ConsoleSDK)
+    expect(isConnectedToConsole).toBe(false)
   })
 
-  it('should mount the micro app', () => {
-    decorateLifecycleFunction(viteParamsMock.mount)(qiankunPropsMock)
+  it('should decorate a lifecycle function', () => {
+    const decoratedMount = decorateLifecycleFunction(viteParamsMock.mount)
+    const decoratedUnmount = decorateLifecycleFunction(viteParamsMock.unmount)
+    const decoratedBootstrap = decorateLifecycleFunction(viteParamsMock.bootstrap)
+
+    decoratedMount(qiankunPropsMock)
+    decoratedUnmount(qiankunPropsMock)
+    decoratedBootstrap(qiankunPropsMock)
+
     expect(viteParamsMock.mount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.bootstrap).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
   })
 
-  it('should unmount the micro app', () => {
-    decorateLifecycleFunction(viteParamsMock.unmount)(qiankunPropsMock)
+  it('should render the Webpack micro app', () => {
+    const { mount, unmount, bootstrap } = renderWebpackMicroApp(viteParamsMock)
+
+    mount(qiankunPropsMock)
+    unmount(qiankunPropsMock)
+
+    if (bootstrap) {
+      bootstrap()
+    }
+
+    expect(viteParamsMock.mount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
     expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.bootstrap).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
   })
 })
