@@ -35,7 +35,6 @@ export function getConsoleProps(props: QiankunProps): ISDKProps {
     collections,
     configMaps,
     endpoints,
-    fastDataConfig,
     services,
     unsecretedVariables,
     forceConfigUpdateChecksum,
@@ -58,7 +57,6 @@ export function getConsoleProps(props: QiankunProps): ISDKProps {
         collections,
         configMaps,
         endpoints,
-        fastDataConfig,
         services,
         unsecretedVariables,
 
