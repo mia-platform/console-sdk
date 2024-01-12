@@ -26,11 +26,6 @@ module.exports = {
     "import",
     "@typescript-eslint"
   ],
-  settings: {
-    react: {
-      version: "detect"
-    }
-  },
   rules: {
     "import/order": ["error", {
       groups: [
@@ -40,6 +35,7 @@ module.exports = {
       "newlines-between": "always"
     }],
     "max-statements": "off",
+    "no-underscore-dangle": "off",
     "no-shadow": "off",
     "sort-imports": ["error", {
       allowSeparatedGroups: true

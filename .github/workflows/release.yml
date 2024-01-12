@@ -14,10 +14,6 @@
 
 name: Release
 on:
-  workflow_run:
-    workflows: ["Test"]
-    types:
-      - completed
   push:
     tags:
       - '*'
@@ -28,38 +24,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 8
-          run_install: false
 
       - name: Release Note
         uses: softprops/action-gh-release@v1
         with:
           generate_release_notes: true
           prerelease: ${{ startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-rc.') }}
-      
-      - name: Publish Console SDK
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        run: |
-          pnpm i --frozen-lockfile
-          pnpm sdk build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
-      - name: Publish Vite Helpers
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        run: |
-          pnpm i --frozen-lockfile
-          pnpm vh build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
-      - name: Publish Webpack Helpers
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
-        run: |
-          pnpm i --frozen-lockfile
-          pnpm wh build
-
-      - run: pnpm -r publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}

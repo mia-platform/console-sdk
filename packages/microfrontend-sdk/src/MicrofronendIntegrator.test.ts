@@ -49,13 +49,13 @@ const SDKPropsMock: ISDKProps = {
       selectedEnvironment: {},
       selectedProject: {},
 
-      _version: '0.0.0'
+      _version: '0.0.0',
     },
     contexts: {
       featureTogglesProxyContext: {},
-      hotkeysContext: {}
-    }
-  }
+      hotkeysContext: {},
+    },
+  },
 }
 
 describe('ConsoleSDK', () => {
@@ -69,7 +69,7 @@ describe('ConsoleSDK', () => {
     const event: Events = {
       payload: { test: 'case' },
       publisherId: 'microfrontend-test',
-      action: EventsTypes.SET_DYNAMIC_ROUTES
+      action: EventsTypes.SET_DYNAMIC_ROUTES,
     }
 
     microfrontendIntegrator.sendEvent(event)
