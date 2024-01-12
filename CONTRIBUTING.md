@@ -1,6 +1,6 @@
 # System requirement
 
-* [nodejs >= 12](https://nodejs.org/en/)
+* [nodejs >= 18](https://nodejs.org/en/)
 
 You should run `nvm use` inside the folder to correctly setup used node version.
 
