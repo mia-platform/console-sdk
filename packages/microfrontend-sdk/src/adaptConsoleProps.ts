@@ -19,7 +19,7 @@
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 import { omit } from 'ramda'
 
-import { ISDKProps } from './MicrofronendIntegrator'
+import { ISDKProps } from './MicrofrontendIntegrator'
 import pkg from '../package.json'
 
 export function getConsoleProps(props: QiankunProps): ISDKProps {

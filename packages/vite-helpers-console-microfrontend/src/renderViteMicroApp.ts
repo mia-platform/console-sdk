@@ -24,7 +24,7 @@ export type ConsoleLifecycleFunction = (
   consoleSDK: IConsoleSDK,
 ) => void
 
-export interface IViteParams {
+export type IViteParams = {
   mount: ConsoleLifecycleFunction
   unmount: ConsoleLifecycleFunction
   bootstrap?: () => void
@@ -53,7 +53,7 @@ export const decorateLifecycleFunction = (lifecycleFunction: IViteParams[keyof I
   }
 }
 
-export default function renderViteMicroApp({ mount, unmount }: IViteParams) {
+export default function renderViteMicroApp({ mount, unmount }: IViteParams): void {
   renderWithQiankun({
     mount: decorateLifecycleFunction(mount),
     unmount: decorateLifecycleFunction(unmount),

@@ -18,7 +18,7 @@
 
 import { JSDOM } from 'jsdom'
 
-import ConsoleSDK, { ContextsType, ISDKProps } from './MicrofronendIntegrator'
+import ConsoleSDK, { ContextsType, ISDKProps } from './MicrofrontendIntegrator'
 import { Events, EventsTypes } from './types'
 
 const dom = new JSDOM()
