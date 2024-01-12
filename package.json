@@ -1,6 +1,7 @@
 {
   "name": "console-sdk",
   "license": "Apache-2.0",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "workspaces": [
@@ -35,7 +36,6 @@
     "check-license": "addlicense -c 'Mia srl' -check -s packages/*/src/**/*.ts",
     "changeset": "changeset"
   },
-  "version": "0.0.0",
   "contributors": [
     "Daniele Cinà <daniele.cina@mia-platform.eu>",
     "Davide Bianchi <davide.bianchi@mia-platform.eu>",

@@ -1,6 +1,6 @@
 packages:
   # include packages in subfolders (change as required)
-  - 'packages/**'
+  - 'packages/*'
   # if required, exclude directories
   - '!**/test/**'
   - '!**/build/**'
