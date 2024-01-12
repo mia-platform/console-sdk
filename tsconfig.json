@@ -36,9 +36,6 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
   },
-  "exclude": [
-    ".github"
-  ],
   "references": [
     {"path": "./packages/microfrontend-sdk"},
     {"path": "./packages/vite-helpers-console-microfrontend"},
