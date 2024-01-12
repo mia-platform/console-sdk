@@ -20,7 +20,7 @@ See the specific monorepo readme to using this library
 
 ### Console SDK. 
 An abstract interface used within helper repositories. 
-[Read more](./packages/console-sdk)                     
+[Read more](./packages/microfronent-sdk)                     
 
 ### Vite helpers.
 Used to configure the microfrontend with vite. 
@@ -35,7 +35,7 @@ Used to configure the microfrontend with webpack.
 To use this repository 
 
 ```bash
-npm install @mia-platform-internal/console-sdk
+npm install @mia-platform-internal/microfronent-sdk
 npm install @mia-platform-internal/vite-helpers-console-microfrontend
 npm install @mia-platform-internal/webapack-helpers-console-microfrontend
 ```
@@ -49,9 +49,9 @@ npm install && npm test
 ```
 
 
-[action-status-svg]: https://github.com/mia-platform/console-sdk/actions/workflows/test.yml/badge.svg
-[github-action]: https://github.com/mia-platform/console-sdk/actions/workflows/test.yml
+[action-status-svg]: https://github.com/mia-platform/microfronent-sdk/actions/workflows/test.yml/badge.svg
+[github-action]: https://github.com/mia-platform/microfronent-sdk/actions/workflows/test.yml
 [standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
 [standard-mia]: https://github.com/mia-platform/eslint-config-mia
-[coverall-svg]: https://coveralls.io/repos/github/mia-platform/console-sdk/badge.svg
-[coverall-io]: https://coveralls.io/github/mia-platform/console-sdk
+[coverall-svg]: https://coveralls.io/repos/github/mia-platform/microfronent-sdk/badge.svg
+[coverall-io]: https://coveralls.io/github/mia-platform/microfronent-sdk

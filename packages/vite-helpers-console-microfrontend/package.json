@@ -13,7 +13,7 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@mia-platform/console-sdk": "0.0.0",
+    "@mia-platform/microfronent-sdk": "0.0.0",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {
@@ -29,13 +29,13 @@
   "engines": {
     "node": ">=v18.18.2"
   },
-  "homepage": "https://github.com/mia-platform/console-sdk#readme",
+  "homepage": "https://github.com/mia-platform/microfronent-sdk#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mia-platform/console-sdk.git"
+    "url": "git+https://github.com/mia-platform/microfronent-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/mia-platform/console-sdk/issues"
+    "url": "https://github.com/mia-platform/microfronent-sdk/issues"
   },
   "jest": {
     "preset": "ts-jest",

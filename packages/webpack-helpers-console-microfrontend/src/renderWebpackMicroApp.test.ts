@@ -16,7 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ConsoleSDK } from '@mia-platform/console-sdk'
+import { ConsoleSDK } from '@mia-platform/microfronent-sdk'
 import { JSDOM } from 'jsdom'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 

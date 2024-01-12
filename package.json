@@ -5,7 +5,7 @@
   "private": true,
   "sideEffects": false,
   "workspaces": [
-    "packages/console-sdk",
+    "packages/microfronent-sdk",
     "packages/vite-helpers-console-microfrontend",
     "packages/webpack-helpers-console-microfrontend"
   ],
@@ -23,7 +23,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "sdk": "pnpm --filter @mia-platform/console-sdk",
+    "sdk": "pnpm --filter @mia-platform/microfronent-sdk",
     "vh": "pnpm --filter @mia-platform/vite-helpers-console-microfrontend",
     "wh": "pnpm --filter @mia-platform/webpack-helpers-console-microfrontend",
     
