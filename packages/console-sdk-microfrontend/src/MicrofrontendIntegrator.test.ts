@@ -16,19 +16,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { JSDOM } from 'jsdom'
-
 import { ContextsType, Events, EventsTypes, IConsoleProps } from './types'
 import ConsoleSDK from './MicrofrontendIntegrator'
 
-const dom = new JSDOM()
-const { document } = dom.window
-
-const container = document.createElement('div')
-container.id = '__quiankun_container__'
-
 const eventBus = jest.fn()
-const quiankunProps = { name: 'testMicrofrontend', container }
+const quiankunProps = { name: 'testMicrofrontend' }
 const consoleProps: IConsoleProps = {
   ...quiankunProps,
   eventListener: eventBus,
