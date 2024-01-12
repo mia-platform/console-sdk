@@ -33,30 +33,31 @@ jobs:
         with:
           version: 8
           run_install: false
-      - name: Release
+
+      - name: Release Note
         uses: softprops/action-gh-release@v1
         with:
           generate_release_notes: true
           prerelease: ${{ startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-rc.') }}
       
-      - name: Publish SDK Helper
+      - name: Publish Console SDK
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
-          pnpm install --frozen-lockfile
+          pnpm i --frozen-lockfile
           pnpm sdk build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
-      - name: Publish Vite Helper
+      - name: Publish Vite Helpers
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
-          pnpm install --frozen-lockfile
+          pnpm i --frozen-lockfile
           pnpm vh build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
-      - name: Publish Webpack Helper
+      - name: Publish Webpack Helpers
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
-          pnpm install --frozen-lockfile
+          pnpm i --frozen-lockfile
           pnpm wh build
 
       - run: pnpm -r publish
