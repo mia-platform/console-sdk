@@ -48,10 +48,14 @@ export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
 
   getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined {
     switch (contextType) {
-    case ContextsType.FEATURE_TOGGLE_CONTEXT:
-      return {} as IContexts['featureTogglesProxyContext']
-    case ContextsType.HOTKEYS_CONTEXT:
-      return {} as IContexts['hotkeysContext']
+    case ContextsType.FEATURE_TOGGLE_CONTEXT: {
+      const ctx: IContexts['featureTogglesProxyContext'] = {}
+      return ctx
+    }
+    case ContextsType.HOTKEYS_CONTEXT: {
+      const ctx: IContexts['hotkeysContext'] = {}
+      return ctx
+    }
     default:
       return undefined
     }
