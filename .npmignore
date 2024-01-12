@@ -23,3 +23,4 @@ stats.html
 storybook-static
 __tests__
 node_modules
+packages/*/src
