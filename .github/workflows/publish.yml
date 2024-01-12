@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
           scope: "mia-platform-internal"
       - uses: pnpm/action-setup@v2
