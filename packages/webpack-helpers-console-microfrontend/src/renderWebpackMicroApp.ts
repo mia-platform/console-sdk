@@ -17,18 +17,18 @@
  */
 
 import { ConsoleSDK, IConsoleSDK } from '@mia-platform/microfrontend-sdk'
-import { QiankunProps, qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
+import { QiankunLifeCycle, QiankunProps, qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
 
 export type ConsoleLifecycleFunction = (
   isConnectedToConsole: boolean,
   consoleSDK: IConsoleSDK,
 ) => void
 
-export interface IViteParams {
+export type IViteParams = {
   mount: ConsoleLifecycleFunction
   unmount: ConsoleLifecycleFunction
+  update?: ConsoleLifecycleFunction
   bootstrap?: () => void
-  update?: () => void
 }
 
 export function getSDK(props: QiankunProps): {
@@ -53,10 +53,11 @@ export const decorateLifecycleFunction = (lifecycleFunction: IViteParams[keyof I
   }
 }
 
-export default function renderWebpackMicroApp({ mount, unmount, bootstrap }: IViteParams) {
+export default function renderWebpackMicroApp({ mount, unmount, bootstrap, update }: IViteParams): QiankunLifeCycle {
   return {
     mount: decorateLifecycleFunction(mount),
     unmount: decorateLifecycleFunction(unmount),
-    bootstrap,
+    update: decorateLifecycleFunction(update),
+    ...bootstrap ? { bootstrap } : { bootstrap: () => ({}) },
   }
 }
