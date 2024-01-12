@@ -12,7 +12,7 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@mia-platform/microfrontend-sdk": "workspace:*",
+    "@mia-platform/microfrontend-sdk": "0.0.0",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {
