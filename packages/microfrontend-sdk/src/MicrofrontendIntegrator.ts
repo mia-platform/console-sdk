@@ -37,9 +37,6 @@ type IConfigObservable = {
   services: Services
   unsecretedVariables: PublicVariable[]
 
-  // TOFIX: add correct fast data type
-  fastDataConfig: Record<string, unknown>
-
   forceConfigUpdateChecksum: string
   microfrontendPluginConfig: Record<string, unknown>
 
