@@ -85,18 +85,12 @@ export type ISDKProps = {
   }
 }
 
-export type IConsoleSDK = {
-  sendEvent(event: Events): void
-}
-
-export type IConsoleProps = IContexts & {
+export type IConsoleProps<T = unknown> = T & IContexts & {
   name: string
-  eventListener: (event: Events) => void,
+  eventListener: (event: Events) => void
   resourceAPI: ISDKConsoleObservable & {
     writeConfig: (payload: unknown) => void
     _signals: {mount: () => void}
-  },
-  hotkeysContext: IContexts['hotkeysContext'],
-  featureTogglesProxyContext: IContexts['featureTogglesProxyContext']
+  }
 }
 

@@ -17,10 +17,11 @@
  */
 
 import ConsoleSDK, { IMicrofronendIntegrator } from './MicrofrontendIntegrator'
-import { Events, EventsTypes, ISDKProps } from './types'
+import { Events, EventsTypes, IConsoleProps, ISDKProps } from './types'
 
 export type {
   ISDKProps,
+  IConsoleProps,
   IMicrofronendIntegrator,
   Events,
   EventsTypes,

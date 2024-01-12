@@ -16,7 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ConsoleSDK } from '@mia-platform/console-sdk-microfrontend'
+import { ConsoleSDK, IConsoleProps } from '@mia-platform/console-sdk-microfrontend'
 import { JSDOM } from 'jsdom'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 
@@ -28,13 +28,32 @@ const { document } = dom.window
 const quiankunContainer = document.createElement('div')
 quiankunContainer.id = '__qiankun_microapp_wrapper_for_microfrontend__'
 
-const qiankunPropsMock: QiankunProps = {
+const consoleProps: IConsoleProps<QiankunProps> = {
   name: 'testMicrofrontend',
   container: quiankunContainer,
   // some console injected props
   console: {},
   eventListener: jest.fn(),
-  resourceAPI: { writeConfig: jest.fn() },
+  featureTogglesProxyContext: {},
+  hotkeysContext: {},
+  resourceAPI: {
+    endpoints: {},
+    collections: {},
+    configMaps: {},
+    services: {},
+    unsecretedVariables: [],
+
+    forceConfigUpdateChecksum: '',
+    microfrontendPluginConfig: {},
+
+    selectedEnvironment: {},
+    selectedProject: {},
+
+    writeConfig: jest.fn(),
+
+    _version: '0.0.0',
+    _signals: { mount: jest.fn() },
+  },
 }
 
 const viteParamsMock: IViteParams = {
@@ -45,7 +64,7 @@ const viteParamsMock: IViteParams = {
 
 describe('Webpack Micro App Rendering', () => {
   it('should create a ConsoleSDK instance', () => {
-    const { consoleSDK, isConnectedToConsole } = getSDK(qiankunPropsMock)
+    const { consoleSDK, isConnectedToConsole } = getSDK(consoleProps)
     expect(consoleSDK).toBeInstanceOf(ConsoleSDK)
     expect(isConnectedToConsole).toBe(false)
   })
@@ -55,9 +74,9 @@ describe('Webpack Micro App Rendering', () => {
     const decoratedUnmount = decorateLifecycleFunction(viteParamsMock.unmount)
     const decoratedBootstrap = decorateLifecycleFunction(viteParamsMock.bootstrap)
 
-    decoratedMount(qiankunPropsMock)
-    decoratedUnmount(qiankunPropsMock)
-    decoratedBootstrap(qiankunPropsMock)
+    decoratedMount(consoleProps)
+    decoratedUnmount(consoleProps)
+    decoratedBootstrap(consoleProps)
 
     expect(viteParamsMock.mount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
     expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
@@ -67,8 +86,8 @@ describe('Webpack Micro App Rendering', () => {
   it('should render the Webpack micro app', () => {
     const { mount, unmount, bootstrap } = renderWebpackMicroApp(viteParamsMock)
 
-    mount(qiankunPropsMock)
-    unmount(qiankunPropsMock)
+    mount(consoleProps)
+    unmount(consoleProps)
 
     if (bootstrap) {
       bootstrap()

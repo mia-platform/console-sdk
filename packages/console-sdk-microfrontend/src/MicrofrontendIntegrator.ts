@@ -18,7 +18,8 @@
 
 import { Subject } from 'rxjs'
 
-import { ContextsType, Events, IContexts, ISDKConsoleObservable, ISDKProps } from './types'
+import { ContextsType, Events, IConsoleProps, IContexts, ISDKConsoleObservable } from './types'
+import { getConsoleProps } from './adaptConsoleProps'
 
 export type IMicrofronendIntegrator = {
   getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined
@@ -33,8 +34,8 @@ export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
   contexts: IContexts
   configObservable: ISDKConsoleObservable
 
-  constructor(mountingProps: ISDKProps) {
-    const { console, name } = mountingProps
+  constructor(mountingProps: IConsoleProps) {
+    const { name, console } = getConsoleProps(mountingProps)
     const { eventBus, contexts } = console
 
     this.name = name

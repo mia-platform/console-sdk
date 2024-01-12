@@ -18,7 +18,7 @@
 
 import { JSDOM } from 'jsdom'
 
-import { ContextsType, Events, EventsTypes, ISDKProps } from './types'
+import { ContextsType, Events, EventsTypes, IConsoleProps } from './types'
 import ConsoleSDK from './MicrofrontendIntegrator'
 
 const dom = new JSDOM()
@@ -29,42 +29,39 @@ container.id = '__quiankun_container__'
 
 const eventBus = jest.fn()
 const quiankunProps = { name: 'testMicrofrontend', container }
-const SDKPropsMock: ISDKProps = {
+const consoleProps: IConsoleProps = {
   ...quiankunProps,
-  console: {
+  eventListener: eventBus,
+  featureTogglesProxyContext: {},
+  hotkeysContext: {},
+  resourceAPI: {
+    endpoints: {},
+    collections: {},
+    configMaps: {},
+    services: {},
+    unsecretedVariables: [],
+
+    forceConfigUpdateChecksum: '',
+    microfrontendPluginConfig: {},
+
+    selectedEnvironment: {},
+    selectedProject: {},
+
     writeConfig: jest.fn(),
+
+    _version: '0.0.0',
     _signals: { mount: jest.fn() },
-    eventBus,
-    configObservables: {
-      endpoints: {},
-      collections: {},
-      configMaps: {},
-      services: {},
-      unsecretedVariables: [],
-
-      forceConfigUpdateChecksum: '',
-      microfrontendPluginConfig: {},
-
-      selectedEnvironment: {},
-      selectedProject: {},
-
-      _version: '0.0.0',
-    },
-    contexts: {
-      featureTogglesProxyContext: {},
-      hotkeysContext: {},
-    },
   },
 }
 
 describe('ConsoleSDK', () => {
   it('should get the container id', () => {
-    const microfrontendIntegrator = new ConsoleSDK(SDKPropsMock)
+    const microfrontendIntegrator = new ConsoleSDK(consoleProps)
     expect(microfrontendIntegrator.getContainerId()).toBe('testMicrofrontend')
   })
 
   it('should send an event through the event bus', () => {
-    const microfrontendIntegrator = new ConsoleSDK(SDKPropsMock)
+    const microfrontendIntegrator = new ConsoleSDK(consoleProps)
     const event: Events = {
       payload: { test: 'case' },
       publisherId: 'microfrontend-test',
@@ -72,11 +69,11 @@ describe('ConsoleSDK', () => {
     }
 
     microfrontendIntegrator.sendEvent(event)
-    expect(SDKPropsMock.console.eventBus).toHaveBeenCalledWith(event)
+    expect(consoleProps.eventListener).toHaveBeenCalledWith(event)
   })
 
   it('should get a context', () => {
-    const microfrontendIntegrator = new ConsoleSDK(SDKPropsMock)
+    const microfrontendIntegrator = new ConsoleSDK(consoleProps)
 
     const featureToggleContext = microfrontendIntegrator.getContext(ContextsType.FEATURE_TOGGLE_CONTEXT)
     const hotkeysContext = microfrontendIntegrator.getContext(ContextsType.HOTKEYS_CONTEXT)
@@ -88,7 +85,7 @@ describe('ConsoleSDK', () => {
   })
 
   it('should get the console config observable', () => {
-    const microfrontendIntegrator = new ConsoleSDK(SDKPropsMock)
+    const microfrontendIntegrator = new ConsoleSDK(consoleProps)
     const configObservable = microfrontendIntegrator.getConsoleConfigObservable()
 
     expect(configObservable).toHaveProperty('endpoints')

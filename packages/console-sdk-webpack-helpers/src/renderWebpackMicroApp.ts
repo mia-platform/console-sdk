@@ -16,12 +16,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ConsoleSDK, IConsoleSDK } from '@mia-platform/console-sdk-microfrontend'
+import { ConsoleSDK, IConsoleProps, IMicrofronendIntegrator } from '@mia-platform/console-sdk-microfrontend'
 import { QiankunLifeCycle, QiankunProps, qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
 
 export type ConsoleLifecycleFunction = (
   isConnectedToConsole: boolean,
-  consoleSDK: IConsoleSDK,
+  consoleSDK: IMicrofronendIntegrator,
 ) => void
 
 export type IViteParams = {
@@ -31,8 +31,8 @@ export type IViteParams = {
   bootstrap?: () => void
 }
 
-export function getSDK(props: QiankunProps): {
-  consoleSDK: IConsoleSDK
+export function getSDK(props: IConsoleProps): {
+  consoleSDK: IMicrofronendIntegrator
   isConnectedToConsole: boolean
 } {
   const consoleSDK = new ConsoleSDK(props)
@@ -46,7 +46,7 @@ export function getSDK(props: QiankunProps): {
 
 export const decorateLifecycleFunction = (lifecycleFunction: IViteParams[keyof IViteParams]) => {
   return (props: QiankunProps): void => {
-    const { isConnectedToConsole, consoleSDK } = getSDK(props)
+    const { isConnectedToConsole, consoleSDK } = getSDK(props as IConsoleProps)
     if (lifecycleFunction) {
       lifecycleFunction(isConnectedToConsole, consoleSDK)
     }
