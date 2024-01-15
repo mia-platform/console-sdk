@@ -3,7 +3,8 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "private": true,
-  "main": "./src/index.ts",
+  "main": "./build/src/index.js",
+  "types": "./build/src/index.d.ts",
   "module": "./src/index.ts",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
