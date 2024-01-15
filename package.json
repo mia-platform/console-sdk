@@ -5,9 +5,7 @@
   "private": true,
   "sideEffects": false,
   "workspaces": [
-    "packages/console-sdk-microfrontend",
-    "packages/console-sdk-vite-helpers",
-    "packages/webpack-helpers-console-microfrontend"
+    "packages/*"
   ],
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
