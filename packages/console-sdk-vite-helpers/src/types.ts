@@ -1,4 +1,7 @@
+import { IConsoleProps } from '@mia-platform/console-sdk-microfrontend'
+
 declare module 'vite-plugin-qiankun/dist/helper' {
-    interface QiankunProps extends IConsoleProps {}
-  }
+  // IConsoleProps are passed from Quiankun across QuiankusProps to microfrontend 
+  interface QiankunProps extends IConsoleProps {}
+}
   
