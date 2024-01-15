@@ -17,22 +17,12 @@
  */
 
 import { ConsoleSDK, IConsoleProps } from '@mia-platform/console-sdk-microfrontend'
-import { JSDOM } from 'jsdom'
-import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
 
 import renderWebpackMicroApp, { IViteParams, decorateLifecycleFunction, getSDK } from './renderWebpackMicroApp'
 
-const dom = new JSDOM()
-const { document } = dom.window
-
-const quiankunContainer = document.createElement('div')
-quiankunContainer.id = '__qiankun_microapp_wrapper_for_microfrontend__'
-
-const consoleProps: IConsoleProps<QiankunProps> = {
+const consoleProps: IConsoleProps = {
   name: 'testMicrofrontend',
-  container: quiankunContainer,
   // some console injected props
-  console: {},
   eventListener: jest.fn(),
   featureTogglesProxyContext: {},
   hotkeysContext: {},
