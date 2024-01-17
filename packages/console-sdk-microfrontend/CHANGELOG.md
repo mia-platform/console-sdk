@@ -1,3 +1,7 @@
 # @mia-platform/console-sdk-microfrontend
 
-## Unreleased
+## 0.0.1
+
+### Patch Changes
+
+- Update dependencies

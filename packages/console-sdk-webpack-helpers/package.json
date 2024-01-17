@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/webpack-helpers-console-microfrontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "Apache-2.0",
   "private": true,
   "main": "./build/src/index.js",
@@ -14,7 +14,7 @@
     "unit": "jest"
   },
   "dependencies": {
-    "@mia-platform/console-sdk-microfrontend": "0.0.0",
+    "@mia-platform/console-sdk-microfrontend": "0.0.1",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {
