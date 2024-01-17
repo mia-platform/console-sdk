@@ -1,4 +1,4 @@
-# @mia-platform/webpack-helpers-console-microfrontend
+# @mia-platform/console-sdk-webpack-helpers
 
 ## 0.0.1
 

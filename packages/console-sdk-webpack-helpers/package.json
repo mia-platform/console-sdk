@@ -1,5 +1,5 @@
 {
-  "name": "@mia-platform/webpack-helpers-console-microfrontend",
+  "name": "@mia-platform/console-sdk-webpack-helpers",
   "version": "0.0.1",
   "license": "Apache-2.0",
   "main": "./build/index.js",

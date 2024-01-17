@@ -19,12 +19,13 @@
   "scripts": {
     "sdk": "pnpm --filter @mia-platform/console-sdk-microfrontend",
     "vh": "pnpm --filter @mia-platform/console-sdk-vite-helpers",
-    "wh": "pnpm --filter @mia-platform/webpack-helpers-console-microfrontend",
+    "wh": "pnpm --filter @mia-platform/console-sdk-webpack-helpers",
     
     "postinstall": "pnpm sdk build",
 
     "build": "pnpm -r build",
     "test": "pnpm -r test",
+    "unit": "pnpm -r unit",
     "lint:fix": "pnpm -r lint --fix",
     "lint": "pnpm -r lint",
 

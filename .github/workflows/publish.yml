@@ -2,11 +2,12 @@ name: Publish
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Test"]
-    types:
-      - completed
+  pull_request:
+    branches:
+      - main
   push:
+    branches:
+      - main
     tags:
       - '*'
 
@@ -32,6 +33,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
         run: |
           pnpm i --frozen-lockfile
+          pnpm unit
           pnpm build
           pnpm -r publish --access restricted --registry ${{ secrets.MIA_NPM_REGISTRY_URL }}
 
