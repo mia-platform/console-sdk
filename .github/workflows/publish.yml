@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
+          registry-url: nexus.mia-platform.eu/repository/npm-internal/
           scope: "mia-platform-internal"
       - uses: pnpm/action-setup@v2
         name: Install pnpm
@@ -33,5 +33,5 @@ jobs:
         run: |
           pnpm i --frozen-lockfile
           pnpm build
-          pnpm -r publish --no-git-checks
+          pnpm -r publish --access
 
