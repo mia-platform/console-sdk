@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "CommonJS",
+    "skipLibCheck": true,
+    "outDir": "./build",
+
+    /* Bundler mode */
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    "incremental": true,
+    "declaration": true,
+    "strict": true,
+
+    "declarationMap": true,
+    "sourceMap": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+
+    /* Linting */
+    "forceConsistentCasingInFileNames": true,
+    "composite": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+  },
+  "references": [
+    {"path": "./packages/console-sdk-microfrontend"},
+    {"path": "./packages/console-sdk-vite-helpers"},
+    {"path": "./packages/console-sdk-webpack-helpers"}
+  ]
+}

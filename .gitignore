@@ -1,0 +1,41 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+yarn.lock
+
+# testing
+/coverage
+packages/*/coverage
+packages/*/stats.html
+.nyc_output
+packages/*/junit.xml
+
+# production
+/build
+packages/*/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+*.log
+.tap
+tsconfig.tsbuildinfo
+
+# ide
+.vscode
+.idea
+.history
+
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

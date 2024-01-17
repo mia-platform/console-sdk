@@ -1,0 +1,44 @@
+{
+  "name": "console-sdk-monorepo",
+  "license": "Apache-2.0",
+  "version": "1.0.0",
+  "private": true,
+  "sideEffects": false,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@mia-platform/eslint-config-mia": "^3.0.0",
+    "@changesets/changelog-github": "0.4.8",
+    "@changesets/cli": "2.26.2",
+    "eslint": "^8.42.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "@types/jest": "^29.5.11"
+  },
+  "dependencies": {},
+  "scripts": {
+    "sdk": "pnpm --filter @mia-platform/console-sdk-microfrontend",
+    "vh": "pnpm --filter @mia-platform/console-sdk-vite-helpers",
+    "wh": "pnpm --filter @mia-platform/webpack-helpers-console-microfrontend",
+    
+    "postinstall": "pnpm sdk build",
+
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint:fix": "pnpm -r lint --fix",
+    "lint": "pnpm -r lint",
+
+    "addlicense": "addlicense -c 'Mia srl' -s packages/*/src/**/*.ts",
+    "check-license": "addlicense -c 'Mia srl' -check -s packages/*/src/**/*.ts",
+    "changeset": "changeset"
+  },
+  "contributors": [
+    "Daniele Cinà <daniele.cina@mia-platform.eu>",
+    "Davide Bianchi <davide.bianchi@mia-platform.eu>",
+    "Federico Maggi <federico.maggi@mia-platform.eu>"
+  ]
+}
