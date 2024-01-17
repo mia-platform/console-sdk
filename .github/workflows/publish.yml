@@ -27,13 +27,11 @@ jobs:
         with:
           version: 8
           run_install: false
-      - name: Build Monorepo
-        run: pnpm i
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
-      - run: pnpm build
-      - name: Publish
-        run: pnpm -r publish
+      - name: Build Monorepo and Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MIA_NPM_REGISTRY_TOKEN }}
+        run: |
+          pnpm i --frozen-lockfile
+          pnpm build
+          pnpm -r publish --no-git-checks
 
