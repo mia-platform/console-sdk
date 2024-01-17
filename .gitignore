@@ -10,6 +10,7 @@ packages/*/coverage
 packages/*/stats.html
 .nyc_output
 packages/*/junit.xml
+pnpm-publish-summary.json
 
 # production
 /build
