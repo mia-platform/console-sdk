@@ -18,17 +18,9 @@ See the specific monorepo readme to using this library
 
 ## Monorepos
 
-### Console SDK. 
-An abstract interface used within helper repositories. 
-[Read more](./packages/console-sdk-microfrontend)                     
-
-### Vite helpers.
-Used to configure the microfrontend with vite. 
-[Read more](./packages/console-sdk-vite-helpers)    
-
-### Webpack helpers. 
-Used to configure the microfrontend with webpack. 
-[Read more](./packages/webpack-helpers-console-microfrontend)
+**Console SDK**: An abstract interface used within helper repositories. [Read more](./packages/console-sdk-microfrontend)                     
+**Vite helpers**: Used to configure the microfrontend with vite. [Read more](./packages/console-sdk-vite-helpers)    
+**Webpack helpers**: Used to configure the microfrontend with webpack. [Read more](./packages/webpack-helpers-console-microfrontend)
 
 ## Install
 
@@ -43,11 +35,21 @@ npm install @mia-platform-internal/console-sdk-webapack-helpers
 ## Local Development
 
 For local development, you can run:
-
 ```bash
-npm install && npm test
+pnpm install && pnpm test
 ```
 
+To run tests on a specific package:
+```bash
+pnpm --filter <package.json name> <script>
+```
+
+or using the prepared script
+```bash
+pnpm sdk test
+pnpm vh test
+pnpm wh test
+```
 
 [action-status-svg]: https://github.com/mia-platform/console-sdk-microfrontend/actions/workflows/test.yml/badge.svg
 [github-action]: https://github.com/mia-platform/console-sdk-microfrontend/actions/workflows/test.yml

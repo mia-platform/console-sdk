@@ -2,7 +2,6 @@
   "name": "@mia-platform/webpack-helpers-console-microfrontend",
   "version": "0.0.1",
   "license": "Apache-2.0",
-  "private": true,
   "main": "./build/src/index.js",
   "typings": "./build/src/index.d.ts",
   "module": "./src/index.ts",
