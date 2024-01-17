@@ -2,8 +2,8 @@
   "name": "@mia-platform/console-sdk-microfrontend",
   "license": "Apache-2.0",
   "version": "0.0.1",
-  "main": "./build/src/index.js",
-  "typings": "./build/src/index.d.ts",
+  "main": "./build/index.js",
+  "typings": "./build/index.d.ts",
   "module": "./src/index.ts",
   "scripts": {
     "preinstall": "npx only-allow pnpm",

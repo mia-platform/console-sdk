@@ -2,14 +2,15 @@
   "name": "@mia-platform/console-sdk-vite-helpers",
   "version": "0.0.1",
   "license": "Apache-2.0",
-  "main": "./build/src/index.js",
-  "typings": "./build/src/index.d.ts",
+  "main": "./build/index.js",
+  "typings": "./build/index.d.ts",
   "module": "./src/index.ts",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "rm -rf ./build && tsc --build",
     "lint": "eslint . --ext .ts",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "unit": "jest"
   },
   "dependencies": {
     "@mia-platform/console-sdk-microfrontend": "0.0.1",

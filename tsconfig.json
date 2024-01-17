@@ -12,7 +12,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
 
-    "incremental": true,
     "declaration": true,
     "strict": true,
 
@@ -31,7 +30,6 @@
 
     /* Linting */
     "forceConsistentCasingInFileNames": true,
-    "composite": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
   },
