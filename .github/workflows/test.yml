@@ -23,7 +23,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        registry-url: "https://nexus.mia-platform.eu/repository/npm-internal/"
+        registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
         scope: "mia-platform-internal"
     - uses: pnpm/action-setup@v2
       name: Install pnpm
