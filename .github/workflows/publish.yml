@@ -33,5 +33,5 @@ jobs:
         run: |
           pnpm i --frozen-lockfile
           pnpm build
-          pnpm -r publish --access restricted
+          pnpm -r publish --access restricted --registry ${{ secrets.MIA_NPM_REGISTRY_URL }}
 
