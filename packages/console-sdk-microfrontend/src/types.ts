@@ -76,6 +76,7 @@ export type ISDKConsoleObservable = {
 
 export type ISDKProps = {
   name: string
+  container: HTMLElement
   console: {
     writeConfig: (payload: unknown) => void
     _signals: {mount: () => void}
@@ -87,6 +88,7 @@ export type ISDKProps = {
 
 export type IConsoleProps = IContexts & {
   name: string
+  container: HTMLElement
   eventListener: (event: Events) => void
   featureTogglesProxyContext: IContexts['featureTogglesProxyContext']
   hotkeysContext: IContexts['hotkeysContext']

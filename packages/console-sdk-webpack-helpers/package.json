@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
-  "module": "./src/index.ts",
+  "module": "./build/index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "rm -rf ./build && tsc --build",
@@ -13,7 +13,7 @@
     "unit": "jest"
   },
   "dependencies": {
-    "@mia-platform/console-sdk-microfrontend": "0.0.1",
+    "@mia-platform/console-sdk-microfrontend": "0.0.2",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {

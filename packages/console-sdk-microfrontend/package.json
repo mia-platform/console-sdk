@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
-  "module": "./src/index.ts",
+  "module": "./build/index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "rm -rf ./build && tsc --build",

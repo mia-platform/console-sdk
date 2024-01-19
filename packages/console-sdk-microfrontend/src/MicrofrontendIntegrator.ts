@@ -24,21 +24,24 @@ import { getConsoleProps } from './adaptConsoleProps'
 export type IMicrofronendIntegrator = {
   getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined
   getContainerId(): string
+  getMicrofrontendNode(): HTMLElement
   getConsoleConfigObservable(): ISDKConsoleObservable
   sendEvent(event: Events): void
 }
 export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
   private events: Subject<Events>
 
-  name: string
-  contexts: IContexts
-  configObservable: ISDKConsoleObservable
+  private name: string
+  private container: HTMLElement
+  private contexts: IContexts
+  private configObservable: ISDKConsoleObservable
 
   constructor(mountingProps: IConsoleProps) {
-    const { name, console } = getConsoleProps(mountingProps)
+    const { name, console, container } = getConsoleProps(mountingProps)
     const { eventBus, contexts } = console
 
     this.name = name
+    this.container = container
     this.contexts = contexts
     this.configObservable = console.configObservables
 
@@ -49,16 +52,20 @@ export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
   getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined {
     switch (contextType) {
     case ContextsType.FEATURE_TOGGLE_CONTEXT: {
-      const ctx: IContexts['featureTogglesProxyContext'] = {}
+      const ctx: IContexts['featureTogglesProxyContext'] = this.contexts.featureTogglesProxyContext
       return ctx
     }
     case ContextsType.HOTKEYS_CONTEXT: {
-      const ctx: IContexts['hotkeysContext'] = {}
+      const ctx: IContexts['hotkeysContext'] = this.contexts.hotkeysContext
       return ctx
     }
     default:
       return undefined
     }
+  }
+
+  getMicrofrontendNode(): HTMLElement {
+    return this.container
   }
 
   getContainerId(): string {

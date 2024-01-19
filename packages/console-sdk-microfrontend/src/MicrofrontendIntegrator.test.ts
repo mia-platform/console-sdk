@@ -16,16 +16,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { JSDOM } from 'jsdom'
+
 import { ContextsType, Events, EventsTypes, IConsoleProps } from './types'
 import ConsoleSDK from './MicrofrontendIntegrator'
 
+const { window } = new JSDOM(`<body></body>`)
+const htmlElement: HTMLElement = window.document.createElement('div')
+htmlElement.id = '__quiankun__'
+
 const eventBus = jest.fn()
-const quiankunProps = { name: 'testMicrofrontend' }
+const quiankunProps = { name: 'testMicrofrontend', container: htmlElement }
 const consoleProps: IConsoleProps = {
   ...quiankunProps,
   eventListener: eventBus,
-  featureTogglesProxyContext: {},
-  hotkeysContext: {},
+  featureTogglesProxyContext: { updateLocalCache: jest.fn() },
+  hotkeysContext: { anyProp: 'anyValue' },
   resourceAPI: {
     endpoints: {},
     collections: {},
@@ -47,6 +53,11 @@ const consoleProps: IConsoleProps = {
 }
 
 describe('ConsoleSDK', () => {
+  it('should get the contai', () => {
+    const microfrontendIntegrator = new ConsoleSDK(consoleProps)
+    expect(microfrontendIntegrator.getMicrofrontendNode()).toMatchSnapshot()
+  })
+
   it('should get the container id', () => {
     const microfrontendIntegrator = new ConsoleSDK(consoleProps)
     expect(microfrontendIntegrator.getContainerId()).toBe('testMicrofrontend')
@@ -71,8 +82,8 @@ describe('ConsoleSDK', () => {
     const hotkeysContext = microfrontendIntegrator.getContext(ContextsType.HOTKEYS_CONTEXT)
     const invalidContext = microfrontendIntegrator.getContext('INVALID_CONTEXT' as ContextsType)
 
-    expect(featureToggleContext).toEqual({})
-    expect(hotkeysContext).toEqual({})
+    expect(featureToggleContext).toEqual({ updateLocalCache: expect.any(Function) })
+    expect(hotkeysContext).toEqual({ anyProp: 'anyValue' })
     expect(invalidContext).toBeUndefined()
   })
 

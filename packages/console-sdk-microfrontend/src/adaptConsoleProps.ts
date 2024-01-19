@@ -27,6 +27,7 @@ export function getConsoleProps(props: IConsoleProps): ISDKProps {
     resourceAPI,
     featureTogglesProxyContext,
     hotkeysContext,
+    container,
   } = props
 
   const {
@@ -44,6 +45,7 @@ export function getConsoleProps(props: IConsoleProps): ISDKProps {
 
   return {
     ...omit(['resourceAPI', 'eventListener', 'featureTogglesProxyContext', 'hotkeysContext'], props),
+    container,
     console: {
       _signals: resourceAPI._signals,
       writeConfig,
