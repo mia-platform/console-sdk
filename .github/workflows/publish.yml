@@ -30,5 +30,5 @@ jobs:
           pnpm i --frozen-lockfile
           pnpm unit
           pnpm build
-          pnpm -r publish --access restricted --registry ${{ secrets.MIA_NPM_REGISTRY_URL }}
+          pnpm -r publish --access restricted --registry ${{ secrets.MIA_NPM_REGISTRY_URL }} --no-git-checks
 
