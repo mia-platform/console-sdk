@@ -55,5 +55,5 @@ pnpm wh test
 [github-action]: https://github.com/mia-platform/console-sdk/actions/workflows/test.yml
 [standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
 [standard-mia]: https://github.com/mia-platform/eslint-config-mia
-[coverall-svg]: https://coveralls.io/repos/github/mia-platform/console-sdk-microfrontend/badge.svg
-[coverall-io]: https://coveralls.io/github/mia-platform/console-sdk-microfrontend
+[coverall-svg]: https://coveralls.io/repos/github/mia-platform/console-sdk/badge.svg
+[coverall-io]: https://coveralls.io/github/mia-platform/console-sdk
