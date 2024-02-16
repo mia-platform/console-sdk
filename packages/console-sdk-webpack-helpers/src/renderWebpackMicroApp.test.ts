@@ -44,9 +44,7 @@ const consoleProps: IConsoleProps = {
     forceConfigUpdateChecksum: '',
     microfrontendPluginConfig: {},
 
-    selectedEnvironment: {
-      envId: 'test',
-    },
+    selectedEnvironment: 'test',
     selectedProject: {
       name: '',
       _id: '',
