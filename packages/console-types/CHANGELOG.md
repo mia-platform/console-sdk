@@ -1,0 +1,856 @@
+# CHANGELOG
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [0.18.1] 2024-02-06
+
+### Fixed
+
+- [CPR-283](https://makeitapp.atlassian.net/browse/CPR-283): update gitSshUrl regex pattern in order to support GitHub enterprise
+
+## [0.18.0] 2024-02-05
+
+### Added 
+
+- [CRSE-194](https://makeitapp.atlassian.net/browse/CRSE-194): added `defaultSortingIndex` string field to `collections` schema 
+- [MKEA-155](https://makeitapp.atlassian.net/browse/MKEA-155): new capability `CONTAINER_REGISTRY`
+
+## [0.17.1] 2024-01-22
+
+### Fixed
+
+- fixed `provider-types` schema, added `label` and `description` to `functionalities` object
+
+## [0.17.0] 2024-01-17
+
+### Added
+
+- [MPE-352](https://makeitapp.atlassian.net/browse/MPE-352): added `allowedRepositoryVisibilities` to `provider-types` schema
+
+## [0.16.0] 2023-12-12
+
+### Added
+
+- [SNARM-34](https://makeitapp.atlassian.net/browse/SNARM-34): added `sourceMarketplaceItem` to custom service schema
+
+## [0.15.0] 2023-12-04
+
+### Added
+
+- [JCE-677](https://makeitapp.atlassian.net/browse/JCE-677): custom service startup probe support
+
+## [0.14.6] 2023-10-25
+
+### Added
+
+- added `label` field to provider types schema
+
+## [0.14.5] 2023-10-16
+
+### Removed
+
+- removed unused credential type `signature`
+
+## [0.14.4] 2023-10-13
+
+### Added
+
+- [JCE-649](https://makeitapp.atlassian.net/browse/JCE-649): `orchestrator-configurator` capability
+- [JCE-649](https://makeitapp.atlassian.net/browse/JCE-649): new project configuration for external conf generator
+
+## [0.14.3] 2023-10-13
+
+### Added
+
+- [PIAK-10](https://makeitapp.atlassian.net/browse/PIAK-10): Added azure key vault `environmentsVariables` definition
+
+## [0.14.2] 2023-10-09
+
+### Added
+
+- [PIAK-9](https://makeitapp.atlassian.net/browse/PIAK-9): Added support for new secret store type `azure-key-vault`
+
+## [0.14.1] 2023-10-09
+
+### Added
+
+- [FIC-56](https://makeitapp.atlassian.net/browse/FIC-56): exclusiveServiceExposure flag to let service containers control which container ports should be exposed
+
+## [0.14.0] 2023-10-03
+
+### BREAKING CHANGES
+
+- [FIC-56](https://makeitapp.atlassian.net/browse/FIC-56): probes port is now a string to support container port name rather than an arbitrary numeric port
+
+
+## [0.13.5] 2023-10-02
+
+### Fixed
+
+- Collection `id` and `name` can have length up to 80 characters
+
+## [0.13.4] 2023-09-28
+
+### Fixed
+
+- fixed type for listener port
+
+### Added
+
+- [FIC-25](https://makeitapp.atlassian.net/browse/FIC-25): added `readonly` property to config.listeners
+
+## [0.13.3] 2023-09-18
+
+### Added
+
+- [JSG-224](https://makeitapp.atlassian.net/browse/JSG-224): added deploy.runnerTool property to environments
+
+## [0.13.2] 2023-09-15
+
+### Added
+
+- Added `client_credentials_certificate` credentials type
+
+## [0.13.1] 2023-09-13
+
+### Changed
+
+- [FIC-15](https://makeitapp.atlassian.net/browse/FIC-15): Changed listeners port type to be numeric or interpolated string
+
+## [0.13.0] 2023-09-13
+
+### Added
+
+- [FIC-15](https://makeitapp.atlassian.net/browse/FIC-15): Added listeners type to api console config
+
+## [0.12.5] 2023-09-08
+
+### Feat
+
+- Added property `pipeline.statusWebhookSecretCredentialsId` to project's schema
+
+## [0.12.4] 2023-09-05
+
+### Fix
+
+- Included property `hidden` in collections
+
+## [0.12.3] 2023-09-05
+
+- Collections and Views include property `hidden`
+
+## [0.12.2] 2023-08-28
+
+- [JSG-151](https://makeitapp.atlassian.net/browse/JSG-151): exported `PUSH_DEPLOY_STRATEGY` and `PULL_DEPLOY_STRATEGY` as constants
+
+
+## [0.12.1] 2023-08-24
+
+### Fixed
+
+- [JSG-151](https://makeitapp.atlassian.net/browse/JSG-151): deploy.strategy for environments
+
+## [0.12.0] 2023-08-24
+
+### Added
+
+- [JSG-151](https://makeitapp.atlassian.net/browse/JSG-151): deploy.strategy pull or push
+
+## [0.11.5] 2023-08-01
+
+### Added
+
+- [MPE-279](https://makeitapp.atlassian.net/browse/MPE-279): Added CLIENT_CREDENTIALS_CERTIFICATE to constants
+
+## [0.11.4] 2023-07-19
+
+### Added
+
+- [MEOW-53](https://makeitapp.atlassian.net/browse/MEOW-53): Added ALLOWED_RUNNER_TOOLS to constants
+
+## [0.11.3] 2023-07-13
+
+### Added
+
+- [MKPC-46](https://makeitapp.atlassian.net/browse/MKPC-46): Added CAPABILITIES_FUNCTIONALITIES to constants
+
+## [0.11.2] 2023-07-10
+
+### Added
+
+- [CSCE-3](https://makeitapp.atlassian.net/browse/CSCE-3) Added "enableLookup" field to mongo view schema
+
+## [0.11.1] 2023-07-07
+
+### Added 
+
+- [MBA-234](https://makeitapp.atlassian.net/browse/MBA-234): Added monitoring fields to tenant
+
+## [0.11.0] 2023-07-06
+
+### BREAKING CHANGES
+
+- [MKPC-37](https://makeitapp.atlassian.net/browse/MKPC-37): Modified `provider` and `providerType` schemas. `capabilities` property is now an array of objects (previously was an array of strings)
+
+## [0.10.20] 2023-07-07
+
+### Added 
+
+- [MBA-234](https://makeitapp.atlassian.net/browse/MBA-234): Added monitoring fields to tenant
+
+## [0.10.19] 2023-07-04
+
+### Fixed
+
+- [MEOW-21](https://makeitapp.atlassian.net/browse/MEOW-21): Fixed typo in docker image name suggestion types name
+
+## [0.10.18] 2023-07-04
+
+### Added
+
+- [MEOW-21](https://makeitapp.atlassian.net/browse/MEOW-21): Added docker image name suggestion types constant
+
+## [0.10.17] 2023-06-21
+
+### Added
+
+- [MFUC-7](https://makeitapp.atlassian.net/browse/MFUC-7): Added feedback schema and type
+
+## [0.10.16] 2023-06-21
+
+### Removed
+
+- removed `repoInfo` to project schema
+
+## [0.10.15] 2023-06-21
+
+### Added
+
+- exported `PIPELINE_STATUS` from constants
+
+## [0.10.14] 2023-06-20
+
+### Added
+
+- add `repoInfo` to project schema
+
+## [0.10.13] 2023-06-20
+
+### Added
+
+- added `PipelineStatus` enum
+
+## [0.10.12] 2023-06-13
+
+### Added
+
+- add `visibility` object to providers
+
+## [0.10.11] 2023-05-30
+
+### Added
+
+- export PublicVariables, Endpoints, Collections and Services type
+
+## [0.10.10] 2023-05-29
+
+### Fixed
+
+- added trailing slash to repoUrl regex
+
+## [0.10.9] 2023-05-26
+
+### Added
+
+- export for gitSshUrl
+
+## [0.10.8] 2023-05-11
+
+### Fixed
+
+- aligned with `v0.8.23`
+
+## [0.10.7] 2023-05-10
+
+### Added
+
+- Added providerId to pipelines object in Azure case 
+
+## [0.10.6] 2023-05-10
+
+### Fixed
+
+- fix json schema to add type when misses
+
+## [0.10.5] 2023-05-10
+
+### Fixed
+
+- fix json schema to add type when misses
+
+## [0.10.4] 2023-05-09
+
+## [0.10.3] - 2023-05-03
+
+### Added
+
+- added `statusWebhookSecretCredentialsId` to `environments.deploy` object inside project's schema
+
+## [0.10.0] - 2023-05-02
+
+### Added
+
+- export VALIDATION_ERROR_ID
+- create ajv-plugin to handle VALIDATION_ERROR_ID and fastify schema transformation to remove it
+
+## [0.8.23] 2023-05-10
+
+### Added
+
+- providerId to Azure pipelines schema
+
+## [0.8.22] 2023-05-09
+
+- add github-actions to `ProjectPipelinesTypes`
+
+## [0.8.21] 2023-05-09
+
+## [0.8.20] 2023-05-05
+
+### Fixed
+
+- removed `enum` from `deploy.type` in project environment's schema
+
+## [0.8.19] 2023-05-05
+
+### Fixed
+
+- fixed `project.pipelines.type`'s schema by exporting `DEPLOYMENT_TYPES` as `const`
+
+## [0.8.18] - 2023-05-03
+
+- added `statusWebhookSecretCredentialsId` to `environments.deploy` object inside project's schema
+
+## [0.8.17] - 2023-04-27
+
+### Added
+
+- [MPIC-88](https://makeitapp.atlassian.net/browse/MPIC-88): Added repository types and environments variables types constants, exported capability type. 
+
+## [0.8.16] - 2023-04-14
+
+- Added tenant environmentsVariables, pipelines.providerId & repository.type to schema
+
+## [0.8.15] - 2023-03-31
+
+### Added
+
+- [MPIC-40](https://makeitapp.atlassian.net/browse/MPIC-40): Added github actions and azure pipelines to deployment types
+  
+## [0.8.14] - 2023-03-8
+
+### Changed
+
+- expirationDate moved out of content in credentials schema
+
+## [0.8.13] - 2023-03-8
+
+### Added
+
+- Added required credentialsType to provider schema
+
+## [0.8.12] - 2023-03-8
+
+### Added
+
+- Added description to provider schema and exported type
+
+## [0.8.11] - 2023-02-24
+
+### Added
+
+- Added credentialTypes to providerType schema and exported type; added expirationDate to credentials schema and exported type
+
+## [0.8.10] - 2023-02-24
+
+### Added
+
+- [MPIC-25](https://makeitapp.atlassian.net/browse/MPIC-26): Added capabilities to providers schema and exported type
+  
+## [0.8.9] - 2023-02-23
+
+### Fixed
+
+- [MPIC-26](https://makeitapp.atlassian.net/browse/MPIC-26): Fixed providerType schema and type
+
+## [0.8.8] - 2023-02-23
+
+### Added
+
+- [MPIC-26](https://makeitapp.atlassian.net/browse/MPIC-26): Added providerTypes schema and type
+
+## [0.8.7] - 2023-02-23
+
+### Added
+
+- [JCE-488](https://makeitapp.atlassian.net/browse/JCE-488): Added imagePullSecretNames property to tenant and project
+
+## [0.8.6] - 2023-02-22
+
+### Fixed
+
+- ssh url with dash in host
+
+## [0.8.5] - 2023-02-22
+
+### Fixed
+
+- ssh url with optional `.git` extension
+
+## [0.8.4] - 2023-02-22
+
+### Fixed
+
+- ssh url regex to be more inclusive
+
+## [0.8.3] - 2023-01-12
+
+### Added
+
+- [JCE-383](https://makeitapp.atlassian.net/browse/JCE-383): Added interpolation to cronjobs schedule's pattern
+
+## [0.8.2] - 2022-12-20
+
+### Added
+
+- [CSM-114](https://makeitapp.atlassian.net/browse/CSM-114): Add `proxy` and `base64CA` to project's `repository` schema
+
+## [0.8.1] - 2022-12-14
+
+### Added
+
+- [CSM-114](https://makeitapp.atlassian.net/browse/CSM-114): Added provider schema and type
+
+## [0.8.0] - 2022-11-22
+
+### Added 
+
+- [FDBE-504](https://makeitapp.atlassian.net/browse/FDBE-504): Added fields "readOnly" and "managedBy" to services environment variables
+  
+## [0.7.4] - 2022-11-18
+
+### Fixed
+
+- [JCE-236](https://makeitapp.atlassian.net/browse/JCE-236): Fixed container ports scheme
+
+## [0.7.3] - 2022-11-18
+
+### Fixed
+
+- [JCE-236](https://makeitapp.atlassian.net/browse/JCE-236): Fixed container ports scheme
+
+## [0.7.2] - 2022-11-17
+
+### Fixed
+
+- [JCE-236](https://makeitapp.atlassian.net/browse/JCE-236): Fixed container ports scheme
+
+## [0.7.1] - 2022-11-15
+
+### Added 
+
+- [JCE-236](https://makeitapp.atlassian.net/browse/JCE-236): Added container ports validation
+
+## [0.7.0] - 2022-11-14
+
+### Breaking Changes
+
+- Removed required repositoryUrl from project model
+
+## [0.6.37] - 2022-11-02
+
+### Fixed
+
+- Fixed omitValidationErrorID return type
+
+## [0.6.36] - 2022-10-28
+
+### Updated
+
+- [MBA-172](https://makeitapp.atlassian.net/browse/MBA-172): Removed required hostnames
+
+## [0.6.35] - 2022-10-27
+
+### Added 
+
+- [JCE-306](https://makeitapp.atlassian.net/browse/JCE-306): Improve validation for Public Variables (export variableKey with validation)
+
+## [0.6.34] - 2022-10-27
+
+### Added 
+
+- [JCE-305](https://makeitapp.atlassian.net/browse/JCE-305): Improve validation for API Keys (export apiKeyString and clientType with validation)
+
+## [0.6.33] - 2022-10-27
+
+### Added 
+
+- [JCE-304](https://makeitapp.atlassian.net/browse/JCE-304): Improve validation for Proxies section
+
+## [0.6.32] - 2022-10-26
+
+### Added 
+
+- [JCE-309](https://makeitapp.atlassian.net/browse/JCE-309): Improve validation for RBAC (export collectionName with validation)
+
+## [0.6.31] - 2022-10-21
+
+### Added 
+
+- [JCE-308](https://makeitapp.atlassian.net/browse/JCE-308): Improve validation for microservice and cronjob sections
+
+## [0.6.30] - 2022-10-19
+
+### Added
+
+- [RJC-398](https://makeitapp.atlassian.net/browse/RJC-398): Add mount path validation string for configMaps and secrets
+
+## [0.6.29] - 2022-10-18
+
+### Added
+
+- add _id in cluster
+
+## [0.6.28] - 2022-10-14
+
+### Changed
+
+- environment serviceAccount name & clusterRoleName now is required
+
+## [0.6.27] - 2022-10-05
+
+### Changed
+
+- validator oas key to x-validation-error-id
+
+## [0.6.26] - 2022-10-04
+
+### Added
+
+- [MAAR-69](https://makeitapp.atlassian.net/browse/MAAR-69): Add optional parameter `base64CA` in environments cluster
+
+## [0.6.25] - 2022-09-30
+
+### Fixed
+
+- typo
+
+## [0.6.24] - 2022-09-30
+
+### Fixed
+
+- reset required cluster.hostname
+
+## [0.6.23] - 2022-09-30
+
+### Fixed
+
+- fix links exported as type instead of const 
+
+## [0.6.22] - 2022-09-29
+
+### Added
+
+- Links schema export
+
+## [0.6.21] - 2022-09-29
+
+### Fixed
+
+- export QuickLink and ProjectEnvironmentLink types
+
+## [0.6.20] - 2022-09-29
+
+- remove required cluster.hostname
+
+## [0.6.19] - 2022-09-29
+
+- add project links new data model
+
+## [0.6.18]
+
+### Changed
+
+- use fromSchema to generate Credentials type
+
+## [0.6.17] - 2022-09-27
+
+### Added
+
+- [RJCD-75](https://makeitapp.atlassian.net/browse/RJCD-75): support `usePartialFilter` and `partialFilterExpression` inside collection indexes
+
+## [0.6.16] - 2022-09-26
+
+### Added
+
+- [JCE-281](https://makeitapp.atlassian.net/browse/JCE-281): added support for `providerId` in project pipelines when type is `jenkins`
+
+## [0.6.15] - 2022-09-26
+
+### Added
+
+- [JCE-280](https://makeitapp.atlassian.net/browse/JCE-280): support clientCrendentials type for providers
+
+### Changed
+
+- [CSM-107](https://makeitapp.atlassian.net/browse/CSM-107): `baseUrl` in project's `environmentsVariables` is not required
+
+## [0.6.14] - 2022-09-21
+
+### Fixed
+
+- fix oneOf in credentials
+
+## [0.6.13] - 2022-09-16
+
+### Fixed
+
+- fix credentials to use oneOf instead of if/then/else
+
+## [0.6.12] - 2022-09-12
+
+### Changed
+
+- update collection types
+
+## [0.6.11] - 2022-08-29
+
+### Added
+
+- add endpoint request body size
+
+## [0.6.10] - 2022-08-23
+
+### Changed
+
+- grouped endpoint common fields
+
+### Added
+
+- endpoint rate limit and request body
+
+## [0.6.9] - 2022-08-23
+
+### Fixed
+
+- fix collection fields type
+
+## [0.6.8] - 2022-08-22
+
+### Fixed
+
+- fix endpoint backofficeAcl type
+
+## [0.6.7] - 2022-08-22
+
+### Fixed
+
+- fix cmsAnalytics types
+
+## [0.6.6] - 2022-08-18
+
+### Added
+
+- [RJC-286](https://makeitapp.atlassian.net/browse/RJC-286): Added (and exported) strings for internationalization
+
+## [0.6.5] - 2022-08-04
+
+### Fixed
+
+- [CMS-99](https://makeitapp.atlassian.net/browse/CMS-99): Fix credentials schema by avoiding `anyOf` since it is not supported by `lc39`
+
+## [0.6.4] - 2022-08-03
+
+- [JCE-232](https://makeitapp.atlassian.net/browse/JCE-232): Added providerId and tenantId types and constants for project templates
+
+## [0.6.3] - 2022-08-03
+
+### Added
+
+- [CMS-99](https://makeitapp.atlassian.net/browse/CMS-99): Added new types and constants for credentials
+
+## [0.6.2] - 2022-08-01
+
+### Added
+
+- export FieldTypes enum
+
+## [0.6.1] - 2022-08-01
+
+### Added
+
+- export Verb enum
+
+## [0.6.0] - 2022-08-01
+
+### Added
+
+- exported Config types
+- export Endpoint and Collection types
+- add pattern types
+
+### Changed
+
+- move `terminationGracePeriodSeconds` in container
+
+### Fixed
+
+- fix various wrong schemas
+
+### Removed
+
+- remove Service types since it is set as unknown
+
+## [0.5.1] - 2022-07-29
+
+### Fixed
+
+- fix schedule schema
+
+## [0.5.0] - 2022-07-26
+
+### Added
+
+- exported various types
+
+### Fixed
+
+- improve export of types
+
+## [0.4.2] - 2022-07-22
+
+### Added 
+
+- exported timeout among endpoint properties
+
+## [0.4.1] - 2022-07-21
+
+### Fixed
+
+- fixed config defaults and endpoints pathName
+
+## [0.4.0] - 2022-07-20
+
+### Added
+
+- [JCE-209](https://makeitapp.atlassian.net/browse/JCE-209): added schema exports
+
+## [0.3.1] - 2022-07-19
+
+### Fixed
+
+- switch back to if chain inside endpoints schema due to feedback compatibility
+
+## [0.3.0] - 2022-07-19
+
+### Changed
+
+- refactor endpoints schema definition
+
+### Added
+
+- [MPE-112](https://makeitapp.atlassian.net/browse/MPE-112): added endpoints timeout
+
+## [0.2.1] - 2022-07-14
+
+### Added
+
+- export EnvironmentVariablesTypes
+
+### Fixed
+
+- fix pipelines schema
+
+## [0.2.0] - 2022-07-14
+
+### Added
+
+- export dashboard schema
+- export cluster schema
+
+## [0.1.2] - 2022-07-13
+
+### Fixed
+
+- rename enabledServices schema
+
+## [0.1.1] - 2022-07-13
+
+### Added
+
+- export enabledServices schema
+
+## [0.1.0] - 2022-07-12
+
+Initial release
+
+### Added
+
+- template schema and type
+- tenant schema and type
+- project schema and type
+- environment schema and type
+
+[Unreleased]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.10.0...main
+[0.10.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.7...v0.10.0
+[0.8.7]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.6...v0.8.7
+[0.8.6]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.5...v0.8.6
+[0.8.5]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.4...v0.8.5
+[0.8.4]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.3...v0.8.4
+[0.8.3]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.2...v0.8.3
+[0.8.2]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.1...v0.8.2
+[0.8.1]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.8.0...v0.8.1
+[0.8.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.7.4...v0.8.0
+[0.7.4]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.7.3...v0.7.4
+[0.7.3]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.7.2...v0.7.3
+[0.7.2]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.7.1...v0.7.2
+[0.7.1]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.7.0...v0.7.1
+[0.7.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.36...v0.7.0
+[0.6.36]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.35...v0.6.36
+[0.6.35]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.34...v0.6.35
+[0.6.34]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.33...v0.6.34
+[0.6.33]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.32...v0.6.33
+[0.6.32]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.31...v0.6.32
+[0.6.31]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.30...v0.6.31
+[0.6.30]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.29...v0.6.30
+[0.6.14]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.13...v0.6.14
+[0.6.13]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.12...v0.6.13
+[0.6.12]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.11...v0.6.12
+[0.6.11]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.10...v0.6.11
+[0.6.10]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.9...v0.6.10
+[0.6.9]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.8...v0.6.9
+[0.6.8]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.7...v0.6.8
+[0.6.7]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.6...v0.6.7
+[0.6.6]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.5...v0.6.6
+[0.6.5]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.4...v0.6.5
+[0.6.4]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.3...v0.6.4
+[0.6.3]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.2...v0.6.3
+[0.6.2]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.1...v0.6.2
+[0.6.1]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.6.0...v0.6.1
+[0.6.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.5.1...v0.6.0
+[0.5.1]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.5.0...v0.5.1
+[0.5.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.4.2...v0.5.0
+[0.4.2]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.4.1...v0.4.2
+[0.4.1]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.4.0...v0.4.1
+[0.4.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.3.1...v0.4.0
+[0.3.1]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.3.0...v0.3.1
+[0.3.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.2.0...v0.3.0
+[0.2.0]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.1.2...v0.2.0
+[0.1.2]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.1.1...v0.1.2
+[0.1.1]: https://git.tools.mia-platform.eu/platform/console/types/-/compare/v0.1.0...v0.1.1
+[0.1.0]: https://git.tools.mia-platform.eu/platform/console/types/-/tags/v0.1.0

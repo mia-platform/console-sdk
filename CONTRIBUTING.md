@@ -6,23 +6,10 @@ You should run `nvm use` inside the folder to correctly setup used node version.
 
 ## Setup
 
-After cloning the repository, from the project root directory, login to:
-
-```sh
-npm login --scope=@mia-platform-internal --registry=https://nexus.mia-platform.eu/repository/npm-internal/run
-```
-
-then run `yarn install` to install packages.
-
-You can see the `npm` script inside the package.json file.
-
-To start developing with the mock server reun `yarn dev`.
-
-The `constants.js` file, downloaded from backend and runned on browser, should be es5 compliant to support the major browsers.
+After cloning the repository, run `pnpm install` to install packages.
 
 ## Conventions
 
-* At commit time, automatically run `npm test` command script. To skip this step, commit with `-n` flag.
 * All changes **MUST** pass by merge request approvals.
 
 ## How to submit a PR

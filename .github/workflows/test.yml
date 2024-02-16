@@ -23,8 +23,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        registry-url: ${{ secrets.MIA_NPM_REGISTRY_URL }}
-        scope: "mia-platform-internal"
     - uses: pnpm/action-setup@v2
       name: Install pnpm
       with:
@@ -32,8 +30,6 @@ jobs:
         run_install: false
     - name: Install Packages
       run: pnpm i
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.MIA_NPM_REGISTRY_TOKEN}}
     - run: pnpm build
     - run: pnpm lint
     - run: pnpm test

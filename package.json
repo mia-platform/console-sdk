@@ -20,8 +20,9 @@
     "sdk": "pnpm --filter @mia-platform/console-sdk-microfrontend",
     "vh": "pnpm --filter @mia-platform/console-sdk-vite-helpers",
     "wh": "pnpm --filter @mia-platform/console-sdk-webpack-helpers",
-    
-    "postinstall": "pnpm sdk build",
+    "types": "pnpm --filter @mia-platform/console-types",
+
+    "postinstall": "pnpm -r build",
 
     "build": "pnpm -r build",
     "test": "pnpm -r test",

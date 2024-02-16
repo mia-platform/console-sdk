@@ -1,0 +1,19 @@
+{
+  "endpoint.basePath.patternError": "Deve iniziare con \"/\" e può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\", eventualmente preceduti da \":\"",
+  "configMountPath.patternError": "Può contenere caratteri alfanumerici, parentesi, spazi e i simboli - , _ , . , | , \\ ,  / , ! , \" , £, $ , % , & , = , ? , ^ ,* , +, @",
+  "resourceName.patternError": "Deve iniziare con una lettera minuscola e può contenere lettere minuscole, numeri e il simbolo \"-\". Non può terminare con \"-\"",
+  "dockerImage.patternError": "Deve rispettare il formato host/imagename:tag, con host e tag opzionali. I valori di imagename e tag possono essere interpolati",
+  "configMapFileName.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\"",
+  "swaggerPath.patternError": "Deve iniziare con \"/\". Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\"",
+  "probesPath.patternError": "Deve iniziare con /. Può contenere caratteri alfanumerici e i simboli \"_\", \"-\", \":\", \".\", \"{\", \"}\", \"/\"",
+  "serviceSecretKey.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\"",
+  "kubernetesDefinition.patternError": "Deve avere formato prefix/name, con prefix opzionale. Prefix e name devono iniziare con un carattere alfanumerico. Possono contenere caratteri alfanumerici e i simboli - , .",
+  "cronjobSchedule.patternError": "Deve essere una sequenza di 5 elementi, separati da spazi, o una variabile interpolata",
+  "collectionName.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\" e \"-\"",
+  "url.patternError": "Deve essere un url valido",
+  "sshUrl.patternError": "Deve essere un url valido compatibile con ssh",
+  "apiKey.patternError": "Non può contenere spazi",
+  "clientType.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\" e non può iniziare con un numero",
+  "variableKey.patternError": "Può contenere lettere maiuscole e numeri",
+  "digitOrInterpolation.patternError": "Deve essere un numero intero. Può essere interpolato"
+}

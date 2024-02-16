@@ -32,10 +32,5 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-  },
-  "references": [
-    {"path": "./packages/console-sdk-microfrontend"},
-    {"path": "./packages/console-sdk-vite-helpers"},
-    {"path": "./packages/console-sdk-webpack-helpers"}
-  ]
+  }
 }
