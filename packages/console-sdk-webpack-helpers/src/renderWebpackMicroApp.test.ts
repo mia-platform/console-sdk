@@ -44,8 +44,17 @@ const consoleProps: IConsoleProps = {
     forceConfigUpdateChecksum: '',
     microfrontendPluginConfig: {},
 
-    selectedEnvironment: {},
-    selectedProject: {},
+    selectedEnvironment: {
+      envId: 'test',
+    },
+    selectedProject: {
+      name: '',
+      _id: '',
+      environments: [],
+      configurationGitPath: '',
+      projectId: '',
+      repository: {},
+    },
 
     writeConfig: jest.fn(),
 
