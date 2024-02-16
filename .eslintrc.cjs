@@ -53,7 +53,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["*.test.ts"],
+      files: ["packages/console-types/**/*.test.ts"],
       rules: {
         "id-length": "off",
       }
