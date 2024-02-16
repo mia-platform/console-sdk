@@ -138,14 +138,14 @@ const SENSITIITY_VALUES: Sensitivity[] = [
   Sensitivity.TopSecret,
 ]
 
-export interface AllowedValue {
+export type AllowedValue = {
   type?: string[]
   sensitivityValue: Sensitivity[]
   encryptionEnabled?: boolean[]
   encryptionSearchable?: boolean[]
 }
 
-export interface SupportedValue {
+export type SupportedValue = {
   name: string
   type: string
   allowedValues: AllowedValue
@@ -194,7 +194,7 @@ export const DEFAULT_COLLECTION_FIELDS: SupportedValue[] = [{
   },
 }]
 
-export interface State {
+export type State = {
   value: string
   label: string
   cmsValue: string

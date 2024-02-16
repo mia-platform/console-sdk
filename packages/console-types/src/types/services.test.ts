@@ -22,22 +22,22 @@ import t from 'tap'
 
 import { ServiceTypes } from '../constants/services'
 import { tagName } from './project'
-import { validationMessage, createTestsRegex, PatternTest } from './validate-utils.test'
+import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
 import {
-  configMapFileName,
-  configMapMountPath,
-  configMapName,
-  container,
+  CoreService,
   CronJob,
   CrossProjectService,
   CustomService,
   CustomServiceAdvanced,
-  dockerImage,
   ExternalService,
+  configMapFileName,
+  configMapMountPath,
+  configMapName,
+  container,
+  dockerImage,
   host,
   probesPath,
   service,
-  CoreService,
   serviceSecretMountPath,
   serviceSecretName,
   swaggerPath,

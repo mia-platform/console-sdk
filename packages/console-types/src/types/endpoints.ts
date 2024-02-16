@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { ALLOWED_HTTP_VERBS, EndpointTypes, ENDPOINT_TYPES } from '../constants/endpoints'
+import { ALLOWED_HTTP_VERBS, ENDPOINT_TYPES, EndpointTypes } from '../constants/endpoints'
 import { buildType, description } from './shared'
 import { serviceName } from './services'
 import { collectionName } from './collections'

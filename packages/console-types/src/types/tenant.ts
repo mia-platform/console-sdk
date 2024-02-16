@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { monitoring, availableNamespaces, pipelines, environment, environmentsVariables } from './project'
+import { availableNamespaces, environment, environmentsVariables, monitoring, pipelines } from './project'
 import { REPOSITORY_TYPES } from '../constants/project'
 
 export const tenant = {

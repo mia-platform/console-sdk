@@ -19,7 +19,7 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import { apiKey, APIKey } from './apikeys'
+import { APIKey, apiKey } from './apikeys'
 import { validationMessage } from './validate-utils.test'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
 

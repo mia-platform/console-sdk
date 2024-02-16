@@ -22,7 +22,7 @@ import { FastifySchema } from 'fastify'
 import { VALIDATION_ERROR_ID } from '../strings'
 
 declare module 'fastify' {
-  interface FastifySchema {
+  type FastifySchema = {
     [VALIDATION_ERROR_ID]?: string
   }
 }

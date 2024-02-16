@@ -20,7 +20,7 @@ import Ajv from 'ajv'
 import t from 'tap'
 
 import constants from '../constants'
-import { config, Config } from './config'
+import { Config, config } from './config'
 import { validationMessage } from './validate-utils.test'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
 

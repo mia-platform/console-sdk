@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { CollectionTypes, FieldTypes, FIELD_TYPES, IndexTypes, INDEX_TYPES, STATES } from '../constants/collections'
+import { CollectionTypes, FIELD_TYPES, FieldTypes, INDEX_TYPES, IndexTypes, STATES } from '../constants/collections'
 import { VALIDATION_ERROR_ID } from '../strings'
 import { buildType, description } from './shared'
 

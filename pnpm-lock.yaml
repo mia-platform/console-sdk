@@ -42,7 +42,7 @@ importers:
   packages/console-sdk-microfrontend:
     dependencies:
       '@mia-platform/console-types':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../console-types
       ramda:
         specifier: ^0.29.1
@@ -112,6 +112,9 @@ importers:
       ts-jest:
         specifier: ^29.1.1
         version: 29.1.1(@babel/core@7.23.6)(jest@29.7.0)(typescript@5.3.3)
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
 
   packages/console-sdk-webpack-helpers:
     dependencies:

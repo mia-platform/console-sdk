@@ -48,7 +48,7 @@ export enum EndpointTypes {
   SINGLE_VIEW = 'fast-data-single-view'
 }
 
-export interface EndpointType {
+export type EndpointType = {
   value: string,
   label: string,
 }
@@ -76,7 +76,7 @@ export const ENDPOINT_TYPES: EndpointType[] = [{
   label: 'Fast Data Single View',
 }]
 
-export interface CrudRoute {
+export type CrudRoute = {
   path: string,
   verb: string,
   allowUnknownResponseContentType?: boolean

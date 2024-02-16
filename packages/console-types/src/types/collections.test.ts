@@ -20,8 +20,8 @@ import Ajv from 'ajv'
 import t from 'tap'
 
 import { CollectionTypes, IndexTypes, PUBLIC_STATE, STRING } from '../constants/collections'
-import { Collection, collections, collectionFieldName, indexFieldName, ViewCollection } from './collections'
-import { validationMessage, createTestsRegex, PatternTest } from './validate-utils.test'
+import { Collection, ViewCollection, collectionFieldName, collections, indexFieldName } from './collections'
+import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
 
 t.test('collections', t => {

@@ -17,25 +17,25 @@
  */
 
 import {
-  OBJECT_ID,
-  STRING,
-  CMS_ARRAY,
-  CMS_DATE,
-  DATE,
-  CMS_GEOPOINT,
-  GEO_POINT,
-  NUMBER,
-  ARRAY_OF_RAWOBJECT,
   ARRAY_OF_NUMBER,
+  ARRAY_OF_RAWOBJECT,
   ARRAY_OF_STRING,
   BOOLEAN,
-  OBJECT,
-  RAWOBJECT,
+  CMS_ARRAY,
+  CMS_DATE,
+  CMS_GEOPOINT,
   CMS_RAW_ARRAY,
   CMS_RAW_OBJECT,
+  DATE,
+  GEO_POINT,
+  NUMBER,
+  OBJECT,
+  OBJECT_ID,
+  RAWOBJECT,
+  STRING,
 } from './collections'
 
-export interface SupportedCMSInterfaceType {
+export type SupportedCMSInterfaceType = {
   value: string
   label: string
   allowedTypes: string[]
@@ -104,7 +104,7 @@ export const CMS_INTERFACE_TYPES: SupportedCMSInterfaceType[] = [{
 }]
 
 
-export interface CmsValueLabel {
+export type CmsValueLabel = {
   value: string|number,
   label: string,
 }

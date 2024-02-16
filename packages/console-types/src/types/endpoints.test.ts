@@ -20,8 +20,8 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import { validationMessage, createTestsRegex, PatternTest } from './validate-utils.test'
-import { endpoints, basePath } from './endpoints'
+import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
+import { basePath, endpoints } from './endpoints'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
 
 const CRUD_ENDPOINT = {

@@ -8,8 +8,8 @@ import it from './it.json'
 
 export const VALIDATION_ERROR_ID = 'x-validation-error-id'
 
-type KeyMessages = { [key: string]: string }
-type LocaleMapping = { [locale: string]: KeyMessages }
+type KeyMessages = Record<string, string>
+type LocaleMapping = Record<string, KeyMessages>
 
 const strings: LocaleMapping = {
   en,

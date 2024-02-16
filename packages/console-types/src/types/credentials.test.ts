@@ -20,7 +20,7 @@ import tap from 'tap'
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 
-import { CredentialsClientCredential, CredentialsClientCredentialCertificate, CredentialsM2M, credentialsSchema, CredentialsToken, CredentialsUserPass } from './credentials'
+import { CredentialsClientCredential, CredentialsClientCredentialCertificate, CredentialsM2M, CredentialsToken, CredentialsUserPass, credentialsSchema } from './credentials'
 import { CredentialsTypes } from '../constants/credentials'
 import { validationMessage } from './validate-utils.test'
 
