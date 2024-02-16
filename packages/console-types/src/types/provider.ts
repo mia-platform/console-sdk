@@ -18,8 +18,8 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { credentialsSchema } from './credentials'
 import { CAPABILITIES } from '../constants/provider'
+import { credentialsSchema } from './credentials'
 
 const providerFunctionalitiesSchema = {
   type: 'array',

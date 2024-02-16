@@ -17,24 +17,24 @@
  */
 
 import Ajv from 'ajv'
-import t from 'tap'
 import { FastifySchema } from 'fastify'
+import t from 'tap'
 
-import transform from './transform-schema-for-swagger'
-import ajvConsoleErrors from './ajv-console-errors'
 import { VALIDATION_ERROR_ID } from '../strings'
+import ajvConsoleErrors from './ajv-console-errors'
+import transform from './transform-schema-for-swagger'
 
 t.test('transform schema', t => {
-  const jsonSchema = {
-    type: 'string',
-    [VALIDATION_ERROR_ID]: 'resourceName.patternError',
-  }
   const url = 'my-url'
 
   const ajv = new Ajv()
   ajvConsoleErrors(ajv)
 
   t.test('remove VALIDATION_ERROR_ID if present', t => {
+    const jsonSchema = {
+      type: 'string',
+      [VALIDATION_ERROR_ID]: 'resourceName.patternError',
+    } as FastifySchema
     const schema = transform({ schema: jsonSchema, url })
 
     t.strictSame(schema, {

@@ -16,13 +16,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { JSONObject } from '@fastify/swagger'
 import { FastifySchema } from 'fastify'
+import { JSONObject } from '@fastify/swagger'
 
 import { VALIDATION_ERROR_ID } from '../strings'
 
 declare module 'fastify' {
-  type FastifySchema = {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+  interface FastifySchema {
     [VALIDATION_ERROR_ID]?: string
   }
 }
