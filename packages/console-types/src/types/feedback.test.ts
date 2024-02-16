@@ -20,8 +20,8 @@ import Ajv from 'ajv'
 import t from 'tap'
 
 import { Feedback, feedbackSchema } from './feedback'
-import { validationMessage } from './validate-utils.test'
 import { FeedbackTypes } from '../constants/feedback'
+import { validationMessage } from './validate-utils.test'
 
 t.test('feedback', t => {
   const ajv = new Ajv()

@@ -18,8 +18,8 @@
 
 import t from 'tap'
 
-import { decoratorPath } from './decorators'
 import { PatternTest, createTestsRegex } from './validate-utils.test'
+import { decoratorPath } from './decorators'
 
 t.test('decoratorPath json schema pattern', t => {
   const regex = new RegExp(decoratorPath.pattern)

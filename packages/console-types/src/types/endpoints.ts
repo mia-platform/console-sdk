@@ -20,9 +20,9 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import { ALLOWED_HTTP_VERBS, ENDPOINT_TYPES, EndpointTypes } from '../constants/endpoints'
 import { buildType, description } from './shared'
-import { serviceName } from './services'
-import { collectionName } from './collections'
 import { VALIDATION_ERROR_ID } from '../strings'
+import { collectionName } from './collections'
+import { serviceName } from './services'
 
 const routeBooleanValue = {
   type: 'object',

@@ -17,7 +17,7 @@ const strings: LocaleMapping = {
 }
 export default strings
 
-export const mergeStringsWithDefault = (messages: LocaleMapping = {}) => {
+export const mergeStringsWithDefault = (messages: LocaleMapping = {}): Record<string, Record<string, string>> => {
   const locales = Object.keys(strings)
   const mergedStrings = messages
   for (const locale of locales) {

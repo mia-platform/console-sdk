@@ -18,8 +18,8 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { description } from './shared'
 import { VALIDATION_ERROR_ID } from '../strings'
+import { description } from './shared'
 
 export const apiKeyString = {
   type: 'string',

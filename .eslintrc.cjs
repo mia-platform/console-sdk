@@ -30,8 +30,7 @@ module.exports = {
     "import/order": ["error", {
       groups: [
         ["builtin", "external"],
-        ["internal", "parent", "sibling", "index"],
-      ],      
+      ],
       "newlines-between": "always"
     }],
     "max-statements": "off",
@@ -41,7 +40,7 @@ module.exports = {
       allowSeparatedGroups: true
     }],
 
-    /** 
+    /**
      * Eslint plugin Typescript
      * @link https://typescript-eslint.io/rules
      */
@@ -49,7 +48,15 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": ["error", {
       allowExpressions: true
     }],
-    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-shadow": ["off"],
     "@typescript-eslint/prefer-nullish-coalescing": "off",
-  }
+  },
+  overrides: [
+    {
+      files: ["*.test.ts"],
+      rules: {
+        "id-length": "off",
+      }
+    }
+  ]
 }

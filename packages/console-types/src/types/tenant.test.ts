@@ -19,10 +19,10 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import { fullEnvironment } from './project.test'
 import { ITenant, tenant } from './tenant'
-import { validationMessage } from './validate-utils.test'
 import { PROMETHEUS_OPERATOR } from '../constants/project'
+import { fullEnvironment } from './project.test'
+import { validationMessage } from './validate-utils.test'
 
 t.test('tenants validated', t => {
   const ajv = new Ajv()

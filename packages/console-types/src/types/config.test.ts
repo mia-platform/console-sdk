@@ -19,10 +19,10 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import constants from '../constants'
 import { Config, config } from './config'
-import { validationMessage } from './validate-utils.test'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
+import constants from '../constants'
+import { validationMessage } from './validate-utils.test'
 
 const { ServiceTypes } = constants
 

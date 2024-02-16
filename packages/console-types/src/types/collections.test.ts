@@ -19,8 +19,8 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import { CollectionTypes, IndexTypes, PUBLIC_STATE, STRING } from '../constants/collections'
 import { Collection, ViewCollection, collectionFieldName, collections, indexFieldName } from './collections'
+import { CollectionTypes, IndexTypes, PUBLIC_STATE, STRING } from '../constants/collections'
 import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
 

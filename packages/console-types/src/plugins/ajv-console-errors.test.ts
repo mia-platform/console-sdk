@@ -19,8 +19,8 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import addConsoleErrors from './ajv-console-errors'
 import { VALIDATION_ERROR_ID } from '../strings'
+import addConsoleErrors from './ajv-console-errors'
 
 t.test('validation', t => {
   const ajv = new Ajv()

@@ -35,8 +35,7 @@ export type PatternTest = {
   assertion: 'ok' | 'notOk'
 }
 
-// eslint-disable-next-line no-undef
-export function createTestsRegex(t: Tap.Test, tests: PatternTest[], regex: RegExp) {
+export function createTestsRegex(t: Tap.Test, tests: PatternTest[], regex: RegExp): void {
   for (const test of tests) {
     t.test(test.name, t => {
       test.items.forEach(item => {

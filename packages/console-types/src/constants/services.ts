@@ -16,8 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { VALIDATION_ERROR_ID } from '../strings'
 import { EnvironmentVariablesPlain } from '../types/services'
+import { VALIDATION_ERROR_ID } from '../strings'
 
 export enum EnvironmentVariablesTypes {
   PLAIN_TEXT = 'plain',

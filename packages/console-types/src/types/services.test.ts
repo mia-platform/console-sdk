@@ -20,9 +20,6 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import { ServiceTypes } from '../constants/services'
-import { tagName } from './project'
-import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
 import {
   CoreService,
   CronJob,
@@ -43,7 +40,10 @@ import {
   swaggerPath,
   url,
 } from './services'
+import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
+import { ServiceTypes } from '../constants/services'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
+import { tagName } from './project'
 
 t.test('services', t => {
   const ajv = new Ajv()

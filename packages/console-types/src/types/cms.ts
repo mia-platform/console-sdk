@@ -19,9 +19,9 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import { CHART, CHART_SUMMARY, CMS_INTERFACE_TYPES, CMS_LAYOUT_TYPES, CMS_PROPERTY_VISIBILITY_LEVELS, CUSTOM_STOCK } from '../constants/cms'
+import { buildType, description } from './shared'
 import { collectionFieldName, collectionName } from './collections'
 import { aclExpression } from './endpoints'
-import { buildType, description } from './shared'
 
 const cmsName = {
   type: 'string',

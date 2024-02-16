@@ -21,8 +21,8 @@ import addFormats from 'ajv-formats'
 import t from 'tap'
 
 import { Provider, providerSchema } from './provider'
-import { validationMessage } from './validate-utils.test'
 import { CAPABILITIES } from '../constants/provider'
+import { validationMessage } from './validate-utils.test'
 
 t.test('providers', t => {
   const ajv = new Ajv()

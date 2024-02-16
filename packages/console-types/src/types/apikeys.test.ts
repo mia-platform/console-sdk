@@ -20,8 +20,8 @@ import Ajv from 'ajv'
 import t from 'tap'
 
 import { APIKey, apiKey } from './apikeys'
-import { validationMessage } from './validate-utils.test'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
+import { validationMessage } from './validate-utils.test'
 
 const apiKeyData: APIKey = {
   secret: 'secret',

@@ -20,9 +20,9 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import { validationMessage } from './validate-utils.test'
-import { listeners } from './listeners'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
+import { listeners } from './listeners'
+import { validationMessage } from './validate-utils.test'
 
 const LISTENERS = {
   'my-listener': {

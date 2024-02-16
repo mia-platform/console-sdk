@@ -16,9 +16,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import tap from 'tap'
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
+import tap from 'tap'
 
 import { CredentialsClientCredential, CredentialsClientCredentialCertificate, CredentialsM2M, CredentialsToken, CredentialsUserPass, credentialsSchema } from './credentials'
 import { CredentialsTypes } from '../constants/credentials'
