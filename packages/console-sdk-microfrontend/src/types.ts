@@ -18,13 +18,13 @@
 
 import {
   Collections,
+  ConfigMaps,
   Endpoints,
   IEnvironment,
   IProject,
   PublicVariable,
-  ServiceConfigMap,
   Services,
-} from '@mia-platform-internal/console-types'
+} from '@mia-platform/console-types'
 
 export enum EventsTypes {
   SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT',
@@ -61,7 +61,7 @@ export type IContexts = {
 export type ISDKConsoleObservable = {
   endpoints: Endpoints
   collections: Collections
-  configMaps: ServiceConfigMap
+  configMaps: ConfigMaps
   services: Services
   unsecretedVariables: PublicVariable[]
 

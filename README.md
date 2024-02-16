@@ -27,24 +27,27 @@ See the specific monorepo readme to using this library
 To use this repository 
 
 ```bash
-npm install @mia-platform-internal/console-sdk-microfrontend
-npm install @mia-platform-internal/console-sdk-vite-helpers
-npm install @mia-platform-internal/console-sdk-webapack-helpers
+npm install @mia-platform/console-sdk-microfrontend
+npm install @mia-platform/console-sdk-vite-helpers
+npm install @mia-platform/console-sdk-webapack-helpers
 ```
 
 ## Local Development
 
 For local development, you can run:
+
 ```bash
 pnpm install && pnpm test
 ```
 
 To run tests on a specific package:
+
 ```bash
 pnpm --filter <package.json name> <script>
 ```
 
 or using the prepared script
+
 ```bash
 pnpm sdk test
 pnpm vh test

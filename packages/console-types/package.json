@@ -1,0 +1,49 @@
+{
+  "name": "@mia-platform/console-types",
+  "version": "0.18.1",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index",
+  "scripts": {
+    "build": "rimraf build/ && tsc",
+    "lint": "eslint .",
+    "test": "tap --ts --test-ignore=\"(build/.*|src/types/validate-utils.test.ts)\"",
+    "test:snapshot": "TAP_SNAPSHOT=1 npm run test",
+    "prepublish": "tsc",
+    "coverage": "npm run test",
+    "postcoverage": "tap --coverage-report=lcov --no-browser",
+    "update-changelog": "node ./scripts/update-changelog.js ${npm_package_version}",
+    "version": "npm run update-changelog && git add CHANGELOG.md"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@mia-platform/eslint-config-mia": "^3.0.0",
+    "@types/ramda": "^0.28.23",
+    "@types/tap": "^15.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "eslint": "^8.56.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "json-schema-to-ts": "^2.9.2",
+    "rimraf": "^3.0.2",
+    "tap": "^16.3.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "tap": {
+    "nyc-arg": [
+      "--exclude=src/types/validate-utils.test.ts"
+    ]
+  },
+  "dependencies": {
+    "ramda": "^0.28.0"
+  },
+  "peerDependencies": {
+    "@fastify/swagger": "^8 || ^6",
+    "fastify": "^4 || ^3"
+  }
+}

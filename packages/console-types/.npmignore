@@ -1,0 +1,11 @@
+src
+**/*.test.*
+.nyc_output
+.eslintrc
+.eslintignore
+.gitlab-ci.yml
+CHANGELOG.md
+tsconfig.json
+coverage
+*.tgz
+license-report.html

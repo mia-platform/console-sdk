@@ -1,0 +1,19 @@
+{
+  "endpoint.basePath.patternError": "Must start with \"/\" and can contain alphanumeric characters and the symbols \"_\", \"-\", and \".\", optionally preceded by \":\"",
+  "configMountPath.patternError": "Can contain alphanumeric characters, parentheses, spaces and the symbols - , _ , . , | , \\ ,  / , ! , \" , £, $ , % , & , = , ? , ^ ,* , +, @",
+  "resourceName.patternError": "Must start with a lowercase character and can contain lowercase letters, numbers and the symbol \"-\". Cannot end with \"-\"",
+  "dockerImage.patternError": "Must respect the format host/imagename:tag, where host and tag are optional. Image name and tag can be interpolated",
+  "configMapFileName.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
+  "swaggerPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
+  "probesPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\", \":\", \".\", \"{\", \"}\", \"/\"",
+  "serviceSecretKey.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
+  "kubernetesDefinition.patternError": "Must have format prefix/name, where prefix is optional. Prefix and name must start with an alphanumeric character. Can contain alphanumeric characters and symbols - , .",
+  "cronjobSchedule.patternError": "Must be a sequence of 5 elements, separated by whitespaces, or an interpolated variable",
+  "collectionName.patternError": "Can contain alphanumeric characters and the symbols \"_\" and \"-\"",
+  "url.patternError": "Must be a valid url",
+  "sshUrl.patternError": "Must be a valid ssh-compatible url",
+  "apiKey.patternError": "Cannot contain white spaces",
+  "clientType.patternError": "Can contain alphanumeric characters and the symbol \"_\", and cannot start with a number",
+  "variableKey.patternError": "Can contain uppercase letters and numbers",
+  "digitOrInterpolation.patternError": "Must be an integer. Can be interpolated"
+}
