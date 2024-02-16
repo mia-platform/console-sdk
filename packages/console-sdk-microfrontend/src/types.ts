@@ -20,7 +20,6 @@ import {
   Collections,
   ConfigMaps,
   Endpoints,
-  IEnvironment,
   IProject,
   PublicVariable,
   Services,
@@ -68,7 +67,7 @@ export type ISDKConsoleObservable = {
   forceConfigUpdateChecksum: string
   microfrontendPluginConfig: Record<string, unknown>
 
-  selectedEnvironment: IEnvironment
+  selectedEnvironment: string
   selectedProject: IProject
 
   _version: string
