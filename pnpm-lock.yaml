@@ -36,8 +36,8 @@ importers:
         specifier: ^6.1.1
         version: 6.1.1(eslint@8.56.0)
       eslint-plugin-unused-imports:
-        specifier: ^2.0.0
-        version: 2.0.0(eslint@8.56.0)
+        specifier: ^3.1.0
+        version: 3.1.0(eslint@8.56.0)
 
   packages/console-sdk-microfrontend:
     dependencies:
@@ -3088,12 +3088,12 @@ packages:
       eslint: 8.56.0
     dev: true
 
-  /eslint-plugin-unused-imports@2.0.0(eslint@8.56.0):
-    resolution: {integrity: sha512-3APeS/tQlTrFa167ThtP0Zm0vctjr4M44HMpeg1P4bK6wItarumq0Ma82xorMKdFsWpphQBlRPzw/pxiVELX1A==}
+  /eslint-plugin-unused-imports@3.1.0(eslint@8.56.0):
+    resolution: {integrity: sha512-9l1YFCzXKkw1qtAru1RWUtG2EVDZY0a0eChKXcL+EZ5jitG7qxdctu4RnvhOJHv4xfmUf7h+JJPINlVpGhZMrw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^5.0.0
-      eslint: ^8.0.0
+      '@typescript-eslint/eslint-plugin': 6 - 7
+      eslint: '8'
     peerDependenciesMeta:
       '@typescript-eslint/eslint-plugin':
         optional: true
