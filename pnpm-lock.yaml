@@ -58,8 +58,8 @@ importers:
         specifier: 21.1.6
         version: 21.1.6
       '@types/ramda':
-        specifier: ^0.29.9
-        version: 0.29.9
+        specifier: ^0.29.10
+        version: 0.29.10
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.1
         version: 7.0.1(@typescript-eslint/parser@7.0.2)(eslint@8.56.0)(typescript@5.3.3)
@@ -132,8 +132,8 @@ importers:
         specifier: 21.1.6
         version: 21.1.6
       '@types/ramda':
-        specifier: ^0.29.9
-        version: 0.29.9
+        specifier: ^0.29.10
+        version: 0.29.10
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.1
         version: 7.0.1(@typescript-eslint/parser@7.0.2)(eslint@8.56.0)(typescript@5.3.3)
@@ -169,8 +169,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.56.0)
       '@types/ramda':
-        specifier: ^0.28.23
-        version: 0.28.25
+        specifier: ^0.29.10
+        version: 0.29.10
       '@types/tap':
         specifier: ^15.0.11
         version: 15.0.11
@@ -1698,16 +1698,10 @@ packages:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
 
-  /@types/ramda@0.28.25:
-    resolution: {integrity: sha512-HrQNqQAGcITpn9HAJFamDxm7iZeeXiP/95pN5OMbNniDjzCCeOHbBKNGmUy8NRi0fhYS+/cXeo91MFC+06gbow==}
+  /@types/ramda@0.29.10:
+    resolution: {integrity: sha512-0BzWVKtSEtignlk+XBuK88Il5wzQwbRVfEkzE8iKm02NYHMGQ/9ffB05M+zXhTCqo50DOIAT9pNSJsjFMMG4rQ==}
     dependencies:
-      ts-toolbelt: 6.15.5
-    dev: true
-
-  /@types/ramda@0.29.9:
-    resolution: {integrity: sha512-X3yEG6tQCWBcUAql+RPC/O1Hm9BSU+MXu2wJnCETuAgUlrEDwTA1kIOdEEE4YXDtf0zfQLHa9CCE7WYp9kqPIQ==}
-    dependencies:
-      types-ramda: 0.29.6
+      types-ramda: 0.29.8
     dev: true
 
   /@types/semver@7.5.6:
@@ -6356,10 +6350,6 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-toolbelt@6.15.5:
-    resolution: {integrity: sha512-FZIXf1ksVyLcfr7M317jbB67XFJhOO1YqdTcuGaq9q5jLUoTikukZ+98TPjKiP2jC5CgmYdWWYs0s2nLSU0/1A==}
-    dev: true
-
   /ts-toolbelt@9.6.0:
     resolution: {integrity: sha512-nsZd8ZeNUzukXPlJmTBwUAuABDe/9qtVDelJeT/qW0ow3ZS3BsQJtNkan1802aM9Uf68/Y8ljw86Hu0h5IUW3w==}
     dev: true
@@ -6472,8 +6462,8 @@ packages:
       is-typedarray: 1.0.0
     dev: true
 
-  /types-ramda@0.29.6:
-    resolution: {integrity: sha512-VJoOk1uYNh9ZguGd3eZvqkdhD4hTGtnjRBUx5Zc0U9ftmnCgiWcSj/lsahzKunbiwRje1MxxNkEy1UdcXRCpYw==}
+  /types-ramda@0.29.8:
+    resolution: {integrity: sha512-+RTOlcwl1hEdNV1xfug3ofG6rny0hqQsFuBmS88vD4Lrh8Iys14IPlUH9QaGjCY46iCZgEDuCTLMLH/pOOsGKg==}
     dependencies:
       ts-toolbelt: 9.6.0
     dev: true

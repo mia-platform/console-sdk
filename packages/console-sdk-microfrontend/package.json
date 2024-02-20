@@ -20,7 +20,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.2",
-    "@types/ramda": "^0.29.9",
+    "@types/ramda": "^0.29.10",
     "typescript": "^5.3.3",
     "vite-plugin-qiankun": "1.0.15",
     "@types/jest": "^29.5.11",
