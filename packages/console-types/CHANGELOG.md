@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 0.18.2
 
 - [IDP-86](https://makeitapp.atlassian.net/browse/IDP-86): added `repositoryPathTemplate` to provider's `capabilities`
 
@@ -17,9 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.18.0] 2024-02-05
 
-### Added 
+### Added
 
-- [CRSE-194](https://makeitapp.atlassian.net/browse/CRSE-194): added `defaultSortingIndex` string field to `collections` schema 
+- [CRSE-194](https://makeitapp.atlassian.net/browse/CRSE-194): added `defaultSortingIndex` string field to `collections` schema
 - [MKEA-155](https://makeitapp.atlassian.net/browse/MKEA-155): new capability `CONTAINER_REGISTRY`
 
 ## [0.17.1] 2024-01-22
@@ -89,7 +89,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - [FIC-56](https://makeitapp.atlassian.net/browse/FIC-56): probes port is now a string to support container port name rather than an arbitrary numeric port
 
-
 ## [0.13.5] 2023-10-02
 
 ### Fixed
@@ -150,7 +149,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - [JSG-151](https://makeitapp.atlassian.net/browse/JSG-151): exported `PUSH_DEPLOY_STRATEGY` and `PULL_DEPLOY_STRATEGY` as constants
 
-
 ## [0.12.1] 2023-08-24
 
 ### Fixed
@@ -189,7 +187,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.11.1] 2023-07-07
 
-### Added 
+### Added
 
 - [MBA-234](https://makeitapp.atlassian.net/browse/MBA-234): Added monitoring fields to tenant
 
@@ -201,7 +199,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.10.20] 2023-07-07
 
-### Added 
+### Added
 
 - [MBA-234](https://makeitapp.atlassian.net/browse/MBA-234): Added monitoring fields to tenant
 
@@ -281,7 +279,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added providerId to pipelines object in Azure case 
+- Added providerId to pipelines object in Azure case
 
 ## [0.10.6] 2023-05-10
 
@@ -342,7 +340,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- [MPIC-88](https://makeitapp.atlassian.net/browse/MPIC-88): Added repository types and environments variables types constants, exported capability type. 
+- [MPIC-88](https://makeitapp.atlassian.net/browse/MPIC-88): Added repository types and environments variables types constants, exported capability type.
 
 ## [0.8.16] - 2023-04-14
 
@@ -353,7 +351,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - [MPIC-40](https://makeitapp.atlassian.net/browse/MPIC-40): Added github actions and azure pipelines to deployment types
-  
+
 ## [0.8.14] - 2023-03-8
 
 ### Changed
@@ -383,7 +381,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - [MPIC-25](https://makeitapp.atlassian.net/browse/MPIC-26): Added capabilities to providers schema and exported type
-  
+
 ## [0.8.9] - 2023-02-23
 
 ### Fixed
@@ -440,10 +438,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.8.0] - 2022-11-22
 
-### Added 
+### Added
 
 - [FDBE-504](https://makeitapp.atlassian.net/browse/FDBE-504): Added fields "readOnly" and "managedBy" to services environment variables
-  
+
 ## [0.7.4] - 2022-11-18
 
 ### Fixed
@@ -464,7 +462,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.7.1] - 2022-11-15
 
-### Added 
+### Added
 
 - [JCE-236](https://makeitapp.atlassian.net/browse/JCE-236): Added container ports validation
 
@@ -488,31 +486,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.6.35] - 2022-10-27
 
-### Added 
+### Added
 
 - [JCE-306](https://makeitapp.atlassian.net/browse/JCE-306): Improve validation for Public Variables (export variableKey with validation)
 
 ## [0.6.34] - 2022-10-27
 
-### Added 
+### Added
 
 - [JCE-305](https://makeitapp.atlassian.net/browse/JCE-305): Improve validation for API Keys (export apiKeyString and clientType with validation)
 
 ## [0.6.33] - 2022-10-27
 
-### Added 
+### Added
 
 - [JCE-304](https://makeitapp.atlassian.net/browse/JCE-304): Improve validation for Proxies section
 
 ## [0.6.32] - 2022-10-26
 
-### Added 
+### Added
 
 - [JCE-309](https://makeitapp.atlassian.net/browse/JCE-309): Improve validation for RBAC (export collectionName with validation)
 
 ## [0.6.31] - 2022-10-21
 
-### Added 
+### Added
 
 - [JCE-308](https://makeitapp.atlassian.net/browse/JCE-308): Improve validation for microservice and cronjob sections
 
@@ -526,7 +524,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- add _id in cluster
+- add \_id in cluster
 
 ## [0.6.28] - 2022-10-14
 
@@ -562,7 +560,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- fix links exported as type instead of const 
+- fix links exported as type instead of const
 
 ## [0.6.22] - 2022-09-29
 
@@ -736,7 +734,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.4.2] - 2022-07-22
 
-### Added 
+### Added
 
 - exported timeout among endpoint properties
 
