@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- [IDP-86](https://makeitapp.atlassian.net/browse/IDP-86): added `repositoryPathTemplate` to provider's `capabilities`
+
 ## [0.18.1] 2024-02-06
 
 ### Fixed
