@@ -259,7 +259,6 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
               "name": {
                 "type": "string",
                 "enum": [
-                  "git-provider",
                   "secret-manager",
                   "ci-cd-tool",
                   "orchestrator-generator"
@@ -308,6 +307,36 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
                 }
               },
               "imagePullSecretName": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "git-provider"
+              },
+              "functionalities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "repositoryPathTemplate": {
                 "type": "string"
               }
             }

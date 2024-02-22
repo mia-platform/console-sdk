@@ -37,7 +37,7 @@ const providerFunctionalitiesSchema = {
   },
 } as const
 
-const { CONTAINER_REGISTRY, ...OTHER_CAPABILITIES } = CAPABILITIES
+const { CONTAINER_REGISTRY, GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
 export const providerCapabilitySchema = {
   oneOf: [
     {
@@ -66,14 +66,22 @@ export const providerCapabilitySchema = {
         imagePullSecretName: { type: 'string' },
       },
     },
+    {
+      type: 'object',
+      additionalProperties: false,
+      required: [
+        'name',
+      ],
+      properties: {
+        name: { const: GIT_PROVIDER },
+        functionalities: providerFunctionalitiesSchema,
+        repositoryPathTemplate: {
+          type: 'string',
+        },
+      },
+    },
   ],
 } as const
-
-export const providerCapabilitiesSchema = {
-  type: 'array',
-  items: providerCapabilitySchema,
-} as const
-
 
 export const providerSchema = {
   type: 'object',
@@ -107,7 +115,10 @@ export const providerSchema = {
       required: ['url'],
     },
     credentials: credentialsSchema,
-    capabilities: providerCapabilitiesSchema,
+    capabilities: {
+      type: 'array',
+      items: providerCapabilitySchema,
+    },
     visibility: {
       additionalProperties: false,
       type: 'object',
@@ -119,7 +130,6 @@ export const providerSchema = {
 } as const
 
 export type ProviderCapability = FromSchema<typeof providerCapabilitySchema>
-export type ProviderCapabilities = FromSchema<typeof providerCapabilitiesSchema>
 export type Provider = FromSchema<typeof providerSchema, {
   parseIfThenElseKeywords: true
 }>
