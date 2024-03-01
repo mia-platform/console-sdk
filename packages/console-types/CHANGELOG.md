@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+## Changed
+
+- ProviderTypes: add UNREQUIRED_CREDENTIALS credential type to be used with Container Registry provider type
+
 ## 0.18.4
 
 ### Fixed
