@@ -196,8 +196,8 @@ importers:
         specifier: ^2.29.1
         version: 2.29.1(@typescript-eslint/parser@7.1.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       json-schema-to-ts:
-        specifier: ^2.9.2
-        version: 2.12.0
+        specifier: ^3.0.0
+        version: 3.0.0
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -4683,8 +4683,8 @@ packages:
       - supports-color
     dev: false
 
-  /json-schema-to-ts@2.12.0:
-    resolution: {integrity: sha512-uTde38yBm5lzJSRPWRaasxZo72pb+JGE4iUksNdNfAkFaLhV4N9akeBxPPUpZy5onINt9Zo0oTLrAoEXyZESiQ==}
+  /json-schema-to-ts@3.0.0:
+    resolution: {integrity: sha512-2adDesYifYEXYxNySx3gG0RR69rDWIjqAFzK/JPXdOvjHLZ/UP6d2rkpy6a+AxyhtRp2SvFPZ4+EW36jBinUbA==}
     engines: {node: '>=16'}
     dependencies:
       '@babel/runtime': 7.23.6
