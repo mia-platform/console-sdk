@@ -21,3 +21,11 @@ updates:
         - "major"
         - "minor"
         - "patch"
+      esint:
+        patterns:
+        - "eslint*"
+        - "eslint"
+        - "*/eslint*"
+        update-types:
+        - "minor"
+        - "patch"
