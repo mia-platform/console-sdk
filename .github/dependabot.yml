@@ -21,7 +21,7 @@ updates:
         - "major"
         - "minor"
         - "patch"
-      esint:
+      eslint:
         patterns:
         - "eslint*"
         - "eslint"
