@@ -109,7 +109,6 @@ export const providerTypeSchema = {
     'type',
     'imageUrl',
     'capabilities',
-    'credentialTypes',
   ],
   properties: {
     type: { type: 'string' },

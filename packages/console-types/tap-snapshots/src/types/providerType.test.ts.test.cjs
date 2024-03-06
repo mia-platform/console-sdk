@@ -12,8 +12,7 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
   "required": [
     "type",
     "imageUrl",
-    "capabilities",
-    "credentialTypes"
+    "capabilities"
   ],
   "properties": {
     "type": {

@@ -121,16 +121,6 @@ export const clientCredentialsCertificateSchema = {
   },
 } as const
 
-export const unrequiredCredentialsSchema = {
-  type: 'object',
-  additionalProperties: false,
-  required: ['type'],
-  properties: {
-    expirationDate,
-    type: { type: 'string', const: CredentialsTypes.UNREQUIRED_CREDENTIALS },
-  },
-} as const
-
 export const credentialsSchema = {
   oneOf: [
     credentialsTokenSchema,
@@ -138,7 +128,6 @@ export const credentialsSchema = {
     credentialsM2MSchema,
     clientCredentialsSchema,
     clientCredentialsCertificateSchema,
-    unrequiredCredentialsSchema,
   ],
 } as const
 
