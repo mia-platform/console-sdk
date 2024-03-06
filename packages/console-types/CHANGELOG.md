@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 0.18.4
+
 ### Fixed
 
 - Fixed capitalization in visibility descriptions
