@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Fixed
+
+- Fixed capitalization in visibility descriptions
+
 ## 0.18.3
 
 ### Patch Changes
