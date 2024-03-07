@@ -31,7 +31,7 @@ import {
   credentialsUserPassSchema,
 } from './types/credentials'
 import { PipelineStatus, ProviderType, ProviderTypeCapability, providerTypeSchema } from './types/providerType'
-import { Provider, ProviderCapability, providerSchema } from './types/provider'
+import { CONTAINER_REGISTRY_HOSTNAME_REGEX, Provider, ProviderCapability, providerSchema } from './types/provider'
 import { VALIDATION_ERROR_ID, mergeStringsWithDefault } from './strings'
 import {
   analytics,
@@ -179,6 +179,8 @@ export {
 
   providerSchema,
   providerTypeSchema,
+
+  CONTAINER_REGISTRY_HOSTNAME_REGEX,
 }
 
 export type {
