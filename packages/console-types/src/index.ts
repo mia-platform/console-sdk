@@ -32,7 +32,6 @@ import {
   credentialsUserPassSchema,
 } from './types/credentials'
 import { PipelineStatus, ProviderType, ProviderTypeCapability, providerTypeSchema } from './types/providerType'
-// eslint-ignore-next-line sort-imports
 import { CONTAINER_REGISTRY_HOSTNAME_REGEX, Provider, ProviderCapability, providerSchema } from './types/provider'
 import { VALIDATION_ERROR_ID, mergeStringsWithDefault } from './strings'
 import {
