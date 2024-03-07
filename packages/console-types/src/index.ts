@@ -16,6 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
+import * as ProviderTypings from './types/provider'
 import {
   Credentials,
   CredentialsClientCredential,
@@ -31,7 +33,7 @@ import {
   credentialsUserPassSchema,
 } from './types/credentials'
 import { PipelineStatus, ProviderType, ProviderTypeCapability, providerTypeSchema } from './types/providerType'
-import { CONTAINER_REGISTRY_HOSTNAME_REGEX, Provider, ProviderCapability, providerSchema } from './types/provider'
+import { Provider, ProviderCapability } from './types/provider'
 import { VALIDATION_ERROR_ID, mergeStringsWithDefault } from './strings'
 import {
   analytics,
@@ -96,6 +98,8 @@ import { template } from './types/template'
 import { tenant } from './types/tenant'
 import transformSchemaForSwagger from './plugins/transform-schema-for-swagger'
 import { variableKey } from './types/publicVariables'
+
+const { CONTAINER_REGISTRY_HOSTNAME_REGEX, providerSchema } = ProviderTypings
 
 export {
   VALIDATION_ERROR_ID,
