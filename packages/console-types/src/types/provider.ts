@@ -40,7 +40,7 @@ const providerFunctionalitiesSchema = {
 const { CONTAINER_REGISTRY, GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
 
 const CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING = '^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\d+)?$'
-export const ZZ_CONTAINER_REGISTRY_HOSTNAME_REGEX = new RegExp(CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING)
+export const CONTAINER_REGISTRY_HOSTNAME_REGEX = new RegExp(CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING)
 
 export const providerCapabilitySchema = {
   oneOf: [
