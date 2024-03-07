@@ -63,6 +63,8 @@ export const providerCapabilitySchema = {
       additionalProperties: false,
       required: [
         'name',
+        'imagePullSecretName',
+        'hostname',
       ],
       properties: {
         name: { const: CONTAINER_REGISTRY },

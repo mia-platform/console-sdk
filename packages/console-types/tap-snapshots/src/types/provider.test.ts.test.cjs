@@ -285,7 +285,9 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
             "type": "object",
             "additionalProperties": false,
             "required": [
-              "name"
+              "name",
+              "imagePullSecretName",
+              "hostname"
             ],
             "properties": {
               "name": {
@@ -308,6 +310,10 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
               },
               "imagePullSecretName": {
                 "type": "string"
+              },
+              "hostname": {
+                "type": "string",
+                "pattern": "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\\\d+)?$"
               }
             }
           },

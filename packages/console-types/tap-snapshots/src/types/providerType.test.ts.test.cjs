@@ -9,11 +9,6 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
 {
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "type",
-    "imageUrl",
-    "capabilities"
-  ],
   "properties": {
     "type": {
       "type": "string"
@@ -162,6 +157,28 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
         ]
       }
     }
+  },
+  "if": {
+    "properties": {
+      "type": {
+        "const": "container-registry"
+      }
+    }
+  },
+  "then": {
+    "required": [
+      "type",
+      "imageUrl",
+      "capabilities"
+    ]
+  },
+  "else": {
+    "required": [
+      "type",
+      "imageUrl",
+      "capabilities",
+      "credentialTypes"
+    ]
   }
 }
 `

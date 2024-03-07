@@ -60,11 +60,33 @@ t.test('providers', t => {
           {
             name: CAPABILITIES.CONTAINER_REGISTRY,
             imagePullSecretName: 'my-secret',
+            hostname: 'some.hostname',
           },
         ],
       }
 
       t.ok(validate(variable), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('should not validate container-registry with invalid hostname', t => {
+      const variable: Provider = {
+        providerId: 'providerId',
+        type: 'type',
+        urls: {
+          base: 'http://base',
+          apiBase: 'http://api.base',
+        },
+        capabilities: [
+          {
+            name: CAPABILITIES.CONTAINER_REGISTRY,
+            imagePullSecretName: 'my-secret',
+            hostname: 'https://some.not.valid.hostname/',
+          },
+        ],
+      }
+
+      t.notOk(validate(variable), validationMessage(validate.errors))
       t.end()
     })
     t.end()
