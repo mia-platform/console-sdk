@@ -117,7 +117,7 @@ export const providerTypeSchema = {
     credentialTypes: credentialTypesSchema,
   },
   if: {
-    properties: { type: { const: 'container-registry' } },
+    properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRYf } },
   },
   then: {
     required: [
