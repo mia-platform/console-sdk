@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## Changed
+### Changed
 
 - ProviderTypes: Add Container Registry provider type and provider
 
