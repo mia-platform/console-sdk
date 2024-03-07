@@ -105,11 +105,7 @@ const credentialTypesSchema = {
 export const providerTypeSchema = {
   type: 'object',
   additionalProperties: false,
-  required: [
-    'type',
-    'imageUrl',
-    'capabilities',
-  ],
+
   properties: {
     type: { type: 'string' },
     label: { type: 'string' },
@@ -120,6 +116,24 @@ export const providerTypeSchema = {
     capabilities: providerTypeCapabilitiesSchema,
     credentialTypes: credentialTypesSchema,
   },
+  if: {
+    properties: { type: { const: 'container-registry' } },
+  },
+  then: {
+    required: [
+      'type',
+      'imageUrl',
+      'capabilities',
+    ],
+  },
+  else: {
+    required: [
+      'type',
+      'imageUrl',
+      'capabilities',
+      'credentialTypes',
+    ],
+  },
 } as const
 
 export const pipelineStatusSchema = {
@@ -129,5 +143,5 @@ export const pipelineStatusSchema = {
 
 export type ProviderTypeCapability = FromSchema<typeof providerTypeCapabilitySchema>
 export type ProviderTypeCapabilities = FromSchema<typeof providerTypeCapabilitiesSchema>
-export type ProviderType = FromSchema<typeof providerTypeSchema>
+export type ProviderType = FromSchema<typeof providerTypeSchema, {parseIfThenElseKeywords: true}>
 export type PipelineStatus = FromSchema<typeof pipelineStatusSchema>

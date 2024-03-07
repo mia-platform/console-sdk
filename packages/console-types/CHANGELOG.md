@@ -4,7 +4,7 @@
 
 ## Changed
 
-- ProviderTypes: add UNREQUIRED_CREDENTIALS credential type to be used with Container Registry provider type
+- ProviderTypes: Add Container Registry provider type and provider
 
 ## 0.18.4
 
