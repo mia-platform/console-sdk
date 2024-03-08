@@ -8,274 +8,158 @@
 exports[`src/types/provider.test.ts TAP providers match schema > must match snapshot 1`] = `
 {
   "type": "object",
-  "additionalProperties": false,
-  "required": [
-    "providerId",
-    "type",
-    "urls"
-  ],
-  "properties": {
-    "providerId": {
-      "type": "string"
-    },
-    "label": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    },
-    "urls": {
-      "type": "object",
-      "required": [
-        "base",
-        "apiBase"
-      ],
-      "properties": {
-        "base": {
-          "type": "string"
-        },
-        "apiBase": {
-          "type": "string"
+  "if": {
+    "properties": {
+      "type": {
+        "const": "container-registry"
+      }
+    }
+  },
+  "then": {
+    "additionalProperties": false,
+    "properties": {
+      "providerId": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      },
+      "capabilities": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "imagePullSecretName",
+            "hostname"
+          ],
+          "properties": {
+            "name": {
+              "const": "container-registry"
+            },
+            "functionalities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "imagePullSecretName": {
+              "type": "string"
+            },
+            "hostname": {
+              "type": "string",
+              "pattern": "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\\\d+)?$"
+            }
+          }
         }
       }
     },
-    "base64CA": {
-      "type": "string"
-    },
-    "proxy": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
+    "required": [
+      "providerId",
+      "type"
+    ]
+  },
+  "else": {
+    "additionalProperties": false,
+    "properties": {
+      "providerId": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      },
+      "urls": {
+        "type": "object",
+        "required": [
+          "base",
+          "apiBase"
+        ],
+        "properties": {
+          "base": {
+            "type": "string"
+          },
+          "apiBase": {
+            "type": "string"
+          }
         }
       },
-      "required": [
-        "url"
-      ]
-    },
-    "credentials": {
-      "oneOf": [
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "content"
-          ],
-          "properties": {
-            "expirationDate": {
-              "type": "string"
-            },
-            "type": {
-              "type": "string",
-              "const": "token"
-            },
-            "content": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "accessToken"
-              ],
-              "properties": {
-                "accessToken": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "content"
-          ],
-          "properties": {
-            "expirationDate": {
-              "type": "string"
-            },
-            "type": {
-              "type": "string",
-              "const": "userPass"
-            },
-            "content": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "userName",
-                "password"
-              ],
-              "properties": {
-                "userName": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "content"
-          ],
-          "properties": {
-            "expirationDate": {
-              "type": "string"
-            },
-            "type": {
-              "type": "string",
-              "const": "m2m"
-            },
-            "content": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "token",
-                "accessTokenURL"
-              ],
-              "properties": {
-                "accessTokenURL": {
-                  "type": "string"
-                },
-                "token": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "content"
-          ],
-          "properties": {
-            "expirationDate": {
-              "type": "string"
-            },
-            "type": {
-              "type": "string",
-              "const": "client_credentials"
-            },
-            "content": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "clientId",
-                "clientSecret",
-                "accessTokenURL"
-              ],
-              "properties": {
-                "accessTokenURL": {
-                  "type": "string"
-                },
-                "clientId": {
-                  "type": "string"
-                },
-                "clientSecret": {
-                  "type": "string"
-                },
-                "scope": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "type",
-            "content"
-          ],
-          "properties": {
-            "expirationDate": {
-              "type": "string"
-            },
-            "type": {
-              "type": "string",
-              "const": "client_credentials_certificate"
-            },
-            "content": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "accessTokenURL",
-                "certificateThumbprint",
-                "clientId",
-                "privateKeyBase64"
-              ],
-              "properties": {
-                "accessTokenURL": {
-                  "type": "string"
-                },
-                "certificateThumbprint": {
-                  "type": "string"
-                },
-                "clientId": {
-                  "type": "string"
-                },
-                "privateKeyBase64": {
-                  "type": "string"
-                },
-                "scope": {
-                  "type": "string"
-                }
-              }
-            }
+      "base64CA": {
+        "type": "string"
+      },
+      "visibility": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "allTenants": {
+            "type": "boolean"
           }
         }
-      ]
-    },
-    "capabilities": {
-      "type": "array",
-      "items": {
+      },
+      "proxy": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "credentials": {
         "oneOf": [
           {
             "type": "object",
             "additionalProperties": false,
             "required": [
-              "name"
+              "type",
+              "content"
             ],
             "properties": {
-              "name": {
-                "type": "string",
-                "enum": [
-                  "secret-manager",
-                  "ci-cd-tool",
-                  "orchestrator-generator"
-                ]
+              "expirationDate": {
+                "type": "string"
               },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
+              "type": {
+                "type": "string",
+                "const": "token"
+              },
+              "content": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "accessToken"
+                ],
+                "properties": {
+                  "accessToken": {
+                    "type": "string"
                   }
                 }
               }
@@ -285,35 +169,32 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
             "type": "object",
             "additionalProperties": false,
             "required": [
-              "name",
-              "imagePullSecretName",
-              "hostname"
+              "type",
+              "content"
             ],
             "properties": {
-              "name": {
-                "const": "container-registry"
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "imagePullSecretName": {
+              "expirationDate": {
                 "type": "string"
               },
-              "hostname": {
+              "type": {
                 "type": "string",
-                "pattern": "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\\\d+)?$"
+                "const": "userPass"
+              },
+              "content": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "userName",
+                  "password"
+                ],
+                "properties": {
+                  "userName": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
               }
             }
           },
@@ -321,44 +202,196 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
             "type": "object",
             "additionalProperties": false,
             "required": [
-              "name"
+              "type",
+              "content"
             ],
             "properties": {
-              "name": {
-                "const": "git-provider"
+              "expirationDate": {
+                "type": "string"
               },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
+              "type": {
+                "type": "string",
+                "const": "m2m"
+              },
+              "content": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "token",
+                  "accessTokenURL"
+                ],
+                "properties": {
+                  "accessTokenURL": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
                   }
                 }
-              },
-              "repositoryPathTemplate": {
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "content"
+            ],
+            "properties": {
+              "expirationDate": {
                 "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "const": "client_credentials"
+              },
+              "content": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "clientId",
+                  "clientSecret",
+                  "accessTokenURL"
+                ],
+                "properties": {
+                  "accessTokenURL": {
+                    "type": "string"
+                  },
+                  "clientId": {
+                    "type": "string"
+                  },
+                  "clientSecret": {
+                    "type": "string"
+                  },
+                  "scope": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "content"
+            ],
+            "properties": {
+              "expirationDate": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "const": "client_credentials_certificate"
+              },
+              "content": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "accessTokenURL",
+                  "certificateThumbprint",
+                  "clientId",
+                  "privateKeyBase64"
+                ],
+                "properties": {
+                  "accessTokenURL": {
+                    "type": "string"
+                  },
+                  "certificateThumbprint": {
+                    "type": "string"
+                  },
+                  "clientId": {
+                    "type": "string"
+                  },
+                  "privateKeyBase64": {
+                    "type": "string"
+                  },
+                  "scope": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
         ]
-      }
-    },
-    "visibility": {
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "allTenants": {
-          "type": "boolean"
+      },
+      "capabilities": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "secret-manager",
+                    "ci-cd-tool",
+                    "orchestrator-generator"
+                  ]
+                },
+                "functionalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "const": "git-provider"
+                },
+                "functionalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "repositoryPathTemplate": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
         }
       }
-    }
+    },
+    "required": [
+      "providerId",
+      "type",
+      "urls"
+    ]
   }
 }
 `

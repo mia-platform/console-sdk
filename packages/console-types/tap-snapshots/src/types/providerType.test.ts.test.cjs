@@ -8,156 +8,6 @@
 exports[`src/types/providerType.test.ts TAP providerType match schema > must match snapshot 1`] = `
 {
   "type": "object",
-  "additionalProperties": false,
-  "properties": {
-    "type": {
-      "type": "string"
-    },
-    "label": {
-      "type": "string"
-    },
-    "imageUrl": {
-      "description": "file location",
-      "type": "string"
-    },
-    "capabilities": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
-                "type": "string",
-                "enum": [
-                  "secret-manager",
-                  "ci-cd-tool",
-                  "orchestrator-generator",
-                  "container-registry"
-                ]
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "defaultActive": {
-                      "type": "boolean"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "label": {
-                      "type": "string"
-                    },
-                    "rules": {
-                      "type": "object",
-                      "properties": {
-                        "excludeOtherFunctionalities": {
-                          "type": "boolean",
-                          "description": "If true, any other functionality of this capability will be excluded"
-                        },
-                        "excludeOtherCapabilities": {
-                          "type": "boolean",
-                          "description": "If true, any other capability will be excluded"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name",
-              "allowedRepositoryVisibilities"
-            ],
-            "properties": {
-              "name": {
-                "const": "git-provider"
-              },
-              "allowedRepositoryVisibilities": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "private",
-                    "internal",
-                    "public"
-                  ]
-                },
-                "description": "The visibility levels allowed by this git provider"
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "defaultActive": {
-                      "type": "boolean"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "label": {
-                      "type": "string"
-                    },
-                    "rules": {
-                      "type": "object",
-                      "properties": {
-                        "excludeOtherFunctionalities": {
-                          "type": "boolean",
-                          "description": "If true, any other functionality of this capability will be excluded"
-                        },
-                        "excludeOtherCapabilities": {
-                          "type": "boolean",
-                          "description": "If true, any other capability will be excluded"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
-    },
-    "credentialTypes": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "token",
-          "userPass",
-          "m2m",
-          "client_credentials",
-          "client_credentials_certificate"
-        ]
-      }
-    }
-  },
   "if": {
     "properties": {
       "type": {
@@ -166,6 +16,143 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
     }
   },
   "then": {
+    "additionalProperties": false,
+    "properties": {
+      "type": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "imageUrl": {
+        "description": "file location",
+        "type": "string"
+      },
+      "capabilities": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "secret-manager",
+                    "ci-cd-tool",
+                    "orchestrator-generator",
+                    "container-registry"
+                  ]
+                },
+                "functionalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "defaultActive": {
+                        "type": "boolean"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "rules": {
+                        "type": "object",
+                        "properties": {
+                          "excludeOtherFunctionalities": {
+                            "type": "boolean",
+                            "description": "If true, any other functionality of this capability will be excluded"
+                          },
+                          "excludeOtherCapabilities": {
+                            "type": "boolean",
+                            "description": "If true, any other capability will be excluded"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "allowedRepositoryVisibilities"
+              ],
+              "properties": {
+                "name": {
+                  "const": "git-provider"
+                },
+                "allowedRepositoryVisibilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "internal",
+                      "public"
+                    ]
+                  },
+                  "description": "The visibility levels allowed by this git provider"
+                },
+                "functionalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "defaultActive": {
+                        "type": "boolean"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "rules": {
+                        "type": "object",
+                        "properties": {
+                          "excludeOtherFunctionalities": {
+                            "type": "boolean",
+                            "description": "If true, any other functionality of this capability will be excluded"
+                          },
+                          "excludeOtherCapabilities": {
+                            "type": "boolean",
+                            "description": "If true, any other capability will be excluded"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
     "required": [
       "type",
       "imageUrl",
@@ -173,6 +160,156 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
     ]
   },
   "else": {
+    "additionalProperties": false,
+    "properties": {
+      "type": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "imageUrl": {
+        "description": "file location",
+        "type": "string"
+      },
+      "capabilities": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "secret-manager",
+                    "ci-cd-tool",
+                    "orchestrator-generator",
+                    "container-registry"
+                  ]
+                },
+                "functionalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "defaultActive": {
+                        "type": "boolean"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "rules": {
+                        "type": "object",
+                        "properties": {
+                          "excludeOtherFunctionalities": {
+                            "type": "boolean",
+                            "description": "If true, any other functionality of this capability will be excluded"
+                          },
+                          "excludeOtherCapabilities": {
+                            "type": "boolean",
+                            "description": "If true, any other capability will be excluded"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "allowedRepositoryVisibilities"
+              ],
+              "properties": {
+                "name": {
+                  "const": "git-provider"
+                },
+                "allowedRepositoryVisibilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "internal",
+                      "public"
+                    ]
+                  },
+                  "description": "The visibility levels allowed by this git provider"
+                },
+                "functionalities": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "defaultActive": {
+                        "type": "boolean"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "rules": {
+                        "type": "object",
+                        "properties": {
+                          "excludeOtherFunctionalities": {
+                            "type": "boolean",
+                            "description": "If true, any other functionality of this capability will be excluded"
+                          },
+                          "excludeOtherCapabilities": {
+                            "type": "boolean",
+                            "description": "If true, any other capability will be excluded"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "credentialTypes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "token",
+            "userPass",
+            "m2m",
+            "client_credentials",
+            "client_credentials_certificate"
+          ]
+        }
+      }
+    },
     "required": [
       "type",
       "imageUrl",
