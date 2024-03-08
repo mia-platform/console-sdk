@@ -20,7 +20,7 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from '../constants/dashboard'
 import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../constants/project'
-import { providerSchema } from './provider'
+import { genericProviderProperties } from './provider'
 
 export const enabledServicesSchema = {
   type: 'object',
@@ -421,7 +421,7 @@ export const project = {
             baseUrl: { type: 'string' },
             accessToken: { type: 'string' },
             base64CA: { type: 'string' },
-            proxy: providerSchema.properties.proxy,
+            proxy: genericProviderProperties.proxy,
           },
           additionalProperties: false,
         },

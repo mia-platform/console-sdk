@@ -104,22 +104,20 @@ const credentialTypesSchema = {
 
 export const providerTypeSchema = {
   type: 'object',
-  additionalProperties: false,
-
-  properties: {
-    type: { type: 'string' },
-    label: { type: 'string' },
-    imageUrl: {
-      description: 'file location',
-      type: 'string',
-    },
-    capabilities: providerTypeCapabilitiesSchema,
-    credentialTypes: credentialTypesSchema,
-  },
   if: {
     properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRY } },
   },
   then: {
+    additionalProperties: false,
+    properties: {
+      type: { type: 'string' },
+      label: { type: 'string' },
+      imageUrl: {
+        description: 'file location',
+        type: 'string',
+      },
+      capabilities: providerTypeCapabilitiesSchema,
+    },
     required: [
       'type',
       'imageUrl',
@@ -127,6 +125,17 @@ export const providerTypeSchema = {
     ],
   },
   else: {
+    additionalProperties: false,
+    properties: {
+      type: { type: 'string' },
+      label: { type: 'string' },
+      imageUrl: {
+        description: 'file location',
+        type: 'string',
+      },
+      capabilities: providerTypeCapabilitiesSchema,
+      credentialTypes: credentialTypesSchema,
+    },
     required: [
       'type',
       'imageUrl',

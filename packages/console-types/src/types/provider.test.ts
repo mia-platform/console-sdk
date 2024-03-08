@@ -51,11 +51,7 @@ t.test('providers', t => {
     t.test('should validate container-registry specific fields', t => {
       const variable: Provider = {
         providerId: 'providerId',
-        type: 'type',
-        urls: {
-          base: 'http://base',
-          apiBase: 'http://api.base',
-        },
+        type: 'container-registry',
         capabilities: [
           {
             name: CAPABILITIES.CONTAINER_REGISTRY,
@@ -72,11 +68,7 @@ t.test('providers', t => {
     t.test('should not validate container-registry with invalid hostname', t => {
       const variable: Provider = {
         providerId: 'providerId',
-        type: 'type',
-        urls: {
-          base: 'http://base',
-          apiBase: 'http://api.base',
-        },
+        type: 'container-registry',
         capabilities: [
           {
             name: CAPABILITIES.CONTAINER_REGISTRY,

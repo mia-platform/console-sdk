@@ -58,24 +58,7 @@ export const providerCapabilitySchema = {
         functionalities: providerFunctionalitiesSchema,
       },
     },
-    {
-      type: 'object',
-      additionalProperties: false,
-      required: [
-        'name',
-        'imagePullSecretName',
-        'hostname',
-      ],
-      properties: {
-        name: { const: CONTAINER_REGISTRY },
-        functionalities: providerFunctionalitiesSchema,
-        imagePullSecretName: { type: 'string' },
-        hostname: {
-          type: 'string',
-          pattern: CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING,
-        },
-      },
-    },
+
     {
       type: 'object',
       additionalProperties: false,
@@ -93,49 +76,91 @@ export const providerCapabilitySchema = {
   ],
 } as const
 
-export const providerSchema = {
+const containerRegistryCapabilitiesSchema = {
   type: 'object',
   additionalProperties: false,
   required: [
-    'providerId',
-    'type',
-    'urls',
+    'name',
+    'imagePullSecretName',
+    'hostname',
   ],
   properties: {
-    providerId: { type: 'string' },
-    label: { type: 'string' },
-    description: { type: 'string' },
-    type: { type: 'string' },
-    urls: {
-      type: 'object',
-      required: ['base', 'apiBase'],
-      properties: {
-        base: { type: 'string' },
-        apiBase: { type: 'string' },
+    name: { const: CONTAINER_REGISTRY },
+    functionalities: providerFunctionalitiesSchema,
+    imagePullSecretName: { type: 'string' },
+    hostname: {
+      type: 'string',
+      pattern: CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING,
+    },
+  },
+} as const
+
+
+export const genericProviderProperties = {
+  providerId: { type: 'string' },
+  label: { type: 'string' },
+  description: { type: 'string' },
+  type: { type: 'string' },
+  urls: {
+    type: 'object',
+    required: ['base', 'apiBase'],
+    properties: {
+      base: { type: 'string' },
+      apiBase: { type: 'string' },
+    },
+  },
+  base64CA: { type: 'string' },
+  visibility: {
+    additionalProperties: false,
+    type: 'object',
+    properties: {
+      allTenants: { type: 'boolean' },
+    },
+  },
+  proxy: {
+    type: 'object',
+    properties: {
+      url: { type: 'string' },
+      username: { type: 'string' },
+      password: { type: 'string' },
+    },
+    required: ['url'],
+  },
+  credentials: credentialsSchema,
+  capabilities: {
+    type: 'array',
+    items: providerCapabilitySchema,
+  },
+} as const
+
+export const providerSchema = {
+  type: 'object',
+  if: { properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRY } } },
+  then: {
+    additionalProperties: false,
+    properties: {
+      providerId: { type: 'string' },
+      label: { type: 'string' },
+      description: { type: 'string' },
+      type: { type: 'string' },
+      capabilities: {
+        type: 'array',
+        items: containerRegistryCapabilitiesSchema,
       },
     },
-    base64CA: { type: 'string' },
-    proxy: {
-      type: 'object',
-      properties: {
-        url: { type: 'string' },
-        username: { type: 'string' },
-        password: { type: 'string' },
-      },
-      required: ['url'],
-    },
-    credentials: credentialsSchema,
-    capabilities: {
-      type: 'array',
-      items: providerCapabilitySchema,
-    },
-    visibility: {
-      additionalProperties: false,
-      type: 'object',
-      properties: {
-        allTenants: { type: 'boolean' },
-      },
-    },
+    required: [
+      'providerId',
+      'type',
+    ],
+  },
+  else: {
+    additionalProperties: false,
+    properties: genericProviderProperties,
+    required: [
+      'providerId',
+      'type',
+      'urls',
+    ],
   },
 } as const
 
