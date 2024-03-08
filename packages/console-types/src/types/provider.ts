@@ -58,7 +58,6 @@ export const providerCapabilitySchema = {
         functionalities: providerFunctionalitiesSchema,
       },
     },
-
     {
       type: 'object',
       additionalProperties: false,
@@ -96,7 +95,7 @@ const containerRegistryCapabilitiesSchema = {
 } as const
 
 
-export const genericProviderProperties = {
+export const providerCommonProperties = {
   providerId: { type: 'string' },
   label: { type: 'string' },
   description: { type: 'string' },
@@ -133,21 +132,24 @@ export const genericProviderProperties = {
   },
 } as const
 
+export const containerRegistryProviderProperties = {
+  providerId: { type: 'string' },
+  label: { type: 'string' },
+  description: { type: 'string' },
+  type: { type: 'string' },
+  capabilities: {
+    type: 'array',
+    items: containerRegistryCapabilitiesSchema,
+  },
+} as const
+
+
 export const providerSchema = {
   type: 'object',
   if: { properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRY } } },
   then: {
     additionalProperties: false,
-    properties: {
-      providerId: { type: 'string' },
-      label: { type: 'string' },
-      description: { type: 'string' },
-      type: { type: 'string' },
-      capabilities: {
-        type: 'array',
-        items: containerRegistryCapabilitiesSchema,
-      },
-    },
+    properties: containerRegistryProviderProperties,
     required: [
       'providerId',
       'type',
@@ -155,7 +157,7 @@ export const providerSchema = {
   },
   else: {
     additionalProperties: false,
-    properties: genericProviderProperties,
+    properties: providerCommonProperties,
     required: [
       'providerId',
       'type',
