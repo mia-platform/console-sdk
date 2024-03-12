@@ -45,6 +45,19 @@ t.test('providers', t => {
     }
     t.ok(validate(variable), validationMessage(validate.errors))
     t.end()
+    // const provider: Provider = {
+    //   providerId: 'gitlab',
+    //   type: 'gitlab',
+    //   urls: {
+    //     base: 'http://base-url',
+    //     apiBase: 'http://base-url/api',
+    //   },
+    //   capabilities: [{
+    //     name: CAPABILITIES.GIT_PROVIDER,
+    //     repositoryPathTemplate: '/repo-path',
+    //   }],
+    //   visibility: { allTenants: true },
+    // }
   })
 
   t.test('validate - capabilities with specific fields', t => {

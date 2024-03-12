@@ -42,40 +42,37 @@ const { CONTAINER_REGISTRY, GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
 const CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING = '^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\d+)?$'
 export const CONTAINER_REGISTRY_HOSTNAME_REGEX = new RegExp(CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING)
 
-export const providerCapabilitySchema = {
-  oneOf: [
-    {
-      type: 'object',
-      additionalProperties: false,
-      required: [
-        'name',
-      ],
-      properties: {
-        name: {
-          type: 'string',
-          enum: Object.values(OTHER_CAPABILITIES),
-        },
-        functionalities: providerFunctionalitiesSchema,
-      },
-    },
-    {
-      type: 'object',
-      additionalProperties: false,
-      required: [
-        'name',
-      ],
-      properties: {
-        name: { const: GIT_PROVIDER },
-        functionalities: providerFunctionalitiesSchema,
-        repositoryPathTemplate: {
-          type: 'string',
-        },
-      },
-    },
+const otherCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'name',
   ],
+  properties: {
+    name: {
+      type: 'string',
+      enum: Object.values(OTHER_CAPABILITIES),
+    },
+    functionalities: providerFunctionalitiesSchema,
+  },
 } as const
 
-const containerRegistryCapabilitiesSchema = {
+const gitProviderCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'name',
+  ],
+  properties: {
+    name: { const: GIT_PROVIDER },
+    functionalities: providerFunctionalitiesSchema,
+    repositoryPathTemplate: {
+      type: 'string',
+    },
+  },
+} as const
+
+const containerRegistryCapabilitySchema = {
   type: 'object',
   additionalProperties: false,
   required: [
@@ -94,8 +91,28 @@ const containerRegistryCapabilitiesSchema = {
   },
 } as const
 
+const isContainerRegistryCapability = { type: 'object', properties: { name: { const: CAPABILITIES.CONTAINER_REGISTRY } } } as const
+const isGitProviderCapability = { type: 'object', properties: { name: { const: CAPABILITIES.GIT_PROVIDER } } } as const
+
+
+export const providerCapabilitySchema = {
+  if: isContainerRegistryCapability,
+  then: containerRegistryCapabilitySchema,
+  else: {
+    if: isGitProviderCapability,
+    then: gitProviderCapabilitySchema,
+    else: otherCapabilitySchema,
+  },
+} as const
+
+export const providerCapabilitiesSchema = {
+  type: 'array',
+  items: providerCapabilitySchema,
+} as const
+
 
 export const providerCommonProperties = {
+  _id: { type: 'string' },
   providerId: { type: 'string' },
   label: { type: 'string' },
   description: { type: 'string' },
@@ -126,30 +143,16 @@ export const providerCommonProperties = {
     required: ['url'],
   },
   credentials: credentialsSchema,
-  capabilities: {
-    type: 'array',
-    items: providerCapabilitySchema,
-  },
-} as const
-
-export const containerRegistryProviderProperties = {
-  providerId: { type: 'string' },
-  label: { type: 'string' },
-  description: { type: 'string' },
-  type: { type: 'string' },
-  capabilities: {
-    type: 'array',
-    items: containerRegistryCapabilitiesSchema,
-  },
+  capabilities: providerCapabilitiesSchema,
 } as const
 
 
 export const providerSchema = {
   type: 'object',
-  if: { properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRY } } },
+  if: { type: 'object', properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRY } } },
   then: {
     additionalProperties: false,
-    properties: containerRegistryProviderProperties,
+    properties: providerCommonProperties,
     required: [
       'providerId',
       'type',
@@ -166,7 +169,16 @@ export const providerSchema = {
   },
 } as const
 
-export type ProviderCapability = FromSchema<typeof providerCapabilitySchema>
+export const providerWithIdSchema = providerSchema
+
+export type ProviderCapability = FromSchema<typeof providerCapabilitySchema, {
+  parseIfThenElseKeywords: true
+}>
+export type GitProviderCapability = FromSchema<typeof gitProviderCapabilitySchema>
+export type ProviderCapabilities = FromSchema<typeof providerCapabilitiesSchema, {
+  parseIfThenElseKeywords: true
+}>
 export type Provider = FromSchema<typeof providerSchema, {
   parseIfThenElseKeywords: true
 }>
+export type ProviderWithId = Provider
