@@ -123,6 +123,7 @@ export const providerTypeSchema = {
         type: 'string',
       },
       capabilities: providerTypeCapabilitiesSchema,
+      credentialTypes: credentialTypesSchema,
     },
     required: [
       'type',
@@ -146,7 +147,6 @@ export const providerTypeSchema = {
       'type',
       'imageUrl',
       'capabilities',
-      'credentialTypes',
     ],
   },
 } as const

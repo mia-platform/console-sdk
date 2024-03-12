@@ -157,6 +157,19 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
             }
           }
         }
+      },
+      "credentialTypes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "token",
+            "userPass",
+            "m2m",
+            "client_credentials",
+            "client_credentials_certificate"
+          ]
+        }
       }
     },
     "required": [
@@ -325,8 +338,7 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
     "required": [
       "type",
       "imageUrl",
-      "capabilities",
-      "credentialTypes"
+      "capabilities"
     ]
   }
 }

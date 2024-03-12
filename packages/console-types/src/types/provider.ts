@@ -164,7 +164,6 @@ export const providerSchema = {
     required: [
       'providerId',
       'type',
-      'urls',
     ],
   },
 } as const
