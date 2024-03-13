@@ -32,6 +32,7 @@ import {
 } from './types/credentials'
 import { PipelineStatus, ProviderType, ProviderTypeCapability, GitProviderTypeCapability, providerTypeSchema } from './types/providerType'
 import {
+  containerRegistryHostnameString,
   Provider,
   ProviderCapabilities,
   ProviderCapability,
@@ -186,6 +187,7 @@ export {
 
   providerSchema,
   providerTypeSchema,
+  containerRegistryHostnameString,
 
   providerCapabilitiesSchema,
 }
