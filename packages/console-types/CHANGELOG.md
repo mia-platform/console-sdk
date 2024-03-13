@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- [IDP-771](https://makeitapp.atlassian.net/browse/IDP-771): added `configurationManagement` fields with save message options to `tenant` schema
+- added `configurationManagement` fields with save message options to `tenant` schema
 
 ## 0.18.4
 
