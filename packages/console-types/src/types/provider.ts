@@ -94,7 +94,6 @@ const containerRegistryCapabilitySchema = {
 const isContainerRegistryCapability = { type: 'object', properties: { name: { const: CAPABILITIES.CONTAINER_REGISTRY } } } as const
 const isGitProviderCapability = { type: 'object', properties: { name: { const: CAPABILITIES.GIT_PROVIDER } } } as const
 
-
 export const providerCapabilitySchema = {
   if: isContainerRegistryCapability,
   then: containerRegistryCapabilitySchema,
@@ -110,9 +109,7 @@ export const providerCapabilitiesSchema = {
   items: providerCapabilitySchema,
 } as const
 
-
 export const providerCommonProperties = {
-  _id: { type: 'string' },
   providerId: { type: 'string' },
   label: { type: 'string' },
   description: { type: 'string' },
@@ -146,29 +143,15 @@ export const providerCommonProperties = {
   capabilities: providerCapabilitiesSchema,
 } as const
 
-
 export const providerSchema = {
   type: 'object',
-  if: { type: 'object', properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRY } } },
-  then: {
-    additionalProperties: false,
-    properties: providerCommonProperties,
-    required: [
-      'providerId',
-      'type',
-    ],
-  },
-  else: {
-    additionalProperties: false,
-    properties: providerCommonProperties,
-    required: [
-      'providerId',
-      'type',
-    ],
-  },
+  additionalProperties: false,
+  properties: providerCommonProperties,
+  required: [
+    'providerId',
+    'type',
+  ],
 } as const
-
-export const providerWithIdSchema = providerSchema
 
 export type ProviderCapability = FromSchema<typeof providerCapabilitySchema, {
   parseIfThenElseKeywords: true
