@@ -65,6 +65,17 @@ export const tenant = {
         type: 'string',
       },
     },
+    configurationManagement: {
+      type: 'object',
+      properties: {
+        saveMessageOptions: {
+          type: 'object',
+          properties: {
+            isConfirmationRequired: { type: 'boolean' },
+          },
+        },
+      },
+    },
   },
   additionalProperties: false,
   required: ['name', 'tenantId'],
