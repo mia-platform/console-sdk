@@ -180,4 +180,3 @@ export type ProviderCapabilities = FromSchema<typeof providerCapabilitiesSchema,
 export type Provider = FromSchema<typeof providerSchema, {
   parseIfThenElseKeywords: true
 }>
-export type ProviderWithId = Provider

@@ -156,8 +156,11 @@ export const pipelineStatusSchema = {
   enum: Object.values(PIPELINE_STATUS),
 } as const
 
-export type ProviderTypeCapability = FromSchema<typeof providerTypeCapabilitySchema, {parseIfThenElseKeywords: true}>
-export type GitProviderTypeCapability = FromSchema<typeof gitProviderTypeCapabilitySchema>
-export type ProviderTypeCapabilities = FromSchema<typeof providerTypeCapabilitiesSchema>
+
 export type ProviderType = FromSchema<typeof providerTypeSchema, {parseIfThenElseKeywords: true}>
 export type PipelineStatus = FromSchema<typeof pipelineStatusSchema>
+
+export type ProviderTypeCapability = FromSchema<typeof providerTypeCapabilitySchema, {parseIfThenElseKeywords: true}>
+export type GitProviderTypeCapability = FromSchema<typeof gitProviderTypeCapabilitySchema>
+
+export type ProviderTypeCapabilities = FromSchema<typeof providerTypeCapabilitiesSchema>
