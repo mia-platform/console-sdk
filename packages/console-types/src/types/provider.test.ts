@@ -23,9 +23,11 @@ import t from 'tap'
 import { Provider, providerSchema } from './provider'
 import { CAPABILITIES } from '../constants/provider'
 import { validationMessage } from './validate-utils.test'
+import ajvConsoleErrors from '../plugins/ajv-console-errors'
 
 t.test('providers', t => {
   const ajv = new Ajv()
+  ajvConsoleErrors(ajv)
   addFormats(ajv)
   const validate = ajv.compile<Provider>(providerSchema)
 

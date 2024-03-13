@@ -20,6 +20,7 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import { CAPABILITIES } from '../constants/provider'
 import { credentialsSchema } from './credentials'
+import { VALIDATION_ERROR_ID } from '../strings'
 
 const providerFunctionalitiesSchema = {
   type: 'array',
@@ -39,8 +40,11 @@ const providerFunctionalitiesSchema = {
 
 const { CONTAINER_REGISTRY, GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
 
-const CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING = '^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\d+)?$'
-export const CONTAINER_REGISTRY_HOSTNAME_REGEX = new RegExp(CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING)
+export const containerRegistryHostnameString = {
+  type: 'string',
+  pattern: '^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\d+)?$',
+  [VALIDATION_ERROR_ID]: 'containerRegistryHostname.patternError',
+} as const
 
 const otherCapabilitySchema = {
   type: 'object',
@@ -84,10 +88,7 @@ const containerRegistryCapabilitySchema = {
     name: { const: CONTAINER_REGISTRY },
     functionalities: providerFunctionalitiesSchema,
     imagePullSecretName: { type: 'string' },
-    hostname: {
-      type: 'string',
-      pattern: CONTAINER_REGISTRY_HOSTNAME_REGEX_STRING,
-    },
+    hostname: containerRegistryHostnameString,
   },
 } as const
 

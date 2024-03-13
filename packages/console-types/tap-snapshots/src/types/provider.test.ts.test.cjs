@@ -292,7 +292,8 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
             },
             "hostname": {
               "type": "string",
-              "pattern": "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\\\d+)?$"
+              "pattern": "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\\\d+)?$",
+              "x-validation-error-id": "containerRegistryHostname.patternError"
             }
           }
         },

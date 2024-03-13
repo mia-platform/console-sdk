@@ -15,5 +15,6 @@
   "apiKey.patternError": "Cannot contain white spaces",
   "clientType.patternError": "Can contain alphanumeric characters and the symbol \"_\", and cannot start with a number",
   "variableKey.patternError": "Can contain uppercase letters and numbers",
-  "digitOrInterpolation.patternError": "Must be an integer. Can be interpolated"
+  "digitOrInterpolation.patternError": "Must be an integer. Can be interpolated",
+  "containerRegistryHostname.patternError": "Must be a valid hostname"
 }

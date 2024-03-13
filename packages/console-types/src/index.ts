@@ -32,7 +32,6 @@ import {
 } from './types/credentials'
 import { PipelineStatus, ProviderType, ProviderTypeCapability, GitProviderTypeCapability, providerTypeSchema } from './types/providerType'
 import {
-  CONTAINER_REGISTRY_HOSTNAME_REGEX,
   Provider,
   ProviderCapabilities,
   ProviderCapability,
@@ -187,7 +186,6 @@ export {
 
   providerSchema,
   providerTypeSchema,
-  CONTAINER_REGISTRY_HOSTNAME_REGEX,
 
   providerCapabilitiesSchema,
 }
