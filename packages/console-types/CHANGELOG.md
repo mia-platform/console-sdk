@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.18.6
+
+### Patch Changes
+
+- version bump
+
+  s Please enter a summary for your changes.
+
 ## 0.18.5
 
 ### Patch Changes
