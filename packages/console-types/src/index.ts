@@ -16,7 +16,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-
 import {
   Credentials,
   CredentialsClientCredential,
@@ -180,7 +179,6 @@ export {
 
   providerSchema,
   providerTypeSchema,
-
   CONTAINER_REGISTRY_HOSTNAME_REGEX,
 }
 
