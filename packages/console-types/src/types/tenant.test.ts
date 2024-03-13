@@ -75,6 +75,11 @@ t.test('tenants validated', t => {
         order: 1,
       }],
       imagePullSecretNames: ['some-imagePullSecret-here', 'some-other-one'],
+      configurationManagement: {
+        saveMessageOptions: {
+          isConfirmationRequired: true,
+        },
+      },
     }
 
     t.ok(validate(tenant), validationMessage(validate.errors))
