@@ -49,6 +49,7 @@ pnpm --filter <package.json name> <script>
 or using the prepared script
 
 ```bash
+pnpm types test
 pnpm sdk test
 pnpm vh test
 pnpm wh test

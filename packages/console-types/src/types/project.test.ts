@@ -225,6 +225,11 @@ t.test('project validated', t => {
         order: 1,
       }],
       tenantName: 'The tenant name',
+      configurationManagement: {
+        saveMessageOptions: {
+          isConfirmationRequired: false,
+        },
+      },
       featureToggles: {
         viewBasicHomepage: true,
       },
@@ -345,6 +350,11 @@ t.test('project validated', t => {
         order: 1,
       }],
       tenantName: 'The tenant name',
+      configurationManagement: {
+        saveMessageOptions: {
+          isConfirmationRequired: true,
+        },
+      },
       featureToggles: {
         viewBasicHomepage: true,
       },

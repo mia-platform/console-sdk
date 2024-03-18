@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- added `configurationManagement` fields with save message options to `project` schema
+
 ## 0.18.6
 
 ### Patch Changes
