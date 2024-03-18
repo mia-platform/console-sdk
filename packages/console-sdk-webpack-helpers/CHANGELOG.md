@@ -5,9 +5,6 @@
 ### Patch Changes
 
 - version bump
-
-  s Please enter a summary for your changes.
-
 - Updated dependencies []:
   - @mia-platform/console-sdk-microfrontend@0.0.9
 

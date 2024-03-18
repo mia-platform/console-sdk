@@ -6,8 +6,6 @@
 
 - version bump
 
-  s Please enter a summary for your changes.
-
 ## 0.18.5
 
 ### Patch Changes
