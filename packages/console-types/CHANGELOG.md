@@ -5,9 +5,7 @@
 ### Patch Changes
 
 - bump to 0.18.8
-
-## Unreleased
-
+  
 ### Changed
 
 - ProviderTypes: Add Container Registry provider type and provider
