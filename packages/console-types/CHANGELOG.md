@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Fixed
+
+- project `configurationManagement` correct type definition for isConfirmationRequired to be object rather than bool
+
 ## 0.18.8
 
 ### Patch Changes

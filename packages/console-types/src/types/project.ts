@@ -340,7 +340,13 @@ export const configurationManagement = {
     saveMessageOptions: {
       type: 'object',
       properties: {
-        isConfirmationRequired: { type: 'boolean' },
+        isConfirmationRequired: {
+          type: 'object',
+          properties: {
+            value: { type: 'boolean' },
+            isInheritedFromTenant: { type: 'boolean' },
+          },
+        },
       },
     },
   },

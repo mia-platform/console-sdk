@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { availableNamespaces, configurationManagement, environment, environmentsVariables, monitoring, pipelines } from './project'
+import { availableNamespaces, environment, environmentsVariables, monitoring, pipelines } from './project'
 import { REPOSITORY_TYPES } from '../constants/project'
 
 export const tenant = {
@@ -65,7 +65,17 @@ export const tenant = {
         type: 'string',
       },
     },
-    configurationManagement,
+    configurationManagement: {
+      type: 'object',
+      properties: {
+        saveMessageOptions: {
+          type: 'object',
+          properties: {
+            isConfirmationRequired: { type: 'boolean' },
+          },
+        },
+      },
+    },
   },
   additionalProperties: false,
   required: ['name', 'tenantId'],

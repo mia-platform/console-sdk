@@ -227,7 +227,7 @@ t.test('project validated', t => {
       tenantName: 'The tenant name',
       configurationManagement: {
         saveMessageOptions: {
-          isConfirmationRequired: false,
+          isConfirmationRequired: { value: false },
         },
       },
       featureToggles: {
@@ -352,7 +352,10 @@ t.test('project validated', t => {
       tenantName: 'The tenant name',
       configurationManagement: {
         saveMessageOptions: {
-          isConfirmationRequired: true,
+          isConfirmationRequired: {
+            value: true,
+            isInheritedFromTenant: false,
+          },
         },
       },
       featureToggles: {
