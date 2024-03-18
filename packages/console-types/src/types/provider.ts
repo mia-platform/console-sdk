@@ -21,6 +21,7 @@ import { FromSchema } from 'json-schema-to-ts'
 import { CAPABILITIES } from '../constants/provider'
 import { credentialsSchema } from './credentials'
 import { VALIDATION_ERROR_ID } from '../strings'
+import { isGitProviderCapability } from './providerType'
 
 const providerFunctionalitiesSchema = {
   type: 'array',
@@ -93,7 +94,6 @@ const containerRegistryCapabilitySchema = {
 } as const
 
 const isContainerRegistryCapability = { type: 'object', properties: { name: { const: CAPABILITIES.CONTAINER_REGISTRY } } } as const
-const isGitProviderCapability = { type: 'object', properties: { name: { const: CAPABILITIES.GIT_PROVIDER } } } as const
 
 export const providerCapabilitySchema = {
   if: isContainerRegistryCapability,
