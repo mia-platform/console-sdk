@@ -9,12 +9,6 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
 {
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "type",
-    "imageUrl",
-    "capabilities",
-    "credentialTypes"
-  ],
   "properties": {
     "type": {
       "type": "string"
@@ -29,117 +23,68 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
     "capabilities": {
       "type": "array",
       "items": {
-        "oneOf": [
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
+        "if": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "const": "git-provider"
+            }
+          }
+        },
+        "then": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "allowedRepositoryVisibilities"
+          ],
+          "properties": {
+            "name": {
+              "const": "git-provider"
+            },
+            "allowedRepositoryVisibilities": {
+              "type": "array",
+              "items": {
                 "type": "string",
                 "enum": [
-                  "secret-manager",
-                  "ci-cd-tool",
-                  "orchestrator-generator",
-                  "container-registry"
+                  "private",
+                  "internal",
+                  "public"
                 ]
               },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "defaultActive": {
-                      "type": "boolean"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "label": {
-                      "type": "string"
-                    },
-                    "rules": {
-                      "type": "object",
-                      "properties": {
-                        "excludeOtherFunctionalities": {
-                          "type": "boolean",
-                          "description": "If true, any other functionality of this capability will be excluded"
-                        },
-                        "excludeOtherCapabilities": {
-                          "type": "boolean",
-                          "description": "If true, any other capability will be excluded"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name",
-              "allowedRepositoryVisibilities"
-            ],
-            "properties": {
-              "name": {
-                "const": "git-provider"
-              },
-              "allowedRepositoryVisibilities": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "private",
-                    "internal",
-                    "public"
-                  ]
-                },
-                "description": "The visibility levels allowed by this git provider"
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    },
-                    "defaultActive": {
-                      "type": "boolean"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "label": {
-                      "type": "string"
-                    },
-                    "rules": {
-                      "type": "object",
-                      "properties": {
-                        "excludeOtherFunctionalities": {
-                          "type": "boolean",
-                          "description": "If true, any other functionality of this capability will be excluded"
-                        },
-                        "excludeOtherCapabilities": {
-                          "type": "boolean",
-                          "description": "If true, any other capability will be excluded"
-                        }
+              "description": "The visibility levels allowed by this git provider"
+            },
+            "functionalities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "defaultActive": {
+                    "type": "boolean"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "excludeOtherFunctionalities": {
+                        "type": "boolean",
+                        "description": "If true, any other functionality of this capability will be excluded"
+                      },
+                      "excludeOtherCapabilities": {
+                        "type": "boolean",
+                        "description": "If true, any other capability will be excluded"
                       }
                     }
                   }
@@ -147,7 +92,62 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
               }
             }
           }
-        ]
+        },
+        "else": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "enum": [
+                "secret-manager",
+                "ci-cd-tool",
+                "orchestrator-generator",
+                "container-registry"
+              ]
+            },
+            "functionalities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "defaultActive": {
+                    "type": "boolean"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "excludeOtherFunctionalities": {
+                        "type": "boolean",
+                        "description": "If true, any other functionality of this capability will be excluded"
+                      },
+                      "excludeOtherCapabilities": {
+                        "type": "boolean",
+                        "description": "If true, any other capability will be excluded"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "credentialTypes": {
@@ -163,6 +163,11 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
         ]
       }
     }
-  }
+  },
+  "required": [
+    "type",
+    "imageUrl",
+    "capabilities"
+  ]
 }
 `

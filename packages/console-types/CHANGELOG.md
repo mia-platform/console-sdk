@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+### Changed
+
+- ProviderTypes: Add Container Registry provider type and provider
+
 ## 0.18.7
 
 ### Patch Changes

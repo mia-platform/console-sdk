@@ -20,6 +20,8 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import { CAPABILITIES } from '../constants/provider'
 import { credentialsSchema } from './credentials'
+import { VALIDATION_ERROR_ID } from '../strings'
+import { isGitProviderCapability } from './providerType'
 
 const providerFunctionalitiesSchema = {
   type: 'array',
@@ -38,98 +40,127 @@ const providerFunctionalitiesSchema = {
 } as const
 
 const { CONTAINER_REGISTRY, GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
-export const providerCapabilitySchema = {
-  oneOf: [
-    {
-      type: 'object',
-      additionalProperties: false,
-      required: [
-        'name',
-      ],
-      properties: {
-        name: {
-          type: 'string',
-          enum: Object.values(OTHER_CAPABILITIES),
-        },
-        functionalities: providerFunctionalitiesSchema,
-      },
-    },
-    {
-      type: 'object',
-      additionalProperties: false,
-      required: [
-        'name',
-      ],
-      properties: {
-        name: { const: CONTAINER_REGISTRY },
-        functionalities: providerFunctionalitiesSchema,
-        imagePullSecretName: { type: 'string' },
-      },
-    },
-    {
-      type: 'object',
-      additionalProperties: false,
-      required: [
-        'name',
-      ],
-      properties: {
-        name: { const: GIT_PROVIDER },
-        functionalities: providerFunctionalitiesSchema,
-        repositoryPathTemplate: {
-          type: 'string',
-        },
-      },
-    },
+
+export const containerRegistryHostnameString = {
+  type: 'string',
+  pattern: '^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\d+)?$',
+  [VALIDATION_ERROR_ID]: 'containerRegistryHostname.patternError',
+} as const
+
+const otherCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'name',
   ],
+  properties: {
+    name: {
+      type: 'string',
+      enum: Object.values(OTHER_CAPABILITIES),
+    },
+    functionalities: providerFunctionalitiesSchema,
+  },
+} as const
+
+const gitProviderCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'name',
+  ],
+  properties: {
+    name: { const: GIT_PROVIDER },
+    functionalities: providerFunctionalitiesSchema,
+    repositoryPathTemplate: {
+      type: 'string',
+    },
+  },
+} as const
+
+const containerRegistryCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'name',
+    'imagePullSecretName',
+    'hostname',
+  ],
+  properties: {
+    name: { const: CONTAINER_REGISTRY },
+    functionalities: providerFunctionalitiesSchema,
+    imagePullSecretName: { type: 'string' },
+    hostname: containerRegistryHostnameString,
+  },
+} as const
+
+const isContainerRegistryCapability = { type: 'object', properties: { name: { const: CAPABILITIES.CONTAINER_REGISTRY } } } as const
+
+export const providerCapabilitySchema = {
+  if: isContainerRegistryCapability,
+  then: containerRegistryCapabilitySchema,
+  else: {
+    if: isGitProviderCapability,
+    then: gitProviderCapabilitySchema,
+    else: otherCapabilitySchema,
+  },
+} as const
+
+export const providerCapabilitiesSchema = {
+  type: 'array',
+  items: providerCapabilitySchema,
+} as const
+
+export const providerCommonProperties = {
+  providerId: { type: 'string' },
+  label: { type: 'string' },
+  description: { type: 'string' },
+  type: { type: 'string' },
+  urls: {
+    type: 'object',
+    required: ['base', 'apiBase'],
+    properties: {
+      base: { type: 'string' },
+      apiBase: { type: 'string' },
+    },
+  },
+  base64CA: { type: 'string' },
+  visibility: {
+    additionalProperties: false,
+    type: 'object',
+    properties: {
+      allTenants: { type: 'boolean' },
+    },
+  },
+  proxy: {
+    type: 'object',
+    properties: {
+      url: { type: 'string' },
+      username: { type: 'string' },
+      password: { type: 'string' },
+    },
+    required: ['url'],
+  },
+  credentials: credentialsSchema,
+  capabilities: providerCapabilitiesSchema,
 } as const
 
 export const providerSchema = {
   type: 'object',
   additionalProperties: false,
+  properties: providerCommonProperties,
   required: [
     'providerId',
     'type',
-    'urls',
   ],
-  properties: {
-    providerId: { type: 'string' },
-    label: { type: 'string' },
-    description: { type: 'string' },
-    type: { type: 'string' },
-    urls: {
-      type: 'object',
-      required: ['base', 'apiBase'],
-      properties: {
-        base: { type: 'string' },
-        apiBase: { type: 'string' },
-      },
-    },
-    base64CA: { type: 'string' },
-    proxy: {
-      type: 'object',
-      properties: {
-        url: { type: 'string' },
-        username: { type: 'string' },
-        password: { type: 'string' },
-      },
-      required: ['url'],
-    },
-    credentials: credentialsSchema,
-    capabilities: {
-      type: 'array',
-      items: providerCapabilitySchema,
-    },
-    visibility: {
-      additionalProperties: false,
-      type: 'object',
-      properties: {
-        allTenants: { type: 'boolean' },
-      },
-    },
-  },
 } as const
 
-export type ProviderCapability = FromSchema<typeof providerCapabilitySchema>
+export type ProviderCapability = FromSchema<typeof providerCapabilitySchema, {
+  parseIfThenElseKeywords: true
+}>
+export type GitProviderCapability = FromSchema<typeof gitProviderCapabilitySchema>
+export type ProviderCapabilities = FromSchema<typeof providerCapabilitiesSchema, {
+  parseIfThenElseKeywords: true
+}>
 export type Provider = FromSchema<typeof providerSchema, {
   parseIfThenElseKeywords: true
 }>

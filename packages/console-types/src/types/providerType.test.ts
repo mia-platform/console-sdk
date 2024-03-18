@@ -117,5 +117,17 @@ t.test('providerType', t => {
     t.end()
   })
 
+  t.test('should accept a container registry provider type', t => {
+    const providerType: ProviderType = {
+      type: 'container-registry',
+      label: 'Container Registry',
+      capabilities: [{ name: 'container-registry' }],
+      imageUrl: '/v2/files/download/0bc3dfd3-5f95-4699-afa2-df0d87397eef.png',
+    }
+
+    t.ok(validate(providerType))
+    t.end()
+  })
+
   t.end()
 })
