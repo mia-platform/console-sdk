@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.18.8
+
+### Patch Changes
+
+- bump to 0.18.8
+
 ## Unreleased
 
 ### Changed
