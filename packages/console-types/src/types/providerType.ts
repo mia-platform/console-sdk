@@ -110,45 +110,22 @@ const credentialTypesSchema = {
 
 export const providerTypeSchema = {
   type: 'object',
-  if: {
-    properties: { type: { const: CAPABILITIES.CONTAINER_REGISTRY } },
-  },
-  then: {
-    additionalProperties: false,
-    properties: {
-      type: { type: 'string' },
-      label: { type: 'string' },
-      imageUrl: {
-        description: 'file location',
-        type: 'string',
-      },
-      capabilities: providerTypeCapabilitiesSchema,
-      credentialTypes: credentialTypesSchema,
+  additionalProperties: false,
+  properties: {
+    type: { type: 'string' },
+    label: { type: 'string' },
+    imageUrl: {
+      description: 'file location',
+      type: 'string',
     },
-    required: [
-      'type',
-      'imageUrl',
-      'capabilities',
-    ],
+    capabilities: providerTypeCapabilitiesSchema,
+    credentialTypes: credentialTypesSchema,
   },
-  else: {
-    additionalProperties: false,
-    properties: {
-      type: { type: 'string' },
-      label: { type: 'string' },
-      imageUrl: {
-        description: 'file location',
-        type: 'string',
-      },
-      capabilities: providerTypeCapabilitiesSchema,
-      credentialTypes: credentialTypesSchema,
-    },
-    required: [
-      'type',
-      'imageUrl',
-      'capabilities',
-    ],
-  },
+  required: [
+    'type',
+    'imageUrl',
+    'capabilities',
+  ],
 } as const
 
 export const pipelineStatusSchema = {
