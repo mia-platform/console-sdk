@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.18.9
+
+### Patch Changes
+
+- version bump
+
 ### Fixed
 
 - project `configurationManagement` correct type definition for isConfirmationRequired to be object rather than bool
@@ -9,7 +15,7 @@
 ### Patch Changes
 
 - bump to 0.18.8
-  
+
 ### Changed
 
 - ProviderTypes: Add Container Registry provider type and provider
