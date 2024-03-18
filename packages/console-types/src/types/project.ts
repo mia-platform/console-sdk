@@ -334,6 +334,18 @@ export const monitoring = {
   },
 } as const
 
+export const configurationManagement = {
+  type: 'object',
+  properties: {
+    saveMessageOptions: {
+      type: 'object',
+      properties: {
+        isConfirmationRequired: { type: 'boolean' },
+      },
+    },
+  },
+} as const
+
 export const project = {
   type: 'object',
   properties: {
@@ -500,6 +512,7 @@ export const project = {
       },
     },
     monitoring,
+    configurationManagement,
   },
   required: [
     '_id',
