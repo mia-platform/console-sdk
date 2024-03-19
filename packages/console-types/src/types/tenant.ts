@@ -18,8 +18,9 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { availableNamespaces, environment, environmentsVariables, monitoring, pipelines } from './project'
+import { availableNamespaces, dockerImageNameSuggestion, environment, environmentsVariables, monitoring, pipelines } from './project'
 import { REPOSITORY_TYPES } from '../constants/project'
+
 
 export const tenant = {
   type: 'object',
@@ -76,6 +77,7 @@ export const tenant = {
         },
       },
     },
+    dockerImageNameSuggestion,
   },
   additionalProperties: false,
   required: ['name', 'tenantId'],

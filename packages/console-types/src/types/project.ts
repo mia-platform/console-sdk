@@ -352,6 +352,34 @@ export const configurationManagement = {
   },
 } as const
 
+export const dockerImageNameSuggestion = {
+  anyOf: [
+    {
+      type: 'object',
+      properties: {
+        type: { type: 'string',
+          enum: [
+            DOCKER_IMAGE_NAME_SUGGESTION_TYPES.REPOSITORY,
+            DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID,
+          ],
+        },
+      },
+      required: ['type'],
+      additionalProperties: false,
+    },
+    {
+      type: 'object',
+      properties: {
+        type: { type: 'string', enum: [DOCKER_IMAGE_NAME_SUGGESTION_TYPES.CONSTANT_PREFIX] },
+        prefix: { type: 'string' },
+      },
+      required: ['type', 'prefix'],
+      additionalProperties: false,
+    },
+  ],
+  default: { type: DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID },
+} as const
+
 export const project = {
   type: 'object',
   properties: {
@@ -396,33 +424,7 @@ export const project = {
       },
     },
     enabledServices: enabledServicesSchema,
-    dockerImageNameSuggestion: {
-      anyOf: [
-        {
-          type: 'object',
-          properties: {
-            type: { type: 'string',
-              enum: [
-                DOCKER_IMAGE_NAME_SUGGESTION_TYPES.REPOSITORY,
-                DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID,
-              ],
-            },
-          },
-          required: ['type'],
-          additionalProperties: false,
-        },
-        {
-          type: 'object',
-          properties: {
-            type: { type: 'string', enum: [DOCKER_IMAGE_NAME_SUGGESTION_TYPES.CONSTANT_PREFIX] },
-            prefix: { type: 'string' },
-          },
-          required: ['type', 'prefix'],
-          additionalProperties: false,
-        },
-      ],
-      default: { type: DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID },
-    },
+    dockerImageNameSuggestion,
     repository: {
       type: 'object',
       properties: {
