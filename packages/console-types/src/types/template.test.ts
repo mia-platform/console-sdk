@@ -21,6 +21,7 @@ import t from 'tap'
 
 import { ITemplate, template } from './template'
 import { validationMessage } from './validate-utils.test'
+import { MLP } from '../constants/project'
 
 t.test('templates validated', t => {
   const ajv = new Ajv()
@@ -45,6 +46,13 @@ t.test('templates validated', t => {
       tenantId: 'my-tenant-id',
       providerId: 'my-provider-id',
       description: 'my description',
+      archiveUrl: 'http://my-archive/url.trgz',
+      visibility: {
+        allTenants: false
+      },
+      deploy: {
+        runnerTool: MLP
+      },
       enabledServices: {
         'my-service': true,
       },
