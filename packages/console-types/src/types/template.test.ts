@@ -48,10 +48,10 @@ t.test('templates validated', t => {
       description: 'my description',
       archiveUrl: 'http://my-archive/url.trgz',
       visibility: {
-        allTenants: false
+        allTenants: false,
       },
       deploy: {
-        runnerTool: MLP
+        runnerTool: MLP,
       },
       enabledServices: {
         'my-service': true,

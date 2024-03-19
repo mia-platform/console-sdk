@@ -34,16 +34,16 @@ export const template = {
     visibility: {
       type: 'object',
       properties: {
-        allTenants: { type: 'boolean' }
-      }
+        allTenants: { type: 'boolean' },
+      },
     },
     deploy: {
       type: 'object',
       properties: {
-        runnerTool: { type: 'string', enum: ALLOWED_RUNNER_TOOLS},
+        runnerTool: { type: 'string', enum: ALLOWED_RUNNER_TOOLS },
         useMiaPrefixEnvs: { type: 'string' },
         projectStructure: { type: 'string' },
-      }
+      },
     },
     enabledServices: enabledServicesSchema,
     staticSecret: {
