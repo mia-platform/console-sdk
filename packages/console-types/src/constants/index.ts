@@ -96,6 +96,7 @@ import {
 } from './services'
 import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from './dashboard'
 import { FEEDBACK_TYPES } from './feedback'
+import { HISTORY_RECORD_STATUS } from './webhooks'
 
 const constants = {
   API_CONSOLE_TOTAL_PAGES_HEADER_KEY,
@@ -182,6 +183,7 @@ const constants = {
   FEEDBACK_TYPES,
   PULL_DEPLOY_STRATEGY,
   PUSH_DEPLOY_STRATEGY,
+  HISTORY_RECORD_STATUS,
 }
 export default constants
 
