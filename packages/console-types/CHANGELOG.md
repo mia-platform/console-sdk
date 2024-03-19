@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Changed
+
+- Added `dockerImageNameSuggestion` to tenant
+
 ## 0.18.9
 
 ### Patch Changes
