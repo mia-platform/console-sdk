@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 0.18.13
+
 ### Added
 
 - Added `enabledSecurityFeatures` to tenant
