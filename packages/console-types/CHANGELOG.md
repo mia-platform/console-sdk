@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.18.11
+
+### Patch Changes
+
+- bump version
+
 ## 0.18.10
 
 ### Patch Changes
