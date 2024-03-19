@@ -20,7 +20,7 @@ import Ajv from 'ajv'
 import t from 'tap'
 
 import { ITenant, tenant } from './tenant'
-import { PROMETHEUS_OPERATOR } from '../constants/project'
+import { DOCKER_IMAGE_NAME_SUGGESTION_TYPES, PROMETHEUS_OPERATOR } from '../constants/project'
 import { fullEnvironment } from './project.test'
 import { validationMessage } from './validate-utils.test'
 
@@ -74,11 +74,20 @@ t.test('tenants validated', t => {
         name: 'clients',
         order: 1,
       }],
+      dockerImageNameSuggestion: {
+        type: DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID,
+      },
       imagePullSecretNames: ['some-imagePullSecret-here', 'some-other-one'],
       configurationManagement: {
         saveMessageOptions: {
           isConfirmationRequired: true,
         },
+      },
+      enabledSecurityFeatures: {
+        seccompProfile: true,
+        appArmor: true,
+        hostProperties: true,
+        privilegedPod: true,
       },
     }
 

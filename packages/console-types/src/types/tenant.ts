@@ -18,8 +18,9 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { availableNamespaces, environment, environmentsVariables, monitoring, pipelines } from './project'
+import { availableNamespaces, dockerImageNameSuggestion, environment, environmentsVariables, monitoring, pipelines } from './project'
 import { REPOSITORY_TYPES } from '../constants/project'
+
 
 export const tenant = {
   type: 'object',
@@ -74,6 +75,16 @@ export const tenant = {
             isConfirmationRequired: { type: 'boolean' },
           },
         },
+      },
+    },
+    dockerImageNameSuggestion,
+    enabledSecurityFeatures: {
+      type: 'object',
+      properties: {
+        seccompProfile: { type: 'boolean' },
+        appArmor: { type: 'boolean' },
+        hostProperties: { type: 'boolean' },
+        privilegedPod: { type: 'boolean' },
       },
     },
   },

@@ -4,6 +4,34 @@
 
 - [IDP-435](https://makeitapp.atlassian.net/browse/IDP-435): added 'HISTORY_RECORD_STATUS' to webhooks constants
 
+## 0.18.13
+
+### Added
+
+- Added `enabledSecurityFeatures` to tenant
+
+## 0.18.12
+
+### Patch Changes
+
+- bump version
+
+## 0.18.11
+
+### Patch Changes
+
+- bump version
+
+## 0.18.10
+
+### Patch Changes
+
+- bump version
+
+### Changed
+
+- Added `dockerImageNameSuggestion` to tenant
+
 ## 0.18.9
 
 ### Patch Changes
