@@ -2,7 +2,7 @@
 
 ### Added
 
-- [IDP-435](https://makeitapp.atlassian.net/browse/IDP-435): added 'HISTORY_RECORD_STATUS' to webhooks constans
+- [IDP-435](https://makeitapp.atlassian.net/browse/IDP-435): added 'HISTORY_RECORD_STATUS' to webhooks constants
 
 ## 0.18.9
 
