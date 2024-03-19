@@ -19,6 +19,7 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import { enabledServicesSchema } from './project'
+import { ALLOWED_RUNNER_TOOLS } from '../constants/project'
 
 export const template = {
   type: 'object',
@@ -29,6 +30,21 @@ export const template = {
     providerId: { type: 'string' },
     name: { type: 'string' },
     description: { type: 'string' },
+    archiveUrl: { type: 'string' },
+    visibility: {
+      type: 'object',
+      properties: {
+        allTenants: { type: 'boolean' },
+      },
+    },
+    deploy: {
+      type: 'object',
+      properties: {
+        runnerTool: { type: 'string', enum: ALLOWED_RUNNER_TOOLS },
+        useMiaPrefixEnvs: { type: 'string' },
+        projectStructure: { type: 'string' },
+      },
+    },
     enabledServices: enabledServicesSchema,
     staticSecret: {
       type: 'object',
