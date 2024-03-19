@@ -88,7 +88,7 @@ t.test('tenants validated', t => {
         appArmor: true,
         hostProperties: true,
         privilegedPod: true,
-      }
+      },
     }
 
     t.ok(validate(tenant), validationMessage(validate.errors))

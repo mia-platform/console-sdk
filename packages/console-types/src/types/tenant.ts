@@ -81,12 +81,12 @@ export const tenant = {
     enabledSecurityFeatures: {
       type: 'object',
       properties: {
-        seccompProfile: {type: 'boolean'},
-        appArmor: {type: 'boolean'},
-        hostProperties: {type: 'boolean'},
-        privilegedPod: {type: 'boolean'},
-      }
-    }
+        seccompProfile: { type: 'boolean' },
+        appArmor: { type: 'boolean' },
+        hostProperties: { type: 'boolean' },
+        privilegedPod: { type: 'boolean' },
+      },
+    },
   },
   additionalProperties: false,
   required: ['name', 'tenantId'],
