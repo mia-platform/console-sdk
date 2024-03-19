@@ -9,11 +9,6 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
 {
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "providerId",
-    "type",
-    "urls"
-  ],
   "properties": {
     "providerId": {
       "type": "string"
@@ -44,6 +39,15 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
     },
     "base64CA": {
       "type": "string"
+    },
+    "visibility": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "allTenants": {
+          "type": "boolean"
+        }
+      }
     },
     "proxy": {
       "type": "object",
@@ -248,8 +252,91 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
     "capabilities": {
       "type": "array",
       "items": {
-        "oneOf": [
-          {
+        "if": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "const": "container-registry"
+            }
+          }
+        },
+        "then": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "imagePullSecretName",
+            "hostname"
+          ],
+          "properties": {
+            "name": {
+              "const": "container-registry"
+            },
+            "functionalities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "imagePullSecretName": {
+              "type": "string"
+            },
+            "hostname": {
+              "type": "string",
+              "pattern": "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\\\d+)?$",
+              "x-validation-error-id": "containerRegistryHostname.patternError"
+            }
+          }
+        },
+        "else": {
+          "if": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "const": "git-provider"
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "git-provider"
+              },
+              "functionalities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "repositoryPathTemplate": {
+                "type": "string"
+              }
+            }
+          },
+          "else": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -280,79 +367,14 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
                 }
               }
             }
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
-                "const": "container-registry"
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "imagePullSecretName": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
-                "const": "git-provider"
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "repositoryPathTemplate": {
-                "type": "string"
-              }
-            }
           }
-        ]
-      }
-    },
-    "visibility": {
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "allTenants": {
-          "type": "boolean"
         }
       }
     }
-  }
+  },
+  "required": [
+    "providerId",
+    "type"
+  ]
 }
 `

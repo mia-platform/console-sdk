@@ -20,7 +20,7 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from '../constants/dashboard'
 import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../constants/project'
-import { providerSchema } from './provider'
+import { providerCommonProperties } from './provider'
 
 export const enabledServicesSchema = {
   type: 'object',
@@ -334,6 +334,24 @@ export const monitoring = {
   },
 } as const
 
+export const configurationManagement = {
+  type: 'object',
+  properties: {
+    saveMessageOptions: {
+      type: 'object',
+      properties: {
+        isConfirmationRequired: {
+          type: 'object',
+          properties: {
+            value: { type: 'boolean' },
+            isInheritedFromTenant: { type: 'boolean' },
+          },
+        },
+      },
+    },
+  },
+} as const
+
 export const project = {
   type: 'object',
   properties: {
@@ -421,7 +439,7 @@ export const project = {
             baseUrl: { type: 'string' },
             accessToken: { type: 'string' },
             base64CA: { type: 'string' },
-            proxy: providerSchema.properties.proxy,
+            proxy: providerCommonProperties.proxy,
           },
           additionalProperties: false,
         },
@@ -500,6 +518,7 @@ export const project = {
       },
     },
     monitoring,
+    configurationManagement,
   },
   required: [
     '_id',

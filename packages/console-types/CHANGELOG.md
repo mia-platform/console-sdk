@@ -4,16 +4,63 @@
 
 - [IDP-435](https://makeitapp.atlassian.net/browse/IDP-435): added 'HISTORY_RECORD_STATUS' to webhooks constans
 
-## 0.18.3
+## 0.18.9
 
 ### Patch Changes
 
 - version bump
 
-All notable changes to this project will be documented in this file.
+### Fixed
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+- project `configurationManagement` correct type definition for isConfirmationRequired to be object rather than bool
+
+## 0.18.8
+
+### Patch Changes
+
+- bump to 0.18.8
+
+### Changed
+
+- ProviderTypes: Add Container Registry provider type and provider
+
+## 0.18.7
+
+### Patch Changes
+
+- version bump
+
+### Added
+
+- added `configurationManagement` fields with save message options to `project` schema
+
+## 0.18.6
+
+### Patch Changes
+
+- version bump
+
+## 0.18.5
+
+### Patch Changes
+
+- version bump
+
+### Added
+
+- added `configurationManagement` fields with save message options to `tenant` schema
+
+## 0.18.4
+
+### Fixed
+
+- Fixed capitalization in visibility descriptions
+
+## 0.18.3
+
+### Patch Changes
+
+- version bump
 
 ## 0.18.2
 

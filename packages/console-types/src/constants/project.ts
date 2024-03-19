@@ -26,9 +26,9 @@ export const PUSH_DEPLOY_STRATEGY = 'push' as const
 export const PULL_DEPLOY_STRATEGY = 'pull' as const
 
 export const VISIBILITY_PROJECT_FIELDS = [
-  { value: 'private', label: 'Private', description: 'Private projects can only be cloned and viewed by project members', numeric: NUMERIC_VISIBILITY.private },
-  { value: 'internal', label: 'Internal', description: 'Internal projects can be cloned by any logged in user', numeric: NUMERIC_VISIBILITY.internal },
-  { value: 'public', label: 'Public', description: 'Public projects can be cloned without any authentication', numeric: NUMERIC_VISIBILITY.public },
+  { value: 'private', label: 'Private', description: 'Private Projects can only be cloned and viewed by Project members', numeric: NUMERIC_VISIBILITY.private },
+  { value: 'internal', label: 'Internal', description: 'Internal Projects can be cloned by any logged in user', numeric: NUMERIC_VISIBILITY.internal },
+  { value: 'public', label: 'Public', description: 'Public Projects can be cloned without any authentication', numeric: NUMERIC_VISIBILITY.public },
 ]
 
 export const GITLAB_CI = 'gitlab-ci'

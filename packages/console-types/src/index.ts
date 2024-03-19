@@ -30,8 +30,16 @@ import {
   credentialsTokenSchema,
   credentialsUserPassSchema,
 } from './types/credentials'
-import { PipelineStatus, ProviderType, ProviderTypeCapability, providerTypeSchema } from './types/providerType'
-import { Provider, ProviderCapability, providerSchema } from './types/provider'
+import { PipelineStatus, ProviderType, ProviderTypeCapability, GitProviderTypeCapability, providerTypeSchema } from './types/providerType'
+import {
+  containerRegistryHostnameString,
+  Provider,
+  ProviderCapabilities,
+  ProviderCapability,
+  providerSchema,
+  providerCapabilitiesSchema,
+  GitProviderCapability,
+} from './types/provider'
 import { VALIDATION_ERROR_ID, mergeStringsWithDefault } from './strings'
 import {
   analytics,
@@ -179,6 +187,9 @@ export {
 
   providerSchema,
   providerTypeSchema,
+  containerRegistryHostnameString,
+
+  providerCapabilitiesSchema,
 }
 
 export type {
@@ -256,7 +267,10 @@ export type {
 export type {
   Provider,
   ProviderCapability,
+  GitProviderCapability,
+  ProviderCapabilities,
   ProviderType,
   ProviderTypeCapability,
+  GitProviderTypeCapability,
   PipelineStatus,
 }

@@ -56,37 +56,44 @@ const functionalitiesSchema = {
 } as const
 
 const { GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
-export const providerTypeCapabilitySchema = {
-  oneOf: [
-    {
-      type: 'object',
-      additionalProperties: false,
-      required: ['name'],
-      properties: {
-        name: {
-          type: 'string',
-          enum: Object.values(OTHER_CAPABILITIES),
-        },
-        functionalities: functionalitiesSchema,
-      },
-    }, {
-      type: 'object',
-      additionalProperties: false,
-      required: ['name', 'allowedRepositoryVisibilities'],
-      properties: {
-        name: { const: GIT_PROVIDER },
-        allowedRepositoryVisibilities: {
-          type: 'array',
-          items: {
-            type: 'string',
-            enum: ['private', 'internal', 'public'],
-          },
-          description: 'The visibility levels allowed by this git provider',
-        },
-        functionalities: functionalitiesSchema,
-      },
+
+const otherProviderTypeCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['name'],
+  properties: {
+    name: {
+      type: 'string',
+      enum: Object.values(OTHER_CAPABILITIES),
     },
-  ],
+    functionalities: functionalitiesSchema,
+  },
+} as const
+
+const gitProviderTypeCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['name', 'allowedRepositoryVisibilities'],
+  properties: {
+    name: { const: GIT_PROVIDER },
+    allowedRepositoryVisibilities: {
+      type: 'array',
+      items: {
+        type: 'string',
+        enum: ['private', 'internal', 'public'],
+      },
+      description: 'The visibility levels allowed by this git provider',
+    },
+    functionalities: functionalitiesSchema,
+  },
+} as const
+
+export const isGitProviderCapability = { type: 'object', properties: { name: { const: GIT_PROVIDER } } } as const
+
+export const providerTypeCapabilitySchema = {
+  if: isGitProviderCapability,
+  then: gitProviderTypeCapabilitySchema,
+  else: otherProviderTypeCapabilitySchema,
 } as const
 
 export const providerTypeCapabilitiesSchema = {
@@ -105,12 +112,6 @@ const credentialTypesSchema = {
 export const providerTypeSchema = {
   type: 'object',
   additionalProperties: false,
-  required: [
-    'type',
-    'imageUrl',
-    'capabilities',
-    'credentialTypes',
-  ],
   properties: {
     type: { type: 'string' },
     label: { type: 'string' },
@@ -121,6 +122,11 @@ export const providerTypeSchema = {
     capabilities: providerTypeCapabilitiesSchema,
     credentialTypes: credentialTypesSchema,
   },
+  required: [
+    'type',
+    'imageUrl',
+    'capabilities',
+  ],
 } as const
 
 export const pipelineStatusSchema = {
@@ -128,7 +134,11 @@ export const pipelineStatusSchema = {
   enum: Object.values(PIPELINE_STATUS),
 } as const
 
-export type ProviderTypeCapability = FromSchema<typeof providerTypeCapabilitySchema>
-export type ProviderTypeCapabilities = FromSchema<typeof providerTypeCapabilitiesSchema>
-export type ProviderType = FromSchema<typeof providerTypeSchema>
+
+export type ProviderType = FromSchema<typeof providerTypeSchema, {parseIfThenElseKeywords: true}>
 export type PipelineStatus = FromSchema<typeof pipelineStatusSchema>
+
+export type ProviderTypeCapability = FromSchema<typeof providerTypeCapabilitySchema, {parseIfThenElseKeywords: true}>
+export type GitProviderTypeCapability = FromSchema<typeof gitProviderTypeCapabilitySchema>
+
+export type ProviderTypeCapabilities = FromSchema<typeof providerTypeCapabilitiesSchema>

@@ -23,9 +23,11 @@ import t from 'tap'
 import { Provider, providerSchema } from './provider'
 import { CAPABILITIES } from '../constants/provider'
 import { validationMessage } from './validate-utils.test'
+import ajvConsoleErrors from '../plugins/ajv-console-errors'
 
 t.test('providers', t => {
   const ajv = new Ajv()
+  ajvConsoleErrors(ajv)
   addFormats(ajv)
   const validate = ajv.compile<Provider>(providerSchema)
 
@@ -47,24 +49,56 @@ t.test('providers', t => {
     t.end()
   })
 
+  t.test('validate - gitlab type', t => {
+    const variable: Provider = {
+      providerId: 'gitlab',
+      type: 'gitlab',
+      urls: {
+        base: 'http://base-url',
+        apiBase: 'http://base-url/api',
+      },
+      capabilities: [{
+        name: CAPABILITIES.GIT_PROVIDER,
+        repositoryPathTemplate: '/repo-path',
+      }],
+      visibility: { allTenants: true },
+    }
+    t.ok(validate(variable), validationMessage(validate.errors))
+    t.end()
+  })
+
   t.test('validate - capabilities with specific fields', t => {
     t.test('should validate container-registry specific fields', t => {
       const variable: Provider = {
         providerId: 'providerId',
-        type: 'type',
-        urls: {
-          base: 'http://base',
-          apiBase: 'http://api.base',
-        },
+        type: 'container-registry',
         capabilities: [
           {
             name: CAPABILITIES.CONTAINER_REGISTRY,
             imagePullSecretName: 'my-secret',
+            hostname: 'some.hostname',
           },
         ],
       }
 
       t.ok(validate(variable), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('should not validate container-registry with invalid hostname', t => {
+      const variable: Provider = {
+        providerId: 'providerId',
+        type: 'container-registry',
+        capabilities: [
+          {
+            name: CAPABILITIES.CONTAINER_REGISTRY,
+            imagePullSecretName: 'my-secret',
+            hostname: 'https://some.not.valid.hostname/',
+          },
+        ],
+      }
+
+      t.notOk(validate(variable), validationMessage(validate.errors))
       t.end()
     })
     t.end()
