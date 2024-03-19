@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.18.10
+
+### Patch Changes
+
+- bump version
+
 ### Changed
 
 - Added `dockerImageNameSuggestion` to tenant
