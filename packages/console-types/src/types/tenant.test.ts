@@ -75,7 +75,7 @@ t.test('tenants validated', t => {
         order: 1,
       }],
       dockerImageNameSuggestion: {
-        type: DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID
+        type: DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID,
       },
       imagePullSecretNames: ['some-imagePullSecret-here', 'some-other-one'],
       configurationManagement: {
