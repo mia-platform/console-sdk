@@ -83,6 +83,12 @@ t.test('tenants validated', t => {
           isConfirmationRequired: true,
         },
       },
+      enabledSecurityFeatures: {
+        seccompProfile: true,
+        appArmor: true,
+        hostProperties: true,
+        privilegedPod: true,
+      },
     }
 
     t.ok(validate(tenant), validationMessage(validate.errors))

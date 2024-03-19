@@ -78,6 +78,15 @@ export const tenant = {
       },
     },
     dockerImageNameSuggestion,
+    enabledSecurityFeatures: {
+      type: 'object',
+      properties: {
+        seccompProfile: { type: 'boolean' },
+        appArmor: { type: 'boolean' },
+        hostProperties: { type: 'boolean' },
+        privilegedPod: { type: 'boolean' },
+      },
+    },
   },
   additionalProperties: false,
   required: ['name', 'tenantId'],

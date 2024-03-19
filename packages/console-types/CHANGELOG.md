@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- Added `enabledSecurityFeatures` to tenant
+
 ## 0.18.12
 
 ### Patch Changes
