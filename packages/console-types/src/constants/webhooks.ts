@@ -17,6 +17,6 @@
  */
 
 export const HISTORY_RECORD_STATUS = {
-  SUCCESSFUL: 'successfull',
+  SUCCESSFUL: 'successful',
   FAILED: 'failed',
 } as const
