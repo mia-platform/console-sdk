@@ -62,7 +62,8 @@ export const PIPELINE_FROM_TEMPLATE = [
 ]
 
 export const MLP = 'mlp'
-export const ALLOWED_RUNNER_TOOLS = [MLP]
+export const OTHER = 'other'
+export const ALLOWED_RUNNER_TOOLS = [MLP, OTHER]
 
 export const PROMETHEUS_OPERATOR = 'prometheus-operator'
 export const ALLOWED_MONITORING_SYSTEMS = [PROMETHEUS_OPERATOR]
