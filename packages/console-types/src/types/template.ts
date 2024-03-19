@@ -41,7 +41,7 @@ export const template = {
       type: 'object',
       properties: {
         runnerTool: { type: 'string', enum: ALLOWED_RUNNER_TOOLS },
-        useMiaPrefixEnvs: { type: 'string' },
+        useMiaPrefixEnvs: { type: 'boolean' },
         projectStructure: { type: 'string' },
       },
     },

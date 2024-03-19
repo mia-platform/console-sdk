@@ -52,6 +52,7 @@ t.test('templates validated', t => {
       },
       deploy: {
         runnerTool: MLP,
+        useMiaPrefixEnvs: false
       },
       enabledServices: {
         'my-service': true,
