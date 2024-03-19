@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.18.14
+
+### Patch Changes
+
+- bump version
+
 ### Added
 
 - [IDP-435](https://makeitapp.atlassian.net/browse/IDP-435): added 'HISTORY_RECORD_STATUS' to webhooks constants

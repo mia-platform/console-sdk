@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/console-types",
-  "version": "0.18.13",
+  "version": "0.18.14",
   "description": "",
   "main": "build/index.js",
   "types": "build/index",
