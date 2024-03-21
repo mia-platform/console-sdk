@@ -118,7 +118,7 @@ export const environmentsVariables = {
     },
     {
       type: 'object',
-      required: ['type', 'providerId', 'azureTenantId', 'azureClientId'],
+      required: ['type'],
       properties: {
         type: {
           type: 'string',
