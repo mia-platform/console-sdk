@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+### Patch Changes
+
+- removed required fields from `environmentsVariables` definition
+
 ## 0.18.15
 
 ### Patch Changes
