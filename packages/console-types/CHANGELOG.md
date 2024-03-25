@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Patch Changes
+
+- add `disabledContainerRegistryProviders` to project entity
+
 ## 0.18.16
 
 ### Patch Changes
