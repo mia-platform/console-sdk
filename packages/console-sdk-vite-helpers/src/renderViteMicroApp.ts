@@ -19,10 +19,10 @@
 import { ConsoleSDK, IConsoleProps, IMicrofronendIntegrator } from '@mia-platform/console-sdk-microfrontend'
 import { QiankunProps, qiankunWindow, renderWithQiankun } from 'vite-plugin-qiankun/dist/helper'
 
-export type ConsoleLifecycleFunction = (
+export type ConsoleLifecycleFunction = (props: QiankunProps & {
   isConnectedToConsole: boolean,
   consoleSDK: IMicrofronendIntegrator,
-) => void
+}) => void
 
 export type IViteParams = {
   mount: ConsoleLifecycleFunction
@@ -48,7 +48,7 @@ export const decorateLifecycleFunction = (lifecycleFunction: IViteParams[keyof I
   return (props: QiankunProps): void => {
     const { isConnectedToConsole, consoleSDK } = getSDK(props)
     if (lifecycleFunction) {
-      lifecycleFunction(isConnectedToConsole, consoleSDK)
+      lifecycleFunction({ ...props, isConnectedToConsole, consoleSDK })
     }
   }
 }
