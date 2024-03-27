@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- [IDP-890](https://makeitapp.atlassian.net/browse/IDP-890): added Marketplace types costants 
+
 ## 0.18.16
 
 ### Patch Changes
