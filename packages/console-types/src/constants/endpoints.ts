@@ -16,7 +16,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-
 export const API_CONSOLE_TOTAL_PAGES_HEADER_KEY = 'x-total-pages'
 export const TOTAL_ITEMS_HEADER_KEY = 'x-total-items'
 
