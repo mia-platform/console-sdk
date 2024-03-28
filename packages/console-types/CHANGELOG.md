@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Added pagination constants
+
 ## 0.18.16
 
 ### Patch Changes
