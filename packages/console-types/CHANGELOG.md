@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Patch Changes
+
+- add `containerRegistriesSettings` to project entity
+
 ## 0.18.16
 
 ### Patch Changes
