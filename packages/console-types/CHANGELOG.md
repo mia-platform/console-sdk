@@ -2,7 +2,7 @@
 
 ### Patch Changes
 
-- add `disabledContainerRegistryProviders` to project entity
+- add `containerRegistriesSettings` to project entity
 
 ## 0.18.16
 
