@@ -524,10 +524,15 @@ export const project = {
     },
     monitoring,
     configurationManagement,
-    disabledContainerRegistryProviders: {
-      type: 'array',
-      items: {
-        type: 'string',
+    containerRegistriesSettings: {
+      type: 'object',
+      properties: {
+        disabledProviderIds: {
+          type: 'array',
+          items:{
+            type:'string'
+          }
+        }
       },
     },
   },
