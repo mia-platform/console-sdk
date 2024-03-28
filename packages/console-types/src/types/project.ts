@@ -529,10 +529,10 @@ export const project = {
       properties: {
         disabledProviderIds: {
           type: 'array',
-          items:{
-            type:'string'
-          }
-        }
+          items: {
+            type: 'string',
+          },
+        },
       },
     },
   },
