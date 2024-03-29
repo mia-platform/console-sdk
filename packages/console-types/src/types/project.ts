@@ -16,7 +16,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// TODO: create subfolder project/ and split entities in multiple files?
 /* eslint-disable max-lines*/
 
 import { FromSchema } from 'json-schema-to-ts'
