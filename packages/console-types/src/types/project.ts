@@ -526,6 +526,7 @@ export const project = {
     configurationManagement,
     containerRegistriesSettings: {
       type: 'object',
+      additionalProperties: false,
       properties: {
         disabledProviderIds: {
           type: 'array',
