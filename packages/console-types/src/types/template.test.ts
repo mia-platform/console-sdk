@@ -64,6 +64,12 @@ t.test('templates validated', t => {
         clientType: 'clienttype',
       },
       cmsImageName: 'cms-image',
+      dashboards: [{
+        id: 'dash-1',
+        label: 'Dashboard 1',
+        type: 'iframe',
+        url: 'the-url',
+      }],
     }
 
     t.ok(validate(template), validationMessage(validate.errors))
