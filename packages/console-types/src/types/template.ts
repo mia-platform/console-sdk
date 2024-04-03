@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { enabledServicesSchema } from './project'
+import { dashboard, enabledServicesSchema } from './project'
 import { ALLOWED_RUNNER_TOOLS } from '../constants/project'
 
 export const template = {
@@ -44,6 +44,10 @@ export const template = {
         useMiaPrefixEnvs: { type: 'boolean' },
         projectStructure: { type: 'string' },
       },
+    },
+    dashboards: {
+      type: 'array',
+      items: dashboard,
     },
     enabledServices: enabledServicesSchema,
     staticSecret: {
