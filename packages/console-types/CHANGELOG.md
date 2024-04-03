@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+### Added
+
+- added `dashboards` to `template`
+
 ## 0.18.16
 
 ### Patch Changes
