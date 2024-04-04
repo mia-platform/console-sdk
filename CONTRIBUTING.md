@@ -14,8 +14,8 @@ After cloning the repository, run `pnpm install` to install packages.
 
 ## How to submit a PR
 
-- Commits should follow standards: `<type>(<scope>): <subject> – feat(core): Add new feature`
-- In the `Unreleased` section in CHANGELOG.md, compile the changelog adding the improvement added in the PR.
+* Commits should follow standards: `<type>(<scope>): <subject> – feat(core): Add new feature`
+* In the top section of the CHANGELOG.md, compile the changelog adding the improvement added in the PR.
   Changelog should follow the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standard.
 
 ## How to create a new tag

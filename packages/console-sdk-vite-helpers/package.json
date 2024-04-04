@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/console-sdk-vite-helpers",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "license": "Apache-2.0",
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
@@ -13,7 +13,7 @@
     "unit": "jest"
   },
   "dependencies": {
-    "@mia-platform/console-sdk-microfrontend": "0.0.19",
+    "@mia-platform/console-sdk-microfrontend": "0.0.20",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {

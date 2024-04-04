@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## Unreleased
+## 0.18.17
+
+### Patch Changes
+
+- version bump
 
 ### Added
 
