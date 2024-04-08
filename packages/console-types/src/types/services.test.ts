@@ -24,6 +24,7 @@ import {
   CoreService,
   CronJob,
   CrossProjectService,
+  CustomResource,
   CustomService,
   CustomServiceAdvanced,
   ExternalService,
@@ -147,6 +148,23 @@ t.test('services', t => {
         kind: 'cronjob',
         content: 'mycronjobcontent',
       }],
+    }
+    t.ok(validate(service), validationMessage(validate.errors))
+    t.end()
+  })
+
+
+  t.test('custom resource', t => {
+    const service: CustomResource = {
+      name: 'myservice',
+      type: ServiceTypes.CUSTOM_RESOURCE,
+      meta: {
+        kind: 'MyKind',
+        apiVersion: 'v1',
+      },
+      spec: {
+        myField: 'myValue',
+      },
     }
     t.ok(validate(service), validationMessage(validate.errors))
     t.end()
