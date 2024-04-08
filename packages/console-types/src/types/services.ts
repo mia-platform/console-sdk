@@ -714,10 +714,10 @@ export const customResource = {
     },
     spec: {
       type: 'object',
-      additionalProperties: true
+      additionalProperties: true,
     },
   },
-  required: ['name', 'type']
+  required: ['name', 'type'],
 } as const
 export type CustomResource = FromSchema<typeof customResource>
 
