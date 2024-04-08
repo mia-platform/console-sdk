@@ -19,6 +19,7 @@
 /* eslint-disable max-lines */
 
 import { FromSchema } from 'json-schema-to-ts'
+import { pick } from 'ramda'
 
 import { DIGIT_OR_INTERPOLATION_PATTERN, EnvironmentVariablesTypes, ServiceTypes } from '../constants/services'
 import { VALIDATION_ERROR_ID } from '../strings'
@@ -696,6 +697,30 @@ const coreService = {
 
 export type CoreService = FromSchema<typeof coreService>
 
+export const customResource = {
+  type: 'object',
+  properties: {
+    name: serviceName,
+    description,
+    type: { type: 'string', const: ServiceTypes.CUSTOM_RESOURCE },
+    ...pick(['generatedFrom'], container.properties),
+    meta: {
+      type: 'object',
+      properties: {
+        kind: { type: 'string' },
+        apiVersion: { type: 'string' },
+      },
+      required: ['kind', 'apiVersion'],
+    },
+    spec: {
+      type: 'object',
+      additionalProperties: true,
+    },
+  },
+  required: ['name', 'type'],
+} as const
+export type CustomResource = FromSchema<typeof customResource>
+
 export const service = {
   type: 'object',
   if: {
@@ -742,7 +767,14 @@ export const service = {
               },
             },
             then: cronJob,
-            else: false,
+            else: {
+              if: {
+                type: 'object',
+                properties: { type: { type: 'string', const: ServiceTypes.CUSTOM_RESOURCE } },
+              },
+              then: customResource,
+              else: false,
+            },
           },
         },
       },
@@ -766,5 +798,6 @@ CustomServiceAdvanced |
 CrossProjectService |
 ExternalService |
 CronJob |
-CoreService
+CoreService |
+CustomResource
 >

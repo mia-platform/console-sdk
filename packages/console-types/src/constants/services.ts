@@ -36,7 +36,8 @@ export enum ServiceTypes {
   CORE = 'core',
   CRONJOB = 'cronjob',
   EXTERNAL = 'external',
-  CROSS_PROJECTS = 'cross-projects'
+  CROSS_PROJECTS = 'cross-projects',
+  CUSTOM_RESOURCE = 'custom-resource'
 }
 export const { CRONJOB } = ServiceTypes
 

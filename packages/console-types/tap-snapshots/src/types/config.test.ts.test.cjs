@@ -3942,7 +3942,67 @@ Object {
               "else": Object {
                 "else": Object {
                   "else": Object {
-                    "else": false,
+                    "else": Object {
+                      "else": false,
+                      "if": Object {
+                        "properties": Object {
+                          "type": Object {
+                            "const": "custom-resource",
+                            "type": "string",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "then": Object {
+                        "properties": Object {
+                          "description": Object {
+                            "type": "string",
+                          },
+                          "generatedFrom": Object {
+                            "properties": Object {
+                              "_id": Object {
+                                "type": "string",
+                              },
+                            },
+                            "type": "object",
+                          },
+                          "meta": Object {
+                            "properties": Object {
+                              "apiVersion": Object {
+                                "type": "string",
+                              },
+                              "kind": Object {
+                                "type": "string",
+                              },
+                            },
+                            "required": Array [
+                              "kind",
+                              "apiVersion",
+                            ],
+                            "type": "object",
+                          },
+                          "name": Object {
+                            "minLength": 1,
+                            "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                            "type": "string",
+                            "x-validation-error-id": "resourceName.patternError",
+                          },
+                          "spec": Object {
+                            "additionalProperties": true,
+                            "type": "object",
+                          },
+                          "type": Object {
+                            "const": "custom-resource",
+                            "type": "string",
+                          },
+                        },
+                        "required": Array [
+                          "name",
+                          "type",
+                        ],
+                        "type": "object",
+                      },
+                    },
                     "if": Object {
                       "properties": Object {
                         "advanced": Object {
