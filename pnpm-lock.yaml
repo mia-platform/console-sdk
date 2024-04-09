@@ -61,8 +61,8 @@ importers:
         specifier: 21.1.6
         version: 21.1.6
       '@types/ramda':
-        specifier: ^0.29.11
-        version: 0.29.11
+        specifier: ^0.29.12
+        version: 0.29.12
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.5.0
         version: 7.5.0(@typescript-eslint/parser@7.1.0)(eslint@8.57.0)(typescript@5.3.3)
@@ -135,8 +135,8 @@ importers:
         specifier: 21.1.6
         version: 21.1.6
       '@types/ramda':
-        specifier: ^0.29.11
-        version: 0.29.11
+        specifier: ^0.29.12
+        version: 0.29.12
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.5.0
         version: 7.5.0(@typescript-eslint/parser@7.1.0)(eslint@8.57.0)(typescript@5.3.3)
@@ -172,8 +172,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.57.0)
       '@types/ramda':
-        specifier: ^0.29.11
-        version: 0.29.11
+        specifier: ^0.29.12
+        version: 0.29.12
       '@types/tap':
         specifier: ^15.0.11
         version: 15.0.11
@@ -1777,10 +1777,10 @@ packages:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
 
-  /@types/ramda@0.29.11:
-    resolution: {integrity: sha512-jm1+PmNOpE7aPS+mMcuB4a72VkCXUJqPSaQRu2YqR8MbsFfaowYXgKxc7bluYdDpRHNXT5Z+xu+Lgr3/ml6wSA==}
+  /@types/ramda@0.29.12:
+    resolution: {integrity: sha512-sgIEjpJhdQPB52gDF4aphs9nl0xe54CR22DPdWqT8gQHjZYmVApgA0R3/CpMbl0Y8az2TEZrPNL2zy0EvjbkLA==}
     dependencies:
-      types-ramda: 0.29.9
+      types-ramda: 0.29.10
     dev: true
 
   /@types/semver@7.5.6:
@@ -6476,8 +6476,8 @@ packages:
       is-typedarray: 1.0.0
     dev: true
 
-  /types-ramda@0.29.9:
-    resolution: {integrity: sha512-B+VbLtW68J4ncG/rccKaYDhlirKlVH/Izh2JZUfaPJv+3Tl2jbbgYsB1pvole1vXKSgaPlAe/wgEdOnMdAu52A==}
+  /types-ramda@0.29.10:
+    resolution: {integrity: sha512-5PJiW/eiTPyXXBYGZOYGezMl6qj7keBiZheRwfjJZY26QPHsNrjfJnz0mru6oeqqoTHOni893Jfd6zyUXfQRWg==}
     dependencies:
       ts-toolbelt: 9.6.0
     dev: true
