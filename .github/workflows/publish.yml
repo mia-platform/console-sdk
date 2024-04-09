@@ -26,8 +26,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
           pnpm i --frozen-lockfile
           pnpm unit
           pnpm build
-          pnpm -r publish --access public --no-git-checks
+          pnpm --filter=${tag} publish --access public
 
