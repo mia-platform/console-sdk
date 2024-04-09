@@ -3999,6 +3999,8 @@ Object {
                         "required": Array [
                           "name",
                           "type",
+                          "meta",
+                          "spec",
                         ],
                         "type": "object",
                       },

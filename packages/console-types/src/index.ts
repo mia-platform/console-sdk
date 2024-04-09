@@ -212,6 +212,7 @@ export type {
   ContainerPort,
   ContainerPorts,
   CoreService,
+  CustomResource,
 } from './types/services'
 
 export type {
