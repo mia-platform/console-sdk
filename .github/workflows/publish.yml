@@ -26,6 +26,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          # We expect always tag in the form of `@owner/repo@version`. If it is not true,
+          # this script will generate an invalid tag.
           tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
           pnpm i --frozen-lockfile
           pnpm unit
