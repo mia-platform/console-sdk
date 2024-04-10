@@ -22,6 +22,7 @@ import {
   CRUD_ROUTES,
   ENDPOINT_TYPES,
   EndpointTypes,
+  EndpointIFramePolicy,
   TOTAL_ITEMS_HEADER_KEY,
   Verbs,
 } from './endpoints'
@@ -175,6 +176,7 @@ const constants = {
   ServiceTypes,
   IndexTypes,
   EndpointTypes,
+  EndpointIFramePolicy,
   Verbs,
   FieldTypes,
   CAPABILITIES,
