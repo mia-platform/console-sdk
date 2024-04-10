@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.2
+
+### Patch Changes
+
+- added endpoint iframe options
+
 ## 0.19.1
 
 ### Patch Changes
