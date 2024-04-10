@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.3
+
+### Patch Changes
+
+- hotfix ci
+
 ## 0.19.2
 
 ### Patch Changes
