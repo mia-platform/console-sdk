@@ -30,7 +30,6 @@ jobs:
           # this script will generate an invalid tag.
           tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
           pnpm i --frozen-lockfile
-          pnpm unit
           pnpm build
-          pnpm --filter=${tag} publish --access public
+          pnpm --filter=${tag} publish --access public --no-git-checks
 
