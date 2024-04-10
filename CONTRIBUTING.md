@@ -27,7 +27,7 @@ To create a tag, the way to go is using the `changeset` package; useful commands
 $ pnpm changeset 
 # bump version changes in local files
 $ pnpm changeset version
-# run install command to update local depencies between monorepo packages
+# run install command to update local dependencies between monorepo packages
 $ pnpm install
 # commit changes
 $ git commit -anm "version bump"
