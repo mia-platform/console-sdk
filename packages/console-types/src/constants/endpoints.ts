@@ -48,6 +48,12 @@ export enum EndpointTypes {
   SINGLE_VIEW = 'fast-data-single-view'
 }
 
+export enum EndpointIFramePolicy {
+  ALL = 'all',
+  DENY = 'deny',
+  SAMEORIGIN = 'sameorigin',
+}
+
 export type EndpointType = {
   value: string,
   label: string,

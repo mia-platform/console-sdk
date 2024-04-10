@@ -23,6 +23,7 @@ import t from 'tap'
 import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
 import { basePath, endpoints } from './endpoints'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
+import { EndpointIFramePolicy } from '../constants/endpoints'
 
 const CRUD_ENDPOINT = {
   '/crud': {
@@ -1772,6 +1773,29 @@ t.test('endpoints schema', t => {
       {
         desc: 'single view type',
         endpoints: SINGLE_VIEW_ENDPOINT,
+      },
+      {
+        desc: 'endpoint with frame options all',
+        endpoints: {
+          '/custom': {
+            ...CUSTOM_ENDPOINT['/custom'],
+            options: {
+              iframePolicy: EndpointIFramePolicy.ALL,
+            },
+          },
+          '/custom-2': {
+            ...CUSTOM_ENDPOINT['/custom'],
+            options: {
+              iframePolicy: EndpointIFramePolicy.DENY,
+            },
+          },
+          '/custom-3': {
+            ...CUSTOM_ENDPOINT['/custom'],
+            options: {
+              iframePolicy: EndpointIFramePolicy.SAMEORIGIN,
+            },
+          },
+        },
       },
     ]
 

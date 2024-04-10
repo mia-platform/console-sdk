@@ -1813,6 +1813,19 @@ Object {
                     },
                     "type": "object",
                   },
+                  "options": Object {
+                    "properties": Object {
+                      "iframePolicy": Object {
+                        "enum": Array [
+                          "all",
+                          "deny",
+                          "sameorigin",
+                        ],
+                        "type": "string",
+                      },
+                    },
+                    "type": "object",
+                  },
                   "pathName": Object {
                     "pattern": "^\\\\/(([\\\\w\\\\-:])\\\\/?)*$",
                     "type": "string",
@@ -2333,6 +2346,19 @@ Object {
                 "listeners": Object {
                   "additionalProperties": Object {
                     "type": "boolean",
+                  },
+                  "type": "object",
+                },
+                "options": Object {
+                  "properties": Object {
+                    "iframePolicy": Object {
+                      "enum": Array [
+                        "all",
+                        "deny",
+                        "sameorigin",
+                      ],
+                      "type": "string",
+                    },
                   },
                   "type": "object",
                 },
@@ -2863,6 +2889,19 @@ Object {
               "listeners": Object {
                 "additionalProperties": Object {
                   "type": "boolean",
+                },
+                "type": "object",
+              },
+              "options": Object {
+                "properties": Object {
+                  "iframePolicy": Object {
+                    "enum": Array [
+                      "all",
+                      "deny",
+                      "sameorigin",
+                    ],
+                    "type": "string",
+                  },
                 },
                 "type": "object",
               },
@@ -3399,6 +3438,19 @@ Object {
             "listeners": Object {
               "additionalProperties": Object {
                 "type": "boolean",
+              },
+              "type": "object",
+            },
+            "options": Object {
+              "properties": Object {
+                "iframePolicy": Object {
+                  "enum": Array [
+                    "all",
+                    "deny",
+                    "sameorigin",
+                  ],
+                  "type": "string",
+                },
               },
               "type": "object",
             },
