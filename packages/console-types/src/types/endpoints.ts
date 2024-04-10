@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { ALLOWED_HTTP_VERBS, ENDPOINT_TYPES, EndpointTypes } from '../constants/endpoints'
+import { ALLOWED_HTTP_VERBS, ENDPOINT_TYPES, EndpointIFramePolicy, EndpointTypes } from '../constants/endpoints'
 import { buildType, description } from './shared'
 import { VALIDATION_ERROR_ID } from '../strings'
 import { collectionName } from './collections'
@@ -164,6 +164,12 @@ const commonEndpointFields = {
     type: 'object',
     additionalProperties: {
       type: 'boolean',
+    },
+  },
+  options: {
+    type: 'object',
+    properties: {
+      iframePolicy: { type: 'string', enum: [EndpointIFramePolicy.ALL, EndpointIFramePolicy.DENY, EndpointIFramePolicy.SAMEORIGIN] },
     },
   },
 } as const

@@ -521,6 +521,19 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
             "type": "boolean"
           }
         },
+        "options": {
+          "type": "object",
+          "properties": {
+            "iframePolicy": {
+              "type": "string",
+              "enum": [
+                "all",
+                "deny",
+                "sameorigin"
+              ]
+            }
+          }
+        },
         "pathName": {
           "type": "string",
           "pattern": "^\\\\/(([\\\\w\\\\-:])\\\\/?)*$"
@@ -1058,6 +1071,19 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
               "type": "boolean"
             }
           },
+          "options": {
+            "type": "object",
+            "properties": {
+              "iframePolicy": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "deny",
+                  "sameorigin"
+                ]
+              }
+            }
+          },
           "service": {
             "type": "string",
             "minLength": 1,
@@ -1579,6 +1605,19 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
               "type": "object",
               "additionalProperties": {
                 "type": "boolean"
+              }
+            },
+            "options": {
+              "type": "object",
+              "properties": {
+                "iframePolicy": {
+                  "type": "string",
+                  "enum": [
+                    "all",
+                    "deny",
+                    "sameorigin"
+                  ]
+                }
               }
             },
             "pathName": {
@@ -2105,6 +2144,19 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                 "type": "object",
                 "additionalProperties": {
                   "type": "boolean"
+                }
+              },
+              "options": {
+                "type": "object",
+                "properties": {
+                  "iframePolicy": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "deny",
+                      "sameorigin"
+                    ]
+                  }
                 }
               },
               "pathName": {
