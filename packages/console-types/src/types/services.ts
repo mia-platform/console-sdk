@@ -697,6 +697,16 @@ const coreService = {
 
 export type CoreService = FromSchema<typeof coreService>
 
+export const kubernetesDefinitionWithOnlyNameAndValue = {
+  type: 'object',
+  properties: {
+    name: kubernetesDefinitionName,
+    value: { type: 'string' },
+  },
+  additionalProperties: false,
+  required: ['name', 'value'],
+} as const
+
 export const customResource = {
   type: 'object',
   properties: {
@@ -715,6 +725,14 @@ export const customResource = {
     spec: {
       type: 'object',
       additionalProperties: true,
+    },
+    annotations: {
+      type: 'array',
+      items: kubernetesDefinitionWithOnlyNameAndValue,
+    },
+    labels: {
+      type: 'array',
+      items: kubernetesDefinitionWithOnlyNameAndValue,
     },
   },
   required: ['name', 'type', 'meta', 'spec'],
