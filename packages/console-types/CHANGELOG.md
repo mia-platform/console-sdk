@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- [IDP-808](https://makeitapp.atlassian.net/browse/IDP-808): exported `DASHBOARD_TYPE_NEW_TAB` from dashboard constants
+
 ## 0.19.5
 
 ### Patch Changes
