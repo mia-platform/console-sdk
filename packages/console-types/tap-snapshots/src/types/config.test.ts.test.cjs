@@ -4854,7 +4854,7 @@ Object {
                           "enableIf": Object {
                             "type": "string",
                           },
-                          "hideViewPrefix": Object {
+                          "hidePrefix": Object {
                             "type": "boolean",
                           },
                           "label": Object {
@@ -5424,7 +5424,7 @@ Object {
                     "enableIf": Object {
                       "type": "string",
                     },
-                    "hideViewPrefix": Object {
+                    "hidePrefix": Object {
                       "type": "boolean",
                     },
                     "label": Object {

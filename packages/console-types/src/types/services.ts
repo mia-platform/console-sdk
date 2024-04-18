@@ -520,7 +520,7 @@ export const container = {
           label: { type: 'string' },
           enableIf: { type: 'string' },
           targetSection: { type: 'string' },
-          hideViewPrefix: { type: 'boolean' },
+          hidePrefix: { type: 'boolean' },
         },
       },
     },
