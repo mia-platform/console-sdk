@@ -95,7 +95,7 @@ import {
   SERVICE_TYPES,
   ServiceTypes,
 } from './services'
-import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from './dashboard'
+import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME, DASHBOARD_TYPE_NEW_TAB } from './dashboard'
 import { FEEDBACK_TYPES } from './feedback'
 import { HISTORY_RECORD_STATUS } from './webhooks'
 
@@ -173,6 +173,7 @@ const constants = {
   ProjectPipelinesTypes,
   DASHBOARD_TYPES,
   DASHBOARD_TYPE_IFRAME,
+  DASHBOARD_TYPE_NEW_TAB,
   ServiceTypes,
   IndexTypes,
   EndpointTypes,

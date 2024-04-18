@@ -17,6 +17,8 @@
  */
 
 const IFRAME = 'iframe'
+const NEW_TAB = 'newTab'
 
 export const DASHBOARD_TYPE_IFRAME = IFRAME
-export const DASHBOARD_TYPES = [IFRAME, 'newTab'] as const
+export const DASHBOARD_TYPE_NEW_TAB = NEW_TAB
+export const DASHBOARD_TYPES = [IFRAME, NEW_TAB] as const
