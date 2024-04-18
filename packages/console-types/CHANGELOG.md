@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- [COMP-235](https://makeitapp.atlassian.net/browse/COMP-235): added optional `hidePrefix` property in Link type
+
 ## 0.19.7
 
 ### Patch Changes
