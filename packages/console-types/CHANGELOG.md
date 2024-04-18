@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.7
+
+### Patch Changes
+
+- bump version
+
 ## 0.19.6
 
 ### Added
