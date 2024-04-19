@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.9
+
+### Patch Changes
+
+- bump version
+
 ### Added
 
 - Added strategy to template schema
