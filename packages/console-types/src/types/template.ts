@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { dashboard, enabledServicesSchema } from './project'
+import { dashboard, enabledServicesSchema, strategySchema } from './project'
 import { ALLOWED_RUNNER_TOOLS } from '../constants/project'
 
 export const template = {
@@ -43,6 +43,7 @@ export const template = {
         runnerTool: { type: 'string', enum: ALLOWED_RUNNER_TOOLS },
         useMiaPrefixEnvs: { type: 'boolean' },
         projectStructure: { type: 'string' },
+        strategy: strategySchema,
       },
     },
     dashboards: {

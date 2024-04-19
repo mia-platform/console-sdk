@@ -179,7 +179,7 @@ export const dashboard = {
   required: ['id', 'label', 'url', 'type'],
 } as const
 
-const strategySchema = {
+export const strategySchema = {
   type: 'string',
   enum: [PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY],
 } as const
