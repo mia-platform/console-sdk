@@ -4081,6 +4081,25 @@ Object {
                             "type": "string",
                             "x-validation-error-id": "resourceName.patternError",
                           },
+                          "sourceMarketplaceItem": Object {
+                            "properties": Object {
+                              "itemId": Object {
+                                "type": "string",
+                              },
+                              "tenantId": Object {
+                                "type": "string",
+                              },
+                              "version": Object {
+                                "type": "string",
+                              },
+                            },
+                            "required": Array [
+                              "itemId",
+                              "version",
+                              "tenantId",
+                            ],
+                            "type": "object",
+                          },
                           "spec": Object {
                             "additionalProperties": true,
                             "type": "object",
