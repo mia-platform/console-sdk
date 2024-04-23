@@ -3,6 +3,7 @@
 ### Added
 
 - Added default strategy to template schema
+- Validate template archive url as url
 
 ## 0.19.9
 
