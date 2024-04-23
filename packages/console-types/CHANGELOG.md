@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### Edited
+### Added
 
 - Added default strategy to template schema
 
