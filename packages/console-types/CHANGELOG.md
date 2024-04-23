@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- Added default strategy to template schema
+
 ## 0.19.9
 
 ### Patch Changes

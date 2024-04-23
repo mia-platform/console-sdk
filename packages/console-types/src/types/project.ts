@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * Copyright 2024 Mia srl
  *
@@ -182,6 +183,7 @@ export const dashboard = {
 export const strategySchema = {
   type: 'string',
   enum: [PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY],
+  default: PUSH_DEPLOY_STRATEGY,
 } as const
 
 export const environment = {
