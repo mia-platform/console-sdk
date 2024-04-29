@@ -48,8 +48,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       ramda:
-        specifier: ^0.29.1
-        version: 0.29.1
+        specifier: ^0.30.0
+        version: 0.30.0
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -165,8 +165,8 @@ importers:
         specifier: ^4 || ^3
         version: 4.25.2
       ramda:
-        specifier: ^0.29.1
-        version: 0.29.1
+        specifier: ^0.30.0
+        version: 0.30.0
     devDependencies:
       '@mia-platform/eslint-config-mia':
         specifier: ^3.0.0
@@ -5500,8 +5500,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ramda@0.29.1:
-    resolution: {integrity: sha512-OfxIeWzd4xdUNxlWhgFazxsA/nl3mS4/jGZI5n00uWOoSSFRhC1b6gl6xvmzUamgmqELraWp0J/qqVlXYPDPyA==}
+  /ramda@0.30.0:
+    resolution: {integrity: sha512-13Y0iMhIQuAm/wNGBL/9HEqIfRGmNmjKnTPlKWfA9f7dnDkr8d45wQ+S7+ZLh/Pq9PdcGxkqKUEA7ySu1QSd9Q==}
     dev: false
 
   /react-is@18.2.0:

@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "ramda": "^0.29.1"
+    "ramda": "^0.30.0"
   },
   "peerDependencies": {
     "@fastify/swagger": "^8 || ^6",
