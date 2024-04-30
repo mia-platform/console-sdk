@@ -20,6 +20,7 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import { dashboard, enabledServicesSchema, strategySchema } from './project'
 import { ALLOWED_RUNNER_TOOLS } from '../constants/project'
+import url from '../commons/url'
 
 export const template = {
   type: 'object',
@@ -30,7 +31,7 @@ export const template = {
     providerId: { type: 'string' },
     name: { type: 'string' },
     description: { type: 'string' },
-    archiveUrl: { type: 'string' },
+    archiveUrl: url,
     visibility: {
       type: 'object',
       properties: {
