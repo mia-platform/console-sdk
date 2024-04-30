@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 0.19.12
+
 ### Added
 
 - Validate template archive url as url
