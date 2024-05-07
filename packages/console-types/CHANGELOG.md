@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+### Fixed
+
+- kubeContextVariables additional properties types
+
 ## 0.19.13
 
 ### Patch Changes
