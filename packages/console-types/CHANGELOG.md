@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- added kubeContextVariables field to cluster
+
 ## 0.19.12
 
 ### Added

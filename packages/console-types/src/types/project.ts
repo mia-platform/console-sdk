@@ -158,6 +158,7 @@ export const cluster = {
       },
       required: ['name', 'clusterRoleName'],
     },
+    kubeContextVariables: { type: 'object' },
   },
 } as const
 
