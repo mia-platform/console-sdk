@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## Unreleased
+## 0.19.14
+
+### Patch Changes
+
+- bump version
 
 ### Fixed
 
