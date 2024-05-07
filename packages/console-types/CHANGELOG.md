@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.13
+
+### Patch Changes
+
+- bump version
+
 ### Added
 
 - added kubeContextVariables field to cluster
