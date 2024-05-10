@@ -85,7 +85,7 @@ importers:
   packages/console-sdk-vite-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.0.35
+        specifier: 0.1.1
         version: link:../console-sdk-microfrontend
       vite-plugin-qiankun:
         specifier: 1.0.15
@@ -122,7 +122,7 @@ importers:
   packages/console-sdk-webpack-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.0.35
+        specifier: 0.1.1
         version: link:../console-sdk-microfrontend
       vite-plugin-qiankun:
         specifier: 1.0.15
