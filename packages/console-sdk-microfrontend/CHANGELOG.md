@@ -1,5 +1,9 @@
 # @mia-platform/console-sdk-microfrontend
 
+### Added
+
+- Exposed `writeConfig` from Console SDK
+
 ## 0.2.0
 
 ### Minor Changes

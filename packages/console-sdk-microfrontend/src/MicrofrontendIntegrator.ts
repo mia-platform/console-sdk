@@ -18,7 +18,7 @@
 
 import { Subject } from 'rxjs'
 
-import { ContextsType, Events, IConsoleProps, IContexts, ISDKConsoleObservable } from './types'
+import { ContextsType, Events, IConsoleProps, IContexts, ISDKConsoleObservable, IWriteConfig } from './types'
 import { getConsoleProps } from './adaptConsoleProps'
 
 export type IMicrofrontendIntegrator = {
@@ -35,6 +35,7 @@ export default class MicrofrontendIntegrator implements IMicrofrontendIntegrator
   private container: HTMLElement
   private contexts: IContexts
   private configObservable: ISDKConsoleObservable
+  private consoleWriteConfig: IWriteConfig
 
   constructor(mountingProps: IConsoleProps) {
     const { name, console, container } = getConsoleProps(mountingProps)
@@ -44,6 +45,7 @@ export default class MicrofrontendIntegrator implements IMicrofrontendIntegrator
     this.container = container
     this.contexts = contexts
     this.configObservable = console.configObservables
+    this.consoleWriteConfig = console.writeConfig
 
     this.events = new Subject()
     this.events.subscribe(eventBus)
@@ -78,5 +80,9 @@ export default class MicrofrontendIntegrator implements IMicrofrontendIntegrator
 
   sendEvent(event: Events): void {
     this.events.next(event)
+  }
+
+  writeConfig(payload: unknown): void {
+    this.consoleWriteConfig(payload)
   }
 }

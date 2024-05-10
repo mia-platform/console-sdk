@@ -27,6 +27,7 @@ const htmlElement: HTMLElement = window.document.createElement('div')
 htmlElement.id = '__quiankun__'
 
 const eventBus = jest.fn()
+const writeConfig = jest.fn()
 const quiankunProps = { name: 'testMicrofrontend', container: htmlElement }
 const consoleProps: IConsoleProps = {
   ...quiankunProps,
@@ -53,7 +54,7 @@ const consoleProps: IConsoleProps = {
       repository: {},
     })),
 
-    writeConfig: jest.fn(),
+    writeConfig,
 
     _version: '0.0.0',
     _signals: { mount: jest.fn() },
@@ -61,7 +62,7 @@ const consoleProps: IConsoleProps = {
 }
 
 describe('ConsoleSDK', () => {
-  it('should get the contai', () => {
+  it('should get the container', () => {
     const microfrontendIntegrator = new ConsoleSDK(consoleProps)
     expect(microfrontendIntegrator.getMicrofrontendNode()).toMatchSnapshot()
   })
@@ -109,5 +110,15 @@ describe('ConsoleSDK', () => {
     expect(configObservable).toHaveProperty('_version')
     expect(configObservable).toHaveProperty('forceConfigUpdateChecksum')
     expect(configObservable).toHaveProperty('microfrontendPluginConfig')
+  })
+
+  it('should write config to Console', () => {
+    const microfrontendIntegrator = new ConsoleSDK(consoleProps)
+
+    const nextConfig = { foo: 'bar' }
+    microfrontendIntegrator.writeConfig(nextConfig)
+
+    expect(writeConfig).toHaveBeenCalledTimes(1)
+    expect(writeConfig).toHaveBeenCalledWith(nextConfig)
   })
 })
