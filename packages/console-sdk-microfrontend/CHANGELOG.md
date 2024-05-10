@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Fixed typo in exported type `IMicrofrontendIntegrator`
+- **BREAKING**: fixed typo in exported type `IMicrofrontendIntegrator`
 
 ## 0.0.35
 
