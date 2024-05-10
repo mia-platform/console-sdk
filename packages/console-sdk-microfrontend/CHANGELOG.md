@@ -1,5 +1,7 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.2
+
 ### Fixed
 
 - Added `writeConfig` to `IMicrofrontendIntegrator` type
