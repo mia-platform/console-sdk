@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ConsoleSDK should get the contai 1`] = `
+exports[`ConsoleSDK should get the container 1`] = `
 <div
   id="__quiankun__"
 />
