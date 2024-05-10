@@ -17,10 +17,10 @@
  */
 
 import { JSDOM } from 'jsdom'
+import { Observable } from 'rxjs'
 
 import { ContextsType, Events, EventsTypes, IConsoleProps } from './types'
 import ConsoleSDK from './MicrofrontendIntegrator'
-import { Observable } from 'rxjs'
 
 const { window } = new JSDOM(`<body></body>`)
 const htmlElement: HTMLElement = window.document.createElement('div')
