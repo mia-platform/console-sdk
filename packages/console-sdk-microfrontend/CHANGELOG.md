@@ -1,5 +1,11 @@
 # @mia-platform/console-sdk-microfrontend
 
+## Unreleased
+
+### Fixed
+
+- **BREAKING**: fixed typo in exported type `IMicrofrontendIntegrator`
+
 ## 0.0.35
 
 ### Patch Changes
