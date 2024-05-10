@@ -27,6 +27,7 @@ export type IMicrofrontendIntegrator = {
   getMicrofrontendNode(): HTMLElement
   getConsoleConfigObservable(): ISDKConsoleObservable
   sendEvent(event: Events): void
+  writeConfig: IWriteConfig
 }
 export default class MicrofrontendIntegrator implements IMicrofrontendIntegrator {
   private events: Subject<Events>
