@@ -17,6 +17,7 @@
  */
 
 import { JSDOM } from 'jsdom'
+import { Observable } from 'rxjs'
 
 import { ContextsType, Events, EventsTypes, IConsoleProps } from './types'
 import ConsoleSDK from './MicrofrontendIntegrator'
@@ -33,24 +34,24 @@ const consoleProps: IConsoleProps = {
   featureTogglesProxyContext: { updateLocalCache: jest.fn() },
   hotkeysContext: { anyProp: 'anyValue' },
   resourceAPI: {
-    endpoints: {},
-    collections: {},
-    configMaps: {},
-    services: {},
-    unsecretedVariables: [],
+    endpoints: new Observable((subscriber) => subscriber.next({})),
+    collections: new Observable((subscriber) => subscriber.next({})),
+    configMaps: new Observable((subscriber) => subscriber.next({})),
+    services: new Observable((subscriber) => subscriber.next({})),
+    unsecretedVariables: new Observable((subscriber) => subscriber.next([])),
 
-    forceConfigUpdateChecksum: '',
-    microfrontendPluginConfig: {},
+    forceConfigUpdateChecksum: new Observable((subscriber) => subscriber.next('')),
+    microfrontendPluginConfig: new Observable((subscriber) => subscriber.next({})),
 
-    selectedEnvironment: 'testEnvId',
-    selectedProject: {
+    selectedEnvironment: new Observable((subscriber) => subscriber.next('testEnvId')),
+    selectedProject: new Observable((subscriber) => subscriber.next({
       projectId: 'testProjectId',
       name: 'testProjectName',
       _id: 'projectOid',
       environments: [],
       configurationGitPath: '',
       repository: {},
-    },
+    })),
 
     writeConfig: jest.fn(),
 

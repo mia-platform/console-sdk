@@ -1,5 +1,9 @@
 # @mia-platform/console-sdk-microfrontend
 
+### Fixed
+
+- **BREAKING**: fixed `ISDKConsoleObservable` type
+
 ## 0.1.1
 
 ### Patch Changes
@@ -14,8 +18,6 @@
 ### Minor Changes
 
 - version bump
-
-## Unreleased
 
 ### Fixed
 
