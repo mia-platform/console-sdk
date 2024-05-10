@@ -21,14 +21,14 @@ import { Subject } from 'rxjs'
 import { ContextsType, Events, IConsoleProps, IContexts, ISDKConsoleObservable } from './types'
 import { getConsoleProps } from './adaptConsoleProps'
 
-export type IMicrofronendIntegrator = {
+export type IMicrofrontendIntegrator = {
   getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined
   getContainerId(): string
   getMicrofrontendNode(): HTMLElement
   getConsoleConfigObservable(): ISDKConsoleObservable
   sendEvent(event: Events): void
 }
-export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
+export default class MicrofrontendIntegrator implements IMicrofrontendIntegrator {
   private events: Subject<Events>
 
   private name: string
