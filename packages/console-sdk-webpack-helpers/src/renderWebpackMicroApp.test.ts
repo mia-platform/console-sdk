@@ -18,6 +18,7 @@
 
 import { ConsoleSDK, IConsoleProps } from '@mia-platform/console-sdk-microfrontend'
 import { JSDOM } from 'jsdom'
+import { Observable } from 'rxjs'
 
 import renderWebpackMicroApp, { IViteParams, decorateLifecycleFunction, getSDK } from './renderWebpackMicroApp'
 
@@ -35,24 +36,24 @@ const consoleProps: IConsoleProps = {
   featureTogglesProxyContext: {},
   hotkeysContext: {},
   resourceAPI: {
-    endpoints: {},
-    collections: {},
-    configMaps: {},
-    services: {},
-    unsecretedVariables: [],
+    endpoints: new Observable((subscriber) => subscriber.next({})),
+    collections: new Observable((subscriber) => subscriber.next({})),
+    configMaps: new Observable((subscriber) => subscriber.next({})),
+    services: new Observable((subscriber) => subscriber.next({})),
+    unsecretedVariables: new Observable((subscriber) => subscriber.next([])),
 
-    forceConfigUpdateChecksum: '',
-    microfrontendPluginConfig: {},
+    forceConfigUpdateChecksum: new Observable((subscriber) => subscriber.next('')),
+    microfrontendPluginConfig: new Observable((subscriber) => subscriber.next({})),
 
-    selectedEnvironment: 'test',
-    selectedProject: {
+    selectedEnvironment: new Observable((subscriber) => subscriber.next('testEnvId')),
+    selectedProject: new Observable((subscriber) => subscriber.next({
       name: '',
       _id: '',
       environments: [],
       configurationGitPath: '',
       projectId: '',
       repository: {},
-    },
+    })),
 
     writeConfig: jest.fn(),
 
