@@ -90,7 +90,7 @@ import {
   services,
   swaggerPath,
   url,
-  environment,
+  environment as serviceEnvironmentVariables,
 } from './types/services'
 import { decorators, postDecorator, preDecorator } from './types/decorators'
 import { endpoint, endpoints, path } from './types/endpoints'
@@ -139,7 +139,6 @@ export {
   dockerImage,
   endpoint,
   endpoints,
-  environment as serviceEnvironmentVariables,
   listeners,
   environment,
   externalService,
@@ -157,6 +156,7 @@ export {
   replicasJsonSchema,
   schedule,
   service,
+  serviceEnvironmentVariables,
   serviceName,
   services,
   serviceSecret,
