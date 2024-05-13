@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.16
+
+### Patch Changes
+
+- bump version
+
 ### Added
 
 - export `environment` schema from services as `serviceEnvironmentVariables`
