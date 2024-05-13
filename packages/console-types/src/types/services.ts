@@ -109,7 +109,7 @@ const secretEnv = {
 } as const
 export type EnvironmentVariablesFromSecret = FromSchema<typeof secretEnv>
 
-const environment = {
+export const environmentVariables = {
   type: 'array',
   items: {
     type: 'object',
@@ -457,7 +457,7 @@ export const container = {
     repoUrl: url,
     dockerImage,
     imagePullPolicy: { type: 'string' },
-    environment,
+    environment: environmentVariables,
     annotations: {
       type: 'array',
       items: kubernetesDefinition,

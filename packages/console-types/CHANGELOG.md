@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Added
+
+- export `environment` schema from services as `serviceEnvironmentVariables`
+
 ## 0.19.15
 
 ### Patch Changes
