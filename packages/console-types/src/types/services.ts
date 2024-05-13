@@ -109,7 +109,7 @@ const secretEnv = {
 } as const
 export type EnvironmentVariablesFromSecret = FromSchema<typeof secretEnv>
 
-const environment = {
+export const environment = {
   type: 'array',
   items: {
     type: 'object',
