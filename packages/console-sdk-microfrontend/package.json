@@ -13,7 +13,7 @@
     "unit": "jest"
   },
   "dependencies": {
-    "@mia-platform/console-types": "0.19.15",
+    "@mia-platform/console-types": "0.19.16",
     "eslint": "^8.57.0",
     "ramda": "^0.29.1",
     "rxjs": "^7.8.1"
