@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.18
+
+### Patch Changes
+
+- fix: bump install for version
+
 ## 0.19.17
 
 ### Patch Changes
