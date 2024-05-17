@@ -810,6 +810,8 @@ export const services = {
   default: {},
 } as const
 
+export type LabelAnnotation = FromSchema<typeof kubernetesDefinition>
+
 // This type is required since Services cannot parse if/then/else since it is too deep
 export type Services = Record<string,
 CustomService |
