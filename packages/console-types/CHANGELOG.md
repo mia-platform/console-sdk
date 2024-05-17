@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.17
+
+### Patch Changes
+
+- d2d4d30: feat: expose LabelAnnotation and EnvironmentVariablesTypes
+
 ## 0.19.16
 
 ### Patch Changes
