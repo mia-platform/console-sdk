@@ -17,6 +17,6 @@
   "variableKey.patternError": "Can contain uppercase letters and numbers",
   "digitOrInterpolation.patternError": "Must be an integer. Can be interpolated",
   "containerRegistryHostname.patternError": "Must be a valid hostname",
-  "project.configuation.branchName": "Must start and end with a letter or a number, can contain the symbols \".\", \"_\", \"-\", \"/\"",
-  "project.configuation.tagName": "Deve iniziare con una lettera, può contenere i simboli \".\", \"_\", \"-\""
+  "project.configuration.branchName": "Must start and end with a letter or a number, can contain the symbols \".\", \"_\", \"-\", \"/\"",
+  "project.configuration.tagName": "Deve iniziare con una lettera, può contenere i simboli \".\", \"_\", \"-\""
 }

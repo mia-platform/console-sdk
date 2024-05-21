@@ -545,12 +545,12 @@ export type IProject = FromSchema<typeof project>
 export const branchName = {
   type: 'string',
   pattern: '^[^.](?!.*\\.\\.)(?!.*\\.lock$)(?!.*\\.$)[\\w\\/.-]+$',
-  [VALIDATION_ERROR_ID]: 'project.configuation.branchName',
+  [VALIDATION_ERROR_ID]: 'project.configuration.branchName',
 } as const
 export type BranchName = FromSchema<typeof branchName>
 
 export const tagName = {
   type: 'string',
   pattern: '^[\\w.}{\\-]+$',
-  [VALIDATION_ERROR_ID]: 'project.configuation.tagName',
+  [VALIDATION_ERROR_ID]: 'project.configuration.tagName',
 }
