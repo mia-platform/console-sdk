@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.19
+
+### Patch Changes
+
+- f68b7f2: fix([IDP-365](https://makeitapp.atlassian.net/browse/IDP-365)): validation error ids for branch name and tag name"
+
 ## 0.19.18
 
 ### Patch Changes
