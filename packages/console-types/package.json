@@ -19,7 +19,7 @@
   "license": "ISC",
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
-    "@types/ramda": "^0.29.11",
+    "@types/ramda": "^0.30.0",
     "@types/tap": "^15.0.11",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.1.0",
@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "ramda": "^0.29.1"
+    "ramda": "^0.30.0"
   },
   "peerDependencies": {
     "@fastify/swagger": "^8 || ^6",
