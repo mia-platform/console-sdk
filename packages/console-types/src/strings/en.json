@@ -18,5 +18,5 @@
   "digitOrInterpolation.patternError": "Must be an integer. Can be interpolated",
   "containerRegistryHostname.patternError": "Must be a valid hostname",
   "project.configuration.branchName": "Must start and end with a letter or a number, can contain the symbols \".\", \"_\", \"-\", \"/\"",
-  "project.configuration.tagName": "Deve iniziare con una lettera, può contenere i simboli \".\", \"_\", \"-\""
+  "project.configuration.tagName": "Must start with a letter, can contain the symbols \".\", \"_\", \"-\""
 }
