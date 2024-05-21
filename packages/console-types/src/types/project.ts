@@ -22,6 +22,7 @@ import { FromSchema } from 'json-schema-to-ts'
 import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from '../constants/dashboard'
 import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../constants/project'
 import { providerCommonProperties } from './provider'
+import { VALIDATION_ERROR_ID } from '../strings'
 
 export const enabledServicesSchema = {
   type: 'object',
@@ -544,10 +545,12 @@ export type IProject = FromSchema<typeof project>
 export const branchName = {
   type: 'string',
   pattern: '^[^.](?!.*\\.\\.)(?!.*\\.lock$)(?!.*\\.$)[\\w\\/.-]+$',
+  [VALIDATION_ERROR_ID]: 'project.configuation.branchName',
 } as const
 export type BranchName = FromSchema<typeof branchName>
 
 export const tagName = {
   type: 'string',
   pattern: '^[\\w.}{\\-]+$',
+  [VALIDATION_ERROR_ID]: 'project.configuation.tagName',
 }

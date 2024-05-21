@@ -18,8 +18,8 @@ See the specific monorepo readme to using this library
 
 ## Monorepos
 
-**Console SDK**: An abstract interface used within helper repositories. [Read more](./packages/console-sdk-microfrontend)                     
-**Vite helpers**: Used to configure the microfrontend with vite. [Read more](./packages/console-sdk-vite-helpers)    
+**Console SDK**: An abstract interface used within helper repositories. [Read more](./packages/console-sdk-microfrontend)
+**Vite helpers**: Used to configure the microfrontend with vite. [Read more](./packages/console-sdk-vite-helpers)
 **Webpack helpers**: Used to configure the microfrontend with webpack. [Read more](./packages/console-sdk-webpack-helpers)
 
 ## Install

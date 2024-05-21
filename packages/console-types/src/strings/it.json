@@ -16,5 +16,7 @@
   "clientType.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\" e non può iniziare con un numero",
   "variableKey.patternError": "Può contenere lettere maiuscole e numeri",
   "digitOrInterpolation.patternError": "Deve essere un numero intero. Può essere interpolato",
-  "containerRegistryHostname.patternError": "Deve essere un hostname valido"
+  "containerRegistryHostname.patternError": "Deve essere un hostname valido",
+  "project.configuation.branchName": "Deve iniziare e finire con una lettera o un numero, può contenere i simboli \".\", \"_\", \"-\", \"/\"",
+  "project.configuation.tagName": "Deve iniziare con una lettera, può contenere i simboli \".\", \"_\", \"-\""
 }
