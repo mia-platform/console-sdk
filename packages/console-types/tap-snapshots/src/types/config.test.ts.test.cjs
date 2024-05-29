@@ -4909,6 +4909,40 @@ Object {
                       },
                       "type": "object",
                     },
+                    "monitoring": Object {
+                      "additionalProperties": false,
+                      "properties": Object {
+                        "deleted": Object {
+                          "type": "boolean",
+                        },
+                        "endpoints": Object {
+                          "items": Object {
+                            "additionalProperties": false,
+                            "properties": Object {
+                              "interval": Object {
+                                "pattern": "^(\\\\d)+[s]$",
+                                "type": "string",
+                              },
+                              "path": Object {
+                                "pattern": "^\\\\/(([\\\\w-])\\\\/?)*$",
+                                "type": "string",
+                              },
+                              "port": Object {
+                                "type": "string",
+                              },
+                            },
+                            "required": Array [
+                              "interval",
+                              "port",
+                              "path",
+                            ],
+                            "type": "object",
+                          },
+                          "type": "array",
+                        },
+                      },
+                      "type": "object",
+                    },
                     "name": Object {
                       "minLength": 1,
                       "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
