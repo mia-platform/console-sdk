@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.20
+
+### Patch Changes
+
+- 4d47d63: additional containers now support monitoring properties
+
 ## 0.19.19
 
 ### Patch Changes
