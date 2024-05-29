@@ -32,6 +32,9 @@ tsconfig.tsbuildinfo
 .idea
 .history
 
+#asdf
+.tool-versions
+
 # yarn
 .pnp.*
 .yarn/*

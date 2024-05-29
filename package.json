@@ -21,15 +21,13 @@
     "vh": "pnpm --filter @mia-platform/console-sdk-vite-helpers",
     "wh": "pnpm --filter @mia-platform/console-sdk-webpack-helpers",
     "types": "pnpm --filter @mia-platform/console-types",
-
+    "client": "pnpm --filter @mia-platform/console-client",
     "postinstall": "pnpm types build && pnpm sdk build && pnpm vh build && pnpm wh build",
-
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
     "lint:fix": "pnpm -r lint --fix",
     "lint": "pnpm -r lint",
-
     "addlicense": "addlicense -c 'Mia srl' -s packages/*/src/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s packages/*/src/**/*.ts",
     "changeset": "changeset"
@@ -38,5 +36,6 @@
     "Daniele Cinà <daniele.cina@mia-platform.eu>",
     "Davide Bianchi <davide.bianchi@mia-platform.eu>",
     "Federico Maggi <federico.maggi@mia-platform.eu>"
-  ]
+  ],
+  "packageManager": "pnpm@9.1.3+sha512.7c2ea089e1a6af306409c4fc8c4f0897bdac32b772016196c469d9428f1fe2d5a21daf8ad6512762654ac645b5d9136bb210ec9a00afa8dbc4677843ba362ecd"
 }

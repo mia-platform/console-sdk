@@ -1,0 +1,35 @@
+{
+  "name": "@mia-platform/console-client",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index",
+  "scripts": {
+    "build": "rimraf build/ && tsc",
+    "lint": "eslint .",
+    "test": "tap --ts --test-ignore=\"(build/.*|src/types/validate-utils.test.ts)\"",
+    "test:snapshot": "TAP_SNAPSHOT=1 npm run test",
+    "prepublish": "tsc",
+    "coverage": "npm run test",
+    "postcoverage": "tap --coverage-report=lcov --no-browser",
+    "update-changelog": "node ./scripts/update-changelog.js ${npm_package_version}",
+    "version": "npm run update-changelog && git add CHANGELOG.md"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@mia-platform/console-types": "^0.19.19",
+    "@mia-platform/eslint-config-mia": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.2"
+  }
+}
