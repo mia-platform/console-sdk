@@ -527,6 +527,7 @@ export const container = {
     createdAt: { type: 'string' },
     owners: ownersSchema,
     containerPorts,
+    monitoring,
     execPreStop: {
       type: 'array',
       items: { type: 'string' },
@@ -551,7 +552,6 @@ export const customService = {
     dockerImagePullSecrets,
     replicas: serviceReplicas,
     productionReplicas: replicasJsonSchema,
-    monitoring,
     logParser: { type: 'string' },
     additionalContainers: {
       type: 'array',

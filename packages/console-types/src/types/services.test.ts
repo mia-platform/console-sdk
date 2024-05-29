@@ -153,6 +153,49 @@ t.test('services', t => {
     t.end()
   })
 
+  t.test('monitoring field', t => {
+    t.test('available for main container', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        replicas: 3,
+        dockerImage: 'helloworld:1.0.0',
+        monitoring: {
+          endpoints: [
+            { path: '/metrics', port: 'http', interval: '50s' },
+          ],
+        },
+      }
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('available for additional container', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        replicas: 3,
+        dockerImage: 'helloworld:1.0.0',
+        additionalContainers: [
+          {
+            name: 'some-sidecar',
+            dockerImage: 'helloworld:1.0.0',
+            monitoring: {
+              endpoints: [
+                { path: '/metrics', port: 'http', interval: '50s' },
+              ],
+            },
+          },
+        ],
+      }
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.end()
+  })
 
   t.test('custom resource', t => {
     const service: CustomResource = {
