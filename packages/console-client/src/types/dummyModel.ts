@@ -1,3 +1,3 @@
-export interface DummyModel {
+export type DummyModel = {
   id: string
 }

@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
+
 import { DummyModel } from '../types/dummyModel'
 
-export interface IConsoleClient {
-  listDummy() : Promise<DummyModel[]> 
+export type IConsoleClient = {
+  listDummy(): Promise<DummyModel[]>
 }
 
 export class ConsoleClient implements IConsoleClient {
@@ -13,7 +14,7 @@ export class ConsoleClient implements IConsoleClient {
   }
 
   async listDummy(): Promise<DummyModel[]> {
-    const url = `${this.baseUrl}/users`;
+    const url = `${this.baseUrl}/users`
 
     try {
       const response = await this.get(url)
@@ -23,20 +24,19 @@ export class ConsoleClient implements IConsoleClient {
     }
   }
 
-  private async get (url: string) {
-    return await axios.get(url)
+  private async get(url: string): Promise<AxiosResponse> {
+    return axios.get(url)
   }
 
-  private async post (url: string) {
-    return await axios.post(url)
+  private async post(url: string): Promise<AxiosResponse> {
+    return axios.post(url)
   }
 
-  private async delete (url: string) {
-    return await axios.delete(url)
+  private async delete(url: string): Promise<AxiosResponse> {
+    return axios.delete(url)
   }
 
-  private async patch (url: string) {
-    return await axios.patch(url)
+  private async patch(url: string): Promise<AxiosResponse> {
+    return axios.patch(url)
   }
 }
-  
