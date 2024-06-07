@@ -11,7 +11,6 @@
   "cronjobSchedule.patternError": "Must be a sequence of 5 elements, separated by whitespaces, or an interpolated variable",
   "collectionName.patternError": "Can contain alphanumeric characters and the symbols \"_\" and \"-\"",
   "url.patternError": "Must be a valid url",
-  "sshUrl.patternError": "Must be a valid ssh-compatible url",
   "apiKey.patternError": "Cannot contain white spaces",
   "clientType.patternError": "Can contain alphanumeric characters and the symbol \"_\", and cannot start with a number",
   "variableKey.patternError": "Can contain uppercase letters and numbers",
