@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.21
+
+### Patch Changes
+
+- 327eb42: remove ssh url regex
+
 ## 0.19.20
 
 ### Patch Changes
