@@ -4542,9 +4542,7 @@ Object {
                   "x-validation-error-id": "url.patternError",
                 },
                 "sshUrl": Object {
-                  "pattern": "^((git|ssh|http(s)?)|([\\\\w-]*@[\\\\w.=\\\\-]+))(:(\\\\/\\\\/)?)([\\\\w\\\\.@:\\\\/\\\\-~=]+)(.git)?(\\\\/)?$",
                   "type": "string",
-                  "x-validation-error-id": "sshUrl.patternError",
                 },
                 "swaggerPath": Object {
                   "pattern": "^$|^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$",
@@ -5149,9 +5147,7 @@ Object {
                       "type": "object",
                     },
                     "sshUrl": Object {
-                      "pattern": "^((git|ssh|http(s)?)|([\\\\w-]*@[\\\\w.=\\\\-]+))(:(\\\\/\\\\/)?)([\\\\w\\\\.@:\\\\/\\\\-~=]+)(.git)?(\\\\/)?$",
                       "type": "string",
-                      "x-validation-error-id": "sshUrl.patternError",
                     },
                     "swaggerPath": Object {
                       "pattern": "^$|^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$",
@@ -5790,9 +5786,7 @@ Object {
                 "type": "object",
               },
               "sshUrl": Object {
-                "pattern": "^((git|ssh|http(s)?)|([\\\\w-]*@[\\\\w.=\\\\-]+))(:(\\\\/\\\\/)?)([\\\\w\\\\.@:\\\\/\\\\-~=]+)(.git)?(\\\\/)?$",
                 "type": "string",
-                "x-validation-error-id": "sshUrl.patternError",
               },
               "swaggerPath": Object {
                 "pattern": "^$|^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$",

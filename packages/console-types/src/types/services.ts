@@ -223,8 +223,6 @@ export const replicasJsonSchema = {
 
 export const gitSshUrl = {
   type: 'string',
-  pattern: '^((git|ssh|http(s)?)|([\\w-]*@[\\w.=\\-]+))(:(\\/\\/)?)([\\w\\.@:\\/\\-~=]+)(.git)?(\\/)?$',
-  [VALIDATION_ERROR_ID]: 'sshUrl.patternError',
 } as const
 
 export const configMapName = {
