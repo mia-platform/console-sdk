@@ -1,11 +1,5 @@
 # CHANGELOG
 
-## Unreleased
-
-### Fixed
-
-- [DTFBRC-469](https://makeitapp.atlassian.net/browse/DTFBRC-469): added MongoDB View default routes
-
 ## 0.19.21
 
 ### Patch Changes
