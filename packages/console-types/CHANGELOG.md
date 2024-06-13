@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.23
+
+### Patch Changes
+
+- 10a75a0: fix: exported MongoDB view default routes
+
 ## 0.19.22
 
 ### Patch Changes
