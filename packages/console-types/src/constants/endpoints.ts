@@ -88,6 +88,36 @@ export type CrudRoute = {
   allowUnknownResponseContentType?: boolean
 }
 
+export const MONGODB_VIEW_ROUTES: CrudRoute[] = [{
+  path: '/',
+  verb: METHOD_GET,
+}, {
+  path: '/',
+  verb: 'POST',
+}, {
+  path: '/export',
+  verb: METHOD_GET,
+  allowUnknownResponseContentType: true,
+}, {
+  path: '/:id',
+  verb: METHOD_GET,
+}, {
+  path: '/:id',
+  verb: 'DELETE',
+}, {
+  path: '/:id',
+  verb: 'PATCH',
+}, {
+  path: '/count',
+  verb: METHOD_GET,
+}, {
+  path: '/lookup/:id',
+  verb: METHOD_GET,
+}, {
+  path: '/schema',
+  verb: METHOD_GET,
+}]
+
 export const CRUD_ROUTES: CrudRoute[] = [{
   path: '/',
   verb: METHOD_GET,
