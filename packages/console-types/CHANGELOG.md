@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.22
+
+### Patch Changes
+
+- 9f2263c: fix: added MongoDB View default routes
+
 ## 0.19.21
 
 ### Patch Changes
