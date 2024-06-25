@@ -128,7 +128,7 @@ const configMapEnv = {
     configMapFileName,
   },
   additionalProperties: false,
-  required: ['name', 'secretName', 'secretKey', 'valueType'],
+  required: ['name', 'valueType', 'configMapName', 'configMapFileName'],
 } as const
 export type EnvironmentVariablesFromConfigMap = FromSchema<typeof configMapEnv>
 
