@@ -41,7 +41,7 @@ import {
   url,
 } from './services'
 import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
-import { ServiceTypes } from '../constants/services'
+import { EnvironmentVariablesTypes, ServiceTypes } from '../constants/services'
 import ajvConsoleErrors from '../plugins/ajv-console-errors'
 import { tagName } from './project'
 
@@ -57,6 +57,14 @@ t.test('services', t => {
       advanced: false,
       replicas: 3,
       dockerImage: 'helloworld:1.0.0',
+      environment: [
+        {
+          name: 'some-env',
+          valueType: EnvironmentVariablesTypes.FROM_CONFIGMAP,
+          configMapName: 'some-configmap',
+          configMapFileName: 'some-file',
+        },
+      ],
     }
     t.ok(validate(service), validationMessage(validate.errors))
     t.end()

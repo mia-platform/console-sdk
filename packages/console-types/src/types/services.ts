@@ -72,18 +72,34 @@ export const serviceSecretKey = {
   [VALIDATION_ERROR_ID]: 'serviceSecretKey.patternError',
 } as const
 
+export const configMapName = {
+  type: 'string',
+  pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$',
+  [VALIDATION_ERROR_ID]: 'resourceName.patternError',
+} as const
+
+export const configMapFileName = {
+  type: 'string',
+  pattern: '^[-._a-zA-Z0-9]+$',
+  [VALIDATION_ERROR_ID]: 'configMapFileName.patternError',
+} as const
+
+const envCommonProps = {
+  name: {
+    type: 'string',
+    minLength: 1,
+  },
+  readOnly: { type: 'boolean' },
+  managedBy: { type: 'string' },
+  description,
+} as const
+
 const plainEnv = {
   type: 'object',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 1,
-    },
-    value: { type: 'string' },
+    ...envCommonProps,
     valueType: { type: 'string', const: EnvironmentVariablesTypes.PLAIN_TEXT },
-    readOnly: { type: 'boolean' },
-    managedBy: { type: 'string' },
-    description,
+    value: { type: 'string' },
   },
   additionalProperties: false,
   required: ['name', 'value', 'valueType'],
@@ -93,21 +109,28 @@ export type EnvironmentVariablesPlain = FromSchema<typeof plainEnv>
 const secretEnv = {
   type: 'object',
   properties: {
-    name: {
-      type: 'string',
-      minLength: 1,
-    },
-    readOnly: { type: 'boolean' },
-    managedBy: { type: 'string' },
+    ...envCommonProps,
+    valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_SECRET },
     secretName: serviceSecretName,
     secretKey: serviceSecretKey,
-    valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_SECRET },
-    description,
   },
   additionalProperties: false,
   required: ['name', 'secretName', 'secretKey', 'valueType'],
 } as const
 export type EnvironmentVariablesFromSecret = FromSchema<typeof secretEnv>
+
+const configMapEnv = {
+  type: 'object',
+  properties: {
+    ...envCommonProps,
+    valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_CONFIGMAP },
+    configMapName,
+    configMapFileName,
+  },
+  additionalProperties: false,
+  required: ['name', 'valueType', 'configMapName', 'configMapFileName'],
+} as const
+export type EnvironmentVariablesFromConfigMap = FromSchema<typeof configMapEnv>
 
 export const environment = {
   type: 'array',
@@ -118,7 +141,11 @@ export const environment = {
     else: {
       if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_SECRET } } },
       then: secretEnv,
-      else: false,
+      else: {
+        if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_CONFIGMAP } } },
+        then: configMapEnv,
+        else: false,
+      },
     },
   },
 } as const
@@ -223,18 +250,6 @@ export const replicasJsonSchema = {
 
 export const gitSshUrl = {
   type: 'string',
-} as const
-
-export const configMapName = {
-  type: 'string',
-  pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$',
-  [VALIDATION_ERROR_ID]: 'resourceName.patternError',
-} as const
-
-export const configMapFileName = {
-  type: 'string',
-  pattern: '^[-._a-zA-Z0-9]+$',
-  [VALIDATION_ERROR_ID]: 'configMapFileName.patternError',
 } as const
 
 export const configMap = {
