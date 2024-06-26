@@ -1,6 +1,6 @@
 /* eslint-disable lines-around-comment */
 /* eslint-disable valid-jsdoc */
-import axiosClient, { AxiosClientRequestConfig, AxiosClientResponse } from '../customAxios'
+import axiosClient, { AxiosClientRequestConfig, AxiosClientResponse } from '..'
 import { CustomAxiosHandler } from './customAxiosHandler'
 import { Middleware } from './middleware'
 

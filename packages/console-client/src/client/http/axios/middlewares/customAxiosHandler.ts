@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
 /* eslint-disable lines-around-comment */
-import { AxiosClientRequestConfig, AxiosClientResponse } from '../customAxios'
+import { AxiosClientRequestConfig, AxiosClientResponse } from '..'
+import { InvalidArgumentError } from '../errors'
 import type { Middleware } from './middleware'
 
 /**
@@ -16,10 +16,15 @@ export class CustomAxiosHandler implements Middleware {
    * The next middleware in the middleware chain
    */
   next: Middleware | undefined
+  private customAxios: (url: string, requestConfig: AxiosClientRequestConfig) => Promise<AxiosClientResponse>
 
   constructor(
-    private customAxios: (url: string, requestConfig: AxiosClientRequestConfig) => Promise<AxiosClientResponse>
-  ) {}
+    customAxios: (url: string, requestConfig: AxiosClientRequestConfig) => Promise<AxiosClientResponse>
+  ) {
+    InvalidArgumentError.AssertNotFalsy('customAxios', customAxios)
+
+    this.customAxios = customAxios
+  }
 
   /**
    * @public

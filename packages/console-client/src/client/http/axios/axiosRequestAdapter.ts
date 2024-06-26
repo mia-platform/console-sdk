@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable max-len */
 import { AuthenticationProvider, BackingStoreFactory, ErrorMappings, Parsable, ParsableFactory, ParseNodeFactory, ParseNodeFactoryRegistry, PrimitiveTypesForDeserialization, PrimitiveTypesForDeserializationType, RequestAdapter, RequestInformation, SerializationWriterFactory, SerializationWriterFactoryRegistry } from '@microsoft/kiota-abstractions'
 
-import { AxiosClientRequestConfig, AxiosClientResponse } from './customAxios'
+import { AxiosClientRequestConfig, AxiosClientResponse } from '.'
 import { AxiosHttpClient } from './axiosHttpClient'
-import { InvaidArgumentError } from './errors'
+import { InvalidArgumentError } from './errors'
 
 export class AxiosRequestAdapter implements RequestAdapter {
   public baseUrl = ''
@@ -22,10 +23,10 @@ export class AxiosRequestAdapter implements RequestAdapter {
     private serializationWriterFactory: SerializationWriterFactory = SerializationWriterFactoryRegistry.defaultInstance,
     private readonly httpClient: AxiosHttpClient = new AxiosHttpClient(),
   ) {
-    InvaidArgumentError.AssertNotFalsy('authenticationProvider', authenticationProvider)
-    InvaidArgumentError.AssertNotFalsy('parseNodeFactory', parseNodeFactory)
-    InvaidArgumentError.AssertNotFalsy('serializationWriterFactory', serializationWriterFactory)
-    InvaidArgumentError.AssertNotFalsy('httpClient', httpClient)
+    InvalidArgumentError.AssertNotFalsy('authenticationProvider', authenticationProvider)
+    InvalidArgumentError.AssertNotFalsy('parseNodeFactory', parseNodeFactory)
+    InvalidArgumentError.AssertNotFalsy('serializationWriterFactory', serializationWriterFactory)
+    InvalidArgumentError.AssertNotFalsy('httpClient', httpClient)
   }
 
   public getSerializationWriterFactory(): SerializationWriterFactory {
@@ -100,7 +101,7 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   private async getHttpResponseMessage<T>(requestInfo: RequestInformation, claims?: string): Promise<AxiosClientResponse<T>> {
-    InvaidArgumentError.AssertNotFalsy('requestInfo', requestInfo)
+    InvalidArgumentError.AssertNotFalsy('requestInfo', requestInfo)
 
     this.setBaseUrlForRequestInformation(requestInfo)
     const requestConfig = await this.getRequestConfigFromRequestInformation(requestInfo)
@@ -110,7 +111,7 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   private setBaseUrlForRequestInformation = (requestInfo: RequestInformation): void => {
-    InvaidArgumentError.AssertNotFalsy('baseUrl', this.baseUrl)
+    InvalidArgumentError.AssertNotFalsy('baseUrl', this.baseUrl)
 
     requestInfo.pathParameters.baseurl = this.baseUrl
   }

@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 import { RequestOption } from '@microsoft/kiota-abstractions'
 
-import { AxiosClientRequestConfig, AxiosClientResponse } from './customAxios'
+import { AxiosClientRequestConfig, AxiosClientResponse } from '.'
 import { Middleware } from './middlewares/middleware'
 import { MiddlewareFactory } from './middlewares/middlewareFactory'
 import { CustomAxiosHandler } from './middlewares/customAxiosHandler'
@@ -13,7 +14,7 @@ export class AxiosHttpClient {
    * @public
    * @constructor
    * Creates an instance of a HttpClient which contains the middlewares and fetch implementation for request execution.
-   * @param {...Middleware} middleware - The first middleware of the middleware chain or a sequence of all the Middleware handlers
+   * @param {...Middleware} middlewares - The first middleware of the middleware chain or a sequence of all the Middleware handlers
    * If middlewares param is undefined, the httpClient instance will use the default array of middlewares.
    * Set middlewares to `null` if you do not wish to use middlewares.
    * If custom fetch is undefined, the httpClient instance uses the `DefaultFetchHandler`

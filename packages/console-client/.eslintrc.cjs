@@ -1,13 +1,13 @@
 module.exports = {
   extends: ["../../.eslintrc.cjs"],
   ignorePatterns: [
-    "!**/*",
-    "./src/kiota-client/**/*.ts"
+    "src/kiota-client/*",
   ],
   overrides: [
     {
-      files: ["*.ts"],
+      files: ["src/test/**/*test.ts"],
       rules: {
+        "id-length": "off",
       },
     },
   ],

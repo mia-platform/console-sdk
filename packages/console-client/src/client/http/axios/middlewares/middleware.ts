@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
+
 import type { RequestOption } from '@microsoft/kiota-abstractions'
 
-import { AxiosClientRequestConfig, AxiosClientResponse } from '../customAxios'
+import { AxiosClientRequestConfig, AxiosClientResponse } from '..'
 
 /**
  * Defines the contract for a middleware in the request execution pipeline.
