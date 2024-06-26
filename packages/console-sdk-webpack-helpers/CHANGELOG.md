@@ -1,5 +1,114 @@
 # @mia-platform/console-sdk-webpack-helpers
 
+## 0.0.48
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.10
+
+## 0.0.47
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.9
+
+## 0.0.46
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.8
+
+## 0.0.45
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.7
+
+## 0.0.44
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.6
+
+## 0.0.43
+
+### Patch Changes
+
+- fix: bump install for version
+- Updated dependencies
+  - @mia-platform/console-sdk-microfrontend@0.2.5
+
+## 0.0.42
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.4
+
+## 0.0.41
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.2.3
+
+## 0.0.40
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.2.2
+
+## 0.0.39
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.2.1
+
+## 0.0.38
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.2.0
+
+## 0.0.37
+
+### Patch Changes
+
+- version bump
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.1.1
+
+## 0.0.36
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.1.0
+
+## 0.0.35
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.0.35
+
+## 0.0.34
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.0.34
+
+## 0.0.33
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-sdk-microfrontend@0.0.33
+
 ## 0.0.32
 
 ### Patch Changes

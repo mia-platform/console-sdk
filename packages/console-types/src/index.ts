@@ -90,6 +90,7 @@ import {
   services,
   swaggerPath,
   url,
+  environment as serviceEnvironmentVariables,
 } from './types/services'
 import { decorators, postDecorator, preDecorator } from './types/decorators'
 import { endpoint, endpoints, path } from './types/endpoints'
@@ -99,7 +100,7 @@ import { applications } from './types/applications'
 import { config } from './types/config'
 import constants from './constants'
 import { listeners } from './types/listeners'
-import { schedule } from './constants/services'
+import { schedule, EnvironmentVariablesTypes } from './constants/services'
 import { template } from './types/template'
 import { tenant } from './types/tenant'
 import transformSchemaForSwagger from './plugins/transform-schema-for-swagger'
@@ -155,6 +156,7 @@ export {
   replicasJsonSchema,
   schedule,
   service,
+  serviceEnvironmentVariables,
   serviceName,
   services,
   serviceSecret,
@@ -174,6 +176,8 @@ export {
   enabledServices,
   cluster,
   dashboard,
+
+  EnvironmentVariablesTypes,
 
   CredentialsTypes,
   credentialsM2MSchema,
@@ -213,6 +217,7 @@ export type {
   ContainerPorts,
   CoreService,
   CustomResource,
+  LabelAnnotation,
 } from './types/services'
 
 export type {

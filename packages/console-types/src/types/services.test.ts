@@ -31,7 +31,6 @@ import {
   configMapFileName,
   configMapMountPath,
   configMapName,
-  container,
   dockerImage,
   host,
   probesPath,
@@ -158,6 +157,50 @@ t.test('services', t => {
       }],
     }
     t.ok(validate(service), validationMessage(validate.errors))
+    t.end()
+  })
+
+  t.test('monitoring field', t => {
+    t.test('available for main container', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        replicas: 3,
+        dockerImage: 'helloworld:1.0.0',
+        monitoring: {
+          endpoints: [
+            { path: '/metrics', port: 'http', interval: '50s' },
+          ],
+        },
+      }
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('available for additional container', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        replicas: 3,
+        dockerImage: 'helloworld:1.0.0',
+        additionalContainers: [
+          {
+            name: 'some-sidecar',
+            dockerImage: 'helloworld:1.0.0',
+            monitoring: {
+              endpoints: [
+                { path: '/metrics', port: 'http', interval: '50s' },
+              ],
+            },
+          },
+        ],
+      }
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
     t.end()
   })
 
@@ -553,32 +596,6 @@ t.test('validate pattern', t => {
         'https://service:1/',
       ],
       assertion: 'notOk',
-    }]
-
-    createTestsRegex(t, tests, regex)
-
-    t.end()
-  })
-
-  t.test('ssh url', t => {
-    const regex = new RegExp(`^${container.properties.sshUrl.pattern}$`)
-
-    const tests: PatternTest[] = [{
-      name: 'is a valid git ssh url',
-      items: [
-        'git@github.com:user/project.git',
-        'https://github.com/user/project.git',
-        'http://github.com/user/project.git',
-        'git@192.168.101.127:user/project.git',
-        'https://192.168.101.127/user/project.git',
-        'http://192.168.101.127/user/project.git',
-        'ssh://user@host.xz:port/path/to/repo.git/',
-        'ssh://git@name=somename.domain.it:3333/miaplatform/angular-template.git',
-        'git@ssh.dev.azure.com:v3/mia-platform/Test/test-configurations',
-        'git@git.tools.mia-platform.eu:clients/mia-platform/platform-development/manual-test-projects/team-james/services/nodejs-daemon-template.git',
-        'org-mia-platform@github.com:user/repo.git',
-      ],
-      assertion: 'ok',
     }]
 
     createTestsRegex(t, tests, regex)

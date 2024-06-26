@@ -47,6 +47,11 @@ export const fullEnvironment: Required<IEnvironment> = {
       name: 'my-sa',
       clusterRoleName: 'role-name',
     },
+    kubeContextVariables: {
+      KUBE_URL: 'KUBE_URL',
+      KUBE_TOKEN: 'KUBE_TOKEN',
+      KUBE_CA_PEM: 'KUBE_CA_PEM',
+    },
   },
   dashboards: [{
     id: 'my-d1',

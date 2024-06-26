@@ -18,13 +18,19 @@
 
 import Ajv from 'ajv'
 import t from 'tap'
+import addFormats from 'ajv-formats'
 
 import { ITemplate, template } from './template'
 import { validationMessage } from './validate-utils.test'
 import { MLP } from '../constants/project'
+import ajvConsoleErrors from '../plugins/ajv-console-errors'
 
 t.test('templates validated', t => {
   const ajv = new Ajv()
+
+  ajvConsoleErrors(ajv)
+  addFormats(ajv)
+
   const validate = ajv.compile<ITemplate>(template)
 
   t.test('only required fields', t => {

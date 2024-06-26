@@ -1,5 +1,89 @@
 # CHANGELOG
 
+## 0.19.23
+
+### Patch Changes
+
+- 10a75a0: fix: exported MongoDB view default routes
+
+## 0.19.22
+
+### Patch Changes
+
+- 9f2263c: fix: added MongoDB View default routes
+
+## 0.19.21
+
+### Patch Changes
+
+- 327eb42: remove ssh url regex
+
+## 0.19.20
+
+### Patch Changes
+
+- 4d47d63: additional containers now support monitoring properties
+
+## 0.19.19
+
+### Patch Changes
+
+- f68b7f2: fix([IDP-365](https://makeitapp.atlassian.net/browse/IDP-365)): validation error ids for branch name and tag name"
+
+## 0.19.18
+
+### Patch Changes
+
+- fix: bump install for version
+
+## 0.19.17
+
+### Patch Changes
+
+- d2d4d30: feat: expose LabelAnnotation and EnvironmentVariablesTypes
+
+## 0.19.16
+
+### Patch Changes
+
+- bump version
+
+### Added
+
+- export `environment` schema from services as `serviceEnvironmentVariables`
+
+## 0.19.15
+
+### Patch Changes
+
+- version bump
+
+## 0.19.14
+
+### Patch Changes
+
+- bump version
+
+### Fixed
+
+- kubeContextVariables additional properties types
+
+## 0.19.13
+
+### Patch Changes
+
+- bump version
+
+### Added
+
+- added kubeContextVariables field to cluster
+
+## 0.19.12
+
+### Added
+
+- Validate template archive url as url
+
 ## 0.19.11
 
 ### Patch Changes

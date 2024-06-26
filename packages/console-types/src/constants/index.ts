@@ -23,6 +23,7 @@ import {
   ENDPOINT_TYPES,
   EndpointTypes,
   EndpointIFramePolicy,
+  MONGODB_VIEW_ROUTES,
   TOTAL_ITEMS_HEADER_KEY,
   Verbs,
 } from './endpoints'
@@ -118,6 +119,7 @@ const constants = {
   CRUD: EndpointTypes.CRUD,
   DIGIT_OR_INTERPOLATION_PATTERN,
   MONGODB_VIEW: EndpointTypes.MONGODB_VIEW,
+  MONGODB_VIEW_ROUTES,
   CUSTOM: EndpointTypes.CUSTOM,
   EXTERNAL: EndpointTypes.EXTERNAL,
   CROSS_PROJECTS: EndpointTypes.CROSS_PROJECTS,

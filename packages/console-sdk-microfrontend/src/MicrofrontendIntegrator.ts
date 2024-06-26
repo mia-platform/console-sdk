@@ -18,23 +18,25 @@
 
 import { Subject } from 'rxjs'
 
-import { ContextsType, Events, IConsoleProps, IContexts, ISDKConsoleObservable } from './types'
+import { ContextsType, Events, IConsoleProps, IContexts, ISDKConsoleObservable, IWriteConfig } from './types'
 import { getConsoleProps } from './adaptConsoleProps'
 
-export type IMicrofronendIntegrator = {
+export type IMicrofrontendIntegrator = {
   getContext(contextType: ContextsType): IContexts[keyof IContexts] | undefined
   getContainerId(): string
   getMicrofrontendNode(): HTMLElement
   getConsoleConfigObservable(): ISDKConsoleObservable
   sendEvent(event: Events): void
+  writeConfig: IWriteConfig
 }
-export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
+export default class MicrofrontendIntegrator implements IMicrofrontendIntegrator {
   private events: Subject<Events>
 
   private name: string
   private container: HTMLElement
   private contexts: IContexts
   private configObservable: ISDKConsoleObservable
+  private consoleWriteConfig: IWriteConfig
 
   constructor(mountingProps: IConsoleProps) {
     const { name, console, container } = getConsoleProps(mountingProps)
@@ -44,6 +46,7 @@ export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
     this.container = container
     this.contexts = contexts
     this.configObservable = console.configObservables
+    this.consoleWriteConfig = console.writeConfig
 
     this.events = new Subject()
     this.events.subscribe(eventBus)
@@ -78,5 +81,9 @@ export default class MicrofronendIntegrator implements IMicrofronendIntegrator {
 
   sendEvent(event: Events): void {
     this.events.next(event)
+  }
+
+  writeConfig(payload: unknown): void {
+    this.consoleWriteConfig(payload)
   }
 }

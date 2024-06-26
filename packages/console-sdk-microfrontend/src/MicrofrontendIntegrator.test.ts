@@ -17,6 +17,7 @@
  */
 
 import { JSDOM } from 'jsdom'
+import { Observable } from 'rxjs'
 
 import { ContextsType, Events, EventsTypes, IConsoleProps } from './types'
 import ConsoleSDK from './MicrofrontendIntegrator'
@@ -26,6 +27,7 @@ const htmlElement: HTMLElement = window.document.createElement('div')
 htmlElement.id = '__quiankun__'
 
 const eventBus = jest.fn()
+const writeConfig = jest.fn()
 const quiankunProps = { name: 'testMicrofrontend', container: htmlElement }
 const consoleProps: IConsoleProps = {
   ...quiankunProps,
@@ -33,26 +35,26 @@ const consoleProps: IConsoleProps = {
   featureTogglesProxyContext: { updateLocalCache: jest.fn() },
   hotkeysContext: { anyProp: 'anyValue' },
   resourceAPI: {
-    endpoints: {},
-    collections: {},
-    configMaps: {},
-    services: {},
-    unsecretedVariables: [],
+    endpoints: new Observable((subscriber) => subscriber.next({})),
+    collections: new Observable((subscriber) => subscriber.next({})),
+    configMaps: new Observable((subscriber) => subscriber.next({})),
+    services: new Observable((subscriber) => subscriber.next({})),
+    unsecretedVariables: new Observable((subscriber) => subscriber.next([])),
 
-    forceConfigUpdateChecksum: '',
-    microfrontendPluginConfig: {},
+    forceConfigUpdateChecksum: new Observable((subscriber) => subscriber.next('')),
+    microfrontendPluginConfig: new Observable((subscriber) => subscriber.next({})),
 
-    selectedEnvironment: 'testEnvId',
-    selectedProject: {
+    selectedEnvironment: new Observable((subscriber) => subscriber.next('testEnvId')),
+    selectedProject: new Observable((subscriber) => subscriber.next({
       projectId: 'testProjectId',
       name: 'testProjectName',
       _id: 'projectOid',
       environments: [],
       configurationGitPath: '',
       repository: {},
-    },
+    })),
 
-    writeConfig: jest.fn(),
+    writeConfig,
 
     _version: '0.0.0',
     _signals: { mount: jest.fn() },
@@ -60,7 +62,7 @@ const consoleProps: IConsoleProps = {
 }
 
 describe('ConsoleSDK', () => {
-  it('should get the contai', () => {
+  it('should get the container', () => {
     const microfrontendIntegrator = new ConsoleSDK(consoleProps)
     expect(microfrontendIntegrator.getMicrofrontendNode()).toMatchSnapshot()
   })
@@ -108,5 +110,15 @@ describe('ConsoleSDK', () => {
     expect(configObservable).toHaveProperty('_version')
     expect(configObservable).toHaveProperty('forceConfigUpdateChecksum')
     expect(configObservable).toHaveProperty('microfrontendPluginConfig')
+  })
+
+  it('should write config to Console', () => {
+    const microfrontendIntegrator = new ConsoleSDK(consoleProps)
+
+    const nextConfig = { foo: 'bar' }
+    microfrontendIntegrator.writeConfig(nextConfig)
+
+    expect(writeConfig).toHaveBeenCalledTimes(1)
+    expect(writeConfig).toHaveBeenCalledWith(nextConfig)
   })
 })

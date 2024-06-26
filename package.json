@@ -6,13 +6,13 @@
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
     "@changesets/changelog-github": "0.5.0",
-    "@changesets/cli": "2.27.1",
+    "@changesets/cli": "2.27.3",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-unused-imports": "^3.1.0",
+    "eslint-plugin-promise": "^6.2.0",
+    "eslint-plugin-unused-imports": "^3.2.0",
     "@types/jest": "^29.5.12"
   },
   "dependencies": {},
@@ -22,7 +22,7 @@
     "wh": "pnpm --filter @mia-platform/console-sdk-webpack-helpers",
     "types": "pnpm --filter @mia-platform/console-types",
 
-    "postinstall": "pnpm -r build",
+    "postinstall": "pnpm types build && pnpm sdk build && pnpm vh build && pnpm wh build",
 
     "build": "pnpm -r build",
     "test": "pnpm -r test",

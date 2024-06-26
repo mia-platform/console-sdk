@@ -24,6 +24,7 @@ import {
   PublicVariable,
   Services,
 } from '@mia-platform/console-types'
+import type { Observable } from 'rxjs'
 
 export enum EventsTypes {
   SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT',
@@ -58,26 +59,28 @@ export type IContexts = {
 }
 
 export type ISDKConsoleObservable = {
-  endpoints: Endpoints
-  collections: Collections
-  configMaps: ConfigMaps
-  services: Services
-  unsecretedVariables: PublicVariable[]
+  endpoints: Observable<Endpoints>
+  collections: Observable<Collections>
+  configMaps: Observable<ConfigMaps>
+  services: Observable<Services>
+  unsecretedVariables: Observable<PublicVariable[]>
 
-  forceConfigUpdateChecksum: string
-  microfrontendPluginConfig: Record<string, unknown>
+  forceConfigUpdateChecksum: Observable<string>
+  microfrontendPluginConfig: Observable<Record<string, unknown>>
 
-  selectedEnvironment: string
-  selectedProject: IProject
+  selectedEnvironment: Observable<string>
+  selectedProject: Observable<IProject>
 
   _version: string
 }
+
+export type IWriteConfig = (payload: unknown) => void
 
 export type ISDKProps = {
   name: string
   container: HTMLElement
   console: {
-    writeConfig: (payload: unknown) => void
+    writeConfig: IWriteConfig
     _signals: {mount: () => void}
     eventBus: (event: Events) => void
     configObservables: ISDKConsoleObservable
@@ -92,7 +95,7 @@ export type IConsoleProps = IContexts & {
   featureTogglesProxyContext: IContexts['featureTogglesProxyContext']
   hotkeysContext: IContexts['hotkeysContext']
   resourceAPI: ISDKConsoleObservable & {
-    writeConfig: (payload: unknown) => void
+    writeConfig: IWriteConfig
     _signals: {mount: () => void}
   }
 }

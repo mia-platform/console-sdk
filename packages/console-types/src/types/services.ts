@@ -132,7 +132,7 @@ const configMapEnv = {
 } as const
 export type EnvironmentVariablesFromConfigMap = FromSchema<typeof configMapEnv>
 
-const environment = {
+export const environment = {
   type: 'array',
   items: {
     type: 'object',
@@ -250,8 +250,6 @@ export const replicasJsonSchema = {
 
 export const gitSshUrl = {
   type: 'string',
-  pattern: '^((git|ssh|http(s)?)|([\\w-]*@[\\w.=\\-]+))(:(\\/\\/)?)([\\w\\.@:\\/\\-~=]+)(.git)?(\\/)?$',
-  [VALIDATION_ERROR_ID]: 'sshUrl.patternError',
 } as const
 
 export const configMap = {
@@ -542,6 +540,7 @@ export const container = {
     createdAt: { type: 'string' },
     owners: ownersSchema,
     containerPorts,
+    monitoring,
     execPreStop: {
       type: 'array',
       items: { type: 'string' },
@@ -566,7 +565,6 @@ export const customService = {
     dockerImagePullSecrets,
     replicas: serviceReplicas,
     productionReplicas: replicasJsonSchema,
-    monitoring,
     logParser: { type: 'string' },
     additionalContainers: {
       type: 'array',
@@ -824,6 +822,8 @@ export const services = {
   additionalProperties: false,
   default: {},
 } as const
+
+export type LabelAnnotation = FromSchema<typeof kubernetesDefinition>
 
 // This type is required since Services cannot parse if/then/else since it is too deep
 export type Services = Record<string,

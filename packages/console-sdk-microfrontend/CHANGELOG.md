@@ -1,5 +1,124 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.10
+
+### Patch Changes
+
+- Updated dependencies [10a75a0]
+  - @mia-platform/console-types@0.19.23
+
+## 0.2.9
+
+### Patch Changes
+
+- Updated dependencies [9f2263c]
+  - @mia-platform/console-types@0.19.22
+
+## 0.2.8
+
+### Patch Changes
+
+- Updated dependencies [327eb42]
+  - @mia-platform/console-types@0.19.21
+
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies [4d47d63]
+  - @mia-platform/console-types@0.19.20
+
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies [f68b7f2]
+  - @mia-platform/console-types@0.19.19
+
+## 0.2.5
+
+### Patch Changes
+
+- fix: bump install for version
+- Updated dependencies
+  - @mia-platform/console-types@0.19.18
+
+## 0.2.4
+
+### Patch Changes
+
+- Updated dependencies [d2d4d30]
+  - @mia-platform/console-types@0.19.17
+
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-types@0.19.16
+
+## 0.2.2
+
+### Fixed
+
+- Added `writeConfig` to `IMicrofrontendIntegrator` type
+
+## 0.2.1
+
+### Added
+
+- Exposed `writeConfig` from Console SDK
+
+## 0.2.0
+
+### Minor Changes
+
+- version bump
+
+### Fixed
+
+- **BREAKING**: fixed `ISDKConsoleObservable` type
+
+## 0.1.1
+
+### Patch Changes
+
+- version bump
+
+- Updated dependencies []:
+  - @mia-platform/console-types@0.19.15
+
+## 0.1.0
+
+### Minor Changes
+
+- version bump
+
+### Fixed
+
+- **BREAKING**: fixed typo in exported type `IMicrofrontendIntegrator`
+
+## 0.0.35
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-types@0.19.14
+
+## 0.0.34
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-types@0.19.13
+
+## 0.0.33
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @mia-platform/console-types@0.19.12
+
 ## 0.0.32
 
 ### Patch Changes
