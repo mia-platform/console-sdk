@@ -22,11 +22,6 @@ export class MiddlewareFactory {
     ) => Promise<AxiosClientResponse> = (...args) => axiosClient.axiosFn(...args)
   ): Middleware[] {
     return [
-      // new RetryHandler(),
-      // new RedirectHandler(),
-      // new ParametersNameDecodingHandler(),
-      // new UserAgentHandler(),
-      // new HeadersInspectionHandler(),
       new CustomAxiosHandler(customAxiosAction),
     ]
   }
