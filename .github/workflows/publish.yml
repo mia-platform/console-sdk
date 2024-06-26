@@ -29,7 +29,7 @@ jobs:
           # We expect always tag in the form of `@owner/repo@version`. If it is not true,
           # this script will generate an invalid tag.
           tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
+          # there is a post install that build every package in the workspace
           pnpm i --frozen-lockfile
-          pnpm -r build
-# pnpm --filter=${tag} publish --access public --no-git-checks
+          pnpm --filter=${tag} publish --access public --no-git-checks
 
