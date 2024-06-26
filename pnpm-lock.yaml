@@ -48,9 +48,6 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
     devDependencies:
-      '@mia-platform/console-types':
-        specifier: ^0.19.19
-        version: 0.19.20(@fastify/swagger@8.14.0)(fastify@4.27.0)
       '@mia-platform/eslint-config-mia':
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.57.0)
@@ -809,12 +806,6 @@ packages:
   '@mia-platform/console-sdk-microfrontend@0.2.10':
     resolution: {integrity: sha512-znoC+S/hYWFndXn5/SkF+AfC8KT65zBOChMW7U59f+YcNpKkm3BsZmT0aITDX8TKfgsq5FJvw+vIbN/iqeLN4A==}
     engines: {node: '>=v18.18.2'}
-
-  '@mia-platform/console-types@0.19.20':
-    resolution: {integrity: sha512-Z7OfKtSck/fC6E+Ns9gR5LZZmeYOwH7qzqlT77q6anXnw4FrT7Rqv9LdZAUucJpJJLuLHxWquJAtamZ2QnmZ+A==}
-    peerDependencies:
-      '@fastify/swagger': ^8 || ^6
-      fastify: ^4 || ^3
 
   '@mia-platform/console-types@0.19.23':
     resolution: {integrity: sha512-isPey7lSM8Z1sLgQKFHxNjUU+K/DOE73B17Zd587Mi/UmwTcnZekw42729qklbQPCGBlYsH5M70a7D9hWq5T2g==}
@@ -4574,12 +4565,6 @@ snapshots:
       - '@fastify/swagger'
       - fastify
       - supports-color
-
-  '@mia-platform/console-types@0.19.20(@fastify/swagger@8.14.0)(fastify@4.27.0)':
-    dependencies:
-      '@fastify/swagger': 8.14.0
-      fastify: 4.27.0
-      ramda: 0.30.0
 
   '@mia-platform/console-types@0.19.23(@fastify/swagger@8.14.0)(fastify@4.27.0)':
     dependencies:
