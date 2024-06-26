@@ -1,5 +1,12 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.11
+
+### Patch Changes
+
+- Updated dependencies [de7f56f]
+  - @mia-platform/console-types@0.19.24
+
 ## 0.2.10
 
 ### Patch Changes

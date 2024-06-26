@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.24
+
+### Patch Changes
+
+- de7f56f: add environment variables from configmap
+
 ## 0.19.23
 
 ### Patch Changes
