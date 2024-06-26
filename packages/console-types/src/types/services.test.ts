@@ -61,8 +61,8 @@ t.test('services', t => {
         {
           name: 'some-env',
           valueType: EnvironmentVariablesTypes.FROM_CONFIGMAP,
-          configMapName: 'some configmap',
-          configMapFileName: 'some file',
+          configMapName: 'some-configmap',
+          configMapFileName: 'some-file',
         },
       ],
     }
