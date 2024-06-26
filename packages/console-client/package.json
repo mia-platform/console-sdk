@@ -18,8 +18,10 @@
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2"
+  },
   "devDependencies": {
-    "@mia-platform/console-types": "^0.19.19",
     "@mia-platform/eslint-config-mia": "^3.0.0",
     "@microsoft/kiota-abstractions": "^1.0.0-preview.6",
     "@microsoft/kiota-serialization-json": "^1.0.0-preview.8",
@@ -34,9 +36,5 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.15.4",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "axios": "^1.7.2",
-    "node-fetch": "^3.3.2"
   }
 }

@@ -3,7 +3,7 @@ import { AuthenticationProvider, BackingStoreFactory, ErrorMappings, Parsable, P
 
 import { AxiosClientRequestConfig, AxiosClientResponse } from './customAxios'
 import { AxiosHttpClient } from './axiosHttpClient'
-import { InvaidArgumentExceptions } from './errors'
+import { InvaidArgumentError } from './errors'
 
 export class AxiosRequestAdapter implements RequestAdapter {
   public baseUrl = ''
@@ -22,18 +22,10 @@ export class AxiosRequestAdapter implements RequestAdapter {
     private serializationWriterFactory: SerializationWriterFactory = SerializationWriterFactoryRegistry.defaultInstance,
     private readonly httpClient: AxiosHttpClient = new AxiosHttpClient(),
   ) {
-    if (!authenticationProvider) {
-      throw new Error('authentication provider cannot be null')
-    }
-    if (!parseNodeFactory) {
-      throw new Error('parse node factory cannot be null')
-    }
-    if (!serializationWriterFactory) {
-      throw new Error('serialization writer factory cannot be null')
-    }
-    if (!httpClient) {
-      throw new Error('http client cannot be null')
-    }
+    InvaidArgumentError.AssertNotFalsy('authenticationProvider', authenticationProvider)
+    InvaidArgumentError.AssertNotFalsy('parseNodeFactory', parseNodeFactory)
+    InvaidArgumentError.AssertNotFalsy('serializationWriterFactory', serializationWriterFactory)
+    InvaidArgumentError.AssertNotFalsy('httpClient', httpClient)
   }
 
   public getSerializationWriterFactory(): SerializationWriterFactory {
@@ -108,15 +100,9 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   private async getHttpResponseMessage<T>(requestInfo: RequestInformation, claims?: string): Promise<AxiosClientResponse<T>> {
-    if (!requestInfo) {
-      throw new Error('requestInfo cannot be null')
-    }
+    InvaidArgumentError.AssertNotFalsy('requestInfo', requestInfo)
+
     this.setBaseUrlForRequestInformation(requestInfo)
-    const additionalContext = {} as Record<string, unknown>
-    if (claims) {
-      additionalContext.claims = claims
-    }
-    await this.authenticationProvider.authenticateRequest(requestInfo, additionalContext)
     const requestConfig = await this.getRequestConfigFromRequestInformation(requestInfo)
     const response = await this.httpClient.executeAxios<T>(requestInfo.URL, requestConfig, requestInfo.getRequestOptions())
 
@@ -124,7 +110,7 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   private setBaseUrlForRequestInformation = (requestInfo: RequestInformation): void => {
-    InvaidArgumentExceptions.ThrowIfFalsy('baseUrl', this.baseUrl)
+    InvaidArgumentError.AssertNotFalsy('baseUrl', this.baseUrl)
 
     requestInfo.pathParameters.baseurl = this.baseUrl
   }

@@ -1,12 +1,20 @@
-const InvaidArgumentExceptions = {
+class InvalidArgumentError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "InvalidArgumentError";
+  }
+}
+
+
+const InvaidArgumentError = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ThrowIfFalsy: (propName: string, prop: any) => {
+  AssertNotFalsy: (propName: string, prop: any) => {
     if (!prop) {
-      throw new Error(`${propName} cannot be falsy`)
+      throw new InvalidArgumentError(`${propName} cannot be falsy`)
     }
   },
 }
 
 export {
-  InvaidArgumentExceptions,
+  InvaidArgumentError,
 }
