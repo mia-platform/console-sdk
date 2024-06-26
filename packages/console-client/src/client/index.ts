@@ -22,7 +22,6 @@ export class NullAccessTokenProvider implements AuthenticationProvider {
   }
 }
 
-
 export class ConsoleClient implements IConsoleClient {
   private baseUrl: string
   private client: KiotaConsoleClient
