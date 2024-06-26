@@ -4542,9 +4542,7 @@ Object {
                   "x-validation-error-id": "url.patternError",
                 },
                 "sshUrl": Object {
-                  "pattern": "^((git|ssh|http(s)?)|([\\\\w-]*@[\\\\w.=\\\\-]+))(:(\\\\/\\\\/)?)([\\\\w\\\\.@:\\\\/\\\\-~=]+)(.git)?(\\\\/)?$",
                   "type": "string",
-                  "x-validation-error-id": "sshUrl.patternError",
                 },
                 "swaggerPath": Object {
                   "pattern": "^$|^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$",
@@ -4726,7 +4724,57 @@ Object {
                     "environment": Object {
                       "items": Object {
                         "else": Object {
-                          "else": false,
+                          "else": Object {
+                            "else": false,
+                            "if": Object {
+                              "properties": Object {
+                                "valueType": Object {
+                                  "const": "configmap",
+                                  "type": "string",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "configMapFileName": Object {
+                                  "pattern": "^[-._a-zA-Z0-9]+$",
+                                  "type": "string",
+                                  "x-validation-error-id": "configMapFileName.patternError",
+                                },
+                                "configMapName": Object {
+                                  "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                                  "type": "string",
+                                  "x-validation-error-id": "resourceName.patternError",
+                                },
+                                "description": Object {
+                                  "type": "string",
+                                },
+                                "managedBy": Object {
+                                  "type": "string",
+                                },
+                                "name": Object {
+                                  "minLength": 1,
+                                  "type": "string",
+                                },
+                                "readOnly": Object {
+                                  "type": "boolean",
+                                },
+                                "valueType": Object {
+                                  "const": "configmap",
+                                  "type": "string",
+                                },
+                              },
+                              "required": Array [
+                                "name",
+                                "valueType",
+                                "configMapName",
+                                "configMapFileName",
+                              ],
+                              "type": "object",
+                            },
+                          },
                           "if": Object {
                             "properties": Object {
                               "valueType": Object {
@@ -5149,9 +5197,7 @@ Object {
                       "type": "object",
                     },
                     "sshUrl": Object {
-                      "pattern": "^((git|ssh|http(s)?)|([\\\\w-]*@[\\\\w.=\\\\-]+))(:(\\\\/\\\\/)?)([\\\\w\\\\.@:\\\\/\\\\-~=]+)(.git)?(\\\\/)?$",
                       "type": "string",
-                      "x-validation-error-id": "sshUrl.patternError",
                     },
                     "swaggerPath": Object {
                       "pattern": "^$|^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$",
@@ -5330,7 +5376,57 @@ Object {
               "environment": Object {
                 "items": Object {
                   "else": Object {
-                    "else": false,
+                    "else": Object {
+                      "else": false,
+                      "if": Object {
+                        "properties": Object {
+                          "valueType": Object {
+                            "const": "configmap",
+                            "type": "string",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "then": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "configMapFileName": Object {
+                            "pattern": "^[-._a-zA-Z0-9]+$",
+                            "type": "string",
+                            "x-validation-error-id": "configMapFileName.patternError",
+                          },
+                          "configMapName": Object {
+                            "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                            "type": "string",
+                            "x-validation-error-id": "resourceName.patternError",
+                          },
+                          "description": Object {
+                            "type": "string",
+                          },
+                          "managedBy": Object {
+                            "type": "string",
+                          },
+                          "name": Object {
+                            "minLength": 1,
+                            "type": "string",
+                          },
+                          "readOnly": Object {
+                            "type": "boolean",
+                          },
+                          "valueType": Object {
+                            "const": "configmap",
+                            "type": "string",
+                          },
+                        },
+                        "required": Array [
+                          "name",
+                          "valueType",
+                          "configMapName",
+                          "configMapFileName",
+                        ],
+                        "type": "object",
+                      },
+                    },
                     "if": Object {
                       "properties": Object {
                         "valueType": Object {
@@ -5790,9 +5886,7 @@ Object {
                 "type": "object",
               },
               "sshUrl": Object {
-                "pattern": "^((git|ssh|http(s)?)|([\\\\w-]*@[\\\\w.=\\\\-]+))(:(\\\\/\\\\/)?)([\\\\w\\\\.@:\\\\/\\\\-~=]+)(.git)?(\\\\/)?$",
                 "type": "string",
-                "x-validation-error-id": "sshUrl.patternError",
               },
               "swaggerPath": Object {
                 "pattern": "^$|^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$",

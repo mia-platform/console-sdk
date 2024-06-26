@@ -11,7 +11,6 @@
   "cronjobSchedule.patternError": "Deve essere una sequenza di 5 elementi, separati da spazi, o una variabile interpolata",
   "collectionName.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\" e \"-\"",
   "url.patternError": "Deve essere un url valido",
-  "sshUrl.patternError": "Deve essere un url valido compatibile con ssh",
   "apiKey.patternError": "Non può contenere spazi",
   "clientType.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\" e non può iniziare con un numero",
   "variableKey.patternError": "Può contenere lettere maiuscole e numeri",

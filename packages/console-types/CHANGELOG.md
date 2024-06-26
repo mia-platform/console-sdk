@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.19.23
+
+### Patch Changes
+
+- 10a75a0: fix: exported MongoDB view default routes
+
+## 0.19.22
+
+### Patch Changes
+
+- 9f2263c: fix: added MongoDB View default routes
+
+## 0.19.21
+
+### Patch Changes
+
+- 327eb42: remove ssh url regex
+
 ## 0.19.20
 
 ### Patch Changes
