@@ -31,5 +31,5 @@ jobs:
           tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
           pnpm i --frozen-lockfile
           pnpm build
-          # pnpm --filter=${tag} publish --access public --no-git-checks
+# pnpm --filter=${tag} publish --access public --no-git-checks
 
