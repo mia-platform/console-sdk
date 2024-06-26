@@ -4,11 +4,12 @@
   "description": "",
   "main": "build/index.js",
   "types": "build/index",
+  "type": "module",
   "scripts": {
     "build": "rimraf build/ && tsc",
     "lint": "eslint .",
-    "test": "tap --ts --test-ignore=\"(build/.*|src/types/validate-utils.test.ts)\"",
-    "test:snapshot": "TAP_SNAPSHOT=1 npm run test",
+    "unit-ts": "node --import tsx --test src/test/**/*.test.ts",
+    "unit": "node --test build/**/*.test.js",
     "prepublish": "tsc",
     "coverage": "npm run test",
     "postcoverage": "tap --coverage-report=lcov --no-browser",
@@ -20,6 +21,10 @@
   "devDependencies": {
     "@mia-platform/console-types": "^0.19.19",
     "@mia-platform/eslint-config-mia": "^3.0.0",
+    "@microsoft/kiota-abstractions": "^1.0.0-preview.6",
+    "@microsoft/kiota-serialization-json": "^1.0.0-preview.8",
+    "@microsoft/kiota-serialization-text": "^1.0.0-preview.7",
+    "@types/node": "^20.14.2",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
     "eslint": "^8.57.0",
@@ -27,9 +32,11 @@
     "eslint-plugin-import": "^2.29.1",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
+    "tsx": "^4.15.4",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "axios": "^1.7.2"
+    "axios": "^1.7.2",
+    "node-fetch": "^3.3.2"
   }
 }

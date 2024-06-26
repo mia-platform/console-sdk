@@ -1,18 +1,21 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-      "outDir": "./build",
-      "rootDir": "src/"
-    },
-    "exclude": [
-      "./node_modules",
-      "./coverage",
-      "./build",
-      "tsconfig.json"
-    ],
-    "include": [
-      "./**/*.ts",
-      "./**/*.json"
-    ],
-  }
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "outDir": "./build",
+    "rootDir": "src/",
+  },
+  "exclude": [
+    "./node_modules",
+    "./coverage",
+    "./build",
+    "tsconfig.json"
+  ],
+  "include": [
+    "./**/*.ts",
+    "./**/*.json",
+    "../.eslintrc.cjs",
+  ],
+}
   

@@ -1,42 +1,42 @@
-import axios, { AxiosResponse } from 'axios'
+import { AuthenticationProvider, RequestInformation } from '@microsoft/kiota-abstractions'
 
-import { DummyModel } from '../types/dummyModel'
+import { axios as axiosHttpClient } from './http'
+import {
+  createConsoleClient,
+  ConsoleClient as KiotaConsoleClient,
+} from '../kiota-client/consoleClient'
+import { ExtensibilityRequestBuilder } from '../kiota-client/api/extensibility'
+
+const { AxiosRequestAdapter } = axiosHttpClient
 
 export type IConsoleClient = {
-  listDummy(): Promise<DummyModel[]>
+  get extensibility(): ExtensibilityRequestBuilder
 }
+
+export class NullAccessTokenProvider implements AuthenticationProvider {
+  public authenticateRequest = async(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    request: RequestInformation, additionalAuthenticationContext?: Record<string, unknown>
+  ): Promise<void> => {
+    // Do nothing
+  }
+}
+
 
 export class ConsoleClient implements IConsoleClient {
   private baseUrl: string
+  private client: KiotaConsoleClient
 
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl
+
+    const requestAdapter = new AxiosRequestAdapter(new NullAccessTokenProvider())
+    requestAdapter.baseUrl = this.baseUrl
+
+    this.client = createConsoleClient(requestAdapter)
   }
 
-  async listDummy(): Promise<DummyModel[]> {
-    const url = `${this.baseUrl}/users`
-
-    try {
-      const response = await this.get(url)
-      return response.data as DummyModel[]
-    } catch (error) {
-      throw new Error(`Error fetching users: ${error}`)
-    }
-  }
-
-  private async get(url: string): Promise<AxiosResponse> {
-    return axios.get(url)
-  }
-
-  private async post(url: string): Promise<AxiosResponse> {
-    return axios.post(url)
-  }
-
-  private async delete(url: string): Promise<AxiosResponse> {
-    return axios.delete(url)
-  }
-
-  private async patch(url: string): Promise<AxiosResponse> {
-    return axios.patch(url)
+  get extensibility(): ExtensibilityRequestBuilder {
+    return this.client.api.extensibility
   }
 }
