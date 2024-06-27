@@ -327,7 +327,8 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
   },
   "required": [
     "providerId",
-    "type"
+    "type",
+    "urls"
   ]
 }
 `
