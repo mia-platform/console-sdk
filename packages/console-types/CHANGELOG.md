@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.19.27
+
+### Patch Changes
+
+- f1ea7ac: export type EnvironmentVariablesFromConfigMap
+
 ## 0.19.26
 
 ### Patch Changes
