@@ -27,16 +27,16 @@ import { ExtensibilityRequestBuilder } from '../kiota-client/api/extensibility'
 
 const { AxiosRequestAdapter } = axiosHttpClient
 
-export type IConsoleClient = {
-  get extensibility(): ExtensibilityRequestBuilder
-}
-
-export class NullAccessTokenProvider implements AuthenticationProvider {
+class NullAccessTokenProvider implements AuthenticationProvider {
   public authenticateRequest = async(
     _request: RequestInformation, _additionalAuthenticationContext?: Record<string, unknown>
   ): Promise<void> => {
     // Do nothing
   }
+}
+
+export type IConsoleClient = {
+  get extensibility(): ExtensibilityRequestBuilder
 }
 
 export class ConsoleClient implements IConsoleClient {
