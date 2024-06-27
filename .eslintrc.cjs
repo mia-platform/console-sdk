@@ -48,6 +48,12 @@ module.exports = {
     }],
     "@typescript-eslint/no-shadow": ["off"],
     "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+      }
+    ]
   },
   overrides: [
     {

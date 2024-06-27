@@ -33,8 +33,7 @@ export type IConsoleClient = {
 
 export class NullAccessTokenProvider implements AuthenticationProvider {
   public authenticateRequest = async(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    request: RequestInformation, additionalAuthenticationContext?: Record<string, unknown>
+    _request: RequestInformation, _additionalAuthenticationContext?: Record<string, unknown>
   ): Promise<void> => {
     // Do nothing
   }

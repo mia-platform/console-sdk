@@ -16,7 +16,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
 import { AuthenticationProvider, BackingStoreFactory, ErrorMappings, Parsable, ParsableFactory, ParseNodeFactory, ParseNodeFactoryRegistry, PrimitiveTypesForDeserialization, PrimitiveTypesForDeserializationType, RequestAdapter, RequestInformation, SerializationWriterFactory, SerializationWriterFactoryRegistry } from '@microsoft/kiota-abstractions'
 
@@ -52,73 +51,73 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   public send<ModelType extends Parsable>(
-    requestInfo: RequestInformation,
-    deserialization: ParsableFactory<ModelType>,
-    errorMappings: ErrorMappings | undefined
+    _requestInfo: RequestInformation,
+    _deserialization: ParsableFactory<ModelType>,
+    _errorMappings: ErrorMappings | undefined
   ): Promise<ModelType | undefined> {
     throw new Error('Method not implemented.')
   }
 
   public async sendCollection<ModelType extends Parsable>(
     requestInfo: RequestInformation,
-    deserialization: ParsableFactory<ModelType>,
-    errorMappings: ErrorMappings | undefined
+    _deserialization: ParsableFactory<ModelType>,
+    _errorMappings: ErrorMappings | undefined
   ): Promise<ModelType[] | undefined> {
     const response = await this.getHttpResponseMessage<ModelType[]>(requestInfo)
     return response.data
   }
 
   public sendCollectionOfPrimitive<ResponseType extends Exclude<PrimitiveTypesForDeserializationType, ArrayBuffer>>(
-    requestInfo: RequestInformation,
-    responseType: Exclude<PrimitiveTypesForDeserialization, 'ArrayBuffer'>,
-    errorMappings: ErrorMappings | undefined
+    _requestInfo: RequestInformation,
+    _responseType: Exclude<PrimitiveTypesForDeserialization, 'ArrayBuffer'>,
+    _errorMappings: ErrorMappings | undefined
   ): Promise<ResponseType[] | undefined> {
     throw new Error('Method not implemented.')
   }
 
   public sendPrimitive<ResponseType extends PrimitiveTypesForDeserializationType>(
-    requestInfo: RequestInformation,
-    responseType: PrimitiveTypesForDeserialization,
-    errorMappings: ErrorMappings | undefined
+    _requestInfo: RequestInformation,
+    _responseType: PrimitiveTypesForDeserialization,
+    _errorMappings: ErrorMappings | undefined
   ): Promise<ResponseType | undefined> {
     throw new Error('Method not implemented.')
   }
 
   public sendNoResponseContent(
-    requestInfo: RequestInformation,
-    errorMappings: ErrorMappings | undefined
+    _requestInfo: RequestInformation,
+    _errorMappings: ErrorMappings | undefined
   ): Promise<void> {
     throw new Error('Method not implemented.')
   }
 
   public sendEnum<EnumObject extends Record<string, unknown>>(
-    requestInfo: RequestInformation,
-    enumObject: EnumObject,
-    errorMappings: ErrorMappings | undefined
+    _requestInfo: RequestInformation,
+    _enumObject: EnumObject,
+    _errorMappings: ErrorMappings | undefined
   ): Promise<EnumObject[keyof EnumObject] | undefined> {
     throw new Error('Method not implemented.')
   }
 
   public sendCollectionOfEnum<EnumObject extends Record<string, unknown>>(
-    requestInfo: RequestInformation,
-    enumObject: EnumObject,
-    errorMappings: ErrorMappings | undefined
+    _requestInfo: RequestInformation,
+    _enumObject: EnumObject,
+    _errorMappings: ErrorMappings | undefined
   ): Promise<EnumObject[keyof EnumObject][] | undefined> {
     throw new Error('Method not implemented.')
   }
 
   public enableBackingStore(
-    backingStoreFactory?: BackingStoreFactory | undefined
+    _backingStoreFactory?: BackingStoreFactory | undefined
   ): void {
     throw new Error('Method not implemented.')
   }
 
   public convertToNativeRequest<T>(
-    requestInfo: RequestInformation): Promise<T> {
+    _requestInfo: RequestInformation): Promise<T> {
     throw new Error('Method not implemented.')
   }
 
-  private async getHttpResponseMessage<T>(requestInfo: RequestInformation, claims?: string): Promise<AxiosClientResponse<T>> {
+  private async getHttpResponseMessage<T>(requestInfo: RequestInformation, _claims?: string): Promise<AxiosClientResponse<T>> {
     InvalidArgumentError.AssertNotFalsy('requestInfo', requestInfo)
 
     this.setBaseUrlForRequestInformation(requestInfo)

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { describe, it } from 'node:test'
 import assert from 'node:assert'
 
@@ -73,7 +72,7 @@ describe('console-client', () => {
     const consoleClient = new ConsoleClient(baseUrl)
     const testTenantId = 'some-tenant-id'
 
-    const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', async(url: string) => {
+    const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', async(_url: string) => {
       const okResponse = {
         status: 204,
         headers: new Map<string, string>(),
