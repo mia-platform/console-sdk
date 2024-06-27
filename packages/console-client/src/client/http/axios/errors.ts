@@ -25,7 +25,15 @@ class InvalidArgumentError extends Error {
 
 
 const InvalidArgumentErrorThrower = {
-  AssertNotFalsy: (propName: string, prop: unknown) => {
+
+  /**
+   * Assert that property is not Falsy, throws an error otherwise
+   * @param {string} propName the name of the property to check
+   * @param {unknown} prop the property to assert
+   * @returns {void} nothing if prop is not Falsy
+   * @throws InvalidArgumentError if prop is Falsy
+   */
+  Assert: (propName: string, prop: unknown): void => {
     if (!prop) {
       throw new InvalidArgumentError(`${propName} cannot be falsy`)
     }

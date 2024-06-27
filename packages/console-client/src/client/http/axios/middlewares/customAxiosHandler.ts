@@ -39,7 +39,7 @@ export class CustomAxiosHandler implements Middleware {
   constructor(
     customAxios: (url: string, requestConfig: AxiosClientRequestConfig) => Promise<AxiosClientResponse>
   ) {
-    InvalidArgumentError.AssertNotFalsy('customAxios', customAxios)
+    InvalidArgumentError.Assert('customAxios', customAxios)
 
     this.customAxios = customAxios
   }

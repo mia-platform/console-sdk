@@ -40,10 +40,10 @@ export class AxiosRequestAdapter implements RequestAdapter {
     private serializationWriterFactory: SerializationWriterFactory = SerializationWriterFactoryRegistry.defaultInstance,
     private readonly httpClient: AxiosHttpClient = new AxiosHttpClient(),
   ) {
-    InvalidArgumentError.AssertNotFalsy('authenticationProvider', authenticationProvider)
-    InvalidArgumentError.AssertNotFalsy('parseNodeFactory', parseNodeFactory)
-    InvalidArgumentError.AssertNotFalsy('serializationWriterFactory', serializationWriterFactory)
-    InvalidArgumentError.AssertNotFalsy('httpClient', httpClient)
+    InvalidArgumentError.Assert('authenticationProvider', authenticationProvider)
+    InvalidArgumentError.Assert('parseNodeFactory', parseNodeFactory)
+    InvalidArgumentError.Assert('serializationWriterFactory', serializationWriterFactory)
+    InvalidArgumentError.Assert('httpClient', httpClient)
   }
 
   public getSerializationWriterFactory(): SerializationWriterFactory {
@@ -118,7 +118,7 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   private async getHttpResponseMessage<T>(requestInfo: RequestInformation, _claims?: string): Promise<AxiosClientResponse<T>> {
-    InvalidArgumentError.AssertNotFalsy('requestInfo', requestInfo)
+    InvalidArgumentError.Assert('requestInfo', requestInfo)
 
     this.setBaseUrlForRequestInformation(requestInfo)
     const requestConfig = await this.getRequestConfigFromRequestInformation(requestInfo)
@@ -128,7 +128,7 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   private setBaseUrlForRequestInformation = (requestInfo: RequestInformation): void => {
-    InvalidArgumentError.AssertNotFalsy('baseUrl', this.baseUrl)
+    InvalidArgumentError.Assert('baseUrl', this.baseUrl)
 
     requestInfo.pathParameters.baseurl = this.baseUrl
   }
