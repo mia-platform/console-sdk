@@ -25,8 +25,7 @@ class InvalidArgumentError extends Error {
 
 
 const InvalidArgumentErrorThrower = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  AssertNotFalsy: (propName: string, prop: any) => {
+  AssertNotFalsy: (propName: string, prop: unknown) => {
     if (!prop) {
       throw new InvalidArgumentError(`${propName} cannot be falsy`)
     }
