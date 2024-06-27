@@ -204,6 +204,7 @@ export type {
   ConfigMaps,
   EnvironmentVariablesFromSecret,
   EnvironmentVariablesPlain,
+  EnvironmentVariablesFromConfigMap,
   Container,
   CustomService,
   CustomServiceFile,
