@@ -1,10 +1,10 @@
 {
   "name": "@mia-platform/console-client",
+  "license": "Apache-2.0",
   "version": "0.0.1",
-  "description": "",
   "main": "build/index.js",
-  "types": "build/index",
-  "type": "module",
+  "typings": "./build/index.d.ts",
+  "module": "./build/index.js",
   "scripts": {
     "build": "rimraf build/ && tsc",
     "lint": "eslint .",
@@ -17,7 +17,6 @@
     "version": "npm run update-changelog && git add CHANGELOG.md"
   },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "axios": "^1.7.2"
   },
