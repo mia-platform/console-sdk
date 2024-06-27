@@ -105,8 +105,7 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
               "enum": [
                 "secret-manager",
                 "ci-cd-tool",
-                "orchestrator-generator",
-                "container-registry"
+                "orchestrator-generator"
               ]
             },
             "functionalities": {

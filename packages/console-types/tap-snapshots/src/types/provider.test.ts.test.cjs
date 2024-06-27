@@ -256,7 +256,7 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
           "type": "object",
           "properties": {
             "name": {
-              "const": "container-registry"
+              "const": "git-provider"
             }
           }
         },
@@ -264,13 +264,11 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
           "type": "object",
           "additionalProperties": false,
           "required": [
-            "name",
-            "imagePullSecretName",
-            "hostname"
+            "name"
           ],
           "properties": {
             "name": {
-              "const": "container-registry"
+              "const": "git-provider"
             },
             "functionalities": {
               "type": "array",
@@ -287,82 +285,37 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
                 }
               }
             },
-            "imagePullSecretName": {
+            "repositoryPathTemplate": {
               "type": "string"
-            },
-            "hostname": {
-              "type": "string",
-              "pattern": "^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\\\.[A-Za-z0-9-]{1,63})*(?<!-)(:\\\\d+)?$",
-              "x-validation-error-id": "containerRegistryHostname.patternError"
             }
           }
         },
         "else": {
-          "if": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "const": "git-provider"
-              }
-            }
-          },
-          "then": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
-                "const": "git-provider"
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "repositoryPathTemplate": {
-                "type": "string"
-              }
-            }
-          },
-          "else": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
-                "type": "string",
-                "enum": [
-                  "secret-manager",
-                  "ci-cd-tool",
-                  "orchestrator-generator"
-                ]
-              },
-              "functionalities": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "additionalProperties": false,
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "enum": [
+                "secret-manager",
+                "ci-cd-tool",
+                "orchestrator-generator"
+              ]
+            },
+            "functionalities": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
                   }
                 }
               }

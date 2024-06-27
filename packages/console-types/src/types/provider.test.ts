@@ -67,41 +67,5 @@ t.test('providers', t => {
     t.end()
   })
 
-  t.test('validate - capabilities with specific fields', t => {
-    t.test('should validate container-registry specific fields', t => {
-      const variable: Provider = {
-        providerId: 'providerId',
-        type: 'container-registry',
-        capabilities: [
-          {
-            name: CAPABILITIES.CONTAINER_REGISTRY,
-            imagePullSecretName: 'my-secret',
-            hostname: 'some.hostname',
-          },
-        ],
-      }
-
-      t.ok(validate(variable), validationMessage(validate.errors))
-      t.end()
-    })
-
-    t.test('should not validate container-registry with invalid hostname', t => {
-      const variable: Provider = {
-        providerId: 'providerId',
-        type: 'container-registry',
-        capabilities: [
-          {
-            name: CAPABILITIES.CONTAINER_REGISTRY,
-            imagePullSecretName: 'my-secret',
-            hostname: 'https://some.not.valid.hostname/',
-          },
-        ],
-      }
-
-      t.notOk(validate(variable), validationMessage(validate.errors))
-      t.end()
-    })
-    t.end()
-  })
   t.end()
 })

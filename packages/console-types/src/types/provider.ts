@@ -39,7 +39,7 @@ const providerFunctionalitiesSchema = {
   },
 } as const
 
-const { CONTAINER_REGISTRY, GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
+const { GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
 
 export const containerRegistryHostnameString = {
   type: 'string',
@@ -77,32 +77,10 @@ const gitProviderCapabilitySchema = {
   },
 } as const
 
-const containerRegistryCapabilitySchema = {
-  type: 'object',
-  additionalProperties: false,
-  required: [
-    'name',
-    'imagePullSecretName',
-    'hostname',
-  ],
-  properties: {
-    name: { const: CONTAINER_REGISTRY },
-    functionalities: providerFunctionalitiesSchema,
-    imagePullSecretName: { type: 'string' },
-    hostname: containerRegistryHostnameString,
-  },
-} as const
-
-const isContainerRegistryCapability = { type: 'object', properties: { name: { const: CAPABILITIES.CONTAINER_REGISTRY } } } as const
-
 export const providerCapabilitySchema = {
-  if: isContainerRegistryCapability,
-  then: containerRegistryCapabilitySchema,
-  else: {
-    if: isGitProviderCapability,
-    then: gitProviderCapabilitySchema,
-    else: otherCapabilitySchema,
-  },
+  if: isGitProviderCapability,
+  then: gitProviderCapabilitySchema,
+  else: otherCapabilitySchema,
 } as const
 
 export const providerCapabilitiesSchema = {
