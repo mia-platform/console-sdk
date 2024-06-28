@@ -1,5 +1,8 @@
 # Console-client
 
+> [!IMPORTANT]  
+> Console Client Package is experimental, it may be subject to breaking changes and features only a minimal subset of APIs
+
 ## What is the console-client?
 
 Console-client is the Mia-Platform client library for interacting with the Console APIs.  
