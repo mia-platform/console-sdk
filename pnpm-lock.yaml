@@ -91,14 +91,14 @@ importers:
   packages/console-sdk-microfrontend:
     dependencies:
       '@mia-platform/console-types':
-        specifier: 0.19.26
-        version: 0.19.26(@fastify/swagger@8.14.0)(fastify@4.28.0)
+        specifier: 0.19.27
+        version: 0.19.27(@fastify/swagger@8.14.0)(fastify@4.28.0)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
       ramda:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: ^0.30.1
+        version: 0.30.1
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -107,8 +107,8 @@ importers:
         specifier: ^29.5.12
         version: 29.5.12
       '@types/jsdom':
-        specifier: 21.1.6
-        version: 21.1.6
+        specifier: 21.1.7
+        version: 21.1.7
       '@types/ramda':
         specifier: ^0.30.0
         version: 0.30.0
@@ -116,7 +116,7 @@ importers:
         specifier: ^7.13.0
         version: 7.13.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)(typescript@5.5.2)
       '@typescript-eslint/parser':
-        specifier: ^7.10.0
+        specifier: ^7.14.1
         version: 7.14.1(eslint@8.57.0)(typescript@5.5.2)
       jest:
         specifier: ^29.7.0
@@ -134,8 +134,8 @@ importers:
   packages/console-sdk-vite-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.2.13
-        version: 0.2.13(@fastify/swagger@8.14.0)(fastify@4.28.0)
+        specifier: 0.2.14
+        version: 0.2.14(@fastify/swagger@8.14.0)(fastify@4.28.0)
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -144,13 +144,13 @@ importers:
         specifier: ^29.5.12
         version: 29.5.12
       '@types/jsdom':
-        specifier: 21.1.6
-        version: 21.1.6
+        specifier: 21.1.7
+        version: 21.1.7
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.13.0
         version: 7.13.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)(typescript@5.5.2)
       '@typescript-eslint/parser':
-        specifier: ^7.10.0
+        specifier: ^7.14.1
         version: 7.14.1(eslint@8.57.0)(typescript@5.5.2)
       eslint:
         specifier: ^8.57.0
@@ -171,8 +171,8 @@ importers:
   packages/console-sdk-webpack-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.2.13
-        version: 0.2.13(@fastify/swagger@8.14.0)(fastify@4.28.0)
+        specifier: 0.2.14
+        version: 0.2.14(@fastify/swagger@8.14.0)(fastify@4.28.0)
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -181,8 +181,8 @@ importers:
         specifier: ^29.5.12
         version: 29.5.12
       '@types/jsdom':
-        specifier: 21.1.6
-        version: 21.1.6
+        specifier: 21.1.7
+        version: 21.1.7
       '@types/ramda':
         specifier: ^0.30.0
         version: 0.30.0
@@ -190,7 +190,7 @@ importers:
         specifier: ^7.13.0
         version: 7.13.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)(typescript@5.5.2)
       '@typescript-eslint/parser':
-        specifier: ^7.10.0
+        specifier: ^7.14.1
         version: 7.14.1(eslint@8.57.0)(typescript@5.5.2)
       jest:
         specifier: ^29.7.0
@@ -217,8 +217,8 @@ importers:
         specifier: ^4 || ^3
         version: 4.28.0
       ramda:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: ^0.30.1
+        version: 0.30.1
     devDependencies:
       '@mia-platform/eslint-config-mia':
         specifier: ^3.0.0
@@ -233,7 +233,7 @@ importers:
         specifier: ^7.13.0
         version: 7.13.0(@typescript-eslint/parser@7.14.1(eslint@8.57.0)(typescript@5.5.2))(eslint@8.57.0)(typescript@5.5.2)
       '@typescript-eslint/parser':
-        specifier: ^7.10.0
+        specifier: ^7.14.1
         version: 7.14.1(eslint@8.57.0)(typescript@5.5.2)
       ajv:
         specifier: ^8.12.0
@@ -797,12 +797,12 @@ packages:
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
 
-  '@mia-platform/console-sdk-microfrontend@0.2.13':
-    resolution: {integrity: sha512-a2iZF+9xuBpbjlV/1YOmiyv7vTBReuXUyT1+JDAMK0N/b/ZgSByixsAoEap7rIys3VO6thUEGE1Wdmu/W/N/PQ==}
+  '@mia-platform/console-sdk-microfrontend@0.2.14':
+    resolution: {integrity: sha512-zF12frZW3+6DvwW6UnoR62Ux3q3yAKKqJ35Tjho18tLPPiAKHG+eiC9E7Y3kPQquXnnAMhj48KfvWp/QfNFCFw==}
     engines: {node: '>=v18.18.2'}
 
-  '@mia-platform/console-types@0.19.26':
-    resolution: {integrity: sha512-T2Daojl2LP/UCmFTRvovNTGmakAuB5otGLsTGa3JRjWFxIghDwkqPJigoX97ObrPAQ0zJj+6kS3lAQ0ypNTbOQ==}
+  '@mia-platform/console-types@0.19.27':
+    resolution: {integrity: sha512-IsoOyC8fgw/RHJVqG5wv2UXnLTm0bLwnn8blPar6OEOo7GAAPhwbus8zXEuarwzyMiiVbGjxg3VmVc8KxLleRg==}
     peerDependencies:
       '@fastify/swagger': ^8 || ^6
       fastify: ^4 || ^3
@@ -976,8 +976,8 @@ packages:
   '@types/jest@29.5.12':
     resolution: {integrity: sha512-eDC8bTvT/QhYdxJAulQikueigY5AsdBRH2yDKW3yveW7svY3+DzN84/2NUgkw10RTiJbWqZrTtoGVdYlvFJdLw==}
 
-  '@types/jsdom@21.1.6':
-    resolution: {integrity: sha512-/7kkMsC+/kMs7gAYmmBR9P0vGTnOoLhQhyhQJSlXGI5bzTHp6xdo0TtKWQAsz6pmSAeVqKSbqeyP6hytqr9FDw==}
+  '@types/jsdom@21.1.7':
+    resolution: {integrity: sha512-yOriVnggzrnQ3a9OKOCxaVuSug3w3/SbOj5i7VwXWZEyUNl3bLF9V3MfxGbZKuwqJOQyRfqXyROBB1CoZLFWzA==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -2994,8 +2994,8 @@ packages:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
 
-  ramda@0.30.0:
-    resolution: {integrity: sha512-13Y0iMhIQuAm/wNGBL/9HEqIfRGmNmjKnTPlKWfA9f7dnDkr8d45wQ+S7+ZLh/Pq9PdcGxkqKUEA7ySu1QSd9Q==}
+  ramda@0.30.1:
+    resolution: {integrity: sha512-tEF5I22zJnuclswcZMc8bDIrwRHRzf+NqVEmqg50ShAZMP7MWeR/RGDthfM/p+BlqvF2fXAzpn8i+SJcYD3alw==}
 
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
@@ -4525,22 +4525,22 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@mia-platform/console-sdk-microfrontend@0.2.13(@fastify/swagger@8.14.0)(fastify@4.28.0)':
+  '@mia-platform/console-sdk-microfrontend@0.2.14(@fastify/swagger@8.14.0)(fastify@4.28.0)':
     dependencies:
-      '@mia-platform/console-types': 0.19.26(@fastify/swagger@8.14.0)(fastify@4.28.0)
+      '@mia-platform/console-types': 0.19.27(@fastify/swagger@8.14.0)(fastify@4.28.0)
       eslint: 8.57.0
-      ramda: 0.30.0
+      ramda: 0.30.1
       rxjs: 7.8.1
     transitivePeerDependencies:
       - '@fastify/swagger'
       - fastify
       - supports-color
 
-  '@mia-platform/console-types@0.19.26(@fastify/swagger@8.14.0)(fastify@4.28.0)':
+  '@mia-platform/console-types@0.19.27(@fastify/swagger@8.14.0)(fastify@4.28.0)':
     dependencies:
       '@fastify/swagger': 8.14.0
       fastify: 4.28.0
-      ramda: 0.30.0
+      ramda: 0.30.1
 
   '@mia-platform/eslint-config-mia@3.0.0(eslint@8.57.0)':
     dependencies:
@@ -4694,7 +4694,7 @@ snapshots:
       expect: 29.7.0
       pretty-format: 29.7.0
 
-  '@types/jsdom@21.1.6':
+  '@types/jsdom@21.1.7':
     dependencies:
       '@types/node': 20.14.2
       '@types/tough-cookie': 4.0.5
@@ -7138,7 +7138,7 @@ snapshots:
 
   quick-lru@4.0.1: {}
 
-  ramda@0.30.0: {}
+  ramda@0.30.1: {}
 
   react-is@18.3.1: {}
 

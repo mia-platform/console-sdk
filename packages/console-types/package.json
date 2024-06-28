@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/console-types",
-  "version": "0.19.26",
+  "version": "0.19.27",
   "description": "",
   "main": "build/index.js",
   "types": "build/index",
@@ -22,7 +22,7 @@
     "@types/ramda": "^0.30.0",
     "@types/tap": "^15.0.11",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.10.0",
+    "@typescript-eslint/parser": "^7.14.1",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
     "eslint": "^8.57.0",
@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "ramda": "^0.30.0"
+    "ramda": "^0.30.1"
   },
   "peerDependencies": {
     "@fastify/swagger": "^8 || ^6",
