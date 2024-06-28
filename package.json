@@ -21,15 +21,13 @@
     "vh": "pnpm --filter @mia-platform/console-sdk-vite-helpers",
     "wh": "pnpm --filter @mia-platform/console-sdk-webpack-helpers",
     "types": "pnpm --filter @mia-platform/console-types",
-
+    "client": "pnpm --filter @mia-platform/console-client",
     "postinstall": "pnpm types build && pnpm sdk build && pnpm vh build && pnpm wh build",
-
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
     "lint:fix": "pnpm -r lint --fix",
     "lint": "pnpm -r lint",
-
     "addlicense": "addlicense -c 'Mia srl' -s packages/*/src/**/*.ts",
     "check-license": "addlicense -c 'Mia srl' -check -s packages/*/src/**/*.ts",
     "changeset": "changeset"
