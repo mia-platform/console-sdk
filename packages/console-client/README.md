@@ -31,7 +31,7 @@ stateDiagram
 
 To generate the client you just need kiota and an OAS file either `json` or `yaml` will work.
 
-> **NOTE:**  
+> [!NOTE]
 > Currently kiota only supports OAS up to v3.0 thus ensure to export the correct version before proceeding.
 
 There are several ways to get kiota, pick your favorite from the [official documentation][install-kiota].
