@@ -52,8 +52,8 @@ importers:
         specifier: 1.0.0-preview.51
         version: 1.0.0-preview.51
       '@microsoft/kiota-serialization-json':
-        specifier: 1.0.0-preview.51
-        version: 1.0.0-preview.51
+        specifier: 1.0.0-preview.56
+        version: 1.0.0-preview.56
       '@microsoft/kiota-serialization-text':
         specifier: 1.0.0-preview.48
         version: 1.0.0-preview.48
@@ -816,8 +816,11 @@ packages:
   '@microsoft/kiota-abstractions@1.0.0-preview.51':
     resolution: {integrity: sha512-8KDHB2lwjG0DThWca9HTwUKZnKaKXTkGeKSpxhMbI6c/jCzHHmXlu3KigVx5vKl3YLJwdXwrPb92jjNVz0934g==}
 
-  '@microsoft/kiota-serialization-json@1.0.0-preview.51':
-    resolution: {integrity: sha512-HpkMnmOknfU9q7XO98NNrs15c5JzEobZ9LllQPzgBvqqob0O/TK4DNT2pwA8ZNZAjj/558KamUj4LwZYdE2AIw==}
+  '@microsoft/kiota-abstractions@1.0.0-preview.56':
+    resolution: {integrity: sha512-mVrmuCvD9V/h19/cwXDQFPEObq5ipM+HK39rhvXe1EsaBjHdbmIaiiVJMNNy9ZRKSniUreb5f12ailomLrWATA==}
+
+  '@microsoft/kiota-serialization-json@1.0.0-preview.56':
+    resolution: {integrity: sha512-PKQ9xJP7sj+kWFZVkF9TDlsoYA7BDP+4SNq4+A5Dod0qxi2pdb3UoBZUMLr8DENaaKWStQpNpx2+Yad8wJlxxw==}
 
   '@microsoft/kiota-serialization-text@1.0.0-preview.48':
     resolution: {integrity: sha512-aiC7Fic1gn8xo0JsdO5gSQ34bwtJlYhMKKlQgTBwYoxA01zzLSn2rkSpqzc1JxTZoRyEqIviBR9dL8IrBOErow==}
@@ -933,6 +936,9 @@ packages:
 
   '@std-uritemplate/std-uritemplate@0.0.57':
     resolution: {integrity: sha512-tl79y8TIh4Wc1gar9Cv5cnTls7IY1EDSuiI/gM0kShAj2HcyukilPu2ppFIosgBNItTuE+5N5TZzVFu6tBCaDw==}
+
+  '@std-uritemplate/std-uritemplate@0.0.59':
+    resolution: {integrity: sha512-S9RcLJbm9ZgrHGZ//iDPH3T2pssGC5ae+jugRsKTooubZ9VjZc4W3sH+kBAh5rQY+D/mC6pWmFQrY3oIPtSPiw==}
 
   '@tsconfig/node10@1.0.11':
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
@@ -3582,6 +3588,10 @@ packages:
   url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
 
+  uuid@10.0.0:
+    resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
+    hasBin: true
+
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
@@ -4555,9 +4565,18 @@ snapshots:
       tslib: 2.6.2
       uuid: 9.0.1
 
-  '@microsoft/kiota-serialization-json@1.0.0-preview.51':
+  '@microsoft/kiota-abstractions@1.0.0-preview.56':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.51
+      '@opentelemetry/api': 1.9.0
+      '@std-uritemplate/std-uritemplate': 0.0.59
+      guid-typescript: 1.0.9
+      tinyduration: 3.3.1
+      tslib: 2.6.2
+      uuid: 10.0.0
+
+  '@microsoft/kiota-serialization-json@1.0.0-preview.56':
+    dependencies:
+      '@microsoft/kiota-abstractions': 1.0.0-preview.56
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
@@ -4643,6 +4662,8 @@ snapshots:
       '@sinonjs/commons': 3.0.1
 
   '@std-uritemplate/std-uritemplate@0.0.57': {}
+
+  '@std-uritemplate/std-uritemplate@0.0.59': {}
 
   '@tsconfig/node10@1.0.11': {}
 
@@ -7757,6 +7778,8 @@ snapshots:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+
+  uuid@10.0.0: {}
 
   uuid@8.3.2: {}
 
