@@ -129,7 +129,7 @@ export const providerSchema = {
   required: [
     'providerId',
     'type',
-    'urls'
+    'urls',
   ],
 } as const
 
