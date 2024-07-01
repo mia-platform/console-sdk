@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.20.0
+
+### Minor Changes
+
+- 1358942: feat: remove container registry from provider types and from providers
+
 ## 0.19.27
 
 ### Patch Changes

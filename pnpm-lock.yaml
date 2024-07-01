@@ -91,8 +91,8 @@ importers:
   packages/console-sdk-microfrontend:
     dependencies:
       '@mia-platform/console-types':
-        specifier: 0.19.27
-        version: 0.19.27(@fastify/swagger@8.14.0)(fastify@4.28.0)
+        specifier: 0.20.0
+        version: link:../console-types
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -134,8 +134,8 @@ importers:
   packages/console-sdk-vite-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.2.14
-        version: 0.2.14(@fastify/swagger@8.14.0)(fastify@4.28.0)
+        specifier: 0.2.15
+        version: link:../console-sdk-microfrontend
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -171,8 +171,8 @@ importers:
   packages/console-sdk-webpack-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.2.14
-        version: 0.2.14(@fastify/swagger@8.14.0)(fastify@4.28.0)
+        specifier: 0.2.15
+        version: link:../console-sdk-microfrontend
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -796,16 +796,6 @@ packages:
 
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
-
-  '@mia-platform/console-sdk-microfrontend@0.2.14':
-    resolution: {integrity: sha512-zF12frZW3+6DvwW6UnoR62Ux3q3yAKKqJ35Tjho18tLPPiAKHG+eiC9E7Y3kPQquXnnAMhj48KfvWp/QfNFCFw==}
-    engines: {node: '>=v18.18.2'}
-
-  '@mia-platform/console-types@0.19.27':
-    resolution: {integrity: sha512-IsoOyC8fgw/RHJVqG5wv2UXnLTm0bLwnn8blPar6OEOo7GAAPhwbus8zXEuarwzyMiiVbGjxg3VmVc8KxLleRg==}
-    peerDependencies:
-      '@fastify/swagger': ^8 || ^6
-      fastify: ^4 || ^3
 
   '@mia-platform/eslint-config-mia@3.0.0':
     resolution: {integrity: sha512-tJSbuoPm46YOLe8AXTdsIFA+6O+MFOK0Rrn5LeQYxZ5bs6V6bacsyppgo1KR8Op4+HPlwZj2BdFP286FgTiSAw==}
@@ -4524,23 +4514,6 @@ snapshots:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
-
-  '@mia-platform/console-sdk-microfrontend@0.2.14(@fastify/swagger@8.14.0)(fastify@4.28.0)':
-    dependencies:
-      '@mia-platform/console-types': 0.19.27(@fastify/swagger@8.14.0)(fastify@4.28.0)
-      eslint: 8.57.0
-      ramda: 0.30.1
-      rxjs: 7.8.1
-    transitivePeerDependencies:
-      - '@fastify/swagger'
-      - fastify
-      - supports-color
-
-  '@mia-platform/console-types@0.19.27(@fastify/swagger@8.14.0)(fastify@4.28.0)':
-    dependencies:
-      '@fastify/swagger': 8.14.0
-      fastify: 4.28.0
-      ramda: 0.30.1
 
   '@mia-platform/eslint-config-mia@3.0.0(eslint@8.57.0)':
     dependencies:
