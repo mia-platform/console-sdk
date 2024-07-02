@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.20.1
+
+### Patch Changes
+
+- 3c32903: export constant FROM_CONFIGMAP
+
 ## 0.20.0
 
 ### Minor Changes

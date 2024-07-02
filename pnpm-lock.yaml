@@ -91,7 +91,7 @@ importers:
   packages/console-sdk-microfrontend:
     dependencies:
       '@mia-platform/console-types':
-        specifier: 0.20.0
+        specifier: 0.20.1
         version: link:../console-types
       eslint:
         specifier: ^8.57.0
@@ -134,7 +134,7 @@ importers:
   packages/console-sdk-vite-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.2.15
+        specifier: 0.2.16
         version: link:../console-sdk-microfrontend
       vite-plugin-qiankun:
         specifier: 1.0.15
@@ -171,7 +171,7 @@ importers:
   packages/console-sdk-webpack-helpers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
-        specifier: 0.2.15
+        specifier: 0.2.16
         version: link:../console-sdk-microfrontend
       vite-plugin-qiankun:
         specifier: 1.0.15
