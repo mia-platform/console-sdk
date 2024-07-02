@@ -166,6 +166,7 @@ const constants = {
   MIA_LOG_PARSER_PLAIN,
   PLAIN_TEXT: EnvironmentVariablesTypes.PLAIN_TEXT,
   FROM_SECRET: EnvironmentVariablesTypes.FROM_SECRET,
+  FROM_CONFIGMAP: EnvironmentVariablesTypes.FROM_CONFIGMAP,
   EnvironmentVariablesTypes,
   ENVIRONMENT_VAR_TYPES,
   METHOD_GET: Verbs.METHOD_GET,
