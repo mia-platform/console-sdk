@@ -20,7 +20,7 @@ stateDiagram
     state "Console is deployed with new set of APIs" as deploy
     state "OpenAPI Spec v3.0 file is exported from the Console" as console
     state "Kiota takes in OAS and generates fluent API based client" as kiota
-    state "New version ofconsole-client is built from the kiota one" as client
+    state "New version of console-client is built from the kiota one" as client
 
 
     [*] --> deploy
