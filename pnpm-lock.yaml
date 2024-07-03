@@ -41,13 +41,6 @@ importers:
 
   packages/console-client:
     dependencies:
-      axios:
-        specifier: ^1.7.2
-        version: 1.7.2
-    devDependencies:
-      '@mia-platform/eslint-config-mia':
-        specifier: ^3.0.0
-        version: 3.0.0(eslint@8.57.0)
       '@microsoft/kiota-abstractions':
         specifier: 1.0.0-preview.51
         version: 1.0.0-preview.51
@@ -57,6 +50,13 @@ importers:
       '@microsoft/kiota-serialization-text':
         specifier: 1.0.0-preview.48
         version: 1.0.0-preview.48
+      axios:
+        specifier: ^1.7.2
+        version: 1.7.2
+    devDependencies:
+      '@mia-platform/eslint-config-mia':
+        specifier: ^3.0.0
+        version: 3.0.0(eslint@8.57.0)
       '@types/node':
         specifier: ^20.14.2
         version: 20.14.2
