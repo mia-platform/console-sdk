@@ -53,11 +53,9 @@ export const containerRegistry = {
     imagePullSecretName: {
       type: 'string',
     },
-    id: {
-      type: 'string',
-    },
     isDefault: {
       type: 'boolean',
+      default: false,
     },
   },
   required: ['name', 'hostname'],
