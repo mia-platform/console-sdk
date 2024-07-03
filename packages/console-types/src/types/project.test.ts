@@ -239,6 +239,13 @@ t.test('project validated', t => {
         viewBasicHomepage: true,
       },
       imagePullSecretNames: ['some-imagePullSecret-here', 'some-other-one'],
+      containerRegistries: [{
+        name: 'Some CR',
+        hostname: 'some-cr.io',
+        imagePullSecretName: 'some-secret',
+        id: 'some-id',
+        isDefault: true,
+      }],
     }
 
     t.ok(validate(project), validationMessage(validate.errors))
@@ -367,6 +374,13 @@ t.test('project validated', t => {
         viewBasicHomepage: true,
       },
       imagePullSecretNames: ['some-imagePullSecret-here', 'some-other-one'],
+      containerRegistries: [{
+        name: 'Some CR',
+        hostname: 'some-cr.io',
+        imagePullSecretName: 'some-secret',
+        id: 'some-id',
+        isDefault: true,
+      }],
     }
 
     t.ok(validate(projectObj), validationMessage(validate.errors))

@@ -89,6 +89,13 @@ t.test('tenants validated', t => {
         hostProperties: true,
         privilegedPod: true,
       },
+      containerRegistries: [{
+        name: 'Some CR',
+        hostname: 'some-cr.io',
+        imagePullSecretName: 'some-secret',
+        id: 'some-id',
+        isDefault: true,
+      }],
     }
 
     t.ok(validate(tenant), validationMessage(validate.errors))

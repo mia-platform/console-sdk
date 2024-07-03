@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { availableNamespaces, dockerImageNameSuggestion, environment, environmentsVariables, monitoring, pipelines } from './project'
+import { availableNamespaces, containerRegistry, dockerImageNameSuggestion, environment, environmentsVariables, monitoring, pipelines } from './project'
 import { REPOSITORY_TYPES } from '../constants/project'
 
 
@@ -78,6 +78,10 @@ export const tenant = {
       },
     },
     dockerImageNameSuggestion,
+    containerRegistries: {
+      type: 'array',
+      items: containerRegistry,
+    },
     enabledSecurityFeatures: {
       type: 'object',
       properties: {

@@ -41,6 +41,28 @@ export const availableNamespaces = {
   },
 } as const
 
+export const containerRegistry = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+    },
+    hostname: {
+      'type': 'string',
+    },
+    imagePullSecretName: {
+      type: 'string',
+    },
+    id: {
+      type: 'string',
+    },
+    isDefault: {
+      type: 'boolean',
+    },
+  },
+  required: ['name', 'hostname'],
+} as const
+
 export const pipelines = {
   oneOf: [
     {
@@ -519,6 +541,10 @@ export const project = {
       properties: {
         viewBasicHomepage: { type: 'boolean' },
       },
+    },
+    containerRegistries: {
+      type: 'array',
+      items: containerRegistry,
     },
     imagePullSecretNames: {
       type: 'array',
