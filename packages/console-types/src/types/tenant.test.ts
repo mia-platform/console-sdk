@@ -93,7 +93,6 @@ t.test('tenants validated', t => {
         name: 'Some CR',
         hostname: 'some-cr.io',
         imagePullSecretName: 'some-secret',
-        id: 'some-id',
         isDefault: true,
       }],
     }

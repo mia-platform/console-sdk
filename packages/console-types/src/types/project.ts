@@ -43,6 +43,7 @@ export const availableNamespaces = {
 
 export const containerRegistry = {
   type: 'object',
+  additionalProperties: false,
   properties: {
     name: {
       type: 'string',

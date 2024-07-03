@@ -243,7 +243,6 @@ t.test('project validated', t => {
         name: 'Some CR',
         hostname: 'some-cr.io',
         imagePullSecretName: 'some-secret',
-        id: 'some-id',
         isDefault: true,
       }],
     }
@@ -378,7 +377,6 @@ t.test('project validated', t => {
         name: 'Some CR',
         hostname: 'some-cr.io',
         imagePullSecretName: 'some-secret',
-        id: 'some-id',
         isDefault: true,
       }],
     }
