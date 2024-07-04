@@ -2,4 +2,4 @@
 "@mia-platform/console-client": patch
 ---
 
-updated console-client tsconfig
+bundling console-client as es module, updated kiota dependencies to preview,57
