@@ -2,4 +2,4 @@
 "@mia-platform/console-client": patch
 ---
 
-bundling console-client as es module, updated kiota dependencies to preview,57
+console-client usable only with ESM, updated kiota dependencies to preview,57
