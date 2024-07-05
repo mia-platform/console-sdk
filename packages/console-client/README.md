@@ -2,6 +2,8 @@
 
 > [!IMPORTANT]  
 > Console Client Package is experimental, it may be subject to breaking changes and features only a minimal subset of APIs
+>
+> Beware this package is currently only bundled as **ES Module**, consider this before using it.
 
 ## What is the console-client?
 
