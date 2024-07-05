@@ -62,6 +62,7 @@ import {
   environment,
   project,
   tagName,
+  containerRegistry,
 } from './types/project'
 import {
   configMap,
@@ -131,6 +132,7 @@ export {
   configMap,
   configMapMountPath,
   configMaps,
+  containerRegistry,
   cronJob,
   crossProjectsService,
   customService,
