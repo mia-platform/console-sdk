@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.21.0
+
+### Minor Changes
+
+- 4afbc3e: feat(IDP-1478): container registry new type in tenants and project
+
 ## 0.20.1
 
 ### Patch Changes
