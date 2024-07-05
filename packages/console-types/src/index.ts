@@ -62,7 +62,7 @@ import {
   environment,
   project,
   tagName,
-  containerRegistry
+  containerRegistry,
 } from './types/project'
 import {
   configMap,
