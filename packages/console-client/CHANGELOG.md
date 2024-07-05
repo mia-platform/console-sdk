@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.1.3
+
+### Patch Changes
+
+- 6b20160: baseUrl is no more mandatory in constructor
+
 ## 0.1.2
 
 ### Patch Changes
