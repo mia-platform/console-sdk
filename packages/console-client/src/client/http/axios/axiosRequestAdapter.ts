@@ -128,8 +128,6 @@ export class AxiosRequestAdapter implements RequestAdapter {
   }
 
   private setBaseUrlForRequestInformation = (requestInfo: RequestInformation): void => {
-    InvalidArgumentError.Assert('baseUrl', this.baseUrl)
-
     requestInfo.pathParameters.baseurl = this.baseUrl
   }
 
