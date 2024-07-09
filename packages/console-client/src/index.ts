@@ -19,4 +19,5 @@
 export {
   type IConsoleClient,
   ConsoleClient,
+  ConsoleRequestError,
 } from './client'

@@ -50,12 +50,17 @@ export class AxiosRequestAdapter implements RequestAdapter {
     return this.serializationWriterFactory
   }
 
-  public send<ModelType extends Parsable>(
-    _requestInfo: RequestInformation,
+  public async send<ModelType extends Parsable>(
+    requestInfo: RequestInformation,
     _deserialization: ParsableFactory<ModelType>,
     _errorMappings: ErrorMappings | undefined
   ): Promise<ModelType | undefined> {
-    throw new Error('Method not implemented.')
+    InvalidArgumentError.Assert('requestInfo', requestInfo)
+
+    this.setBaseUrlForRequestInformation(requestInfo)
+    const requestConfig = await this.getRequestConfigFromRequestInformation(requestInfo)
+    const response = await this.httpClient.executeAxios<ModelType | undefined>(requestInfo.URL, requestConfig, requestInfo.getRequestOptions())
+    return response.data
   }
 
   public async sendCollection<ModelType extends Parsable>(
@@ -83,11 +88,15 @@ export class AxiosRequestAdapter implements RequestAdapter {
     throw new Error('Method not implemented.')
   }
 
-  public sendNoResponseContent(
-    _requestInfo: RequestInformation,
+  public async sendNoResponseContent(
+    requestInfo: RequestInformation,
     _errorMappings: ErrorMappings | undefined
   ): Promise<void> {
-    throw new Error('Method not implemented.')
+    InvalidArgumentError.Assert('requestInfo', requestInfo)
+
+    this.setBaseUrlForRequestInformation(requestInfo)
+    const requestConfig = await this.getRequestConfigFromRequestInformation(requestInfo)
+    await this.httpClient.executeAxios<void>(requestInfo.URL, requestConfig, requestInfo.getRequestOptions())
   }
 
   public sendEnum<EnumObject extends Record<string, unknown>>(
