@@ -36,7 +36,6 @@ class NullAccessTokenProvider implements AuthenticationProvider {
   }
 }
 
-
 export type IConsoleClient = {
   get extensibility(): ExtensibilityRequestBuilder
 }
