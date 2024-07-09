@@ -23,7 +23,6 @@ class InvalidArgumentError extends Error {
   }
 }
 
-
 const InvalidArgumentErrorThrower = {
 
   /**
@@ -40,6 +39,32 @@ const InvalidArgumentErrorThrower = {
   },
 }
 
+class ConsoleRequestError extends Error {
+  private statusCode
+  private error: string|undefined
+
+  constructor(message: string, statusCode: number, error: string) {
+    super(message)
+    this.name = 'ConsoleRequestError'
+    this.message = message
+    this.statusCode = statusCode
+    this.error = error
+  }
+
+  public toString(): string {
+    return `${this.name}(${this.statusCode}): ${this.message}${this.error ? ` - ${this.error}` : ''}`
+  }
+
+  public getStatusCode(): number {
+    return this.statusCode
+  }
+
+  public getError(): string|undefined {
+    return this.error
+  }
+}
+
 export {
   InvalidArgumentErrorThrower as InvalidArgumentError,
+  ConsoleRequestError,
 }

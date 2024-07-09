@@ -18,12 +18,19 @@
 
 import { describe, it } from 'node:test'
 import assert from 'node:assert'
+import { AxiosError, AxiosResponse } from 'axios'
 
 import axiosWrapper from '../../client/http/axios'
 import { ConsoleClient } from '../../client'
-import { Extensions } from '../../kiota-client/api/extensibility/tenants/item/extensions'
+import { Extensions, ExtensionsPutRequestBody } from '../../kiota-client/api/extensibility/tenants/item/extensions'
 
 const baseUrl = 'https://base-url.com'
+
+const buildAxiosError = (errorResponse: unknown): AxiosError => {
+  const axiosError = new AxiosError()
+  axiosError.response = { data: errorResponse } as AxiosResponse<unknown>
+  return axiosError
+}
 
 describe('console-client', () => {
   it('calls APIs correctly without baseUrl set', async(t) => {
@@ -73,6 +80,99 @@ describe('console-client', () => {
       },
     ])
     assert.deepEqual(extensions, mockedExtensions)
+  })
+
+  describe('verbs integration', () => {
+    const testTenantId = 'some-tenant-id'
+    const testExtensionId = 'the-extension-id'
+
+    describe('PUT method', () => {
+      const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions`
+
+      it('properly invokes api', async(t) => {
+        const expectedResult = { extensionId: 'created-id' }
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.resolve({ data: expectedResult })
+        }
+        const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const createData: ExtensionsPutRequestBody = {
+          name: 'extension name',
+        }
+
+        const response = await new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId)
+          .extensions
+          .put(createData)
+
+        const { calls } = axiosMock.mock
+        assert.equal(calls.length, 1)
+
+        const [axiosCall] = calls
+        assert.deepEqual(axiosCall.arguments[0], expectedUrl)
+        assert.deepEqual(axiosCall.arguments[1]?.headers, [
+          ['accept', 'application/json'],
+          ['content-type', 'application/json'],
+          ['user-agent', 'console-client'],
+        ])
+        assert.deepEqual(axiosCall.arguments[1]?.method, 'PUT')
+        assert.deepEqual(response, expectedResult)
+      })
+    })
+
+    describe('DELETE method', () => {
+      const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions/${testExtensionId}`
+
+      it('properly invokes delete', async(t) => {
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.resolve({ status: 204 })
+        }
+        const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        await new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId)
+          .extensions.byExtensionId(testExtensionId)
+          .delete()
+
+        const { calls } = axiosMock.mock
+        assert.equal(calls.length, 1)
+
+        const [axiosCall] = calls
+        assert.deepEqual(axiosCall.arguments, [
+          expectedUrl,
+          {
+            data: undefined,
+            headers: [
+              ['accept', 'application/json'],
+              ['content-type', 'application/json'],
+              ['user-agent', 'console-client'],
+            ],
+            method: 'DELETE',
+          },
+        ])
+      })
+
+      it('handles error', async(t) => {
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.reject(buildAxiosError({
+            statusCode: 500,
+            error: 'the error',
+            message: 'the message',
+          }))
+        }
+
+        t.mock.method(axiosWrapper, 'axiosFn', mock)
+        assert.rejects(async() =>
+          new ConsoleClient('').extensibility
+            .tenants.byTenantId(testTenantId)
+            .extensions.byExtensionId(testExtensionId)
+            .delete()
+        , { name: 'ConsoleRequestError', message: 'the message' })
+      })
+    })
   })
 
   it('sets default headers correctly', async(t) => {
