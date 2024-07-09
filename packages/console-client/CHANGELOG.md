@@ -1,5 +1,15 @@
 # @mia-platform/console-client
 
+## 0.2.0
+
+### Minor Changes
+
+- 214e422: throw ConsoleRequestError on http failure
+
+### Patch Changes
+
+- 214e422: added support for put and delete verbs
+
 ## 0.1.3
 
 ### Patch Changes
