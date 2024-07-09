@@ -92,7 +92,7 @@ importers:
     dependencies:
       '@mia-platform/console-types':
         specifier: 0.21.0
-        version: link:../console-types
+        version: 0.21.0(@fastify/swagger@8.14.0)(fastify@4.28.0)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -122,8 +122,8 @@ importers:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2))
       ts-jest:
-        specifier: ^29.1.3
-        version: 29.1.3(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2)
+        specifier: ^29.2.0
+        version: 29.2.0(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2)
       typescript:
         specifier: ^5.3.3
         version: 5.5.2
@@ -135,7 +135,7 @@ importers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
         specifier: 0.2.17
-        version: link:../console-sdk-microfrontend
+        version: 0.2.17(@fastify/swagger@8.14.0)(fastify@4.28.0)
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -162,8 +162,8 @@ importers:
         specifier: ^24.1.0
         version: 24.1.0
       ts-jest:
-        specifier: ^29.1.3
-        version: 29.1.3(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2)
+        specifier: ^29.2.0
+        version: 29.2.0(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2)
       typescript:
         specifier: ^5.3.3
         version: 5.5.2
@@ -172,7 +172,7 @@ importers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
         specifier: 0.2.17
-        version: link:../console-sdk-microfrontend
+        version: 0.2.17(@fastify/swagger@8.14.0)(fastify@4.28.0)
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -202,8 +202,8 @@ importers:
         specifier: ^7.8.1
         version: 7.8.1
       ts-jest:
-        specifier: ^29.1.3
-        version: 29.1.3(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2)
+        specifier: ^29.2.0
+        version: 29.2.0(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2)
       typescript:
         specifier: ^5.3.3
         version: 5.5.2
@@ -796,6 +796,16 @@ packages:
 
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
+
+  '@mia-platform/console-sdk-microfrontend@0.2.17':
+    resolution: {integrity: sha512-YFsasoTc33Vd0zw4yg7ulVFA1c/RbPJVJdkm5CFuWMpkvEpnn+nLyNzk6u5fBYki5acC8adKwTKjoc3jAB74fg==}
+    engines: {node: '>=v18.18.2'}
+
+  '@mia-platform/console-types@0.21.0':
+    resolution: {integrity: sha512-XyQgKeRGwSli8fW7RwA7oc9yocdPJ2ux1P+J0LWkvEbIeK1UE32H4mNMsvVk5BE5gMsSNeQtbMieMcHz1KxO8g==}
+    peerDependencies:
+      '@fastify/swagger': ^8 || ^6
+      fastify: ^4 || ^3
 
   '@mia-platform/eslint-config-mia@3.0.0':
     resolution: {integrity: sha512-tJSbuoPm46YOLe8AXTdsIFA+6O+MFOK0Rrn5LeQYxZ5bs6V6bacsyppgo1KR8Op4+HPlwZj2BdFP286FgTiSAw==}
@@ -3431,8 +3441,8 @@ packages:
     peerDependencies:
       typescript: '>=4.2.0'
 
-  ts-jest@29.1.3:
-    resolution: {integrity: sha512-6L9qz3ginTd1NKhOxmkP0qU3FyKjj5CPoY+anszfVn6Pmv/RIKzhiMCsH7Yb7UvJR9I2A64rm4zQl531s2F1iw==}
+  ts-jest@29.2.0:
+    resolution: {integrity: sha512-eFmkE9MG0+oT6nqSOcUwL+2UUmK2IvhhUV8hFDsCHnc++v2WCCbQQZh5vvjsa8sgOY/g9T0325hmkEmi6rninA==}
     engines: {node: ^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -4514,6 +4524,23 @@ snapshots:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
+
+  '@mia-platform/console-sdk-microfrontend@0.2.17(@fastify/swagger@8.14.0)(fastify@4.28.0)':
+    dependencies:
+      '@mia-platform/console-types': 0.21.0(@fastify/swagger@8.14.0)(fastify@4.28.0)
+      eslint: 8.57.0
+      ramda: 0.30.1
+      rxjs: 7.8.1
+    transitivePeerDependencies:
+      - '@fastify/swagger'
+      - fastify
+      - supports-color
+
+  '@mia-platform/console-types@0.21.0(@fastify/swagger@8.14.0)(fastify@4.28.0)':
+    dependencies:
+      '@fastify/swagger': 8.14.0
+      fastify: 4.28.0
+      ramda: 0.30.1
 
   '@mia-platform/eslint-config-mia@3.0.0(eslint@8.57.0)':
     dependencies:
@@ -7577,7 +7604,7 @@ snapshots:
     dependencies:
       typescript: 5.5.2
 
-  ts-jest@29.1.3(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2):
+  ts-jest@29.2.0(@babel/core@7.24.7)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.7))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.5.2)))(typescript@5.5.2):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
