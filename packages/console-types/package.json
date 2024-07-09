@@ -29,7 +29,7 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "json-schema-to-ts": "^2.9.2",
-    "rimraf": "^5.0.5",
+    "rimraf": "^6.0.0",
     "tap": "^16.3.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
