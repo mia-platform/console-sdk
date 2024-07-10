@@ -43,7 +43,7 @@ class ConsoleRequestError extends Error {
   private statusCode
   private error: string|undefined
 
-  constructor(message: string, statusCode: number, error: string) {
+  constructor(message: string, statusCode = 0, error?: string) {
     super(message)
     this.name = 'ConsoleRequestError'
     this.message = message
@@ -67,4 +67,8 @@ class ConsoleRequestError extends Error {
 export {
   InvalidArgumentErrorThrower as InvalidArgumentError,
   ConsoleRequestError,
+}
+
+export function GenericConsoleRequestErrorFactory(error: Error): ConsoleRequestError {
+  return new ConsoleRequestError((error as Error)?.message || 'Something went wrong')
 }
