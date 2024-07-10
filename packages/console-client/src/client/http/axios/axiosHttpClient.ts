@@ -18,13 +18,13 @@
 
 /* eslint-disable max-len */
 import { RequestOption } from '@microsoft/kiota-abstractions'
-import { AxiosError } from 'axios'
+import { isAxiosError } from 'axios'
 
 import { AxiosClientRequestConfig, AxiosClientResponse } from '.'
 import { Middleware } from './middlewares/middleware'
 import { MiddlewareFactory } from './middlewares/middlewareFactory'
 import { CustomAxiosHandler } from './middlewares/customAxiosHandler'
-import { ConsoleRequestError } from './errors'
+import { ConsoleRequestError, GenericConsoleRequestErrorFactory } from './errors'
 
 /* eslint-disable valid-jsdoc */
 export class AxiosHttpClient {
@@ -86,18 +86,13 @@ export class AxiosHttpClient {
         return await this.customAxios(url, requestConfig)
       }
     } catch (error) {
-      if (!(error instanceof AxiosError)) {
-        throw error
-      }
-
-      if (error.response) {
+      if (isAxiosError(error) && error.response) {
         const { data: { statusCode, error: errorPayload, message } } = error.response
         throw new ConsoleRequestError(message, statusCode, errorPayload)
       }
-
-      throw error
+      throw GenericConsoleRequestErrorFactory(error as Error)
     }
 
-    throw new Error('Please provide middlewares or a custom fetch function to execute the request')
+    throw GenericConsoleRequestErrorFactory(new Error('Please provide middlewares or a custom fetch function to execute the request'))
   }
 }
