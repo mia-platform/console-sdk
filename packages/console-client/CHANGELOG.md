@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.1
+
+### Patch Changes
+
+- dd273b4: improved errors to always return ConsoleRequestError
+
 ## 0.2.0
 
 ### Minor Changes
