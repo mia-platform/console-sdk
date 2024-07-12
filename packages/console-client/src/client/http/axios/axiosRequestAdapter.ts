@@ -18,6 +18,7 @@
 
 /* eslint-disable max-len */
 import { AuthenticationProvider, BackingStoreFactory, ErrorMappings, Parsable, ParsableFactory, ParseNodeFactory, ParseNodeFactoryRegistry, PrimitiveTypesForDeserialization, PrimitiveTypesForDeserializationType, RequestAdapter, RequestInformation, SerializationWriterFactory, SerializationWriterFactoryRegistry } from '@microsoft/kiota-abstractions'
+import { AxiosRequestHeaders } from 'axios'
 
 import { AxiosClientRequestConfig, AxiosClientResponse } from '.'
 import { AxiosHttpClient } from './axiosHttpClient'
@@ -144,14 +145,10 @@ export class AxiosRequestAdapter implements RequestAdapter {
     this.setRequestInformationDefaultHeaders(requestInfo)
 
     const method = requestInfo.httpMethod?.toString()
-    const headers: [string, string][] | undefined = requestInfo.headers
-      ? Array
-        .from(requestInfo.headers.keys())
-        .map((key) => [
-          key.toString().toLocaleLowerCase(),
-          this.foldHeaderValue(requestInfo.headers.tryGetValue(key)),
-        ])
-      : undefined
+    const headers: AxiosRequestHeaders = Array.from(requestInfo.headers.keys()).reduce((acc, key) => {
+      acc[key.toString().toLocaleLowerCase()] = this.foldHeaderValue(requestInfo.headers.tryGetValue(key))
+      return acc
+    }, {} as AxiosRequestHeaders)
 
     const requestConfig = {
       method,
