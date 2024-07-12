@@ -28,6 +28,7 @@ import { ExtensibilityRequestBuilder } from '../kiota-client/api/extensibility'
 export { ConsoleRequestError } from './http/axios/errors'
 
 const { AxiosRequestAdapter } = axiosHttpClient
+
 class NullAccessTokenProvider implements AuthenticationProvider {
   public authenticateRequest = async(
     _request: RequestInformation, _additionalAuthenticationContext?: Record<string, unknown>
