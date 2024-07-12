@@ -1,7 +1,7 @@
 {
   "name": "@mia-platform/console-client",
   "license": "Apache-2.0",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "build/index.js",
   "typings": "./build/index.d.ts",
   "module": "./build/index.js",
@@ -21,6 +21,8 @@
     "@microsoft/kiota-abstractions": "1.0.0-preview.57",
     "@microsoft/kiota-serialization-json": "1.0.0-preview.57",
     "@microsoft/kiota-serialization-text": "1.0.0-preview.54",
+    "@microsoft/kiota-serialization-form": "1.0.0-preview.46",
+    "@microsoft/kiota-serialization-multipart": "1.0.0-preview.35",
     "axios": "^1.7.2"
   },
   "devDependencies": {

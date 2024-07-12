@@ -44,9 +44,15 @@ importers:
       '@microsoft/kiota-abstractions':
         specifier: 1.0.0-preview.57
         version: 1.0.0-preview.57
+      '@microsoft/kiota-serialization-form':
+        specifier: 1.0.0-preview.46
+        version: 1.0.0-preview.46
       '@microsoft/kiota-serialization-json':
         specifier: 1.0.0-preview.57
         version: 1.0.0-preview.57
+      '@microsoft/kiota-serialization-multipart':
+        specifier: 1.0.0-preview.35
+        version: 1.0.0-preview.35
       '@microsoft/kiota-serialization-text':
         specifier: 1.0.0-preview.54
         version: 1.0.0-preview.54
@@ -92,7 +98,7 @@ importers:
     dependencies:
       '@mia-platform/console-types':
         specifier: 0.21.0
-        version: link:../console-types
+        version: 0.21.0(@fastify/swagger@8.14.0)(fastify@4.28.0)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -135,7 +141,7 @@ importers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
         specifier: 0.2.17
-        version: link:../console-sdk-microfrontend
+        version: 0.2.17(@fastify/swagger@8.14.0)(fastify@4.28.0)
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -172,7 +178,7 @@ importers:
     dependencies:
       '@mia-platform/console-sdk-microfrontend':
         specifier: 0.2.17
-        version: link:../console-sdk-microfrontend
+        version: 0.2.17(@fastify/swagger@8.14.0)(fastify@4.28.0)
       vite-plugin-qiankun:
         specifier: 1.0.15
         version: 1.0.15(typescript@5.5.2)(vite@5.3.0(@types/node@20.14.2))
@@ -797,6 +803,16 @@ packages:
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
 
+  '@mia-platform/console-sdk-microfrontend@0.2.17':
+    resolution: {integrity: sha512-YFsasoTc33Vd0zw4yg7ulVFA1c/RbPJVJdkm5CFuWMpkvEpnn+nLyNzk6u5fBYki5acC8adKwTKjoc3jAB74fg==}
+    engines: {node: '>=v18.18.2'}
+
+  '@mia-platform/console-types@0.21.0':
+    resolution: {integrity: sha512-XyQgKeRGwSli8fW7RwA7oc9yocdPJ2ux1P+J0LWkvEbIeK1UE32H4mNMsvVk5BE5gMsSNeQtbMieMcHz1KxO8g==}
+    peerDependencies:
+      '@fastify/swagger': ^8 || ^6
+      fastify: ^4 || ^3
+
   '@mia-platform/eslint-config-mia@3.0.0':
     resolution: {integrity: sha512-tJSbuoPm46YOLe8AXTdsIFA+6O+MFOK0Rrn5LeQYxZ5bs6V6bacsyppgo1KR8Op4+HPlwZj2BdFP286FgTiSAw==}
     engines: {node: '>=10'}
@@ -806,8 +822,14 @@ packages:
   '@microsoft/kiota-abstractions@1.0.0-preview.57':
     resolution: {integrity: sha512-U6rIiel+39XfljrLzWU3vsgkYExHOodJuuIEwqvKZd6rqaAXOLJHq/AR78Gu48ySy5KRXOEgtfRnRMsJpr04fA==}
 
+  '@microsoft/kiota-serialization-form@1.0.0-preview.46':
+    resolution: {integrity: sha512-0DpWPkUbzyuxxlaGvIbuRbK44CpIW1c28kS0zHUKBN5PBbhAojBQd3zEK0L0IUVcF8FABADdSGklHQ16J8v2vg==}
+
   '@microsoft/kiota-serialization-json@1.0.0-preview.57':
     resolution: {integrity: sha512-P0fiHMfLV4qVyxcvEGGBWaGv1bwfZ+SAhw+9gYR53UBZZiIdW182cykbE3hSD2Xd0kolSrYseNrYO4U7GI873Q==}
+
+  '@microsoft/kiota-serialization-multipart@1.0.0-preview.35':
+    resolution: {integrity: sha512-YuHBp40D9KT4ijawm77I3YftxBuG5u1dl0GAm6tyHGjXSxHt/HRgjMy92dnOnDeGCTSUXwoCe1Ut2zBoHwi2FQ==}
 
   '@microsoft/kiota-serialization-text@1.0.0-preview.54':
     resolution: {integrity: sha512-UCa0fTROYkB3vgUILCAwfPmDjEiy3lFwh6STQ6Cg7wGRY4sRIW1dzct6GtjP0jiRCs8UJwL9q5SfyzvKYit5qw==}
@@ -4515,6 +4537,23 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
+  '@mia-platform/console-sdk-microfrontend@0.2.17(@fastify/swagger@8.14.0)(fastify@4.28.0)':
+    dependencies:
+      '@mia-platform/console-types': 0.21.0(@fastify/swagger@8.14.0)(fastify@4.28.0)
+      eslint: 8.57.0
+      ramda: 0.30.1
+      rxjs: 7.8.1
+    transitivePeerDependencies:
+      - '@fastify/swagger'
+      - fastify
+      - supports-color
+
+  '@mia-platform/console-types@0.21.0(@fastify/swagger@8.14.0)(fastify@4.28.0)':
+    dependencies:
+      '@fastify/swagger': 8.14.0
+      fastify: 4.28.0
+      ramda: 0.30.1
+
   '@mia-platform/eslint-config-mia@3.0.0(eslint@8.57.0)':
     dependencies:
       eslint: 8.57.0
@@ -4528,7 +4567,19 @@ snapshots:
       tslib: 2.6.2
       uuid: 10.0.0
 
+  '@microsoft/kiota-serialization-form@1.0.0-preview.46':
+    dependencies:
+      '@microsoft/kiota-abstractions': 1.0.0-preview.57
+      guid-typescript: 1.0.9
+      tslib: 2.6.2
+
   '@microsoft/kiota-serialization-json@1.0.0-preview.57':
+    dependencies:
+      '@microsoft/kiota-abstractions': 1.0.0-preview.57
+      guid-typescript: 1.0.9
+      tslib: 2.6.2
+
+  '@microsoft/kiota-serialization-multipart@1.0.0-preview.35':
     dependencies:
       '@microsoft/kiota-abstractions': 1.0.0-preview.57
       guid-typescript: 1.0.9
