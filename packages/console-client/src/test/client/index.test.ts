@@ -71,11 +71,11 @@ describe('console-client', () => {
       expectedUrl,
       {
         data: undefined,
-        headers: [
-          ['accept', 'application/json'],
-          ['content-type', 'application/json'],
-          ['user-agent', 'console-client'],
-        ],
+        headers: {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'user-agent': 'console-client',
+        },
         method: 'GET',
       },
     ])
@@ -98,6 +98,7 @@ describe('console-client', () => {
         const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
 
         const createData: ExtensionsPutRequestBody = {
+          contexts: ['company', 'project'],
           name: 'extension name',
         }
 
@@ -111,12 +112,19 @@ describe('console-client', () => {
 
         const [axiosCall] = calls
         assert.deepEqual(axiosCall.arguments[0], expectedUrl)
-        assert.deepEqual(axiosCall.arguments[1]?.headers, [
-          ['accept', 'application/json'],
-          ['content-type', 'application/json'],
-          ['user-agent', 'console-client'],
-        ])
+        assert.deepEqual(axiosCall.arguments[1]?.headers, {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'user-agent': 'console-client',
+        })
         assert.deepEqual(axiosCall.arguments[1]?.method, 'PUT')
+        assert.deepEqual(
+          JSON.parse(Buffer.from(axiosCall.arguments[1]?.data as Uint8Array).toString()),
+          {
+            contexts: ['company', 'project'],
+            name: 'extension name',
+          }
+        )
         assert.deepEqual(response, expectedResult)
       })
     })
@@ -144,11 +152,11 @@ describe('console-client', () => {
           expectedUrl,
           {
             data: undefined,
-            headers: [
-              ['accept', 'application/json'],
-              ['content-type', 'application/json'],
-              ['user-agent', 'console-client'],
-            ],
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json',
+              'user-agent': 'console-client',
+            },
             method: 'DELETE',
           },
         ])
@@ -212,11 +220,11 @@ describe('console-client', () => {
       expectedUrl,
       {
         data: undefined,
-        headers: [
-          ['accept', 'application/json'],
-          ['content-type', 'application/json'],
-          ['user-agent', 'console-client'],
-        ],
+        headers: {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'user-agent': 'console-client',
+        },
         method: 'GET',
       },
     ])
