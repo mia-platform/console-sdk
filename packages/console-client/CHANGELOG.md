@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.2
+
+### Patch Changes
+
+- 27a47f4: changed extensions PUT `contexts` property to string array
+
 ## 0.2.1
 
 ### Patch Changes
