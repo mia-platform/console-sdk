@@ -102,11 +102,9 @@ describe('console-client', () => {
           name: 'extension name',
         }
 
-        const builder = new ConsoleClient('').extensibility
+        const response = await new ConsoleClient('').extensibility
           .tenants.byTenantId(testTenantId)
           .extensions
-
-        const response = await builder
           .put(createData)
 
         const { calls } = axiosMock.mock
@@ -127,6 +125,7 @@ describe('console-client', () => {
             name: 'extension name',
           }
         )
+        assert.deepEqual(response, expectedResult)
       })
     })
 
