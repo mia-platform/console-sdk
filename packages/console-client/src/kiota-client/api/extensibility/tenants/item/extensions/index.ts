@@ -9,6 +9,54 @@ import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_category_labelIntl}
+ */
+export function createExtensions_category_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_category_labelIntl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_category}
+ */
+export function createExtensions_categoryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_category;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_destination}
+ */
+export function createExtensions_destinationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_destination;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_menu_labelIntl}
+ */
+export function createExtensions_menu_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_menu_labelIntl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_menu}
+ */
+export function createExtensions_menuFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_menu;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_visibilities}
+ */
+export function createExtensions_visibilitiesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_visibilities;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions400Error}
  */
 export function createExtensions400ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
@@ -76,9 +124,74 @@ export function createExtensionsPutResponseFromDiscriminatorValue(parseNode: Par
  */
 export function deserializeIntoExtensions(extensions: Partial<Extensions> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "activationContexts": n => { extensions.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
+        "category": n => { extensions.category = n.getObjectValue<Extensions_category>(createExtensions_categoryFromDiscriminatorValue); },
         "description": n => { extensions.description = n.getStringValue(); },
+        "destination": n => { extensions.destination = n.getObjectValue<Extensions_destination>(createExtensions_destinationFromDiscriminatorValue); },
+        "entry": n => { extensions.entry = n.getStringValue(); },
         "extensionId": n => { extensions.extensionId = n.getStringValue(); },
+        "iconName": n => { extensions.iconName = n.getStringValue(); },
+        "menu": n => { extensions.menu = n.getObjectValue<Extensions_menu>(createExtensions_menuFromDiscriminatorValue); },
         "name": n => { extensions.name = n.getStringValue(); },
+        "permissions": n => { extensions.permissions = n.getCollectionOfPrimitiveValues<string>(); },
+        "type": n => { extensions.type = n.getStringValue(); },
+        "visibilities": n => { extensions.visibilities = n.getCollectionOfObjectValues<Extensions_visibilities>(createExtensions_visibilitiesFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensions_category(extensions_category: Partial<Extensions_category> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { extensions_category.id = n.getStringValue(); },
+        "labelIntl": n => { extensions_category.labelIntl = n.getObjectValue<Extensions_category_labelIntl>(createExtensions_category_labelIntlFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensions_category_labelIntl(extensions_category_labelIntl: Partial<Extensions_category_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensions_destination(extensions_destination: Partial<Extensions_destination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { extensions_destination.id = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensions_menu(extensions_menu: Partial<Extensions_menu> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { extensions_menu.id = n.getStringValue(); },
+        "labelIntl": n => { extensions_menu.labelIntl = n.getObjectValue<Extensions_menu_labelIntl>(createExtensions_menu_labelIntlFromDiscriminatorValue); },
+        "order": n => { extensions_menu.order = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensions_menu_labelIntl(extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensions_visibilities(extensions_visibilities: Partial<Extensions_visibilities> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "contextId": n => { extensions_visibilities.contextId = n.getStringValue(); },
+        "contextType": n => { extensions_visibilities.contextType = n.getStringValue(); },
     }
 }
 /**
@@ -109,7 +222,7 @@ export function deserializeIntoExtensions500Error(extensions500Error: Partial<Ex
  */
 export function deserializeIntoExtensionsPutRequestBody(extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "contexts": n => { extensionsPutRequestBody.contexts = n.getCollectionOfPrimitiveValues<string>(); },
+        "contexts": n => { extensionsPutRequestBody.contexts = n.getCollectionOfEnumValues<ExtensionsPutRequestBody_contexts>(ExtensionsPutRequestBody_contextsObject); },
         "description": n => { extensionsPutRequestBody.description = n.getStringValue(); },
         "entry": n => { extensionsPutRequestBody.entry = n.getStringValue(); },
         "extensionId": n => { extensionsPutRequestBody.extensionId = n.getStringValue(); },
@@ -164,17 +277,105 @@ export function deserializeIntoExtensionsPutResponse(extensionsPutResponse: Part
 }
 export interface Extensions extends Parsable {
     /**
+     * The activationContexts property
+     */
+    activationContexts?: string[];
+    /**
+     * The category property
+     */
+    category?: Extensions_category;
+    /**
      * The description property
      */
     description?: string;
+    /**
+     * The destination property
+     */
+    destination?: Extensions_destination;
+    /**
+     * The entry property
+     */
+    entry?: string;
     /**
      * The extensionId property
      */
     extensionId?: string;
     /**
+     * The iconName property
+     */
+    iconName?: string;
+    /**
+     * The menu property
+     */
+    menu?: Extensions_menu;
+    /**
      * The name property
      */
     name?: string;
+    /**
+     * The permissions property
+     */
+    permissions?: string[];
+    /**
+     * The type property
+     */
+    type?: string;
+    /**
+     * The visibilities property
+     */
+    visibilities?: Extensions_visibilities[];
+}
+export interface Extensions_category extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+    /**
+     * The labelIntl property
+     */
+    labelIntl?: Extensions_category_labelIntl;
+}
+export interface Extensions_category_labelIntl extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+}
+export interface Extensions_destination extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+}
+export interface Extensions_menu extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+    /**
+     * The labelIntl property
+     */
+    labelIntl?: Extensions_menu_labelIntl;
+    /**
+     * The order property
+     */
+    order?: number;
+}
+export interface Extensions_menu_labelIntl extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+}
+export interface Extensions_visibilities extends Parsable {
+    /**
+     * The contextId property
+     */
+    contextId?: string;
+    /**
+     * The contextType property
+     */
+    contextType?: string;
 }
 export interface Extensions400Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -216,7 +417,7 @@ export interface ExtensionsPutRequestBody extends Parsable {
     /**
      * The contexts property
      */
-    contexts?: string[];
+    contexts?: ExtensionsPutRequestBody_contexts[];
     /**
      * The description property
      */
@@ -246,6 +447,7 @@ export interface ExtensionsPutRequestBody extends Parsable {
      */
     routes?: ExtensionsPutRequestBody_routes[];
 }
+export type ExtensionsPutRequestBody_contexts = (typeof ExtensionsPutRequestBody_contextsObject)[keyof typeof ExtensionsPutRequestBody_contextsObject];
 export type ExtensionsPutRequestBody_extensionType = (typeof ExtensionsPutRequestBody_extensionTypeObject)[keyof typeof ExtensionsPutRequestBody_extensionTypeObject];
 export interface ExtensionsPutRequestBody_routes extends Parsable {
     /**
@@ -320,7 +522,7 @@ export interface ExtensionsRequestBuilder extends BaseRequestBuilder<ExtensionsR
      * @returns {Promise<Extensions[]>}
      * @throws {Extensions500Error} error when the service returns a 500 status code
      */
-     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<Extensions[] | undefined>;
+     get(requestConfiguration?: RequestConfiguration<ExtensionsRequestBuilderGetQueryParameters> | undefined) : Promise<Extensions[] | undefined>;
     /**
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -333,7 +535,7 @@ export interface ExtensionsRequestBuilder extends BaseRequestBuilder<ExtensionsR
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toGetRequestInformation(requestConfiguration?: RequestConfiguration<ExtensionsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
     /**
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -341,14 +543,72 @@ export interface ExtensionsRequestBuilder extends BaseRequestBuilder<ExtensionsR
      */
      toPutRequestInformation(body: ExtensionsPutRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
+export interface ExtensionsRequestBuilderGetQueryParameters {
+    resolveDetails?: boolean;
+}
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
 export function serializeExtensions(writer: SerializationWriter, extensions: Partial<Extensions> | undefined = {}) : void {
+    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensions.activationContexts);
+    writer.writeObjectValue<Extensions_category>("category", extensions.category, serializeExtensions_category);
     writer.writeStringValue("description", extensions.description);
+    writer.writeObjectValue<Extensions_destination>("destination", extensions.destination, serializeExtensions_destination);
+    writer.writeStringValue("entry", extensions.entry);
     writer.writeStringValue("extensionId", extensions.extensionId);
+    writer.writeStringValue("iconName", extensions.iconName);
+    writer.writeObjectValue<Extensions_menu>("menu", extensions.menu, serializeExtensions_menu);
     writer.writeStringValue("name", extensions.name);
+    writer.writeCollectionOfPrimitiveValues<string>("permissions", extensions.permissions);
+    writer.writeStringValue("type", extensions.type);
+    writer.writeCollectionOfObjectValues<Extensions_visibilities>("visibilities", extensions.visibilities, serializeExtensions_visibilities);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensions_category(writer: SerializationWriter, extensions_category: Partial<Extensions_category> | undefined = {}) : void {
+    writer.writeStringValue("id", extensions_category.id);
+    writer.writeObjectValue<Extensions_category_labelIntl>("labelIntl", extensions_category.labelIntl, serializeExtensions_category_labelIntl);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensions_category_labelIntl(writer: SerializationWriter, extensions_category_labelIntl: Partial<Extensions_category_labelIntl> | undefined = {}) : void {
+    writer.writeAdditionalData(extensions_category_labelIntl.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensions_destination(writer: SerializationWriter, extensions_destination: Partial<Extensions_destination> | undefined = {}) : void {
+    writer.writeStringValue("id", extensions_destination.id);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensions_menu(writer: SerializationWriter, extensions_menu: Partial<Extensions_menu> | undefined = {}) : void {
+    writer.writeStringValue("id", extensions_menu.id);
+    writer.writeObjectValue<Extensions_menu_labelIntl>("labelIntl", extensions_menu.labelIntl, serializeExtensions_menu_labelIntl);
+    writer.writeNumberValue("order", extensions_menu.order);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensions_menu_labelIntl(writer: SerializationWriter, extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined = {}) : void {
+    writer.writeAdditionalData(extensions_menu_labelIntl.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensions_visibilities(writer: SerializationWriter, extensions_visibilities: Partial<Extensions_visibilities> | undefined = {}) : void {
+    writer.writeStringValue("contextId", extensions_visibilities.contextId);
+    writer.writeStringValue("contextType", extensions_visibilities.contextType);
 }
 /**
  * Serializes information the current object
@@ -375,7 +635,8 @@ export function serializeExtensions500Error(writer: SerializationWriter, extensi
  * @param writer Serialization writer to use to serialize this model
  */
 export function serializeExtensionsPutRequestBody(writer: SerializationWriter, extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : void {
-    writer.writeCollectionOfPrimitiveValues<string>("contexts", extensionsPutRequestBody.contexts);
+    if(extensionsPutRequestBody.contexts)
+    writer.writeEnumValue<ExtensionsPutRequestBody_contexts>("contexts", ...extensionsPutRequestBody.contexts);
     writer.writeStringValue("description", extensionsPutRequestBody.description);
     writer.writeStringValue("entry", extensionsPutRequestBody.entry);
     writer.writeStringValue("extensionId", extensionsPutRequestBody.extensionId);
@@ -423,7 +684,11 @@ export function serializeExtensionsPutResponse(writer: SerializationWriter, exte
 /**
  * Uri template for the request builder.
  */
-export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions";
+export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions{?resolveDetails*}";
+export const ExtensionsPutRequestBody_contextsObject = {
+    Company: "company",
+    Project: "project",
+} as const;
 export const ExtensionsPutRequestBody_extensionTypeObject = {
     Iframe: "iframe",
 } as const;

@@ -17,6 +17,62 @@ export function createWithExtension500ErrorFromDiscriminatorValue(parseNode: Par
     return deserializeIntoWithExtension500Error;
 }
 /**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_category_labelIntl}
+ */
+export function createWithExtensionGetResponse_category_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_category_labelIntl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_category}
+ */
+export function createWithExtensionGetResponse_categoryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_category;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_destination}
+ */
+export function createWithExtensionGetResponse_destinationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_destination;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_menu_labelIntl}
+ */
+export function createWithExtensionGetResponse_menu_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_menu_labelIntl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_menu}
+ */
+export function createWithExtensionGetResponse_menuFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_menu;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_visibilities}
+ */
+export function createWithExtensionGetResponse_visibilitiesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_visibilities;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse}
+ */
+export function createWithExtensionGetResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse;
+}
+/**
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -28,6 +84,82 @@ export function deserializeIntoWithExtension500Error(withExtension500Error: Part
     }
 }
 /**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoWithExtensionGetResponse(withExtensionGetResponse: Partial<WithExtensionGetResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "activationContexts": n => { withExtensionGetResponse.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
+        "category": n => { withExtensionGetResponse.category = n.getObjectValue<WithExtensionGetResponse_category>(createWithExtensionGetResponse_categoryFromDiscriminatorValue); },
+        "description": n => { withExtensionGetResponse.description = n.getStringValue(); },
+        "destination": n => { withExtensionGetResponse.destination = n.getObjectValue<WithExtensionGetResponse_destination>(createWithExtensionGetResponse_destinationFromDiscriminatorValue); },
+        "entry": n => { withExtensionGetResponse.entry = n.getStringValue(); },
+        "extensionId": n => { withExtensionGetResponse.extensionId = n.getStringValue(); },
+        "iconName": n => { withExtensionGetResponse.iconName = n.getStringValue(); },
+        "menu": n => { withExtensionGetResponse.menu = n.getObjectValue<WithExtensionGetResponse_menu>(createWithExtensionGetResponse_menuFromDiscriminatorValue); },
+        "name": n => { withExtensionGetResponse.name = n.getStringValue(); },
+        "permissions": n => { withExtensionGetResponse.permissions = n.getCollectionOfPrimitiveValues<string>(); },
+        "type": n => { withExtensionGetResponse.type = n.getStringValue(); },
+        "visibilities": n => { withExtensionGetResponse.visibilities = n.getCollectionOfObjectValues<WithExtensionGetResponse_visibilities>(createWithExtensionGetResponse_visibilitiesFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoWithExtensionGetResponse_category(withExtensionGetResponse_category: Partial<WithExtensionGetResponse_category> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { withExtensionGetResponse_category.id = n.getStringValue(); },
+        "labelIntl": n => { withExtensionGetResponse_category.labelIntl = n.getObjectValue<WithExtensionGetResponse_category_labelIntl>(createWithExtensionGetResponse_category_labelIntlFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoWithExtensionGetResponse_category_labelIntl(withExtensionGetResponse_category_labelIntl: Partial<WithExtensionGetResponse_category_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoWithExtensionGetResponse_destination(withExtensionGetResponse_destination: Partial<WithExtensionGetResponse_destination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { withExtensionGetResponse_destination.id = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoWithExtensionGetResponse_menu(withExtensionGetResponse_menu: Partial<WithExtensionGetResponse_menu> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { withExtensionGetResponse_menu.id = n.getStringValue(); },
+        "labelIntl": n => { withExtensionGetResponse_menu.labelIntl = n.getObjectValue<WithExtensionGetResponse_menu_labelIntl>(createWithExtensionGetResponse_menu_labelIntlFromDiscriminatorValue); },
+        "order": n => { withExtensionGetResponse_menu.order = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoWithExtensionGetResponse_menu_labelIntl(withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoWithExtensionGetResponse_visibilities(withExtensionGetResponse_visibilities: Partial<WithExtensionGetResponse_visibilities> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "contextId": n => { withExtensionGetResponse_visibilities.contextId = n.getStringValue(); },
+        "contextType": n => { withExtensionGetResponse_visibilities.contextType = n.getStringValue(); },
+    }
+}
+/**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
@@ -36,6 +168,70 @@ export function serializeWithExtension500Error(writer: SerializationWriter, with
     writer.writeStringValue("message", withExtension500Error.messageEscaped);
     writer.writeNumberValue("statusCode", withExtension500Error.statusCode);
     writer.writeAdditionalData(withExtension500Error.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeWithExtensionGetResponse(writer: SerializationWriter, withExtensionGetResponse: Partial<WithExtensionGetResponse> | undefined = {}) : void {
+    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", withExtensionGetResponse.activationContexts);
+    writer.writeObjectValue<WithExtensionGetResponse_category>("category", withExtensionGetResponse.category, serializeWithExtensionGetResponse_category);
+    writer.writeStringValue("description", withExtensionGetResponse.description);
+    writer.writeObjectValue<WithExtensionGetResponse_destination>("destination", withExtensionGetResponse.destination, serializeWithExtensionGetResponse_destination);
+    writer.writeStringValue("entry", withExtensionGetResponse.entry);
+    writer.writeStringValue("extensionId", withExtensionGetResponse.extensionId);
+    writer.writeStringValue("iconName", withExtensionGetResponse.iconName);
+    writer.writeObjectValue<WithExtensionGetResponse_menu>("menu", withExtensionGetResponse.menu, serializeWithExtensionGetResponse_menu);
+    writer.writeStringValue("name", withExtensionGetResponse.name);
+    writer.writeCollectionOfPrimitiveValues<string>("permissions", withExtensionGetResponse.permissions);
+    writer.writeStringValue("type", withExtensionGetResponse.type);
+    writer.writeCollectionOfObjectValues<WithExtensionGetResponse_visibilities>("visibilities", withExtensionGetResponse.visibilities, serializeWithExtensionGetResponse_visibilities);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeWithExtensionGetResponse_category(writer: SerializationWriter, withExtensionGetResponse_category: Partial<WithExtensionGetResponse_category> | undefined = {}) : void {
+    writer.writeStringValue("id", withExtensionGetResponse_category.id);
+    writer.writeObjectValue<WithExtensionGetResponse_category_labelIntl>("labelIntl", withExtensionGetResponse_category.labelIntl, serializeWithExtensionGetResponse_category_labelIntl);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeWithExtensionGetResponse_category_labelIntl(writer: SerializationWriter, withExtensionGetResponse_category_labelIntl: Partial<WithExtensionGetResponse_category_labelIntl> | undefined = {}) : void {
+    writer.writeAdditionalData(withExtensionGetResponse_category_labelIntl.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeWithExtensionGetResponse_destination(writer: SerializationWriter, withExtensionGetResponse_destination: Partial<WithExtensionGetResponse_destination> | undefined = {}) : void {
+    writer.writeStringValue("id", withExtensionGetResponse_destination.id);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeWithExtensionGetResponse_menu(writer: SerializationWriter, withExtensionGetResponse_menu: Partial<WithExtensionGetResponse_menu> | undefined = {}) : void {
+    writer.writeStringValue("id", withExtensionGetResponse_menu.id);
+    writer.writeObjectValue<WithExtensionGetResponse_menu_labelIntl>("labelIntl", withExtensionGetResponse_menu.labelIntl, serializeWithExtensionGetResponse_menu_labelIntl);
+    writer.writeNumberValue("order", withExtensionGetResponse_menu.order);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeWithExtensionGetResponse_menu_labelIntl(writer: SerializationWriter, withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | undefined = {}) : void {
+    writer.writeAdditionalData(withExtensionGetResponse_menu_labelIntl.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeWithExtensionGetResponse_visibilities(writer: SerializationWriter, withExtensionGetResponse_visibilities: Partial<WithExtensionGetResponse_visibilities> | undefined = {}) : void {
+    writer.writeStringValue("contextId", withExtensionGetResponse_visibilities.contextId);
+    writer.writeStringValue("contextType", withExtensionGetResponse_visibilities.contextType);
 }
 export interface WithExtension500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -54,6 +250,108 @@ export interface WithExtension500Error extends AdditionalDataHolder, ApiError, P
      * The statusCode property
      */
     statusCode?: number;
+}
+export interface WithExtensionGetResponse extends Parsable {
+    /**
+     * The activationContexts property
+     */
+    activationContexts?: string[];
+    /**
+     * The category property
+     */
+    category?: WithExtensionGetResponse_category;
+    /**
+     * The description property
+     */
+    description?: string;
+    /**
+     * The destination property
+     */
+    destination?: WithExtensionGetResponse_destination;
+    /**
+     * The entry property
+     */
+    entry?: string;
+    /**
+     * The extensionId property
+     */
+    extensionId?: string;
+    /**
+     * The iconName property
+     */
+    iconName?: string;
+    /**
+     * The menu property
+     */
+    menu?: WithExtensionGetResponse_menu;
+    /**
+     * The name property
+     */
+    name?: string;
+    /**
+     * The permissions property
+     */
+    permissions?: string[];
+    /**
+     * The type property
+     */
+    type?: string;
+    /**
+     * The visibilities property
+     */
+    visibilities?: WithExtensionGetResponse_visibilities[];
+}
+export interface WithExtensionGetResponse_category extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+    /**
+     * The labelIntl property
+     */
+    labelIntl?: WithExtensionGetResponse_category_labelIntl;
+}
+export interface WithExtensionGetResponse_category_labelIntl extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+}
+export interface WithExtensionGetResponse_destination extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+}
+export interface WithExtensionGetResponse_menu extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+    /**
+     * The labelIntl property
+     */
+    labelIntl?: WithExtensionGetResponse_menu_labelIntl;
+    /**
+     * The order property
+     */
+    order?: number;
+}
+export interface WithExtensionGetResponse_menu_labelIntl extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+}
+export interface WithExtensionGetResponse_visibilities extends Parsable {
+    /**
+     * The contextId property
+     */
+    contextId?: string;
+    /**
+     * The contextType property
+     */
+    contextType?: string;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/extensions/{extensionId}
@@ -76,9 +374,20 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {Promise<WithExtensionGetResponse>}
+     * @throws {WithExtension500Error} error when the service returns a 500 status code
+     */
+     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<WithExtensionGetResponse | undefined>;
+    /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+    /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {RequestInformation}
+     */
+     toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
 /**
  * Uri template for the request builder.
@@ -107,6 +416,15 @@ export const WithExtensionItemRequestBuilderRequestsMetadata: RequestsMetadata =
             500: createWithExtension500ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
         adapterMethodName: "sendNoResponseContent",
+    },
+    get: {
+        uriTemplate: WithExtensionItemRequestBuilderUriTemplate,
+        responseBodyContentType: "application/json",
+        errorMappings: {
+            500: createWithExtension500ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
+        },
+        adapterMethodName: "send",
+        responseBodyFactory:  createWithExtensionGetResponseFromDiscriminatorValue,
     },
 };
 /* tslint:enable */
