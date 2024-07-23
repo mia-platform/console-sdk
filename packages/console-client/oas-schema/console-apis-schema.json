@@ -1,858 +1,1136 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-      "version": "4dc8a5689f08f35f780eb8b66f03a78b2f8f2f77",
-      "title": "Console",
-      "description": "Mia-Platform Console Project. "
-  },
-  "paths": {
-      "/api/extensibility/extensions": {
-          "get": {
-              "parameters": [
-                  {
-                      "in": "query",
-                      "name": "projectId",
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "in": "query",
-                      "name": "tenantId",
-                      "schema": {
-                          "type": "string"
-                      }
-                  }
-              ],
-              "responses": {
-                  "200": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "items": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                          "entry": {
-                                              "type": "string"
-                                          },
-                                          "microfrontendId": {
-                                              "type": "string"
-                                          },
-                                          "routes": {
-                                              "items": {
-                                                  "additionalProperties": false,
-                                                  "properties": {
-                                                      "destinationPath": {
-                                                          "type": "string"
-                                                      },
-                                                      "icon": {
-                                                          "additionalProperties": false,
-                                                          "properties": {
-                                                              "name": {
-                                                                  "type": "string"
-                                                              }
-                                                          },
-                                                          "required": [
-                                                              "name"
-                                                          ],
-                                                          "type": "object"
-                                                      },
-                                                      "id": {
-                                                          "type": "string"
-                                                      },
-                                                      "labelIntl": {
-                                                          "additionalProperties": {
-                                                              "type": "string"
-                                                          },
-                                                          "type": "object"
-                                                      },
-                                                      "locationId": {
-                                                          "enum": [
-                                                              "tenant",
-                                                              "project",
-                                                              "runtime"
-                                                          ],
-                                                          "type": "string"
-                                                      },
-                                                      "matchExactMountPath": {
-                                                          "type": "boolean"
-                                                      },
-                                                      "order": {
-                                                          "type": "number"
-                                                      },
-                                                      "parentId": {
-                                                          "type": "string"
-                                                      },
-                                                      "renderType": {
-                                                          "enum": [
-                                                              "category"
-                                                          ],
-                                                          "type": "string"
-                                                      }
-                                                  },
-                                                  "required": [
-                                                      "id",
-                                                      "locationId",
-                                                      "labelIntl"
-                                                  ],
-                                                  "type": "object"
-                                              },
-                                              "type": "array"
-                                          },
-                                          "type": {
-                                              "type": "string"
-                                          }
-                                      },
-                                      "required": [
-                                          "microfrontendId",
-                                          "type",
-                                          "entry"
-                                      ],
-                                      "type": "object"
-                                  },
-                                  "type": "array"
-                              }
-                          }
-                      },
-                      "description": "Returns the list of active extensions based on the scope provided with the query parameters"
-                  },
-                  "400": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  }
-              },
-              "tags": [
-                  "extensibility"
-              ]
-          }
-      },
-      "/api/extensibility/tenants/{tenantId}/extensions": {
-          "get": {
-              "parameters": [
-                  {
-                      "in": "path",
-                      "name": "tenantId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  }
-              ],
-              "responses": {
-                  "200": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "items": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                          "description": {
-                                              "type": "string"
-                                          },
-                                          "extensionId": {
-                                              "type": "string"
-                                          },
-                                          "name": {
-                                              "type": "string"
-                                          }
-                                      },
-                                      "required": [
-                                          "extensionId",
-                                          "name",
-                                          "description"
-                                      ],
-                                      "type": "object"
-                                  },
-                                  "type": "array"
-                              }
-                          }
-                      },
-                      "description": "Returns registered extension metadata"
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  }
-              },
-              "tags": [
-                  "extensibility",
-                  "companies"
-              ]
-          },
-          "put": {
-              "parameters": [
-                  {
-                      "in": "path",
-                      "name": "tenantId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  }
-              ],
-              "requestBody": {
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "additionalProperties": false,
-                              "properties": {
-                                  "contexts": {
-                                      "items": {
-                                          "type": "string"
-                                      },
-                                      "type": "array"
-                                  },
-                                  "description": {
-                                      "type": "string"
-                                  },
-                                  "entry": {
-                                      "type": "string"
-                                  },
-                                  "extensionId": {
-                                      "type": "string"
-                                  },
-                                  "extensionType": {
-                                      "enum": [
-                                          "iframe"
-                                      ],
-                                      "type": "string"
-                                  },
-                                  "name": {
-                                      "type": "string"
-                                  },
-                                  "permissions": {
-                                      "items": {
-                                          "type": "string"
-                                      },
-                                      "type": "array"
-                                  },
-                                  "routes": {
-                                      "items": {
-                                          "additionalProperties": false,
-                                          "properties": {
-                                              "destinationPath": {
-                                                  "type": "string"
-                                              },
-                                              "icon": {
-                                                  "additionalProperties": false,
-                                                  "properties": {
-                                                      "name": {
-                                                          "type": "string"
-                                                      }
-                                                  },
-                                                  "required": [
-                                                      "name"
-                                                  ],
-                                                  "type": "object"
-                                              },
-                                              "id": {
-                                                  "type": "string"
-                                              },
-                                              "labelIntl": {
-                                                  "additionalProperties": {
-                                                      "type": "string"
-                                                  },
-                                                  "type": "object"
-                                              },
-                                              "locationId": {
-                                                  "enum": [
-                                                      "tenant",
-                                                      "project",
-                                                      "runtime"
-                                                  ],
-                                                  "type": "string"
-                                              },
-                                              "matchExactMountPath": {
-                                                  "type": "boolean"
-                                              },
-                                              "order": {
-                                                  "type": "number"
-                                              },
-                                              "parentId": {
-                                                  "type": "string"
-                                              },
-                                              "renderType": {
-                                                  "enum": [
-                                                      "category"
-                                                  ],
-                                                  "type": "string"
-                                              }
-                                          },
-                                          "required": [
-                                              "id",
-                                              "locationId",
-                                              "labelIntl"
-                                          ],
-                                          "type": "object"
-                                      },
-                                      "type": "array"
-                                  }
-                              },
-                              "required": [
-                                  "name",
-                                  "extensionType",
-                                  "entry",
-                                  "contexts",
-                                  "routes"
-                              ],
-                              "type": "object"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "additionalProperties": false,
-                                  "properties": {
-                                      "extensionId": {
-                                          "type": "string"
-                                      }
-                                  },
-                                  "required": [
-                                      "extensionId"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": "Returns registered extension id"
-                  },
-                  "400": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  }
-              },
-              "tags": [
-                  "extensibility",
-                  "companies"
-              ]
-          }
-      },
-      "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}": {
-          "delete": {
-              "parameters": [
-                  {
-                      "in": "path",
-                      "name": "extensionId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "in": "path",
-                      "name": "tenantId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  }
-              ],
-              "responses": {
-                  "204": {
-                      "description": ""
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  }
-              },
-              "tags": [
-                  "extensibility",
-                  "companies"
-              ]
-          }
-      },
-      "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation": {
-          "post": {
-              "parameters": [
-                  {
-                      "in": "path",
-                      "name": "extensionId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "in": "path",
-                      "name": "tenantId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  }
-              ],
-              "requestBody": {
-                  "content": {
-                      "application/json": {
-                          "schema": {
-                              "additionalProperties": false,
-                              "properties": {
-                                  "contextId": {
-                                      "type": "string"
-                                  },
-                                  "contextType": {
-                                      "enum": [
-                                          "company",
-                                          "project"
-                                      ],
-                                      "type": "string"
-                                  },
-                                  "overrides": {
-                                      "items": {
-                                          "additionalProperties": false,
-                                          "properties": {
-                                              "icon": {
-                                                  "additionalProperties": false,
-                                                  "properties": {
-                                                      "name": {
-                                                          "type": "string"
-                                                      }
-                                                  },
-                                                  "required": [
-                                                      "name"
-                                                  ],
-                                                  "type": "object"
-                                              },
-                                              "labelIntl": {
-                                                  "additionalProperties": {
-                                                      "type": "string"
-                                                  },
-                                                  "type": "object"
-                                              },
-                                              "order": {
-                                                  "type": "number"
-                                              },
-                                              "routeId": {
-                                                  "type": "string"
-                                              }
-                                          },
-                                          "required": [
-                                              "routeId"
-                                          ],
-                                          "type": "object"
-                                      },
-                                      "type": "array"
-                                  }
-                              },
-                              "required": [
-                                  "contextType",
-                                  "contextId"
-                              ],
-                              "type": "object"
-                          }
-                      }
-                  }
-              },
-              "responses": {
-                  "200": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "additionalProperties": false,
-                                  "properties": {
-                                      "activationId": {
-                                          "type": "string"
-                                      }
-                                  },
-                                  "required": [
-                                      "activationId"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": "Returns registered extension id"
-                  },
-                  "400": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  },
-                  "404": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  }
-              },
-              "tags": [
-                  "extensibility",
-                  "companies"
-              ]
-          }
-      },
-      "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation": {
-          "delete": {
-              "parameters": [
-                  {
-                      "in": "path",
-                      "name": "contextId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "in": "path",
-                      "name": "contextType",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "in": "path",
-                      "name": "extensionId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  },
-                  {
-                      "in": "path",
-                      "name": "tenantId",
-                      "required": true,
-                      "schema": {
-                          "type": "string"
-                      }
-                  }
-              ],
-              "responses": {
-                  "204": {
-                      "description": ""
-                  },
-                  "400": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  },
-                  "500": {
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "properties": {
-                                      "error": {
-                                          "type": "string"
-                                      },
-                                      "message": {
-                                          "type": "string"
-                                      },
-                                      "statusCode": {
-                                          "type": "integer"
-                                      }
-                                  },
-                                  "required": [
-                                      "statusCode",
-                                      "message"
-                                  ],
-                                  "type": "object"
-                              }
-                          }
-                      },
-                      "description": ""
-                  }
-              },
-              "tags": [
-                  "extensibility",
-                  "companies"
-              ]
-          }
-      }
-  },
-  "components": {
-      "securitySchemes": {
-          "APISecretHeader": {
-              "type": "apiKey",
-              "in": "header",
-              "name": "secret"
-          }
-      },
-      "schemas": {
-          "def-0": {
-              "type": "string",
-              "pattern": "^[A-Za-z0-9]([A-Za-z0-9_]*[A-Za-z0-9])?$",
-              "minLength": 1,
-              "maxLength": 255,
-              "title": "key"
-          },
-          "def-1": {
-              "type": "object",
-              "required": [
-                  "projectId",
-                  "key"
-              ],
-              "properties": {
-                  "projectId": {
-                      "type": "string"
-                  },
-                  "key": {
-                      "$ref": "#/components/schemas/def-0"
-                  }
-              },
-              "title": "withProjectIdAndKey"
-          },
-          "def-2": {
-              "type": "object",
-              "required": [
-                  "projectId"
-              ],
-              "properties": {
-                  "projectId": {
-                      "type": "string"
-                  }
-              },
-              "title": "withProjectId"
-          }
-      }
-  },
-  "servers": [],
-  "tags": [
-      {
-          "name": "marketplace",
-          "description": "Marketplace related APIs"
-      },
-      {
-          "name": "projects",
-          "description": "Project related APIs"
-      },
-      {
-          "name": "companies",
-          "description": "Company related APIs"
-      },
-      {
-          "name": "console",
-          "description": "General APIs for Console management"
-      },
-      {
-          "name": "users",
-          "description": "User management API"
-      },
-      {
-          "name": "providers",
-          "description": "API for Providers management"
-      }
-  ]
+    "openapi": "3.0.3",
+    "info": {
+        "version": "4dc8a5689f08f35f780eb8b66f03a78b2f8f2f77",
+        "title": "Console",
+        "description": "Mia-Platform Console Project. "
+    },
+    "paths": {
+        "/api/extensibility/extensions": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "projectId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "tenantId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "entry": {
+                                                "type": "string"
+                                            },
+                                            "microfrontendId": {
+                                                "type": "string"
+                                            },
+                                            "routes": {
+                                                "items": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "destinationPath": {
+                                                            "type": "string"
+                                                        },
+                                                        "icon": {
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "name"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "labelIntl": {
+                                                            "additionalProperties": {
+                                                                "type": "string"
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "locationId": {
+                                                            "enum": [
+                                                                "tenant",
+                                                                "project",
+                                                                "runtime"
+                                                            ],
+                                                            "type": "string"
+                                                        },
+                                                        "matchExactMountPath": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "order": {
+                                                            "type": "number"
+                                                        },
+                                                        "parentId": {
+                                                            "type": "string"
+                                                        },
+                                                        "renderType": {
+                                                            "enum": [
+                                                                "category"
+                                                            ],
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "id",
+                                                        "locationId",
+                                                        "labelIntl"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "microfrontendId",
+                                            "type",
+                                            "entry"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Returns the list of active extensions based on the scope provided with the query parameters"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility"
+                ]
+            }
+        },
+        "/api/extensibility/tenants/{tenantId}/extensions": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "resolveDetails",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "activationContexts": {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "category": {
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "labelIntl": {
+                                                        "additionalProperties": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            },
+                                            "destination": {
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "entry": {
+                                                "type": "string"
+                                            },
+                                            "extensionId": {
+                                                "type": "string"
+                                            },
+                                            "iconName": {
+                                                "type": "string"
+                                            },
+                                            "menu": {
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "labelIntl": {
+                                                        "additionalProperties": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "order": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "labelIntl"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "permissions": {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "visibilities": {
+                                                "items": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "contextId": {
+                                                            "type": "string"
+                                                        },
+                                                        "contextType": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "contextType",
+                                                        "contextId"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "extensionId",
+                                            "name",
+                                            "entry",
+                                            "type",
+                                            "destination",
+                                            "activationContexts"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            }
+                        },
+                        "description": "Returns registered extension metadata"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            },
+            "put": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "contexts": {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "entry": {
+                                        "type": "string"
+                                    },
+                                    "extensionId": {
+                                        "type": "string"
+                                    },
+                                    "extensionType": {
+                                        "enum": [
+                                            "iframe"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "permissions": {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "routes": {
+                                        "items": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "destinationPath": {
+                                                    "type": "string"
+                                                },
+                                                "icon": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "name"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "labelIntl": {
+                                                    "additionalProperties": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "locationId": {
+                                                    "enum": [
+                                                        "tenant",
+                                                        "project",
+                                                        "runtime"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "matchExactMountPath": {
+                                                    "type": "boolean"
+                                                },
+                                                "order": {
+                                                    "type": "number"
+                                                },
+                                                "parentId": {
+                                                    "type": "string"
+                                                },
+                                                "renderType": {
+                                                    "enum": [
+                                                        "category"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "locationId",
+                                                "labelIntl"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "extensionType",
+                                    "entry",
+                                    "contexts",
+                                    "routes"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "extensionId": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "extensionId"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Returns registered extension id"
+                    },
+                    "204": {
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            }
+        },
+        "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "extensionId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            },
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "extensionId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "activationContexts": {
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "category": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "labelIntl": {
+                                                    "additionalProperties": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "required": [
+                                                "id"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "destination": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "id"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "entry": {
+                                            "type": "string"
+                                        },
+                                        "extensionId": {
+                                            "type": "string"
+                                        },
+                                        "iconName": {
+                                            "type": "string"
+                                        },
+                                        "menu": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "labelIntl": {
+                                                    "additionalProperties": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "order": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "labelIntl"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "permissions": {
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "visibilities": {
+                                            "items": {
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "contextId": {
+                                                        "type": "string"
+                                                    },
+                                                    "contextType": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "contextType",
+                                                    "contextId"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "extensionId",
+                                        "name",
+                                        "entry",
+                                        "type",
+                                        "destination",
+                                        "activationContexts"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Returns registered extension details"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            }
+        },
+        "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation": {
+            "post": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "extensionId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "contextId": {
+                                        "type": "string"
+                                    },
+                                    "contextType": {
+                                        "enum": [
+                                            "company",
+                                            "project"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "overrides": {
+                                        "items": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "icon": {
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "name"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "labelIntl": {
+                                                    "additionalProperties": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "order": {
+                                                    "type": "number"
+                                                },
+                                                "routeId": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "routeId"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "contextType",
+                                    "contextId"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "activationId": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "activationId"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Returns registered extension id"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            }
+        },
+        "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation": {
+            "delete": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contextId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "contextType",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "extensionId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "APISecretHeader": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "secret"
+            }
+        },
+        "schemas": {
+            "def-0": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]([A-Za-z0-9_]*[A-Za-z0-9])?$",
+                "minLength": 1,
+                "maxLength": 255,
+                "title": "key"
+            },
+            "def-1": {
+                "type": "object",
+                "required": [
+                    "projectId",
+                    "key"
+                ],
+                "properties": {
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "$ref": "#/components/schemas/def-0"
+                    }
+                },
+                "title": "withProjectIdAndKey"
+            },
+            "def-2": {
+                "type": "object",
+                "required": [
+                    "projectId"
+                ],
+                "properties": {
+                    "projectId": {
+                        "type": "string"
+                    }
+                },
+                "title": "withProjectId"
+            }
+        }
+    },
+    "servers": [],
+    "tags": [
+        {
+            "name": "marketplace",
+            "description": "Marketplace related APIs"
+        },
+        {
+            "name": "projects",
+            "description": "Project related APIs"
+        },
+        {
+            "name": "companies",
+            "description": "Company related APIs"
+        },
+        {
+            "name": "console",
+            "description": "General APIs for Console management"
+        },
+        {
+            "name": "users",
+            "description": "User management API"
+        },
+        {
+            "name": "providers",
+            "description": "API for Providers management"
+        }
+    ]
 }

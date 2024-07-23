@@ -23,6 +23,7 @@ import { AxiosError, AxiosResponse } from 'axios'
 import axiosWrapper from '../../client/http/axios'
 import { ConsoleClient } from '../../client'
 import { Extensions, ExtensionsPutRequestBody } from '../../kiota-client/api/extensibility/tenants/item/extensions'
+import { WithExtensionGetResponse } from '../../kiota-client/api/extensibility/tenants/item/extensions/item'
 
 const baseUrl = 'https://base-url.com'
 
@@ -86,6 +87,195 @@ describe('console-client', () => {
     const testTenantId = 'some-tenant-id'
     const testExtensionId = 'the-extension-id'
 
+    describe('GET / method', () => {
+      it('properly invokes api', async(t) => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions`
+        const expectedResult: Extensions[] = [
+          {
+            extensionId: 'the-extension-id',
+            activationContexts: ['company'],
+            name: 'The Extension',
+            type: 'iframe',
+            entry: 'http://my-extension:8000',
+          },
+          {
+            extensionId: 'another-extension-id',
+            activationContexts: ['project'],
+            name: 'Another Extension',
+            type: 'iframe',
+            entry: 'http://another-extension:8000',
+          },
+        ]
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.resolve({ data: expectedResult })
+        }
+        const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = await new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId)
+          .extensions.get()
+
+        const { calls } = axiosMock.mock
+        assert.equal(calls.length, 1)
+
+        const [axiosCall] = calls
+        assert.deepEqual(axiosCall.arguments, [
+          expectedUrl,
+          {
+            data: undefined,
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json',
+              'user-agent': 'console-client',
+            },
+            method: 'GET',
+          },
+        ])
+
+        assert.deepEqual(response, expectedResult)
+      })
+
+      it('properly invokes api with query parameter resolveDetail', async t => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions?resolveDetails=true`
+        const expectedResult: Extensions[] = [
+          {
+            extensionId: 'the-extension-id',
+            activationContexts: ['company'],
+            name: 'The Extension',
+            type: 'iframe',
+            entry: 'http://my-extension:8000',
+          },
+          {
+            extensionId: 'another-extension-id',
+            activationContexts: ['project'],
+            name: 'Another Extension',
+            type: 'iframe',
+            entry: 'http://another-extension:8000',
+          },
+        ]
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.resolve({ data: expectedResult })
+        }
+        const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = await new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId)
+          .extensions.get({ queryParameters: { resolveDetails: true } })
+
+        const { calls } = axiosMock.mock
+        assert.equal(calls.length, 1)
+
+        const [axiosCall] = calls
+        assert.deepEqual(axiosCall.arguments, [
+          expectedUrl,
+          {
+            data: undefined,
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json',
+              'user-agent': 'console-client',
+            },
+            method: 'GET',
+          },
+        ])
+
+        assert.deepEqual(response, expectedResult)
+      })
+
+      it('handles error', async(t) => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions`
+        const expectedError = {
+          statusCode: 500,
+          error: 'some-error',
+          message: 'some-message',
+        }
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.reject(buildAxiosError(expectedError))
+        }
+
+        t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId).
+          extensions.get()
+
+        await assert.rejects(response, expectedError)
+      })
+    })
+
+    describe('GET /{id} method', () => {
+      it('properly invokes api', async(t) => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions/${testExtensionId}`
+        const expectedResult: WithExtensionGetResponse = {
+          extensionId: 'the-extension-id',
+          activationContexts: ['company'],
+          name: 'The Extension',
+          type: 'iframe',
+          entry: 'http://my-extension:8000',
+        }
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.resolve({ data: expectedResult })
+        }
+        const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = await new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId)
+          .extensions
+          .byExtensionId(testExtensionId)
+          .get()
+
+        const { calls } = axiosMock.mock
+        assert.equal(calls.length, 1)
+
+        const [axiosCall] = calls
+        assert.deepEqual(axiosCall.arguments, [
+          expectedUrl,
+          {
+            data: undefined,
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json',
+              'user-agent': 'console-client',
+            },
+            method: 'GET',
+          },
+        ])
+
+        assert.deepEqual(response, expectedResult)
+      })
+
+      it('handles error', async(t) => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions/${testExtensionId}`
+        const expectedError = {
+          statusCode: 500,
+          error: 'some-error',
+          message: 'some-message',
+        }
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.reject(buildAxiosError(expectedError))
+        }
+
+        t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId).
+          extensions.byExtensionId(testExtensionId)
+          .get()
+
+        await assert.rejects(response, expectedError)
+      })
+    })
+
     describe('PUT method', () => {
       const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions`
 
@@ -121,6 +311,10 @@ describe('console-client', () => {
         assert.deepEqual(
           JSON.parse(Buffer.from(axiosCall.arguments[1]?.data as Uint8Array).toString()),
           {
+            // NOTE: Despite the contexts should be an enum, there's a bug on Kiota that does not transform correctly
+            //       the enum values to strings. Until this issue is solved, please ensure that this test pass without
+            //       requiring to transform the array into a "company, project" string.
+            //       More info here: https://github.com/microsoft/kiota-typescript/issues/1276
             contexts: ['company', 'project'],
             name: 'extension name',
           }
@@ -234,6 +428,7 @@ describe('console-client', () => {
   it('exposes extensibility fluent APIs correctly', async(t) => {
     const consoleClient = new ConsoleClient(baseUrl)
     const testTenantId = 'some-tenant-id'
+    const testExtensionId = 'some-extension-id'
 
     const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', async(_url: string) => {
       const okResponse = {
@@ -245,10 +440,11 @@ describe('console-client', () => {
 
     await consoleClient.extensibility.extensions.get()
     await consoleClient.extensibility.tenants.byTenantId(testTenantId).extensions.get()
+    await consoleClient.extensibility.tenants.byTenantId(testTenantId).extensions.byExtensionId(testExtensionId).get()
 
     // TODO: add not implemented methods
 
     const { calls } = axiosMock.mock
-    assert.equal(calls.length, 2)
+    assert.equal(calls.length, 3)
   })
 })
