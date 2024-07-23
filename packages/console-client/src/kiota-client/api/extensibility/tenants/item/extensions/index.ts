@@ -222,7 +222,7 @@ export function deserializeIntoExtensions500Error(extensions500Error: Partial<Ex
  */
 export function deserializeIntoExtensionsPutRequestBody(extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "contexts": n => { extensionsPutRequestBody.contexts = n.getCollectionOfEnumValues<ExtensionsPutRequestBody_contexts>(ExtensionsPutRequestBody_contextsObject); },
+        "contexts": n => { extensionsPutRequestBody.contexts = n.getCollectionOfPrimitiveValues<string>(); },
         "description": n => { extensionsPutRequestBody.description = n.getStringValue(); },
         "entry": n => { extensionsPutRequestBody.entry = n.getStringValue(); },
         "extensionId": n => { extensionsPutRequestBody.extensionId = n.getStringValue(); },
@@ -417,7 +417,7 @@ export interface ExtensionsPutRequestBody extends Parsable {
     /**
      * The contexts property
      */
-    contexts?: ExtensionsPutRequestBody_contexts[];
+    contexts?: string[];
     /**
      * The description property
      */
@@ -447,7 +447,6 @@ export interface ExtensionsPutRequestBody extends Parsable {
      */
     routes?: ExtensionsPutRequestBody_routes[];
 }
-export type ExtensionsPutRequestBody_contexts = (typeof ExtensionsPutRequestBody_contextsObject)[keyof typeof ExtensionsPutRequestBody_contextsObject];
 export type ExtensionsPutRequestBody_extensionType = (typeof ExtensionsPutRequestBody_extensionTypeObject)[keyof typeof ExtensionsPutRequestBody_extensionTypeObject];
 export interface ExtensionsPutRequestBody_routes extends Parsable {
     /**
@@ -635,8 +634,7 @@ export function serializeExtensions500Error(writer: SerializationWriter, extensi
  * @param writer Serialization writer to use to serialize this model
  */
 export function serializeExtensionsPutRequestBody(writer: SerializationWriter, extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : void {
-    if(extensionsPutRequestBody.contexts)
-    writer.writeEnumValue<ExtensionsPutRequestBody_contexts>("contexts", ...extensionsPutRequestBody.contexts);
+    writer.writeCollectionOfPrimitiveValues<string>("contexts", extensionsPutRequestBody.contexts);
     writer.writeStringValue("description", extensionsPutRequestBody.description);
     writer.writeStringValue("entry", extensionsPutRequestBody.entry);
     writer.writeStringValue("extensionId", extensionsPutRequestBody.extensionId);
@@ -685,10 +683,6 @@ export function serializeExtensionsPutResponse(writer: SerializationWriter, exte
  * Uri template for the request builder.
  */
 export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions{?resolveDetails*}";
-export const ExtensionsPutRequestBody_contextsObject = {
-    Company: "company",
-    Project: "project",
-} as const;
 export const ExtensionsPutRequestBody_extensionTypeObject = {
     Iframe: "iframe",
 } as const;

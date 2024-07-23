@@ -367,10 +367,6 @@
                                 "properties": {
                                     "contexts": {
                                         "items": {
-                                            "enum": [
-                                                "company",
-                                                "project"
-                                            ],
                                             "type": "string"
                                         },
                                         "type": "array"
