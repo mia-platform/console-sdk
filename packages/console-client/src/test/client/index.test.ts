@@ -87,6 +87,128 @@ describe('console-client', () => {
     const testTenantId = 'some-tenant-id'
     const testExtensionId = 'the-extension-id'
 
+    describe('GET / method', () => {
+      it('properly invokes api', async(t) => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions`
+        const expectedResult: Extensions[] = [
+          {
+            extensionId: 'the-extension-id',
+            activationContexts: ['company'],
+            name: 'The Extension',
+            type: 'iframe',
+            entry: 'http://my-extension:8000',
+          },
+          {
+            extensionId: 'another-extension-id',
+            activationContexts: ['project'],
+            name: 'Another Extension',
+            type: 'iframe',
+            entry: 'http://another-extension:8000',
+          },
+        ]
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.resolve({ data: expectedResult })
+        }
+        const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = await new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId)
+          .extensions.get()
+
+        const { calls } = axiosMock.mock
+        assert.equal(calls.length, 1)
+
+        const [axiosCall] = calls
+        assert.deepEqual(axiosCall.arguments, [
+          expectedUrl,
+          {
+            data: undefined,
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json',
+              'user-agent': 'console-client',
+            },
+            method: 'GET',
+          },
+        ])
+
+        assert.deepEqual(response, expectedResult)
+      })
+
+      it('properly invokes api with query parameter resolveDetail', async t => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions?resolveDetails=true`
+        const expectedResult: Extensions[] = [
+          {
+            extensionId: 'the-extension-id',
+            activationContexts: ['company'],
+            name: 'The Extension',
+            type: 'iframe',
+            entry: 'http://my-extension:8000',
+          },
+          {
+            extensionId: 'another-extension-id',
+            activationContexts: ['project'],
+            name: 'Another Extension',
+            type: 'iframe',
+            entry: 'http://another-extension:8000',
+          },
+        ]
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.resolve({ data: expectedResult })
+        }
+        const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = await new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId)
+          .extensions.get({ queryParameters: { resolveDetails: true } })
+
+        const { calls } = axiosMock.mock
+        assert.equal(calls.length, 1)
+
+        const [axiosCall] = calls
+        assert.deepEqual(axiosCall.arguments, [
+          expectedUrl,
+          {
+            data: undefined,
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json',
+              'user-agent': 'console-client',
+            },
+            method: 'GET',
+          },
+        ])
+
+        assert.deepEqual(response, expectedResult)
+      })
+
+      it('handles error', async(t) => {
+        const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions`
+        const expectedError = {
+          statusCode: 500,
+          error: 'some-error',
+          message: 'some-message',
+        }
+
+        const mock = async(url: string): Promise<unknown> => {
+          assert.equal(url, expectedUrl)
+          return Promise.reject(buildAxiosError(expectedError))
+        }
+
+        t.mock.method(axiosWrapper, 'axiosFn', mock)
+
+        const response = new ConsoleClient('').extensibility
+          .tenants.byTenantId(testTenantId).
+          extensions.get()
+
+        await assert.rejects(response, expectedError)
+      })
+    })
+
     describe('GET /{id} method', () => {
       it('properly invokes api', async(t) => {
         const expectedUrl = `/api/extensibility/tenants/${testTenantId}/extensions/${testExtensionId}`
