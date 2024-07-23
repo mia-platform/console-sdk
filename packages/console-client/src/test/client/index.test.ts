@@ -189,6 +189,10 @@ describe('console-client', () => {
         assert.deepEqual(
           JSON.parse(Buffer.from(axiosCall.arguments[1]?.data as Uint8Array).toString()),
           {
+            // NOTE: Despite the contexts should be an enum, there's a bug on Kiota that does not transform correctly
+            //       the enum values to strings. Until this issue is solved, please ensure that this test pass without
+            //       requiring to transform the array into a "company, project" string.
+            //       More info here: https://github.com/microsoft/kiota-typescript/issues/1276
             contexts: ['company', 'project'],
             name: 'extension name',
           }
