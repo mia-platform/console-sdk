@@ -1,5 +1,12 @@
 # @mia-platform/console-client
 
+## 0.2.3
+
+### Patch Changes
+
+- 0adcf49: Include query parameter "resolveDetails" in "/api/extensibility/tenants/${testTenantId}/extensions"
+- 0adcf49: GET for "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}"
+
 ## 0.2.2
 
 ### Patch Changes
