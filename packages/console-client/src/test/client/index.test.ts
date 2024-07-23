@@ -302,6 +302,7 @@ describe('console-client', () => {
   it('exposes extensibility fluent APIs correctly', async(t) => {
     const consoleClient = new ConsoleClient(baseUrl)
     const testTenantId = 'some-tenant-id'
+    const testExtensionId = 'some-extension-id'
 
     const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', async(_url: string) => {
       const okResponse = {
@@ -313,10 +314,11 @@ describe('console-client', () => {
 
     await consoleClient.extensibility.extensions.get()
     await consoleClient.extensibility.tenants.byTenantId(testTenantId).extensions.get()
+    await consoleClient.extensibility.tenants.byTenantId(testTenantId).extensions.byExtensionId(testExtensionId).get()
 
     // TODO: add not implemented methods
 
     const { calls } = axiosMock.mock
-    assert.equal(calls.length, 2)
+    assert.equal(calls.length, 3)
   })
 })
