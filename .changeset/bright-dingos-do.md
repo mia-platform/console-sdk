@@ -2,4 +2,4 @@
 "@mia-platform/console-client": patch
 ---
 
-Include extensibility GET/{id} API
+GET for "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}"
