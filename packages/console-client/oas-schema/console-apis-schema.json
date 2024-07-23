@@ -812,10 +812,6 @@
                                         "type": "string"
                                     },
                                     "contextType": {
-                                        "enum": [
-                                            "company",
-                                            "project"
-                                        ],
                                         "type": "string"
                                     },
                                     "overrides": {
