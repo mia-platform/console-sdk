@@ -66,12 +66,13 @@ export interface ActivationPostRequestBody extends Parsable {
     /**
      * The contextType property
      */
-    contextType?: string;
+    contextType?: ActivationPostRequestBody_contextType;
     /**
      * The overrides property
      */
     overrides?: ActivationPostRequestBody_overrides[];
 }
+export type ActivationPostRequestBody_contextType = (typeof ActivationPostRequestBody_contextTypeObject)[keyof typeof ActivationPostRequestBody_contextTypeObject];
 export interface ActivationPostRequestBody_overrides extends Parsable {
     /**
      * The icon property
@@ -232,7 +233,7 @@ export function deserializeIntoActivation500Error(activation500Error: Partial<Ac
 export function deserializeIntoActivationPostRequestBody(activationPostRequestBody: Partial<ActivationPostRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "contextId": n => { activationPostRequestBody.contextId = n.getStringValue(); },
-        "contextType": n => { activationPostRequestBody.contextType = n.getStringValue(); },
+        "contextType": n => { activationPostRequestBody.contextType = n.getEnumValue<ActivationPostRequestBody_contextType>(ActivationPostRequestBody_contextTypeObject); },
         "overrides": n => { activationPostRequestBody.overrides = n.getCollectionOfObjectValues<ActivationPostRequestBody_overrides>(createActivationPostRequestBody_overridesFromDiscriminatorValue); },
     }
 }
@@ -310,7 +311,7 @@ export function serializeActivation500Error(writer: SerializationWriter, activat
  */
 export function serializeActivationPostRequestBody(writer: SerializationWriter, activationPostRequestBody: Partial<ActivationPostRequestBody> | undefined = {}) : void {
     writer.writeStringValue("contextId", activationPostRequestBody.contextId);
-    writer.writeStringValue("contextType", activationPostRequestBody.contextType);
+    writer.writeEnumValue<ActivationPostRequestBody_contextType>("contextType", activationPostRequestBody.contextType);
     writer.writeCollectionOfObjectValues<ActivationPostRequestBody_overrides>("overrides", activationPostRequestBody.overrides, serializeActivationPostRequestBody_overrides);
 }
 /**
@@ -348,6 +349,10 @@ export function serializeActivationPostResponse(writer: SerializationWriter, act
  * Uri template for the request builder.
  */
 export const ActivationRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation";
+export const ActivationPostRequestBody_contextTypeObject = {
+    Company: "company",
+    Project: "project",
+} as const;
 /**
  * Metadata for all the requests in the request builder.
  */

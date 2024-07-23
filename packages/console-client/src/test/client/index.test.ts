@@ -189,7 +189,7 @@ describe('console-client', () => {
         assert.deepEqual(
           JSON.parse(Buffer.from(axiosCall.arguments[1]?.data as Uint8Array).toString()),
           {
-            contexts: ['company', 'project'],
+            contexts: 'company, project',
             name: 'extension name',
           }
         )
