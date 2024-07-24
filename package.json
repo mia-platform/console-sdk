@@ -11,7 +11,7 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.2.0",
+    "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-unused-imports": "^3.2.0",
     "@types/jest": "^29.5.12"
   },
