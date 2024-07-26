@@ -47,6 +47,12 @@ Once installed kiota, you shall just execute:
 kiota generate -l <language> -d <path-to-oas-file> -o <output-path-for-the-generated-client> -c <name-of-the-client-to-generate>
 ```
 
+E.g.
+
+```sh
+kiota generate -l typescript -d ./oas-schema/console-apis-schema.json -o ./src/kiota-client/ -c ConsoleClient
+```
+
 That's it, now you have your client generated!
 
 ## Which APIs are exposed from the console-client?
