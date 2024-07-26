@@ -196,27 +196,30 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "labelIntl": {
-                                            "additionalProperties": {
+                                    "items": {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "id": {
                                                 "type": "string"
                                             },
-                                            "type": "object"
+                                            "labelIntl": {
+                                                "additionalProperties": {
+                                                    "type": "string"
+                                                },
+                                                "type": "object"
+                                            },
+                                            "locationId": {
+                                                "type": "string"
+                                            }
                                         },
-                                        "locationId": {
-                                            "type": "string"
-                                        }
+                                        "required": [
+                                            "id",
+                                            "labelIntl",
+                                            "locationId"
+                                        ],
+                                        "type": "object"
                                     },
-                                    "required": [
-                                        "id",
-                                        "labelIntl",
-                                        "locationId"
-                                    ],
-                                    "type": "object"
+                                    "type": "array"
                                 }
                             }
                         },

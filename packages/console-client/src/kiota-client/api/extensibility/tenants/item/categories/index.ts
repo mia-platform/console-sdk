@@ -4,6 +4,26 @@
 // @ts-ignore
 import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
+export interface Categories extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+    /**
+     * The labelIntl property
+     */
+    labelIntl?: Categories_labelIntl;
+    /**
+     * The locationId property
+     */
+    locationId?: string;
+}
+export interface Categories_labelIntl extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+}
 export interface Categories500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -22,36 +42,16 @@ export interface Categories500Error extends AdditionalDataHolder, ApiError, Pars
      */
     statusCode?: number;
 }
-export interface CategoriesGetResponse extends Parsable {
-    /**
-     * The id property
-     */
-    id?: string;
-    /**
-     * The labelIntl property
-     */
-    labelIntl?: CategoriesGetResponse_labelIntl;
-    /**
-     * The locationId property
-     */
-    locationId?: string;
-}
-export interface CategoriesGetResponse_labelIntl extends AdditionalDataHolder, Parsable {
-    /**
-     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-     */
-    additionalData?: Record<string, unknown>;
-}
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/categories
  */
 export interface CategoriesRequestBuilder extends BaseRequestBuilder<CategoriesRequestBuilder> {
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
-     * @returns {Promise<CategoriesGetResponse>}
+     * @returns {Promise<Categories[]>}
      * @throws {Categories500Error} error when the service returns a 500 status code
      */
-     get(requestConfiguration?: RequestConfiguration<CategoriesRequestBuilderGetQueryParameters> | undefined) : Promise<CategoriesGetResponse | undefined>;
+     get(requestConfiguration?: RequestConfiguration<CategoriesRequestBuilderGetQueryParameters> | undefined) : Promise<Categories[] | undefined>;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -64,6 +64,14 @@ export interface CategoriesRequestBuilderGetQueryParameters {
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Categories_labelIntl}
+ */
+export function createCategories_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCategories_labelIntl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Categories500Error}
  */
 export function createCategories500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
@@ -72,18 +80,29 @@ export function createCategories500ErrorFromDiscriminatorValue(parseNode: ParseN
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {CategoriesGetResponse_labelIntl}
+ * @returns {Categories}
  */
-export function createCategoriesGetResponse_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoCategoriesGetResponse_labelIntl;
+export function createCategoriesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCategories;
 }
 /**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {CategoriesGetResponse}
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
  */
-export function createCategoriesGetResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoCategoriesGetResponse;
+export function deserializeIntoCategories(categories: Partial<Categories> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { categories.id = n.getStringValue(); },
+        "labelIntl": n => { categories.labelIntl = n.getObjectValue<Categories_labelIntl>(createCategories_labelIntlFromDiscriminatorValue); },
+        "locationId": n => { categories.locationId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoCategories_labelIntl(categories_labelIntl: Partial<Categories_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
 }
 /**
  * The deserialization information for the current model
@@ -97,23 +116,20 @@ export function deserializeIntoCategories500Error(categories500Error: Partial<Ca
     }
 }
 /**
- * The deserialization information for the current model
- * @returns {Record<string, (node: ParseNode) => void>}
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
  */
-export function deserializeIntoCategoriesGetResponse(categoriesGetResponse: Partial<CategoriesGetResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "id": n => { categoriesGetResponse.id = n.getStringValue(); },
-        "labelIntl": n => { categoriesGetResponse.labelIntl = n.getObjectValue<CategoriesGetResponse_labelIntl>(createCategoriesGetResponse_labelIntlFromDiscriminatorValue); },
-        "locationId": n => { categoriesGetResponse.locationId = n.getStringValue(); },
-    }
+export function serializeCategories(writer: SerializationWriter, categories: Partial<Categories> | undefined = {}) : void {
+    writer.writeStringValue("id", categories.id);
+    writer.writeObjectValue<Categories_labelIntl>("labelIntl", categories.labelIntl, serializeCategories_labelIntl);
+    writer.writeStringValue("locationId", categories.locationId);
 }
 /**
- * The deserialization information for the current model
- * @returns {Record<string, (node: ParseNode) => void>}
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
  */
-export function deserializeIntoCategoriesGetResponse_labelIntl(categoriesGetResponse_labelIntl: Partial<CategoriesGetResponse_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-    }
+export function serializeCategories_labelIntl(writer: SerializationWriter, categories_labelIntl: Partial<Categories_labelIntl> | undefined = {}) : void {
+    writer.writeAdditionalData(categories_labelIntl.additionalData);
 }
 /**
  * Serializes information the current object
@@ -124,22 +140,6 @@ export function serializeCategories500Error(writer: SerializationWriter, categor
     writer.writeStringValue("message", categories500Error.messageEscaped);
     writer.writeNumberValue("statusCode", categories500Error.statusCode);
     writer.writeAdditionalData(categories500Error.additionalData);
-}
-/**
- * Serializes information the current object
- * @param writer Serialization writer to use to serialize this model
- */
-export function serializeCategoriesGetResponse(writer: SerializationWriter, categoriesGetResponse: Partial<CategoriesGetResponse> | undefined = {}) : void {
-    writer.writeStringValue("id", categoriesGetResponse.id);
-    writer.writeObjectValue<CategoriesGetResponse_labelIntl>("labelIntl", categoriesGetResponse.labelIntl, serializeCategoriesGetResponse_labelIntl);
-    writer.writeStringValue("locationId", categoriesGetResponse.locationId);
-}
-/**
- * Serializes information the current object
- * @param writer Serialization writer to use to serialize this model
- */
-export function serializeCategoriesGetResponse_labelIntl(writer: SerializationWriter, categoriesGetResponse_labelIntl: Partial<CategoriesGetResponse_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(categoriesGetResponse_labelIntl.additionalData);
 }
 /**
  * Uri template for the request builder.
@@ -155,8 +155,8 @@ export const CategoriesRequestBuilderRequestsMetadata: RequestsMetadata = {
         errorMappings: {
             500: createCategories500ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
         },
-        adapterMethodName: "send",
-        responseBodyFactory:  createCategoriesGetResponseFromDiscriminatorValue,
+        adapterMethodName: "sendCollection",
+        responseBodyFactory:  createCategoriesFromDiscriminatorValue,
     },
 };
 /* tslint:enable */
