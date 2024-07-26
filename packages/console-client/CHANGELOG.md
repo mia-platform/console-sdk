@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.4
+
+### Patch Changes
+
+- 819bb85: Added GET "/api/extensibility/tenants/{tenantId}/categories" API
+
 ## 0.2.3
 
 ### Patch Changes
