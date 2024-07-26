@@ -172,6 +172,88 @@
                 ]
             }
         },
+        "/api/extensibility/tenants/{tenantId}/categories": {
+            "get": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "locationId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "labelIntl": {
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            },
+                                            "type": "object"
+                                        },
+                                        "locationId": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "labelIntl",
+                                        "locationId"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Returns the available categories"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            }
+        },
         "/api/extensibility/tenants/{tenantId}/extensions": {
             "get": {
                 "parameters": [
