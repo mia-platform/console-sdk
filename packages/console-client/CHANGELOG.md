@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.5
+
+### Patch Changes
+
+- 3b5e525: Fixed GET "/api/extensibility/tenants/{tenantId}/categories" API schema
+
 ## 0.2.4
 
 ### Patch Changes
