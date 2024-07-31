@@ -81,26 +81,42 @@ export function createExtensionsFromDiscriminatorValue(parseNode: ParseNode | un
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {ExtensionsPutRequestBody_routes_icon}
+ * @returns {ExtensionsPutRequestBody_category_labelIntl}
  */
-export function createExtensionsPutRequestBody_routes_iconFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoExtensionsPutRequestBody_routes_icon;
+export function createExtensionsPutRequestBody_category_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensionsPutRequestBody_category_labelIntl;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {ExtensionsPutRequestBody_routes_labelIntl}
+ * @returns {ExtensionsPutRequestBody_category}
  */
-export function createExtensionsPutRequestBody_routes_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoExtensionsPutRequestBody_routes_labelIntl;
+export function createExtensionsPutRequestBody_categoryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensionsPutRequestBody_category;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {ExtensionsPutRequestBody_routes}
+ * @returns {ExtensionsPutRequestBody_destination}
  */
-export function createExtensionsPutRequestBody_routesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoExtensionsPutRequestBody_routes;
+export function createExtensionsPutRequestBody_destinationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensionsPutRequestBody_destination;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ExtensionsPutRequestBody_menu_labelIntl}
+ */
+export function createExtensionsPutRequestBody_menu_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensionsPutRequestBody_menu_labelIntl;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ExtensionsPutRequestBody_menu}
+ */
+export function createExtensionsPutRequestBody_menuFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensionsPutRequestBody_menu;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -222,47 +238,64 @@ export function deserializeIntoExtensions500Error(extensions500Error: Partial<Ex
  */
 export function deserializeIntoExtensionsPutRequestBody(extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "contexts": n => { extensionsPutRequestBody.contexts = n.getCollectionOfPrimitiveValues<string>(); },
+        "activationContexts": n => { extensionsPutRequestBody.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
+        "category": n => { extensionsPutRequestBody.category = n.getObjectValue<ExtensionsPutRequestBody_category>(createExtensionsPutRequestBody_categoryFromDiscriminatorValue); },
         "description": n => { extensionsPutRequestBody.description = n.getStringValue(); },
+        "destination": n => { extensionsPutRequestBody.destination = n.getObjectValue<ExtensionsPutRequestBody_destination>(createExtensionsPutRequestBody_destinationFromDiscriminatorValue); },
         "entry": n => { extensionsPutRequestBody.entry = n.getStringValue(); },
         "extensionId": n => { extensionsPutRequestBody.extensionId = n.getStringValue(); },
-        "extensionType": n => { extensionsPutRequestBody.extensionType = n.getEnumValue<ExtensionsPutRequestBody_extensionType>(ExtensionsPutRequestBody_extensionTypeObject); },
+        "iconName": n => { extensionsPutRequestBody.iconName = n.getStringValue(); },
+        "menu": n => { extensionsPutRequestBody.menu = n.getObjectValue<ExtensionsPutRequestBody_menu>(createExtensionsPutRequestBody_menuFromDiscriminatorValue); },
         "name": n => { extensionsPutRequestBody.name = n.getStringValue(); },
         "permissions": n => { extensionsPutRequestBody.permissions = n.getCollectionOfPrimitiveValues<string>(); },
-        "routes": n => { extensionsPutRequestBody.routes = n.getCollectionOfObjectValues<ExtensionsPutRequestBody_routes>(createExtensionsPutRequestBody_routesFromDiscriminatorValue); },
+        "type": n => { extensionsPutRequestBody.type = n.getStringValue(); },
     }
 }
 /**
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
-export function deserializeIntoExtensionsPutRequestBody_routes(extensionsPutRequestBody_routes: Partial<ExtensionsPutRequestBody_routes> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+export function deserializeIntoExtensionsPutRequestBody_category(extensionsPutRequestBody_category: Partial<ExtensionsPutRequestBody_category> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "destinationPath": n => { extensionsPutRequestBody_routes.destinationPath = n.getStringValue(); },
-        "icon": n => { extensionsPutRequestBody_routes.icon = n.getObjectValue<ExtensionsPutRequestBody_routes_icon>(createExtensionsPutRequestBody_routes_iconFromDiscriminatorValue); },
-        "id": n => { extensionsPutRequestBody_routes.id = n.getStringValue(); },
-        "labelIntl": n => { extensionsPutRequestBody_routes.labelIntl = n.getObjectValue<ExtensionsPutRequestBody_routes_labelIntl>(createExtensionsPutRequestBody_routes_labelIntlFromDiscriminatorValue); },
-        "locationId": n => { extensionsPutRequestBody_routes.locationId = n.getEnumValue<ExtensionsPutRequestBody_routes_locationId>(ExtensionsPutRequestBody_routes_locationIdObject); },
-        "matchExactMountPath": n => { extensionsPutRequestBody_routes.matchExactMountPath = n.getBooleanValue(); },
-        "order": n => { extensionsPutRequestBody_routes.order = n.getNumberValue(); },
-        "parentId": n => { extensionsPutRequestBody_routes.parentId = n.getStringValue(); },
-        "renderType": n => { extensionsPutRequestBody_routes.renderType = n.getEnumValue<ExtensionsPutRequestBody_routes_renderType>(ExtensionsPutRequestBody_routes_renderTypeObject); },
+        "id": n => { extensionsPutRequestBody_category.id = n.getStringValue(); },
+        "labelIntl": n => { extensionsPutRequestBody_category.labelIntl = n.getObjectValue<ExtensionsPutRequestBody_category_labelIntl>(createExtensionsPutRequestBody_category_labelIntlFromDiscriminatorValue); },
+        "order": n => { extensionsPutRequestBody_category.order = n.getNumberValue(); },
     }
 }
 /**
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
-export function deserializeIntoExtensionsPutRequestBody_routes_icon(extensionsPutRequestBody_routes_icon: Partial<ExtensionsPutRequestBody_routes_icon> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+export function deserializeIntoExtensionsPutRequestBody_category_labelIntl(extensionsPutRequestBody_category_labelIntl: Partial<ExtensionsPutRequestBody_category_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "name": n => { extensionsPutRequestBody_routes_icon.name = n.getStringValue(); },
     }
 }
 /**
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
-export function deserializeIntoExtensionsPutRequestBody_routes_labelIntl(extensionsPutRequestBody_routes_labelIntl: Partial<ExtensionsPutRequestBody_routes_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+export function deserializeIntoExtensionsPutRequestBody_destination(extensionsPutRequestBody_destination: Partial<ExtensionsPutRequestBody_destination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { extensionsPutRequestBody_destination.id = n.getStringValue(); },
+        "path": n => { extensionsPutRequestBody_destination.path = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensionsPutRequestBody_menu(extensionsPutRequestBody_menu: Partial<ExtensionsPutRequestBody_menu> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "id": n => { extensionsPutRequestBody_menu.id = n.getStringValue(); },
+        "labelIntl": n => { extensionsPutRequestBody_menu.labelIntl = n.getObjectValue<ExtensionsPutRequestBody_menu_labelIntl>(createExtensionsPutRequestBody_menu_labelIntlFromDiscriminatorValue); },
+        "order": n => { extensionsPutRequestBody_menu.order = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+export function deserializeIntoExtensionsPutRequestBody_menu_labelIntl(extensionsPutRequestBody_menu_labelIntl: Partial<ExtensionsPutRequestBody_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
 }
@@ -415,13 +448,21 @@ export interface Extensions500Error extends AdditionalDataHolder, ApiError, Pars
 }
 export interface ExtensionsPutRequestBody extends Parsable {
     /**
-     * The contexts property
+     * The activationContexts property
      */
-    contexts?: string[];
+    activationContexts?: string[];
+    /**
+     * The category property
+     */
+    category?: ExtensionsPutRequestBody_category;
     /**
      * The description property
      */
     description?: string;
+    /**
+     * The destination property
+     */
+    destination?: ExtensionsPutRequestBody_destination;
     /**
      * The entry property
      */
@@ -431,9 +472,13 @@ export interface ExtensionsPutRequestBody extends Parsable {
      */
     extensionId?: string;
     /**
-     * The extensionType property
+     * The iconName property
      */
-    extensionType?: ExtensionsPutRequestBody_extensionType;
+    iconName?: string;
+    /**
+     * The menu property
+     */
+    menu?: ExtensionsPutRequestBody_menu;
     /**
      * The name property
      */
@@ -443,20 +488,11 @@ export interface ExtensionsPutRequestBody extends Parsable {
      */
     permissions?: string[];
     /**
-     * The routes property
+     * The type property
      */
-    routes?: ExtensionsPutRequestBody_routes[];
+    type?: string;
 }
-export type ExtensionsPutRequestBody_extensionType = (typeof ExtensionsPutRequestBody_extensionTypeObject)[keyof typeof ExtensionsPutRequestBody_extensionTypeObject];
-export interface ExtensionsPutRequestBody_routes extends Parsable {
-    /**
-     * The destinationPath property
-     */
-    destinationPath?: string;
-    /**
-     * The icon property
-     */
-    icon?: ExtensionsPutRequestBody_routes_icon;
+export interface ExtensionsPutRequestBody_category extends Parsable {
     /**
      * The id property
      */
@@ -464,42 +500,48 @@ export interface ExtensionsPutRequestBody_routes extends Parsable {
     /**
      * The labelIntl property
      */
-    labelIntl?: ExtensionsPutRequestBody_routes_labelIntl;
-    /**
-     * The locationId property
-     */
-    locationId?: ExtensionsPutRequestBody_routes_locationId;
-    /**
-     * The matchExactMountPath property
-     */
-    matchExactMountPath?: boolean;
+    labelIntl?: ExtensionsPutRequestBody_category_labelIntl;
     /**
      * The order property
      */
     order?: number;
-    /**
-     * The parentId property
-     */
-    parentId?: string;
-    /**
-     * The renderType property
-     */
-    renderType?: ExtensionsPutRequestBody_routes_renderType;
 }
-export interface ExtensionsPutRequestBody_routes_icon extends Parsable {
-    /**
-     * The name property
-     */
-    name?: string;
-}
-export interface ExtensionsPutRequestBody_routes_labelIntl extends AdditionalDataHolder, Parsable {
+export interface ExtensionsPutRequestBody_category_labelIntl extends AdditionalDataHolder, Parsable {
     /**
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
      */
     additionalData?: Record<string, unknown>;
 }
-export type ExtensionsPutRequestBody_routes_locationId = (typeof ExtensionsPutRequestBody_routes_locationIdObject)[keyof typeof ExtensionsPutRequestBody_routes_locationIdObject];
-export type ExtensionsPutRequestBody_routes_renderType = (typeof ExtensionsPutRequestBody_routes_renderTypeObject)[keyof typeof ExtensionsPutRequestBody_routes_renderTypeObject];
+export interface ExtensionsPutRequestBody_destination extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+    /**
+     * The path property
+     */
+    path?: string;
+}
+export interface ExtensionsPutRequestBody_menu extends Parsable {
+    /**
+     * The id property
+     */
+    id?: string;
+    /**
+     * The labelIntl property
+     */
+    labelIntl?: ExtensionsPutRequestBody_menu_labelIntl;
+    /**
+     * The order property
+     */
+    order?: number;
+}
+export interface ExtensionsPutRequestBody_menu_labelIntl extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+}
 export interface ExtensionsPutResponse extends Parsable {
     /**
      * The extensionId property
@@ -634,43 +676,57 @@ export function serializeExtensions500Error(writer: SerializationWriter, extensi
  * @param writer Serialization writer to use to serialize this model
  */
 export function serializeExtensionsPutRequestBody(writer: SerializationWriter, extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : void {
-    writer.writeCollectionOfPrimitiveValues<string>("contexts", extensionsPutRequestBody.contexts);
+    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensionsPutRequestBody.activationContexts);
+    writer.writeObjectValue<ExtensionsPutRequestBody_category>("category", extensionsPutRequestBody.category, serializeExtensionsPutRequestBody_category);
     writer.writeStringValue("description", extensionsPutRequestBody.description);
+    writer.writeObjectValue<ExtensionsPutRequestBody_destination>("destination", extensionsPutRequestBody.destination, serializeExtensionsPutRequestBody_destination);
     writer.writeStringValue("entry", extensionsPutRequestBody.entry);
     writer.writeStringValue("extensionId", extensionsPutRequestBody.extensionId);
-    writer.writeEnumValue<ExtensionsPutRequestBody_extensionType>("extensionType", extensionsPutRequestBody.extensionType);
+    writer.writeStringValue("iconName", extensionsPutRequestBody.iconName);
+    writer.writeObjectValue<ExtensionsPutRequestBody_menu>("menu", extensionsPutRequestBody.menu, serializeExtensionsPutRequestBody_menu);
     writer.writeStringValue("name", extensionsPutRequestBody.name);
     writer.writeCollectionOfPrimitiveValues<string>("permissions", extensionsPutRequestBody.permissions);
-    writer.writeCollectionOfObjectValues<ExtensionsPutRequestBody_routes>("routes", extensionsPutRequestBody.routes, serializeExtensionsPutRequestBody_routes);
+    writer.writeStringValue("type", extensionsPutRequestBody.type);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_routes(writer: SerializationWriter, extensionsPutRequestBody_routes: Partial<ExtensionsPutRequestBody_routes> | undefined = {}) : void {
-    writer.writeStringValue("destinationPath", extensionsPutRequestBody_routes.destinationPath);
-    writer.writeObjectValue<ExtensionsPutRequestBody_routes_icon>("icon", extensionsPutRequestBody_routes.icon, serializeExtensionsPutRequestBody_routes_icon);
-    writer.writeStringValue("id", extensionsPutRequestBody_routes.id);
-    writer.writeObjectValue<ExtensionsPutRequestBody_routes_labelIntl>("labelIntl", extensionsPutRequestBody_routes.labelIntl, serializeExtensionsPutRequestBody_routes_labelIntl);
-    writer.writeEnumValue<ExtensionsPutRequestBody_routes_locationId>("locationId", extensionsPutRequestBody_routes.locationId);
-    writer.writeBooleanValue("matchExactMountPath", extensionsPutRequestBody_routes.matchExactMountPath);
-    writer.writeNumberValue("order", extensionsPutRequestBody_routes.order);
-    writer.writeStringValue("parentId", extensionsPutRequestBody_routes.parentId);
-    writer.writeEnumValue<ExtensionsPutRequestBody_routes_renderType>("renderType", extensionsPutRequestBody_routes.renderType);
+export function serializeExtensionsPutRequestBody_category(writer: SerializationWriter, extensionsPutRequestBody_category: Partial<ExtensionsPutRequestBody_category> | undefined = {}) : void {
+    writer.writeStringValue("id", extensionsPutRequestBody_category.id);
+    writer.writeObjectValue<ExtensionsPutRequestBody_category_labelIntl>("labelIntl", extensionsPutRequestBody_category.labelIntl, serializeExtensionsPutRequestBody_category_labelIntl);
+    writer.writeNumberValue("order", extensionsPutRequestBody_category.order);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_routes_icon(writer: SerializationWriter, extensionsPutRequestBody_routes_icon: Partial<ExtensionsPutRequestBody_routes_icon> | undefined = {}) : void {
-    writer.writeStringValue("name", extensionsPutRequestBody_routes_icon.name);
+export function serializeExtensionsPutRequestBody_category_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_category_labelIntl: Partial<ExtensionsPutRequestBody_category_labelIntl> | undefined = {}) : void {
+    writer.writeAdditionalData(extensionsPutRequestBody_category_labelIntl.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_routes_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_routes_labelIntl: Partial<ExtensionsPutRequestBody_routes_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(extensionsPutRequestBody_routes_labelIntl.additionalData);
+export function serializeExtensionsPutRequestBody_destination(writer: SerializationWriter, extensionsPutRequestBody_destination: Partial<ExtensionsPutRequestBody_destination> | undefined = {}) : void {
+    writer.writeStringValue("id", extensionsPutRequestBody_destination.id);
+    writer.writeStringValue("path", extensionsPutRequestBody_destination.path);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensionsPutRequestBody_menu(writer: SerializationWriter, extensionsPutRequestBody_menu: Partial<ExtensionsPutRequestBody_menu> | undefined = {}) : void {
+    writer.writeStringValue("id", extensionsPutRequestBody_menu.id);
+    writer.writeObjectValue<ExtensionsPutRequestBody_menu_labelIntl>("labelIntl", extensionsPutRequestBody_menu.labelIntl, serializeExtensionsPutRequestBody_menu_labelIntl);
+    writer.writeNumberValue("order", extensionsPutRequestBody_menu.order);
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+export function serializeExtensionsPutRequestBody_menu_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_menu_labelIntl: Partial<ExtensionsPutRequestBody_menu_labelIntl> | undefined = {}) : void {
+    writer.writeAdditionalData(extensionsPutRequestBody_menu_labelIntl.additionalData);
 }
 /**
  * Serializes information the current object
@@ -683,17 +739,6 @@ export function serializeExtensionsPutResponse(writer: SerializationWriter, exte
  * Uri template for the request builder.
  */
 export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions{?resolveDetails*}";
-export const ExtensionsPutRequestBody_extensionTypeObject = {
-    Iframe: "iframe",
-} as const;
-export const ExtensionsPutRequestBody_routes_locationIdObject = {
-    Tenant: "tenant",
-    Project: "project",
-    Runtime: "runtime",
-} as const;
-export const ExtensionsPutRequestBody_routes_renderTypeObject = {
-    Category: "category",
-} as const;
 /**
  * Metadata for all the navigation properties in the request builder.
  */
