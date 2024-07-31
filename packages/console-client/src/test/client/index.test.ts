@@ -288,7 +288,7 @@ describe('console-client', () => {
         const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', mock)
 
         const createData: ExtensionsPutRequestBody = {
-          contexts: ['company', 'project'],
+          activationContexts: ['company', 'project'],
           name: 'extension name',
         }
 
@@ -315,7 +315,7 @@ describe('console-client', () => {
             //       the enum values to strings. Until this issue is solved, please ensure that this test pass without
             //       requiring to transform the array into a "company, project" string.
             //       More info here: https://github.com/microsoft/kiota-typescript/issues/1276
-            contexts: ['company', 'project'],
+            activationContexts: ['company', 'project'],
             name: 'extension name',
           }
         )
