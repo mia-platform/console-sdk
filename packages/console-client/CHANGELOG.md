@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.6
+
+### Patch Changes
+
+- db0ad51: feat: activate extension bulk API and update PUT extensions API with new schema
+
 ## 0.2.5
 
 ### Patch Changes
