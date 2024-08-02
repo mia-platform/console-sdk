@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.8
+
+### Patch Changes
+
+- c141c75: added DELETE extension activation bulk API
+
 ## 0.2.7
 
 ### Patch Changes
