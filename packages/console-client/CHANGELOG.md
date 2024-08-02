@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.7
+
+### Patch Changes
+
+- 11adab8: proxy client to allow unknown properties
+
 ## 0.2.6
 
 ### Patch Changes
