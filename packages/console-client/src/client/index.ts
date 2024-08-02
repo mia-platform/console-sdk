@@ -38,20 +38,34 @@ class NullAccessTokenProvider implements AuthenticationProvider {
 }
 
 export type IConsoleClient = {
-  get extensibility(): ExtensibilityRequestBuilder
+  get extensibility(): ExtensibilityRequestBuilder,
+}
+
+export type ConsoleClientOptions = {
+  allowedProxyProperties?: string[],
 }
 
 export class ConsoleClient implements IConsoleClient {
   private baseUrl: string
   private client: KiotaConsoleClient
 
-  constructor(baseUrl: string) {
+  constructor(baseUrl: string, { allowedProxyProperties = [] }: ConsoleClientOptions = {}) {
     this.baseUrl = baseUrl
+
+    const allowedProperites = ['window', ...allowedProxyProperties]
 
     const requestAdapter = new AxiosRequestAdapter(new NullAccessTokenProvider())
     requestAdapter.baseUrl = this.baseUrl
 
-    this.client = createConsoleClient(requestAdapter)
+    // https://github.com/microsoft/kiota-typescript/issues/1075#issuecomment-1987042257
+    this.client = new Proxy(
+      createConsoleClient(requestAdapter),
+      {
+        get: (target, prop) => (allowedProperites.includes(prop.toString())
+          ? undefined
+          : Reflect.get(target, prop)),
+      }
+    )
   }
 
   get extensibility(): ExtensibilityRequestBuilder {
