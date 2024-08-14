@@ -19,7 +19,7 @@
   "author": "",
   "dependencies": {
     "@microsoft/kiota-abstractions": "1.0.0-preview.57",
-    "@microsoft/kiota-serialization-json": "1.0.0-preview.57",
+    "@microsoft/kiota-serialization-json": "1.0.0-preview.60",
     "@microsoft/kiota-serialization-text": "1.0.0-preview.54",
     "@microsoft/kiota-serialization-form": "1.0.0-preview.46",
     "@microsoft/kiota-serialization-multipart": "1.0.0-preview.35",

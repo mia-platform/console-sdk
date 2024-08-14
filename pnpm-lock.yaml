@@ -48,8 +48,8 @@ importers:
         specifier: 1.0.0-preview.46
         version: 1.0.0-preview.46
       '@microsoft/kiota-serialization-json':
-        specifier: 1.0.0-preview.57
-        version: 1.0.0-preview.57
+        specifier: 1.0.0-preview.60
+        version: 1.0.0-preview.60
       '@microsoft/kiota-serialization-multipart':
         specifier: 1.0.0-preview.35
         version: 1.0.0-preview.35
@@ -822,11 +822,14 @@ packages:
   '@microsoft/kiota-abstractions@1.0.0-preview.57':
     resolution: {integrity: sha512-U6rIiel+39XfljrLzWU3vsgkYExHOodJuuIEwqvKZd6rqaAXOLJHq/AR78Gu48ySy5KRXOEgtfRnRMsJpr04fA==}
 
+  '@microsoft/kiota-abstractions@1.0.0-preview.60':
+    resolution: {integrity: sha512-f0xk2z820PHyi9n7dB69+HCDEVh47ik9Ti6Fo9gpATn/eQSqHlgKjd+iU6bU2YoO88/1tN9Svux3BsTVEZkNxg==}
+
   '@microsoft/kiota-serialization-form@1.0.0-preview.46':
     resolution: {integrity: sha512-0DpWPkUbzyuxxlaGvIbuRbK44CpIW1c28kS0zHUKBN5PBbhAojBQd3zEK0L0IUVcF8FABADdSGklHQ16J8v2vg==}
 
-  '@microsoft/kiota-serialization-json@1.0.0-preview.57':
-    resolution: {integrity: sha512-P0fiHMfLV4qVyxcvEGGBWaGv1bwfZ+SAhw+9gYR53UBZZiIdW182cykbE3hSD2Xd0kolSrYseNrYO4U7GI873Q==}
+  '@microsoft/kiota-serialization-json@1.0.0-preview.60':
+    resolution: {integrity: sha512-IlmE4fo/1V9y7fY68KTzd48Hv4+ng/Exkxt/H5m83HRYu1n77qfFTDlLLgpWAbfuLbtj7EXfOfAPPikawMiIig==}
 
   '@microsoft/kiota-serialization-multipart@1.0.0-preview.35':
     resolution: {integrity: sha512-YuHBp40D9KT4ijawm77I3YftxBuG5u1dl0GAm6tyHGjXSxHt/HRgjMy92dnOnDeGCTSUXwoCe1Ut2zBoHwi2FQ==}
@@ -4587,27 +4590,36 @@ snapshots:
       tslib: 2.6.2
       uuid: 10.0.0
 
+  '@microsoft/kiota-abstractions@1.0.0-preview.60':
+    dependencies:
+      '@opentelemetry/api': 1.9.0
+      '@std-uritemplate/std-uritemplate': 1.0.3
+      guid-typescript: 1.0.9
+      tinyduration: 3.3.1
+      tslib: 2.6.2
+      uuid: 10.0.0
+
   '@microsoft/kiota-serialization-form@1.0.0-preview.46':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.57
+      '@microsoft/kiota-abstractions': 1.0.0-preview.60
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
-  '@microsoft/kiota-serialization-json@1.0.0-preview.57':
+  '@microsoft/kiota-serialization-json@1.0.0-preview.60':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.57
+      '@microsoft/kiota-abstractions': 1.0.0-preview.60
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
   '@microsoft/kiota-serialization-multipart@1.0.0-preview.35':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.57
+      '@microsoft/kiota-abstractions': 1.0.0-preview.60
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
   '@microsoft/kiota-serialization-text@1.0.0-preview.54':
     dependencies:
-      '@microsoft/kiota-abstractions': 1.0.0-preview.57
+      '@microsoft/kiota-abstractions': 1.0.0-preview.60
       guid-typescript: 1.0.9
       tslib: 2.6.2
 
