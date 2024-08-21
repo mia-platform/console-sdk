@@ -135,11 +135,11 @@ export type EnvironmentVariablesFromConfigMap = FromSchema<typeof configMapEnv>
 const DOWNWARD_API_FIELDS = {
   POD_LABELS: {
     type: 'string',
-    pattern: '^metadata.labels\\[\\\'[a-zA-Z0-9-_.]\\\'\\]*$',
+    pattern: '^metadata.labels\\[\'[a-zA-Z0-9-_.]\'\\]$',
   },
   POD_ANNOTATIONS: {
     type: 'string',
-    pattern: '^metadata.annotations\\[\\\'[a-zA-Z0-9-_.]\\\'\\]*$',
+    pattern: '^metadata.annotations\\[\'[a-zA-Z0-9-_.]\'\\]$',
   },
   POD: [
     'metadata.name',
@@ -693,7 +693,6 @@ export const customService = {
   additionalProperties: false,
   required: ['name', 'advanced', 'type', 'dockerImage'],
 } as const
-// @ts-expect-error Type too deep
 export type CustomService = FromSchema<typeof customService, { parseIfThenElseKeywords: true }>
 
 const filePath = {
