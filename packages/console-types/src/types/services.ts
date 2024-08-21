@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /**
  * Copyright 2024 Mia srl
  *
@@ -161,108 +162,63 @@ const DOWNWARD_API_FIELDS = {
   ],
 } as const
 
-const downwardAPIEnvContainer = {
-  type: 'object',
-  additionalProperties: false,
-  required: ['name', 'valueType', 'fieldPath', 'containerName'],
-  properties: {
-    ...envCommonProps,
-    valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-    fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.CONTAINER },
-    containerName: { type: 'string' },
-  },
-} as const
-
-const downwardAPIEnvPod = {
-  type: 'object',
-  if: {
-    type: 'object',
-    properties: {
-      fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.POD },
-    },
-  },
-  then: {
-    type: 'object',
-    additionalProperties: false,
-    required: ['name', 'valueType', 'fieldPath'],
-    properties: {
-      ...envCommonProps,
-      valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-      fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.POD },
-    },
-  },
-  else: {
-    if: {
+const downwardAPIEnv = {
+  oneOf: [
+    {
       type: 'object',
+      additionalProperties: false,
+      required: ['name', 'valueType', 'fieldPath', 'containerName'],
       properties: {
-        fieldPath: DOWNWARD_API_FIELDS.POD_LABELS,
+        ...envCommonProps,
+        valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+        fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.CONTAINER },
+        containerName: { type: 'string' },
       },
     },
-    then: {
+    {
       type: 'object',
       additionalProperties: false,
       required: ['name', 'valueType', 'fieldPath'],
       properties: {
         ...envCommonProps,
         valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-        fieldPath: DOWNWARD_API_FIELDS.POD_LABELS,
+        fieldPath: DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
       },
     },
-    else: {
-      if: {
-        type: 'object',
-        properties: {
-          fieldPath: DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
-        },
+    {
+      type: 'object',
+      additionalProperties: false,
+      required: ['name', 'valueType', 'fieldPath'],
+      properties: {
+        ...envCommonProps,
+        valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+        fieldPath: DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
       },
-      then: {
-        type: 'object',
-        additionalProperties: false,
-        required: ['name', 'valueType', 'fieldPath'],
-        properties: {
-          ...envCommonProps,
-          valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-          fieldPath: DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
-        },
-      },
-      else: false,
     },
-  },
+    {
+      type: 'object',
+      additionalProperties: false,
+      required: ['name', 'valueType', 'fieldPath'],
+      properties: {
+        ...envCommonProps,
+        valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+        fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.POD },
+      },
+    },
+  ],
 } as const
 
-const downwardAPIEnv = {
-  type: 'object',
-  if: {
-    type: 'object',
-    properties: {
-      valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-      fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.CONTAINER },
-    },
-  },
-  then: downwardAPIEnvContainer,
-  else: downwardAPIEnvPod,
-} as const
 export type EnvironmentVariablesDownwardAPI = FromSchema<typeof downwardAPIEnv, { parseIfThenElseKeywords: true }>
 
 export const environment = {
   type: 'array',
   items: {
-    type: 'object',
-    if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.PLAIN_TEXT } } },
-    then: plainEnv,
-    else: {
-      if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_SECRET } } },
-      then: secretEnv,
-      else: {
-        if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_CONFIGMAP } } },
-        then: configMapEnv,
-        else: {
-          if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API } } },
-          then: downwardAPIEnv,
-          else: false,
-        },
-      },
-    },
+    oneOf: [
+      plainEnv,
+      secretEnv,
+      configMapEnv,
+      downwardAPIEnv,
+    ],
   },
 } as const
 
