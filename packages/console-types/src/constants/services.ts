@@ -22,13 +22,15 @@ import { VALIDATION_ERROR_ID } from '../strings'
 export enum EnvironmentVariablesTypes {
   PLAIN_TEXT = 'plain',
   FROM_SECRET = 'secret',
-  FROM_CONFIGMAP = 'configmap'
+  FROM_CONFIGMAP = 'configmap',
+  DOWNWARD_API = 'downwardAPI'
 }
 
 export const ENVIRONMENT_VAR_TYPES: EnvironmentVariablesTypes[] = [
   EnvironmentVariablesTypes.PLAIN_TEXT,
   EnvironmentVariablesTypes.FROM_SECRET,
   EnvironmentVariablesTypes.FROM_CONFIGMAP,
+  EnvironmentVariablesTypes.DOWNWARD_API,
 ]
 
 export const DIGIT_OR_INTERPOLATION_PATTERN = '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$'

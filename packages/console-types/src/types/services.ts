@@ -132,6 +132,119 @@ const configMapEnv = {
 } as const
 export type EnvironmentVariablesFromConfigMap = FromSchema<typeof configMapEnv>
 
+const DOWNWARD_API_FIELDS = {
+  POD_LABELS: {
+    type: 'string',
+    pattern: '^metadata.labels\\[\\\'[a-zA-Z0-9-_.]\\\'\\]*$',
+  },
+  POD_ANNOTATIONS: {
+    type: 'string',
+    pattern: '^metadata.annotations\\[\\\'[a-zA-Z0-9-_.]\\\'\\]*$',
+  },
+  POD: [
+    'metadata.name',
+    'metadata.namespace',
+    'metadata.uid',
+    'spec.serviceAccountName',
+    'spec.nodeName',
+    'status.hostIP',
+    'status.podIP',
+    'status.podIPs',
+  ],
+  CONTAINER: [
+    'resource.limits.cpu',
+    'resource.requests.cpu',
+    'resource.limits.memory',
+    'resource.requests.memory',
+    'resource.limits.ephemeral-storage',
+    'resource.requests.ephemeral-storage',
+  ],
+} as const
+
+const downwardAPIEnvContainer = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['name', 'valueType', 'fieldPath', 'containerName'],
+  properties: {
+    ...envCommonProps,
+    valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+    fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.CONTAINER },
+    containerName: { type: 'string' },
+  },
+} as const
+
+const downwardAPIEnvPod = {
+  type: 'object',
+  if: {
+    type: 'object',
+    properties: {
+      fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.POD },
+    },
+  },
+  then: {
+    type: 'object',
+    additionalProperties: false,
+    required: ['name', 'valueType', 'fieldPath'],
+    properties: {
+      ...envCommonProps,
+      valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+      fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.POD },
+    },
+  },
+  else: {
+    if: {
+      type: 'object',
+      properties: {
+        fieldPath: DOWNWARD_API_FIELDS.POD_LABELS,
+      },
+    },
+    then: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['name', 'valueType', 'fieldPath'],
+      properties: {
+        ...envCommonProps,
+        valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+        fieldPath: DOWNWARD_API_FIELDS.POD_LABELS,
+      },
+    },
+    else: {
+      if: {
+        type: 'object',
+        properties: {
+          fieldPath: DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
+        },
+      },
+      then: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['name', 'valueType', 'fieldPath'],
+        properties: {
+          ...envCommonProps,
+          valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+          fieldPath: DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
+        },
+      },
+      else: false,
+    },
+  },
+} as const
+
+const downwardAPIEnv = {
+  type: 'object',
+  if: {
+    type: 'object',
+    properties: {
+      valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+      fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.CONTAINER },
+    },
+  },
+  then: downwardAPIEnvContainer,
+  else: downwardAPIEnvPod,
+} as const
+// @ts-expect-error Type too deep
+export type EnvironmentVariablesDownwardAPI = FromSchema<typeof downwardAPIEnv, { parseIfThenElseKeywords: true }>
+
 export const environment = {
   type: 'array',
   items: {
@@ -144,7 +257,11 @@ export const environment = {
       else: {
         if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_CONFIGMAP } } },
         then: configMapEnv,
-        else: false,
+        else: {
+          if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API } } },
+          then: downwardAPIEnv,
+          else: false,
+        },
       },
     },
   },
@@ -555,6 +672,7 @@ export const container = {
   additionalProperties: false,
   required: ['name', 'dockerImage'],
 } as const
+// @ts-expect-error Type too deep
 export type Container = FromSchema<typeof container, { parseIfThenElseKeywords: true }>
 
 export const customService = {
@@ -575,6 +693,7 @@ export const customService = {
   additionalProperties: false,
   required: ['name', 'advanced', 'type', 'dockerImage'],
 } as const
+// @ts-expect-error Type too deep
 export type CustomService = FromSchema<typeof customService, { parseIfThenElseKeywords: true }>
 
 const filePath = {
