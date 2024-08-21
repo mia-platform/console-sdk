@@ -192,7 +192,7 @@ const downwardAPIEnv = {
       properties: {
         ...envCommonProps,
         valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-        fieldPath: DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
+        fieldPath: DOWNWARD_API_FIELDS.POD_LABELS,
       },
     },
     {
