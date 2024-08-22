@@ -207,6 +207,7 @@ export type {
   EnvironmentVariablesFromSecret,
   EnvironmentVariablesPlain,
   EnvironmentVariablesFromConfigMap,
+  EnvironmentVariablesDownwardAPI,
   Container,
   CustomService,
   CustomServiceFile,
