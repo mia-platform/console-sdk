@@ -162,6 +162,7 @@ const DOWNWARD_API_FIELDS = {
   ],
 } as const
 
+// WARN: we prefer the the if form instead of the oneOf form because of this ajv unexpected behavior https://ajv.js.org/guide/modifying-data.html#removing-additional-properties
 const downwardAPIEnv = {
   if: {
     type: 'object',
