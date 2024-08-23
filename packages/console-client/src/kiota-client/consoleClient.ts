@@ -46,10 +46,10 @@ export interface ConsoleClient extends BaseRequestBuilder<ConsoleClient> {
  * @param requestAdapter The request adapter to use to execute the requests.
  */
 export function createConsoleClient(requestAdapter: RequestAdapter) {
-    // registerDefaultSerializer(JsonSerializationWriterFactory);
-    // registerDefaultSerializer(TextSerializationWriterFactory);
-    // registerDefaultSerializer(FormSerializationWriterFactory);
-    // registerDefaultSerializer(MultipartSerializationWriterFactory);
+    registerDefaultSerializer(JsonSerializationWriterFactory);
+    registerDefaultSerializer(TextSerializationWriterFactory);
+    registerDefaultSerializer(FormSerializationWriterFactory);
+    registerDefaultSerializer(MultipartSerializationWriterFactory);
     registerDefaultDeserializer(JsonParseNodeFactory);
     registerDefaultDeserializer(TextParseNodeFactory);
     registerDefaultDeserializer(FormParseNodeFactory);
