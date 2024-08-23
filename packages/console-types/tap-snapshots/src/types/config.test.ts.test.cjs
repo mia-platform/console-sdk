@@ -4723,68 +4723,39 @@ Object {
                     },
                     "environment": Object {
                       "items": Object {
-                        "else": Object {
-                          "else": Object {
-                            "else": false,
-                            "if": Object {
-                              "properties": Object {
-                                "valueType": Object {
-                                  "const": "configmap",
-                                  "type": "string",
-                                },
-                              },
-                              "type": "object",
-                            },
-                            "then": Object {
-                              "additionalProperties": false,
-                              "properties": Object {
-                                "configMapFileName": Object {
-                                  "pattern": "^[-._a-zA-Z0-9]+$",
-                                  "type": "string",
-                                  "x-validation-error-id": "configMapFileName.patternError",
-                                },
-                                "configMapName": Object {
-                                  "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
-                                  "type": "string",
-                                  "x-validation-error-id": "resourceName.patternError",
-                                },
-                                "description": Object {
-                                  "type": "string",
-                                },
-                                "managedBy": Object {
-                                  "type": "string",
-                                },
-                                "name": Object {
-                                  "minLength": 1,
-                                  "type": "string",
-                                },
-                                "readOnly": Object {
-                                  "type": "boolean",
-                                },
-                                "valueType": Object {
-                                  "const": "configmap",
-                                  "type": "string",
-                                },
-                              },
-                              "required": Array [
-                                "name",
-                                "valueType",
-                                "configMapName",
-                                "configMapFileName",
-                              ],
-                              "type": "object",
-                            },
-                          },
-                          "if": Object {
+                        "oneOf": Array [
+                          Object {
+                            "additionalProperties": false,
                             "properties": Object {
+                              "description": Object {
+                                "type": "string",
+                              },
+                              "managedBy": Object {
+                                "type": "string",
+                              },
+                              "name": Object {
+                                "minLength": 1,
+                                "type": "string",
+                              },
+                              "readOnly": Object {
+                                "type": "boolean",
+                              },
+                              "value": Object {
+                                "type": "string",
+                              },
                               "valueType": Object {
-                                "const": "secret",
+                                "const": "plain",
                                 "type": "string",
                               },
                             },
+                            "required": Array [
+                              "name",
+                              "value",
+                              "valueType",
+                            ],
                             "type": "object",
                           },
-                          "then": Object {
+                          Object {
                             "additionalProperties": false,
                             "properties": Object {
                               "description": Object {
@@ -4823,48 +4794,155 @@ Object {
                             ],
                             "type": "object",
                           },
-                        },
-                        "if": Object {
-                          "properties": Object {
-                            "valueType": Object {
-                              "const": "plain",
-                              "type": "string",
+                          Object {
+                            "additionalProperties": false,
+                            "properties": Object {
+                              "configMapFileName": Object {
+                                "pattern": "^[-._a-zA-Z0-9]+$",
+                                "type": "string",
+                                "x-validation-error-id": "configMapFileName.patternError",
+                              },
+                              "configMapName": Object {
+                                "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                                "type": "string",
+                                "x-validation-error-id": "resourceName.patternError",
+                              },
+                              "description": Object {
+                                "type": "string",
+                              },
+                              "managedBy": Object {
+                                "type": "string",
+                              },
+                              "name": Object {
+                                "minLength": 1,
+                                "type": "string",
+                              },
+                              "readOnly": Object {
+                                "type": "boolean",
+                              },
+                              "valueType": Object {
+                                "const": "configmap",
+                                "type": "string",
+                              },
+                            },
+                            "required": Array [
+                              "name",
+                              "valueType",
+                              "configMapName",
+                              "configMapFileName",
+                            ],
+                            "type": "object",
+                          },
+                          Object {
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "description": Object {
+                                  "type": "string",
+                                },
+                                "fieldPath": Object {
+                                  "oneOf": Array [
+                                    Object {
+                                      "enum": Array [
+                                        "metadata.name",
+                                        "metadata.namespace",
+                                        "metadata.uid",
+                                        "spec.serviceAccountName",
+                                        "spec.nodeName",
+                                        "status.hostIP",
+                                        "status.podIP",
+                                        "status.podIPs",
+                                      ],
+                                      "type": "string",
+                                    },
+                                    Object {
+                                      "pattern": "^metadata.annotations\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                      "type": "string",
+                                    },
+                                    Object {
+                                      "pattern": "^metadata.labels\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                      "type": "string",
+                                    },
+                                  ],
+                                },
+                                "managedBy": Object {
+                                  "type": "string",
+                                },
+                                "name": Object {
+                                  "minLength": 1,
+                                  "type": "string",
+                                },
+                                "readOnly": Object {
+                                  "type": "boolean",
+                                },
+                                "valueType": Object {
+                                  "const": "downwardAPI",
+                                  "type": "string",
+                                },
+                              },
+                              "required": Array [
+                                "name",
+                                "valueType",
+                                "fieldPath",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "containerName": Object {
+                                  "type": "string",
+                                },
+                              },
+                              "required": Array [
+                                "containerName",
+                              ],
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "containerName": Object {
+                                  "type": "string",
+                                },
+                                "description": Object {
+                                  "type": "string",
+                                },
+                                "fieldPath": Object {
+                                  "enum": Array [
+                                    "resource.limits.cpu",
+                                    "resource.requests.cpu",
+                                    "resource.limits.memory",
+                                    "resource.requests.memory",
+                                    "resource.limits.ephemeral-storage",
+                                    "resource.requests.ephemeral-storage",
+                                  ],
+                                  "type": "string",
+                                },
+                                "managedBy": Object {
+                                  "type": "string",
+                                },
+                                "name": Object {
+                                  "minLength": 1,
+                                  "type": "string",
+                                },
+                                "readOnly": Object {
+                                  "type": "boolean",
+                                },
+                                "valueType": Object {
+                                  "const": "downwardAPI",
+                                  "type": "string",
+                                },
+                              },
+                              "required": Array [
+                                "name",
+                                "valueType",
+                                "fieldPath",
+                                "containerName",
+                              ],
+                              "type": "object",
                             },
                           },
-                          "type": "object",
-                        },
-                        "then": Object {
-                          "additionalProperties": false,
-                          "properties": Object {
-                            "description": Object {
-                              "type": "string",
-                            },
-                            "managedBy": Object {
-                              "type": "string",
-                            },
-                            "name": Object {
-                              "minLength": 1,
-                              "type": "string",
-                            },
-                            "readOnly": Object {
-                              "type": "boolean",
-                            },
-                            "value": Object {
-                              "type": "string",
-                            },
-                            "valueType": Object {
-                              "const": "plain",
-                              "type": "string",
-                            },
-                          },
-                          "required": Array [
-                            "name",
-                            "value",
-                            "valueType",
-                          ],
-                          "type": "object",
-                        },
-                        "type": "object",
+                        ],
                       },
                       "type": "array",
                     },
@@ -5375,68 +5453,39 @@ Object {
               },
               "environment": Object {
                 "items": Object {
-                  "else": Object {
-                    "else": Object {
-                      "else": false,
-                      "if": Object {
-                        "properties": Object {
-                          "valueType": Object {
-                            "const": "configmap",
-                            "type": "string",
-                          },
-                        },
-                        "type": "object",
-                      },
-                      "then": Object {
-                        "additionalProperties": false,
-                        "properties": Object {
-                          "configMapFileName": Object {
-                            "pattern": "^[-._a-zA-Z0-9]+$",
-                            "type": "string",
-                            "x-validation-error-id": "configMapFileName.patternError",
-                          },
-                          "configMapName": Object {
-                            "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
-                            "type": "string",
-                            "x-validation-error-id": "resourceName.patternError",
-                          },
-                          "description": Object {
-                            "type": "string",
-                          },
-                          "managedBy": Object {
-                            "type": "string",
-                          },
-                          "name": Object {
-                            "minLength": 1,
-                            "type": "string",
-                          },
-                          "readOnly": Object {
-                            "type": "boolean",
-                          },
-                          "valueType": Object {
-                            "const": "configmap",
-                            "type": "string",
-                          },
-                        },
-                        "required": Array [
-                          "name",
-                          "valueType",
-                          "configMapName",
-                          "configMapFileName",
-                        ],
-                        "type": "object",
-                      },
-                    },
-                    "if": Object {
+                  "oneOf": Array [
+                    Object {
+                      "additionalProperties": false,
                       "properties": Object {
+                        "description": Object {
+                          "type": "string",
+                        },
+                        "managedBy": Object {
+                          "type": "string",
+                        },
+                        "name": Object {
+                          "minLength": 1,
+                          "type": "string",
+                        },
+                        "readOnly": Object {
+                          "type": "boolean",
+                        },
+                        "value": Object {
+                          "type": "string",
+                        },
                         "valueType": Object {
-                          "const": "secret",
+                          "const": "plain",
                           "type": "string",
                         },
                       },
+                      "required": Array [
+                        "name",
+                        "value",
+                        "valueType",
+                      ],
                       "type": "object",
                     },
-                    "then": Object {
+                    Object {
                       "additionalProperties": false,
                       "properties": Object {
                         "description": Object {
@@ -5475,48 +5524,155 @@ Object {
                       ],
                       "type": "object",
                     },
-                  },
-                  "if": Object {
-                    "properties": Object {
-                      "valueType": Object {
-                        "const": "plain",
-                        "type": "string",
+                    Object {
+                      "additionalProperties": false,
+                      "properties": Object {
+                        "configMapFileName": Object {
+                          "pattern": "^[-._a-zA-Z0-9]+$",
+                          "type": "string",
+                          "x-validation-error-id": "configMapFileName.patternError",
+                        },
+                        "configMapName": Object {
+                          "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                          "type": "string",
+                          "x-validation-error-id": "resourceName.patternError",
+                        },
+                        "description": Object {
+                          "type": "string",
+                        },
+                        "managedBy": Object {
+                          "type": "string",
+                        },
+                        "name": Object {
+                          "minLength": 1,
+                          "type": "string",
+                        },
+                        "readOnly": Object {
+                          "type": "boolean",
+                        },
+                        "valueType": Object {
+                          "const": "configmap",
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "name",
+                        "valueType",
+                        "configMapName",
+                        "configMapFileName",
+                      ],
+                      "type": "object",
+                    },
+                    Object {
+                      "else": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "description": Object {
+                            "type": "string",
+                          },
+                          "fieldPath": Object {
+                            "oneOf": Array [
+                              Object {
+                                "enum": Array [
+                                  "metadata.name",
+                                  "metadata.namespace",
+                                  "metadata.uid",
+                                  "spec.serviceAccountName",
+                                  "spec.nodeName",
+                                  "status.hostIP",
+                                  "status.podIP",
+                                  "status.podIPs",
+                                ],
+                                "type": "string",
+                              },
+                              Object {
+                                "pattern": "^metadata.annotations\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                "type": "string",
+                              },
+                              Object {
+                                "pattern": "^metadata.labels\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                "type": "string",
+                              },
+                            ],
+                          },
+                          "managedBy": Object {
+                            "type": "string",
+                          },
+                          "name": Object {
+                            "minLength": 1,
+                            "type": "string",
+                          },
+                          "readOnly": Object {
+                            "type": "boolean",
+                          },
+                          "valueType": Object {
+                            "const": "downwardAPI",
+                            "type": "string",
+                          },
+                        },
+                        "required": Array [
+                          "name",
+                          "valueType",
+                          "fieldPath",
+                        ],
+                        "type": "object",
+                      },
+                      "if": Object {
+                        "properties": Object {
+                          "containerName": Object {
+                            "type": "string",
+                          },
+                        },
+                        "required": Array [
+                          "containerName",
+                        ],
+                        "type": "object",
+                      },
+                      "then": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "containerName": Object {
+                            "type": "string",
+                          },
+                          "description": Object {
+                            "type": "string",
+                          },
+                          "fieldPath": Object {
+                            "enum": Array [
+                              "resource.limits.cpu",
+                              "resource.requests.cpu",
+                              "resource.limits.memory",
+                              "resource.requests.memory",
+                              "resource.limits.ephemeral-storage",
+                              "resource.requests.ephemeral-storage",
+                            ],
+                            "type": "string",
+                          },
+                          "managedBy": Object {
+                            "type": "string",
+                          },
+                          "name": Object {
+                            "minLength": 1,
+                            "type": "string",
+                          },
+                          "readOnly": Object {
+                            "type": "boolean",
+                          },
+                          "valueType": Object {
+                            "const": "downwardAPI",
+                            "type": "string",
+                          },
+                        },
+                        "required": Array [
+                          "name",
+                          "valueType",
+                          "fieldPath",
+                          "containerName",
+                        ],
+                        "type": "object",
                       },
                     },
-                    "type": "object",
-                  },
-                  "then": Object {
-                    "additionalProperties": false,
-                    "properties": Object {
-                      "description": Object {
-                        "type": "string",
-                      },
-                      "managedBy": Object {
-                        "type": "string",
-                      },
-                      "name": Object {
-                        "minLength": 1,
-                        "type": "string",
-                      },
-                      "readOnly": Object {
-                        "type": "boolean",
-                      },
-                      "value": Object {
-                        "type": "string",
-                      },
-                      "valueType": Object {
-                        "const": "plain",
-                        "type": "string",
-                      },
-                    },
-                    "required": Array [
-                      "name",
-                      "value",
-                      "valueType",
-                    ],
-                    "type": "object",
-                  },
-                  "type": "object",
+                  ],
                 },
                 "type": "array",
               },
