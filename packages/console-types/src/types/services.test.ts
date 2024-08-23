@@ -224,43 +224,47 @@ t.test('services', t => {
   t.test('environment', t => {
     const ajv = new Ajv()
     ajvConsoleErrors(ajv)
-    const validate = ajv.compile(environmentSchema)
+    const environment = [{
+      name: 'PLAIN_VAR',
+      valueType: EnvironmentVariablesTypes.PLAIN_TEXT,
+      value: 'some-value',
+    }, {
+      name: 'SECRET_VAR',
+      valueType: EnvironmentVariablesTypes.FROM_SECRET,
+      secretName: 'some-secret',
+      secretKey: 'some-key',
+    }, {
+      name: 'CONFIGMAP_VAR',
+      valueType: EnvironmentVariablesTypes.FROM_CONFIGMAP,
+      configMapName: 'some-configmap',
+      configMapFileName: 'some-file',
+    }, {
+      name: 'DOWNWARD_POD_VAR',
+      valueType: EnvironmentVariablesTypes.DOWNWARD_API,
+      fieldPath: 'metadata.name',
+    }, {
+      name: 'DOWNWARD_CONTAINER_VAR',
+      valueType: EnvironmentVariablesTypes.DOWNWARD_API,
+      fieldPath: 'resource.limits.cpu',
+      containerName: 'some-container',
+    }, {
+      name: 'DOWNWARD_LABEL_VAR',
+      valueType: EnvironmentVariablesTypes.DOWNWARD_API,
+      fieldPath: "metadata.labels['some-label']",
+    }, {
+      name: 'DOWNWARD_ANNOTATION_VAR',
+      valueType: EnvironmentVariablesTypes.DOWNWARD_API,
+      fieldPath: "metadata.annotations['some.annotation-0']",
+    }]
 
-    t.test('ok', t => {
-      const environment = [{
-        name: 'PLAIN_VAR',
-        valueType: EnvironmentVariablesTypes.PLAIN_TEXT,
-        value: 'some-value',
-      }, {
-        name: 'SECRET_VAR',
-        valueType: EnvironmentVariablesTypes.FROM_SECRET,
-        secretName: 'some-secret',
-        secretKey: 'some-key',
-      }, {
-        name: 'CONFIGMAP_VAR',
-        valueType: EnvironmentVariablesTypes.FROM_CONFIGMAP,
-        configMapName: 'some-configmap',
-        configMapFileName: 'some-file',
-      }, {
-        name: 'DOWNWARD_POD_VAR',
-        valueType: EnvironmentVariablesTypes.DOWNWARD_API,
-        fieldPath: 'metadata.name',
-      }, {
-        name: 'DOWNWARD_CONTAINER_VAR',
-        valueType: EnvironmentVariablesTypes.DOWNWARD_API,
-        fieldPath: 'resource.limits.cpu',
-        containerName: 'some-container',
-      }, {
-        name: 'DOWNWARD_LABEL_VAR',
-        valueType: EnvironmentVariablesTypes.DOWNWARD_API,
-        fieldPath: "metadata.labels['some-label']",
-      }, {
-        name: 'DOWNWARD_ANNOTATION_VAR',
-        valueType: EnvironmentVariablesTypes.DOWNWARD_API,
-        fieldPath: "metadata.annotations['some.annotation-0']",
-      }]
+    t.test('validate', t => {
+      const validate = ajv.compile(environmentSchema)
 
-      t.ok(validate(environment), validationMessage(validate.errors))
+      t.test('ok', t => {
+        t.ok(validate(environment), validationMessage(validate.errors))
+        t.end()
+      })
+
       t.end()
     })
 
