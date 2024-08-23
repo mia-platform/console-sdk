@@ -1,10 +1,5 @@
 # CHANGELOG
 
-- refactor: extend which endpoints routes are displayed when creating endpoints for CRUD Service Views with lookup feature enabled
-- update `pnpm` to v9
-- remove testing for node 16
-- add testing for node 22
-
 ## 0.21.0
 
 ### Minor Changes
