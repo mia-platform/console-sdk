@@ -173,7 +173,7 @@ const DOWNWARD_API_FIELD_PATHS = {
       DownwardAPIPodPath.HOST_IP,
       DownwardAPIPodPath.POD_IP,
       DownwardAPIPodPath.POD_IPS,
-    ]
+    ],
   },
   CONTAINER: {
     type: 'string',
@@ -184,7 +184,7 @@ const DOWNWARD_API_FIELD_PATHS = {
       DownwardAPIContainerPath.MEMORY_REQUEST,
       DownwardAPIContainerPath.EPHEMERAL_STORAGE_LIMIT,
       DownwardAPIContainerPath.EPHEMERAL_STORAGE_REQUEST,
-    ]
+    ],
   },
 } as const
 
