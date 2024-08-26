@@ -142,6 +142,8 @@ export enum DownwardAPIPodPath {
   HOST_IP = 'status.hostIP',
   POD_IP = 'status.podIP',
   POD_IPS = 'status.podIPs',
+  METADATA_ANNOTATIONS = 'metadata.annotations',
+  METADATA_LABELS = 'metadata.labels',
 }
 
 export enum DownwardAPIContainerPath {
