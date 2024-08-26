@@ -133,7 +133,27 @@ const configMapEnv = {
 } as const
 export type EnvironmentVariablesFromConfigMap = FromSchema<typeof configMapEnv>
 
-const DOWNWARD_API_FIELDS = {
+export enum DownwardAPIPodPath {
+  NAME = 'metadata.name',
+  NAMESPACE = 'metadata.namespace',
+  UID = 'metadata.uid',
+  SERVICE_ACCOUNT_NAME = 'spec.serviceAccountName',
+  NODE_NAME = 'spec.nodeName',
+  HOST_IP = 'status.hostIP',
+  POD_IP = 'status.podIP',
+  POD_IPS = 'status.podIPs',
+}
+
+export enum DownwardAPIContainerPath {
+  CPU_LIMIT = 'resource.limits.cpu',
+  CPU_REQUEST = 'resource.requests.cpu',
+  MEMORY_LIMIT = 'resource.limits.memory',
+  MEMORY_REQUEST = 'resource.requests.memory',
+  EPHEMERAL_STORAGE_LIMIT = 'resource.limits.ephemeral-storage',
+  EPHEMERAL_STORAGE_REQUEST = 'resource.requests.ephemeral-storage',
+}
+
+const DOWNWARD_API_FIELD_PATHS = {
   POD_LABELS: {
     type: 'string',
     pattern: "^metadata.labels\\['[a-zA-Z0-9-_.]+'\\]$",
@@ -142,24 +162,30 @@ const DOWNWARD_API_FIELDS = {
     type: 'string',
     pattern: "^metadata.annotations\\['[a-zA-Z0-9-_.]+'\\]$",
   },
-  POD: [
-    'metadata.name',
-    'metadata.namespace',
-    'metadata.uid',
-    'spec.serviceAccountName',
-    'spec.nodeName',
-    'status.hostIP',
-    'status.podIP',
-    'status.podIPs',
-  ],
-  CONTAINER: [
-    'resource.limits.cpu',
-    'resource.requests.cpu',
-    'resource.limits.memory',
-    'resource.requests.memory',
-    'resource.limits.ephemeral-storage',
-    'resource.requests.ephemeral-storage',
-  ],
+  POD: {
+    type: 'string',
+    enum: [
+      DownwardAPIPodPath.NAME,
+      DownwardAPIPodPath.NAMESPACE,
+      DownwardAPIPodPath.UID,
+      DownwardAPIPodPath.SERVICE_ACCOUNT_NAME,
+      DownwardAPIPodPath.NODE_NAME,
+      DownwardAPIPodPath.HOST_IP,
+      DownwardAPIPodPath.POD_IP,
+      DownwardAPIPodPath.POD_IPS,
+    ]
+  },
+  CONTAINER: {
+    type: 'string',
+    enum: [
+      DownwardAPIContainerPath.CPU_LIMIT,
+      DownwardAPIContainerPath.CPU_REQUEST,
+      DownwardAPIContainerPath.MEMORY_LIMIT,
+      DownwardAPIContainerPath.MEMORY_REQUEST,
+      DownwardAPIContainerPath.EPHEMERAL_STORAGE_LIMIT,
+      DownwardAPIContainerPath.EPHEMERAL_STORAGE_REQUEST,
+    ]
+  },
 } as const
 
 const downwardAPIEnv = {
@@ -176,7 +202,7 @@ const downwardAPIEnv = {
     properties: {
       ...envCommonProps,
       valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-      fieldPath: { type: 'string', enum: DOWNWARD_API_FIELDS.CONTAINER },
+      fieldPath: DOWNWARD_API_FIELD_PATHS.CONTAINER,
       containerName: { type: 'string' },
     },
   },
@@ -188,9 +214,9 @@ const downwardAPIEnv = {
       ...envCommonProps,
       valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
       fieldPath: { oneOf: [
-        { type: 'string', enum: DOWNWARD_API_FIELDS.POD },
-        DOWNWARD_API_FIELDS.POD_ANNOTATIONS,
-        DOWNWARD_API_FIELDS.POD_LABELS,
+        DOWNWARD_API_FIELD_PATHS.POD,
+        DOWNWARD_API_FIELD_PATHS.POD_ANNOTATIONS,
+        DOWNWARD_API_FIELD_PATHS.POD_LABELS,
       ] },
     },
   },
