@@ -167,6 +167,7 @@ const constants = {
   PLAIN_TEXT: EnvironmentVariablesTypes.PLAIN_TEXT,
   FROM_SECRET: EnvironmentVariablesTypes.FROM_SECRET,
   FROM_CONFIGMAP: EnvironmentVariablesTypes.FROM_CONFIGMAP,
+  FROM_DOWNWARD_API: EnvironmentVariablesTypes.DOWNWARD_API,
   EnvironmentVariablesTypes,
   ENVIRONMENT_VAR_TYPES,
   METHOD_GET: Verbs.METHOD_GET,
