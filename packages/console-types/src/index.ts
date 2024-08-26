@@ -224,6 +224,11 @@ export type {
   LabelAnnotation,
 } from './types/services'
 
+export {
+  DownwardAPIPodPath,
+  DownwardAPIContainerPath,
+} from './types/services'
+
 export type {
   IEnvironment,
   IProject,
