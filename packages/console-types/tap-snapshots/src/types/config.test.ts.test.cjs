@@ -4856,11 +4856,11 @@ Object {
                                       "type": "string",
                                     },
                                     Object {
-                                      "pattern": "^metadata.annotations\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                      "pattern": "^metadata.annotations\\\\['([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)'\\\\]$",
                                       "type": "string",
                                     },
                                     Object {
-                                      "pattern": "^metadata.labels\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                      "pattern": "^metadata.labels\\\\['([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)'\\\\]$",
                                       "type": "string",
                                     },
                                   ],
@@ -5586,11 +5586,11 @@ Object {
                                 "type": "string",
                               },
                               Object {
-                                "pattern": "^metadata.annotations\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                "pattern": "^metadata.annotations\\\\['([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)'\\\\]$",
                                 "type": "string",
                               },
                               Object {
-                                "pattern": "^metadata.labels\\\\['[a-zA-Z0-9-_.]+'\\\\]$",
+                                "pattern": "^metadata.labels\\\\['([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)'\\\\]$",
                                 "type": "string",
                               },
                             ],
