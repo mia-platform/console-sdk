@@ -1,7 +1,7 @@
 {
   "endpoint.basePath.patternError": "Deve iniziare con \"/\" e può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\", eventualmente preceduti da \":\"",
   "configMountPath.patternError": "Può contenere caratteri alfanumerici, parentesi, spazi e i simboli - , _ , . , | , \\ ,  / , ! , \" , £, $ , % , & , = , ? , ^ ,* , +, @",
-  "resourceName.patternError": "Deve iniziare con una lettera minuscola e può contenere lettere minuscole, numeri e il simbolo \"-\". Non può terminare con \"-\"",
+  "resourceName.patternError": "Deve iniziare con una lettera minuscola e può contenere lettere minuscole, numeri e il simbolo \"-\". Non può terminare con \"-\". Non può superare i 253 caratteri di lunghezza",
   "dockerImage.patternError": "Deve rispettare il formato host/imagename:tag, con host e tag opzionali. I valori di imagename e tag possono essere interpolati",
   "configMapFileName.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\"",
   "swaggerPath.patternError": "Deve iniziare con \"/\". Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\"",

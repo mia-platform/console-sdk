@@ -1,7 +1,7 @@
 {
   "endpoint.basePath.patternError": "Must start with \"/\" and can contain alphanumeric characters and the symbols \"_\", \"-\", and \".\", optionally preceded by \":\"",
   "configMountPath.patternError": "Can contain alphanumeric characters, parentheses, spaces and the symbols - , _ , . , | , \\ ,  / , ! , \" , £, $ , % , & , = , ? , ^ ,* , +, @",
-  "resourceName.patternError": "Must start with a lowercase character and can contain lowercase letters, numbers and the symbol \"-\". Cannot end with \"-\". Cannot exceed 253 characters in length.",
+  "resourceName.patternError": "Must start with a lowercase character and can contain lowercase letters, numbers and the symbol \"-\". Cannot end with \"-\". Cannot exceed 253 characters in length",
   "dockerImage.patternError": "Must respect the format host/imagename:tag, where host and tag are optional. Image name and tag can be interpolated",
   "configMapFileName.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
   "swaggerPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
