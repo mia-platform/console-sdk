@@ -193,7 +193,7 @@ const constants = {
   PUSH_DEPLOY_STRATEGY,
   HISTORY_RECORD_STATUS,
   DownwardAPIContainerPath,
-  DownwardAPIPodPath
+  DownwardAPIPodPath,
 }
 export default constants
 
