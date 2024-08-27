@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /**
  * Copyright 2024 Mia srl
  *
@@ -132,21 +133,107 @@ const configMapEnv = {
 } as const
 export type EnvironmentVariablesFromConfigMap = FromSchema<typeof configMapEnv>
 
+export enum DownwardAPIPodPath {
+  NAME = 'metadata.name',
+  NAMESPACE = 'metadata.namespace',
+  UID = 'metadata.uid',
+  SERVICE_ACCOUNT_NAME = 'spec.serviceAccountName',
+  NODE_NAME = 'spec.nodeName',
+  HOST_IP = 'status.hostIP',
+  POD_IP = 'status.podIP',
+  POD_IPS = 'status.podIPs',
+  METADATA_ANNOTATIONS = 'metadata.annotations',
+  METADATA_LABELS = 'metadata.labels',
+}
+
+export enum DownwardAPIContainerPath {
+  CPU_LIMIT = 'resource.limits.cpu',
+  CPU_REQUEST = 'resource.requests.cpu',
+  MEMORY_LIMIT = 'resource.limits.memory',
+  MEMORY_REQUEST = 'resource.requests.memory',
+  EPHEMERAL_STORAGE_LIMIT = 'resource.limits.ephemeral-storage',
+  EPHEMERAL_STORAGE_REQUEST = 'resource.requests.ephemeral-storage',
+}
+
+const DOWNWARD_API_FIELD_PATHS = {
+  POD_LABELS: {
+    type: 'string',
+    pattern: "^metadata.labels\\['[a-zA-Z0-9-_.]+'\\]$",
+  },
+  POD_ANNOTATIONS: {
+    type: 'string',
+    pattern: "^metadata.annotations\\['[a-zA-Z0-9-_.]+'\\]$",
+  },
+  POD: {
+    type: 'string',
+    enum: [
+      DownwardAPIPodPath.NAME,
+      DownwardAPIPodPath.NAMESPACE,
+      DownwardAPIPodPath.UID,
+      DownwardAPIPodPath.SERVICE_ACCOUNT_NAME,
+      DownwardAPIPodPath.NODE_NAME,
+      DownwardAPIPodPath.HOST_IP,
+      DownwardAPIPodPath.POD_IP,
+      DownwardAPIPodPath.POD_IPS,
+    ],
+  },
+  CONTAINER: {
+    type: 'string',
+    enum: [
+      DownwardAPIContainerPath.CPU_LIMIT,
+      DownwardAPIContainerPath.CPU_REQUEST,
+      DownwardAPIContainerPath.MEMORY_LIMIT,
+      DownwardAPIContainerPath.MEMORY_REQUEST,
+      DownwardAPIContainerPath.EPHEMERAL_STORAGE_LIMIT,
+      DownwardAPIContainerPath.EPHEMERAL_STORAGE_REQUEST,
+    ],
+  },
+} as const
+
+const downwardAPIEnv = {
+  // WARNING: we prefer the the if form instead of the oneOf form because of this ajv unexpected behavior https://ajv.js.org/guide/modifying-data.html#removing-additional-properties
+  if: {
+    type: 'object',
+    required: ['containerName'],
+    properties: { containerName: { type: 'string' } },
+  },
+  then: {
+    type: 'object',
+    additionalProperties: false,
+    required: ['name', 'valueType', 'fieldPath', 'containerName'],
+    properties: {
+      ...envCommonProps,
+      valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+      fieldPath: DOWNWARD_API_FIELD_PATHS.CONTAINER,
+      containerName: { type: 'string' },
+    },
+  },
+  else: {
+    type: 'object',
+    additionalProperties: false,
+    required: ['name', 'valueType', 'fieldPath'],
+    properties: {
+      ...envCommonProps,
+      valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
+      fieldPath: { oneOf: [
+        DOWNWARD_API_FIELD_PATHS.POD,
+        DOWNWARD_API_FIELD_PATHS.POD_ANNOTATIONS,
+        DOWNWARD_API_FIELD_PATHS.POD_LABELS,
+      ] },
+    },
+  },
+} as const
+export type EnvironmentVariablesDownwardAPI = FromSchema<typeof downwardAPIEnv, { parseIfThenElseKeywords: true }>
+
 export const environment = {
   type: 'array',
   items: {
-    type: 'object',
-    if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.PLAIN_TEXT } } },
-    then: plainEnv,
-    else: {
-      if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_SECRET } } },
-      then: secretEnv,
-      else: {
-        if: { type: 'object', properties: { valueType: { type: 'string', const: EnvironmentVariablesTypes.FROM_CONFIGMAP } } },
-        then: configMapEnv,
-        else: false,
-      },
-    },
+    oneOf: [
+      plainEnv,
+      secretEnv,
+      configMapEnv,
+      downwardAPIEnv,
+    ],
   },
 } as const
 

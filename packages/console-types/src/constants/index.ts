@@ -99,6 +99,7 @@ import {
 import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME, DASHBOARD_TYPE_NEW_TAB } from './dashboard'
 import { FEEDBACK_TYPES } from './feedback'
 import { HISTORY_RECORD_STATUS } from './webhooks'
+import { DownwardAPIContainerPath, DownwardAPIPodPath } from '../types/services'
 
 const constants = {
   API_CONSOLE_TOTAL_PAGES_HEADER_KEY,
@@ -167,6 +168,7 @@ const constants = {
   PLAIN_TEXT: EnvironmentVariablesTypes.PLAIN_TEXT,
   FROM_SECRET: EnvironmentVariablesTypes.FROM_SECRET,
   FROM_CONFIGMAP: EnvironmentVariablesTypes.FROM_CONFIGMAP,
+  FROM_DOWNWARD_API: EnvironmentVariablesTypes.DOWNWARD_API,
   EnvironmentVariablesTypes,
   ENVIRONMENT_VAR_TYPES,
   METHOD_GET: Verbs.METHOD_GET,
@@ -190,6 +192,8 @@ const constants = {
   PULL_DEPLOY_STRATEGY,
   PUSH_DEPLOY_STRATEGY,
   HISTORY_RECORD_STATUS,
+  DownwardAPIContainerPath,
+  DownwardAPIPodPath,
 }
 export default constants
 

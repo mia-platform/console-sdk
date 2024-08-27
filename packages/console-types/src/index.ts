@@ -207,6 +207,7 @@ export type {
   EnvironmentVariablesFromSecret,
   EnvironmentVariablesPlain,
   EnvironmentVariablesFromConfigMap,
+  EnvironmentVariablesDownwardAPI,
   Container,
   CustomService,
   CustomServiceFile,
@@ -221,6 +222,11 @@ export type {
   CoreService,
   CustomResource,
   LabelAnnotation,
+} from './types/services'
+
+export {
+  DownwardAPIPodPath,
+  DownwardAPIContainerPath,
 } from './types/services'
 
 export type {
