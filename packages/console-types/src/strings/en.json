@@ -7,7 +7,7 @@
   "swaggerPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
   "probesPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\", \":\", \".\", \"{\", \"}\", \"/\"",
   "serviceSecretKey.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
-  "kubernetesDefinition.patternError": "Must have format prefix/name, where prefix is optional. Prefix and name must start with an alphanumeric character. Can contain alphanumeric characters and symbols - , .",
+  "kubernetesDefinition.patternError": "Must have format prefix/name, where prefix is optional and no longer than 253 characters. Name must not be longer than 63 characters. Prefix and name must start with an alphanumeric character. Can contain alphanumeric characters and symbols - , .",
   "cronjobSchedule.patternError": "Must be a sequence of 5 elements, separated by whitespaces, or an interpolated variable",
   "collectionName.patternError": "Can contain alphanumeric characters and the symbols \"_\" and \"-\"",
   "url.patternError": "Must be a valid url",

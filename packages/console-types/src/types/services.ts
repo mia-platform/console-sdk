@@ -142,8 +142,8 @@ export enum DownwardAPIPodPath {
   HOST_IP = 'status.hostIP',
   POD_IP = 'status.podIP',
   POD_IPS = 'status.podIPs',
-  METADATA_ANNOTATIONS = 'metadata.annotations',
-  METADATA_LABELS = 'metadata.labels',
+  METADATA_ANNOTATIONS_PREFIX = 'metadata.annotations',
+  METADATA_LABELS_PREFIX = 'metadata.labels',
 }
 
 export enum DownwardAPIContainerPath {
@@ -158,11 +158,13 @@ export enum DownwardAPIContainerPath {
 const DOWNWARD_API_FIELD_PATHS = {
   POD_LABELS: {
     type: 'string',
-    pattern: "^metadata.labels\\['[a-zA-Z0-9-_.]+'\\]$",
+    // matches metadata.labels['<KEY>'], where <KEY> is a valid label key
+    pattern: "^metadata.labels\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$",
   },
   POD_ANNOTATIONS: {
     type: 'string',
-    pattern: "^metadata.annotations\\['[a-zA-Z0-9-_.]+'\\]$",
+    // matches metadata.annotations['<KEY>'], where <KEY> is a valid annotation key
+    pattern: "^metadata.annotations\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$",
   },
   POD: {
     type: 'string',
@@ -215,11 +217,13 @@ const downwardAPIEnv = {
     properties: {
       ...envCommonProps,
       valueType: { type: 'string', const: EnvironmentVariablesTypes.DOWNWARD_API },
-      fieldPath: { oneOf: [
-        DOWNWARD_API_FIELD_PATHS.POD,
-        DOWNWARD_API_FIELD_PATHS.POD_ANNOTATIONS,
-        DOWNWARD_API_FIELD_PATHS.POD_LABELS,
-      ] },
+      fieldPath: {
+        oneOf: [
+          DOWNWARD_API_FIELD_PATHS.POD,
+          DOWNWARD_API_FIELD_PATHS.POD_ANNOTATIONS,
+          DOWNWARD_API_FIELD_PATHS.POD_LABELS,
+        ],
+      },
     },
   },
 } as const
@@ -483,8 +487,8 @@ export const containerPortProperties = {
 
 export type ContainerPort = {
   name: string,
-  from: ContainerPortNumericValue|ContainerPortInterpolatedValue,
-  to?: ContainerPortNumericValue|ContainerPortInterpolatedValue,
+  from: ContainerPortNumericValue | ContainerPortInterpolatedValue,
+  to?: ContainerPortNumericValue | ContainerPortInterpolatedValue,
   protocol?: string
 }
 
@@ -529,10 +533,11 @@ const monitoring = {
   additionalProperties: false,
 } as const
 
+// refers to both annotations and labels keys
 export const kubernetesDefinitionName = {
   type: 'string',
   // optional 253 characters prefix composed of dns labels separated by "." and followed by a single "/"
-  // name of 63 characters starting and ending with alphanumberic characters, containing "-", "_" and "."
+  // name of 63 characters starting and ending with alphanumeric characters, containing "-", "_" and "."
   pattern: '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$',
   [VALIDATION_ERROR_ID]: 'kubernetesDefinition.patternError',
 } as const
@@ -914,11 +919,11 @@ export type LabelAnnotation = FromSchema<typeof kubernetesDefinition>
 
 // This type is required since Services cannot parse if/then/else since it is too deep
 export type Services = Record<string,
-CustomService |
-CustomServiceAdvanced |
-CrossProjectService |
-ExternalService |
-CronJob |
-CoreService |
-CustomResource
+  CustomService |
+  CustomServiceAdvanced |
+  CrossProjectService |
+  ExternalService |
+  CronJob |
+  CoreService |
+  CustomResource
 >
