@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.2.9
+
+### Patch Changes
+
+- bump version
+
 ## 0.2.8
 
 ### Patch Changes
