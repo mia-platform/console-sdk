@@ -309,34 +309,34 @@ export function serializeBulk500Error(writer: SerializationWriter, bulk500Error:
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody(writer: SerializationWriter, bulkPostRequestBody: Partial<BulkPostRequestBody> | undefined = {}) : void {
-    writer.writeCollectionOfPrimitiveValues<string>("contextIds", bulkPostRequestBody.contextIds);
-    writer.writeEnumValue<BulkPostRequestBody_contextType>("contextType", bulkPostRequestBody.contextType);
-    writer.writeCollectionOfObjectValues<BulkPostRequestBody_overrides>("overrides", bulkPostRequestBody.overrides, serializeBulkPostRequestBody_overrides);
+export function serializeBulkPostRequestBody(writer: SerializationWriter, bulkPostRequestBody: Partial<BulkPostRequestBody> | null | undefined = {}) : void {
+    writer.writeCollectionOfPrimitiveValues<string>("contextIds", bulkPostRequestBody?.contextIds);
+    writer.writeEnumValue<BulkPostRequestBody_contextType>("contextType", bulkPostRequestBody?.contextType);
+    writer.writeCollectionOfObjectValues<BulkPostRequestBody_overrides>("overrides", bulkPostRequestBody?.overrides, serializeBulkPostRequestBody_overrides);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody_overrides(writer: SerializationWriter, bulkPostRequestBody_overrides: Partial<BulkPostRequestBody_overrides> | undefined = {}) : void {
-    writer.writeObjectValue<BulkPostRequestBody_overrides_icon>("icon", bulkPostRequestBody_overrides.icon, serializeBulkPostRequestBody_overrides_icon);
-    writer.writeObjectValue<BulkPostRequestBody_overrides_labelIntl>("labelIntl", bulkPostRequestBody_overrides.labelIntl, serializeBulkPostRequestBody_overrides_labelIntl);
-    writer.writeNumberValue("order", bulkPostRequestBody_overrides.order);
-    writer.writeStringValue("routeId", bulkPostRequestBody_overrides.routeId);
+export function serializeBulkPostRequestBody_overrides(writer: SerializationWriter, bulkPostRequestBody_overrides: Partial<BulkPostRequestBody_overrides> | null | undefined = {}) : void {
+    writer.writeObjectValue<BulkPostRequestBody_overrides_icon>("icon", bulkPostRequestBody_overrides?.icon, serializeBulkPostRequestBody_overrides_icon);
+    writer.writeObjectValue<BulkPostRequestBody_overrides_labelIntl>("labelIntl", bulkPostRequestBody_overrides?.labelIntl, serializeBulkPostRequestBody_overrides_labelIntl);
+    writer.writeNumberValue("order", bulkPostRequestBody_overrides?.order);
+    writer.writeStringValue("routeId", bulkPostRequestBody_overrides?.routeId);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody_overrides_icon(writer: SerializationWriter, bulkPostRequestBody_overrides_icon: Partial<BulkPostRequestBody_overrides_icon> | undefined = {}) : void {
-    writer.writeStringValue("name", bulkPostRequestBody_overrides_icon.name);
+export function serializeBulkPostRequestBody_overrides_icon(writer: SerializationWriter, bulkPostRequestBody_overrides_icon: Partial<BulkPostRequestBody_overrides_icon> | null | undefined = {}) : void {
+    writer.writeStringValue("name", bulkPostRequestBody_overrides_icon?.name);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody_overrides_labelIntl(writer: SerializationWriter, bulkPostRequestBody_overrides_labelIntl: Partial<BulkPostRequestBody_overrides_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(bulkPostRequestBody_overrides_labelIntl.additionalData);
+export function serializeBulkPostRequestBody_overrides_labelIntl(writer: SerializationWriter, bulkPostRequestBody_overrides_labelIntl: Partial<BulkPostRequestBody_overrides_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(bulkPostRequestBody_overrides_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object

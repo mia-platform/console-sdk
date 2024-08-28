@@ -119,27 +119,27 @@ export function deserializeIntoCategories500Error(categories500Error: Partial<Ca
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeCategories(writer: SerializationWriter, categories: Partial<Categories> | undefined = {}) : void {
-    writer.writeStringValue("id", categories.id);
-    writer.writeObjectValue<Categories_labelIntl>("labelIntl", categories.labelIntl, serializeCategories_labelIntl);
-    writer.writeStringValue("locationId", categories.locationId);
+export function serializeCategories(writer: SerializationWriter, categories: Partial<Categories> | null | undefined = {}) : void {
+    writer.writeStringValue("id", categories?.id);
+    writer.writeObjectValue<Categories_labelIntl>("labelIntl", categories?.labelIntl, serializeCategories_labelIntl);
+    writer.writeStringValue("locationId", categories?.locationId);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeCategories_labelIntl(writer: SerializationWriter, categories_labelIntl: Partial<Categories_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(categories_labelIntl.additionalData);
+export function serializeCategories_labelIntl(writer: SerializationWriter, categories_labelIntl: Partial<Categories_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(categories_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeCategories500Error(writer: SerializationWriter, categories500Error: Partial<Categories500Error> | undefined = {}) : void {
-    writer.writeStringValue("error", categories500Error.errorEscaped);
-    writer.writeStringValue("message", categories500Error.messageEscaped);
-    writer.writeNumberValue("statusCode", categories500Error.statusCode);
-    writer.writeAdditionalData(categories500Error.additionalData);
+export function serializeCategories500Error(writer: SerializationWriter, categories500Error: Partial<Categories500Error> | null | undefined = {}) : void {
+    writer.writeStringValue("error", categories500Error?.errorEscaped);
+    writer.writeStringValue("message", categories500Error?.messageEscaped);
+    writer.writeNumberValue("statusCode", categories500Error?.statusCode);
+    writer.writeAdditionalData(categories500Error?.additionalData);
 }
 /**
  * Uri template for the request builder.
