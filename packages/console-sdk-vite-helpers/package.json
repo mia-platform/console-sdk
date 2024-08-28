@@ -13,7 +13,7 @@
     "unit": "jest"
   },
   "dependencies": {
-    "@mia-platform/console-sdk-microfrontend": "0.2.18",
+    "@mia-platform/console-sdk-microfrontend": "workspace:*",
     "vite-plugin-qiankun": "1.0.15"
   },
   "devDependencies": {
