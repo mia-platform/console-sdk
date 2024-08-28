@@ -173,65 +173,66 @@ export function serializeWithExtension500Error(writer: SerializationWriter, with
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeWithExtensionGetResponse(writer: SerializationWriter, withExtensionGetResponse: Partial<WithExtensionGetResponse> | undefined = {}) : void {
-    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", withExtensionGetResponse.activationContexts);
-    writer.writeObjectValue<WithExtensionGetResponse_category>("category", withExtensionGetResponse.category, serializeWithExtensionGetResponse_category);
-    writer.writeStringValue("description", withExtensionGetResponse.description);
-    writer.writeObjectValue<WithExtensionGetResponse_destination>("destination", withExtensionGetResponse.destination, serializeWithExtensionGetResponse_destination);
-    writer.writeStringValue("entry", withExtensionGetResponse.entry);
-    writer.writeStringValue("extensionId", withExtensionGetResponse.extensionId);
-    writer.writeStringValue("iconName", withExtensionGetResponse.iconName);
-    writer.writeObjectValue<WithExtensionGetResponse_menu>("menu", withExtensionGetResponse.menu, serializeWithExtensionGetResponse_menu);
-    writer.writeStringValue("name", withExtensionGetResponse.name);
-    writer.writeCollectionOfPrimitiveValues<string>("permissions", withExtensionGetResponse.permissions);
-    writer.writeStringValue("type", withExtensionGetResponse.type);
-    writer.writeCollectionOfObjectValues<WithExtensionGetResponse_visibilities>("visibilities", withExtensionGetResponse.visibilities, serializeWithExtensionGetResponse_visibilities);
+export function serializeWithExtensionGetResponse(writer: SerializationWriter, withExtensionGetResponse: Partial<WithExtensionGetResponse> | null | undefined = {}) : void {
+    const response = withExtensionGetResponse || {};
+    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", response.activationContexts);
+    writer.writeObjectValue<WithExtensionGetResponse_category>("category", response.category, serializeWithExtensionGetResponse_category);
+    writer.writeStringValue("description", response.description);
+    writer.writeObjectValue<WithExtensionGetResponse_destination>("destination", response.destination, serializeWithExtensionGetResponse_destination);
+    writer.writeStringValue("entry", response.entry);
+    writer.writeStringValue("extensionId", response.extensionId);
+    writer.writeStringValue("iconName", response.iconName);
+    writer.writeObjectValue<WithExtensionGetResponse_menu>("menu", response.menu, serializeWithExtensionGetResponse_menu);
+    writer.writeStringValue("name", response.name);
+    writer.writeCollectionOfPrimitiveValues<string>("permissions", response.permissions);
+    writer.writeStringValue("type", response.type);
+    writer.writeCollectionOfObjectValues<WithExtensionGetResponse_visibilities>("visibilities", response.visibilities, serializeWithExtensionGetResponse_visibilities);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeWithExtensionGetResponse_category(writer: SerializationWriter, withExtensionGetResponse_category: Partial<WithExtensionGetResponse_category> | undefined = {}) : void {
-    writer.writeStringValue("id", withExtensionGetResponse_category.id);
-    writer.writeObjectValue<WithExtensionGetResponse_category_labelIntl>("labelIntl", withExtensionGetResponse_category.labelIntl, serializeWithExtensionGetResponse_category_labelIntl);
+export function serializeWithExtensionGetResponse_category(writer: SerializationWriter, withExtensionGetResponse_category: Partial<WithExtensionGetResponse_category> | null | undefined = {}) : void {
+    writer.writeStringValue("id", withExtensionGetResponse_category?.id);
+    writer.writeObjectValue<WithExtensionGetResponse_category_labelIntl>("labelIntl", withExtensionGetResponse_category?.labelIntl, serializeWithExtensionGetResponse_category_labelIntl);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeWithExtensionGetResponse_category_labelIntl(writer: SerializationWriter, withExtensionGetResponse_category_labelIntl: Partial<WithExtensionGetResponse_category_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(withExtensionGetResponse_category_labelIntl.additionalData);
+export function serializeWithExtensionGetResponse_category_labelIntl(writer: SerializationWriter, withExtensionGetResponse_category_labelIntl: Partial<WithExtensionGetResponse_category_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(withExtensionGetResponse_category_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeWithExtensionGetResponse_destination(writer: SerializationWriter, withExtensionGetResponse_destination: Partial<WithExtensionGetResponse_destination> | undefined = {}) : void {
-    writer.writeStringValue("id", withExtensionGetResponse_destination.id);
+export function serializeWithExtensionGetResponse_destination(writer: SerializationWriter, withExtensionGetResponse_destination: Partial<WithExtensionGetResponse_destination> | null | undefined = {}) : void {
+    writer.writeStringValue("id", withExtensionGetResponse_destination?.id);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeWithExtensionGetResponse_menu(writer: SerializationWriter, withExtensionGetResponse_menu: Partial<WithExtensionGetResponse_menu> | undefined = {}) : void {
-    writer.writeStringValue("id", withExtensionGetResponse_menu.id);
-    writer.writeObjectValue<WithExtensionGetResponse_menu_labelIntl>("labelIntl", withExtensionGetResponse_menu.labelIntl, serializeWithExtensionGetResponse_menu_labelIntl);
-    writer.writeNumberValue("order", withExtensionGetResponse_menu.order);
+export function serializeWithExtensionGetResponse_menu(writer: SerializationWriter, withExtensionGetResponse_menu: Partial<WithExtensionGetResponse_menu> | null | undefined = {}) : void {
+    writer.writeStringValue("id", withExtensionGetResponse_menu?.id);
+    writer.writeObjectValue<WithExtensionGetResponse_menu_labelIntl>("labelIntl", withExtensionGetResponse_menu?.labelIntl, serializeWithExtensionGetResponse_menu_labelIntl);
+    writer.writeNumberValue("order", withExtensionGetResponse_menu?.order);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeWithExtensionGetResponse_menu_labelIntl(writer: SerializationWriter, withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(withExtensionGetResponse_menu_labelIntl.additionalData);
+export function serializeWithExtensionGetResponse_menu_labelIntl(writer: SerializationWriter, withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(withExtensionGetResponse_menu_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeWithExtensionGetResponse_visibilities(writer: SerializationWriter, withExtensionGetResponse_visibilities: Partial<WithExtensionGetResponse_visibilities> | undefined = {}) : void {
-    writer.writeStringValue("contextId", withExtensionGetResponse_visibilities.contextId);
-    writer.writeStringValue("contextType", withExtensionGetResponse_visibilities.contextType);
+export function serializeWithExtensionGetResponse_visibilities(writer: SerializationWriter, withExtensionGetResponse_visibilities: Partial<WithExtensionGetResponse_visibilities> | null | undefined = {}) : void {
+    writer.writeStringValue("contextId", withExtensionGetResponse_visibilities?.contextId);
+    writer.writeStringValue("contextType", withExtensionGetResponse_visibilities?.contextType);
 }
 export interface WithExtension500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**

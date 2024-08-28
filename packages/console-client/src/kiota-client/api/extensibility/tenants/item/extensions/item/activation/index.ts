@@ -315,34 +315,34 @@ export function serializeActivation500Error(writer: SerializationWriter, activat
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody(writer: SerializationWriter, activationPostRequestBody: Partial<ActivationPostRequestBody> | undefined = {}) : void {
-    writer.writeStringValue("contextId", activationPostRequestBody.contextId);
-    writer.writeEnumValue<ActivationPostRequestBody_contextType>("contextType", activationPostRequestBody.contextType);
-    writer.writeCollectionOfObjectValues<ActivationPostRequestBody_overrides>("overrides", activationPostRequestBody.overrides, serializeActivationPostRequestBody_overrides);
+export function serializeActivationPostRequestBody(writer: SerializationWriter, activationPostRequestBody: Partial<ActivationPostRequestBody> | null | undefined = {}) : void {
+    writer.writeStringValue("contextId", activationPostRequestBody?.contextId);
+    writer.writeEnumValue<ActivationPostRequestBody_contextType>("contextType", activationPostRequestBody?.contextType);
+    writer.writeCollectionOfObjectValues<ActivationPostRequestBody_overrides>("overrides", activationPostRequestBody?.overrides, serializeActivationPostRequestBody_overrides);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody_overrides(writer: SerializationWriter, activationPostRequestBody_overrides: Partial<ActivationPostRequestBody_overrides> | undefined = {}) : void {
-    writer.writeObjectValue<ActivationPostRequestBody_overrides_icon>("icon", activationPostRequestBody_overrides.icon, serializeActivationPostRequestBody_overrides_icon);
-    writer.writeObjectValue<ActivationPostRequestBody_overrides_labelIntl>("labelIntl", activationPostRequestBody_overrides.labelIntl, serializeActivationPostRequestBody_overrides_labelIntl);
-    writer.writeNumberValue("order", activationPostRequestBody_overrides.order);
-    writer.writeStringValue("routeId", activationPostRequestBody_overrides.routeId);
+export function serializeActivationPostRequestBody_overrides(writer: SerializationWriter, activationPostRequestBody_overrides: Partial<ActivationPostRequestBody_overrides> | null | undefined = {}) : void {
+    writer.writeObjectValue<ActivationPostRequestBody_overrides_icon>("icon", activationPostRequestBody_overrides?.icon, serializeActivationPostRequestBody_overrides_icon);
+    writer.writeObjectValue<ActivationPostRequestBody_overrides_labelIntl>("labelIntl", activationPostRequestBody_overrides?.labelIntl, serializeActivationPostRequestBody_overrides_labelIntl);
+    writer.writeNumberValue("order", activationPostRequestBody_overrides?.order);
+    writer.writeStringValue("routeId", activationPostRequestBody_overrides?.routeId);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody_overrides_icon(writer: SerializationWriter, activationPostRequestBody_overrides_icon: Partial<ActivationPostRequestBody_overrides_icon> | undefined = {}) : void {
-    writer.writeStringValue("name", activationPostRequestBody_overrides_icon.name);
+export function serializeActivationPostRequestBody_overrides_icon(writer: SerializationWriter, activationPostRequestBody_overrides_icon: Partial<ActivationPostRequestBody_overrides_icon> | null | undefined = {}) : void {
+    writer.writeStringValue("name", activationPostRequestBody_overrides_icon?.name);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody_overrides_labelIntl(writer: SerializationWriter, activationPostRequestBody_overrides_labelIntl: Partial<ActivationPostRequestBody_overrides_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(activationPostRequestBody_overrides_labelIntl.additionalData);
+export function serializeActivationPostRequestBody_overrides_labelIntl(writer: SerializationWriter, activationPostRequestBody_overrides_labelIntl: Partial<ActivationPostRequestBody_overrides_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(activationPostRequestBody_overrides_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object

@@ -261,30 +261,31 @@ export function serializeExtensions(writer: SerializationWriter, extensions: Par
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_routes(writer: SerializationWriter, extensions_routes: Partial<Extensions_routes> | undefined = {}) : void {
-    writer.writeStringValue("destinationPath", extensions_routes.destinationPath);
-    writer.writeObjectValue<Extensions_routes_icon>("icon", extensions_routes.icon, serializeExtensions_routes_icon);
-    writer.writeStringValue("id", extensions_routes.id);
-    writer.writeObjectValue<Extensions_routes_labelIntl>("labelIntl", extensions_routes.labelIntl, serializeExtensions_routes_labelIntl);
-    writer.writeEnumValue<Extensions_routes_locationId>("locationId", extensions_routes.locationId);
-    writer.writeBooleanValue("matchExactMountPath", extensions_routes.matchExactMountPath);
-    writer.writeNumberValue("order", extensions_routes.order);
-    writer.writeStringValue("parentId", extensions_routes.parentId);
-    writer.writeEnumValue<Extensions_routes_renderType>("renderType", extensions_routes.renderType);
+export function serializeExtensions_routes(writer: SerializationWriter, extensions_routes: Partial<Extensions_routes> | null | undefined) : void {
+    const routes = extensions_routes || {};
+    writer.writeStringValue("destinationPath", routes.destinationPath);
+    writer.writeObjectValue<Extensions_routes_icon>("icon", routes.icon, serializeExtensions_routes_icon);
+    writer.writeStringValue("id", routes.id);
+    writer.writeObjectValue<Extensions_routes_labelIntl>("labelIntl", routes.labelIntl, serializeExtensions_routes_labelIntl);
+    writer.writeEnumValue<Extensions_routes_locationId>("locationId", routes.locationId);
+    writer.writeBooleanValue("matchExactMountPath", routes.matchExactMountPath);
+    writer.writeNumberValue("order", routes.order);
+    writer.writeStringValue("parentId", routes.parentId);
+    writer.writeEnumValue<Extensions_routes_renderType>("renderType", routes.renderType);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_routes_icon(writer: SerializationWriter, extensions_routes_icon: Partial<Extensions_routes_icon> | undefined = {}) : void {
-    writer.writeStringValue("name", extensions_routes_icon.name);
+export function serializeExtensions_routes_icon(writer: SerializationWriter, extensions_routes_icon: Partial<Extensions_routes_icon> | null | undefined) : void {
+    writer.writeStringValue("name", extensions_routes_icon?.name);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_routes_labelIntl(writer: SerializationWriter, extensions_routes_labelIntl: Partial<Extensions_routes_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(extensions_routes_labelIntl.additionalData);
+export function serializeExtensions_routes_labelIntl(writer: SerializationWriter, extensions_routes_labelIntl: Partial<Extensions_routes_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(extensions_routes_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object

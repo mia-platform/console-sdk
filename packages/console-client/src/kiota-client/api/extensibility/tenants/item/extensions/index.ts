@@ -591,7 +591,8 @@ export interface ExtensionsRequestBuilderGetQueryParameters {
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions(writer: SerializationWriter, extensions: Partial<Extensions> | undefined = {}) : void {
+export function serializeExtensions(writer: SerializationWriter, extensions_params: Partial<Extensions> | null | undefined = {}) : void {
+    const extensions = extensions_params || {};
     writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensions.activationContexts);
     writer.writeObjectValue<Extensions_category>("category", extensions.category, serializeExtensions_category);
     writer.writeStringValue("description", extensions.description);
@@ -609,131 +610,132 @@ export function serializeExtensions(writer: SerializationWriter, extensions: Par
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_category(writer: SerializationWriter, extensions_category: Partial<Extensions_category> | undefined = {}) : void {
-    writer.writeStringValue("id", extensions_category.id);
-    writer.writeObjectValue<Extensions_category_labelIntl>("labelIntl", extensions_category.labelIntl, serializeExtensions_category_labelIntl);
+export function serializeExtensions_category(writer: SerializationWriter, extensions_category: Partial<Extensions_category> | null | undefined = {}) : void {
+    writer.writeStringValue("id", extensions_category?.id);
+    writer.writeObjectValue<Extensions_category_labelIntl>("labelIntl", extensions_category?.labelIntl, serializeExtensions_category_labelIntl);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_category_labelIntl(writer: SerializationWriter, extensions_category_labelIntl: Partial<Extensions_category_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(extensions_category_labelIntl.additionalData);
+export function serializeExtensions_category_labelIntl(writer: SerializationWriter, extensions_category_labelIntl: Partial<Extensions_category_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(extensions_category_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_destination(writer: SerializationWriter, extensions_destination: Partial<Extensions_destination> | undefined = {}) : void {
-    writer.writeStringValue("id", extensions_destination.id);
+export function serializeExtensions_destination(writer: SerializationWriter, extensions_destination: Partial<Extensions_destination> | null | undefined = {}) : void {
+    writer.writeStringValue("id", extensions_destination?.id);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_menu(writer: SerializationWriter, extensions_menu: Partial<Extensions_menu> | undefined = {}) : void {
-    writer.writeStringValue("id", extensions_menu.id);
-    writer.writeObjectValue<Extensions_menu_labelIntl>("labelIntl", extensions_menu.labelIntl, serializeExtensions_menu_labelIntl);
-    writer.writeNumberValue("order", extensions_menu.order);
+export function serializeExtensions_menu(writer: SerializationWriter, extensions_menu: Partial<Extensions_menu> | null | undefined = {}) : void {
+    writer.writeStringValue("id", extensions_menu?.id);
+    writer.writeObjectValue<Extensions_menu_labelIntl>("labelIntl", extensions_menu?.labelIntl, serializeExtensions_menu_labelIntl);
+    writer.writeNumberValue("order", extensions_menu?.order);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_menu_labelIntl(writer: SerializationWriter, extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(extensions_menu_labelIntl.additionalData);
+export function serializeExtensions_menu_labelIntl(writer: SerializationWriter, extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(extensions_menu_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_visibilities(writer: SerializationWriter, extensions_visibilities: Partial<Extensions_visibilities> | undefined = {}) : void {
-    writer.writeStringValue("contextId", extensions_visibilities.contextId);
-    writer.writeStringValue("contextType", extensions_visibilities.contextType);
+export function serializeExtensions_visibilities(writer: SerializationWriter, extensions_visibilities: Partial<Extensions_visibilities> | null | undefined = {}) : void {
+    writer.writeStringValue("contextId", extensions_visibilities?.contextId);
+    writer.writeStringValue("contextType", extensions_visibilities?.contextType);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions400Error(writer: SerializationWriter, extensions400Error: Partial<Extensions400Error> | undefined = {}) : void {
-    writer.writeStringValue("error", extensions400Error.errorEscaped);
-    writer.writeStringValue("message", extensions400Error.messageEscaped);
-    writer.writeNumberValue("statusCode", extensions400Error.statusCode);
-    writer.writeAdditionalData(extensions400Error.additionalData);
+export function serializeExtensions400Error(writer: SerializationWriter, extensions400Error: Partial<Extensions400Error> | null | undefined = {}) : void {
+    writer.writeStringValue("error", extensions400Error?.errorEscaped);
+    writer.writeStringValue("message", extensions400Error?.messageEscaped);
+    writer.writeNumberValue("statusCode", extensions400Error?.statusCode);
+    writer.writeAdditionalData(extensions400Error?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions500Error(writer: SerializationWriter, extensions500Error: Partial<Extensions500Error> | undefined = {}) : void {
-    writer.writeStringValue("error", extensions500Error.errorEscaped);
-    writer.writeStringValue("message", extensions500Error.messageEscaped);
-    writer.writeNumberValue("statusCode", extensions500Error.statusCode);
-    writer.writeAdditionalData(extensions500Error.additionalData);
+export function serializeExtensions500Error(writer: SerializationWriter, extensions500Error: Partial<Extensions500Error> | null | undefined = {}) : void {
+    writer.writeStringValue("error", extensions500Error?.errorEscaped);
+    writer.writeStringValue("message", extensions500Error?.messageEscaped);
+    writer.writeNumberValue("statusCode", extensions500Error?.statusCode);
+    writer.writeAdditionalData(extensions500Error?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody(writer: SerializationWriter, extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : void {
-    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensionsPutRequestBody.activationContexts);
-    writer.writeObjectValue<ExtensionsPutRequestBody_category>("category", extensionsPutRequestBody.category, serializeExtensionsPutRequestBody_category);
-    writer.writeStringValue("description", extensionsPutRequestBody.description);
-    writer.writeObjectValue<ExtensionsPutRequestBody_destination>("destination", extensionsPutRequestBody.destination, serializeExtensionsPutRequestBody_destination);
-    writer.writeStringValue("entry", extensionsPutRequestBody.entry);
-    writer.writeStringValue("extensionId", extensionsPutRequestBody.extensionId);
-    writer.writeStringValue("iconName", extensionsPutRequestBody.iconName);
-    writer.writeObjectValue<ExtensionsPutRequestBody_menu>("menu", extensionsPutRequestBody.menu, serializeExtensionsPutRequestBody_menu);
-    writer.writeStringValue("name", extensionsPutRequestBody.name);
-    writer.writeCollectionOfPrimitiveValues<string>("permissions", extensionsPutRequestBody.permissions);
-    writer.writeStringValue("type", extensionsPutRequestBody.type);
+export function serializeExtensionsPutRequestBody(writer: SerializationWriter, extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | null | undefined = {}) : void {
+    const requestBody = extensionsPutRequestBody || {};
+    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", requestBody.activationContexts);
+    writer.writeObjectValue<ExtensionsPutRequestBody_category>("category", requestBody.category, serializeExtensionsPutRequestBody_category);
+    writer.writeStringValue("description", requestBody.description);
+    writer.writeObjectValue<ExtensionsPutRequestBody_destination>("destination", requestBody.destination, serializeExtensionsPutRequestBody_destination);
+    writer.writeStringValue("entry", requestBody.entry);
+    writer.writeStringValue("extensionId", requestBody.extensionId);
+    writer.writeStringValue("iconName", requestBody.iconName);
+    writer.writeObjectValue<ExtensionsPutRequestBody_menu>("menu", requestBody.menu, serializeExtensionsPutRequestBody_menu);
+    writer.writeStringValue("name", requestBody.name);
+    writer.writeCollectionOfPrimitiveValues<string>("permissions", requestBody.permissions);
+    writer.writeStringValue("type", requestBody.type);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_category(writer: SerializationWriter, extensionsPutRequestBody_category: Partial<ExtensionsPutRequestBody_category> | undefined = {}) : void {
-    writer.writeStringValue("id", extensionsPutRequestBody_category.id);
-    writer.writeObjectValue<ExtensionsPutRequestBody_category_labelIntl>("labelIntl", extensionsPutRequestBody_category.labelIntl, serializeExtensionsPutRequestBody_category_labelIntl);
-    writer.writeNumberValue("order", extensionsPutRequestBody_category.order);
+export function serializeExtensionsPutRequestBody_category(writer: SerializationWriter, extensionsPutRequestBody_category: Partial<ExtensionsPutRequestBody_category> | null | undefined = {}) : void {
+    writer.writeStringValue("id", extensionsPutRequestBody_category?.id);
+    writer.writeObjectValue<ExtensionsPutRequestBody_category_labelIntl>("labelIntl", extensionsPutRequestBody_category?.labelIntl, serializeExtensionsPutRequestBody_category_labelIntl);
+    writer.writeNumberValue("order", extensionsPutRequestBody_category?.order);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_category_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_category_labelIntl: Partial<ExtensionsPutRequestBody_category_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(extensionsPutRequestBody_category_labelIntl.additionalData);
+export function serializeExtensionsPutRequestBody_category_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_category_labelIntl: Partial<ExtensionsPutRequestBody_category_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(extensionsPutRequestBody_category_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_destination(writer: SerializationWriter, extensionsPutRequestBody_destination: Partial<ExtensionsPutRequestBody_destination> | undefined = {}) : void {
-    writer.writeStringValue("id", extensionsPutRequestBody_destination.id);
-    writer.writeStringValue("path", extensionsPutRequestBody_destination.path);
+export function serializeExtensionsPutRequestBody_destination(writer: SerializationWriter, extensionsPutRequestBody_destination: Partial<ExtensionsPutRequestBody_destination> | null | undefined = {}) : void {
+    writer.writeStringValue("id", extensionsPutRequestBody_destination?.id);
+    writer.writeStringValue("path", extensionsPutRequestBody_destination?.path);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_menu(writer: SerializationWriter, extensionsPutRequestBody_menu: Partial<ExtensionsPutRequestBody_menu> | undefined = {}) : void {
-    writer.writeStringValue("id", extensionsPutRequestBody_menu.id);
-    writer.writeObjectValue<ExtensionsPutRequestBody_menu_labelIntl>("labelIntl", extensionsPutRequestBody_menu.labelIntl, serializeExtensionsPutRequestBody_menu_labelIntl);
-    writer.writeNumberValue("order", extensionsPutRequestBody_menu.order);
+export function serializeExtensionsPutRequestBody_menu(writer: SerializationWriter, extensionsPutRequestBody_menu: Partial<ExtensionsPutRequestBody_menu> | null | undefined = {}) : void {
+    writer.writeStringValue("id", extensionsPutRequestBody_menu?.id);
+    writer.writeObjectValue<ExtensionsPutRequestBody_menu_labelIntl>("labelIntl", extensionsPutRequestBody_menu?.labelIntl, serializeExtensionsPutRequestBody_menu_labelIntl);
+    writer.writeNumberValue("order", extensionsPutRequestBody_menu?.order);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_menu_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_menu_labelIntl: Partial<ExtensionsPutRequestBody_menu_labelIntl> | undefined = {}) : void {
-    writer.writeAdditionalData(extensionsPutRequestBody_menu_labelIntl.additionalData);
+export function serializeExtensionsPutRequestBody_menu_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_menu_labelIntl: Partial<ExtensionsPutRequestBody_menu_labelIntl> | null | undefined = {}) : void {
+    writer.writeAdditionalData(extensionsPutRequestBody_menu_labelIntl?.additionalData);
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutResponse(writer: SerializationWriter, extensionsPutResponse: Partial<ExtensionsPutResponse> | undefined = {}) : void {
-    writer.writeStringValue("extensionId", extensionsPutResponse.extensionId);
+export function serializeExtensionsPutResponse(writer: SerializationWriter, extensionsPutResponse: Partial<ExtensionsPutResponse> | null | undefined = {}) : void {
+    writer.writeStringValue("extensionId", extensionsPutResponse?.extensionId);
 }
 /**
  * Uri template for the request builder.
