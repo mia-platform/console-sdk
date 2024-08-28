@@ -36,7 +36,7 @@ module.exports = {
     "max-statements": "off",
     "no-underscore-dangle": "off",
     "no-shadow": "off",
-    "sort-imports":0,
+    "sort-imports": 0,
 
     /**
      * Eslint plugin Typescript
