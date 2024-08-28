@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.21.1
+
+### Patch Changes
+
+- 602d39d: feat: add `downwardAPI` environment variables
+- e67ded5: add missing endpoint routes for CRUD Service Views with enabled lookup feature
+- 21d47f7: fix: regex with chars limitation on downwardAPI fields, better i18n on labels and annotation validation
+
 ## 0.21.0
 
 ### Minor Changes
