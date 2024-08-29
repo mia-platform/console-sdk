@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.21.3
+
+### Patch Changes
+
+- bump version
+- 1badd01: fix(types): revert MongoDB view routes, expose MongoDB view lookup routes
+
 ## 0.21.2
 
 ### Patch Changes
