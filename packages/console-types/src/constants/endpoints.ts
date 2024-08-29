@@ -88,77 +88,35 @@ export type CrudRoute = {
   allowUnknownResponseContentType?: boolean
 }
 
-export const MONGODB_VIEW_ROUTES: CrudRoute[] = [
-  {
-    path: '/',
-    verb: METHOD_GET,
-  },
-  {
-    path: '/',
-    verb: 'POST',
-  },
-  {
-    path: '/export',
-    verb: METHOD_GET,
-    allowUnknownResponseContentType: true,
-  },
-  {
-    path: '/:id',
-    verb: METHOD_GET,
-  },
-  {
-    path: '/:id',
-    verb: 'DELETE',
-  },
-  {
-    path: '/:id',
-    verb: 'PATCH',
-  },
-  {
-    path: '/count',
-    verb: METHOD_GET,
-  },
-  {
-    path: '/lookup/:id',
-    verb: METHOD_GET,
-  },
-  {
-    path: '/schema',
-    verb: METHOD_GET,
-  },
-  {
-    path: '/',
-    verb: 'DELETE',
-  },
-  {
-    path: '/',
-    verb: 'PATCH',
-  },
-  {
-    path: '/count',
-    verb: METHOD_GET,
-  },
-  {
-    path: '/bulk',
-    verb: 'POST',
-  },
-  {
-    path: '/upsert-one',
-    verb: 'POST',
-  },
-  {
-    path: '/bulk',
-    verb: 'PATCH',
-  },
-  {
-    path: '/:id/state',
-    verb: 'POST',
-  },
-  {
-    path: '/state',
-    verb: 'POST',
-  },
-]
+export const MONGODB_VIEW_ROUTES: CrudRoute[] = [{
+  path: '/',
+  verb: METHOD_GET,
+}, {
+  path: '/',
+  verb: 'POST',
+}, {
+  path: '/export',
+  verb: METHOD_GET,
+  allowUnknownResponseContentType: true,
+}, {
+  path: '/:id',
+  verb: METHOD_GET,
+}, {
+  path: '/:id',
+  verb: 'DELETE',
+}, {
+  path: '/:id',
+  verb: 'PATCH',
+}, {
+  path: '/count',
+  verb: METHOD_GET,
+}, {
+  path: '/lookup/:id',
+  verb: METHOD_GET,
+}, {
+  path: '/schema',
+  verb: METHOD_GET,
+}]
 
 export const CRUD_ROUTES: CrudRoute[] = [{
   path: '/',
@@ -204,3 +162,10 @@ export const CRUD_ROUTES: CrudRoute[] = [{
   path: '/state',
   verb: 'POST',
 }]
+
+export const MONGODB_VIEW_WITH_LOOKUP_ROUTES: CrudRoute[] = [
+  {
+    path: '/lookup/:id',
+    verb: METHOD_GET,
+  },
+]
