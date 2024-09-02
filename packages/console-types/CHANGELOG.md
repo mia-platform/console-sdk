@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.21.4
+
+### Patch Changes
+
+- dddb1e3: feat: sourceMarketplaceItem also for external and cross-project services
+
 ## 0.21.3
 
 ### Patch Changes
