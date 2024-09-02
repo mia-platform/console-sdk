@@ -340,9 +340,6 @@ t.test('services', t => {
   })
 
 
-    t.end() 
-  })
-
   t.end()
 })
 
