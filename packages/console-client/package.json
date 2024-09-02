@@ -23,7 +23,7 @@
     "@microsoft/kiota-serialization-text": "1.0.0-preview.58",
     "@microsoft/kiota-serialization-form": "1.0.0-preview.50",
     "@microsoft/kiota-serialization-multipart": "1.0.0-preview.39",
-    "axios": "^1.7.2"
+    "axios": "^1.7.7"
   },
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
