@@ -271,6 +271,75 @@ t.test('services', t => {
     t.end()
   })
 
+  t.test('sourceMarketplaceItem', t => {
+    t.test('in custom service', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        replicas: 3,
+        dockerImage: 'helloworld:1.0.0',
+        sourceMarketplaceItem: {
+          itemId: 'itemId',
+          tenantId: 'tenantId',
+          version: '1.0.0',
+        },
+      }
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('in proxy service', t => {
+      const service: ExternalService = {
+        name: 'myservice',
+        type: ServiceTypes.EXTERNAL,
+        url: 'https://example.com',
+        sourceMarketplaceItem: {
+          itemId: 'itemId',
+          tenantId: 'tenantId',
+          version: '1.0.0',
+        },
+      }
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('in cross-project service', t => {
+      const service: CrossProjectService = {
+        name: 'myservice',
+        type: ServiceTypes.CROSS_PROJECTS,
+        host: 'service-name.target-namespace.svc.cluster.local:8080',
+        sourceMarketplaceItem: {
+          itemId: 'itemId',
+          tenantId: 'tenantId',
+          version: '1.0.0',
+        },
+      }
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('non valid sourceMarketplaceItem', t => {
+      const service = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        replicas: 3,
+        dockerImage: 'helloworld:1.0.0',
+        sourceMarketplaceItem: {
+          itemId: 'itemId',
+          tenantId: 'tenantId',
+        },
+      } as const
+
+      t.notOk(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.end()
+  })
+
+
   t.end()
 })
 

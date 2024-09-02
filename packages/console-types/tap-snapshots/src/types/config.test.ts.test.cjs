@@ -4365,6 +4365,25 @@ Object {
                       "type": "string",
                       "x-validation-error-id": "resourceName.patternError",
                     },
+                    "sourceMarketplaceItem": Object {
+                      "properties": Object {
+                        "itemId": Object {
+                          "type": "string",
+                        },
+                        "tenantId": Object {
+                          "type": "string",
+                        },
+                        "version": Object {
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "itemId",
+                        "version",
+                        "tenantId",
+                      ],
+                      "type": "object",
+                    },
                     "type": Object {
                       "const": "cross-projects",
                       "type": "string",
@@ -4420,6 +4439,25 @@ Object {
                     "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                     "type": "string",
                     "x-validation-error-id": "resourceName.patternError",
+                  },
+                  "sourceMarketplaceItem": Object {
+                    "properties": Object {
+                      "itemId": Object {
+                        "type": "string",
+                      },
+                      "tenantId": Object {
+                        "type": "string",
+                      },
+                      "version": Object {
+                        "type": "string",
+                      },
+                    },
+                    "required": Array [
+                      "itemId",
+                      "version",
+                      "tenantId",
+                    ],
+                    "type": "object",
                   },
                   "type": Object {
                     "const": "external",

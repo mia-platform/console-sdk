@@ -464,6 +464,16 @@ const serviceReplicas = {
   },
 } as const
 
+const sourceMarketplaceItem = {
+  type: 'object',
+  properties: {
+    itemId: { type: 'string' },
+    version: { type: 'string' },
+    tenantId: { type: 'string' },
+  },
+  required: ['itemId', 'version', 'tenantId'],
+} as const
+
 const numericContainerPort = { ...port } as const
 const interpolatedContainerPort = {
   type: 'string',
@@ -594,15 +604,7 @@ export const container = {
       items: serviceSecret,
     },
     sourceComponentId: { type: 'string' },
-    sourceMarketplaceItem: {
-      type: 'object',
-      properties: {
-        itemId: { type: 'string' },
-        version: { type: 'string' },
-        tenantId: { type: 'string' },
-      },
-      required: ['itemId', 'version', 'tenantId'],
-    },
+    sourceMarketplaceItem,
     mapEnvVarToMountPath: {
       type: 'object',
       additionalProperties: {
@@ -764,6 +766,7 @@ export const externalService = {
     description,
     url,
     headers,
+    sourceMarketplaceItem,
     type: { type: 'string', const: ServiceTypes.EXTERNAL },
   },
   required: ['name', 'url', 'type'],
@@ -782,6 +785,7 @@ export const crossProjectsService = {
     name: serviceName,
     description,
     host,
+    sourceMarketplaceItem,
     type: { type: 'string', const: ServiceTypes.CROSS_PROJECTS },
   },
   required: ['name', 'host', 'type'],
