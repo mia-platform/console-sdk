@@ -817,6 +817,8 @@ export const kubernetesDefinitionWithOnlyNameAndValue = {
   required: ['name', 'value'],
 } as const
 
+export const CUSTOM_GENERATOR_API_VERSION = 'custom-generator.console.mia-platform.eu/v1'
+
 export const customResource = {
   type: 'object',
   properties: {

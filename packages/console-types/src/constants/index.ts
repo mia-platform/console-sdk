@@ -100,7 +100,7 @@ import {
 import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME, DASHBOARD_TYPE_NEW_TAB } from './dashboard'
 import { FEEDBACK_TYPES } from './feedback'
 import { HISTORY_RECORD_STATUS } from './webhooks'
-import { DownwardAPIContainerPath, DownwardAPIPodPath } from '../types/services'
+import { CUSTOM_GENERATOR_API_VERSION, DownwardAPIContainerPath, DownwardAPIPodPath } from '../types/services'
 
 const constants = {
   API_CONSOLE_TOTAL_PAGES_HEADER_KEY,
@@ -196,6 +196,7 @@ const constants = {
   HISTORY_RECORD_STATUS,
   DownwardAPIContainerPath,
   DownwardAPIPodPath,
+  CUSTOM_GENERATOR_API_VERSION,
 }
 export default constants
 
