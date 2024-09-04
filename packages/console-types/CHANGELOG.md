@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.21.6
+
+### Patch Changes
+
+- 52bbb44: added constant TEMPLATE_DASHBOARD_INTERPOLATE_VARIABLES
+
 ## 0.21.5
 
 ### Patch Changes
