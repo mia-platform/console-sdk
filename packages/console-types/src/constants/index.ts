@@ -97,7 +97,12 @@ import {
   SERVICE_TYPES,
   ServiceTypes,
 } from './services'
-import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME, DASHBOARD_TYPE_NEW_TAB } from './dashboard'
+import {
+  DASHBOARD_TYPES,
+  DASHBOARD_TYPE_IFRAME,
+  DASHBOARD_TYPE_NEW_TAB,
+  TEMPLATE_DASHBOARD_INTERPOLATE_VARIABLES,
+} from './dashboard'
 import { FEEDBACK_TYPES } from './feedback'
 import { HISTORY_RECORD_STATUS } from './webhooks'
 import { CUSTOM_GENERATOR_API_VERSION, DownwardAPIContainerPath, DownwardAPIPodPath } from '../types/services'
@@ -181,6 +186,7 @@ const constants = {
   DASHBOARD_TYPES,
   DASHBOARD_TYPE_IFRAME,
   DASHBOARD_TYPE_NEW_TAB,
+  TEMPLATE_DASHBOARD_INTERPOLATE_VARIABLES,
   ServiceTypes,
   IndexTypes,
   EndpointTypes,
