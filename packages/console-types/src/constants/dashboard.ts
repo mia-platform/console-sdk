@@ -24,8 +24,8 @@ export const DASHBOARD_TYPE_NEW_TAB = NEW_TAB
 export const DASHBOARD_TYPES = [IFRAME, NEW_TAB] as const
 
 export const TEMPLATE_DASHBOARD_INTERPOLATE_VARIABLES = [
-  'namespace',
-  'projectId',
-  'envId',
-  'clusterId',
+  '%namespace%',
+  '%projectId%',
+  '%envId%',
+  '%clusterId%',
 ] as const
