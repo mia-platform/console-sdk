@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.21.7
+
+### Patch Changes
+
+- fccb23d: fix unexported variable TEMPLATE_DASHBOARD_INTERPOLATE_VARIABLES
+
 ## 0.21.6
 
 ### Patch Changes
