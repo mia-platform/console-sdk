@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.21.8
+
+### Patch Changes
+
+- 2f3edfa: support detached state in sourceMarkatplaceItem option
+
 ## 0.21.7
 
 ### Patch Changes
