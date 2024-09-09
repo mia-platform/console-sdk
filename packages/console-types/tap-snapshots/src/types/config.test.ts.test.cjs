@@ -4083,6 +4083,9 @@ Object {
                           },
                           "sourceMarketplaceItem": Object {
                             "properties": Object {
+                              "detached": Object {
+                                "type": "boolean",
+                              },
                               "itemId": Object {
                                 "type": "string",
                               },
@@ -4367,6 +4370,9 @@ Object {
                     },
                     "sourceMarketplaceItem": Object {
                       "properties": Object {
+                        "detached": Object {
+                          "type": "boolean",
+                        },
                         "itemId": Object {
                           "type": "string",
                         },
@@ -4442,6 +4448,9 @@ Object {
                   },
                   "sourceMarketplaceItem": Object {
                     "properties": Object {
+                      "detached": Object {
+                        "type": "boolean",
+                      },
                       "itemId": Object {
                         "type": "string",
                       },
@@ -5295,6 +5304,9 @@ Object {
                     },
                     "sourceMarketplaceItem": Object {
                       "properties": Object {
+                        "detached": Object {
+                          "type": "boolean",
+                        },
                         "itemId": Object {
                           "type": "string",
                         },
@@ -6062,6 +6074,9 @@ Object {
               },
               "sourceMarketplaceItem": Object {
                 "properties": Object {
+                  "detached": Object {
+                    "type": "boolean",
+                  },
                   "itemId": Object {
                     "type": "string",
                   },
