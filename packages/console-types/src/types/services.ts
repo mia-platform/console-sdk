@@ -470,6 +470,7 @@ const sourceMarketplaceItem = {
     itemId: { type: 'string' },
     version: { type: 'string' },
     tenantId: { type: 'string' },
+    detached: { type: 'boolean' },
   },
   required: ['itemId', 'version', 'tenantId'],
 } as const
