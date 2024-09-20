@@ -67,5 +67,44 @@ t.test('providers', t => {
     t.end()
   })
 
+  t.test('validate - Jenkins with options', t => {
+    const variable: Provider = {
+      providerId: 'jenkins',
+      type: 'jenkins',
+      urls: {
+        base: 'http://base-url',
+        apiBase: 'http://base-url/api',
+      },
+      capabilities: [{
+        name: CAPABILITIES.CI_CD_TOOL,
+        deployPipelineNameTemplate: 'configurations',
+        servicesPipelineNameTemplate: '{{serviceId}}',
+        apiBaseUrlPathTemplate: '/api/{{projectId}}',
+      }],
+      visibility: { allTenants: true },
+    }
+
+    t.ok(validate(variable), validationMessage(validate.errors))
+    t.end()
+  })
+
+  t.test('validate - Jenkins without options', t => {
+    const variable: Provider = {
+      providerId: 'jenkins',
+      type: 'jenkins',
+      urls: {
+        base: 'http://base-url',
+        apiBase: 'http://base-url/api',
+      },
+      capabilities: [{
+        name: CAPABILITIES.CI_CD_TOOL,
+      }],
+      visibility: { allTenants: true },
+    }
+
+    t.ok(validate(variable), validationMessage(validate.errors))
+    t.end()
+  })
+
   t.end()
 })

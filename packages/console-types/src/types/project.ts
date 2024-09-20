@@ -102,6 +102,7 @@ export const pipelines = {
                 name: { type: 'string' },
               },
             },
+            apiBaseUrlPath: { type: 'string' },
           },
         },
       },
