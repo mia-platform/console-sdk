@@ -308,7 +308,7 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
                   }
                 }
               },
-              "deployPipelineNameTemplate": {
+              "projectDeployPipelineNameTemplate": {
                 "type": "string"
               },
               "servicesPipelineNameTemplate": {
