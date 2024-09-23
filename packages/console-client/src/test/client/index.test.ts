@@ -447,4 +447,21 @@ describe('console-client', () => {
     const { calls } = axiosMock.mock
     assert.equal(calls.length, 3)
   })
+
+  it('exposes userinfo fluent APIs correctly', async(t) => {
+    const consoleClient = new ConsoleClient(baseUrl)
+
+    const axiosMock = t.mock.method(axiosWrapper, 'axiosFn', async(_url: string) => {
+      const okResponse = {
+        status: 204,
+        headers: new Map<string, string>(),
+      }
+      return Promise.resolve(okResponse)
+    })
+
+    await consoleClient.userinfo.get()
+
+    const { calls } = axiosMock.mock
+    assert.equal(calls.length, 1)
+  })
 })
