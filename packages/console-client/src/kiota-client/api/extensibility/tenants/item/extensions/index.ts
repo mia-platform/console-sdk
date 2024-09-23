@@ -11,6 +11,7 @@ import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_category_labelIntl}
  */
+// @ts-ignore
 export function createExtensions_category_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_category_labelIntl;
 }
@@ -19,6 +20,7 @@ export function createExtensions_category_labelIntlFromDiscriminatorValue(parseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_category}
  */
+// @ts-ignore
 export function createExtensions_categoryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_category;
 }
@@ -27,6 +29,7 @@ export function createExtensions_categoryFromDiscriminatorValue(parseNode: Parse
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_destination}
  */
+// @ts-ignore
 export function createExtensions_destinationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_destination;
 }
@@ -35,6 +38,7 @@ export function createExtensions_destinationFromDiscriminatorValue(parseNode: Pa
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_menu_labelIntl}
  */
+// @ts-ignore
 export function createExtensions_menu_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_menu_labelIntl;
 }
@@ -43,6 +47,7 @@ export function createExtensions_menu_labelIntlFromDiscriminatorValue(parseNode:
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_menu}
  */
+// @ts-ignore
 export function createExtensions_menuFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_menu;
 }
@@ -51,6 +56,7 @@ export function createExtensions_menuFromDiscriminatorValue(parseNode: ParseNode
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_visibilities}
  */
+// @ts-ignore
 export function createExtensions_visibilitiesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_visibilities;
 }
@@ -59,6 +65,7 @@ export function createExtensions_visibilitiesFromDiscriminatorValue(parseNode: P
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions400Error}
  */
+// @ts-ignore
 export function createExtensions400ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions400Error;
 }
@@ -67,6 +74,7 @@ export function createExtensions400ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions500Error}
  */
+// @ts-ignore
 export function createExtensions500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions500Error;
 }
@@ -75,6 +83,7 @@ export function createExtensions500ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions}
  */
+// @ts-ignore
 export function createExtensionsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions;
 }
@@ -83,6 +92,7 @@ export function createExtensionsFromDiscriminatorValue(parseNode: ParseNode | un
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ExtensionsPutRequestBody_category_labelIntl}
  */
+// @ts-ignore
 export function createExtensionsPutRequestBody_category_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensionsPutRequestBody_category_labelIntl;
 }
@@ -91,6 +101,7 @@ export function createExtensionsPutRequestBody_category_labelIntlFromDiscriminat
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ExtensionsPutRequestBody_category}
  */
+// @ts-ignore
 export function createExtensionsPutRequestBody_categoryFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensionsPutRequestBody_category;
 }
@@ -99,6 +110,7 @@ export function createExtensionsPutRequestBody_categoryFromDiscriminatorValue(pa
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ExtensionsPutRequestBody_destination}
  */
+// @ts-ignore
 export function createExtensionsPutRequestBody_destinationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensionsPutRequestBody_destination;
 }
@@ -107,6 +119,7 @@ export function createExtensionsPutRequestBody_destinationFromDiscriminatorValue
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ExtensionsPutRequestBody_menu_labelIntl}
  */
+// @ts-ignore
 export function createExtensionsPutRequestBody_menu_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensionsPutRequestBody_menu_labelIntl;
 }
@@ -115,6 +128,7 @@ export function createExtensionsPutRequestBody_menu_labelIntlFromDiscriminatorVa
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ExtensionsPutRequestBody_menu}
  */
+// @ts-ignore
 export function createExtensionsPutRequestBody_menuFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensionsPutRequestBody_menu;
 }
@@ -123,6 +137,7 @@ export function createExtensionsPutRequestBody_menuFromDiscriminatorValue(parseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ExtensionsPutRequestBody}
  */
+// @ts-ignore
 export function createExtensionsPutRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensionsPutRequestBody;
 }
@@ -131,6 +146,7 @@ export function createExtensionsPutRequestBodyFromDiscriminatorValue(parseNode: 
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ExtensionsPutResponse}
  */
+// @ts-ignore
 export function createExtensionsPutResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensionsPutResponse;
 }
@@ -138,6 +154,7 @@ export function createExtensionsPutResponseFromDiscriminatorValue(parseNode: Par
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions(extensions: Partial<Extensions> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "activationContexts": n => { extensions.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
@@ -158,6 +175,7 @@ export function deserializeIntoExtensions(extensions: Partial<Extensions> | unde
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_category(extensions_category: Partial<Extensions_category> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { extensions_category.id = n.getStringValue(); },
@@ -168,6 +186,7 @@ export function deserializeIntoExtensions_category(extensions_category: Partial<
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_category_labelIntl(extensions_category_labelIntl: Partial<Extensions_category_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -176,6 +195,7 @@ export function deserializeIntoExtensions_category_labelIntl(extensions_category
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_destination(extensions_destination: Partial<Extensions_destination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { extensions_destination.id = n.getStringValue(); },
@@ -185,6 +205,7 @@ export function deserializeIntoExtensions_destination(extensions_destination: Pa
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_menu(extensions_menu: Partial<Extensions_menu> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { extensions_menu.id = n.getStringValue(); },
@@ -196,6 +217,7 @@ export function deserializeIntoExtensions_menu(extensions_menu: Partial<Extensio
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_menu_labelIntl(extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -204,6 +226,7 @@ export function deserializeIntoExtensions_menu_labelIntl(extensions_menu_labelIn
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_visibilities(extensions_visibilities: Partial<Extensions_visibilities> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "contextId": n => { extensions_visibilities.contextId = n.getStringValue(); },
@@ -214,6 +237,7 @@ export function deserializeIntoExtensions_visibilities(extensions_visibilities: 
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions400Error(extensions400Error: Partial<Extensions400Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { extensions400Error.errorEscaped = n.getStringValue(); },
@@ -225,6 +249,7 @@ export function deserializeIntoExtensions400Error(extensions400Error: Partial<Ex
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions500Error(extensions500Error: Partial<Extensions500Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { extensions500Error.errorEscaped = n.getStringValue(); },
@@ -236,6 +261,7 @@ export function deserializeIntoExtensions500Error(extensions500Error: Partial<Ex
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensionsPutRequestBody(extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "activationContexts": n => { extensionsPutRequestBody.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
@@ -255,6 +281,7 @@ export function deserializeIntoExtensionsPutRequestBody(extensionsPutRequestBody
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensionsPutRequestBody_category(extensionsPutRequestBody_category: Partial<ExtensionsPutRequestBody_category> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { extensionsPutRequestBody_category.id = n.getStringValue(); },
@@ -266,6 +293,7 @@ export function deserializeIntoExtensionsPutRequestBody_category(extensionsPutRe
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensionsPutRequestBody_category_labelIntl(extensionsPutRequestBody_category_labelIntl: Partial<ExtensionsPutRequestBody_category_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -274,6 +302,7 @@ export function deserializeIntoExtensionsPutRequestBody_category_labelIntl(exten
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensionsPutRequestBody_destination(extensionsPutRequestBody_destination: Partial<ExtensionsPutRequestBody_destination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { extensionsPutRequestBody_destination.id = n.getStringValue(); },
@@ -284,6 +313,7 @@ export function deserializeIntoExtensionsPutRequestBody_destination(extensionsPu
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensionsPutRequestBody_menu(extensionsPutRequestBody_menu: Partial<ExtensionsPutRequestBody_menu> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { extensionsPutRequestBody_menu.id = n.getStringValue(); },
@@ -295,6 +325,7 @@ export function deserializeIntoExtensionsPutRequestBody_menu(extensionsPutReques
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensionsPutRequestBody_menu_labelIntl(extensionsPutRequestBody_menu_labelIntl: Partial<ExtensionsPutRequestBody_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -303,6 +334,7 @@ export function deserializeIntoExtensionsPutRequestBody_menu_labelIntl(extension
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensionsPutResponse(extensionsPutResponse: Partial<ExtensionsPutResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "extensionId": n => { extensionsPutResponse.extensionId = n.getStringValue(); },
@@ -312,61 +344,61 @@ export interface Extensions extends Parsable {
     /**
      * The activationContexts property
      */
-    activationContexts?: string[];
+    activationContexts?: string[] | null;
     /**
      * The category property
      */
-    category?: Extensions_category;
+    category?: Extensions_category | null;
     /**
      * The description property
      */
-    description?: string;
+    description?: string | null;
     /**
      * The destination property
      */
-    destination?: Extensions_destination;
+    destination?: Extensions_destination | null;
     /**
      * The entry property
      */
-    entry?: string;
+    entry?: string | null;
     /**
      * The extensionId property
      */
-    extensionId?: string;
+    extensionId?: string | null;
     /**
      * The iconName property
      */
-    iconName?: string;
+    iconName?: string | null;
     /**
      * The menu property
      */
-    menu?: Extensions_menu;
+    menu?: Extensions_menu | null;
     /**
      * The name property
      */
-    name?: string;
+    name?: string | null;
     /**
      * The permissions property
      */
-    permissions?: string[];
+    permissions?: string[] | null;
     /**
      * The type property
      */
-    type?: string;
+    type?: string | null;
     /**
      * The visibilities property
      */
-    visibilities?: Extensions_visibilities[];
+    visibilities?: Extensions_visibilities[] | null;
 }
 export interface Extensions_category extends Parsable {
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: Extensions_category_labelIntl;
+    labelIntl?: Extensions_category_labelIntl | null;
 }
 export interface Extensions_category_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -378,21 +410,21 @@ export interface Extensions_destination extends Parsable {
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
 }
 export interface Extensions_menu extends Parsable {
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: Extensions_menu_labelIntl;
+    labelIntl?: Extensions_menu_labelIntl | null;
     /**
      * The order property
      */
-    order?: number;
+    order?: number | null;
 }
 export interface Extensions_menu_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -404,11 +436,11 @@ export interface Extensions_visibilities extends Parsable {
     /**
      * The contextId property
      */
-    contextId?: string;
+    contextId?: string | null;
     /**
      * The contextType property
      */
-    contextType?: string;
+    contextType?: string | null;
 }
 export interface Extensions400Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -418,15 +450,15 @@ export interface Extensions400Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Extensions500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -436,75 +468,75 @@ export interface Extensions500Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface ExtensionsPutRequestBody extends Parsable {
     /**
      * The activationContexts property
      */
-    activationContexts?: string[];
+    activationContexts?: string[] | null;
     /**
      * The category property
      */
-    category?: ExtensionsPutRequestBody_category;
+    category?: ExtensionsPutRequestBody_category | null;
     /**
      * The description property
      */
-    description?: string;
+    description?: string | null;
     /**
      * The destination property
      */
-    destination?: ExtensionsPutRequestBody_destination;
+    destination?: ExtensionsPutRequestBody_destination | null;
     /**
      * The entry property
      */
-    entry?: string;
+    entry?: string | null;
     /**
      * The extensionId property
      */
-    extensionId?: string;
+    extensionId?: string | null;
     /**
      * The iconName property
      */
-    iconName?: string;
+    iconName?: string | null;
     /**
      * The menu property
      */
-    menu?: ExtensionsPutRequestBody_menu;
+    menu?: ExtensionsPutRequestBody_menu | null;
     /**
      * The name property
      */
-    name?: string;
+    name?: string | null;
     /**
      * The permissions property
      */
-    permissions?: string[];
+    permissions?: string[] | null;
     /**
      * The type property
      */
-    type?: string;
+    type?: string | null;
 }
 export interface ExtensionsPutRequestBody_category extends Parsable {
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: ExtensionsPutRequestBody_category_labelIntl;
+    labelIntl?: ExtensionsPutRequestBody_category_labelIntl | null;
     /**
      * The order property
      */
-    order?: number;
+    order?: number | null;
 }
 export interface ExtensionsPutRequestBody_category_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -516,25 +548,25 @@ export interface ExtensionsPutRequestBody_destination extends Parsable {
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
     /**
      * The path property
      */
-    path?: string;
+    path?: string | null;
 }
 export interface ExtensionsPutRequestBody_menu extends Parsable {
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: ExtensionsPutRequestBody_menu_labelIntl;
+    labelIntl?: ExtensionsPutRequestBody_menu_labelIntl | null;
     /**
      * The order property
      */
-    order?: number;
+    order?: number | null;
 }
 export interface ExtensionsPutRequestBody_menu_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -546,7 +578,7 @@ export interface ExtensionsPutResponse extends Parsable {
     /**
      * The extensionId property
      */
-    extensionId?: string;
+    extensionId?: string | null;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/extensions
@@ -591,151 +623,197 @@ export interface ExtensionsRequestBuilderGetQueryParameters {
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions(writer: SerializationWriter, extensions_params: Partial<Extensions> | null | undefined = {}) : void {
-    const extensions = extensions_params || {};
-    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensions.activationContexts);
-    writer.writeObjectValue<Extensions_category>("category", extensions.category, serializeExtensions_category);
-    writer.writeStringValue("description", extensions.description);
-    writer.writeObjectValue<Extensions_destination>("destination", extensions.destination, serializeExtensions_destination);
-    writer.writeStringValue("entry", extensions.entry);
-    writer.writeStringValue("extensionId", extensions.extensionId);
-    writer.writeStringValue("iconName", extensions.iconName);
-    writer.writeObjectValue<Extensions_menu>("menu", extensions.menu, serializeExtensions_menu);
-    writer.writeStringValue("name", extensions.name);
-    writer.writeCollectionOfPrimitiveValues<string>("permissions", extensions.permissions);
-    writer.writeStringValue("type", extensions.type);
-    writer.writeCollectionOfObjectValues<Extensions_visibilities>("visibilities", extensions.visibilities, serializeExtensions_visibilities);
+// @ts-ignore
+export function serializeExtensions(writer: SerializationWriter, extensions: Partial<Extensions> | undefined | null = {}) : void {
+    if (extensions) {
+        writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensions.activationContexts);
+        writer.writeObjectValue<Extensions_category>("category", extensions.category, serializeExtensions_category);
+        writer.writeStringValue("description", extensions.description);
+        writer.writeObjectValue<Extensions_destination>("destination", extensions.destination, serializeExtensions_destination);
+        writer.writeStringValue("entry", extensions.entry);
+        writer.writeStringValue("extensionId", extensions.extensionId);
+        writer.writeStringValue("iconName", extensions.iconName);
+        writer.writeObjectValue<Extensions_menu>("menu", extensions.menu, serializeExtensions_menu);
+        writer.writeStringValue("name", extensions.name);
+        writer.writeCollectionOfPrimitiveValues<string>("permissions", extensions.permissions);
+        writer.writeStringValue("type", extensions.type);
+        writer.writeCollectionOfObjectValues<Extensions_visibilities>("visibilities", extensions.visibilities, serializeExtensions_visibilities);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_category(writer: SerializationWriter, extensions_category: Partial<Extensions_category> | null | undefined = {}) : void {
-    writer.writeStringValue("id", extensions_category?.id);
-    writer.writeObjectValue<Extensions_category_labelIntl>("labelIntl", extensions_category?.labelIntl, serializeExtensions_category_labelIntl);
+// @ts-ignore
+export function serializeExtensions_category(writer: SerializationWriter, extensions_category: Partial<Extensions_category> | undefined | null = {}) : void {
+    if (extensions_category) {
+        writer.writeStringValue("id", extensions_category.id);
+        writer.writeObjectValue<Extensions_category_labelIntl>("labelIntl", extensions_category.labelIntl, serializeExtensions_category_labelIntl);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_category_labelIntl(writer: SerializationWriter, extensions_category_labelIntl: Partial<Extensions_category_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(extensions_category_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeExtensions_category_labelIntl(writer: SerializationWriter, extensions_category_labelIntl: Partial<Extensions_category_labelIntl> | undefined | null = {}) : void {
+    if (extensions_category_labelIntl) {
+        writer.writeAdditionalData(extensions_category_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_destination(writer: SerializationWriter, extensions_destination: Partial<Extensions_destination> | null | undefined = {}) : void {
-    writer.writeStringValue("id", extensions_destination?.id);
+// @ts-ignore
+export function serializeExtensions_destination(writer: SerializationWriter, extensions_destination: Partial<Extensions_destination> | undefined | null = {}) : void {
+    if (extensions_destination) {
+        writer.writeStringValue("id", extensions_destination.id);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_menu(writer: SerializationWriter, extensions_menu: Partial<Extensions_menu> | null | undefined = {}) : void {
-    writer.writeStringValue("id", extensions_menu?.id);
-    writer.writeObjectValue<Extensions_menu_labelIntl>("labelIntl", extensions_menu?.labelIntl, serializeExtensions_menu_labelIntl);
-    writer.writeNumberValue("order", extensions_menu?.order);
+// @ts-ignore
+export function serializeExtensions_menu(writer: SerializationWriter, extensions_menu: Partial<Extensions_menu> | undefined | null = {}) : void {
+    if (extensions_menu) {
+        writer.writeStringValue("id", extensions_menu.id);
+        writer.writeObjectValue<Extensions_menu_labelIntl>("labelIntl", extensions_menu.labelIntl, serializeExtensions_menu_labelIntl);
+        writer.writeNumberValue("order", extensions_menu.order);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_menu_labelIntl(writer: SerializationWriter, extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(extensions_menu_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeExtensions_menu_labelIntl(writer: SerializationWriter, extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined | null = {}) : void {
+    if (extensions_menu_labelIntl) {
+        writer.writeAdditionalData(extensions_menu_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_visibilities(writer: SerializationWriter, extensions_visibilities: Partial<Extensions_visibilities> | null | undefined = {}) : void {
-    writer.writeStringValue("contextId", extensions_visibilities?.contextId);
-    writer.writeStringValue("contextType", extensions_visibilities?.contextType);
+// @ts-ignore
+export function serializeExtensions_visibilities(writer: SerializationWriter, extensions_visibilities: Partial<Extensions_visibilities> | undefined | null = {}) : void {
+    if (extensions_visibilities) {
+        writer.writeStringValue("contextId", extensions_visibilities.contextId);
+        writer.writeStringValue("contextType", extensions_visibilities.contextType);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions400Error(writer: SerializationWriter, extensions400Error: Partial<Extensions400Error> | null | undefined = {}) : void {
-    writer.writeStringValue("error", extensions400Error?.errorEscaped);
-    writer.writeStringValue("message", extensions400Error?.messageEscaped);
-    writer.writeNumberValue("statusCode", extensions400Error?.statusCode);
-    writer.writeAdditionalData(extensions400Error?.additionalData);
+// @ts-ignore
+export function serializeExtensions400Error(writer: SerializationWriter, extensions400Error: Partial<Extensions400Error> | undefined | null = {}) : void {
+    if (extensions400Error) {
+        writer.writeStringValue("error", extensions400Error.errorEscaped);
+        writer.writeStringValue("message", extensions400Error.messageEscaped);
+        writer.writeNumberValue("statusCode", extensions400Error.statusCode);
+        writer.writeAdditionalData(extensions400Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions500Error(writer: SerializationWriter, extensions500Error: Partial<Extensions500Error> | null | undefined = {}) : void {
-    writer.writeStringValue("error", extensions500Error?.errorEscaped);
-    writer.writeStringValue("message", extensions500Error?.messageEscaped);
-    writer.writeNumberValue("statusCode", extensions500Error?.statusCode);
-    writer.writeAdditionalData(extensions500Error?.additionalData);
+// @ts-ignore
+export function serializeExtensions500Error(writer: SerializationWriter, extensions500Error: Partial<Extensions500Error> | undefined | null = {}) : void {
+    if (extensions500Error) {
+        writer.writeStringValue("error", extensions500Error.errorEscaped);
+        writer.writeStringValue("message", extensions500Error.messageEscaped);
+        writer.writeNumberValue("statusCode", extensions500Error.statusCode);
+        writer.writeAdditionalData(extensions500Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody(writer: SerializationWriter, extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | null | undefined = {}) : void {
-    const requestBody = extensionsPutRequestBody || {};
-    writer.writeCollectionOfPrimitiveValues<string>("activationContexts", requestBody.activationContexts);
-    writer.writeObjectValue<ExtensionsPutRequestBody_category>("category", requestBody.category, serializeExtensionsPutRequestBody_category);
-    writer.writeStringValue("description", requestBody.description);
-    writer.writeObjectValue<ExtensionsPutRequestBody_destination>("destination", requestBody.destination, serializeExtensionsPutRequestBody_destination);
-    writer.writeStringValue("entry", requestBody.entry);
-    writer.writeStringValue("extensionId", requestBody.extensionId);
-    writer.writeStringValue("iconName", requestBody.iconName);
-    writer.writeObjectValue<ExtensionsPutRequestBody_menu>("menu", requestBody.menu, serializeExtensionsPutRequestBody_menu);
-    writer.writeStringValue("name", requestBody.name);
-    writer.writeCollectionOfPrimitiveValues<string>("permissions", requestBody.permissions);
-    writer.writeStringValue("type", requestBody.type);
+// @ts-ignore
+export function serializeExtensionsPutRequestBody(writer: SerializationWriter, extensionsPutRequestBody: Partial<ExtensionsPutRequestBody> | undefined | null = {}) : void {
+    if (extensionsPutRequestBody) {
+        writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensionsPutRequestBody.activationContexts);
+        writer.writeObjectValue<ExtensionsPutRequestBody_category>("category", extensionsPutRequestBody.category, serializeExtensionsPutRequestBody_category);
+        writer.writeStringValue("description", extensionsPutRequestBody.description);
+        writer.writeObjectValue<ExtensionsPutRequestBody_destination>("destination", extensionsPutRequestBody.destination, serializeExtensionsPutRequestBody_destination);
+        writer.writeStringValue("entry", extensionsPutRequestBody.entry);
+        writer.writeStringValue("extensionId", extensionsPutRequestBody.extensionId);
+        writer.writeStringValue("iconName", extensionsPutRequestBody.iconName);
+        writer.writeObjectValue<ExtensionsPutRequestBody_menu>("menu", extensionsPutRequestBody.menu, serializeExtensionsPutRequestBody_menu);
+        writer.writeStringValue("name", extensionsPutRequestBody.name);
+        writer.writeCollectionOfPrimitiveValues<string>("permissions", extensionsPutRequestBody.permissions);
+        writer.writeStringValue("type", extensionsPutRequestBody.type);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_category(writer: SerializationWriter, extensionsPutRequestBody_category: Partial<ExtensionsPutRequestBody_category> | null | undefined = {}) : void {
-    writer.writeStringValue("id", extensionsPutRequestBody_category?.id);
-    writer.writeObjectValue<ExtensionsPutRequestBody_category_labelIntl>("labelIntl", extensionsPutRequestBody_category?.labelIntl, serializeExtensionsPutRequestBody_category_labelIntl);
-    writer.writeNumberValue("order", extensionsPutRequestBody_category?.order);
+// @ts-ignore
+export function serializeExtensionsPutRequestBody_category(writer: SerializationWriter, extensionsPutRequestBody_category: Partial<ExtensionsPutRequestBody_category> | undefined | null = {}) : void {
+    if (extensionsPutRequestBody_category) {
+        writer.writeStringValue("id", extensionsPutRequestBody_category.id);
+        writer.writeObjectValue<ExtensionsPutRequestBody_category_labelIntl>("labelIntl", extensionsPutRequestBody_category.labelIntl, serializeExtensionsPutRequestBody_category_labelIntl);
+        writer.writeNumberValue("order", extensionsPutRequestBody_category.order);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_category_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_category_labelIntl: Partial<ExtensionsPutRequestBody_category_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(extensionsPutRequestBody_category_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeExtensionsPutRequestBody_category_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_category_labelIntl: Partial<ExtensionsPutRequestBody_category_labelIntl> | undefined | null = {}) : void {
+    if (extensionsPutRequestBody_category_labelIntl) {
+        writer.writeAdditionalData(extensionsPutRequestBody_category_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_destination(writer: SerializationWriter, extensionsPutRequestBody_destination: Partial<ExtensionsPutRequestBody_destination> | null | undefined = {}) : void {
-    writer.writeStringValue("id", extensionsPutRequestBody_destination?.id);
-    writer.writeStringValue("path", extensionsPutRequestBody_destination?.path);
+// @ts-ignore
+export function serializeExtensionsPutRequestBody_destination(writer: SerializationWriter, extensionsPutRequestBody_destination: Partial<ExtensionsPutRequestBody_destination> | undefined | null = {}) : void {
+    if (extensionsPutRequestBody_destination) {
+        writer.writeStringValue("id", extensionsPutRequestBody_destination.id);
+        writer.writeStringValue("path", extensionsPutRequestBody_destination.path);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_menu(writer: SerializationWriter, extensionsPutRequestBody_menu: Partial<ExtensionsPutRequestBody_menu> | null | undefined = {}) : void {
-    writer.writeStringValue("id", extensionsPutRequestBody_menu?.id);
-    writer.writeObjectValue<ExtensionsPutRequestBody_menu_labelIntl>("labelIntl", extensionsPutRequestBody_menu?.labelIntl, serializeExtensionsPutRequestBody_menu_labelIntl);
-    writer.writeNumberValue("order", extensionsPutRequestBody_menu?.order);
+// @ts-ignore
+export function serializeExtensionsPutRequestBody_menu(writer: SerializationWriter, extensionsPutRequestBody_menu: Partial<ExtensionsPutRequestBody_menu> | undefined | null = {}) : void {
+    if (extensionsPutRequestBody_menu) {
+        writer.writeStringValue("id", extensionsPutRequestBody_menu.id);
+        writer.writeObjectValue<ExtensionsPutRequestBody_menu_labelIntl>("labelIntl", extensionsPutRequestBody_menu.labelIntl, serializeExtensionsPutRequestBody_menu_labelIntl);
+        writer.writeNumberValue("order", extensionsPutRequestBody_menu.order);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutRequestBody_menu_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_menu_labelIntl: Partial<ExtensionsPutRequestBody_menu_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(extensionsPutRequestBody_menu_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeExtensionsPutRequestBody_menu_labelIntl(writer: SerializationWriter, extensionsPutRequestBody_menu_labelIntl: Partial<ExtensionsPutRequestBody_menu_labelIntl> | undefined | null = {}) : void {
+    if (extensionsPutRequestBody_menu_labelIntl) {
+        writer.writeAdditionalData(extensionsPutRequestBody_menu_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensionsPutResponse(writer: SerializationWriter, extensionsPutResponse: Partial<ExtensionsPutResponse> | null | undefined = {}) : void {
-    writer.writeStringValue("extensionId", extensionsPutResponse?.extensionId);
+// @ts-ignore
+export function serializeExtensionsPutResponse(writer: SerializationWriter, extensionsPutResponse: Partial<ExtensionsPutResponse> | undefined | null = {}) : void {
+    if (extensionsPutResponse) {
+        writer.writeStringValue("extensionId", extensionsPutResponse.extensionId);
+    }
 }
 /**
  * Uri template for the request builder.

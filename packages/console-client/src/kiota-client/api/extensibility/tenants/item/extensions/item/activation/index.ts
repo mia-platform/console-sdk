@@ -14,15 +14,15 @@ export interface Activation400Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Activation404Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -32,15 +32,15 @@ export interface Activation404Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Activation500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -50,54 +50,54 @@ export interface Activation500Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface ActivationPostRequestBody extends Parsable {
     /**
      * The contextId property
      */
-    contextId?: string;
+    contextId?: string | null;
     /**
      * The contextType property
      */
-    contextType?: ActivationPostRequestBody_contextType;
+    contextType?: ActivationPostRequestBody_contextType | null;
     /**
      * The overrides property
      */
-    overrides?: ActivationPostRequestBody_overrides[];
+    overrides?: ActivationPostRequestBody_overrides[] | null;
 }
 export type ActivationPostRequestBody_contextType = (typeof ActivationPostRequestBody_contextTypeObject)[keyof typeof ActivationPostRequestBody_contextTypeObject];
 export interface ActivationPostRequestBody_overrides extends Parsable {
     /**
      * The icon property
      */
-    icon?: ActivationPostRequestBody_overrides_icon;
+    icon?: ActivationPostRequestBody_overrides_icon | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: ActivationPostRequestBody_overrides_labelIntl;
+    labelIntl?: ActivationPostRequestBody_overrides_labelIntl | null;
     /**
      * The order property
      */
-    order?: number;
+    order?: number | null;
     /**
      * The routeId property
      */
-    routeId?: string;
+    routeId?: string | null;
 }
 export interface ActivationPostRequestBody_overrides_icon extends Parsable {
     /**
      * The name property
      */
-    name?: string;
+    name?: string | null;
 }
 export interface ActivationPostRequestBody_overrides_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -109,7 +109,7 @@ export interface ActivationPostResponse extends Parsable {
     /**
      * The activationId property
      */
-    activationId?: string;
+    activationId?: string | null;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation
@@ -140,6 +140,7 @@ export interface ActivationRequestBuilder extends BaseRequestBuilder<ActivationR
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Activation400Error}
  */
+// @ts-ignore
 export function createActivation400ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivation400Error;
 }
@@ -148,6 +149,7 @@ export function createActivation400ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Activation404Error}
  */
+// @ts-ignore
 export function createActivation404ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivation404Error;
 }
@@ -156,6 +158,7 @@ export function createActivation404ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Activation500Error}
  */
+// @ts-ignore
 export function createActivation500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivation500Error;
 }
@@ -164,6 +167,7 @@ export function createActivation500ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ActivationPostRequestBody_overrides_icon}
  */
+// @ts-ignore
 export function createActivationPostRequestBody_overrides_iconFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivationPostRequestBody_overrides_icon;
 }
@@ -172,6 +176,7 @@ export function createActivationPostRequestBody_overrides_iconFromDiscriminatorV
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ActivationPostRequestBody_overrides_labelIntl}
  */
+// @ts-ignore
 export function createActivationPostRequestBody_overrides_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivationPostRequestBody_overrides_labelIntl;
 }
@@ -180,6 +185,7 @@ export function createActivationPostRequestBody_overrides_labelIntlFromDiscrimin
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ActivationPostRequestBody_overrides}
  */
+// @ts-ignore
 export function createActivationPostRequestBody_overridesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivationPostRequestBody_overrides;
 }
@@ -188,6 +194,7 @@ export function createActivationPostRequestBody_overridesFromDiscriminatorValue(
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ActivationPostRequestBody}
  */
+// @ts-ignore
 export function createActivationPostRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivationPostRequestBody;
 }
@@ -196,6 +203,7 @@ export function createActivationPostRequestBodyFromDiscriminatorValue(parseNode:
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ActivationPostResponse}
  */
+// @ts-ignore
 export function createActivationPostResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivationPostResponse;
 }
@@ -203,6 +211,7 @@ export function createActivationPostResponseFromDiscriminatorValue(parseNode: Pa
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivation400Error(activation400Error: Partial<Activation400Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { activation400Error.errorEscaped = n.getStringValue(); },
@@ -214,6 +223,7 @@ export function deserializeIntoActivation400Error(activation400Error: Partial<Ac
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivation404Error(activation404Error: Partial<Activation404Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { activation404Error.errorEscaped = n.getStringValue(); },
@@ -225,6 +235,7 @@ export function deserializeIntoActivation404Error(activation404Error: Partial<Ac
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivation500Error(activation500Error: Partial<Activation500Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { activation500Error.errorEscaped = n.getStringValue(); },
@@ -236,6 +247,7 @@ export function deserializeIntoActivation500Error(activation500Error: Partial<Ac
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivationPostRequestBody(activationPostRequestBody: Partial<ActivationPostRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "contextId": n => { activationPostRequestBody.contextId = n.getStringValue(); },
@@ -247,6 +259,7 @@ export function deserializeIntoActivationPostRequestBody(activationPostRequestBo
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivationPostRequestBody_overrides(activationPostRequestBody_overrides: Partial<ActivationPostRequestBody_overrides> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "icon": n => { activationPostRequestBody_overrides.icon = n.getObjectValue<ActivationPostRequestBody_overrides_icon>(createActivationPostRequestBody_overrides_iconFromDiscriminatorValue); },
@@ -259,6 +272,7 @@ export function deserializeIntoActivationPostRequestBody_overrides(activationPos
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivationPostRequestBody_overrides_icon(activationPostRequestBody_overrides_icon: Partial<ActivationPostRequestBody_overrides_icon> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "name": n => { activationPostRequestBody_overrides_icon.name = n.getStringValue(); },
@@ -268,6 +282,7 @@ export function deserializeIntoActivationPostRequestBody_overrides_icon(activati
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivationPostRequestBody_overrides_labelIntl(activationPostRequestBody_overrides_labelIntl: Partial<ActivationPostRequestBody_overrides_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -276,6 +291,7 @@ export function deserializeIntoActivationPostRequestBody_overrides_labelIntl(act
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivationPostResponse(activationPostResponse: Partial<ActivationPostResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "activationId": n => { activationPostResponse.activationId = n.getStringValue(); },
@@ -285,71 +301,95 @@ export function deserializeIntoActivationPostResponse(activationPostResponse: Pa
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivation400Error(writer: SerializationWriter, activation400Error: Partial<Activation400Error> | undefined = {}) : void {
-    writer.writeStringValue("error", activation400Error.errorEscaped);
-    writer.writeStringValue("message", activation400Error.messageEscaped);
-    writer.writeNumberValue("statusCode", activation400Error.statusCode);
-    writer.writeAdditionalData(activation400Error.additionalData);
+// @ts-ignore
+export function serializeActivation400Error(writer: SerializationWriter, activation400Error: Partial<Activation400Error> | undefined | null = {}) : void {
+    if (activation400Error) {
+        writer.writeStringValue("error", activation400Error.errorEscaped);
+        writer.writeStringValue("message", activation400Error.messageEscaped);
+        writer.writeNumberValue("statusCode", activation400Error.statusCode);
+        writer.writeAdditionalData(activation400Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivation404Error(writer: SerializationWriter, activation404Error: Partial<Activation404Error> | undefined = {}) : void {
-    writer.writeStringValue("error", activation404Error.errorEscaped);
-    writer.writeStringValue("message", activation404Error.messageEscaped);
-    writer.writeNumberValue("statusCode", activation404Error.statusCode);
-    writer.writeAdditionalData(activation404Error.additionalData);
+// @ts-ignore
+export function serializeActivation404Error(writer: SerializationWriter, activation404Error: Partial<Activation404Error> | undefined | null = {}) : void {
+    if (activation404Error) {
+        writer.writeStringValue("error", activation404Error.errorEscaped);
+        writer.writeStringValue("message", activation404Error.messageEscaped);
+        writer.writeNumberValue("statusCode", activation404Error.statusCode);
+        writer.writeAdditionalData(activation404Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivation500Error(writer: SerializationWriter, activation500Error: Partial<Activation500Error> | undefined = {}) : void {
-    writer.writeStringValue("error", activation500Error.errorEscaped);
-    writer.writeStringValue("message", activation500Error.messageEscaped);
-    writer.writeNumberValue("statusCode", activation500Error.statusCode);
-    writer.writeAdditionalData(activation500Error.additionalData);
+// @ts-ignore
+export function serializeActivation500Error(writer: SerializationWriter, activation500Error: Partial<Activation500Error> | undefined | null = {}) : void {
+    if (activation500Error) {
+        writer.writeStringValue("error", activation500Error.errorEscaped);
+        writer.writeStringValue("message", activation500Error.messageEscaped);
+        writer.writeNumberValue("statusCode", activation500Error.statusCode);
+        writer.writeAdditionalData(activation500Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody(writer: SerializationWriter, activationPostRequestBody: Partial<ActivationPostRequestBody> | null | undefined = {}) : void {
-    writer.writeStringValue("contextId", activationPostRequestBody?.contextId);
-    writer.writeEnumValue<ActivationPostRequestBody_contextType>("contextType", activationPostRequestBody?.contextType);
-    writer.writeCollectionOfObjectValues<ActivationPostRequestBody_overrides>("overrides", activationPostRequestBody?.overrides, serializeActivationPostRequestBody_overrides);
+// @ts-ignore
+export function serializeActivationPostRequestBody(writer: SerializationWriter, activationPostRequestBody: Partial<ActivationPostRequestBody> | undefined | null = {}) : void {
+    if (activationPostRequestBody) {
+        writer.writeStringValue("contextId", activationPostRequestBody.contextId);
+        writer.writeEnumValue<ActivationPostRequestBody_contextType>("contextType", activationPostRequestBody.contextType);
+        writer.writeCollectionOfObjectValues<ActivationPostRequestBody_overrides>("overrides", activationPostRequestBody.overrides, serializeActivationPostRequestBody_overrides);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody_overrides(writer: SerializationWriter, activationPostRequestBody_overrides: Partial<ActivationPostRequestBody_overrides> | null | undefined = {}) : void {
-    writer.writeObjectValue<ActivationPostRequestBody_overrides_icon>("icon", activationPostRequestBody_overrides?.icon, serializeActivationPostRequestBody_overrides_icon);
-    writer.writeObjectValue<ActivationPostRequestBody_overrides_labelIntl>("labelIntl", activationPostRequestBody_overrides?.labelIntl, serializeActivationPostRequestBody_overrides_labelIntl);
-    writer.writeNumberValue("order", activationPostRequestBody_overrides?.order);
-    writer.writeStringValue("routeId", activationPostRequestBody_overrides?.routeId);
+// @ts-ignore
+export function serializeActivationPostRequestBody_overrides(writer: SerializationWriter, activationPostRequestBody_overrides: Partial<ActivationPostRequestBody_overrides> | undefined | null = {}) : void {
+    if (activationPostRequestBody_overrides) {
+        writer.writeObjectValue<ActivationPostRequestBody_overrides_icon>("icon", activationPostRequestBody_overrides.icon, serializeActivationPostRequestBody_overrides_icon);
+        writer.writeObjectValue<ActivationPostRequestBody_overrides_labelIntl>("labelIntl", activationPostRequestBody_overrides.labelIntl, serializeActivationPostRequestBody_overrides_labelIntl);
+        writer.writeNumberValue("order", activationPostRequestBody_overrides.order);
+        writer.writeStringValue("routeId", activationPostRequestBody_overrides.routeId);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody_overrides_icon(writer: SerializationWriter, activationPostRequestBody_overrides_icon: Partial<ActivationPostRequestBody_overrides_icon> | null | undefined = {}) : void {
-    writer.writeStringValue("name", activationPostRequestBody_overrides_icon?.name);
+// @ts-ignore
+export function serializeActivationPostRequestBody_overrides_icon(writer: SerializationWriter, activationPostRequestBody_overrides_icon: Partial<ActivationPostRequestBody_overrides_icon> | undefined | null = {}) : void {
+    if (activationPostRequestBody_overrides_icon) {
+        writer.writeStringValue("name", activationPostRequestBody_overrides_icon.name);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostRequestBody_overrides_labelIntl(writer: SerializationWriter, activationPostRequestBody_overrides_labelIntl: Partial<ActivationPostRequestBody_overrides_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(activationPostRequestBody_overrides_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeActivationPostRequestBody_overrides_labelIntl(writer: SerializationWriter, activationPostRequestBody_overrides_labelIntl: Partial<ActivationPostRequestBody_overrides_labelIntl> | undefined | null = {}) : void {
+    if (activationPostRequestBody_overrides_labelIntl) {
+        writer.writeAdditionalData(activationPostRequestBody_overrides_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivationPostResponse(writer: SerializationWriter, activationPostResponse: Partial<ActivationPostResponse> | undefined = {}) : void {
-    writer.writeStringValue("activationId", activationPostResponse.activationId);
+// @ts-ignore
+export function serializeActivationPostResponse(writer: SerializationWriter, activationPostResponse: Partial<ActivationPostResponse> | undefined | null = {}) : void {
+    if (activationPostResponse) {
+        writer.writeStringValue("activationId", activationPostResponse.activationId);
+    }
 }
 /**
  * Uri template for the request builder.

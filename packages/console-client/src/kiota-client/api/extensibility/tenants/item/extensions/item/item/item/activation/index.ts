@@ -12,15 +12,15 @@ export interface Activation400Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Activation500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -30,15 +30,15 @@ export interface Activation500Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation
@@ -61,6 +61,7 @@ export interface ActivationRequestBuilder extends BaseRequestBuilder<ActivationR
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Activation400Error}
  */
+// @ts-ignore
 export function createActivation400ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivation400Error;
 }
@@ -69,6 +70,7 @@ export function createActivation400ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Activation500Error}
  */
+// @ts-ignore
 export function createActivation500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoActivation500Error;
 }
@@ -76,6 +78,7 @@ export function createActivation500ErrorFromDiscriminatorValue(parseNode: ParseN
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivation400Error(activation400Error: Partial<Activation400Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { activation400Error.errorEscaped = n.getStringValue(); },
@@ -87,6 +90,7 @@ export function deserializeIntoActivation400Error(activation400Error: Partial<Ac
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoActivation500Error(activation500Error: Partial<Activation500Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { activation500Error.errorEscaped = n.getStringValue(); },
@@ -98,21 +102,27 @@ export function deserializeIntoActivation500Error(activation500Error: Partial<Ac
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivation400Error(writer: SerializationWriter, activation400Error: Partial<Activation400Error> | undefined = {}) : void {
-    writer.writeStringValue("error", activation400Error.errorEscaped);
-    writer.writeStringValue("message", activation400Error.messageEscaped);
-    writer.writeNumberValue("statusCode", activation400Error.statusCode);
-    writer.writeAdditionalData(activation400Error.additionalData);
+// @ts-ignore
+export function serializeActivation400Error(writer: SerializationWriter, activation400Error: Partial<Activation400Error> | undefined | null = {}) : void {
+    if (activation400Error) {
+        writer.writeStringValue("error", activation400Error.errorEscaped);
+        writer.writeStringValue("message", activation400Error.messageEscaped);
+        writer.writeNumberValue("statusCode", activation400Error.statusCode);
+        writer.writeAdditionalData(activation400Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeActivation500Error(writer: SerializationWriter, activation500Error: Partial<Activation500Error> | undefined = {}) : void {
-    writer.writeStringValue("error", activation500Error.errorEscaped);
-    writer.writeStringValue("message", activation500Error.messageEscaped);
-    writer.writeNumberValue("statusCode", activation500Error.statusCode);
-    writer.writeAdditionalData(activation500Error.additionalData);
+// @ts-ignore
+export function serializeActivation500Error(writer: SerializationWriter, activation500Error: Partial<Activation500Error> | undefined | null = {}) : void {
+    if (activation500Error) {
+        writer.writeStringValue("error", activation500Error.errorEscaped);
+        writer.writeStringValue("message", activation500Error.messageEscaped);
+        writer.writeNumberValue("statusCode", activation500Error.statusCode);
+        writer.writeAdditionalData(activation500Error.additionalData);
+    }
 }
 /**
  * Uri template for the request builder.

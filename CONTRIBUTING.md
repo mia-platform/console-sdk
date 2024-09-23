@@ -15,7 +15,7 @@ After cloning the repository, run `pnpm install` to install packages.
 ## How to submit a PR
 
 * Commits should follow standards: `<type>(<scope>): <subject> – feat(core): Add new feature`
-* Please remember to use `yarn changeset` to update the `CHANGELOG.md` file with a summary of your PR changes.
+* Please remember to use `pnpm changeset` to update the `CHANGELOG.md` file with a summary of your PR changes.
 
 ## How to create a new tag
 
