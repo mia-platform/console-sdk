@@ -77,7 +77,7 @@ t.test('providers', t => {
       },
       capabilities: [{
         name: CAPABILITIES.CI_CD_TOOL,
-        deployPipelineNameTemplate: 'configurations',
+        projectDeployPipelineNameTemplate: 'configurations',
         servicesPipelineNameTemplate: '{{serviceId}}',
         apiBaseUrlPathTemplate: '/api/{{projectId}}',
       }],

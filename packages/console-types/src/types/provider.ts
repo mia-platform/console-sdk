@@ -85,7 +85,7 @@ const ciCdToolProviderCapabilitySchema = {
   properties: {
     name: { const: CI_CD_TOOL },
     functionalities: providerFunctionalitiesSchema,
-    deployPipelineNameTemplate: { type: 'string' },
+    projectDeployPipelineNameTemplate: { type: 'string' },
     servicesPipelineNameTemplate: { type: 'string' },
     apiBaseUrlPathTemplate: { type: 'string' },
   },
