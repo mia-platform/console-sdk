@@ -276,6 +276,32 @@ t.test('project validated', t => {
     t.end()
   })
 
+  t.test('with jenkins pipelines and api base url path', t => {
+    const project: IProject = {
+      name: 'template-name',
+      configurationGitPath: 'config-path',
+      projectId: 'my-project-id',
+      repositoryUrl: 'repo-url',
+      _id: 'object-id',
+      environments: [],
+      repository: {},
+      pipelines: {
+        type: 'jenkins',
+        providerId: 'myprovider',
+        options: {
+          view: {
+            name: 'myview',
+          },
+          apiBaseUrlPath: '/api',
+        },
+      },
+    }
+
+    t.ok(validate(project), validationMessage(validate.errors))
+
+    t.end()
+  })
+
   t.test('all field - with useDefaults true', t => {
     const ajv = new Ajv({ useDefaults: true })
     const validate = ajv.compile<IProject>(project)
@@ -471,3 +497,4 @@ t.test('branchName json schema pattern', t => {
 
   t.end()
 })
+
