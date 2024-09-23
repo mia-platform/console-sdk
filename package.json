@@ -28,8 +28,8 @@
     "unit": "pnpm -r unit",
     "lint:fix": "pnpm -r lint --fix",
     "lint": "pnpm -r lint",
-    "addlicense": "addlicense -c 'Mia srl' -s packages/*/src/**/*.ts",
-    "check-license": "addlicense -c 'Mia srl' -check -s packages/*/src/**/*.ts",
+    "addlicense": "addlicense -c 'Mia srl' -s -ignore packages/console-client/src/kiota-client/**/* packages/*/src/**/*.ts",
+    "check-license": "addlicense -c 'Mia srl' -check -s -ignore packages/console-client/src/kiota-client/**/* packages/*/src/**/*.ts",
     "changeset": "changeset"
   },
   "contributors": [

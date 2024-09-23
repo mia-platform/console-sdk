@@ -6,6 +6,137 @@
         "description": "Mia-Platform Console Project. "
     },
     "paths": {
+        "/api/userinfo": {
+            "get": {
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "userId": {
+                                            "type": "string"
+                                        },
+                                        "groups": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "userSettingsURL": {
+                                            "type": "string"
+                                        },
+                                        "providerUserId": {
+                                            "type": "string"
+                                        },
+                                        "metadata": {
+                                            "type": "object"
+                                        },
+                                        "permissions": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "userId",
+                                        "groups",
+                                        "email",
+                                        "name"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Returns the information of the currently logged user"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "message",
+                                        "description"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "users"
+                ]
+            }
+        },
+
         "/api/extensibility/extensions": {
             "get": {
                 "parameters": [

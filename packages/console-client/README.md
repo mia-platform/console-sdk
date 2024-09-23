@@ -8,7 +8,7 @@
 ## What is the console-client?
 
 Console-client is the Mia-Platform client library for interacting with the Console APIs.  
-This library aims to help you easilly interact with Console exposed APIs from your `js`/`ts` application through a fluent API notation.
+This library aims to help you easily interact with Console exposed APIs from your `js`/`ts` application through a fluent API notation.
 
 ## How does this library work?
 
