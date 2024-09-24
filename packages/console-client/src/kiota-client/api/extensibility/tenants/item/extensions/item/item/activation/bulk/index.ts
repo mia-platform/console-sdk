@@ -12,15 +12,15 @@ export interface Bulk400Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Bulk500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -30,15 +30,15 @@ export interface Bulk500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/activation/bulk
@@ -64,6 +64,7 @@ export interface BulkRequestBuilderDeleteQueryParameters {
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Bulk400Error}
  */
+// @ts-ignore
 export function createBulk400ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulk400Error;
 }
@@ -72,6 +73,7 @@ export function createBulk400ErrorFromDiscriminatorValue(parseNode: ParseNode | 
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Bulk500Error}
  */
+// @ts-ignore
 export function createBulk500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulk500Error;
 }
@@ -79,6 +81,7 @@ export function createBulk500ErrorFromDiscriminatorValue(parseNode: ParseNode | 
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulk400Error(bulk400Error: Partial<Bulk400Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { bulk400Error.errorEscaped = n.getStringValue(); },
@@ -90,6 +93,7 @@ export function deserializeIntoBulk400Error(bulk400Error: Partial<Bulk400Error> 
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulk500Error(bulk500Error: Partial<Bulk500Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { bulk500Error.errorEscaped = n.getStringValue(); },
@@ -101,21 +105,27 @@ export function deserializeIntoBulk500Error(bulk500Error: Partial<Bulk500Error> 
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulk400Error(writer: SerializationWriter, bulk400Error: Partial<Bulk400Error> | undefined = {}) : void {
-    writer.writeStringValue("error", bulk400Error.errorEscaped);
-    writer.writeStringValue("message", bulk400Error.messageEscaped);
-    writer.writeNumberValue("statusCode", bulk400Error.statusCode);
-    writer.writeAdditionalData(bulk400Error.additionalData);
+// @ts-ignore
+export function serializeBulk400Error(writer: SerializationWriter, bulk400Error: Partial<Bulk400Error> | undefined | null = {}) : void {
+    if (bulk400Error) {
+        writer.writeStringValue("error", bulk400Error.errorEscaped);
+        writer.writeStringValue("message", bulk400Error.messageEscaped);
+        writer.writeNumberValue("statusCode", bulk400Error.statusCode);
+        writer.writeAdditionalData(bulk400Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulk500Error(writer: SerializationWriter, bulk500Error: Partial<Bulk500Error> | undefined = {}) : void {
-    writer.writeStringValue("error", bulk500Error.errorEscaped);
-    writer.writeStringValue("message", bulk500Error.messageEscaped);
-    writer.writeNumberValue("statusCode", bulk500Error.statusCode);
-    writer.writeAdditionalData(bulk500Error.additionalData);
+// @ts-ignore
+export function serializeBulk500Error(writer: SerializationWriter, bulk500Error: Partial<Bulk500Error> | undefined | null = {}) : void {
+    if (bulk500Error) {
+        writer.writeStringValue("error", bulk500Error.errorEscaped);
+        writer.writeStringValue("message", bulk500Error.messageEscaped);
+        writer.writeNumberValue("statusCode", bulk500Error.statusCode);
+        writer.writeAdditionalData(bulk500Error.additionalData);
+    }
 }
 /**
  * Uri template for the request builder.

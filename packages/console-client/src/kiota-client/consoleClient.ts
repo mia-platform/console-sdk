@@ -45,6 +45,7 @@ export interface ConsoleClient extends BaseRequestBuilder<ConsoleClient> {
  * Instantiates a new {@link ConsoleClient} and sets the default values.
  * @param requestAdapter The request adapter to use to execute the requests.
  */
+// @ts-ignore
 export function createConsoleClient(requestAdapter: RequestAdapter) {
     registerDefaultSerializer(JsonSerializationWriterFactory);
     registerDefaultSerializer(TextSerializationWriterFactory);

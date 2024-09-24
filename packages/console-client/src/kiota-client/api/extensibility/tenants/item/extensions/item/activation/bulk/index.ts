@@ -12,15 +12,15 @@ export interface Bulk400Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Bulk404Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -30,15 +30,15 @@ export interface Bulk404Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Bulk500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -48,54 +48,54 @@ export interface Bulk500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface BulkPostRequestBody extends Parsable {
     /**
      * The contextIds property
      */
-    contextIds?: string[];
+    contextIds?: string[] | null;
     /**
      * The contextType property
      */
-    contextType?: BulkPostRequestBody_contextType;
+    contextType?: BulkPostRequestBody_contextType | null;
     /**
      * The overrides property
      */
-    overrides?: BulkPostRequestBody_overrides[];
+    overrides?: BulkPostRequestBody_overrides[] | null;
 }
 export type BulkPostRequestBody_contextType = (typeof BulkPostRequestBody_contextTypeObject)[keyof typeof BulkPostRequestBody_contextTypeObject];
 export interface BulkPostRequestBody_overrides extends Parsable {
     /**
      * The icon property
      */
-    icon?: BulkPostRequestBody_overrides_icon;
+    icon?: BulkPostRequestBody_overrides_icon | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: BulkPostRequestBody_overrides_labelIntl;
+    labelIntl?: BulkPostRequestBody_overrides_labelIntl | null;
     /**
      * The order property
      */
-    order?: number;
+    order?: number | null;
     /**
      * The routeId property
      */
-    routeId?: string;
+    routeId?: string | null;
 }
 export interface BulkPostRequestBody_overrides_icon extends Parsable {
     /**
      * The name property
      */
-    name?: string;
+    name?: string | null;
 }
 export interface BulkPostRequestBody_overrides_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -107,7 +107,7 @@ export interface BulkPostResponse extends Parsable {
     /**
      * The activationIds property
      */
-    activationIds?: string[];
+    activationIds?: string[] | null;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation/bulk
@@ -134,6 +134,7 @@ export interface BulkRequestBuilder extends BaseRequestBuilder<BulkRequestBuilde
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Bulk400Error}
  */
+// @ts-ignore
 export function createBulk400ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulk400Error;
 }
@@ -142,6 +143,7 @@ export function createBulk400ErrorFromDiscriminatorValue(parseNode: ParseNode | 
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Bulk404Error}
  */
+// @ts-ignore
 export function createBulk404ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulk404Error;
 }
@@ -150,6 +152,7 @@ export function createBulk404ErrorFromDiscriminatorValue(parseNode: ParseNode | 
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Bulk500Error}
  */
+// @ts-ignore
 export function createBulk500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulk500Error;
 }
@@ -158,6 +161,7 @@ export function createBulk500ErrorFromDiscriminatorValue(parseNode: ParseNode | 
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BulkPostRequestBody_overrides_icon}
  */
+// @ts-ignore
 export function createBulkPostRequestBody_overrides_iconFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulkPostRequestBody_overrides_icon;
 }
@@ -166,6 +170,7 @@ export function createBulkPostRequestBody_overrides_iconFromDiscriminatorValue(p
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BulkPostRequestBody_overrides_labelIntl}
  */
+// @ts-ignore
 export function createBulkPostRequestBody_overrides_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulkPostRequestBody_overrides_labelIntl;
 }
@@ -174,6 +179,7 @@ export function createBulkPostRequestBody_overrides_labelIntlFromDiscriminatorVa
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BulkPostRequestBody_overrides}
  */
+// @ts-ignore
 export function createBulkPostRequestBody_overridesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulkPostRequestBody_overrides;
 }
@@ -182,6 +188,7 @@ export function createBulkPostRequestBody_overridesFromDiscriminatorValue(parseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BulkPostRequestBody}
  */
+// @ts-ignore
 export function createBulkPostRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulkPostRequestBody;
 }
@@ -190,6 +197,7 @@ export function createBulkPostRequestBodyFromDiscriminatorValue(parseNode: Parse
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {BulkPostResponse}
  */
+// @ts-ignore
 export function createBulkPostResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoBulkPostResponse;
 }
@@ -197,6 +205,7 @@ export function createBulkPostResponseFromDiscriminatorValue(parseNode: ParseNod
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulk400Error(bulk400Error: Partial<Bulk400Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { bulk400Error.errorEscaped = n.getStringValue(); },
@@ -208,6 +217,7 @@ export function deserializeIntoBulk400Error(bulk400Error: Partial<Bulk400Error> 
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulk404Error(bulk404Error: Partial<Bulk404Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { bulk404Error.errorEscaped = n.getStringValue(); },
@@ -219,6 +229,7 @@ export function deserializeIntoBulk404Error(bulk404Error: Partial<Bulk404Error> 
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulk500Error(bulk500Error: Partial<Bulk500Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { bulk500Error.errorEscaped = n.getStringValue(); },
@@ -230,6 +241,7 @@ export function deserializeIntoBulk500Error(bulk500Error: Partial<Bulk500Error> 
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulkPostRequestBody(bulkPostRequestBody: Partial<BulkPostRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "contextIds": n => { bulkPostRequestBody.contextIds = n.getCollectionOfPrimitiveValues<string>(); },
@@ -241,6 +253,7 @@ export function deserializeIntoBulkPostRequestBody(bulkPostRequestBody: Partial<
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulkPostRequestBody_overrides(bulkPostRequestBody_overrides: Partial<BulkPostRequestBody_overrides> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "icon": n => { bulkPostRequestBody_overrides.icon = n.getObjectValue<BulkPostRequestBody_overrides_icon>(createBulkPostRequestBody_overrides_iconFromDiscriminatorValue); },
@@ -253,6 +266,7 @@ export function deserializeIntoBulkPostRequestBody_overrides(bulkPostRequestBody
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulkPostRequestBody_overrides_icon(bulkPostRequestBody_overrides_icon: Partial<BulkPostRequestBody_overrides_icon> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "name": n => { bulkPostRequestBody_overrides_icon.name = n.getStringValue(); },
@@ -262,6 +276,7 @@ export function deserializeIntoBulkPostRequestBody_overrides_icon(bulkPostReques
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulkPostRequestBody_overrides_labelIntl(bulkPostRequestBody_overrides_labelIntl: Partial<BulkPostRequestBody_overrides_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -270,6 +285,7 @@ export function deserializeIntoBulkPostRequestBody_overrides_labelIntl(bulkPostR
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoBulkPostResponse(bulkPostResponse: Partial<BulkPostResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "activationIds": n => { bulkPostResponse.activationIds = n.getCollectionOfPrimitiveValues<string>(); },
@@ -279,71 +295,95 @@ export function deserializeIntoBulkPostResponse(bulkPostResponse: Partial<BulkPo
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulk400Error(writer: SerializationWriter, bulk400Error: Partial<Bulk400Error> | undefined = {}) : void {
-    writer.writeStringValue("error", bulk400Error.errorEscaped);
-    writer.writeStringValue("message", bulk400Error.messageEscaped);
-    writer.writeNumberValue("statusCode", bulk400Error.statusCode);
-    writer.writeAdditionalData(bulk400Error.additionalData);
+// @ts-ignore
+export function serializeBulk400Error(writer: SerializationWriter, bulk400Error: Partial<Bulk400Error> | undefined | null = {}) : void {
+    if (bulk400Error) {
+        writer.writeStringValue("error", bulk400Error.errorEscaped);
+        writer.writeStringValue("message", bulk400Error.messageEscaped);
+        writer.writeNumberValue("statusCode", bulk400Error.statusCode);
+        writer.writeAdditionalData(bulk400Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulk404Error(writer: SerializationWriter, bulk404Error: Partial<Bulk404Error> | undefined = {}) : void {
-    writer.writeStringValue("error", bulk404Error.errorEscaped);
-    writer.writeStringValue("message", bulk404Error.messageEscaped);
-    writer.writeNumberValue("statusCode", bulk404Error.statusCode);
-    writer.writeAdditionalData(bulk404Error.additionalData);
+// @ts-ignore
+export function serializeBulk404Error(writer: SerializationWriter, bulk404Error: Partial<Bulk404Error> | undefined | null = {}) : void {
+    if (bulk404Error) {
+        writer.writeStringValue("error", bulk404Error.errorEscaped);
+        writer.writeStringValue("message", bulk404Error.messageEscaped);
+        writer.writeNumberValue("statusCode", bulk404Error.statusCode);
+        writer.writeAdditionalData(bulk404Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulk500Error(writer: SerializationWriter, bulk500Error: Partial<Bulk500Error> | undefined = {}) : void {
-    writer.writeStringValue("error", bulk500Error.errorEscaped);
-    writer.writeStringValue("message", bulk500Error.messageEscaped);
-    writer.writeNumberValue("statusCode", bulk500Error.statusCode);
-    writer.writeAdditionalData(bulk500Error.additionalData);
+// @ts-ignore
+export function serializeBulk500Error(writer: SerializationWriter, bulk500Error: Partial<Bulk500Error> | undefined | null = {}) : void {
+    if (bulk500Error) {
+        writer.writeStringValue("error", bulk500Error.errorEscaped);
+        writer.writeStringValue("message", bulk500Error.messageEscaped);
+        writer.writeNumberValue("statusCode", bulk500Error.statusCode);
+        writer.writeAdditionalData(bulk500Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody(writer: SerializationWriter, bulkPostRequestBody: Partial<BulkPostRequestBody> | null | undefined = {}) : void {
-    writer.writeCollectionOfPrimitiveValues<string>("contextIds", bulkPostRequestBody?.contextIds);
-    writer.writeEnumValue<BulkPostRequestBody_contextType>("contextType", bulkPostRequestBody?.contextType);
-    writer.writeCollectionOfObjectValues<BulkPostRequestBody_overrides>("overrides", bulkPostRequestBody?.overrides, serializeBulkPostRequestBody_overrides);
+// @ts-ignore
+export function serializeBulkPostRequestBody(writer: SerializationWriter, bulkPostRequestBody: Partial<BulkPostRequestBody> | undefined | null = {}) : void {
+    if (bulkPostRequestBody) {
+        writer.writeCollectionOfPrimitiveValues<string>("contextIds", bulkPostRequestBody.contextIds);
+        writer.writeEnumValue<BulkPostRequestBody_contextType>("contextType", bulkPostRequestBody.contextType);
+        writer.writeCollectionOfObjectValues<BulkPostRequestBody_overrides>("overrides", bulkPostRequestBody.overrides, serializeBulkPostRequestBody_overrides);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody_overrides(writer: SerializationWriter, bulkPostRequestBody_overrides: Partial<BulkPostRequestBody_overrides> | null | undefined = {}) : void {
-    writer.writeObjectValue<BulkPostRequestBody_overrides_icon>("icon", bulkPostRequestBody_overrides?.icon, serializeBulkPostRequestBody_overrides_icon);
-    writer.writeObjectValue<BulkPostRequestBody_overrides_labelIntl>("labelIntl", bulkPostRequestBody_overrides?.labelIntl, serializeBulkPostRequestBody_overrides_labelIntl);
-    writer.writeNumberValue("order", bulkPostRequestBody_overrides?.order);
-    writer.writeStringValue("routeId", bulkPostRequestBody_overrides?.routeId);
+// @ts-ignore
+export function serializeBulkPostRequestBody_overrides(writer: SerializationWriter, bulkPostRequestBody_overrides: Partial<BulkPostRequestBody_overrides> | undefined | null = {}) : void {
+    if (bulkPostRequestBody_overrides) {
+        writer.writeObjectValue<BulkPostRequestBody_overrides_icon>("icon", bulkPostRequestBody_overrides.icon, serializeBulkPostRequestBody_overrides_icon);
+        writer.writeObjectValue<BulkPostRequestBody_overrides_labelIntl>("labelIntl", bulkPostRequestBody_overrides.labelIntl, serializeBulkPostRequestBody_overrides_labelIntl);
+        writer.writeNumberValue("order", bulkPostRequestBody_overrides.order);
+        writer.writeStringValue("routeId", bulkPostRequestBody_overrides.routeId);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody_overrides_icon(writer: SerializationWriter, bulkPostRequestBody_overrides_icon: Partial<BulkPostRequestBody_overrides_icon> | null | undefined = {}) : void {
-    writer.writeStringValue("name", bulkPostRequestBody_overrides_icon?.name);
+// @ts-ignore
+export function serializeBulkPostRequestBody_overrides_icon(writer: SerializationWriter, bulkPostRequestBody_overrides_icon: Partial<BulkPostRequestBody_overrides_icon> | undefined | null = {}) : void {
+    if (bulkPostRequestBody_overrides_icon) {
+        writer.writeStringValue("name", bulkPostRequestBody_overrides_icon.name);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostRequestBody_overrides_labelIntl(writer: SerializationWriter, bulkPostRequestBody_overrides_labelIntl: Partial<BulkPostRequestBody_overrides_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(bulkPostRequestBody_overrides_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeBulkPostRequestBody_overrides_labelIntl(writer: SerializationWriter, bulkPostRequestBody_overrides_labelIntl: Partial<BulkPostRequestBody_overrides_labelIntl> | undefined | null = {}) : void {
+    if (bulkPostRequestBody_overrides_labelIntl) {
+        writer.writeAdditionalData(bulkPostRequestBody_overrides_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeBulkPostResponse(writer: SerializationWriter, bulkPostResponse: Partial<BulkPostResponse> | undefined = {}) : void {
-    writer.writeCollectionOfPrimitiveValues<string>("activationIds", bulkPostResponse.activationIds);
+// @ts-ignore
+export function serializeBulkPostResponse(writer: SerializationWriter, bulkPostResponse: Partial<BulkPostResponse> | undefined | null = {}) : void {
+    if (bulkPostResponse) {
+        writer.writeCollectionOfPrimitiveValues<string>("activationIds", bulkPostResponse.activationIds);
+    }
 }
 /**
  * Uri template for the request builder.

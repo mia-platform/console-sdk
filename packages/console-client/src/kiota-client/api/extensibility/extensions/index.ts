@@ -9,6 +9,7 @@ import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_routes_icon}
  */
+// @ts-ignore
 export function createExtensions_routes_iconFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_routes_icon;
 }
@@ -17,6 +18,7 @@ export function createExtensions_routes_iconFromDiscriminatorValue(parseNode: Pa
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_routes_labelIntl}
  */
+// @ts-ignore
 export function createExtensions_routes_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_routes_labelIntl;
 }
@@ -25,6 +27,7 @@ export function createExtensions_routes_labelIntlFromDiscriminatorValue(parseNod
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_routes}
  */
+// @ts-ignore
 export function createExtensions_routesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions_routes;
 }
@@ -33,6 +36,7 @@ export function createExtensions_routesFromDiscriminatorValue(parseNode: ParseNo
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions400Error}
  */
+// @ts-ignore
 export function createExtensions400ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions400Error;
 }
@@ -41,6 +45,7 @@ export function createExtensions400ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions500Error}
  */
+// @ts-ignore
 export function createExtensions500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions500Error;
 }
@@ -49,6 +54,7 @@ export function createExtensions500ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions}
  */
+// @ts-ignore
 export function createExtensionsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoExtensions;
 }
@@ -56,6 +62,7 @@ export function createExtensionsFromDiscriminatorValue(parseNode: ParseNode | un
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions(extensions: Partial<Extensions> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "entry": n => { extensions.entry = n.getStringValue(); },
@@ -68,6 +75,7 @@ export function deserializeIntoExtensions(extensions: Partial<Extensions> | unde
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_routes(extensions_routes: Partial<Extensions_routes> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "destinationPath": n => { extensions_routes.destinationPath = n.getStringValue(); },
@@ -85,6 +93,7 @@ export function deserializeIntoExtensions_routes(extensions_routes: Partial<Exte
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_routes_icon(extensions_routes_icon: Partial<Extensions_routes_icon> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "name": n => { extensions_routes_icon.name = n.getStringValue(); },
@@ -94,6 +103,7 @@ export function deserializeIntoExtensions_routes_icon(extensions_routes_icon: Pa
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions_routes_labelIntl(extensions_routes_labelIntl: Partial<Extensions_routes_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -102,6 +112,7 @@ export function deserializeIntoExtensions_routes_labelIntl(extensions_routes_lab
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions400Error(extensions400Error: Partial<Extensions400Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { extensions400Error.errorEscaped = n.getStringValue(); },
@@ -113,6 +124,7 @@ export function deserializeIntoExtensions400Error(extensions400Error: Partial<Ex
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoExtensions500Error(extensions500Error: Partial<Extensions500Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { extensions500Error.errorEscaped = n.getStringValue(); },
@@ -124,63 +136,63 @@ export interface Extensions extends Parsable {
     /**
      * The entry property
      */
-    entry?: string;
+    entry?: string | null;
     /**
      * The microfrontendId property
      */
-    microfrontendId?: string;
+    microfrontendId?: string | null;
     /**
      * The routes property
      */
-    routes?: Extensions_routes[];
+    routes?: Extensions_routes[] | null;
     /**
      * The type property
      */
-    type?: string;
+    type?: string | null;
 }
 export interface Extensions_routes extends Parsable {
     /**
      * The destinationPath property
      */
-    destinationPath?: string;
+    destinationPath?: string | null;
     /**
      * The icon property
      */
-    icon?: Extensions_routes_icon;
+    icon?: Extensions_routes_icon | null;
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: Extensions_routes_labelIntl;
+    labelIntl?: Extensions_routes_labelIntl | null;
     /**
      * The locationId property
      */
-    locationId?: Extensions_routes_locationId;
+    locationId?: Extensions_routes_locationId | null;
     /**
      * The matchExactMountPath property
      */
-    matchExactMountPath?: boolean;
+    matchExactMountPath?: boolean | null;
     /**
      * The order property
      */
-    order?: number;
+    order?: number | null;
     /**
      * The parentId property
      */
-    parentId?: string;
+    parentId?: string | null;
     /**
      * The renderType property
      */
-    renderType?: Extensions_routes_renderType;
+    renderType?: Extensions_routes_renderType | null;
 }
 export interface Extensions_routes_icon extends Parsable {
     /**
      * The name property
      */
-    name?: string;
+    name?: string | null;
 }
 export interface Extensions_routes_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -198,15 +210,15 @@ export interface Extensions400Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 export interface Extensions500Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
@@ -216,15 +228,15 @@ export interface Extensions500Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/extensions
@@ -251,61 +263,78 @@ export interface ExtensionsRequestBuilderGetQueryParameters {
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions(writer: SerializationWriter, extensions: Partial<Extensions> | undefined = {}) : void {
-    writer.writeStringValue("entry", extensions.entry);
-    writer.writeStringValue("microfrontendId", extensions.microfrontendId);
-    writer.writeCollectionOfObjectValues<Extensions_routes>("routes", extensions.routes, serializeExtensions_routes);
-    writer.writeStringValue("type", extensions.type);
+// @ts-ignore
+export function serializeExtensions(writer: SerializationWriter, extensions: Partial<Extensions> | undefined | null = {}) : void {
+    if (extensions) {
+        writer.writeStringValue("entry", extensions.entry);
+        writer.writeStringValue("microfrontendId", extensions.microfrontendId);
+        writer.writeCollectionOfObjectValues<Extensions_routes>("routes", extensions.routes, serializeExtensions_routes);
+        writer.writeStringValue("type", extensions.type);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_routes(writer: SerializationWriter, extensions_routes: Partial<Extensions_routes> | null | undefined) : void {
-    const routes = extensions_routes || {};
-    writer.writeStringValue("destinationPath", routes.destinationPath);
-    writer.writeObjectValue<Extensions_routes_icon>("icon", routes.icon, serializeExtensions_routes_icon);
-    writer.writeStringValue("id", routes.id);
-    writer.writeObjectValue<Extensions_routes_labelIntl>("labelIntl", routes.labelIntl, serializeExtensions_routes_labelIntl);
-    writer.writeEnumValue<Extensions_routes_locationId>("locationId", routes.locationId);
-    writer.writeBooleanValue("matchExactMountPath", routes.matchExactMountPath);
-    writer.writeNumberValue("order", routes.order);
-    writer.writeStringValue("parentId", routes.parentId);
-    writer.writeEnumValue<Extensions_routes_renderType>("renderType", routes.renderType);
+// @ts-ignore
+export function serializeExtensions_routes(writer: SerializationWriter, extensions_routes: Partial<Extensions_routes> | undefined | null = {}) : void {
+    if (extensions_routes) {
+        writer.writeStringValue("destinationPath", extensions_routes.destinationPath);
+        writer.writeObjectValue<Extensions_routes_icon>("icon", extensions_routes.icon, serializeExtensions_routes_icon);
+        writer.writeStringValue("id", extensions_routes.id);
+        writer.writeObjectValue<Extensions_routes_labelIntl>("labelIntl", extensions_routes.labelIntl, serializeExtensions_routes_labelIntl);
+        writer.writeEnumValue<Extensions_routes_locationId>("locationId", extensions_routes.locationId);
+        writer.writeBooleanValue("matchExactMountPath", extensions_routes.matchExactMountPath);
+        writer.writeNumberValue("order", extensions_routes.order);
+        writer.writeStringValue("parentId", extensions_routes.parentId);
+        writer.writeEnumValue<Extensions_routes_renderType>("renderType", extensions_routes.renderType);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_routes_icon(writer: SerializationWriter, extensions_routes_icon: Partial<Extensions_routes_icon> | null | undefined) : void {
-    writer.writeStringValue("name", extensions_routes_icon?.name);
+// @ts-ignore
+export function serializeExtensions_routes_icon(writer: SerializationWriter, extensions_routes_icon: Partial<Extensions_routes_icon> | undefined | null = {}) : void {
+    if (extensions_routes_icon) {
+        writer.writeStringValue("name", extensions_routes_icon.name);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions_routes_labelIntl(writer: SerializationWriter, extensions_routes_labelIntl: Partial<Extensions_routes_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(extensions_routes_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeExtensions_routes_labelIntl(writer: SerializationWriter, extensions_routes_labelIntl: Partial<Extensions_routes_labelIntl> | undefined | null = {}) : void {
+    if (extensions_routes_labelIntl) {
+        writer.writeAdditionalData(extensions_routes_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions400Error(writer: SerializationWriter, extensions400Error: Partial<Extensions400Error> | undefined = {}) : void {
-    writer.writeStringValue("error", extensions400Error.errorEscaped);
-    writer.writeStringValue("message", extensions400Error.messageEscaped);
-    writer.writeNumberValue("statusCode", extensions400Error.statusCode);
-    writer.writeAdditionalData(extensions400Error.additionalData);
+// @ts-ignore
+export function serializeExtensions400Error(writer: SerializationWriter, extensions400Error: Partial<Extensions400Error> | undefined | null = {}) : void {
+    if (extensions400Error) {
+        writer.writeStringValue("error", extensions400Error.errorEscaped);
+        writer.writeStringValue("message", extensions400Error.messageEscaped);
+        writer.writeNumberValue("statusCode", extensions400Error.statusCode);
+        writer.writeAdditionalData(extensions400Error.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeExtensions500Error(writer: SerializationWriter, extensions500Error: Partial<Extensions500Error> | undefined = {}) : void {
-    writer.writeStringValue("error", extensions500Error.errorEscaped);
-    writer.writeStringValue("message", extensions500Error.messageEscaped);
-    writer.writeNumberValue("statusCode", extensions500Error.statusCode);
-    writer.writeAdditionalData(extensions500Error.additionalData);
+// @ts-ignore
+export function serializeExtensions500Error(writer: SerializationWriter, extensions500Error: Partial<Extensions500Error> | undefined | null = {}) : void {
+    if (extensions500Error) {
+        writer.writeStringValue("error", extensions500Error.errorEscaped);
+        writer.writeStringValue("message", extensions500Error.messageEscaped);
+        writer.writeNumberValue("statusCode", extensions500Error.statusCode);
+        writer.writeAdditionalData(extensions500Error.additionalData);
+    }
 }
 /**
  * Uri template for the request builder.

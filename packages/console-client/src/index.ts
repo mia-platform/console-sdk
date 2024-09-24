@@ -16,6 +16,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+export type {
+  UserinfoGetResponse,
+  UserinfoGetResponse_metadata as UserinfoGetResponseMetadata,
+} from './kiota-client/api/userinfo'
+
 export {
   type IConsoleClient,
   type ConsoleClientOptions,

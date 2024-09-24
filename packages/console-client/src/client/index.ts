@@ -24,6 +24,7 @@ import {
   ConsoleClient as KiotaConsoleClient,
 } from '../kiota-client/consoleClient'
 import { ExtensibilityRequestBuilder } from '../kiota-client/api/extensibility'
+import { UserinfoRequestBuilder } from '../kiota-client/api/userinfo'
 
 export { ConsoleRequestError } from './http/axios/errors'
 
@@ -39,6 +40,7 @@ class NullAccessTokenProvider implements AuthenticationProvider {
 
 export type IConsoleClient = {
   get extensibility(): ExtensibilityRequestBuilder,
+  get userinfo(): UserinfoRequestBuilder,
 }
 
 export type ConsoleClientOptions = {
@@ -70,5 +72,9 @@ export class ConsoleClient implements IConsoleClient {
 
   get extensibility(): ExtensibilityRequestBuilder {
     return this.client.api.extensibility
+  }
+
+  get userinfo(): UserinfoRequestBuilder {
+    return this.client.api.userinfo
   }
 }

@@ -8,15 +8,15 @@ export interface Categories extends Parsable {
     /**
      * The id property
      */
-    id?: string;
+    id?: string | null;
     /**
      * The labelIntl property
      */
-    labelIntl?: Categories_labelIntl;
+    labelIntl?: Categories_labelIntl | null;
     /**
      * The locationId property
      */
-    locationId?: string;
+    locationId?: string | null;
 }
 export interface Categories_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -32,15 +32,15 @@ export interface Categories500Error extends AdditionalDataHolder, ApiError, Pars
     /**
      * The error property
      */
-    errorEscaped?: string;
+    errorEscaped?: string | null;
     /**
      * The message property
      */
-    messageEscaped?: string;
+    messageEscaped?: string | null;
     /**
      * The statusCode property
      */
-    statusCode?: number;
+    statusCode?: number | null;
 }
 /**
  * Builds and executes requests for operations under /api/extensibility/tenants/{tenantId}/categories
@@ -66,6 +66,7 @@ export interface CategoriesRequestBuilderGetQueryParameters {
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Categories_labelIntl}
  */
+// @ts-ignore
 export function createCategories_labelIntlFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoCategories_labelIntl;
 }
@@ -74,6 +75,7 @@ export function createCategories_labelIntlFromDiscriminatorValue(parseNode: Pars
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Categories500Error}
  */
+// @ts-ignore
 export function createCategories500ErrorFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoCategories500Error;
 }
@@ -82,6 +84,7 @@ export function createCategories500ErrorFromDiscriminatorValue(parseNode: ParseN
  * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Categories}
  */
+// @ts-ignore
 export function createCategoriesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoCategories;
 }
@@ -89,6 +92,7 @@ export function createCategoriesFromDiscriminatorValue(parseNode: ParseNode | un
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoCategories(categories: Partial<Categories> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { categories.id = n.getStringValue(); },
@@ -100,6 +104,7 @@ export function deserializeIntoCategories(categories: Partial<Categories> | unde
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoCategories_labelIntl(categories_labelIntl: Partial<Categories_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
     }
@@ -108,6 +113,7 @@ export function deserializeIntoCategories_labelIntl(categories_labelIntl: Partia
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
+// @ts-ignore
 export function deserializeIntoCategories500Error(categories500Error: Partial<Categories500Error> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "error": n => { categories500Error.errorEscaped = n.getStringValue(); },
@@ -119,27 +125,36 @@ export function deserializeIntoCategories500Error(categories500Error: Partial<Ca
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeCategories(writer: SerializationWriter, categories: Partial<Categories> | null | undefined = {}) : void {
-    writer.writeStringValue("id", categories?.id);
-    writer.writeObjectValue<Categories_labelIntl>("labelIntl", categories?.labelIntl, serializeCategories_labelIntl);
-    writer.writeStringValue("locationId", categories?.locationId);
+// @ts-ignore
+export function serializeCategories(writer: SerializationWriter, categories: Partial<Categories> | undefined | null = {}) : void {
+    if (categories) {
+        writer.writeStringValue("id", categories.id);
+        writer.writeObjectValue<Categories_labelIntl>("labelIntl", categories.labelIntl, serializeCategories_labelIntl);
+        writer.writeStringValue("locationId", categories.locationId);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeCategories_labelIntl(writer: SerializationWriter, categories_labelIntl: Partial<Categories_labelIntl> | null | undefined = {}) : void {
-    writer.writeAdditionalData(categories_labelIntl?.additionalData);
+// @ts-ignore
+export function serializeCategories_labelIntl(writer: SerializationWriter, categories_labelIntl: Partial<Categories_labelIntl> | undefined | null = {}) : void {
+    if (categories_labelIntl) {
+        writer.writeAdditionalData(categories_labelIntl.additionalData);
+    }
 }
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
  */
-export function serializeCategories500Error(writer: SerializationWriter, categories500Error: Partial<Categories500Error> | null | undefined = {}) : void {
-    writer.writeStringValue("error", categories500Error?.errorEscaped);
-    writer.writeStringValue("message", categories500Error?.messageEscaped);
-    writer.writeNumberValue("statusCode", categories500Error?.statusCode);
-    writer.writeAdditionalData(categories500Error?.additionalData);
+// @ts-ignore
+export function serializeCategories500Error(writer: SerializationWriter, categories500Error: Partial<Categories500Error> | undefined | null = {}) : void {
+    if (categories500Error) {
+        writer.writeStringValue("error", categories500Error.errorEscaped);
+        writer.writeStringValue("message", categories500Error.messageEscaped);
+        writer.writeNumberValue("statusCode", categories500Error.statusCode);
+        writer.writeAdditionalData(categories500Error.additionalData);
+    }
 }
 /**
  * Uri template for the request builder.
