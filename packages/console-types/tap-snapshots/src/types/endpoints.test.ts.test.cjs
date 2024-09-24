@@ -372,7 +372,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                   "POST",
                   "PUT",
                   "PATCH",
-                  "DELETE"
+                  "DELETE",
+                  "HEAD"
                 ]
               },
               "catchDecorator": {
@@ -921,7 +922,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                     "POST",
                     "PUT",
                     "PATCH",
-                    "DELETE"
+                    "DELETE",
+                    "HEAD"
                   ]
                 },
                 "catchDecorator": {
@@ -1461,7 +1463,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                       "POST",
                       "PUT",
                       "PATCH",
-                      "DELETE"
+                      "DELETE",
+                      "HEAD"
                     ]
                   },
                   "catchDecorator": {
@@ -2000,7 +2003,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                         "POST",
                         "PUT",
                         "PATCH",
-                        "DELETE"
+                        "DELETE",
+                        "HEAD"
                       ]
                     },
                     "catchDecorator": {
