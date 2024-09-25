@@ -88,7 +88,7 @@ const gitProviderTypeCapabilitySchema = {
   },
 } as const
 
-export const isGitProviderCapability = { type: 'object', properties: { name: { const: GIT_PROVIDER } } } as const
+const isGitProviderCapability = { type: 'object', properties: { name: { const: GIT_PROVIDER } } } as const
 
 export const providerTypeCapabilitySchema = {
   if: isGitProviderCapability,

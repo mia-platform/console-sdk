@@ -21,7 +21,6 @@ import { FromSchema } from 'json-schema-to-ts'
 import { CAPABILITIES } from '../constants/provider'
 import { credentialsSchema } from './credentials'
 import { VALIDATION_ERROR_ID } from '../strings'
-import { isGitProviderCapability } from './providerType'
 
 const providerFunctionalitiesSchema = {
   type: 'array',
@@ -39,7 +38,7 @@ const providerFunctionalitiesSchema = {
   },
 } as const
 
-const { GIT_PROVIDER, ...OTHER_CAPABILITIES } = CAPABILITIES
+const { GIT_PROVIDER, CI_CD_TOOL, ...OTHER_CAPABILITIES } = CAPABILITIES
 
 export const containerRegistryHostnameString = {
   type: 'string',
@@ -77,10 +76,27 @@ const gitProviderCapabilitySchema = {
   },
 } as const
 
+const ciCdToolProviderCapabilitySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'name',
+  ],
+  properties: {
+    name: { const: CI_CD_TOOL },
+    functionalities: providerFunctionalitiesSchema,
+    projectDeployPipelineNameTemplate: { type: 'string' },
+    servicesPipelineNameTemplate: { type: 'string' },
+    apiBaseUrlPathTemplate: { type: 'string' },
+  },
+} as const
+
 export const providerCapabilitySchema = {
-  if: isGitProviderCapability,
-  then: gitProviderCapabilitySchema,
-  else: otherCapabilitySchema,
+  oneOf: [
+    gitProviderCapabilitySchema,
+    ciCdToolProviderCapabilitySchema,
+    otherCapabilitySchema,
+  ],
 } as const
 
 export const providerCapabilitiesSchema = {

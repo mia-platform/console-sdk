@@ -70,10 +70,7 @@ export const pipelines = {
         providerId: { type: 'string' },
         type: {
           type: 'string',
-          // FIXME: not causes bad typing, use enum directly
-          not: {
-            enum: [DEPLOYMENT_TYPES.AZURE_PIPELINES, DEPLOYMENT_TYPES.JENKINS],
-          },
+          enum: [DEPLOYMENT_TYPES.GITLAB_CI, DEPLOYMENT_TYPES.GITHUB, DEPLOYMENT_TYPES.WEBHOOK],
         },
         statusWebhookSecretCredentialsId: { type: 'string' },
       },
@@ -93,6 +90,7 @@ export const pipelines = {
       properties: {
         type: { type: 'string', enum: [DEPLOYMENT_TYPES.JENKINS] },
         providerId: { type: 'string' },
+        jobId: { type: 'string' },
         options: {
           type: 'object',
           properties: {
@@ -102,6 +100,7 @@ export const pipelines = {
                 name: { type: 'string' },
               },
             },
+            apiBaseUrlPath: { type: 'string' },
           },
         },
       },

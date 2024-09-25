@@ -252,76 +252,105 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
     "capabilities": {
       "type": "array",
       "items": {
-        "if": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "const": "git-provider"
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "git-provider"
+              },
+              "functionalities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "repositoryPathTemplate": {
+                "type": "string"
+              }
             }
-          }
-        },
-        "then": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "name"
-          ],
-          "properties": {
-            "name": {
-              "const": "git-provider"
-            },
-            "functionalities": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": [
-                  "name"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "ci-cd-tool"
+              },
+              "functionalities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "projectDeployPipelineNameTemplate": {
+                "type": "string"
+              },
+              "servicesPipelineNameTemplate": {
+                "type": "string"
+              },
+              "apiBaseUrlPathTemplate": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [
+                  "secret-manager",
+                  "orchestrator-generator"
+                ]
+              },
+              "functionalities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
                   }
                 }
               }
-            },
-            "repositoryPathTemplate": {
-              "type": "string"
             }
           }
-        },
-        "else": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "name"
-          ],
-          "properties": {
-            "name": {
-              "type": "string",
-              "enum": [
-                "secret-manager",
-                "ci-cd-tool",
-                "orchestrator-generator"
-              ]
-            },
-            "functionalities": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": [
-                  "name"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     }
   },
