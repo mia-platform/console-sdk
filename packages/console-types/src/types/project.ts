@@ -90,6 +90,7 @@ export const pipelines = {
       properties: {
         type: { type: 'string', enum: [DEPLOYMENT_TYPES.JENKINS] },
         providerId: { type: 'string' },
+        jobId: { type: 'string' },
         options: {
           type: 'object',
           properties: {
