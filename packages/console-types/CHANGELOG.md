@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.22.0
+
+### Minor Changes
+
+- 986c56b: add HEAD verb for endpoint routes
+
 ## 0.21.8
 
 ### Patch Changes

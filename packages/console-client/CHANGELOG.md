@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.0
+
+### Minor Changes
+
+- 986c56b: expose userinfo api
+
 ## 0.2.9
 
 ### Patch Changes
