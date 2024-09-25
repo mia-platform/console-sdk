@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.23.0
+
+### Minor Changes
+
+- a80cf97: feat: add Jenkins pipeline and url templates to provider and project
+
 ## 0.22.0
 
 ### Minor Changes
