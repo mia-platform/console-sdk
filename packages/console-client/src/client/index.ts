@@ -25,6 +25,7 @@ import {
 } from '../kiota-client/consoleClient'
 import { ExtensibilityRequestBuilder } from '../kiota-client/api/extensibility'
 import { UserinfoRequestBuilder } from '../kiota-client/api/userinfo'
+import { MarketplaceRequestBuilder } from '../kiota-client/api/marketplace'
 
 export { ConsoleRequestError } from './http/axios/errors'
 
@@ -41,6 +42,7 @@ class NullAccessTokenProvider implements AuthenticationProvider {
 export type IConsoleClient = {
   get extensibility(): ExtensibilityRequestBuilder,
   get userinfo(): UserinfoRequestBuilder,
+  get marketplace(): MarketplaceRequestBuilder
 }
 
 export type ConsoleClientOptions = {
@@ -76,5 +78,9 @@ export class ConsoleClient implements IConsoleClient {
 
   get userinfo(): UserinfoRequestBuilder {
     return this.client.api.userinfo
+  }
+
+  get marketplace(): MarketplaceRequestBuilder {
+    return this.client.api.marketplace
   }
 }

@@ -4,6 +4,8 @@
 // @ts-ignore
 import { ExtensibilityRequestBuilderNavigationMetadata, type ExtensibilityRequestBuilder } from './extensibility/index.js';
 // @ts-ignore
+import { MarketplaceRequestBuilderNavigationMetadata, MarketplaceRequestBuilderRequestsMetadata, type MarketplaceRequestBuilder } from './marketplace/index.js';
+// @ts-ignore
 import { type UserinfoRequestBuilder, UserinfoRequestBuilderRequestsMetadata } from './userinfo/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata } from '@microsoft/kiota-abstractions';
@@ -16,6 +18,10 @@ export interface ApiRequestBuilder extends BaseRequestBuilder<ApiRequestBuilder>
      * The extensibility property
      */
     get extensibility(): ExtensibilityRequestBuilder;
+    /**
+     * The marketplace property
+     */
+    get marketplace(): MarketplaceRequestBuilder;
     /**
      * The userinfo property
      */
@@ -31,6 +37,10 @@ export const ApiRequestBuilderUriTemplate = "{+baseurl}/api";
 export const ApiRequestBuilderNavigationMetadata: Record<Exclude<keyof ApiRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     extensibility: {
         navigationMetadata: ExtensibilityRequestBuilderNavigationMetadata,
+    },
+    marketplace: {
+        requestsMetadata: MarketplaceRequestBuilderRequestsMetadata,
+        navigationMetadata: MarketplaceRequestBuilderNavigationMetadata,
     },
     userinfo: {
         requestsMetadata: UserinfoRequestBuilderRequestsMetadata,
