@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.1
+
+### Patch Changes
+
+- e4ba70a: Exposed GET marketplace endpoints
+
 ## 0.3.0
 
 ### Minor Changes
