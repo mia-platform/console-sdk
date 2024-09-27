@@ -21,6 +21,8 @@ export type {
   UserinfoGetResponse_metadata as UserinfoGetResponseMetadata,
 } from './kiota-client/api/userinfo'
 
+export type { MarketplaceItem, MarketplaceItemVersion } from './kiota-client/models'
+
 export {
   type IConsoleClient,
   type ConsoleClientOptions,
