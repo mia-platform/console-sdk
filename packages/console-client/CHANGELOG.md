@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.2
+
+### Patch Changes
+
+- fc85231: expose marketplace categories list api
+
 ## 0.3.1
 
 ### Patch Changes
