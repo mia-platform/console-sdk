@@ -4085,6 +4085,21 @@ Object {
                             "type": "string",
                             "x-validation-error-id": "resourceName.patternError",
                           },
+                          "runtime": Object {
+                            "properties": Object {
+                              "resourceId": Object {
+                                "description": "Example: for k8s custom resource is names.plural",
+                                "type": "string",
+                              },
+                              "type": Object {
+                                "type": "string",
+                              },
+                            },
+                            "required": Array [
+                              "type",
+                            ],
+                            "type": "object",
+                          },
                           "sourceMarketplaceItem": Object {
                             "properties": Object {
                               "detached": Object {
