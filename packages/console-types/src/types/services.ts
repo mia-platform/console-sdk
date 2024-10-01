@@ -835,6 +835,17 @@ export const customResource = {
       },
       required: ['kind', 'apiVersion'],
     },
+    runtime: {
+      type: 'object',
+      required: ['type'],
+      properties: {
+        type: { type: 'string' },
+        resourceId: {
+          type: 'string',
+          description: 'Example: for k8s custom resource is names.plural',
+        },
+      },
+    },
     spec: {
       type: 'object',
       additionalProperties: true,
