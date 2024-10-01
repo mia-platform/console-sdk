@@ -4,6 +4,8 @@
 // @ts-ignore
 import { createMarketplaceItemFromDiscriminatorValue, type MarketplaceItem } from '../../models/index.js';
 // @ts-ignore
+import { CategoriesRequestBuilderRequestsMetadata, type CategoriesRequestBuilder } from './categories/index.js';
+// @ts-ignore
 import { TenantsRequestBuilderNavigationMetadata, type TenantsRequestBuilder } from './tenants/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
@@ -12,6 +14,10 @@ import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type 
  * Builds and executes requests for operations under /api/marketplace
  */
 export interface MarketplaceRequestBuilder extends BaseRequestBuilder<MarketplaceRequestBuilder> {
+    /**
+     * The categories property
+     */
+    get categories(): CategoriesRequestBuilder;
     /**
      * The tenants property
      */
@@ -62,6 +68,9 @@ export const MarketplaceRequestBuilderUriTemplate = "{+baseurl}/api/marketplace{
  * Metadata for all the navigation properties in the request builder.
  */
 export const MarketplaceRequestBuilderNavigationMetadata: Record<Exclude<keyof MarketplaceRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    categories: {
+        requestsMetadata: CategoriesRequestBuilderRequestsMetadata,
+    },
     tenants: {
         navigationMetadata: TenantsRequestBuilderNavigationMetadata,
     },

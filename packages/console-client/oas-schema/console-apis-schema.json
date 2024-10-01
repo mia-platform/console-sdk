@@ -1636,7 +1636,44 @@
                             "application/json": {
                                 "schema": {
                                     "type": "array",
-                                    "items": { "$ref": "#/components/schemas/marketplaceItem" }
+                                    "items": {
+                                        "$ref": "#/components/schemas/marketplaceItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/marketplace/categories": {
+            "get": {
+                "tags": [
+                    "marketplace"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "categoryId": {
+                                                "type": "string"
+                                            },
+                                            "label": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "additionalProperties": false,
+                                        "required": [
+                                            "categoryId",
+                                            "label"
+                                        ]
+                                    }
                                 }
                             }
                         }
@@ -1674,7 +1711,9 @@
                             "application/json": {
                                 "schema": {
                                     "type": "array",
-                                    "items": { "$ref": "#/components/schemas/marketplaceItemVersion" }
+                                    "items": {
+                                        "$ref": "#/components/schemas/marketplaceItemVersion"
+                                    }
                                 }
                             }
                         }
@@ -1718,7 +1757,9 @@
                         "description": "Default Response",
                         "content": {
                             "application/json": {
-                                "schema": { "$ref": "#/components/schemas/marketplaceItem" }
+                                "schema": {
+                                    "$ref": "#/components/schemas/marketplaceItem"
+                                }
                             }
                         }
                     }
