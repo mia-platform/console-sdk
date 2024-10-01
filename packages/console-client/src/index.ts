@@ -22,6 +22,7 @@ export type {
 } from './kiota-client/api/userinfo'
 
 export type { MarketplaceItem, MarketplaceItemVersion } from './kiota-client/models'
+export type { Categories as MarketplaceCategory } from './kiota-client/api/marketplace/categories'
 
 export {
   type IConsoleClient,
