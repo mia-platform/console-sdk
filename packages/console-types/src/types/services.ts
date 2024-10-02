@@ -839,7 +839,10 @@ export const customResource = {
       type: 'object',
       required: ['type'],
       properties: {
-        type: { type: 'string' },
+        type: { 
+          type: 'string',
+          const: 'kubernetes',
+        },
         resourceId: {
           type: 'string',
           description: 'Example: for k8s custom resource is names.plural',
