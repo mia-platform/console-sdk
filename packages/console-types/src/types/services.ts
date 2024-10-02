@@ -839,7 +839,7 @@ export const customResource = {
       type: 'object',
       required: ['type'],
       properties: {
-        type: { 
+        type: {
           type: 'string',
           const: 'kubernetes',
         },
