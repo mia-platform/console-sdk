@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.23.1
+
+### Patch Changes
+
+- be71a60: added new runtime field to marketplace custom resource item
+
 ## 0.23.0
 
 ### Minor Changes
