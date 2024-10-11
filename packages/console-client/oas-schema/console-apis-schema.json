@@ -166,6 +166,10 @@
                                             "entry": {
                                                 "type": "string"
                                             },
+                                            "configuration": {
+                                                "type": "object",
+                                                "additionalProperties": true
+                                            },
                                             "microfrontendId": {
                                                 "type": "string"
                                             },
@@ -236,8 +240,7 @@
                                         },
                                         "required": [
                                             "microfrontendId",
-                                            "type",
-                                            "entry"
+                                            "type"
                                         ],
                                         "type": "object"
                                     },
@@ -457,6 +460,9 @@
                                             "entry": {
                                                 "type": "string"
                                             },
+                                            "configuration": {
+                                                "type": "string"
+                                            },
                                             "extensionId": {
                                                 "type": "string"
                                             },
@@ -520,7 +526,6 @@
                                         "required": [
                                             "extensionId",
                                             "name",
-                                            "entry",
                                             "type",
                                             "destination",
                                             "activationContexts"
@@ -630,6 +635,9 @@
                                     "entry": {
                                         "type": "string"
                                     },
+                                    "configuration": {
+                                        "type": "string"
+                                    },
                                     "extensionId": {
                                         "type": "string"
                                     },
@@ -673,7 +681,6 @@
                                 },
                                 "required": [
                                     "name",
-                                    "entry",
                                     "type",
                                     "destination",
                                     "activationContexts",
@@ -887,6 +894,9 @@
                                         "entry": {
                                             "type": "string"
                                         },
+                                        "configuration": {
+                                            "type": "string"
+                                        },
                                         "extensionId": {
                                             "type": "string"
                                         },
@@ -950,7 +960,6 @@
                                     "required": [
                                         "extensionId",
                                         "name",
-                                        "entry",
                                         "type",
                                         "destination",
                                         "activationContexts"

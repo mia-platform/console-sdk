@@ -101,6 +101,7 @@ export function deserializeIntoWithExtensionGetResponse(withExtensionGetResponse
     return {
         "activationContexts": n => { withExtensionGetResponse.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
         "category": n => { withExtensionGetResponse.category = n.getObjectValue<WithExtensionGetResponse_category>(createWithExtensionGetResponse_categoryFromDiscriminatorValue); },
+        "configuration": n => { withExtensionGetResponse.configuration = n.getStringValue(); },
         "description": n => { withExtensionGetResponse.description = n.getStringValue(); },
         "destination": n => { withExtensionGetResponse.destination = n.getObjectValue<WithExtensionGetResponse_destination>(createWithExtensionGetResponse_destinationFromDiscriminatorValue); },
         "entry": n => { withExtensionGetResponse.entry = n.getStringValue(); },
@@ -197,6 +198,7 @@ export function serializeWithExtensionGetResponse(writer: SerializationWriter, w
     if (withExtensionGetResponse) {
         writer.writeCollectionOfPrimitiveValues<string>("activationContexts", withExtensionGetResponse.activationContexts);
         writer.writeObjectValue<WithExtensionGetResponse_category>("category", withExtensionGetResponse.category, serializeWithExtensionGetResponse_category);
+        writer.writeStringValue("configuration", withExtensionGetResponse.configuration);
         writer.writeStringValue("description", withExtensionGetResponse.description);
         writer.writeObjectValue<WithExtensionGetResponse_destination>("destination", withExtensionGetResponse.destination, serializeWithExtensionGetResponse_destination);
         writer.writeStringValue("entry", withExtensionGetResponse.entry);
@@ -300,6 +302,10 @@ export interface WithExtensionGetResponse extends Parsable {
      * The category property
      */
     category?: WithExtensionGetResponse_category | null;
+    /**
+     * The configuration property
+     */
+    configuration?: string | null;
     /**
      * The description property
      */

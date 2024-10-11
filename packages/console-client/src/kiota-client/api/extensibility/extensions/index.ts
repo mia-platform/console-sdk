@@ -7,6 +7,15 @@ import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_configuration}
+ */
+// @ts-ignore
+export function createExtensions_configurationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_configuration;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_routes_icon}
  */
 // @ts-ignore
@@ -65,10 +74,20 @@ export function createExtensionsFromDiscriminatorValue(parseNode: ParseNode | un
 // @ts-ignore
 export function deserializeIntoExtensions(extensions: Partial<Extensions> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "configuration": n => { extensions.configuration = n.getObjectValue<Extensions_configuration>(createExtensions_configurationFromDiscriminatorValue); },
         "entry": n => { extensions.entry = n.getStringValue(); },
         "microfrontendId": n => { extensions.microfrontendId = n.getStringValue(); },
         "routes": n => { extensions.routes = n.getCollectionOfObjectValues<Extensions_routes>(createExtensions_routesFromDiscriminatorValue); },
         "type": n => { extensions.type = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoExtensions_configuration(extensions_configuration: Partial<Extensions_configuration> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
     }
 }
 /**
@@ -134,6 +153,10 @@ export function deserializeIntoExtensions500Error(extensions500Error: Partial<Ex
 }
 export interface Extensions extends Parsable {
     /**
+     * The configuration property
+     */
+    configuration?: Extensions_configuration | null;
+    /**
      * The entry property
      */
     entry?: string | null;
@@ -149,6 +172,12 @@ export interface Extensions extends Parsable {
      * The type property
      */
     type?: string | null;
+}
+export interface Extensions_configuration extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
 }
 export interface Extensions_routes extends Parsable {
     /**
@@ -266,10 +295,21 @@ export interface ExtensionsRequestBuilderGetQueryParameters {
 // @ts-ignore
 export function serializeExtensions(writer: SerializationWriter, extensions: Partial<Extensions> | undefined | null = {}) : void {
     if (extensions) {
+        writer.writeObjectValue<Extensions_configuration>("configuration", extensions.configuration, serializeExtensions_configuration);
         writer.writeStringValue("entry", extensions.entry);
         writer.writeStringValue("microfrontendId", extensions.microfrontendId);
         writer.writeCollectionOfObjectValues<Extensions_routes>("routes", extensions.routes, serializeExtensions_routes);
         writer.writeStringValue("type", extensions.type);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeExtensions_configuration(writer: SerializationWriter, extensions_configuration: Partial<Extensions_configuration> | undefined | null = {}) : void {
+    if (extensions_configuration) {
+        writer.writeAdditionalData(extensions_configuration.additionalData);
     }
 }
 /**
