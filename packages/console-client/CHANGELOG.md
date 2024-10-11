@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.3
+
+### Patch Changes
+
+- c796de3: added configuration field to extension type
+
 ## 0.3.2
 
 ### Patch Changes
