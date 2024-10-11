@@ -159,6 +159,7 @@ export function deserializeIntoExtensions(extensions: Partial<Extensions> | unde
     return {
         "activationContexts": n => { extensions.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
         "category": n => { extensions.category = n.getObjectValue<Extensions_category>(createExtensions_categoryFromDiscriminatorValue); },
+        "configuration": n => { extensions.configuration = n.getStringValue(); },
         "description": n => { extensions.description = n.getStringValue(); },
         "destination": n => { extensions.destination = n.getObjectValue<Extensions_destination>(createExtensions_destinationFromDiscriminatorValue); },
         "entry": n => { extensions.entry = n.getStringValue(); },
@@ -266,6 +267,7 @@ export function deserializeIntoExtensionsPutRequestBody(extensionsPutRequestBody
     return {
         "activationContexts": n => { extensionsPutRequestBody.activationContexts = n.getCollectionOfPrimitiveValues<string>(); },
         "category": n => { extensionsPutRequestBody.category = n.getObjectValue<ExtensionsPutRequestBody_category>(createExtensionsPutRequestBody_categoryFromDiscriminatorValue); },
+        "configuration": n => { extensionsPutRequestBody.configuration = n.getStringValue(); },
         "description": n => { extensionsPutRequestBody.description = n.getStringValue(); },
         "destination": n => { extensionsPutRequestBody.destination = n.getObjectValue<ExtensionsPutRequestBody_destination>(createExtensionsPutRequestBody_destinationFromDiscriminatorValue); },
         "entry": n => { extensionsPutRequestBody.entry = n.getStringValue(); },
@@ -349,6 +351,10 @@ export interface Extensions extends Parsable {
      * The category property
      */
     category?: Extensions_category | null;
+    /**
+     * The configuration property
+     */
+    configuration?: string | null;
     /**
      * The description property
      */
@@ -487,6 +493,10 @@ export interface ExtensionsPutRequestBody extends Parsable {
      * The category property
      */
     category?: ExtensionsPutRequestBody_category | null;
+    /**
+     * The configuration property
+     */
+    configuration?: string | null;
     /**
      * The description property
      */
@@ -628,6 +638,7 @@ export function serializeExtensions(writer: SerializationWriter, extensions: Par
     if (extensions) {
         writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensions.activationContexts);
         writer.writeObjectValue<Extensions_category>("category", extensions.category, serializeExtensions_category);
+        writer.writeStringValue("configuration", extensions.configuration);
         writer.writeStringValue("description", extensions.description);
         writer.writeObjectValue<Extensions_destination>("destination", extensions.destination, serializeExtensions_destination);
         writer.writeStringValue("entry", extensions.entry);
@@ -739,6 +750,7 @@ export function serializeExtensionsPutRequestBody(writer: SerializationWriter, e
     if (extensionsPutRequestBody) {
         writer.writeCollectionOfPrimitiveValues<string>("activationContexts", extensionsPutRequestBody.activationContexts);
         writer.writeObjectValue<ExtensionsPutRequestBody_category>("category", extensionsPutRequestBody.category, serializeExtensionsPutRequestBody_category);
+        writer.writeStringValue("configuration", extensionsPutRequestBody.configuration);
         writer.writeStringValue("description", extensionsPutRequestBody.description);
         writer.writeObjectValue<ExtensionsPutRequestBody_destination>("destination", extensionsPutRequestBody.destination, serializeExtensionsPutRequestBody_destination);
         writer.writeStringValue("entry", extensionsPutRequestBody.entry);
