@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.23.2
+
+### Patch Changes
+
+- e94584b: fix: misleading errors on validation copies
+
 ## 0.23.1
 
 ### Patch Changes
