@@ -1,5 +1,14 @@
 # @mia-platform/console-client
 
+## 0.3.4
+
+### Patch Changes
+
+- f25be20: exposed POST and DELETE marketplace APIs:
+  - POST `/api/marketplace/tenants/{tenantId}/files`
+  - POST `/api/marketplace/tenants/{tenantId}/resources`
+  - DELETE `/api/marketplace/tenants/{tenantId}/resources/{itemId}/versions`
+
 ## 0.3.3
 
 ### Patch Changes
