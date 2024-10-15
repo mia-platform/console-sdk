@@ -1695,6 +1695,34 @@
                 "tags": [
                     "marketplace"
                 ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "itemId": {
+                                        "type": "string"
+                                    },
+                                    "assetType": {
+                                        "type": "string",
+                                        "enum": ["imageAssetType", "supportedByImageAssetType"]
+                                    }
+                                },
+                                "required": [
+                                    "file",
+                                    "itemId",
+                                    "assetType"
+                                ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
                 "parameters": [
                     {
                         "schema": {
@@ -1769,7 +1797,11 @@
                                       "$ref": "#/components/schemas/marketplaceItem"
                                     }
                                   }
-                                }
+                                },
+                                "required": [
+                                    "resources"
+                                ],
+                                "additionalProperties": false
                             }
                         }
                     }

@@ -92,11 +92,7 @@ export function deserializeIntoResourcesPostResponse_items_validationErrors(reso
         "message": n => { resourcesPostResponse_items_validationErrors.message = n.getStringValue(); },
     }
 }
-export interface ResourcesPostRequestBody extends AdditionalDataHolder, Parsable {
-    /**
-     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-     */
-    additionalData?: Record<string, unknown>;
+export interface ResourcesPostRequestBody extends Parsable {
     /**
      * The resources property
      */
@@ -195,7 +191,6 @@ export interface ResourcesRequestBuilder extends BaseRequestBuilder<ResourcesReq
 export function serializeResourcesPostRequestBody(writer: SerializationWriter, resourcesPostRequestBody: Partial<ResourcesPostRequestBody> | undefined | null = {}) : void {
     if (resourcesPostRequestBody) {
         writer.writeCollectionOfObjectValues<MarketplaceItem>("resources", resourcesPostRequestBody.resources, serializeMarketplaceItem);
-        writer.writeAdditionalData(resourcesPostRequestBody.additionalData);
     }
 }
 /**

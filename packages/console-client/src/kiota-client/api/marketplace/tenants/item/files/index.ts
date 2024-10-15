@@ -7,11 +7,32 @@ import { type AdditionalDataHolder, type BaseRequestBuilder, type Parsable, type
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {FilesPostRequestBody}
+ */
+// @ts-ignore
+export function createFilesPostRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoFilesPostRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {FilesPostResponse}
  */
 // @ts-ignore
 export function createFilesPostResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoFilesPostResponse;
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoFilesPostRequestBody(filesPostRequestBody: Partial<FilesPostRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "assetType": n => { filesPostRequestBody.assetType = n.getEnumValue<FilesPostRequestBody_assetType>(FilesPostRequestBody_assetTypeObject); },
+        "file": n => { filesPostRequestBody.file = n.getStringValue(); },
+        "itemId": n => { filesPostRequestBody.itemId = n.getStringValue(); },
+    }
 }
 /**
  * The deserialization information for the current model
@@ -27,6 +48,21 @@ export function deserializeIntoFilesPostResponse(filesPostResponse: Partial<File
         "size": n => { filesPostResponse.size = n.getNumberValue(); },
     }
 }
+export interface FilesPostRequestBody extends Parsable {
+    /**
+     * The assetType property
+     */
+    assetType?: FilesPostRequestBody_assetType | null;
+    /**
+     * The file property
+     */
+    file?: string | null;
+    /**
+     * The itemId property
+     */
+    itemId?: string | null;
+}
+export type FilesPostRequestBody_assetType = (typeof FilesPostRequestBody_assetTypeObject)[keyof typeof FilesPostRequestBody_assetTypeObject];
 export interface FilesPostResponse extends AdditionalDataHolder, Parsable {
     /**
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -58,15 +94,29 @@ export interface FilesPostResponse extends AdditionalDataHolder, Parsable {
  */
 export interface FilesRequestBuilder extends BaseRequestBuilder<FilesRequestBuilder> {
     /**
+     * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<FilesPostResponse>}
      */
-     post(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<FilesPostResponse | undefined>;
+     post(body: FilesPostRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<FilesPostResponse | undefined>;
     /**
+     * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toPostRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toPostRequestInformation(body: FilesPostRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeFilesPostRequestBody(writer: SerializationWriter, filesPostRequestBody: Partial<FilesPostRequestBody> | undefined | null = {}) : void {
+    if (filesPostRequestBody) {
+        writer.writeEnumValue<FilesPostRequestBody_assetType>("assetType", filesPostRequestBody.assetType);
+        writer.writeStringValue("file", filesPostRequestBody.file);
+        writer.writeStringValue("itemId", filesPostRequestBody.itemId);
+    }
 }
 /**
  * Serializes information the current object
@@ -87,6 +137,10 @@ export function serializeFilesPostResponse(writer: SerializationWriter, filesPos
  * Uri template for the request builder.
  */
 export const FilesRequestBuilderUriTemplate = "{+baseurl}/api/marketplace/tenants/{tenantId}/files";
+export const FilesPostRequestBody_assetTypeObject = {
+    ImageAssetType: "imageAssetType",
+    SupportedByImageAssetType: "supportedByImageAssetType",
+} as const;
 /**
  * Metadata for all the requests in the request builder.
  */
@@ -96,6 +150,9 @@ export const FilesRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         adapterMethodName: "send",
         responseBodyFactory:  createFilesPostResponseFromDiscriminatorValue,
+        requestBodyContentType: "multipart/form-data",
+        requestBodySerializer: serializeFilesPostRequestBody,
+        requestInformationContentSetMethod: "setContentFromParsable",
     },
 };
 /* tslint:enable */
