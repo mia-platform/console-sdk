@@ -12,9 +12,18 @@ import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type Requ
 export interface WithVersionItemRequestBuilder extends BaseRequestBuilder<WithVersionItemRequestBuilder> {
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     */
+     delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
+    /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<MarketplaceItem>}
      */
      get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<MarketplaceItem | undefined>;
+    /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {RequestInformation}
+     */
+     toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -29,6 +38,11 @@ export const WithVersionItemRequestBuilderUriTemplate = "{+baseurl}/api/marketpl
  * Metadata for all the requests in the request builder.
  */
 export const WithVersionItemRequestBuilderRequestsMetadata: RequestsMetadata = {
+    delete: {
+        uriTemplate: WithVersionItemRequestBuilderUriTemplate,
+        responseBodyContentType: "application/json",
+        adapterMethodName: "sendNoResponseContent",
+    },
     get: {
         uriTemplate: WithVersionItemRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",

@@ -1690,6 +1690,161 @@
                 }
             }
         },
+        "/api/marketplace/tenants/{tenantId}/files": {
+            "post": {
+                "tags": [
+                    "marketplace"
+                ],
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true
+                    },
+                    {
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^multipart/form-data"
+                        },
+                        "in": "header",
+                        "name": "content-type",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "file": {
+                                            "type": "string"
+                                        },
+                                        "size": {
+                                            "type": "number"
+                                        },
+                                        "location": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "_id",
+                                        "name",
+                                        "file",
+                                        "size",
+                                        "location"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/marketplace/tenants/{tenantId}/resources": {
+            "post": {
+                "tags": [
+                    "marketplace"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/marketplaceItem"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Default Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "done": {
+                                            "type": "boolean"
+                                        },
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "_id": {
+                                                        "type": "string"
+                                                    },
+                                                    "done": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "itemId": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "inserted": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "updated": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "validationErrors": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "message": {
+                                                                    "type": "string"
+                                                                },
+                                                                "field": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "done",
+                                                    "inserted",
+                                                    "updated",
+                                                    "validationErrors"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "done",
+                                        "items"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/marketplace/tenants/{tenantId}/resources/{itemId}/versions": {
             "get": {
                 "tags": [
@@ -1768,6 +1923,50 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/marketplaceItem"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "marketplace"
+                ],
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "name": "itemId",
+                        "required": true
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "name": "version",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Default Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
                                 }
                             }
                         }
