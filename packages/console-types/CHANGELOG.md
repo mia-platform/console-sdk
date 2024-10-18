@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.23.3
+
+### Patch Changes
+
+- d9ba206: feat: add repoUrl and sshUrl to custom resources
+
 ## 0.23.2
 
 ### Patch Changes
