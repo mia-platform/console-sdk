@@ -216,6 +216,8 @@ t.test('services', t => {
       spec: {
         myField: 'myValue',
       },
+      sshUrl: 'example.com',
+      webUrl: 'example.com',
     }
     t.ok(validate(service), validationMessage(validate.errors))
     t.end()

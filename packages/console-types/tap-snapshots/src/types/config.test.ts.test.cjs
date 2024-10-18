@@ -4085,6 +4085,11 @@ Object {
                             "type": "string",
                             "x-validation-error-id": "resourceName.patternError",
                           },
+                          "repoUrl": Object {
+                            "pattern": "^https?:\\\\/\\\\/([^:\\\\/\\\\s]+)((:[0-9]{1,5})?(\\\\/.*)?)([^\\\\/:])\\\\/?$",
+                            "type": "string",
+                            "x-validation-error-id": "url.patternError",
+                          },
                           "runtime": Object {
                             "properties": Object {
                               "resourceId": Object {
@@ -4126,6 +4131,9 @@ Object {
                           "spec": Object {
                             "additionalProperties": true,
                             "type": "object",
+                          },
+                          "sshUrl": Object {
+                            "type": "string",
                           },
                           "type": Object {
                             "const": "custom-resource",
