@@ -826,7 +826,7 @@ export const customResource = {
     name: serviceName,
     description,
     type: { type: 'string', const: ServiceTypes.CUSTOM_RESOURCE },
-    ...pick(['generatedFrom', 'sourceMarketplaceItem'], container.properties),
+    ...pick(['generatedFrom', 'sourceMarketplaceItem', 'repoUrl', 'sshUrl'], container.properties),
     meta: {
       type: 'object',
       properties: {
