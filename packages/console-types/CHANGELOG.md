@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.0
+
+### Minor Changes
+
+- 13e95a1: feat(IDP-1803): add service container registry name to service type
+
 ## 0.23.3
 
 ### Patch Changes
