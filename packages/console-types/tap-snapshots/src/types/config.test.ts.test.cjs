@@ -4785,6 +4785,9 @@ Object {
                       },
                       "type": "array",
                     },
+                    "containerRegistryName": Object {
+                      "type": "string",
+                    },
                     "createdAt": Object {
                       "type": "string",
                     },
@@ -5502,6 +5505,9 @@ Object {
                   "type": "object",
                 },
                 "type": "array",
+              },
+              "containerRegistryName": Object {
+                "type": "string",
               },
               "createdAt": Object {
                 "type": "string",
