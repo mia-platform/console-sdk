@@ -1,5 +1,11 @@
 # @mia-platform/console-sdk-webpack-helpers
 
+## 0.0.70
+
+### Patch Changes
+
+- ca5ec84: added: handling undefined props cases
+
 ## 0.0.69
 
 ### Patch Changes
