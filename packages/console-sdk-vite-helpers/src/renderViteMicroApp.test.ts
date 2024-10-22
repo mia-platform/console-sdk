@@ -62,6 +62,14 @@ describe('Vite Micro App Rendering', () => {
     expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, undefined)
   })
 
+  it('should mount the micro app on empty props', () => {
+    decorateLifecycleFunction(viteParamsMock.mount)({})
+    decorateLifecycleFunction(viteParamsMock.unmount)({})
+
+    expect(viteParamsMock.mount).toHaveBeenCalledWith(false, undefined)
+    expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, undefined)
+  })
+
   it('should unmount the micro app', () => {
     decorateLifecycleFunction(viteParamsMock.unmount)(qiankunPropsMock)
     expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
