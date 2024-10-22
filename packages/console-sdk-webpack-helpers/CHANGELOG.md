@@ -1,5 +1,11 @@
 # @mia-platform/console-sdk-webpack-helpers
 
+## 0.0.71
+
+### Patch Changes
+
+- 1335a4d: added: edge case for empty props
+
 ## 0.0.70
 
 ### Patch Changes
