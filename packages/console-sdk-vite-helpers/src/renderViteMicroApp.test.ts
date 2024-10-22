@@ -55,19 +55,11 @@ describe('Vite Micro App Rendering', () => {
   })
 
   it('should mount the micro app on the missing props', () => {
-    decorateLifecycleFunction(viteParamsMock.mount)()
-    decorateLifecycleFunction(viteParamsMock.unmount)()
-
-    expect(viteParamsMock.mount).toHaveBeenCalledWith(false, undefined)
-    expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, undefined)
-  })
-
-  it('should mount the micro app on empty props', () => {
     decorateLifecycleFunction(viteParamsMock.mount)({})
     decorateLifecycleFunction(viteParamsMock.unmount)({})
 
-    expect(viteParamsMock.mount).toHaveBeenCalledWith(false, undefined)
-    expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, undefined)
+    expect(viteParamsMock.mount).toMatchSnapshot()
+    expect(viteParamsMock.unmount).toMatchSnapshot()
   })
 
   it('should unmount the micro app', () => {

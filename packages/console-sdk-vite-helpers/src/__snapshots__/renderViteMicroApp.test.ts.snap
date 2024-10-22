@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Vite Micro App Rendering should mount the micro app on the missing props 1`] = `
+[MockFunction] {
+  "calls": [
+    [
+      false,
+      MicrofrontendIntegrator {
+        "configObservable": {
+          "_version": "0.2.31",
+          "collections": undefined,
+          "configMaps": undefined,
+          "endpoints": undefined,
+          "forceConfigUpdateChecksum": undefined,
+          "microfrontendPluginConfig": undefined,
+          "selectedEnvironment": undefined,
+          "selectedProject": undefined,
+          "services": undefined,
+          "unsecretedVariables": undefined,
+        },
+        "consoleWriteConfig": [MockFunction],
+        "container": <div
+          id="__qiankun_microapp_wrapper_for_microfrontend__"
+        />,
+        "contexts": {
+          "featureTogglesProxyContext": undefined,
+          "hotkeysContext": undefined,
+        },
+        "events": Subject {
+          "closed": false,
+          "currentObservers": null,
+          "hasError": false,
+          "isStopped": false,
+          "observers": [
+            SafeSubscriber {
+              "_finalizers": [
+                Subscription {
+                  "_finalizers": null,
+                  "_parentage": [Circular],
+                  "closed": false,
+                  "initialTeardown": [Function],
+                },
+              ],
+              "_parentage": null,
+              "closed": false,
+              "destination": ConsumerObserver {
+                "partialObserver": {
+                  "complete": undefined,
+                  "error": undefined,
+                  "next": [MockFunction],
+                },
+              },
+              "initialTeardown": undefined,
+              "isStopped": false,
+            },
+          ],
+          "thrownError": null,
+        },
+        "name": "testMicrofrontend",
+      },
+    ],
+    [
+      false,
+      MicrofrontendIntegrator {
+        "configObservable": {
+          "_version": "0.2.31",
+          "collections": undefined,
+          "configMaps": undefined,
+          "endpoints": undefined,
+          "forceConfigUpdateChecksum": undefined,
+          "microfrontendPluginConfig": undefined,
+          "selectedEnvironment": undefined,
+          "selectedProject": undefined,
+          "services": undefined,
+          "unsecretedVariables": undefined,
+        },
+        "consoleWriteConfig": undefined,
+        "container": undefined,
+        "contexts": {
+          "featureTogglesProxyContext": undefined,
+          "hotkeysContext": undefined,
+        },
+        "events": Subject {
+          "closed": false,
+          "currentObservers": null,
+          "hasError": false,
+          "isStopped": false,
+          "observers": [
+            SafeSubscriber {
+              "_finalizers": [
+                Subscription {
+                  "_finalizers": null,
+                  "_parentage": [Circular],
+                  "closed": false,
+                  "initialTeardown": [Function],
+                },
+              ],
+              "_parentage": null,
+              "closed": false,
+              "destination": ConsumerObserver {
+                "partialObserver": {
+                  "complete": undefined,
+                  "error": undefined,
+                  "next": undefined,
+                },
+              },
+              "initialTeardown": undefined,
+              "isStopped": false,
+            },
+          ],
+          "thrownError": null,
+        },
+        "name": undefined,
+      },
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Vite Micro App Rendering should mount the micro app on the missing props 2`] = `
+[MockFunction] {
+  "calls": [
+    [
+      false,
+      MicrofrontendIntegrator {
+        "configObservable": {
+          "_version": "0.2.31",
+          "collections": undefined,
+          "configMaps": undefined,
+          "endpoints": undefined,
+          "forceConfigUpdateChecksum": undefined,
+          "microfrontendPluginConfig": undefined,
+          "selectedEnvironment": undefined,
+          "selectedProject": undefined,
+          "services": undefined,
+          "unsecretedVariables": undefined,
+        },
+        "consoleWriteConfig": undefined,
+        "container": undefined,
+        "contexts": {
+          "featureTogglesProxyContext": undefined,
+          "hotkeysContext": undefined,
+        },
+        "events": Subject {
+          "closed": false,
+          "currentObservers": null,
+          "hasError": false,
+          "isStopped": false,
+          "observers": [
+            SafeSubscriber {
+              "_finalizers": [
+                Subscription {
+                  "_finalizers": null,
+                  "_parentage": [Circular],
+                  "closed": false,
+                  "initialTeardown": [Function],
+                },
+              ],
+              "_parentage": null,
+              "closed": false,
+              "destination": ConsumerObserver {
+                "partialObserver": {
+                  "complete": undefined,
+                  "error": undefined,
+                  "next": undefined,
+                },
+              },
+              "initialTeardown": undefined,
+              "isStopped": false,
+            },
+          ],
+          "thrownError": null,
+        },
+        "name": undefined,
+      },
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;

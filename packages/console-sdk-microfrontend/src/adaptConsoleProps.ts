@@ -41,13 +41,13 @@ export function getConsoleProps(props: IConsoleProps): ISDKProps {
     microfrontendPluginConfig,
     selectedEnvironment,
     selectedProject,
-  } = resourceAPI
+  } = resourceAPI || {}
 
   return {
     ...omit(['resourceAPI', 'eventListener', 'featureTogglesProxyContext', 'hotkeysContext'], props),
     container,
     console: {
-      _signals: resourceAPI._signals,
+      _signals: resourceAPI?._signals,
       writeConfig,
       eventBus: eventListener,
       contexts: {
