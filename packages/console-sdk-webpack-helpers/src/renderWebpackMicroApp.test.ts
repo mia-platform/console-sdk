@@ -75,6 +75,20 @@ describe('Webpack Micro App Rendering', () => {
     expect(isConnectedToConsole).toBe(false)
   })
 
+  it('should mount the micro app on the missing props', () => {
+    const decoratedMount = decorateLifecycleFunction(viteParamsMock.mount)
+    const decoratedUnmount = decorateLifecycleFunction(viteParamsMock.unmount)
+    const decoratedBootstrap = decorateLifecycleFunction(viteParamsMock.bootstrap)
+
+    decoratedMount({})
+    decoratedUnmount({})
+    decoratedBootstrap({})
+
+    expect(viteParamsMock.mount).toMatchSnapshot()
+    expect(viteParamsMock.unmount).toMatchSnapshot()
+    expect(viteParamsMock.bootstrap).toMatchSnapshot()
+  })
+
   it('should decorate a lifecycle function', () => {
     const decoratedMount = decorateLifecycleFunction(viteParamsMock.mount)
     const decoratedUnmount = decorateLifecycleFunction(viteParamsMock.unmount)

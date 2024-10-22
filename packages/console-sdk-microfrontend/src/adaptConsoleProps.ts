@@ -21,10 +21,10 @@ import { omit } from 'ramda'
 import { IConsoleProps, ISDKProps } from './types'
 import pkg from '../package.json'
 
-export function getConsoleProps(props: IConsoleProps = {} as IConsoleProps): ISDKProps {
+export function getConsoleProps(props: IConsoleProps): ISDKProps {
   const {
     eventListener,
-    resourceAPI = {} as IConsoleProps['resourceAPI'],
+    resourceAPI,
     featureTogglesProxyContext,
     hotkeysContext,
     container,
@@ -41,13 +41,13 @@ export function getConsoleProps(props: IConsoleProps = {} as IConsoleProps): ISD
     microfrontendPluginConfig,
     selectedEnvironment,
     selectedProject,
-  } = resourceAPI
+  } = resourceAPI || {}
 
   return {
     ...omit(['resourceAPI', 'eventListener', 'featureTogglesProxyContext', 'hotkeysContext'], props),
     container,
     console: {
-      _signals: resourceAPI._signals,
+      _signals: resourceAPI?._signals,
       writeConfig,
       eventBus: eventListener,
       contexts: {
