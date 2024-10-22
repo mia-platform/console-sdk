@@ -21,10 +21,10 @@ import { omit } from 'ramda'
 import { IConsoleProps, ISDKProps } from './types'
 import pkg from '../package.json'
 
-export function getConsoleProps(props: IConsoleProps): ISDKProps {
+export function getConsoleProps(props: IConsoleProps = {} as IConsoleProps): ISDKProps {
   const {
     eventListener,
-    resourceAPI,
+    resourceAPI = {} as IConsoleProps['resourceAPI'],
     featureTogglesProxyContext,
     hotkeysContext,
     container,
