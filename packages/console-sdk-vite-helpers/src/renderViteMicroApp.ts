@@ -49,7 +49,9 @@ export function getSDK(props: QiankunProps): SDKParams {
 export const decorateLifecycleFunction = (lifecycleFunction: IViteParams[keyof IViteParams]) => {
   return (props?: QiankunProps): void => {
     const defaultValues: SDKParams = { isConnectedToConsole: false, consoleSDK: undefined }
-    const { isConnectedToConsole, consoleSDK } = props ? getSDK(props) : defaultValues
+    const { isConnectedToConsole, consoleSDK } = props && Object.keys(props).length > 0
+      ? getSDK(props)
+      : defaultValues
 
     if (lifecycleFunction) {
       lifecycleFunction(isConnectedToConsole, consoleSDK)
