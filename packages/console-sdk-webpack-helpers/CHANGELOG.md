@@ -1,5 +1,13 @@
 # @mia-platform/console-sdk-webpack-helpers
 
+## 0.0.72
+
+### Patch Changes
+
+- 7a90fe7: fixed: missing console props
+- Updated dependencies [7a90fe7]
+  - @mia-platform/console-sdk-microfrontend@0.2.32
+
 ## 0.0.71
 
 ### Patch Changes
