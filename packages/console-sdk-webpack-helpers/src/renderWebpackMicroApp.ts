@@ -21,7 +21,7 @@ import { QiankunLifeCycle, QiankunProps, qiankunWindow } from 'vite-plugin-qiank
 
 export type ConsoleLifecycleFunction = (
   isConnectedToConsole: boolean,
-  consoleSDK: IMicrofrontendIntegrator,
+  consoleSDK: IMicrofrontendIntegrator | undefined,
 ) => void
 
 export type IViteParams = {
@@ -31,10 +31,12 @@ export type IViteParams = {
   bootstrap?: () => void
 }
 
-export function getSDK(props: IConsoleProps): {
-  consoleSDK: IMicrofrontendIntegrator
+type SDKParams = {
+  consoleSDK: IMicrofrontendIntegrator | undefined
   isConnectedToConsole: boolean
-} {
+}
+
+export function getSDK(props: IConsoleProps): SDKParams {
   const consoleSDK = new ConsoleSDK(props)
   const isConnectedToConsole = Boolean(qiankunWindow.__POWERED_BY_QIANKUN__)
 
@@ -45,8 +47,10 @@ export function getSDK(props: IConsoleProps): {
 }
 
 export const decorateLifecycleFunction = (lifecycleFunction: IViteParams[keyof IViteParams]) => {
-  return (props: QiankunProps): void => {
-    const { isConnectedToConsole, consoleSDK } = getSDK(props as IConsoleProps)
+  return (props?: QiankunProps): void => {
+    const defaultValues: SDKParams = { isConnectedToConsole: false, consoleSDK: undefined }
+    const { isConnectedToConsole, consoleSDK } = props ? getSDK(props as IConsoleProps) : defaultValues
+
     if (lifecycleFunction) {
       lifecycleFunction(isConnectedToConsole, consoleSDK)
     }
