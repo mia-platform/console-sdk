@@ -394,6 +394,10 @@ t.test('project validated', t => {
             isInheritedFromTenant: false,
           },
         },
+        saveChangesRules: [{
+          disallowedRuleSet: [{ jsonPath: 'test' }],
+          roleIds: ['testrole'],
+        }],
       },
       featureToggles: {
         viewBasicHomepage: true,

@@ -361,6 +361,28 @@ export const monitoring = {
   },
 } as const
 
+export const saveChangesRules = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      disallowedRuleSet: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            jsonPath: { type: 'string' },
+          },
+        },
+      },
+      roleIds: {
+        type: 'array',
+        items: { type: 'string' },
+      },
+    },
+  },
+} as const
+
 export const configurationManagement = {
   type: 'object',
   properties: {
@@ -376,6 +398,7 @@ export const configurationManagement = {
         },
       },
     },
+    saveChangesRules,
   },
 } as const
 
