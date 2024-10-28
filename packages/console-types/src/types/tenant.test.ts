@@ -82,6 +82,10 @@ t.test('tenants validated', t => {
         saveMessageOptions: {
           isConfirmationRequired: true,
         },
+        saveChangesRules: [{
+          disallowedRuleSet: [{ jsonPath: 'test' }],
+          roleIds: ['testrole'],
+        }],
       },
       enabledSecurityFeatures: {
         seccompProfile: true,

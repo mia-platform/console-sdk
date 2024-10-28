@@ -18,7 +18,7 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { availableNamespaces, containerRegistry, dockerImageNameSuggestion, environment, environmentsVariables, monitoring, pipelines } from './project'
+import { availableNamespaces, containerRegistry, dockerImageNameSuggestion, environment, environmentsVariables, monitoring, pipelines, saveChangesRules } from './project'
 import { REPOSITORY_TYPES } from '../constants/project'
 
 
@@ -75,6 +75,7 @@ export const tenant = {
             isConfirmationRequired: { type: 'boolean' },
           },
         },
+        saveChangesRules,
       },
     },
     dockerImageNameSuggestion,
