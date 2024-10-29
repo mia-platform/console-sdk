@@ -7,7 +7,7 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
       false,
       MicrofrontendIntegrator {
         "configObservable": {
-          "_version": "0.2.32",
+          "_version": "0.2.33",
           "collections": undefined,
           "configMaps": undefined,
           "endpoints": undefined,
@@ -63,7 +63,7 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
       false,
       MicrofrontendIntegrator {
         "configObservable": {
-          "_version": "0.2.32",
+          "_version": "0.2.33",
           "collections": undefined,
           "configMaps": undefined,
           "endpoints": undefined,
@@ -134,7 +134,7 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
       false,
       MicrofrontendIntegrator {
         "configObservable": {
-          "_version": "0.2.32",
+          "_version": "0.2.33",
           "collections": undefined,
           "configMaps": undefined,
           "endpoints": undefined,
