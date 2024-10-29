@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.1
+
+### Patch Changes
+
+- feat: added configurationManagement new rules for design
+
 ## 0.24.0
 
 ### Minor Changes
