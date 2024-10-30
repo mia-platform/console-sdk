@@ -47,6 +47,32 @@ const routeBooleanValue = {
   },
 } as const
 
+const routeRequestsPerSecond = {
+  type: 'object',
+  default: { inherited: true },
+  if: { type: 'object', properties: { inherited: { type: 'boolean', const: false } } },
+  then: {
+    type: 'object',
+    properties: {
+      inherited: { type: 'boolean', const: false },
+      requestsPerSecond: {
+        type: 'number',
+        description: 'The number of seconds to wait before the request is rejected',
+      },
+    },
+    required: ['inherited', 'requestsPerSecond'],
+    additionalProperties: false,
+  },
+  else: {
+    type: 'object',
+    properties: {
+      inherited: { type: 'boolean', const: true },
+    },
+    required: ['inherited'],
+    additionalProperties: false,
+  },
+} as const
+
 export const path = {
   type: 'string',
   pattern: '^\\/(([\\w\\-:])\\/?)*$',
@@ -108,6 +134,8 @@ const endpointRoute = {
   catchDecorator: { type: 'string' },
   preDecorators: { type: 'array', items: { type: 'string' }, default: [] },
   postDecorators: { type: 'array', items: { type: 'string' }, default: [] },
+  // TODO: check this
+  rateLimit: routeRequestsPerSecond,
 } as const
 
 const endpointTimeout = {
