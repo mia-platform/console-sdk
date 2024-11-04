@@ -240,6 +240,7 @@ t.test('project validated', t => {
       },
       imagePullSecretNames: ['some-imagePullSecret-here', 'some-other-one'],
       containerRegistries: [{
+        id: 'some-uuid-v4', 
         name: 'Some CR',
         hostname: 'some-cr.io',
         imagePullSecretName: 'some-secret',
@@ -404,6 +405,7 @@ t.test('project validated', t => {
       },
       imagePullSecretNames: ['some-imagePullSecret-here', 'some-other-one'],
       containerRegistries: [{
+        id: "some-uuid-v4",
         name: 'Some CR',
         hostname: 'some-cr.io',
         imagePullSecretName: 'some-secret',

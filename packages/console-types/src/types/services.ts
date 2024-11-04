@@ -646,7 +646,7 @@ export const container = {
     },
     terminationGracePeriodSeconds,
     exclusiveServiceExposure: { type: 'boolean' },
-    containerRegistryName: { type: 'string' },
+    containerRegistryId: { type: 'string' },
   },
   additionalProperties: false,
   required: ['name', 'dockerImage'],
