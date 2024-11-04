@@ -134,7 +134,6 @@ const endpointRoute = {
   catchDecorator: { type: 'string' },
   preDecorators: { type: 'array', items: { type: 'string' }, default: [] },
   postDecorators: { type: 'array', items: { type: 'string' }, default: [] },
-  // TODO: check this
   rateLimit: routeRequestsPerSecond,
 } as const
 
