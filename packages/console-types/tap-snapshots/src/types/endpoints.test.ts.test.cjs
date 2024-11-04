@@ -449,7 +449,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
               "public",
               "secreted",
               "showInDocumentation",
-              "verb"
+              "verb",
+              "rateLimit"
             ]
           }
         },
@@ -1045,7 +1046,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                 "public",
                 "secreted",
                 "showInDocumentation",
-                "verb"
+                "verb",
+                "rateLimit"
               ]
             }
           },
@@ -1632,7 +1634,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                   "public",
                   "secreted",
                   "showInDocumentation",
-                  "verb"
+                  "verb",
+                  "rateLimit"
                 ]
               }
             },
@@ -2218,7 +2221,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                     "public",
                     "secreted",
                     "showInDocumentation",
-                    "verb"
+                    "verb",
+                    "rateLimit"
                   ]
                 }
               },
