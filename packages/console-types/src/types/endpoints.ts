@@ -47,6 +47,32 @@ const routeBooleanValue = {
   },
 } as const
 
+const routeRequestsPerSecond = {
+  type: 'object',
+  default: { inherited: true },
+  if: { type: 'object', properties: { inherited: { type: 'boolean', const: false } } },
+  then: {
+    type: 'object',
+    properties: {
+      inherited: { type: 'boolean', const: false },
+      requestsPerSecond: {
+        type: 'number',
+        description: 'The number of seconds to wait before the request is rejected',
+      },
+    },
+    required: ['inherited', 'requestsPerSecond'],
+    additionalProperties: false,
+  },
+  else: {
+    type: 'object',
+    properties: {
+      inherited: { type: 'boolean', const: true },
+    },
+    required: ['inherited'],
+    additionalProperties: false,
+  },
+} as const
+
 export const path = {
   type: 'string',
   pattern: '^\\/(([\\w\\-:])\\/?)*$',
@@ -108,6 +134,7 @@ const endpointRoute = {
   catchDecorator: { type: 'string' },
   preDecorators: { type: 'array', items: { type: 'string' }, default: [] },
   postDecorators: { type: 'array', items: { type: 'string' }, default: [] },
+  rateLimit: routeRequestsPerSecond,
 } as const
 
 const endpointTimeout = {
@@ -194,7 +221,7 @@ const routes = {
     type: 'object',
     properties: endpoint.route,
     additionalProperties: false,
-    required: ['id', 'path', 'acl', 'backofficeAcl', 'public', 'secreted', 'showInDocumentation', 'verb'],
+    required: ['id', 'path', 'acl', 'backofficeAcl', 'public', 'secreted', 'showInDocumentation', 'verb', 'rateLimit'],
   },
 } as const
 

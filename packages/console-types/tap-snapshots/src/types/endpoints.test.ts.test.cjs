@@ -392,6 +392,52 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                   "type": "string"
                 },
                 "default": []
+              },
+              "rateLimit": {
+                "type": "object",
+                "default": {
+                  "inherited": true
+                },
+                "if": {
+                  "type": "object",
+                  "properties": {
+                    "inherited": {
+                      "type": "boolean",
+                      "const": false
+                    }
+                  }
+                },
+                "then": {
+                  "type": "object",
+                  "properties": {
+                    "inherited": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "requestsPerSecond": {
+                      "type": "number",
+                      "description": "The number of seconds to wait before the request is rejected"
+                    }
+                  },
+                  "required": [
+                    "inherited",
+                    "requestsPerSecond"
+                  ],
+                  "additionalProperties": false
+                },
+                "else": {
+                  "type": "object",
+                  "properties": {
+                    "inherited": {
+                      "type": "boolean",
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "inherited"
+                  ],
+                  "additionalProperties": false
+                }
               }
             },
             "additionalProperties": false,
@@ -403,7 +449,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
               "public",
               "secreted",
               "showInDocumentation",
-              "verb"
+              "verb",
+              "rateLimit"
             ]
           }
         },
@@ -942,6 +989,52 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                     "type": "string"
                   },
                   "default": []
+                },
+                "rateLimit": {
+                  "type": "object",
+                  "default": {
+                    "inherited": true
+                  },
+                  "if": {
+                    "type": "object",
+                    "properties": {
+                      "inherited": {
+                        "type": "boolean",
+                        "const": false
+                      }
+                    }
+                  },
+                  "then": {
+                    "type": "object",
+                    "properties": {
+                      "inherited": {
+                        "type": "boolean",
+                        "const": false
+                      },
+                      "requestsPerSecond": {
+                        "type": "number",
+                        "description": "The number of seconds to wait before the request is rejected"
+                      }
+                    },
+                    "required": [
+                      "inherited",
+                      "requestsPerSecond"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "else": {
+                    "type": "object",
+                    "properties": {
+                      "inherited": {
+                        "type": "boolean",
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "inherited"
+                    ],
+                    "additionalProperties": false
+                  }
                 }
               },
               "additionalProperties": false,
@@ -953,7 +1046,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                 "public",
                 "secreted",
                 "showInDocumentation",
-                "verb"
+                "verb",
+                "rateLimit"
               ]
             }
           },
@@ -1483,6 +1577,52 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                       "type": "string"
                     },
                     "default": []
+                  },
+                  "rateLimit": {
+                    "type": "object",
+                    "default": {
+                      "inherited": true
+                    },
+                    "if": {
+                      "type": "object",
+                      "properties": {
+                        "inherited": {
+                          "type": "boolean",
+                          "const": false
+                        }
+                      }
+                    },
+                    "then": {
+                      "type": "object",
+                      "properties": {
+                        "inherited": {
+                          "type": "boolean",
+                          "const": false
+                        },
+                        "requestsPerSecond": {
+                          "type": "number",
+                          "description": "The number of seconds to wait before the request is rejected"
+                        }
+                      },
+                      "required": [
+                        "inherited",
+                        "requestsPerSecond"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "else": {
+                      "type": "object",
+                      "properties": {
+                        "inherited": {
+                          "type": "boolean",
+                          "const": true
+                        }
+                      },
+                      "required": [
+                        "inherited"
+                      ],
+                      "additionalProperties": false
+                    }
                   }
                 },
                 "additionalProperties": false,
@@ -1494,7 +1634,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                   "public",
                   "secreted",
                   "showInDocumentation",
-                  "verb"
+                  "verb",
+                  "rateLimit"
                 ]
               }
             },
@@ -2023,6 +2164,52 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                         "type": "string"
                       },
                       "default": []
+                    },
+                    "rateLimit": {
+                      "type": "object",
+                      "default": {
+                        "inherited": true
+                      },
+                      "if": {
+                        "type": "object",
+                        "properties": {
+                          "inherited": {
+                            "type": "boolean",
+                            "const": false
+                          }
+                        }
+                      },
+                      "then": {
+                        "type": "object",
+                        "properties": {
+                          "inherited": {
+                            "type": "boolean",
+                            "const": false
+                          },
+                          "requestsPerSecond": {
+                            "type": "number",
+                            "description": "The number of seconds to wait before the request is rejected"
+                          }
+                        },
+                        "required": [
+                          "inherited",
+                          "requestsPerSecond"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "else": {
+                        "type": "object",
+                        "properties": {
+                          "inherited": {
+                            "type": "boolean",
+                            "const": true
+                          }
+                        },
+                        "required": [
+                          "inherited"
+                        ],
+                        "additionalProperties": false
+                      }
                     }
                   },
                   "additionalProperties": false,
@@ -2034,7 +2221,8 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                     "public",
                     "secreted",
                     "showInDocumentation",
-                    "verb"
+                    "verb",
+                    "rateLimit"
                   ]
                 }
               },

@@ -2107,6 +2107,52 @@ Object {
                           },
                           "type": "object",
                         },
+                        "rateLimit": Object {
+                          "default": Object {
+                            "inherited": true,
+                          },
+                          "else": Object {
+                            "additionalProperties": false,
+                            "properties": Object {
+                              "inherited": Object {
+                                "const": true,
+                                "type": "boolean",
+                              },
+                            },
+                            "required": Array [
+                              "inherited",
+                            ],
+                            "type": "object",
+                          },
+                          "if": Object {
+                            "properties": Object {
+                              "inherited": Object {
+                                "const": false,
+                                "type": "boolean",
+                              },
+                            },
+                            "type": "object",
+                          },
+                          "then": Object {
+                            "additionalProperties": false,
+                            "properties": Object {
+                              "inherited": Object {
+                                "const": false,
+                                "type": "boolean",
+                              },
+                              "requestsPerSecond": Object {
+                                "description": "The number of seconds to wait before the request is rejected",
+                                "type": "number",
+                              },
+                            },
+                            "required": Array [
+                              "inherited",
+                              "requestsPerSecond",
+                            ],
+                            "type": "object",
+                          },
+                          "type": "object",
+                        },
                         "schema": Object {
                           "type": "object",
                         },
@@ -2221,6 +2267,7 @@ Object {
                         "secreted",
                         "showInDocumentation",
                         "verb",
+                        "rateLimit",
                       ],
                       "type": "object",
                     },
@@ -2647,6 +2694,52 @@ Object {
                         },
                         "type": "object",
                       },
+                      "rateLimit": Object {
+                        "default": Object {
+                          "inherited": true,
+                        },
+                        "else": Object {
+                          "additionalProperties": false,
+                          "properties": Object {
+                            "inherited": Object {
+                              "const": true,
+                              "type": "boolean",
+                            },
+                          },
+                          "required": Array [
+                            "inherited",
+                          ],
+                          "type": "object",
+                        },
+                        "if": Object {
+                          "properties": Object {
+                            "inherited": Object {
+                              "const": false,
+                              "type": "boolean",
+                            },
+                          },
+                          "type": "object",
+                        },
+                        "then": Object {
+                          "additionalProperties": false,
+                          "properties": Object {
+                            "inherited": Object {
+                              "const": false,
+                              "type": "boolean",
+                            },
+                            "requestsPerSecond": Object {
+                              "description": "The number of seconds to wait before the request is rejected",
+                              "type": "number",
+                            },
+                          },
+                          "required": Array [
+                            "inherited",
+                            "requestsPerSecond",
+                          ],
+                          "type": "object",
+                        },
+                        "type": "object",
+                      },
                       "schema": Object {
                         "type": "object",
                       },
@@ -2761,6 +2854,7 @@ Object {
                       "secreted",
                       "showInDocumentation",
                       "verb",
+                      "rateLimit",
                     ],
                     "type": "object",
                   },
@@ -3184,6 +3278,52 @@ Object {
                       },
                       "type": "object",
                     },
+                    "rateLimit": Object {
+                      "default": Object {
+                        "inherited": true,
+                      },
+                      "else": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "inherited": Object {
+                            "const": true,
+                            "type": "boolean",
+                          },
+                        },
+                        "required": Array [
+                          "inherited",
+                        ],
+                        "type": "object",
+                      },
+                      "if": Object {
+                        "properties": Object {
+                          "inherited": Object {
+                            "const": false,
+                            "type": "boolean",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "then": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "inherited": Object {
+                            "const": false,
+                            "type": "boolean",
+                          },
+                          "requestsPerSecond": Object {
+                            "description": "The number of seconds to wait before the request is rejected",
+                            "type": "number",
+                          },
+                        },
+                        "required": Array [
+                          "inherited",
+                          "requestsPerSecond",
+                        ],
+                        "type": "object",
+                      },
+                      "type": "object",
+                    },
                     "schema": Object {
                       "type": "object",
                     },
@@ -3298,6 +3438,7 @@ Object {
                     "secreted",
                     "showInDocumentation",
                     "verb",
+                    "rateLimit",
                   ],
                   "type": "object",
                 },
@@ -3738,6 +3879,52 @@ Object {
                     },
                     "type": "object",
                   },
+                  "rateLimit": Object {
+                    "default": Object {
+                      "inherited": true,
+                    },
+                    "else": Object {
+                      "additionalProperties": false,
+                      "properties": Object {
+                        "inherited": Object {
+                          "const": true,
+                          "type": "boolean",
+                        },
+                      },
+                      "required": Array [
+                        "inherited",
+                      ],
+                      "type": "object",
+                    },
+                    "if": Object {
+                      "properties": Object {
+                        "inherited": Object {
+                          "const": false,
+                          "type": "boolean",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "then": Object {
+                      "additionalProperties": false,
+                      "properties": Object {
+                        "inherited": Object {
+                          "const": false,
+                          "type": "boolean",
+                        },
+                        "requestsPerSecond": Object {
+                          "description": "The number of seconds to wait before the request is rejected",
+                          "type": "number",
+                        },
+                      },
+                      "required": Array [
+                        "inherited",
+                        "requestsPerSecond",
+                      ],
+                      "type": "object",
+                    },
+                    "type": "object",
+                  },
                   "schema": Object {
                     "type": "object",
                   },
@@ -3852,6 +4039,7 @@ Object {
                   "secreted",
                   "showInDocumentation",
                   "verb",
+                  "rateLimit",
                 ],
                 "type": "object",
               },

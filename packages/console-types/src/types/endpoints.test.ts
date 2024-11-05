@@ -73,6 +73,9 @@ const CRUD_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -99,6 +102,9 @@ const CRUD_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -128,6 +134,9 @@ const CRUD_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -160,6 +169,9 @@ const CRUD_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -186,6 +198,9 @@ const CRUD_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'DELETE',
@@ -216,6 +231,9 @@ const CRUD_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'DELETE',
         'preDecorators': [],
         'postDecorators': [],
@@ -242,6 +260,9 @@ const CRUD_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'PATCH',
@@ -272,6 +293,9 @@ const CRUD_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -298,6 +322,9 @@ const CRUD_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -328,6 +355,9 @@ const CRUD_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -354,6 +384,9 @@ const CRUD_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -384,6 +417,9 @@ const CRUD_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -412,6 +448,9 @@ const CRUD_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -438,6 +477,9 @@ const CRUD_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -500,6 +542,9 @@ const MONGO_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -526,6 +571,9 @@ const MONGO_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -555,6 +603,9 @@ const MONGO_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -587,6 +638,9 @@ const MONGO_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -613,6 +667,9 @@ const MONGO_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'DELETE',
@@ -643,6 +700,9 @@ const MONGO_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'DELETE',
         'preDecorators': [],
         'postDecorators': [],
@@ -669,6 +729,9 @@ const MONGO_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'PATCH',
@@ -699,6 +762,9 @@ const MONGO_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -725,6 +791,9 @@ const MONGO_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -755,6 +824,9 @@ const MONGO_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -781,6 +853,9 @@ const MONGO_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -811,6 +886,9 @@ const MONGO_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -839,6 +917,9 @@ const MONGO_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -865,6 +946,9 @@ const MONGO_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -947,6 +1031,9 @@ const PROJECTION_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -973,6 +1060,9 @@ const PROJECTION_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -1002,6 +1092,9 @@ const PROJECTION_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -1034,6 +1127,9 @@ const PROJECTION_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -1060,6 +1156,9 @@ const PROJECTION_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'DELETE',
@@ -1090,6 +1189,9 @@ const PROJECTION_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'DELETE',
         'preDecorators': [],
         'postDecorators': [],
@@ -1116,6 +1218,9 @@ const PROJECTION_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'PATCH',
@@ -1146,6 +1251,9 @@ const PROJECTION_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -1172,6 +1280,9 @@ const PROJECTION_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -1202,6 +1313,9 @@ const PROJECTION_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -1228,6 +1342,9 @@ const PROJECTION_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -1258,6 +1375,9 @@ const PROJECTION_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -1286,6 +1406,9 @@ const PROJECTION_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -1312,6 +1435,9 @@ const PROJECTION_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -1370,6 +1496,9 @@ const SINGLE_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -1396,6 +1525,9 @@ const SINGLE_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -1425,6 +1557,9 @@ const SINGLE_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -1457,6 +1592,9 @@ const SINGLE_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'GET',
         'preDecorators': [],
         'postDecorators': [],
@@ -1483,6 +1621,9 @@ const SINGLE_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'DELETE',
@@ -1513,6 +1654,9 @@ const SINGLE_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'DELETE',
         'preDecorators': [],
         'postDecorators': [],
@@ -1539,6 +1683,9 @@ const SINGLE_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'PATCH',
@@ -1569,6 +1716,9 @@ const SINGLE_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -1595,6 +1745,9 @@ const SINGLE_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'GET',
@@ -1625,6 +1778,9 @@ const SINGLE_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -1651,6 +1807,9 @@ const SINGLE_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
@@ -1681,6 +1840,9 @@ const SINGLE_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'PATCH',
         'preDecorators': [],
         'postDecorators': [],
@@ -1709,6 +1871,9 @@ const SINGLE_VIEW_ENDPOINT = {
         'backofficeAcl': {
           'inherited': true,
         },
+        'rateLimit': {
+          'inherited': true,
+        },
         'verb': 'POST',
         'preDecorators': [],
         'postDecorators': [],
@@ -1735,6 +1900,9 @@ const SINGLE_VIEW_ENDPOINT = {
           'inherited': true,
         },
         'backofficeAcl': {
+          'inherited': true,
+        },
+        'rateLimit': {
           'inherited': true,
         },
         'verb': 'POST',
