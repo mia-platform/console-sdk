@@ -94,6 +94,7 @@ t.test('tenants validated', t => {
         privilegedPod: true,
       },
       containerRegistries: [{
+        id: 'some-uuid-v4',
         name: 'Some CR',
         hostname: 'some-cr.io',
         imagePullSecretName: 'some-secret',

@@ -45,6 +45,9 @@ export const containerRegistry = {
   type: 'object',
   additionalProperties: false,
   properties: {
+    id: {
+      type: 'string',
+    },
     name: {
       type: 'string',
     },
@@ -59,7 +62,7 @@ export const containerRegistry = {
       default: false,
     },
   },
-  required: ['name', 'hostname'],
+  required: ['id', 'name', 'hostname'],
 } as const
 
 export const pipelines = {
