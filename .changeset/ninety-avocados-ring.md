@@ -2,4 +2,4 @@
 "@mia-platform/console-types": patch
 ---
 
-feat: add id to container registry
+feat(IDP-2275): add id to container registry
