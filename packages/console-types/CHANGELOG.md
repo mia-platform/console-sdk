@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.3
+
+### Patch Changes
+
+- 9a49e7b: feat(IDP-2275): add id to container registry
+
 ## 0.24.2
 
 ### Patch Changes
