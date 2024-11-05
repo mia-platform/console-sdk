@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.2
+
+### Patch Changes
+
+- 73dafa7: feat(endpoint): add requestsPerSecond property also in endpoint subroutes
+
 ## 0.24.1
 
 ### Patch Changes
