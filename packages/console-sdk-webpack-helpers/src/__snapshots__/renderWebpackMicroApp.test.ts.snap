@@ -5,24 +5,44 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
   "calls": [
     [
       false,
-      MicrofrontendIntegrator {
+      ConsoleSDK {
         "configObservable": {
-          "_version": "0.2.35",
-          "collections": undefined,
-          "configMaps": undefined,
-          "endpoints": undefined,
-          "forceConfigUpdateChecksum": undefined,
-          "microfrontendPluginConfig": undefined,
-          "selectedEnvironment": undefined,
-          "selectedProject": undefined,
-          "services": undefined,
-          "unsecretedVariables": undefined,
+          "_version": "mock_version",
+          "collections": Observable {
+            "_subscribe": [Function],
+          },
+          "configMaps": Observable {
+            "_subscribe": [Function],
+          },
+          "endpoints": Observable {
+            "_subscribe": [Function],
+          },
+          "forceConfigUpdateChecksum": Observable {
+            "_subscribe": [Function],
+          },
+          "microfrontendPluginConfig": Observable {
+            "_subscribe": [Function],
+          },
+          "selectedEnvironment": Observable {
+            "_subscribe": [Function],
+          },
+          "selectedProject": Observable {
+            "_subscribe": [Function],
+          },
+          "services": Observable {
+            "_subscribe": [Function],
+          },
+          "unsecretedVariables": Observable {
+            "_subscribe": [Function],
+          },
         },
-        "consoleWriteConfig": undefined,
-        "container": undefined,
+        "consoleWriteConfig": [MockFunction],
+        "container": <div
+          id="__qiankun_microapp_wrapper_for_microfrontend__"
+        />,
         "contexts": {
-          "featureTogglesProxyContext": undefined,
-          "hotkeysContext": undefined,
+          "featureTogglesProxyContext": {},
+          "hotkeysContext": {},
         },
         "events": Subject {
           "closed": false,
@@ -45,7 +65,7 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
                 "partialObserver": {
                   "complete": undefined,
                   "error": undefined,
-                  "next": undefined,
+                  "next": [MockFunction],
                 },
               },
               "initialTeardown": undefined,
@@ -54,7 +74,7 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
           ],
           "thrownError": null,
         },
-        "name": undefined,
+        "name": "testMicrofrontend",
       },
     ],
   ],
@@ -72,24 +92,44 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
   "calls": [
     [
       false,
-      MicrofrontendIntegrator {
+      ConsoleSDK {
         "configObservable": {
-          "_version": "0.2.35",
-          "collections": undefined,
-          "configMaps": undefined,
-          "endpoints": undefined,
-          "forceConfigUpdateChecksum": undefined,
-          "microfrontendPluginConfig": undefined,
-          "selectedEnvironment": undefined,
-          "selectedProject": undefined,
-          "services": undefined,
-          "unsecretedVariables": undefined,
+          "_version": "mock_version",
+          "collections": Observable {
+            "_subscribe": [Function],
+          },
+          "configMaps": Observable {
+            "_subscribe": [Function],
+          },
+          "endpoints": Observable {
+            "_subscribe": [Function],
+          },
+          "forceConfigUpdateChecksum": Observable {
+            "_subscribe": [Function],
+          },
+          "microfrontendPluginConfig": Observable {
+            "_subscribe": [Function],
+          },
+          "selectedEnvironment": Observable {
+            "_subscribe": [Function],
+          },
+          "selectedProject": Observable {
+            "_subscribe": [Function],
+          },
+          "services": Observable {
+            "_subscribe": [Function],
+          },
+          "unsecretedVariables": Observable {
+            "_subscribe": [Function],
+          },
         },
-        "consoleWriteConfig": undefined,
-        "container": undefined,
+        "consoleWriteConfig": [MockFunction],
+        "container": <div
+          id="__qiankun_microapp_wrapper_for_microfrontend__"
+        />,
         "contexts": {
-          "featureTogglesProxyContext": undefined,
-          "hotkeysContext": undefined,
+          "featureTogglesProxyContext": {},
+          "hotkeysContext": {},
         },
         "events": Subject {
           "closed": false,
@@ -112,7 +152,7 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
                 "partialObserver": {
                   "complete": undefined,
                   "error": undefined,
-                  "next": undefined,
+                  "next": [MockFunction],
                 },
               },
               "initialTeardown": undefined,
@@ -121,7 +161,7 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
           ],
           "thrownError": null,
         },
-        "name": undefined,
+        "name": "testMicrofrontend",
       },
     ],
   ],
@@ -139,24 +179,44 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
   "calls": [
     [
       false,
-      MicrofrontendIntegrator {
+      ConsoleSDK {
         "configObservable": {
-          "_version": "0.2.35",
-          "collections": undefined,
-          "configMaps": undefined,
-          "endpoints": undefined,
-          "forceConfigUpdateChecksum": undefined,
-          "microfrontendPluginConfig": undefined,
-          "selectedEnvironment": undefined,
-          "selectedProject": undefined,
-          "services": undefined,
-          "unsecretedVariables": undefined,
+          "_version": "mock_version",
+          "collections": Observable {
+            "_subscribe": [Function],
+          },
+          "configMaps": Observable {
+            "_subscribe": [Function],
+          },
+          "endpoints": Observable {
+            "_subscribe": [Function],
+          },
+          "forceConfigUpdateChecksum": Observable {
+            "_subscribe": [Function],
+          },
+          "microfrontendPluginConfig": Observable {
+            "_subscribe": [Function],
+          },
+          "selectedEnvironment": Observable {
+            "_subscribe": [Function],
+          },
+          "selectedProject": Observable {
+            "_subscribe": [Function],
+          },
+          "services": Observable {
+            "_subscribe": [Function],
+          },
+          "unsecretedVariables": Observable {
+            "_subscribe": [Function],
+          },
         },
-        "consoleWriteConfig": undefined,
-        "container": undefined,
+        "consoleWriteConfig": [MockFunction],
+        "container": <div
+          id="__qiankun_microapp_wrapper_for_microfrontend__"
+        />,
         "contexts": {
-          "featureTogglesProxyContext": undefined,
-          "hotkeysContext": undefined,
+          "featureTogglesProxyContext": {},
+          "hotkeysContext": {},
         },
         "events": Subject {
           "closed": false,
@@ -179,7 +239,7 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
                 "partialObserver": {
                   "complete": undefined,
                   "error": undefined,
-                  "next": undefined,
+                  "next": [MockFunction],
                 },
               },
               "initialTeardown": undefined,
@@ -188,7 +248,7 @@ exports[`Webpack Micro App Rendering should mount the micro app on the missing p
           ],
           "thrownError": null,
         },
-        "name": undefined,
+        "name": "testMicrofrontend",
       },
     ],
   ],
