@@ -1,5 +1,13 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.36
+
+### Patch Changes
+
+- 94dca5e: fix: test snapshots don't depend anymore on packages versions
+- Updated dependencies [94dca5e]
+  - @mia-platform/console-types@0.24.4
+
 ## 0.2.35
 
 ### Patch Changes

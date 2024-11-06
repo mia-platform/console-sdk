@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.4
+
+### Patch Changes
+
+- 94dca5e: fix: test snapshots don't depend anymore on packages versions
+
 ## 0.24.3
 
 ### Patch Changes

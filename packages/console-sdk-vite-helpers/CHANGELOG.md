@@ -1,5 +1,13 @@
 # @mia-platform/console-sdk-vite-helpers
 
+## 0.0.76
+
+### Patch Changes
+
+- 94dca5e: fix: test snapshots don't depend anymore on packages versions
+- Updated dependencies [94dca5e]
+  - @mia-platform/console-sdk-microfrontend@0.2.36
+
 ## 0.0.75
 
 ### Patch Changes
