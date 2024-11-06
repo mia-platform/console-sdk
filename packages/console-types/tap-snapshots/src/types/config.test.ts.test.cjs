@@ -2141,7 +2141,7 @@ Object {
                                 "type": "boolean",
                               },
                               "requestsPerSecond": Object {
-                                "description": "The number of seconds to wait before the request is rejected",
+                                "description": "Maximum number of requests allowed per second",
                                 "type": "number",
                               },
                             },
@@ -2728,7 +2728,7 @@ Object {
                               "type": "boolean",
                             },
                             "requestsPerSecond": Object {
-                              "description": "The number of seconds to wait before the request is rejected",
+                              "description": "Maximum number of requests allowed per second",
                               "type": "number",
                             },
                           },
@@ -3312,7 +3312,7 @@ Object {
                             "type": "boolean",
                           },
                           "requestsPerSecond": Object {
-                            "description": "The number of seconds to wait before the request is rejected",
+                            "description": "Maximum number of requests allowed per second",
                             "type": "number",
                           },
                         },
@@ -3913,7 +3913,7 @@ Object {
                           "type": "boolean",
                         },
                         "requestsPerSecond": Object {
-                          "description": "The number of seconds to wait before the request is rejected",
+                          "description": "Maximum number of requests allowed per second",
                           "type": "number",
                         },
                       },
