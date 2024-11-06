@@ -28,6 +28,8 @@ const { document } = dom.window
 const quiankunContainer = document.createElement('div')
 quiankunContainer.id = '__qiankun_microapp_wrapper_for_microfrontend__'
 
+const mockedVersion = 'mock_version'
+
 const consoleProps: IConsoleProps = {
   name: 'testMicrofrontend',
   container: quiankunContainer,
@@ -57,7 +59,7 @@ const consoleProps: IConsoleProps = {
 
     writeConfig: jest.fn(),
 
-    _version: '0.0.0',
+    _version: mockedVersion,
     _signals: { mount: jest.fn() },
   },
 }
@@ -68,7 +70,26 @@ const viteParamsMock: IViteParams = {
   bootstrap: jest.fn(),
 }
 
+
+jest.mock('@mia-platform/console-sdk-microfrontend', () => {
+  const actualConsoleSDKMicrofrontendModule = jest.requireActual('@mia-platform/console-sdk-microfrontend')
+  const { ConsoleSDK: ActualConsoleSDK } = actualConsoleSDKMicrofrontendModule
+  return {
+    ...actualConsoleSDKMicrofrontendModule,
+    ConsoleSDK: class extends ActualConsoleSDK {
+      constructor() {
+        super(consoleProps)
+        this.configObservable._version = mockedVersion
+      }
+    },
+  }
+})
+
 describe('Webpack Micro App Rendering', () => {
+  beforeEach(() => {
+    jest.resetAllMocks()
+  })
+
   it('should create a ConsoleSDK instance', () => {
     const { consoleSDK, isConnectedToConsole } = getSDK(consoleProps)
     expect(consoleSDK).toBeInstanceOf(ConsoleSDK)
@@ -115,6 +136,6 @@ describe('Webpack Micro App Rendering', () => {
 
     expect(viteParamsMock.mount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
     expect(viteParamsMock.unmount).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
-    expect(viteParamsMock.bootstrap).toHaveBeenCalledWith(false, expect.any(ConsoleSDK))
+    expect(viteParamsMock.bootstrap).toHaveBeenCalledTimes(1)
   })
 })

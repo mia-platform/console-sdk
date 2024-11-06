@@ -5,9 +5,9 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
   "calls": [
     [
       false,
-      MicrofrontendIntegrator {
+      ConsoleSDK {
         "configObservable": {
-          "_version": "0.2.33",
+          "_version": "mock_version",
           "collections": undefined,
           "configMaps": undefined,
           "endpoints": undefined,
@@ -59,66 +59,8 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
         "name": "testMicrofrontend",
       },
     ],
-    [
-      false,
-      MicrofrontendIntegrator {
-        "configObservable": {
-          "_version": "0.2.33",
-          "collections": undefined,
-          "configMaps": undefined,
-          "endpoints": undefined,
-          "forceConfigUpdateChecksum": undefined,
-          "microfrontendPluginConfig": undefined,
-          "selectedEnvironment": undefined,
-          "selectedProject": undefined,
-          "services": undefined,
-          "unsecretedVariables": undefined,
-        },
-        "consoleWriteConfig": undefined,
-        "container": undefined,
-        "contexts": {
-          "featureTogglesProxyContext": undefined,
-          "hotkeysContext": undefined,
-        },
-        "events": Subject {
-          "closed": false,
-          "currentObservers": null,
-          "hasError": false,
-          "isStopped": false,
-          "observers": [
-            SafeSubscriber {
-              "_finalizers": [
-                Subscription {
-                  "_finalizers": null,
-                  "_parentage": [Circular],
-                  "closed": false,
-                  "initialTeardown": [Function],
-                },
-              ],
-              "_parentage": null,
-              "closed": false,
-              "destination": ConsumerObserver {
-                "partialObserver": {
-                  "complete": undefined,
-                  "error": undefined,
-                  "next": undefined,
-                },
-              },
-              "initialTeardown": undefined,
-              "isStopped": false,
-            },
-          ],
-          "thrownError": null,
-        },
-        "name": undefined,
-      },
-    ],
   ],
   "results": [
-    {
-      "type": "return",
-      "value": undefined,
-    },
     {
       "type": "return",
       "value": undefined,
@@ -132,9 +74,9 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
   "calls": [
     [
       false,
-      MicrofrontendIntegrator {
+      ConsoleSDK {
         "configObservable": {
-          "_version": "0.2.33",
+          "_version": "mock_version",
           "collections": undefined,
           "configMaps": undefined,
           "endpoints": undefined,
@@ -145,8 +87,10 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
           "services": undefined,
           "unsecretedVariables": undefined,
         },
-        "consoleWriteConfig": undefined,
-        "container": undefined,
+        "consoleWriteConfig": [MockFunction],
+        "container": <div
+          id="__qiankun_microapp_wrapper_for_microfrontend__"
+        />,
         "contexts": {
           "featureTogglesProxyContext": undefined,
           "hotkeysContext": undefined,
@@ -172,7 +116,7 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
                 "partialObserver": {
                   "complete": undefined,
                   "error": undefined,
-                  "next": undefined,
+                  "next": [MockFunction],
                 },
               },
               "initialTeardown": undefined,
@@ -181,7 +125,7 @@ exports[`Vite Micro App Rendering should mount the micro app on the missing prop
           ],
           "thrownError": null,
         },
-        "name": undefined,
+        "name": "testMicrofrontend",
       },
     ],
   ],
