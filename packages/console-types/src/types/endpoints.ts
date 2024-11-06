@@ -57,7 +57,7 @@ const routeRequestsPerSecond = {
       inherited: { type: 'boolean', const: false },
       requestsPerSecond: {
         type: 'number',
-        description: 'The number of seconds to wait before the request is rejected',
+        description: 'Maximum number of requests allowed per second',
       },
     },
     required: ['inherited', 'requestsPerSecond'],
