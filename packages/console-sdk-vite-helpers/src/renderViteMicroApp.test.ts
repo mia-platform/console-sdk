@@ -19,6 +19,7 @@
 import { ConsoleSDK } from '@mia-platform/console-sdk-microfrontend'
 import { JSDOM } from 'jsdom'
 import { QiankunProps } from 'vite-plugin-qiankun/dist/helper'
+import { IConsoleProps } from '@mia-platform/console-sdk-microfrontend/build/types'
 
 import { IViteParams, decorateLifecycleFunction, getSDK } from './renderViteMicroApp'
 
@@ -37,12 +38,31 @@ const qiankunPropsMock: QiankunProps = {
   resourceAPI: { writeConfig: jest.fn() },
 }
 
+const mockedVersion = 'mock_version'
+jest.mock('@mia-platform/console-sdk-microfrontend', () => {
+  const actualConsoleSDKMicrofrontendModule = jest.requireActual('@mia-platform/console-sdk-microfrontend')
+  const { ConsoleSDK: ActualConsoleSDK } = actualConsoleSDKMicrofrontendModule
+  return {
+    ...actualConsoleSDKMicrofrontendModule,
+    ConsoleSDK: class extends ActualConsoleSDK {
+      constructor() {
+        super(qiankunPropsMock as IConsoleProps)
+        this.configObservable._version = mockedVersion
+      }
+    },
+  }
+})
+
 const viteParamsMock: IViteParams = {
   mount: jest.fn(),
   unmount: jest.fn(),
 }
 
 describe('Vite Micro App Rendering', () => {
+  beforeEach(() => {
+    jest.resetAllMocks()
+  })
+
   it('should get lifecycle function params', () => {
     const { isConnectedToConsole, consoleSDK } = getSDK(qiankunPropsMock)
     expect(isConnectedToConsole).toBe(false)
