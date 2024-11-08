@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.5
+
+### Patch Changes
+
+- fix: marketplace resources api
+
 ## 0.3.4
 
 ### Patch Changes
