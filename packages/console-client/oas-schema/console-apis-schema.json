@@ -1690,68 +1690,6 @@
                 }
             }
         },
-        "/api/marketplace/tenants/{tenantId}/files": {
-            "post": {
-                "tags": [
-                    "marketplace"
-                ],
-                "parameters": [
-                    {
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "path",
-                        "name": "tenantId",
-                        "required": true
-                    },
-                    {
-                        "schema": {
-                            "type": "string",
-                            "pattern": "^multipart/form-data"
-                        },
-                        "in": "header",
-                        "name": "content-type",
-                        "required": false
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Default Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "_id": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "file": {
-                                            "type": "string"
-                                        },
-                                        "size": {
-                                            "type": "number"
-                                        },
-                                        "location": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "_id",
-                                        "name",
-                                        "file",
-                                        "size",
-                                        "location"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/api/marketplace/tenants/{tenantId}/resources": {
             "post": {
                 "tags": [
@@ -1761,7 +1699,19 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/marketplaceItem"
+                                "type": "object",
+                                "properties": {
+                                  "resources": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/marketplaceItem"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                    "resources"
+                                ],
+                                "additionalProperties": false
                             }
                         }
                     }
