@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.5
+
+### Patch Changes
+
+- removed marketplace POST /files API, fixed marketplace POST /resources API
+
 ## 0.3.4
 
 ### Patch Changes
