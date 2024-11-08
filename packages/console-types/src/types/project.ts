@@ -391,6 +391,7 @@ export const saveChangesRules = {
         type: 'array',
         items: { type: 'string' },
       },
+      isInheritedFromTenant: { type: 'boolean' },
     },
   },
 } as const
