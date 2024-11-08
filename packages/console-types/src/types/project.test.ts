@@ -396,7 +396,11 @@ t.test('project validated', t => {
           },
         },
         saveChangesRules: [{
-          disallowedRuleSet: [{ jsonPath: 'test' }],
+          disallowedRuleSet: [{
+            jsonPath: 'test',
+            ruleId: 'somerule',
+            processingOptions: { action: 'create', primaryKey: 'somekey' },
+          }],
           roleIds: ['testrole'],
         }],
       },
