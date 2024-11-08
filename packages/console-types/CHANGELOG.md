@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.5
+
+### Patch Changes
+
+- 04c5d77: feat: include new rule engin type
+
 ## 0.24.4
 
 ### Patch Changes
