@@ -375,6 +375,15 @@ export const saveChangesRules = {
           type: 'object',
           properties: {
             jsonPath: { type: 'string' },
+            ruleId: { type: 'string' },
+            processingOptions: {
+              type: 'object',
+              properties: {
+                action: { type: 'string', enum: ['create', 'delete'] },
+                primaryKey: { type: 'string' },
+              },
+              required: ['action'],
+            },
           },
         },
       },
