@@ -19,7 +19,7 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import { dashboard, enabledServicesSchema, strategySchema } from './project'
-import { ALLOWED_RUNNER_TOOLS, ALLOWED_PROJECT_STRUCTURE } from '../constants/project'
+import { ALLOWED_RUNNER_TOOLS, ALLOWED_PROJECT_STRUCTURES } from '../constants/project'
 import url from '../commons/url'
 
 export const template = {
