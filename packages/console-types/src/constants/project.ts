@@ -65,6 +65,10 @@ export const MLP = 'mlp'
 export const OTHER = 'other'
 export const ALLOWED_RUNNER_TOOLS = [MLP, OTHER]
 
+export const KUSTOMIZE_PROJECT_STRUCTURE = 'kustomize'
+export const DEFAULT_PROJECT_STRUCTURE = 'default'
+export const ALLOWED_PROJECT_STRUCTURES = [KUSTOMIZE_PROJECT_STRUCTURE, DEFAULT_PROJECT_STRUCTURE]
+
 export const PROMETHEUS_OPERATOR = 'prometheus-operator'
 export const ALLOWED_MONITORING_SYSTEMS = [PROMETHEUS_OPERATOR]
 
