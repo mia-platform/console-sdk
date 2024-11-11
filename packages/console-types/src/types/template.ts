@@ -45,7 +45,7 @@ export const template = {
         useMiaPrefixEnvs: { type: 'boolean' },
         projectStructure: {
           type: 'string',
-          enum: ALLOWED_PROJECT_STRUCTURE,
+          enum: ALLOWED_PROJECT_STRUCTURES,
         },
         strategy: strategySchema,
       },
