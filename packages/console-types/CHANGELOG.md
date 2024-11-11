@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.6
+
+### Patch Changes
+
+- 0a2e173: Added: allowed project structure
+
 ## 0.24.5
 
 ### Patch Changes
