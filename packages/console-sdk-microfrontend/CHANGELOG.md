@@ -1,5 +1,11 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.39
+
+### Patch Changes
+
+- 9fe0e15: feat(events): Add event type "REFRESH_EXTENSIONS"
+
 ## 0.2.38
 
 ### Patch Changes
