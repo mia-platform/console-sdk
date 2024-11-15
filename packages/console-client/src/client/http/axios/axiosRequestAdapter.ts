@@ -30,7 +30,6 @@ export class AxiosRequestAdapter implements RequestAdapter {
   private defaultRequestConfig = {
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
       'User-Agent': 'console-client',
     },
   }

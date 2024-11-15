@@ -1719,6 +1719,17 @@
                                     "assetType"
                                 ],
                                 "additionalProperties": false
+                            },
+                            "encoding": {
+                              "file": {
+                                "style": "form"
+                              },
+                              "itemId": {
+                                "style": "form"
+                              },
+                              "assetType": {
+                                "style": "form"
+                              }
                             }
                         }
                     }
