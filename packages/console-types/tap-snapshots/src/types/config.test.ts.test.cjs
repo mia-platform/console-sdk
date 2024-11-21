@@ -5038,7 +5038,7 @@ Object {
                                 "type": "boolean",
                               },
                               "secretKey": Object {
-                                "pattern": "^[a-zA-Z0-9-_.]*$",
+                                "pattern": "^((\\\\{\\\\{([A-Z])([A-Z0-9_]*)\\\\}\\\\})|[a-zA-Z0-9-_.]*)$",
                                 "type": "string",
                                 "x-validation-error-id": "serviceSecretKey.patternError",
                               },
@@ -5774,7 +5774,7 @@ Object {
                           "type": "boolean",
                         },
                         "secretKey": Object {
-                          "pattern": "^[a-zA-Z0-9-_.]*$",
+                          "pattern": "^((\\\\{\\\\{([A-Z])([A-Z0-9_]*)\\\\}\\\\})|[a-zA-Z0-9-_.]*)$",
                           "type": "string",
                           "x-validation-error-id": "serviceSecretKey.patternError",
                         },

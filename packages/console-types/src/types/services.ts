@@ -69,7 +69,7 @@ export const serviceSecretName = {
 
 export const serviceSecretKey = {
   type: 'string',
-  pattern: '^[a-zA-Z0-9-_.]*$',
+  pattern: '^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|[a-zA-Z0-9-_.]*)$',
   [VALIDATION_ERROR_ID]: 'serviceSecretKey.patternError',
 } as const
 

@@ -6,7 +6,7 @@
   "configMapFileName.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
   "swaggerPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
   "probesPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\", \":\", \".\", \"{\", \"}\", \"/\"",
-  "serviceSecretKey.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
+  "serviceSecretKey.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\". Can be interpolated",
   "kubernetesDefinition.patternError": "Must have format prefix/name, where prefix is optional and no longer than 253 characters. Name must not be longer than 63 characters. Prefix and name must start with an alphanumeric character. Can contain alphanumeric characters and symbols - , .",
   "cronjobSchedule.patternError": "Must be a sequence of 5 elements, separated by whitespaces, or an interpolated variable",
   "collectionName.patternError": "Can contain only alphanumeric characters and the symbols \"_\" and \"-\"",
