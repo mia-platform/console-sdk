@@ -221,7 +221,7 @@ const routes = {
     type: 'object',
     properties: endpoint.route,
     additionalProperties: false,
-    required: ['id', 'path', 'acl', 'backofficeAcl', 'public', 'secreted', 'showInDocumentation', 'verb', 'rateLimit'],
+    required: ['id', 'path', 'acl', 'backofficeAcl', 'public', 'secreted', 'showInDocumentation', 'verb'],
   },
 } as const
 
