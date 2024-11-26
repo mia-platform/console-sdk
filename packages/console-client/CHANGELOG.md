@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.6
+
+### Patch Changes
+
+- 89a7395: expose proxy information in GET extension APIs
+
 ## 0.3.5
 
 ### Patch Changes
