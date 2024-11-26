@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.24.7
+
+### Patch Changes
+
+- e489192: hotfix: `rateLimit` property in routes not required
+
 ## 0.24.6
 
 ### Patch Changes
