@@ -78,6 +78,7 @@ export function deserializeIntoExtensions(extensions: Partial<Extensions> | unde
         "entry": n => { extensions.entry = n.getStringValue(); },
         "microfrontendId": n => { extensions.microfrontendId = n.getStringValue(); },
         "routes": n => { extensions.routes = n.getCollectionOfObjectValues<Extensions_routes>(createExtensions_routesFromDiscriminatorValue); },
+        "serverSideResolvedRoutes": n => { extensions.serverSideResolvedRoutes = n.getBooleanValue(); },
         "type": n => { extensions.type = n.getStringValue(); },
     }
 }
@@ -168,6 +169,10 @@ export interface Extensions extends Parsable {
      * The routes property
      */
     routes?: Extensions_routes[] | null;
+    /**
+     * The serverSideResolvedRoutes property
+     */
+    serverSideResolvedRoutes?: boolean | null;
     /**
      * The type property
      */
@@ -285,6 +290,7 @@ export interface ExtensionsRequestBuilder extends BaseRequestBuilder<ExtensionsR
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<ExtensionsRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
 }
 export interface ExtensionsRequestBuilderGetQueryParameters {
+    environmentId?: string;
     projectId?: string;
     tenantId?: string;
 }
@@ -299,6 +305,7 @@ export function serializeExtensions(writer: SerializationWriter, extensions: Par
         writer.writeStringValue("entry", extensions.entry);
         writer.writeStringValue("microfrontendId", extensions.microfrontendId);
         writer.writeCollectionOfObjectValues<Extensions_routes>("routes", extensions.routes, serializeExtensions_routes);
+        writer.writeBooleanValue("serverSideResolvedRoutes", extensions.serverSideResolvedRoutes);
         writer.writeStringValue("type", extensions.type);
     }
 }
@@ -379,7 +386,7 @@ export function serializeExtensions500Error(writer: SerializationWriter, extensi
 /**
  * Uri template for the request builder.
  */
-export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/extensions{?projectId*,tenantId*}";
+export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/extensions{?environmentId*,projectId*,tenantId*}";
 export const Extensions_routes_locationIdObject = {
     Tenant: "tenant",
     Project: "project",

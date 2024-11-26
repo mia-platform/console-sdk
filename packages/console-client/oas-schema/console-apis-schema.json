@@ -142,6 +142,13 @@
                 "parameters": [
                     {
                         "in": "query",
+                        "name": "environmentId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "projectId",
                         "schema": {
                             "type": "string"
@@ -163,12 +170,11 @@
                                     "items": {
                                         "additionalProperties": false,
                                         "properties": {
+                                            "configuration": {
+                                                "type": "object"
+                                            },
                                             "entry": {
                                                 "type": "string"
-                                            },
-                                            "configuration": {
-                                                "type": "object",
-                                                "additionalProperties": true
                                             },
                                             "microfrontendId": {
                                                 "type": "string"
@@ -233,6 +239,9 @@
                                                     "type": "object"
                                                 },
                                                 "type": "array"
+                                            },
+                                            "serverSideResolvedRoutes": {
+                                                "type": "boolean"
                                             },
                                             "type": {
                                                 "type": "string"
@@ -435,12 +444,18 @@
                                                             "type": "string"
                                                         },
                                                         "type": "object"
+                                                    },
+                                                    "order": {
+                                                        "type": "number"
                                                     }
                                                 },
                                                 "required": [
                                                     "id"
                                                 ],
                                                 "type": "object"
+                                            },
+                                            "configuration": {
+                                                "type": "string"
                                             },
                                             "description": {
                                                 "type": "string"
@@ -450,17 +465,18 @@
                                                 "properties": {
                                                     "id": {
                                                         "type": "string"
+                                                    },
+                                                    "path": {
+                                                        "type": "string"
                                                     }
                                                 },
                                                 "required": [
-                                                    "id"
+                                                    "id",
+                                                    "path"
                                                 ],
                                                 "type": "object"
                                             },
                                             "entry": {
-                                                "type": "string"
-                                            },
-                                            "configuration": {
                                                 "type": "string"
                                             },
                                             "extensionId": {
@@ -495,6 +511,49 @@
                                                 "type": "string"
                                             },
                                             "permissions": {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "proxy": {
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "authType": {
+                                                        "type": "string"
+                                                    },
+                                                    "authentication": {
+                                                        "type": "string"
+                                                    },
+                                                    "basePath": {
+                                                        "type": "string"
+                                                    },
+                                                    "clientId": {
+                                                        "type": "string"
+                                                    },
+                                                    "grantType": {
+                                                        "type": "string"
+                                                    },
+                                                    "headersToProxy": {
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "targetBaseUrl": {
+                                                        "type": "string"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "basePath",
+                                                    "targetBaseUrl"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "roleIds": {
                                                 "items": {
                                                     "type": "string"
                                                 },
@@ -613,6 +672,9 @@
                                         ],
                                         "type": "object"
                                     },
+                                    "configuration": {
+                                        "type": "string"
+                                    },
                                     "description": {
                                         "type": "string"
                                     },
@@ -633,9 +695,6 @@
                                         "type": "object"
                                     },
                                     "entry": {
-                                        "type": "string"
-                                    },
-                                    "configuration": {
                                         "type": "string"
                                     },
                                     "extensionId": {
@@ -670,6 +729,12 @@
                                         "type": "string"
                                     },
                                     "permissions": {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "roleIds": {
                                         "items": {
                                             "type": "string"
                                         },
@@ -843,6 +908,14 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "`true`: include visibilities and proxies in the response. `false` only extension data is returned. default value is `false`.",
+                        "in": "query",
+                        "name": "resolveDetails",
+                        "schema": {
+                            "type": "boolean"
+                        }
                     }
                 ],
                 "responses": {
@@ -869,12 +942,18 @@
                                                         "type": "string"
                                                     },
                                                     "type": "object"
+                                                },
+                                                "order": {
+                                                    "type": "number"
                                                 }
                                             },
                                             "required": [
                                                 "id"
                                             ],
                                             "type": "object"
+                                        },
+                                        "configuration": {
+                                            "type": "string"
                                         },
                                         "description": {
                                             "type": "string"
@@ -884,17 +963,18 @@
                                             "properties": {
                                                 "id": {
                                                     "type": "string"
+                                                },
+                                                "path": {
+                                                    "type": "string"
                                                 }
                                             },
                                             "required": [
-                                                "id"
+                                                "id",
+                                                "path"
                                             ],
                                             "type": "object"
                                         },
                                         "entry": {
-                                            "type": "string"
-                                        },
-                                        "configuration": {
                                             "type": "string"
                                         },
                                         "extensionId": {
@@ -929,6 +1009,49 @@
                                             "type": "string"
                                         },
                                         "permissions": {
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "proxy": {
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "authType": {
+                                                    "type": "string"
+                                                },
+                                                "authentication": {
+                                                    "type": "string"
+                                                },
+                                                "basePath": {
+                                                    "type": "string"
+                                                },
+                                                "clientId": {
+                                                    "type": "string"
+                                                },
+                                                "grantType": {
+                                                    "type": "string"
+                                                },
+                                                "headersToProxy": {
+                                                    "items": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "targetBaseUrl": {
+                                                    "type": "string"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "basePath",
+                                                "targetBaseUrl"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "roleIds": {
                                             "items": {
                                                 "type": "string"
                                             },
@@ -1102,7 +1225,7 @@
                                 }
                             }
                         },
-                        "description": "Returns registered extension id"
+                        "description": "Returns activated extension id"
                     },
                     "400": {
                         "content": {
