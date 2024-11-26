@@ -1,9 +1,10 @@
 {
-  "descriptionHash": "EDB7DE921BCDF0E6DF672469828CC3DFA539DE419D674E832453CD8D295F2D73C6B767DAE9E925D6CFD36A55627A447306D176A5AB3BCA40A266D36EB66E253F",
+  "descriptionHash": "641DC1CCA10AB081EA173747FC2A56FF69789EE3E5C433278725E0A03D84D35C0FC345C8669A437A1CFE5E7054D1960E0C645453CA29A20A23EC905F674249F0",
   "descriptionLocation": "../../oas-schema/console-apis-schema.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.18.0",
+  "kiotaVersion": "1.20.0",
   "clientClassName": "ConsoleClient",
+  "typeAccessModifier": "Public",
   "clientNamespaceName": "ApiSdk",
   "language": "TypeScript",
   "usesBackingStore": false,

@@ -65,6 +65,15 @@ export function createWithExtensionGetResponse_menuFromDiscriminatorValue(parseN
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_proxy}
+ */
+// @ts-ignore
+export function createWithExtensionGetResponse_proxyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_proxy;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {WithExtensionGetResponse_visibilities}
  */
 // @ts-ignore
@@ -110,6 +119,8 @@ export function deserializeIntoWithExtensionGetResponse(withExtensionGetResponse
         "menu": n => { withExtensionGetResponse.menu = n.getObjectValue<WithExtensionGetResponse_menu>(createWithExtensionGetResponse_menuFromDiscriminatorValue); },
         "name": n => { withExtensionGetResponse.name = n.getStringValue(); },
         "permissions": n => { withExtensionGetResponse.permissions = n.getCollectionOfPrimitiveValues<string>(); },
+        "proxy": n => { withExtensionGetResponse.proxy = n.getObjectValue<WithExtensionGetResponse_proxy>(createWithExtensionGetResponse_proxyFromDiscriminatorValue); },
+        "roleIds": n => { withExtensionGetResponse.roleIds = n.getCollectionOfPrimitiveValues<string>(); },
         "type": n => { withExtensionGetResponse.type = n.getStringValue(); },
         "visibilities": n => { withExtensionGetResponse.visibilities = n.getCollectionOfObjectValues<WithExtensionGetResponse_visibilities>(createWithExtensionGetResponse_visibilitiesFromDiscriminatorValue); },
     }
@@ -123,6 +134,7 @@ export function deserializeIntoWithExtensionGetResponse_category(withExtensionGe
     return {
         "id": n => { withExtensionGetResponse_category.id = n.getStringValue(); },
         "labelIntl": n => { withExtensionGetResponse_category.labelIntl = n.getObjectValue<WithExtensionGetResponse_category_labelIntl>(createWithExtensionGetResponse_category_labelIntlFromDiscriminatorValue); },
+        "order": n => { withExtensionGetResponse_category.order = n.getNumberValue(); },
     }
 }
 /**
@@ -142,6 +154,7 @@ export function deserializeIntoWithExtensionGetResponse_category_labelIntl(withE
 export function deserializeIntoWithExtensionGetResponse_destination(withExtensionGetResponse_destination: Partial<WithExtensionGetResponse_destination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { withExtensionGetResponse_destination.id = n.getStringValue(); },
+        "path": n => { withExtensionGetResponse_destination.path = n.getStringValue(); },
     }
 }
 /**
@@ -163,6 +176,23 @@ export function deserializeIntoWithExtensionGetResponse_menu(withExtensionGetRes
 // @ts-ignore
 export function deserializeIntoWithExtensionGetResponse_menu_labelIntl(withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWithExtensionGetResponse_proxy(withExtensionGetResponse_proxy: Partial<WithExtensionGetResponse_proxy> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "authentication": n => { withExtensionGetResponse_proxy.authentication = n.getStringValue(); },
+        "authType": n => { withExtensionGetResponse_proxy.authType = n.getStringValue(); },
+        "basePath": n => { withExtensionGetResponse_proxy.basePath = n.getStringValue(); },
+        "clientId": n => { withExtensionGetResponse_proxy.clientId = n.getStringValue(); },
+        "grantType": n => { withExtensionGetResponse_proxy.grantType = n.getStringValue(); },
+        "headersToProxy": n => { withExtensionGetResponse_proxy.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
+        "targetBaseUrl": n => { withExtensionGetResponse_proxy.targetBaseUrl = n.getStringValue(); },
+        "username": n => { withExtensionGetResponse_proxy.username = n.getStringValue(); },
     }
 }
 /**
@@ -207,6 +237,8 @@ export function serializeWithExtensionGetResponse(writer: SerializationWriter, w
         writer.writeObjectValue<WithExtensionGetResponse_menu>("menu", withExtensionGetResponse.menu, serializeWithExtensionGetResponse_menu);
         writer.writeStringValue("name", withExtensionGetResponse.name);
         writer.writeCollectionOfPrimitiveValues<string>("permissions", withExtensionGetResponse.permissions);
+        writer.writeObjectValue<WithExtensionGetResponse_proxy>("proxy", withExtensionGetResponse.proxy, serializeWithExtensionGetResponse_proxy);
+        writer.writeCollectionOfPrimitiveValues<string>("roleIds", withExtensionGetResponse.roleIds);
         writer.writeStringValue("type", withExtensionGetResponse.type);
         writer.writeCollectionOfObjectValues<WithExtensionGetResponse_visibilities>("visibilities", withExtensionGetResponse.visibilities, serializeWithExtensionGetResponse_visibilities);
     }
@@ -220,6 +252,7 @@ export function serializeWithExtensionGetResponse_category(writer: Serialization
     if (withExtensionGetResponse_category) {
         writer.writeStringValue("id", withExtensionGetResponse_category.id);
         writer.writeObjectValue<WithExtensionGetResponse_category_labelIntl>("labelIntl", withExtensionGetResponse_category.labelIntl, serializeWithExtensionGetResponse_category_labelIntl);
+        writer.writeNumberValue("order", withExtensionGetResponse_category.order);
     }
 }
 /**
@@ -240,6 +273,7 @@ export function serializeWithExtensionGetResponse_category_labelIntl(writer: Ser
 export function serializeWithExtensionGetResponse_destination(writer: SerializationWriter, withExtensionGetResponse_destination: Partial<WithExtensionGetResponse_destination> | undefined | null = {}) : void {
     if (withExtensionGetResponse_destination) {
         writer.writeStringValue("id", withExtensionGetResponse_destination.id);
+        writer.writeStringValue("path", withExtensionGetResponse_destination.path);
     }
 }
 /**
@@ -262,6 +296,23 @@ export function serializeWithExtensionGetResponse_menu(writer: SerializationWrit
 export function serializeWithExtensionGetResponse_menu_labelIntl(writer: SerializationWriter, withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | undefined | null = {}) : void {
     if (withExtensionGetResponse_menu_labelIntl) {
         writer.writeAdditionalData(withExtensionGetResponse_menu_labelIntl.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWithExtensionGetResponse_proxy(writer: SerializationWriter, withExtensionGetResponse_proxy: Partial<WithExtensionGetResponse_proxy> | undefined | null = {}) : void {
+    if (withExtensionGetResponse_proxy) {
+        writer.writeStringValue("authentication", withExtensionGetResponse_proxy.authentication);
+        writer.writeStringValue("authType", withExtensionGetResponse_proxy.authType);
+        writer.writeStringValue("basePath", withExtensionGetResponse_proxy.basePath);
+        writer.writeStringValue("clientId", withExtensionGetResponse_proxy.clientId);
+        writer.writeStringValue("grantType", withExtensionGetResponse_proxy.grantType);
+        writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", withExtensionGetResponse_proxy.headersToProxy);
+        writer.writeStringValue("targetBaseUrl", withExtensionGetResponse_proxy.targetBaseUrl);
+        writer.writeStringValue("username", withExtensionGetResponse_proxy.username);
     }
 }
 /**
@@ -339,6 +390,14 @@ export interface WithExtensionGetResponse extends Parsable {
      */
     permissions?: string[] | null;
     /**
+     * The proxy property
+     */
+    proxy?: WithExtensionGetResponse_proxy | null;
+    /**
+     * The roleIds property
+     */
+    roleIds?: string[] | null;
+    /**
      * The type property
      */
     type?: string | null;
@@ -356,6 +415,10 @@ export interface WithExtensionGetResponse_category extends Parsable {
      * The labelIntl property
      */
     labelIntl?: WithExtensionGetResponse_category_labelIntl | null;
+    /**
+     * The order property
+     */
+    order?: number | null;
 }
 export interface WithExtensionGetResponse_category_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -368,6 +431,10 @@ export interface WithExtensionGetResponse_destination extends Parsable {
      * The id property
      */
     id?: string | null;
+    /**
+     * The path property
+     */
+    path?: string | null;
 }
 export interface WithExtensionGetResponse_menu extends Parsable {
     /**
@@ -388,6 +455,40 @@ export interface WithExtensionGetResponse_menu_labelIntl extends AdditionalDataH
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
      */
     additionalData?: Record<string, unknown>;
+}
+export interface WithExtensionGetResponse_proxy extends Parsable {
+    /**
+     * The authentication property
+     */
+    authentication?: string | null;
+    /**
+     * The authType property
+     */
+    authType?: string | null;
+    /**
+     * The basePath property
+     */
+    basePath?: string | null;
+    /**
+     * The clientId property
+     */
+    clientId?: string | null;
+    /**
+     * The grantType property
+     */
+    grantType?: string | null;
+    /**
+     * The headersToProxy property
+     */
+    headersToProxy?: string[] | null;
+    /**
+     * The targetBaseUrl property
+     */
+    targetBaseUrl?: string | null;
+    /**
+     * The username property
+     */
+    username?: string | null;
 }
 export interface WithExtensionGetResponse_visibilities extends Parsable {
     /**
@@ -423,7 +524,7 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      * @returns {Promise<WithExtensionGetResponse>}
      * @throws {WithExtension500Error} error when the service returns a 500 status code
      */
-     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<WithExtensionGetResponse | undefined>;
+     get(requestConfiguration?: RequestConfiguration<WithExtensionItemRequestBuilderGetQueryParameters> | undefined) : Promise<WithExtensionGetResponse | undefined>;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
@@ -433,12 +534,18 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toGetRequestInformation(requestConfiguration?: RequestConfiguration<WithExtensionItemRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
+}
+export interface WithExtensionItemRequestBuilderGetQueryParameters {
+    /**
+     * `true`: include visibilities and proxies in the response. `false` only extension data is returned. default value is `false`.
+     */
+    resolveDetails?: boolean;
 }
 /**
  * Uri template for the request builder.
  */
-export const WithExtensionItemRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions/{extensionId}";
+export const WithExtensionItemRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions/{extensionId}{?resolveDetails*}";
 /**
  * Metadata for all the navigation properties in the request builder.
  */
