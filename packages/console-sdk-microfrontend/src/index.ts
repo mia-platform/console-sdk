@@ -24,9 +24,9 @@ export type {
   IConsoleProps,
   IMicrofrontendIntegrator,
   Events,
-  EventsTypes,
 }
 
 export {
   ConsoleSDK,
+  EventsTypes,
 }

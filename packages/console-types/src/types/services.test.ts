@@ -236,6 +236,11 @@ t.test('services', t => {
       secretName: 'some-secret',
       secretKey: 'some-key',
     }, {
+      name: 'INTERPOLATED_SECRET_VAR',
+      valueType: EnvironmentVariablesTypes.FROM_SECRET,
+      secretName: 'some-secret',
+      secretKey: '{{SOME_INTERPOLATED_KEY}}',
+    }, {
       name: 'CONFIGMAP_VAR',
       valueType: EnvironmentVariablesTypes.FROM_CONFIGMAP,
       configMapName: 'some-configmap',

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.25.0
+
+### Minor Changes
+
+- 5316390: feat: supporting interpolation for service environment variable secret key"
+
 ## 0.24.6
 
 ### Patch Changes

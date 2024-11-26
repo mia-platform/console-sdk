@@ -54,6 +54,15 @@ export function createExtensions_menuFromDiscriminatorValue(parseNode: ParseNode
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_proxy}
+ */
+// @ts-ignore
+export function createExtensions_proxyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_proxy;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_visibilities}
  */
 // @ts-ignore
@@ -168,6 +177,8 @@ export function deserializeIntoExtensions(extensions: Partial<Extensions> | unde
         "menu": n => { extensions.menu = n.getObjectValue<Extensions_menu>(createExtensions_menuFromDiscriminatorValue); },
         "name": n => { extensions.name = n.getStringValue(); },
         "permissions": n => { extensions.permissions = n.getCollectionOfPrimitiveValues<string>(); },
+        "proxy": n => { extensions.proxy = n.getObjectValue<Extensions_proxy>(createExtensions_proxyFromDiscriminatorValue); },
+        "roleIds": n => { extensions.roleIds = n.getCollectionOfPrimitiveValues<string>(); },
         "type": n => { extensions.type = n.getStringValue(); },
         "visibilities": n => { extensions.visibilities = n.getCollectionOfObjectValues<Extensions_visibilities>(createExtensions_visibilitiesFromDiscriminatorValue); },
     }
@@ -181,6 +192,7 @@ export function deserializeIntoExtensions_category(extensions_category: Partial<
     return {
         "id": n => { extensions_category.id = n.getStringValue(); },
         "labelIntl": n => { extensions_category.labelIntl = n.getObjectValue<Extensions_category_labelIntl>(createExtensions_category_labelIntlFromDiscriminatorValue); },
+        "order": n => { extensions_category.order = n.getNumberValue(); },
     }
 }
 /**
@@ -200,6 +212,7 @@ export function deserializeIntoExtensions_category_labelIntl(extensions_category
 export function deserializeIntoExtensions_destination(extensions_destination: Partial<Extensions_destination> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { extensions_destination.id = n.getStringValue(); },
+        "path": n => { extensions_destination.path = n.getStringValue(); },
     }
 }
 /**
@@ -221,6 +234,23 @@ export function deserializeIntoExtensions_menu(extensions_menu: Partial<Extensio
 // @ts-ignore
 export function deserializeIntoExtensions_menu_labelIntl(extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoExtensions_proxy(extensions_proxy: Partial<Extensions_proxy> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "authentication": n => { extensions_proxy.authentication = n.getStringValue(); },
+        "authType": n => { extensions_proxy.authType = n.getStringValue(); },
+        "basePath": n => { extensions_proxy.basePath = n.getStringValue(); },
+        "clientId": n => { extensions_proxy.clientId = n.getStringValue(); },
+        "grantType": n => { extensions_proxy.grantType = n.getStringValue(); },
+        "headersToProxy": n => { extensions_proxy.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
+        "targetBaseUrl": n => { extensions_proxy.targetBaseUrl = n.getStringValue(); },
+        "username": n => { extensions_proxy.username = n.getStringValue(); },
     }
 }
 /**
@@ -276,6 +306,7 @@ export function deserializeIntoExtensionsPutRequestBody(extensionsPutRequestBody
         "menu": n => { extensionsPutRequestBody.menu = n.getObjectValue<ExtensionsPutRequestBody_menu>(createExtensionsPutRequestBody_menuFromDiscriminatorValue); },
         "name": n => { extensionsPutRequestBody.name = n.getStringValue(); },
         "permissions": n => { extensionsPutRequestBody.permissions = n.getCollectionOfPrimitiveValues<string>(); },
+        "roleIds": n => { extensionsPutRequestBody.roleIds = n.getCollectionOfPrimitiveValues<string>(); },
         "type": n => { extensionsPutRequestBody.type = n.getStringValue(); },
     }
 }
@@ -388,6 +419,14 @@ export interface Extensions extends Parsable {
      */
     permissions?: string[] | null;
     /**
+     * The proxy property
+     */
+    proxy?: Extensions_proxy | null;
+    /**
+     * The roleIds property
+     */
+    roleIds?: string[] | null;
+    /**
      * The type property
      */
     type?: string | null;
@@ -405,6 +444,10 @@ export interface Extensions_category extends Parsable {
      * The labelIntl property
      */
     labelIntl?: Extensions_category_labelIntl | null;
+    /**
+     * The order property
+     */
+    order?: number | null;
 }
 export interface Extensions_category_labelIntl extends AdditionalDataHolder, Parsable {
     /**
@@ -417,6 +460,10 @@ export interface Extensions_destination extends Parsable {
      * The id property
      */
     id?: string | null;
+    /**
+     * The path property
+     */
+    path?: string | null;
 }
 export interface Extensions_menu extends Parsable {
     /**
@@ -437,6 +484,40 @@ export interface Extensions_menu_labelIntl extends AdditionalDataHolder, Parsabl
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
      */
     additionalData?: Record<string, unknown>;
+}
+export interface Extensions_proxy extends Parsable {
+    /**
+     * The authentication property
+     */
+    authentication?: string | null;
+    /**
+     * The authType property
+     */
+    authType?: string | null;
+    /**
+     * The basePath property
+     */
+    basePath?: string | null;
+    /**
+     * The clientId property
+     */
+    clientId?: string | null;
+    /**
+     * The grantType property
+     */
+    grantType?: string | null;
+    /**
+     * The headersToProxy property
+     */
+    headersToProxy?: string[] | null;
+    /**
+     * The targetBaseUrl property
+     */
+    targetBaseUrl?: string | null;
+    /**
+     * The username property
+     */
+    username?: string | null;
 }
 export interface Extensions_visibilities extends Parsable {
     /**
@@ -529,6 +610,10 @@ export interface ExtensionsPutRequestBody extends Parsable {
      * The permissions property
      */
     permissions?: string[] | null;
+    /**
+     * The roleIds property
+     */
+    roleIds?: string[] | null;
     /**
      * The type property
      */
@@ -647,6 +732,8 @@ export function serializeExtensions(writer: SerializationWriter, extensions: Par
         writer.writeObjectValue<Extensions_menu>("menu", extensions.menu, serializeExtensions_menu);
         writer.writeStringValue("name", extensions.name);
         writer.writeCollectionOfPrimitiveValues<string>("permissions", extensions.permissions);
+        writer.writeObjectValue<Extensions_proxy>("proxy", extensions.proxy, serializeExtensions_proxy);
+        writer.writeCollectionOfPrimitiveValues<string>("roleIds", extensions.roleIds);
         writer.writeStringValue("type", extensions.type);
         writer.writeCollectionOfObjectValues<Extensions_visibilities>("visibilities", extensions.visibilities, serializeExtensions_visibilities);
     }
@@ -660,6 +747,7 @@ export function serializeExtensions_category(writer: SerializationWriter, extens
     if (extensions_category) {
         writer.writeStringValue("id", extensions_category.id);
         writer.writeObjectValue<Extensions_category_labelIntl>("labelIntl", extensions_category.labelIntl, serializeExtensions_category_labelIntl);
+        writer.writeNumberValue("order", extensions_category.order);
     }
 }
 /**
@@ -680,6 +768,7 @@ export function serializeExtensions_category_labelIntl(writer: SerializationWrit
 export function serializeExtensions_destination(writer: SerializationWriter, extensions_destination: Partial<Extensions_destination> | undefined | null = {}) : void {
     if (extensions_destination) {
         writer.writeStringValue("id", extensions_destination.id);
+        writer.writeStringValue("path", extensions_destination.path);
     }
 }
 /**
@@ -702,6 +791,23 @@ export function serializeExtensions_menu(writer: SerializationWriter, extensions
 export function serializeExtensions_menu_labelIntl(writer: SerializationWriter, extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined | null = {}) : void {
     if (extensions_menu_labelIntl) {
         writer.writeAdditionalData(extensions_menu_labelIntl.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeExtensions_proxy(writer: SerializationWriter, extensions_proxy: Partial<Extensions_proxy> | undefined | null = {}) : void {
+    if (extensions_proxy) {
+        writer.writeStringValue("authentication", extensions_proxy.authentication);
+        writer.writeStringValue("authType", extensions_proxy.authType);
+        writer.writeStringValue("basePath", extensions_proxy.basePath);
+        writer.writeStringValue("clientId", extensions_proxy.clientId);
+        writer.writeStringValue("grantType", extensions_proxy.grantType);
+        writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", extensions_proxy.headersToProxy);
+        writer.writeStringValue("targetBaseUrl", extensions_proxy.targetBaseUrl);
+        writer.writeStringValue("username", extensions_proxy.username);
     }
 }
 /**
@@ -759,6 +865,7 @@ export function serializeExtensionsPutRequestBody(writer: SerializationWriter, e
         writer.writeObjectValue<ExtensionsPutRequestBody_menu>("menu", extensionsPutRequestBody.menu, serializeExtensionsPutRequestBody_menu);
         writer.writeStringValue("name", extensionsPutRequestBody.name);
         writer.writeCollectionOfPrimitiveValues<string>("permissions", extensionsPutRequestBody.permissions);
+        writer.writeCollectionOfPrimitiveValues<string>("roleIds", extensionsPutRequestBody.roleIds);
         writer.writeStringValue("type", extensionsPutRequestBody.type);
     }
 }
