@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.26.0
+
+### Minor Changes
+
+- 4e4a9a6: added environment `type` property
+
+### Patch Changes
+
+- bddedd6: added environment cluster namespace validation pattern
+
 ## 0.25.1
 
 ### Patch Changes
