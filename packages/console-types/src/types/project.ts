@@ -158,12 +158,15 @@ export const environmentsVariables = {
   ],
 } as const
 
+// Cluster namespace regex as defined in RFC 1123 https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#namespaces-and-dns
+export const clusterNamespacePattern = '^[a-z0-9]([-a-z0-9]*[a-z0-9])?$'
+
 export const cluster = {
   type: 'object',
   properties: {
     hostname: { type: 'string' },
     port: { type: 'number' },
-    namespace: { type: 'string' },
+    namespace: { type: 'string', pattern: clusterNamespacePattern },
     clusterId: { type: 'string' },
     _id: { type: 'string' },
     accessToken: { type: 'string' },
