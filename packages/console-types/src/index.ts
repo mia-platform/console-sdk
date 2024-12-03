@@ -245,6 +245,7 @@ export type { ITemplate } from './types/template'
 export type { ITenant } from './types/tenant'
 export type {
   ServiceTypes,
+  EnvironmentTypes,
 } from './constants'
 
 export type { Config } from './types/config'

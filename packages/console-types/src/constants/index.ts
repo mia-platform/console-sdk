@@ -109,6 +109,7 @@ import {
 import { FEEDBACK_TYPES } from './feedback'
 import { HISTORY_RECORD_STATUS } from './webhooks'
 import { CUSTOM_GENERATOR_API_VERSION, DownwardAPIContainerPath, DownwardAPIPodPath } from '../types/services'
+import { ENVIRONMENT_TYPES } from './environments'
 import { clusterNamespacePattern } from '../types/project'
 
 const constants = {
@@ -210,6 +211,7 @@ const constants = {
   DownwardAPIContainerPath,
   DownwardAPIPodPath,
   CUSTOM_GENERATOR_API_VERSION,
+  ENVIRONMENT_TYPES,
   clusterNamespacePattern,
 }
 export default constants
@@ -217,3 +219,4 @@ export default constants
 export type { ServiceTypes } from './services'
 export type { IndexTypes, FieldTypes } from './collections'
 export type { EndpointTypes, Verbs } from './endpoints'
+export type { EnvironmentTypes } from './environments'

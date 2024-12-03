@@ -24,6 +24,7 @@ import { PatternTest, createTestsRegex, validationMessage } from './validate-uti
 import { PROMETHEUS_OPERATOR } from '../constants/project'
 
 export const fullEnvironment: Required<IEnvironment> = {
+  type: 'runtime',
   label: 'My Env',
   envId: 'my-env',
   envPrefix: 'prefix',
