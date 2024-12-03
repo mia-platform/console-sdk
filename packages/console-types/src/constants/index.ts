@@ -110,6 +110,7 @@ import { FEEDBACK_TYPES } from './feedback'
 import { HISTORY_RECORD_STATUS } from './webhooks'
 import { CUSTOM_GENERATOR_API_VERSION, DownwardAPIContainerPath, DownwardAPIPodPath } from '../types/services'
 import { ENVIRONMENT_TYPES } from './environments'
+import { clusterNamespacePattern } from '../types/project'
 
 const constants = {
   API_CONSOLE_TOTAL_PAGES_HEADER_KEY,
@@ -211,6 +212,7 @@ const constants = {
   DownwardAPIPodPath,
   CUSTOM_GENERATOR_API_VERSION,
   ENVIRONMENT_TYPES,
+  clusterNamespacePattern,
 }
 export default constants
 
