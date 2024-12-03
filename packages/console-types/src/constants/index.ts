@@ -210,11 +210,11 @@ const constants = {
   DownwardAPIContainerPath,
   DownwardAPIPodPath,
   CUSTOM_GENERATOR_API_VERSION,
-  ENVIRONMENT_TYPES
+  ENVIRONMENT_TYPES,
 }
 export default constants
 
 export type { ServiceTypes } from './services'
 export type { IndexTypes, FieldTypes } from './collections'
 export type { EndpointTypes, Verbs } from './endpoints'
-export type { EnvironmentTypes } from  './environments'
+export type { EnvironmentTypes } from './environments'
