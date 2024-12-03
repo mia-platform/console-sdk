@@ -23,6 +23,7 @@ import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from '../constants/dashboard'
 import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../constants/project'
 import { providerCommonProperties } from './provider'
 import { VALIDATION_ERROR_ID } from '../strings'
+import { ENVIRONMENT_TYPES } from '../constants/environments'
 
 export const enabledServicesSchema = {
   type: 'object',
@@ -217,6 +218,10 @@ export const strategySchema = {
 export const environment = {
   type: 'object',
   properties: {
+    type: {
+      type: 'string',
+      enum: Object.values(ENVIRONMENT_TYPES),
+    },
     label: { type: 'string' },
     envId: { type: 'string' },
     envPrefix: { type: 'string' },
