@@ -218,6 +218,8 @@ export const strategySchema = {
   default: PUSH_DEPLOY_STRATEGY,
 } as const
 
+export const envIdPattern = '^[A-Za-z0-9]([-A-Za-z0-9]*[A-Za-z0-9])?$'
+
 export const environment = {
   type: 'object',
   properties: {
@@ -226,7 +228,7 @@ export const environment = {
       enum: Object.values(ENVIRONMENT_TYPES),
     },
     label: { type: 'string' },
-    envId: { type: 'string' },
+    envId: { type: 'string', pattern: envIdPattern },
     envPrefix: { type: 'string' },
     hosts: {
       type: 'array',
