@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.26.1
+
+### Patch Changes
+
+- 4feb792: fixed envid validation pattern
+
 ## 0.26.0
 
 ### Minor Changes
