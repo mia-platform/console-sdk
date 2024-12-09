@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.3.7
+
+### Patch Changes
+
+- fcb45a4: exposed API to create a proxy for an extension
+
 ## 0.3.6
 
 ### Patch Changes
