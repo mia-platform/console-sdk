@@ -1726,10 +1726,597 @@ Object {
         "else": Object {
           "else": Object {
             "else": Object {
+              "else": Object {
+                "if": Object {
+                  "properties": Object {
+                    "type": Object {
+                      "const": "fast-data-single-view",
+                      "type": "string",
+                    },
+                  },
+                  "type": "object",
+                },
+                "then": Object {
+                  "properties": Object {
+                    "acl": Object {
+                      "type": "string",
+                    },
+                    "allowUnknownRequestContentType": Object {
+                      "default": false,
+                      "type": "boolean",
+                    },
+                    "allowUnknownResponseContentType": Object {
+                      "default": false,
+                      "type": "boolean",
+                    },
+                    "backofficeAcl": Object {
+                      "default": Object {
+                        "inherited": true,
+                      },
+                      "else": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "inherited": Object {
+                            "const": true,
+                            "type": "boolean",
+                          },
+                        },
+                        "required": Array [
+                          "inherited",
+                        ],
+                        "type": "object",
+                      },
+                      "if": Object {
+                        "properties": Object {
+                          "inherited": Object {
+                            "const": false,
+                            "type": "boolean",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "then": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "inherited": Object {
+                            "const": false,
+                            "type": "boolean",
+                          },
+                          "value": Object {
+                            "type": "string",
+                          },
+                        },
+                        "required": Array [
+                          "inherited",
+                          "value",
+                        ],
+                        "type": "object",
+                      },
+                      "type": "object",
+                    },
+                    "basePath": Object {
+                      "pattern": "^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$",
+                      "type": "string",
+                    },
+                    "description": Object {
+                      "type": "string",
+                    },
+                    "forceMicroserviceGatewayProxy": Object {
+                      "default": false,
+                      "type": "boolean",
+                    },
+                    "internalEndpoint": Object {
+                      "type": "string",
+                    },
+                    "listeners": Object {
+                      "additionalProperties": Object {
+                        "type": "boolean",
+                      },
+                      "type": "object",
+                    },
+                    "options": Object {
+                      "properties": Object {
+                        "iframePolicy": Object {
+                          "enum": Array [
+                            "all",
+                            "deny",
+                            "sameorigin",
+                          ],
+                          "type": "string",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "pathName": Object {
+                      "pattern": "^\\\\/(([\\\\w\\\\-:])\\\\/?)*$",
+                      "type": "string",
+                    },
+                    "pathRewrite": Object {
+                      "type": "string",
+                    },
+                    "public": Object {
+                      "type": "boolean",
+                    },
+                    "rateLimit": Object {
+                      "properties": Object {
+                        "requestsPerSecond": Object {
+                          "description": "The number of request that can be made each second",
+                          "type": "integer",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "requestBody": Object {
+                      "properties": Object {
+                        "maxSizeMB": Object {
+                          "description": "Maximum size of the request body",
+                          "type": "number",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "routes": Object {
+                      "additionalProperties": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "acl": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "value": Object {
+                                  "type": "string",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "value",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "allowUnknownRequestContentType": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "value": Object {
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "value",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "allowUnknownResponseContentType": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "value": Object {
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "value",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "backofficeAcl": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "value": Object {
+                                  "type": "string",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "value",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "catchDecorator": Object {
+                            "type": "string",
+                          },
+                          "id": Object {
+                            "type": "string",
+                          },
+                          "path": Object {
+                            "pattern": "^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*\\\\/?)+)$",
+                            "type": "string",
+                          },
+                          "postDecorators": Object {
+                            "default": Array [],
+                            "items": Object {
+                              "type": "string",
+                            },
+                            "type": "array",
+                          },
+                          "preDecorators": Object {
+                            "default": Array [],
+                            "items": Object {
+                              "type": "string",
+                            },
+                            "type": "array",
+                          },
+                          "public": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "value": Object {
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "value",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "rateLimit": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "requestsPerSecond": Object {
+                                  "description": "Maximum number of requests allowed per second",
+                                  "type": "number",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "requestsPerSecond",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "schema": Object {
+                            "type": "object",
+                          },
+                          "secreted": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "value": Object {
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "value",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "showInDocumentation": Object {
+                            "default": Object {
+                              "inherited": true,
+                            },
+                            "else": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": true,
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                              ],
+                              "type": "object",
+                            },
+                            "if": Object {
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                              },
+                              "type": "object",
+                            },
+                            "then": Object {
+                              "additionalProperties": false,
+                              "properties": Object {
+                                "inherited": Object {
+                                  "const": false,
+                                  "type": "boolean",
+                                },
+                                "value": Object {
+                                  "type": "boolean",
+                                },
+                              },
+                              "required": Array [
+                                "inherited",
+                                "value",
+                              ],
+                              "type": "object",
+                            },
+                            "type": "object",
+                          },
+                          "verb": Object {
+                            "enum": Array [
+                              "GET",
+                              "POST",
+                              "PUT",
+                              "PATCH",
+                              "DELETE",
+                              "HEAD",
+                            ],
+                            "type": "string",
+                          },
+                        },
+                        "required": Array [
+                          "id",
+                          "path",
+                          "acl",
+                          "backofficeAcl",
+                          "public",
+                          "secreted",
+                          "showInDocumentation",
+                          "verb",
+                        ],
+                        "type": "object",
+                      },
+                      "type": "object",
+                    },
+                    "secreted": Object {
+                      "type": "boolean",
+                    },
+                    "showInDocumentation": Object {
+                      "type": "boolean",
+                    },
+                    "tags": Object {
+                      "items": Object {
+                        "type": "string",
+                      },
+                      "type": "array",
+                    },
+                    "timeout": Object {
+                      "properties": Object {
+                        "readSeconds": Object {
+                          "description": "The number of seconds to wait before the request is rejected",
+                          "type": "number",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "type": Object {
+                      "const": "fast-data-single-view",
+                      "type": "string",
+                    },
+                  },
+                  "required": Array [
+                    "internalEndpoint",
+                    "routes",
+                    "pathName",
+                    "basePath",
+                    "type",
+                    "public",
+                    "secreted",
+                    "showInDocumentation",
+                    "acl",
+                  ],
+                  "type": "object",
+                },
+              },
               "if": Object {
                 "properties": Object {
                   "type": Object {
-                    "const": "fast-data-single-view",
+                    "const": "fast-data-projection",
                     "type": "string",
                   },
                 },
@@ -1804,9 +2391,6 @@ Object {
                     "default": false,
                     "type": "boolean",
                   },
-                  "internalEndpoint": Object {
-                    "type": "string",
-                  },
                   "listeners": Object {
                     "additionalProperties": Object {
                       "type": "boolean",
@@ -1831,6 +2415,9 @@ Object {
                     "type": "string",
                   },
                   "pathRewrite": Object {
+                    "type": "string",
+                  },
+                  "projectionId": Object {
                     "type": "string",
                   },
                   "public": Object {
@@ -2294,12 +2881,12 @@ Object {
                     "type": "object",
                   },
                   "type": Object {
-                    "const": "fast-data-single-view",
+                    "const": "fast-data-projection",
                     "type": "string",
                   },
                 },
                 "required": Array [
-                  "internalEndpoint",
+                  "projectionId",
                   "routes",
                   "pathName",
                   "basePath",
@@ -2315,7 +2902,11 @@ Object {
             "if": Object {
               "properties": Object {
                 "type": Object {
-                  "const": "fast-data-projection",
+                  "enum": Array [
+                    "external",
+                    "custom",
+                    "cross-projects",
+                  ],
                   "type": "string",
                 },
               },
@@ -2409,14 +3000,7 @@ Object {
                   },
                   "type": "object",
                 },
-                "pathName": Object {
-                  "pattern": "^\\\\/(([\\\\w\\\\-:])\\\\/?)*$",
-                  "type": "string",
-                },
                 "pathRewrite": Object {
-                  "type": "string",
-                },
-                "projectionId": Object {
                   "type": "string",
                 },
                 "public": Object {
@@ -2861,6 +3445,12 @@ Object {
                 "secreted": Object {
                   "type": "boolean",
                 },
+                "service": Object {
+                  "minLength": 1,
+                  "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                  "type": "string",
+                  "x-validation-error-id": "resourceName.patternError",
+                },
                 "showInDocumentation": Object {
                   "type": "boolean",
                 },
@@ -2880,14 +3470,16 @@ Object {
                   "type": "object",
                 },
                 "type": Object {
-                  "const": "fast-data-projection",
+                  "enum": Array [
+                    "external",
+                    "custom",
+                    "cross-projects",
+                  ],
                   "type": "string",
                 },
               },
               "required": Array [
-                "projectionId",
-                "routes",
-                "pathName",
+                "service",
                 "basePath",
                 "type",
                 "public",
@@ -2901,11 +3493,7 @@ Object {
           "if": Object {
             "properties": Object {
               "type": Object {
-                "enum": Array [
-                  "external",
-                  "custom",
-                  "cross-projects",
-                ],
+                "const": "custom",
                 "type": "string",
               },
             },
@@ -3000,6 +3588,11 @@ Object {
                 "type": "object",
               },
               "pathRewrite": Object {
+                "type": "string",
+              },
+              "port": Object {
+                "minLength": 1,
+                "pattern": "^$|^((\\\\{\\\\{([A-Z])([A-Z0-9_]*)\\\\}\\\\})|([1-9]\\\\d*|0))$",
                 "type": "string",
               },
               "public": Object {
@@ -3469,16 +4062,16 @@ Object {
                 "type": "object",
               },
               "type": Object {
-                "enum": Array [
-                  "external",
-                  "custom",
-                  "cross-projects",
-                ],
+                "const": "custom",
                 "type": "string",
+              },
+              "useDownstreamProtocol": Object {
+                "type": "boolean",
               },
             },
             "required": Array [
               "service",
+              "port",
               "basePath",
               "type",
               "public",

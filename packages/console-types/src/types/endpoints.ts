@@ -23,6 +23,13 @@ import { buildType, description } from './shared'
 import { VALIDATION_ERROR_ID } from '../strings'
 import { collectionName } from './collections'
 import { serviceName } from './services'
+import { DIGIT_OR_INTERPOLATION_PATTERN } from '../constants/services'
+
+const servicePort = {
+  type: 'string',
+  minLength: 1,
+  pattern: DIGIT_OR_INTERPOLATION_PATTERN,
+} as const
 
 const routeBooleanValue = {
   type: 'object',
@@ -282,7 +289,23 @@ export type SingleViewEndpoint = FromSchema<typeof endpointSingleView, {
   parseIfThenElseKeywords: true
 }>
 
-const endpointWithService = {
+const customEndpoint = {
+  type: 'object',
+  properties: {
+    ...baseEndpointProperties,
+    type: { type: 'string', const: EndpointTypes.CUSTOM },
+    service: serviceName,
+    port: servicePort,
+    useDownstreamProtocol: { type: 'boolean' },
+  },
+  required: ['service', 'port', ...baseEndpointRequiredProperties],
+} as const
+
+export type CustomEndpoint = FromSchema<typeof customEndpoint, {
+  parseIfThenElseKeywords: true
+}>
+
+const genericEndpoint = {
   type: 'object',
   properties: {
     ...baseEndpointProperties,
@@ -292,7 +315,7 @@ const endpointWithService = {
   required: ['service', ...baseEndpointRequiredProperties],
 } as const
 
-export type GenericEndpoint = FromSchema<typeof endpointWithService, {
+export type GenericEndpoint = FromSchema<typeof genericEndpoint, {
   parseIfThenElseKeywords: true
 }>
 
@@ -303,14 +326,18 @@ export const endpoints = {
     if: buildType(endpointWithCollection.properties.type),
     then: endpointWithCollection,
     else: {
-      if: buildType(endpointWithService.properties.type),
-      then: endpointWithService,
+      if: buildType(customEndpoint.properties.type),
+      then: customEndpoint,
       else: {
-        if: buildType(endpointFastDataProjection.properties.type),
-        then: endpointFastDataProjection,
+        if: buildType(genericEndpoint.properties.type),
+        then: genericEndpoint,
         else: {
-          if: buildType(endpointSingleView.properties.type),
-          then: endpointSingleView,
+          if: buildType(endpointFastDataProjection.properties.type),
+          then: endpointFastDataProjection,
+          else: {
+            if: buildType(endpointSingleView.properties.type),
+            then: endpointSingleView,
+          },
         },
       },
     },

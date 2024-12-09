@@ -252,6 +252,7 @@ export type { Config } from './types/config'
 
 export type {
   Endpoints,
+  CustomEndpoint,
   GenericEndpoint,
   SingleViewEndpoint,
   CrudEndpoint,

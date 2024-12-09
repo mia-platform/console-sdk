@@ -980,6 +980,7 @@ const CUSTOM_ENDPOINT = {
     'allowUnknownResponseContentType': true,
     'forceMicroserviceGatewayProxy': false,
     'service': 'backend',
+    'port': '80',
   },
 }
 

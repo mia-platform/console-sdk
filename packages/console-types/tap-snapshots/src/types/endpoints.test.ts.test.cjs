@@ -610,11 +610,7 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "external",
-              "custom",
-              "cross-projects"
-            ]
+            "const": "custom"
           }
         }
       },
@@ -1051,11 +1047,7 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
           },
           "type": {
             "type": "string",
-            "enum": [
-              "external",
-              "custom",
-              "cross-projects"
-            ]
+            "const": "custom"
           },
           "tags": {
             "type": "array",
@@ -1183,10 +1175,19 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
             "minLength": 1,
             "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
             "x-validation-error-id": "resourceName.patternError"
+          },
+          "port": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^$|^((\\\\{\\\\{([A-Z])([A-Z0-9_]*)\\\\}\\\\})|([1-9]\\\\d*|0))$"
+          },
+          "useDownstreamProtocol": {
+            "type": "boolean"
           }
         },
         "required": [
           "service",
+          "port",
           "basePath",
           "type",
           "public",
@@ -1201,7 +1202,11 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
           "properties": {
             "type": {
               "type": "string",
-              "const": "fast-data-projection"
+              "enum": [
+                "external",
+                "custom",
+                "cross-projects"
+              ]
             }
           }
         },
@@ -1638,7 +1643,11 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
             },
             "type": {
               "type": "string",
-              "const": "fast-data-projection"
+              "enum": [
+                "external",
+                "custom",
+                "cross-projects"
+              ]
             },
             "tags": {
               "type": "array",
@@ -1761,18 +1770,15 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                 }
               }
             },
-            "pathName": {
+            "service": {
               "type": "string",
-              "pattern": "^\\\\/(([\\\\w\\\\-:])\\\\/?)*$"
-            },
-            "projectionId": {
-              "type": "string"
+              "minLength": 1,
+              "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+              "x-validation-error-id": "resourceName.patternError"
             }
           },
           "required": [
-            "projectionId",
-            "routes",
-            "pathName",
+            "service",
             "basePath",
             "type",
             "public",
@@ -1787,7 +1793,7 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
             "properties": {
               "type": {
                 "type": "string",
-                "const": "fast-data-single-view"
+                "const": "fast-data-projection"
               }
             }
           },
@@ -2224,7 +2230,7 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
               },
               "type": {
                 "type": "string",
-                "const": "fast-data-single-view"
+                "const": "fast-data-projection"
               },
               "tags": {
                 "type": "array",
@@ -2351,12 +2357,12 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
                 "type": "string",
                 "pattern": "^\\\\/(([\\\\w\\\\-:])\\\\/?)*$"
               },
-              "internalEndpoint": {
+              "projectionId": {
                 "type": "string"
               }
             },
             "required": [
-              "internalEndpoint",
+              "projectionId",
               "routes",
               "pathName",
               "basePath",
@@ -2366,6 +2372,593 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
               "showInDocumentation",
               "acl"
             ]
+          },
+          "else": {
+            "if": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "fast-data-single-view"
+                }
+              }
+            },
+            "then": {
+              "type": "object",
+              "properties": {
+                "basePath": {
+                  "type": "string",
+                  "pattern": "^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*)+)$"
+                },
+                "pathRewrite": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "routes": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string",
+                        "pattern": "^(\\\\/$|(\\\\/([\\\\w\\\\-\\\\.]|(:[a-zA-Z]))[\\\\w\\\\-\\\\.]*\\\\/?)+)$"
+                      },
+                      "public": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "value": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "showInDocumentation": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "value": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "schema": {
+                        "type": "object"
+                      },
+                      "secreted": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "value": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "allowUnknownRequestContentType": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "value": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "allowUnknownResponseContentType": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "value": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "acl": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "backofficeAcl": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "verb": {
+                        "type": "string",
+                        "enum": [
+                          "GET",
+                          "POST",
+                          "PUT",
+                          "PATCH",
+                          "DELETE",
+                          "HEAD"
+                        ]
+                      },
+                      "catchDecorator": {
+                        "type": "string"
+                      },
+                      "preDecorators": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "default": []
+                      },
+                      "postDecorators": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "default": []
+                      },
+                      "rateLimit": {
+                        "type": "object",
+                        "default": {
+                          "inherited": true
+                        },
+                        "if": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            }
+                          }
+                        },
+                        "then": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": false
+                            },
+                            "requestsPerSecond": {
+                              "type": "number",
+                              "description": "Maximum number of requests allowed per second"
+                            }
+                          },
+                          "required": [
+                            "inherited",
+                            "requestsPerSecond"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "else": {
+                          "type": "object",
+                          "properties": {
+                            "inherited": {
+                              "type": "boolean",
+                              "const": true
+                            }
+                          },
+                          "required": [
+                            "inherited"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "path",
+                      "acl",
+                      "backofficeAcl",
+                      "public",
+                      "secreted",
+                      "showInDocumentation",
+                      "verb"
+                    ]
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "const": "fast-data-single-view"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "public": {
+                  "type": "boolean"
+                },
+                "showInDocumentation": {
+                  "type": "boolean"
+                },
+                "secreted": {
+                  "type": "boolean"
+                },
+                "acl": {
+                  "type": "string"
+                },
+                "backofficeAcl": {
+                  "type": "object",
+                  "default": {
+                    "inherited": true
+                  },
+                  "if": {
+                    "type": "object",
+                    "properties": {
+                      "inherited": {
+                        "type": "boolean",
+                        "const": false
+                      }
+                    }
+                  },
+                  "then": {
+                    "type": "object",
+                    "properties": {
+                      "inherited": {
+                        "type": "boolean",
+                        "const": false
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "inherited",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "else": {
+                    "type": "object",
+                    "properties": {
+                      "inherited": {
+                        "type": "boolean",
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "inherited"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "allowUnknownRequestContentType": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "allowUnknownResponseContentType": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "forceMicroserviceGatewayProxy": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "timeout": {
+                  "type": "object",
+                  "properties": {
+                    "readSeconds": {
+                      "type": "number",
+                      "description": "The number of seconds to wait before the request is rejected"
+                    }
+                  }
+                },
+                "rateLimit": {
+                  "type": "object",
+                  "properties": {
+                    "requestsPerSecond": {
+                      "type": "integer",
+                      "description": "The number of request that can be made each second"
+                    }
+                  }
+                },
+                "requestBody": {
+                  "type": "object",
+                  "properties": {
+                    "maxSizeMB": {
+                      "type": "number",
+                      "description": "Maximum size of the request body"
+                    }
+                  }
+                },
+                "listeners": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "boolean"
+                  }
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {
+                    "iframePolicy": {
+                      "type": "string",
+                      "enum": [
+                        "all",
+                        "deny",
+                        "sameorigin"
+                      ]
+                    }
+                  }
+                },
+                "pathName": {
+                  "type": "string",
+                  "pattern": "^\\\\/(([\\\\w\\\\-:])\\\\/?)*$"
+                },
+                "internalEndpoint": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "internalEndpoint",
+                "routes",
+                "pathName",
+                "basePath",
+                "type",
+                "public",
+                "secreted",
+                "showInDocumentation",
+                "acl"
+              ]
+            }
           }
         }
       }
