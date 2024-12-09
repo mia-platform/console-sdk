@@ -6,6 +6,8 @@ import { ActivationRequestBuilderNavigationMetadata, ActivationRequestBuilderReq
 // @ts-ignore
 import { type WithContextTypeItemRequestBuilder, WithContextTypeItemRequestBuilderNavigationMetadata } from './item/index.js';
 // @ts-ignore
+import { ProxyRequestBuilderRequestsMetadata, type ProxyRequestBuilder } from './proxy/index.js';
+// @ts-ignore
 import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
 /**
@@ -509,6 +511,10 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      */
     get activation(): ActivationRequestBuilder;
     /**
+     * The proxy property
+     */
+    get proxy(): ProxyRequestBuilder;
+    /**
      * Gets an item from the ApiSdk.api.extensibility.tenants.item.extensions.item.item collection
      * @param contextType Unique identifier of the item
      * @returns {WithContextTypeItemRequestBuilder}
@@ -557,6 +563,9 @@ export const WithExtensionItemRequestBuilderNavigationMetadata: Record<Exclude<k
     activation: {
         requestsMetadata: ActivationRequestBuilderRequestsMetadata,
         navigationMetadata: ActivationRequestBuilderNavigationMetadata,
+    },
+    proxy: {
+        requestsMetadata: ProxyRequestBuilderRequestsMetadata,
     },
 };
 /**

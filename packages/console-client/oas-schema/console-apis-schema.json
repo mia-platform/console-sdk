@@ -1691,6 +1691,148 @@
                 ]
             }
         },
+        "/api/extensibility/tenants/{tenantId}/extensions/{extensionId}/proxy": {
+            "post": {
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "extensionId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "tenantId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "additionalProperties": false,
+                                "properties": {
+                                    "authType": {
+                                        "type": "string"
+                                    },
+                                    "authentication": {
+                                        "type": "string"
+                                    },
+                                    "clientId": {
+                                        "type": "string"
+                                    },
+                                    "clientSecret": {
+                                        "type": "string"
+                                    },
+                                    "grantType": {
+                                        "type": "string"
+                                    },
+                                    "headersToProxy": {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "targetBaseUrl": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "targetBaseUrl"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "proxyId": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "proxyId"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "statusCode",
+                                        "message"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "extensibility",
+                    "companies"
+                ]
+            }
+        },
 
         "/api/marketplace/": {
             "get": {
@@ -1824,12 +1966,12 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                  "resources": {
-                                    "type": "array",
-                                    "items": {
-                                      "$ref": "#/components/schemas/marketplaceItem"
+                                    "resources": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/marketplaceItem"
+                                        }
                                     }
-                                  }
                                 },
                                 "required": [
                                     "resources"
