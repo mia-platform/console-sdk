@@ -980,6 +980,7 @@ const CUSTOM_ENDPOINT = {
     'allowUnknownResponseContentType': true,
     'forceMicroserviceGatewayProxy': false,
     'service': 'backend',
+    'port': '80',
   },
 }
 
@@ -1932,7 +1933,13 @@ t.test('endpoints schema', t => {
       },
       {
         desc: 'custom type',
-        endpoints: CUSTOM_ENDPOINT,
+        endpoints: {
+          '/custom': CUSTOM_ENDPOINT['/custom'],
+          '/with-downstream-protocol': {
+            ...CUSTOM_ENDPOINT['/custom'],
+            useDownstreamProtocol: true,
+          },
+        },
       },
       {
         desc: 'projection type',
