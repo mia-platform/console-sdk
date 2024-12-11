@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.26.2
+
+### Patch Changes
+
+- 4d08669: add "port" field to custom endpoints
+
 ## 0.26.1
 
 ### Patch Changes
