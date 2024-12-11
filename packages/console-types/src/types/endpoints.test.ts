@@ -1934,7 +1934,7 @@ t.test('endpoints schema', t => {
       {
         desc: 'custom type',
         endpoints: {
-          '/default': CUSTOM_ENDPOINT['/custom'],
+          '/custom': CUSTOM_ENDPOINT['/custom'],
           '/with-downstream-protocol': {
             ...CUSTOM_ENDPOINT['/custom'],
             useDownstreamProtocol: true,
