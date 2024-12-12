@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.4.0
+
+### Minor Changes
+
+- 914de98: feat(IDP-2418): Exposed `PATCH` and `DELETE` APIs to edit and remove an extension proxy
+
 ## 0.3.7
 
 ### Patch Changes
