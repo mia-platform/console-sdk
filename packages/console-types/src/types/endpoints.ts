@@ -347,8 +347,9 @@ export const endpoints = {
 
 // This type is required since Endpoints cannot parse if/then/else since it is too deep
 export type Endpoints = Record<string,
-FastDataProjectionEndpoint |
-CrudEndpoint |
-SingleViewEndpoint |
-GenericEndpoint
+  FastDataProjectionEndpoint |
+  CrudEndpoint |
+  SingleViewEndpoint |
+  CustomEndpoint |
+  GenericEndpoint
 >
