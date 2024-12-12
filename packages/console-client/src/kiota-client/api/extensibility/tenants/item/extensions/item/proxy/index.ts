@@ -25,6 +25,24 @@ export function createProxy500ErrorFromDiscriminatorValue(parseNode: ParseNode |
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ProxyPatchRequestBody}
+ */
+// @ts-ignore
+export function createProxyPatchRequestBodyFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoProxyPatchRequestBody;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {ProxyPatchResponse}
+ */
+// @ts-ignore
+export function createProxyPatchResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoProxyPatchResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ProxyPostRequestBody}
  */
 // @ts-ignore
@@ -62,6 +80,41 @@ export function deserializeIntoProxy500Error(proxy500Error: Partial<Proxy500Erro
         "error": n => { proxy500Error.errorEscaped = n.getStringValue(); },
         "message": n => { proxy500Error.messageEscaped = n.getStringValue(); },
         "statusCode": n => { proxy500Error.statusCode = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoProxyPatchRequestBody(proxyPatchRequestBody: Partial<ProxyPatchRequestBody> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "authentication": n => { proxyPatchRequestBody.authentication = n.getStringValue(); },
+        "authType": n => { proxyPatchRequestBody.authType = n.getStringValue(); },
+        "clientId": n => { proxyPatchRequestBody.clientId = n.getStringValue(); },
+        "clientSecret": n => { proxyPatchRequestBody.clientSecret = n.getStringValue(); },
+        "grantType": n => { proxyPatchRequestBody.grantType = n.getStringValue(); },
+        "headersToProxy": n => { proxyPatchRequestBody.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
+        "password": n => { proxyPatchRequestBody.password = n.getStringValue(); },
+        "targetBaseUrl": n => { proxyPatchRequestBody.targetBaseUrl = n.getStringValue(); },
+        "username": n => { proxyPatchRequestBody.username = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoProxyPatchResponse(proxyPatchResponse: Partial<ProxyPatchResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "authentication": n => { proxyPatchResponse.authentication = n.getStringValue(); },
+        "authType": n => { proxyPatchResponse.authType = n.getStringValue(); },
+        "basePath": n => { proxyPatchResponse.basePath = n.getStringValue(); },
+        "clientId": n => { proxyPatchResponse.clientId = n.getStringValue(); },
+        "grantType": n => { proxyPatchResponse.grantType = n.getStringValue(); },
+        "headersToProxy": n => { proxyPatchResponse.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
+        "targetBaseUrl": n => { proxyPatchResponse.targetBaseUrl = n.getStringValue(); },
+        "username": n => { proxyPatchResponse.username = n.getStringValue(); },
     }
 }
 /**
@@ -128,6 +181,78 @@ export interface Proxy500Error extends AdditionalDataHolder, ApiError, Parsable 
      */
     statusCode?: number | null;
 }
+export interface ProxyPatchRequestBody extends Parsable {
+    /**
+     * The authentication property
+     */
+    authentication?: string | null;
+    /**
+     * The authType property
+     */
+    authType?: string | null;
+    /**
+     * The clientId property
+     */
+    clientId?: string | null;
+    /**
+     * The clientSecret property
+     */
+    clientSecret?: string | null;
+    /**
+     * The grantType property
+     */
+    grantType?: string | null;
+    /**
+     * The headersToProxy property
+     */
+    headersToProxy?: string[] | null;
+    /**
+     * The password property
+     */
+    password?: string | null;
+    /**
+     * The targetBaseUrl property
+     */
+    targetBaseUrl?: string | null;
+    /**
+     * The username property
+     */
+    username?: string | null;
+}
+export interface ProxyPatchResponse extends Parsable {
+    /**
+     * The authentication property
+     */
+    authentication?: string | null;
+    /**
+     * The authType property
+     */
+    authType?: string | null;
+    /**
+     * The basePath property
+     */
+    basePath?: string | null;
+    /**
+     * The clientId property
+     */
+    clientId?: string | null;
+    /**
+     * The grantType property
+     */
+    grantType?: string | null;
+    /**
+     * The headersToProxy property
+     */
+    headersToProxy?: string[] | null;
+    /**
+     * The targetBaseUrl property
+     */
+    targetBaseUrl?: string | null;
+    /**
+     * The username property
+     */
+    username?: string | null;
+}
 export interface ProxyPostRequestBody extends Parsable {
     /**
      * The authentication property
@@ -177,6 +302,20 @@ export interface ProxyPostResponse extends Parsable {
  */
 export interface ProxyRequestBuilder extends BaseRequestBuilder<ProxyRequestBuilder> {
     /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @throws {Proxy400Error} error when the service returns a 400 status code
+     * @throws {Proxy500Error} error when the service returns a 500 status code
+     */
+     delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
+    /**
+     * @param body The request body
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {Promise<ProxyPatchResponse>}
+     * @throws {Proxy400Error} error when the service returns a 400 status code
+     * @throws {Proxy500Error} error when the service returns a 500 status code
+     */
+     patch(body: ProxyPatchRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ProxyPatchResponse | undefined>;
+    /**
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ProxyPostResponse>}
@@ -184,6 +323,17 @@ export interface ProxyRequestBuilder extends BaseRequestBuilder<ProxyRequestBuil
      * @throws {Proxy500Error} error when the service returns a 500 status code
      */
      post(body: ProxyPostRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<ProxyPostResponse | undefined>;
+    /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {RequestInformation}
+     */
+     toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+    /**
+     * @param body The request body
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {RequestInformation}
+     */
+     toPatchRequestInformation(body: ProxyPatchRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -222,6 +372,41 @@ export function serializeProxy500Error(writer: SerializationWriter, proxy500Erro
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
+export function serializeProxyPatchRequestBody(writer: SerializationWriter, proxyPatchRequestBody: Partial<ProxyPatchRequestBody> | undefined | null = {}) : void {
+    if (proxyPatchRequestBody) {
+        writer.writeStringValue("authentication", proxyPatchRequestBody.authentication);
+        writer.writeStringValue("authType", proxyPatchRequestBody.authType);
+        writer.writeStringValue("clientId", proxyPatchRequestBody.clientId);
+        writer.writeStringValue("clientSecret", proxyPatchRequestBody.clientSecret);
+        writer.writeStringValue("grantType", proxyPatchRequestBody.grantType);
+        writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", proxyPatchRequestBody.headersToProxy);
+        writer.writeStringValue("password", proxyPatchRequestBody.password);
+        writer.writeStringValue("targetBaseUrl", proxyPatchRequestBody.targetBaseUrl);
+        writer.writeStringValue("username", proxyPatchRequestBody.username);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeProxyPatchResponse(writer: SerializationWriter, proxyPatchResponse: Partial<ProxyPatchResponse> | undefined | null = {}) : void {
+    if (proxyPatchResponse) {
+        writer.writeStringValue("authentication", proxyPatchResponse.authentication);
+        writer.writeStringValue("authType", proxyPatchResponse.authType);
+        writer.writeStringValue("basePath", proxyPatchResponse.basePath);
+        writer.writeStringValue("clientId", proxyPatchResponse.clientId);
+        writer.writeStringValue("grantType", proxyPatchResponse.grantType);
+        writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", proxyPatchResponse.headersToProxy);
+        writer.writeStringValue("targetBaseUrl", proxyPatchResponse.targetBaseUrl);
+        writer.writeStringValue("username", proxyPatchResponse.username);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
 export function serializeProxyPostRequestBody(writer: SerializationWriter, proxyPostRequestBody: Partial<ProxyPostRequestBody> | undefined | null = {}) : void {
     if (proxyPostRequestBody) {
         writer.writeStringValue("authentication", proxyPostRequestBody.authentication);
@@ -253,6 +438,28 @@ export const ProxyRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tena
  * Metadata for all the requests in the request builder.
  */
 export const ProxyRequestBuilderRequestsMetadata: RequestsMetadata = {
+    delete: {
+        uriTemplate: ProxyRequestBuilderUriTemplate,
+        responseBodyContentType: "application/json",
+        errorMappings: {
+            400: createProxy400ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProxy500ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
+        },
+        adapterMethodName: "sendNoResponseContent",
+    },
+    patch: {
+        uriTemplate: ProxyRequestBuilderUriTemplate,
+        responseBodyContentType: "application/json",
+        errorMappings: {
+            400: createProxy400ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createProxy500ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
+        },
+        adapterMethodName: "send",
+        responseBodyFactory:  createProxyPatchResponseFromDiscriminatorValue,
+        requestBodyContentType: "application/json",
+        requestBodySerializer: serializeProxyPatchRequestBody,
+        requestInformationContentSetMethod: "setContentFromParsable",
+    },
     post: {
         uriTemplate: ProxyRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
