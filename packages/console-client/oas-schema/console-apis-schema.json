@@ -1823,6 +1823,9 @@
                                     "targetBaseUrl": {
                                         "type": "string"
                                     },
+                                    "tokenIssuerUrl": {
+                                        "type": "string"
+                                    },
                                     "username": {
                                         "type": "string"
                                     }
