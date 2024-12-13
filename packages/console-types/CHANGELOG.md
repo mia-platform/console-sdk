@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.26.3
+
+### Patch Changes
+
+- 7e924b4: fix: add missing TS type in endpoints
+
 ## 0.26.2
 
 ### Patch Changes

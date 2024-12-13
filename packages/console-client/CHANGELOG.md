@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.4.1
+
+### Patch Changes
+
+- b716291: feat(IDP-2411): added `tokenIssuerUrl` to extension proxy
+
 ## 0.4.0
 
 ### Minor Changes
