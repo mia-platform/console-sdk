@@ -543,6 +543,9 @@
                                                     "targetBaseUrl": {
                                                         "type": "string"
                                                     },
+                                                    "tokenIssuerUrl": {
+                                                        "type": "string"
+                                                    },
                                                     "username": {
                                                         "type": "string"
                                                     }
@@ -1039,6 +1042,9 @@
                                                     "type": "array"
                                                 },
                                                 "targetBaseUrl": {
+                                                    "type": "string"
+                                                },
+                                                "tokenIssuerUrl": {
                                                     "type": "string"
                                                 },
                                                 "username": {

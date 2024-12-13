@@ -194,6 +194,7 @@ export function deserializeIntoWithExtensionGetResponse_proxy(withExtensionGetRe
         "grantType": n => { withExtensionGetResponse_proxy.grantType = n.getStringValue(); },
         "headersToProxy": n => { withExtensionGetResponse_proxy.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
         "targetBaseUrl": n => { withExtensionGetResponse_proxy.targetBaseUrl = n.getStringValue(); },
+        "tokenIssuerUrl": n => { withExtensionGetResponse_proxy.tokenIssuerUrl = n.getStringValue(); },
         "username": n => { withExtensionGetResponse_proxy.username = n.getStringValue(); },
     }
 }
@@ -314,6 +315,7 @@ export function serializeWithExtensionGetResponse_proxy(writer: SerializationWri
         writer.writeStringValue("grantType", withExtensionGetResponse_proxy.grantType);
         writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", withExtensionGetResponse_proxy.headersToProxy);
         writer.writeStringValue("targetBaseUrl", withExtensionGetResponse_proxy.targetBaseUrl);
+        writer.writeStringValue("tokenIssuerUrl", withExtensionGetResponse_proxy.tokenIssuerUrl);
         writer.writeStringValue("username", withExtensionGetResponse_proxy.username);
     }
 }
@@ -487,6 +489,10 @@ export interface WithExtensionGetResponse_proxy extends Parsable {
      * The targetBaseUrl property
      */
     targetBaseUrl?: string | null;
+    /**
+     * The tokenIssuerUrl property
+     */
+    tokenIssuerUrl?: string | null;
     /**
      * The username property
      */

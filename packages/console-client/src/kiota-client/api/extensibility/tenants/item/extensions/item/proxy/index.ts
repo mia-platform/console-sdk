@@ -97,6 +97,7 @@ export function deserializeIntoProxyPatchRequestBody(proxyPatchRequestBody: Part
         "headersToProxy": n => { proxyPatchRequestBody.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
         "password": n => { proxyPatchRequestBody.password = n.getStringValue(); },
         "targetBaseUrl": n => { proxyPatchRequestBody.targetBaseUrl = n.getStringValue(); },
+        "tokenIssuerUrl": n => { proxyPatchRequestBody.tokenIssuerUrl = n.getStringValue(); },
         "username": n => { proxyPatchRequestBody.username = n.getStringValue(); },
     }
 }
@@ -216,6 +217,10 @@ export interface ProxyPatchRequestBody extends Parsable {
      * The targetBaseUrl property
      */
     targetBaseUrl?: string | null;
+    /**
+     * The tokenIssuerUrl property
+     */
+    tokenIssuerUrl?: string | null;
     /**
      * The username property
      */
@@ -392,6 +397,7 @@ export function serializeProxyPatchRequestBody(writer: SerializationWriter, prox
         writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", proxyPatchRequestBody.headersToProxy);
         writer.writeStringValue("password", proxyPatchRequestBody.password);
         writer.writeStringValue("targetBaseUrl", proxyPatchRequestBody.targetBaseUrl);
+        writer.writeStringValue("tokenIssuerUrl", proxyPatchRequestBody.tokenIssuerUrl);
         writer.writeStringValue("username", proxyPatchRequestBody.username);
     }
 }
