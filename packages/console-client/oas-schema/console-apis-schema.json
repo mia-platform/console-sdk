@@ -1866,6 +1866,9 @@
                                         "targetBaseUrl": {
                                             "type": "string"
                                         },
+                                        "tokenIssuerUrl": {
+                                            "type": "string"
+                                        },
                                         "username": {
                                             "type": "string"
                                         }
@@ -1986,6 +1989,9 @@
                                         "type": "string"
                                     },
                                     "targetBaseUrl": {
+                                        "type": "string"
+                                    },
+                                    "tokenIssuerUrl": {
                                         "type": "string"
                                     },
                                     "username": {
