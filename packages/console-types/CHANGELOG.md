@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.26.4
+
+### Patch Changes
+
+- 17ceb69: feat: expose customResources schema
+
 ## 0.26.3
 
 ### Patch Changes
