@@ -97,6 +97,7 @@ export function deserializeIntoProxyPatchRequestBody(proxyPatchRequestBody: Part
         "headersToProxy": n => { proxyPatchRequestBody.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
         "password": n => { proxyPatchRequestBody.password = n.getStringValue(); },
         "targetBaseUrl": n => { proxyPatchRequestBody.targetBaseUrl = n.getStringValue(); },
+        "tokenIssuerUrl": n => { proxyPatchRequestBody.tokenIssuerUrl = n.getStringValue(); },
         "username": n => { proxyPatchRequestBody.username = n.getStringValue(); },
     }
 }
@@ -114,6 +115,7 @@ export function deserializeIntoProxyPatchResponse(proxyPatchResponse: Partial<Pr
         "grantType": n => { proxyPatchResponse.grantType = n.getStringValue(); },
         "headersToProxy": n => { proxyPatchResponse.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
         "targetBaseUrl": n => { proxyPatchResponse.targetBaseUrl = n.getStringValue(); },
+        "tokenIssuerUrl": n => { proxyPatchResponse.tokenIssuerUrl = n.getStringValue(); },
         "username": n => { proxyPatchResponse.username = n.getStringValue(); },
     }
 }
@@ -132,6 +134,7 @@ export function deserializeIntoProxyPostRequestBody(proxyPostRequestBody: Partia
         "headersToProxy": n => { proxyPostRequestBody.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
         "password": n => { proxyPostRequestBody.password = n.getStringValue(); },
         "targetBaseUrl": n => { proxyPostRequestBody.targetBaseUrl = n.getStringValue(); },
+        "tokenIssuerUrl": n => { proxyPostRequestBody.tokenIssuerUrl = n.getStringValue(); },
         "username": n => { proxyPostRequestBody.username = n.getStringValue(); },
     }
 }
@@ -215,6 +218,10 @@ export interface ProxyPatchRequestBody extends Parsable {
      */
     targetBaseUrl?: string | null;
     /**
+     * The tokenIssuerUrl property
+     */
+    tokenIssuerUrl?: string | null;
+    /**
      * The username property
      */
     username?: string | null;
@@ -248,6 +255,10 @@ export interface ProxyPatchResponse extends Parsable {
      * The targetBaseUrl property
      */
     targetBaseUrl?: string | null;
+    /**
+     * The tokenIssuerUrl property
+     */
+    tokenIssuerUrl?: string | null;
     /**
      * The username property
      */
@@ -286,6 +297,10 @@ export interface ProxyPostRequestBody extends Parsable {
      * The targetBaseUrl property
      */
     targetBaseUrl?: string | null;
+    /**
+     * The tokenIssuerUrl property
+     */
+    tokenIssuerUrl?: string | null;
     /**
      * The username property
      */
@@ -382,6 +397,7 @@ export function serializeProxyPatchRequestBody(writer: SerializationWriter, prox
         writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", proxyPatchRequestBody.headersToProxy);
         writer.writeStringValue("password", proxyPatchRequestBody.password);
         writer.writeStringValue("targetBaseUrl", proxyPatchRequestBody.targetBaseUrl);
+        writer.writeStringValue("tokenIssuerUrl", proxyPatchRequestBody.tokenIssuerUrl);
         writer.writeStringValue("username", proxyPatchRequestBody.username);
     }
 }
@@ -399,6 +415,7 @@ export function serializeProxyPatchResponse(writer: SerializationWriter, proxyPa
         writer.writeStringValue("grantType", proxyPatchResponse.grantType);
         writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", proxyPatchResponse.headersToProxy);
         writer.writeStringValue("targetBaseUrl", proxyPatchResponse.targetBaseUrl);
+        writer.writeStringValue("tokenIssuerUrl", proxyPatchResponse.tokenIssuerUrl);
         writer.writeStringValue("username", proxyPatchResponse.username);
     }
 }
@@ -417,6 +434,7 @@ export function serializeProxyPostRequestBody(writer: SerializationWriter, proxy
         writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", proxyPostRequestBody.headersToProxy);
         writer.writeStringValue("password", proxyPostRequestBody.password);
         writer.writeStringValue("targetBaseUrl", proxyPostRequestBody.targetBaseUrl);
+        writer.writeStringValue("tokenIssuerUrl", proxyPostRequestBody.tokenIssuerUrl);
         writer.writeStringValue("username", proxyPostRequestBody.username);
     }
 }

@@ -250,6 +250,7 @@ export function deserializeIntoExtensions_proxy(extensions_proxy: Partial<Extens
         "grantType": n => { extensions_proxy.grantType = n.getStringValue(); },
         "headersToProxy": n => { extensions_proxy.headersToProxy = n.getCollectionOfPrimitiveValues<string>(); },
         "targetBaseUrl": n => { extensions_proxy.targetBaseUrl = n.getStringValue(); },
+        "tokenIssuerUrl": n => { extensions_proxy.tokenIssuerUrl = n.getStringValue(); },
         "username": n => { extensions_proxy.username = n.getStringValue(); },
     }
 }
@@ -514,6 +515,10 @@ export interface Extensions_proxy extends Parsable {
      * The targetBaseUrl property
      */
     targetBaseUrl?: string | null;
+    /**
+     * The tokenIssuerUrl property
+     */
+    tokenIssuerUrl?: string | null;
     /**
      * The username property
      */
@@ -807,6 +812,7 @@ export function serializeExtensions_proxy(writer: SerializationWriter, extension
         writer.writeStringValue("grantType", extensions_proxy.grantType);
         writer.writeCollectionOfPrimitiveValues<string>("headersToProxy", extensions_proxy.headersToProxy);
         writer.writeStringValue("targetBaseUrl", extensions_proxy.targetBaseUrl);
+        writer.writeStringValue("tokenIssuerUrl", extensions_proxy.tokenIssuerUrl);
         writer.writeStringValue("username", extensions_proxy.username);
     }
 }
