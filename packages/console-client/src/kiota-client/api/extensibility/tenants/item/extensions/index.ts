@@ -63,6 +63,24 @@ export function createExtensions_proxyFromDiscriminatorValue(parseNode: ParseNod
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_serviceAccount_metadata}
+ */
+// @ts-ignore
+export function createExtensions_serviceAccount_metadataFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_serviceAccount_metadata;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_serviceAccount}
+ */
+// @ts-ignore
+export function createExtensions_serviceAccountFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_serviceAccount;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_visibilities}
  */
 // @ts-ignore
@@ -174,11 +192,13 @@ export function deserializeIntoExtensions(extensions: Partial<Extensions> | unde
         "entry": n => { extensions.entry = n.getStringValue(); },
         "extensionId": n => { extensions.extensionId = n.getStringValue(); },
         "iconName": n => { extensions.iconName = n.getStringValue(); },
+        "_id": n => { extensions.id = n.getStringValue(); },
         "menu": n => { extensions.menu = n.getObjectValue<Extensions_menu>(createExtensions_menuFromDiscriminatorValue); },
         "name": n => { extensions.name = n.getStringValue(); },
         "permissions": n => { extensions.permissions = n.getCollectionOfPrimitiveValues<string>(); },
         "proxy": n => { extensions.proxy = n.getObjectValue<Extensions_proxy>(createExtensions_proxyFromDiscriminatorValue); },
         "roleIds": n => { extensions.roleIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "serviceAccount": n => { extensions.serviceAccount = n.getObjectValue<Extensions_serviceAccount>(createExtensions_serviceAccountFromDiscriminatorValue); },
         "type": n => { extensions.type = n.getStringValue(); },
         "visibilities": n => { extensions.visibilities = n.getCollectionOfObjectValues<Extensions_visibilities>(createExtensions_visibilitiesFromDiscriminatorValue); },
     }
@@ -252,6 +272,33 @@ export function deserializeIntoExtensions_proxy(extensions_proxy: Partial<Extens
         "targetBaseUrl": n => { extensions_proxy.targetBaseUrl = n.getStringValue(); },
         "tokenIssuerUrl": n => { extensions_proxy.tokenIssuerUrl = n.getStringValue(); },
         "username": n => { extensions_proxy.username = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoExtensions_serviceAccount(extensions_serviceAccount: Partial<Extensions_serviceAccount> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "authMethod": n => { extensions_serviceAccount.authMethod = n.getStringValue(); },
+        "clientId": n => { extensions_serviceAccount.clientId = n.getStringValue(); },
+        "companyRoles": n => { extensions_serviceAccount.companyRoles = n.getCollectionOfPrimitiveValues<string>(); },
+        "lastLogin": n => { extensions_serviceAccount.lastLogin = n.getStringValue(); },
+        "metadata": n => { extensions_serviceAccount.metadata = n.getObjectValue<Extensions_serviceAccount_metadata>(createExtensions_serviceAccount_metadataFromDiscriminatorValue); },
+        "name": n => { extensions_serviceAccount.name = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoExtensions_serviceAccount_metadata(extensions_serviceAccount_metadata: Partial<Extensions_serviceAccount_metadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "ownerId": n => { extensions_serviceAccount_metadata.ownerId = n.getStringValue(); },
+        "ownerType": n => { extensions_serviceAccount_metadata.ownerType = n.getStringValue(); },
+        "tenantId": n => { extensions_serviceAccount_metadata.tenantId = n.getStringValue(); },
     }
 }
 /**
@@ -408,6 +455,10 @@ export interface Extensions extends Parsable {
      */
     iconName?: string | null;
     /**
+     * The _id property
+     */
+    id?: string | null;
+    /**
      * The menu property
      */
     menu?: Extensions_menu | null;
@@ -427,6 +478,10 @@ export interface Extensions extends Parsable {
      * The roleIds property
      */
     roleIds?: string[] | null;
+    /**
+     * The serviceAccount property
+     */
+    serviceAccount?: Extensions_serviceAccount | null;
     /**
      * The type property
      */
@@ -523,6 +578,46 @@ export interface Extensions_proxy extends Parsable {
      * The username property
      */
     username?: string | null;
+}
+export interface Extensions_serviceAccount extends Parsable {
+    /**
+     * The authMethod property
+     */
+    authMethod?: string | null;
+    /**
+     * The clientId property
+     */
+    clientId?: string | null;
+    /**
+     * The companyRoles property
+     */
+    companyRoles?: string[] | null;
+    /**
+     * The lastLogin property
+     */
+    lastLogin?: string | null;
+    /**
+     * The metadata property
+     */
+    metadata?: Extensions_serviceAccount_metadata | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+}
+export interface Extensions_serviceAccount_metadata extends Parsable {
+    /**
+     * The ownerId property
+     */
+    ownerId?: string | null;
+    /**
+     * The ownerType property
+     */
+    ownerType?: string | null;
+    /**
+     * The tenantId property
+     */
+    tenantId?: string | null;
 }
 export interface Extensions_visibilities extends Parsable {
     /**
@@ -734,11 +829,13 @@ export function serializeExtensions(writer: SerializationWriter, extensions: Par
         writer.writeStringValue("entry", extensions.entry);
         writer.writeStringValue("extensionId", extensions.extensionId);
         writer.writeStringValue("iconName", extensions.iconName);
+        writer.writeStringValue("_id", extensions.id);
         writer.writeObjectValue<Extensions_menu>("menu", extensions.menu, serializeExtensions_menu);
         writer.writeStringValue("name", extensions.name);
         writer.writeCollectionOfPrimitiveValues<string>("permissions", extensions.permissions);
         writer.writeObjectValue<Extensions_proxy>("proxy", extensions.proxy, serializeExtensions_proxy);
         writer.writeCollectionOfPrimitiveValues<string>("roleIds", extensions.roleIds);
+        writer.writeObjectValue<Extensions_serviceAccount>("serviceAccount", extensions.serviceAccount, serializeExtensions_serviceAccount);
         writer.writeStringValue("type", extensions.type);
         writer.writeCollectionOfObjectValues<Extensions_visibilities>("visibilities", extensions.visibilities, serializeExtensions_visibilities);
     }
@@ -814,6 +911,33 @@ export function serializeExtensions_proxy(writer: SerializationWriter, extension
         writer.writeStringValue("targetBaseUrl", extensions_proxy.targetBaseUrl);
         writer.writeStringValue("tokenIssuerUrl", extensions_proxy.tokenIssuerUrl);
         writer.writeStringValue("username", extensions_proxy.username);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeExtensions_serviceAccount(writer: SerializationWriter, extensions_serviceAccount: Partial<Extensions_serviceAccount> | undefined | null = {}) : void {
+    if (extensions_serviceAccount) {
+        writer.writeStringValue("authMethod", extensions_serviceAccount.authMethod);
+        writer.writeStringValue("clientId", extensions_serviceAccount.clientId);
+        writer.writeCollectionOfPrimitiveValues<string>("companyRoles", extensions_serviceAccount.companyRoles);
+        writer.writeStringValue("lastLogin", extensions_serviceAccount.lastLogin);
+        writer.writeObjectValue<Extensions_serviceAccount_metadata>("metadata", extensions_serviceAccount.metadata, serializeExtensions_serviceAccount_metadata);
+        writer.writeStringValue("name", extensions_serviceAccount.name);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeExtensions_serviceAccount_metadata(writer: SerializationWriter, extensions_serviceAccount_metadata: Partial<Extensions_serviceAccount_metadata> | undefined | null = {}) : void {
+    if (extensions_serviceAccount_metadata) {
+        writer.writeStringValue("ownerId", extensions_serviceAccount_metadata.ownerId);
+        writer.writeStringValue("ownerType", extensions_serviceAccount_metadata.ownerType);
+        writer.writeStringValue("tenantId", extensions_serviceAccount_metadata.tenantId);
     }
 }
 /**
