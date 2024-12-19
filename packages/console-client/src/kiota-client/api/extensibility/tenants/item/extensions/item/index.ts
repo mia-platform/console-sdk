@@ -8,6 +8,8 @@ import { type WithContextTypeItemRequestBuilder, WithContextTypeItemRequestBuild
 // @ts-ignore
 import { ProxyRequestBuilderRequestsMetadata, type ProxyRequestBuilder } from './proxy/index.js';
 // @ts-ignore
+import { ServiceAccountRequestBuilderRequestsMetadata, type ServiceAccountRequestBuilder } from './serviceAccount/index.js';
+// @ts-ignore
 import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
 /**
@@ -76,6 +78,24 @@ export function createWithExtensionGetResponse_proxyFromDiscriminatorValue(parse
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_serviceAccount_metadata}
+ */
+// @ts-ignore
+export function createWithExtensionGetResponse_serviceAccount_metadataFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_serviceAccount_metadata;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_serviceAccount}
+ */
+// @ts-ignore
+export function createWithExtensionGetResponse_serviceAccountFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_serviceAccount;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {WithExtensionGetResponse_visibilities}
  */
 // @ts-ignore
@@ -118,11 +138,13 @@ export function deserializeIntoWithExtensionGetResponse(withExtensionGetResponse
         "entry": n => { withExtensionGetResponse.entry = n.getStringValue(); },
         "extensionId": n => { withExtensionGetResponse.extensionId = n.getStringValue(); },
         "iconName": n => { withExtensionGetResponse.iconName = n.getStringValue(); },
+        "_id": n => { withExtensionGetResponse.id = n.getStringValue(); },
         "menu": n => { withExtensionGetResponse.menu = n.getObjectValue<WithExtensionGetResponse_menu>(createWithExtensionGetResponse_menuFromDiscriminatorValue); },
         "name": n => { withExtensionGetResponse.name = n.getStringValue(); },
         "permissions": n => { withExtensionGetResponse.permissions = n.getCollectionOfPrimitiveValues<string>(); },
         "proxy": n => { withExtensionGetResponse.proxy = n.getObjectValue<WithExtensionGetResponse_proxy>(createWithExtensionGetResponse_proxyFromDiscriminatorValue); },
         "roleIds": n => { withExtensionGetResponse.roleIds = n.getCollectionOfPrimitiveValues<string>(); },
+        "serviceAccount": n => { withExtensionGetResponse.serviceAccount = n.getObjectValue<WithExtensionGetResponse_serviceAccount>(createWithExtensionGetResponse_serviceAccountFromDiscriminatorValue); },
         "type": n => { withExtensionGetResponse.type = n.getStringValue(); },
         "visibilities": n => { withExtensionGetResponse.visibilities = n.getCollectionOfObjectValues<WithExtensionGetResponse_visibilities>(createWithExtensionGetResponse_visibilitiesFromDiscriminatorValue); },
     }
@@ -203,6 +225,33 @@ export function deserializeIntoWithExtensionGetResponse_proxy(withExtensionGetRe
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
+export function deserializeIntoWithExtensionGetResponse_serviceAccount(withExtensionGetResponse_serviceAccount: Partial<WithExtensionGetResponse_serviceAccount> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "authMethod": n => { withExtensionGetResponse_serviceAccount.authMethod = n.getStringValue(); },
+        "clientId": n => { withExtensionGetResponse_serviceAccount.clientId = n.getStringValue(); },
+        "companyRoles": n => { withExtensionGetResponse_serviceAccount.companyRoles = n.getCollectionOfPrimitiveValues<string>(); },
+        "lastLogin": n => { withExtensionGetResponse_serviceAccount.lastLogin = n.getStringValue(); },
+        "metadata": n => { withExtensionGetResponse_serviceAccount.metadata = n.getObjectValue<WithExtensionGetResponse_serviceAccount_metadata>(createWithExtensionGetResponse_serviceAccount_metadataFromDiscriminatorValue); },
+        "name": n => { withExtensionGetResponse_serviceAccount.name = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWithExtensionGetResponse_serviceAccount_metadata(withExtensionGetResponse_serviceAccount_metadata: Partial<WithExtensionGetResponse_serviceAccount_metadata> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "ownerId": n => { withExtensionGetResponse_serviceAccount_metadata.ownerId = n.getStringValue(); },
+        "ownerType": n => { withExtensionGetResponse_serviceAccount_metadata.ownerType = n.getStringValue(); },
+        "tenantId": n => { withExtensionGetResponse_serviceAccount_metadata.tenantId = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
 export function deserializeIntoWithExtensionGetResponse_visibilities(withExtensionGetResponse_visibilities: Partial<WithExtensionGetResponse_visibilities> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "contextId": n => { withExtensionGetResponse_visibilities.contextId = n.getStringValue(); },
@@ -237,11 +286,13 @@ export function serializeWithExtensionGetResponse(writer: SerializationWriter, w
         writer.writeStringValue("entry", withExtensionGetResponse.entry);
         writer.writeStringValue("extensionId", withExtensionGetResponse.extensionId);
         writer.writeStringValue("iconName", withExtensionGetResponse.iconName);
+        writer.writeStringValue("_id", withExtensionGetResponse.id);
         writer.writeObjectValue<WithExtensionGetResponse_menu>("menu", withExtensionGetResponse.menu, serializeWithExtensionGetResponse_menu);
         writer.writeStringValue("name", withExtensionGetResponse.name);
         writer.writeCollectionOfPrimitiveValues<string>("permissions", withExtensionGetResponse.permissions);
         writer.writeObjectValue<WithExtensionGetResponse_proxy>("proxy", withExtensionGetResponse.proxy, serializeWithExtensionGetResponse_proxy);
         writer.writeCollectionOfPrimitiveValues<string>("roleIds", withExtensionGetResponse.roleIds);
+        writer.writeObjectValue<WithExtensionGetResponse_serviceAccount>("serviceAccount", withExtensionGetResponse.serviceAccount, serializeWithExtensionGetResponse_serviceAccount);
         writer.writeStringValue("type", withExtensionGetResponse.type);
         writer.writeCollectionOfObjectValues<WithExtensionGetResponse_visibilities>("visibilities", withExtensionGetResponse.visibilities, serializeWithExtensionGetResponse_visibilities);
     }
@@ -324,6 +375,33 @@ export function serializeWithExtensionGetResponse_proxy(writer: SerializationWri
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
+export function serializeWithExtensionGetResponse_serviceAccount(writer: SerializationWriter, withExtensionGetResponse_serviceAccount: Partial<WithExtensionGetResponse_serviceAccount> | undefined | null = {}) : void {
+    if (withExtensionGetResponse_serviceAccount) {
+        writer.writeStringValue("authMethod", withExtensionGetResponse_serviceAccount.authMethod);
+        writer.writeStringValue("clientId", withExtensionGetResponse_serviceAccount.clientId);
+        writer.writeCollectionOfPrimitiveValues<string>("companyRoles", withExtensionGetResponse_serviceAccount.companyRoles);
+        writer.writeStringValue("lastLogin", withExtensionGetResponse_serviceAccount.lastLogin);
+        writer.writeObjectValue<WithExtensionGetResponse_serviceAccount_metadata>("metadata", withExtensionGetResponse_serviceAccount.metadata, serializeWithExtensionGetResponse_serviceAccount_metadata);
+        writer.writeStringValue("name", withExtensionGetResponse_serviceAccount.name);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWithExtensionGetResponse_serviceAccount_metadata(writer: SerializationWriter, withExtensionGetResponse_serviceAccount_metadata: Partial<WithExtensionGetResponse_serviceAccount_metadata> | undefined | null = {}) : void {
+    if (withExtensionGetResponse_serviceAccount_metadata) {
+        writer.writeStringValue("ownerId", withExtensionGetResponse_serviceAccount_metadata.ownerId);
+        writer.writeStringValue("ownerType", withExtensionGetResponse_serviceAccount_metadata.ownerType);
+        writer.writeStringValue("tenantId", withExtensionGetResponse_serviceAccount_metadata.tenantId);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
 export function serializeWithExtensionGetResponse_visibilities(writer: SerializationWriter, withExtensionGetResponse_visibilities: Partial<WithExtensionGetResponse_visibilities> | undefined | null = {}) : void {
     if (withExtensionGetResponse_visibilities) {
         writer.writeStringValue("contextId", withExtensionGetResponse_visibilities.contextId);
@@ -382,6 +460,10 @@ export interface WithExtensionGetResponse extends Parsable {
      */
     iconName?: string | null;
     /**
+     * The _id property
+     */
+    id?: string | null;
+    /**
      * The menu property
      */
     menu?: WithExtensionGetResponse_menu | null;
@@ -401,6 +483,10 @@ export interface WithExtensionGetResponse extends Parsable {
      * The roleIds property
      */
     roleIds?: string[] | null;
+    /**
+     * The serviceAccount property
+     */
+    serviceAccount?: WithExtensionGetResponse_serviceAccount | null;
     /**
      * The type property
      */
@@ -498,6 +584,46 @@ export interface WithExtensionGetResponse_proxy extends Parsable {
      */
     username?: string | null;
 }
+export interface WithExtensionGetResponse_serviceAccount extends Parsable {
+    /**
+     * The authMethod property
+     */
+    authMethod?: string | null;
+    /**
+     * The clientId property
+     */
+    clientId?: string | null;
+    /**
+     * The companyRoles property
+     */
+    companyRoles?: string[] | null;
+    /**
+     * The lastLogin property
+     */
+    lastLogin?: string | null;
+    /**
+     * The metadata property
+     */
+    metadata?: WithExtensionGetResponse_serviceAccount_metadata | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+}
+export interface WithExtensionGetResponse_serviceAccount_metadata extends Parsable {
+    /**
+     * The ownerId property
+     */
+    ownerId?: string | null;
+    /**
+     * The ownerType property
+     */
+    ownerType?: string | null;
+    /**
+     * The tenantId property
+     */
+    tenantId?: string | null;
+}
 export interface WithExtensionGetResponse_visibilities extends Parsable {
     /**
      * The contextId property
@@ -521,6 +647,10 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      */
     get proxy(): ProxyRequestBuilder;
     /**
+     * The serviceAccount property
+     */
+    get serviceAccount(): ServiceAccountRequestBuilder;
+    /**
      * Gets an item from the ApiSdk.api.extensibility.tenants.item.extensions.item.item collection
      * @param contextType Unique identifier of the item
      * @returns {WithContextTypeItemRequestBuilder}
@@ -530,7 +660,7 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @throws {WithExtension500Error} error when the service returns a 500 status code
      */
-     delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
+     delete(requestConfiguration?: RequestConfiguration<WithExtensionItemRequestBuilderDeleteQueryParameters> | undefined) : Promise<void>;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<WithExtensionGetResponse>}
@@ -541,12 +671,18 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
-     toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
+     toDeleteRequestInformation(requestConfiguration?: RequestConfiguration<WithExtensionItemRequestBuilderDeleteQueryParameters> | undefined) : RequestInformation;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {RequestInformation}
      */
      toGetRequestInformation(requestConfiguration?: RequestConfiguration<WithExtensionItemRequestBuilderGetQueryParameters> | undefined) : RequestInformation;
+}
+export interface WithExtensionItemRequestBuilderDeleteQueryParameters {
+    /**
+     * determines whether the service account should be "virtually" removed, if so the link between the extension and service account will be removed while the service account will remain accessible from the IAM
+     */
+    virtualServiceAccountDelete?: boolean;
 }
 export interface WithExtensionItemRequestBuilderGetQueryParameters {
     /**
@@ -557,7 +693,7 @@ export interface WithExtensionItemRequestBuilderGetQueryParameters {
 /**
  * Uri template for the request builder.
  */
-export const WithExtensionItemRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions/{extensionId}{?resolveDetails*}";
+export const WithExtensionItemRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions/{extensionId}{?resolveDetails*,virtualServiceAccountDelete*}";
 /**
  * Metadata for all the navigation properties in the request builder.
  */
@@ -572,6 +708,9 @@ export const WithExtensionItemRequestBuilderNavigationMetadata: Record<Exclude<k
     },
     proxy: {
         requestsMetadata: ProxyRequestBuilderRequestsMetadata,
+    },
+    serviceAccount: {
+        requestsMetadata: ServiceAccountRequestBuilderRequestsMetadata,
     },
 };
 /**
