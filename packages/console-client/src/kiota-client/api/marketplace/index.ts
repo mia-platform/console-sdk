@@ -63,7 +63,7 @@ export interface MarketplaceRequestBuilderGetQueryParameters {
 /**
  * Uri template for the request builder.
  */
-export const MarketplaceRequestBuilderUriTemplate = "{+baseurl}/api/marketplace";
+export const MarketplaceRequestBuilderUriTemplate = "{+baseurl}/api/marketplace{?includeTenantId*,itemUrns*,perPage*,publishOnMiaDocumentation*,resolveResourcesData*,tenantId*,types*}";
 /**
  * Metadata for all the navigation properties in the request builder.
  */
