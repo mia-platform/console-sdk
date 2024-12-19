@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.4.2
+
+### Patch Changes
+
+- feat: e11y service account integration api
+
 ## 0.4.1
 
 ### Patch Changes
