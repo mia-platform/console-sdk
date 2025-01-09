@@ -4874,7 +4874,6 @@ Object {
                                 "type": "string",
                               },
                               "type": Object {
-                                "const": "kubernetes",
                                 "type": "string",
                               },
                             },
