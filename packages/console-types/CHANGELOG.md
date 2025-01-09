@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.26.5
+
+### Patch Changes
+
+- feat: removed from custom resources runtime kubernetes values as const
+
 ## 0.26.4
 
 ### Patch Changes
