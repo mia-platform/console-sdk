@@ -293,3 +293,5 @@ export type {
   GitProviderTypeCapability,
   PipelineStatus,
 }
+
+export * from './types/catalog'
