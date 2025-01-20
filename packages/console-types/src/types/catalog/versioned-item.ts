@@ -19,7 +19,7 @@
 import type { FromSchema, JSONSchema } from 'json-schema-to-ts'
 
 import { catalogVersionSchema } from './commons'
-import { catalogItemSchema } from './item.schema'
+import { catalogItemSchema } from './item'
 
 export const catalogVersionedItemSchema = {
   $id: 'catalog-versioned-item.schema.json',

@@ -17,9 +17,9 @@
  */
 
 export * from './well-known-items'
-export * from './category.schema'
+export * from './category'
 export * from './commons'
-export * from './item-manifest.schema'
-export * from './item.schema'
-export * from './release.schema'
-export * from './versioned-item.schema'
+export * from './item-manifest'
+export * from './item'
+export * from './release'
+export * from './versioned-item'
