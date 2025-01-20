@@ -40,7 +40,7 @@ import {
   nameSchema,
 } from '../commons'
 
-export const catalogPluginType = 'plugin'
+const type = 'plugin'
 
 export const catalogPluginSchema = {
   additionalProperties: false,
@@ -70,11 +70,11 @@ export const catalogPluginSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export const catalogPluginResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-plugin-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
-  description: `Resources of Catalog items of type ${catalogPluginType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     listeners: {
       additionalProperties: {
@@ -102,4 +102,6 @@ export const catalogPluginResourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogPluginResources = FromSchema<typeof catalogPluginResourcesSchema>
+export type CatalogPluginResources = FromSchema<typeof resourcesSchema>
+
+export default { type, resourcesSchema }

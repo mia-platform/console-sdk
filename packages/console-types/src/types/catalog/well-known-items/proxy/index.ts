@@ -20,13 +20,13 @@ import type { JSONSchema, FromSchema } from 'json-schema-to-ts'
 
 import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
 
-export const catalogProxyType = 'proxy'
+const type = 'proxy'
 
-export const catalogProxyResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-proxy-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
-  description: `Resources of Catalog items of type ${catalogProxyType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
       additionalProperties: {
@@ -66,4 +66,6 @@ export const catalogProxyResourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogProxyResources = FromSchema<typeof catalogProxyResourcesSchema>
+export type CatalogProxyResources = FromSchema<typeof resourcesSchema>
+
+export default { type, resourcesSchema }

@@ -18,12 +18,12 @@
 
 import type { JSONSchema, FromSchema } from 'json-schema-to-ts'
 
-export const catalogCRDType = 'custom-resource-definition'
+const type = 'custom-resource-definition'
 
-export const catalogCRDResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-crd-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  description: `Resources of Catalog items of type ${catalogCRDType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     controlledFields: {
       description: 'List detailing the fields that are managed by the Marketplace item',
@@ -95,4 +95,6 @@ export const catalogCRDResourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogCRDResources = FromSchema<typeof catalogCRDResourcesSchema>
+export type CatalogCRDResources = FromSchema<typeof resourcesSchema>
+
+export default { type, resourcesSchema }

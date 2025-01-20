@@ -16,12 +16,34 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export * from './application'
-export * from './crd'
-export * from './example'
-export * from './extension'
-export * from './infrastructure-resource'
-export * from './plugin'
-export * from './proxy'
-export * from './sidecar'
-export * from './template'
+import catalogApplication from './application'
+import catalogCRD from './crd'
+import catalogExample from './example'
+import catalogExtension from './extension'
+import catalogInfrastructureResource from './infrastructure-resource'
+import catalogPlugin from './plugin'
+import catalogProxy from './proxy'
+import catalogSidecar from './sidecar'
+import catalogTemplate from './template'
+
+export type * from './application'
+export type * from './crd'
+export type * from './example'
+export type * from './extension'
+export type * from './infrastructure-resource'
+export type * from './plugin'
+export type * from './proxy'
+export type * from './sidecar'
+export type * from './template'
+
+export {
+  catalogApplication,
+  catalogCRD,
+  catalogExample,
+  catalogExtension,
+  catalogInfrastructureResource,
+  catalogPlugin,
+  catalogProxy,
+  catalogSidecar,
+  catalogTemplate,
+}

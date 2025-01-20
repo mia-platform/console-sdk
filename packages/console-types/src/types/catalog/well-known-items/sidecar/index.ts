@@ -31,13 +31,13 @@ import {
   dockerImageSchema,
 } from '../commons'
 
-export const catalogSidecarType = 'sidecar'
+const type = 'sidecar'
 
-export const catalogSidecarResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-sidecar-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
-  description: `Resources of Catalog items of type ${catalogSidecarType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     componentId: componentIdSchema,
     containerPorts: containerPortsSchema,
@@ -67,4 +67,6 @@ export const catalogSidecarResourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogSidecarResources = FromSchema<typeof catalogSidecarResourcesSchema>
+export type CatalogSidecarResources = FromSchema<typeof resourcesSchema>
+
+export default { type, resourcesSchema }

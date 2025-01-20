@@ -18,9 +18,9 @@
 
 import type { JSONSchema, FromSchema } from 'json-schema-to-ts'
 
-export const catalogExtensionType = 'extension'
+const type = 'extension'
 
-export const catalogExtensionResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-extension-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   allOf: [
@@ -91,7 +91,7 @@ export const catalogExtensionResourcesSchema = {
       },
     },
   ],
-  description: `Resources of Catalog items of type ${catalogExtensionType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     contexts: {
       items: {
@@ -120,6 +120,8 @@ export const catalogExtensionResourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogExtensionResources = FromSchema<
-  typeof catalogExtensionResourcesSchema,
+  typeof resourcesSchema,
   { parseIfThenElseKeywords: true }
 >
+
+export default { type, resourcesSchema }

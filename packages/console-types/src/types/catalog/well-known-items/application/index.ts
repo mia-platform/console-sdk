@@ -25,13 +25,13 @@ import { collectionSchema } from './collection'
 import { endpointSchema } from './endpoint'
 import { unsecretedVariableSchema } from './unsecreted-variable'
 
-export const catalogApplicationType = 'application'
+const type = 'application'
 
-export const catalogApplicationResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-application-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
-  description: `Resources of Catalog items of type ${catalogApplicationType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     collections: { additionalProperties: collectionSchema, type: 'object' },
     endpoints: { additionalProperties: endpointSchema, type: 'object' },
@@ -71,4 +71,6 @@ export const catalogApplicationResourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogApplicationResources = FromSchema<typeof catalogApplicationResourcesSchema>
+export type CatalogApplicationResources = FromSchema<typeof resourcesSchema>
+
+export default { type, resourcesSchema }

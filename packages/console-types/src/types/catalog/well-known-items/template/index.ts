@@ -38,7 +38,7 @@ import {
   pipelinesSchema,
 } from '../commons'
 
-export const catalogTemplateType = 'template'
+const type = 'template'
 
 export const catalogTemplateSchema = {
   additionalProperties: false,
@@ -66,11 +66,11 @@ export const catalogTemplateSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export const catalogTemplateResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-template-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
-  description: `Resources of Catalog items of type ${catalogTemplateType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
       additionalProperties: catalogTemplateSchema,
@@ -84,4 +84,6 @@ export const catalogTemplateResourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogTemplateResources = FromSchema<typeof catalogTemplateResourcesSchema>
+export type CatalogTemplateResources = FromSchema<typeof resourcesSchema>
+
+export default { type, resourcesSchema }

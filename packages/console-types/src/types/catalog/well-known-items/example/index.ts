@@ -38,7 +38,7 @@ import {
   pipelinesSchema,
 } from '../commons'
 
-export const catalogExampleType = 'example'
+const type = 'example'
 
 export const catalogExampleSchema = {
   additionalProperties: false,
@@ -60,17 +60,17 @@ export const catalogExampleSchema = {
     description: descriptionSchema,
     name: nameSchema,
     pipelines: pipelinesSchema,
-    type: { const: catalogExampleType },
+    type: { const: type },
   },
   required: ['name', 'type', 'archiveUrl'],
   type: 'object',
 } as const satisfies JSONSchema
 
-export const catalogExampleResourcesSchema = {
+const resourcesSchema = {
   $id: 'catalog-example-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
-  description: `Resources of Catalog items of type ${catalogExampleType}`,
+  description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
       additionalProperties: catalogExampleSchema,
@@ -84,4 +84,6 @@ export const catalogExampleResourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogExampleResources = FromSchema<typeof catalogExampleResourcesSchema>
+export type CatalogExampleResources = FromSchema<typeof resourcesSchema>
+
+export default { type, resourcesSchema }
