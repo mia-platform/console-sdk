@@ -20,6 +20,7 @@ import {
   Credentials,
   CredentialsClientCredential,
   CredentialsClientCredentialCertificate,
+  CredentialsGithubApp,
   CredentialsM2M,
   CredentialsToken,
   CredentialsUserPass,
@@ -281,6 +282,7 @@ export type {
   CredentialsUserPass,
   CredentialsClientCredential,
   CredentialsClientCredentialCertificate,
+  CredentialsGithubApp,
 }
 
 export type {
