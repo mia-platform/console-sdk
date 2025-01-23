@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.27.0
+
+### Minor Changes
+
+- 24bec4b: Added catalog-related types and schemas
+
 ## 0.26.5
 
 ### Patch Changes
