@@ -246,6 +246,43 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
               }
             }
           }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "content"
+          ],
+          "properties": {
+            "expirationDate": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "const": "github-app"
+            },
+            "content": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "appId",
+                "installationId",
+                "privateKeyBase64"
+              ],
+              "properties": {
+                "appId": {
+                  "type": "string"
+                },
+                "installationId": {
+                  "type": "string"
+                },
+                "privateKeyBase64": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         }
       ]
     },
