@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.27.1
+
+### Patch Changes
+
+- 9eb8db2: added: github app credential type
+
 ## 0.27.0
 
 ### Minor Changes
