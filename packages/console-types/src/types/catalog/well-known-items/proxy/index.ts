@@ -47,7 +47,7 @@ const resourcesSchema = {
             additionalProperties: false,
             properties: {
               description: descriptionSchema,
-              host: { pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?(\\:\\d{2,4})$', type: 'string' },
+              host: { pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?(:\\d{2,4})$', type: 'string' },
               name: nameSchema,
               type: { const: 'cross-projects' },
             },
