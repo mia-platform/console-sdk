@@ -18,6 +18,7 @@
 
 import type { JSONSchema, FromSchema } from 'json-schema-to-ts'
 
+import { host } from '../../../services'
 import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
 
 const type = 'proxy'
@@ -47,7 +48,7 @@ const resourcesSchema = {
             additionalProperties: false,
             properties: {
               description: descriptionSchema,
-              host: { pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?(:\\d{2,4})$', type: 'string' },
+              host,
               name: nameSchema,
               type: { const: 'cross-projects' },
             },
