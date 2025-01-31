@@ -16,8 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { JSONSchema } from 'json-schema-to-ts'
-
+import type { JSONSchema } from '../../../../commons/json-schema'
 import { tagsSchema } from '../commons'
 
 const defaultBasePathSchema = { pattern: '^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$', type: 'string' } as const satisfies JSONSchema

@@ -16,8 +16,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { FromSchema, JSONSchema } from 'json-schema-to-ts'
+import type { FromSchema } from 'json-schema-to-ts'
 
+import type { JSONSchema } from '../../commons/json-schema'
 import {
   catalogComingSoonSchema,
   catalogDescriptionSchema,
