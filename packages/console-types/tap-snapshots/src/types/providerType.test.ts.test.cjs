@@ -4,7 +4,6 @@
  * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
  * Make sure to inspect the output below.  Do not ignore changes!
  */
-'use strict'
 exports[`src/types/providerType.test.ts TAP providerType match schema > must match snapshot 1`] = `
 {
   "type": "object",
