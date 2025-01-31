@@ -817,6 +817,11 @@
                 },
                 "type": "object"
               },
+              "repositoryUrl": {
+                "format": "uri-reference",
+                "type": "string",
+                "deprecated": true
+              },
               "type": {
                 "const": "example"
               }

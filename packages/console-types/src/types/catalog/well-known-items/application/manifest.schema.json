@@ -2103,6 +2103,11 @@
                     "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                     "type": "string"
                   },
+                  "repositoryUrl": {
+                    "format": "uri-reference",
+                    "type": "string",
+                    "deprecated": true
+                  },
                   "type": {
                     "const": "plugin"
                   }
@@ -2842,6 +2847,11 @@
                     },
                     "type": "object"
                   },
+                  "repositoryUrl": {
+                    "format": "uri-reference",
+                    "type": "string",
+                    "deprecated": true
+                  },
                   "type": {
                     "const": "example"
                   }
@@ -3580,6 +3590,11 @@
                       }
                     },
                     "type": "object"
+                  },
+                  "repositoryUrl": {
+                    "format": "uri-reference",
+                    "type": "string",
+                    "deprecated": true
                   },
                   "type": {
                     "const": "template"

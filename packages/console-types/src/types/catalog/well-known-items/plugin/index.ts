@@ -16,8 +16,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { JSONSchema, FromSchema } from 'json-schema-to-ts'
+import type { FromSchema } from 'json-schema-to-ts'
 
+import { JSONSchema } from '../../../../commons/json-schema'
 import {
   additionalContainersSchema,
   componentIdSchema,
@@ -38,6 +39,7 @@ import {
   dockerImageSchema,
   linksSchema,
   nameSchema,
+  repositoryUrlSchema,
 } from '../commons'
 
 const type = 'plugin'
@@ -64,6 +66,9 @@ export const catalogPluginSchema = {
     dockerImage: dockerImageSchema,
     links: linksSchema,
     name: nameSchema,
+
+    /** @deprecated */
+    repositoryUrl: { ...repositoryUrlSchema, deprecated: true },
     type: { const: 'plugin' },
   },
   required: ['name', 'type', 'dockerImage'],
