@@ -19,6 +19,7 @@
 /* eslint-disable max-lines */
 import Ajv from 'ajv'
 import t from 'tap'
+import { FromSchema } from 'json-schema-to-ts'
 
 import {
   CoreService,
@@ -35,6 +36,8 @@ import {
   host,
   probesPath,
   service,
+  serviceLabel,
+  kubernetesDefinition,
   serviceSecretMountPath,
   serviceSecretName,
   swaggerPath,
@@ -202,6 +205,51 @@ t.test('services', t => {
       t.end()
     })
 
+    t.end()
+  })
+
+  t.test('labels and annotations', t => {
+    const sharedType: FromSchema<typeof kubernetesDefinition> = {
+      name: 'labelskey',
+      value: 'labelsvalye',
+    }
+
+    const newLabelType: FromSchema<typeof serviceLabel> = {
+      name: 'labelskey',
+      value: 'labelsvalue',
+      readOnly: false,
+      isSelector: true,
+    }
+
+    const service: CustomService = {
+      name: 'myservice',
+      type: ServiceTypes.CUSTOM,
+      advanced: false,
+      replicas: 1,
+      dockerImage: 'helloworld:1.0.0',
+      labels: [
+        newLabelType,
+        sharedType,
+      ],
+      annotations: [
+        sharedType,
+      ],
+      additionalContainers: [
+        {
+          name: 'container',
+          dockerImage: 'helloworld:1.0.0',
+          labels: [
+            sharedType,
+            newLabelType,
+          ],
+          annotations: [
+            sharedType,
+          ],
+        },
+      ],
+    }
+
+    t.ok(validate(service), validationMessage(validate.errors))
     t.end()
   })
 
