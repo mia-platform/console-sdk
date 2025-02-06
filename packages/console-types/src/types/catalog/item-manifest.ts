@@ -74,4 +74,4 @@ export const catalogItemManifestSchema = {
 export type CatalogItemManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = Omit<FromSchema<typeof catalogItemManifestSchema>, 'resources' | 'type'> & { resources: Resources, type: Type }
+> = FromSchema<typeof catalogItemManifestSchema> & { resources: Resources, type: Type }

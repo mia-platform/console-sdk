@@ -95,4 +95,4 @@ export const catalogItemSchema = {
 export type CatalogItem<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = Omit<FromSchema<typeof catalogItemSchema>, 'resources' | 'type'> & { resources?: Resources, type: Type }
+> = FromSchema<typeof catalogItemSchema> & { resources?: Resources, type: Type }
