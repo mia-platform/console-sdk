@@ -31,6 +31,7 @@ import {
   defaultTerminationGracePeriodSecondsSchema,
   dockerImageSchema,
 } from '../commons'
+import { CatalogItemManifest } from '../../item-manifest'
 
 const type = 'sidecar'
 
@@ -69,5 +70,6 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogSidecarResources = FromSchema<typeof resourcesSchema>
+export type CatalogSidecarManifest = CatalogItemManifest<typeof type, CatalogSidecarResources>
 
 export default { type, resourcesSchema }

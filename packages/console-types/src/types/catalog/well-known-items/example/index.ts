@@ -39,6 +39,7 @@ import {
   pipelinesSchema,
   repositoryUrlSchema,
 } from '../commons'
+import { CatalogItemManifest } from '../../item-manifest'
 
 const type = 'example'
 
@@ -90,5 +91,6 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogExampleResources = FromSchema<typeof resourcesSchema>
+export type CatalogExampleManifest = CatalogItemManifest<typeof type, CatalogExampleResources>
 
 export default { type, resourcesSchema }

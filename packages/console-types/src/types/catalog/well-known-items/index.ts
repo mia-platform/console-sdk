@@ -17,7 +17,7 @@
  */
 
 import catalogApplication from './application'
-import catalogCRD from './crd'
+import catalogCRD from './custom-resource-definition'
 import catalogExample from './example'
 import catalogExtension from './extension'
 import catalogInfrastructureResource from './infrastructure-resource'
@@ -27,7 +27,7 @@ import catalogSidecar from './sidecar'
 import catalogTemplate from './template'
 
 export type * from './application'
-export type * from './crd'
+export type * from './custom-resource-definition'
 export type * from './example'
 export type * from './extension'
 export type * from './infrastructure-resource'

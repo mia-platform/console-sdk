@@ -41,6 +41,7 @@ import {
   nameSchema,
   repositoryUrlSchema,
 } from '../commons'
+import { CatalogItemManifest } from '../../item-manifest'
 
 const type = 'plugin'
 
@@ -108,5 +109,6 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogPluginResources = FromSchema<typeof resourcesSchema>
+export type CatalogPluginManifest = CatalogItemManifest<typeof type, CatalogPluginResources>
 
 export default { type, resourcesSchema }
