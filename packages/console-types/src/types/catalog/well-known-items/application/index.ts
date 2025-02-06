@@ -26,6 +26,8 @@ import { collectionSchema } from './collection'
 import { endpointSchema } from './endpoint'
 import { unsecretedVariableSchema } from './unsecreted-variable'
 import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'application'
 
@@ -74,6 +76,8 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogApplicationResources = FromSchema<typeof resourcesSchema>
+export type CatalogApplicationItem = CatalogItem<typeof type, CatalogApplicationResources>
+export type CatalogApplicationVersionedItem = CatalogVersionedItem<typeof type, CatalogApplicationResources>
 export type CatalogApplicationManifest = CatalogItemManifest<typeof type, CatalogApplicationResources>
 
 export default { type, resourcesSchema }

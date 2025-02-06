@@ -32,6 +32,8 @@ import {
   dockerImageSchema,
 } from '../commons'
 import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'sidecar'
 
@@ -70,6 +72,8 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogSidecarResources = FromSchema<typeof resourcesSchema>
+export type CatalogSidecarItem = CatalogItem<typeof type, CatalogSidecarResources>
+export type CatalogSidecarVersionedItem = CatalogVersionedItem<typeof type, CatalogSidecarResources>
 export type CatalogSidecarManifest = CatalogItemManifest<typeof type, CatalogSidecarResources>
 
 export default { type, resourcesSchema }

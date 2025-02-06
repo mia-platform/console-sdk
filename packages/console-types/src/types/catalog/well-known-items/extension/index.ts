@@ -20,6 +20,8 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'extension'
 
@@ -123,6 +125,8 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogExtensionResources = FromSchema<typeof resourcesSchema, { parseIfThenElseKeywords: true }>
+export type CatalogExtensionItem = CatalogItem<typeof type, CatalogExtensionResources>
+export type CatalogExtensionVersionedItem = CatalogVersionedItem<typeof type, CatalogExtensionResources>
 export type CatalogExtensionManifest = CatalogItemManifest<typeof type, CatalogExtensionResources>
 
 export default { type, resourcesSchema }

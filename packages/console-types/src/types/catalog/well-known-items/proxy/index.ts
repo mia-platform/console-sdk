@@ -22,6 +22,8 @@ import type { JSONSchema } from '../../../../commons/json-schema'
 import { host } from '../../../services'
 import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
 import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'proxy'
 
@@ -70,6 +72,8 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogProxyResources = FromSchema<typeof resourcesSchema>
+export type CatalogProxyItem = CatalogItem<typeof type, CatalogProxyResources>
+export type CatalogProxyVersionedItem = CatalogVersionedItem<typeof type, CatalogProxyResources>
 export type CatalogProxyManifest = CatalogItemManifest<typeof type, CatalogProxyResources>
 
 export default { type, resourcesSchema }
