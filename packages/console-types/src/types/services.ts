@@ -553,6 +553,19 @@ export const kubernetesDefinitionName = {
   [VALIDATION_ERROR_ID]: 'kubernetesDefinition.patternError',
 } as const
 
+export const serviceLabel = {
+  type: 'object',
+  properties: {
+    name: kubernetesDefinitionName,
+    value: { type: 'string' },
+    description,
+    readOnly: { type: 'boolean' },
+    isSelector: { type: 'boolean' },
+  },
+  additionalProperties: false,
+  required: ['name', 'value'],
+} as const
+
 export const kubernetesDefinition = {
   type: 'object',
   properties: {
@@ -580,7 +593,12 @@ export const container = {
     },
     labels: {
       type: 'array',
-      items: kubernetesDefinition,
+      items: {
+        anyOf: [
+          kubernetesDefinition,
+          serviceLabel,
+        ],
+      },
     },
     resources: serviceResources,
     probes,
@@ -934,7 +952,10 @@ export const services = {
   default: {},
 } as const
 
+// @Deprecated Use one of ServiceAnnotation or ServiceLabel
 export type LabelAnnotation = FromSchema<typeof kubernetesDefinition>
+export type ServiceAnnotation = FromSchema<typeof kubernetesDefinition>
+export type ServiceLabel = FromSchema<typeof serviceLabel>
 
 // This type is required since Services cannot parse if/then/else since it is too deep
 export type Services = Record<string,

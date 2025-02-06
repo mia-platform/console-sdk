@@ -5822,28 +5822,59 @@ Object {
                     },
                     "labels": Object {
                       "items": Object {
-                        "additionalProperties": false,
-                        "properties": Object {
-                          "description": Object {
-                            "type": "string",
+                        "anyOf": Array [
+                          Object {
+                            "additionalProperties": false,
+                            "properties": Object {
+                              "description": Object {
+                                "type": "string",
+                              },
+                              "name": Object {
+                                "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
+                                "type": "string",
+                                "x-validation-error-id": "kubernetesDefinition.patternError",
+                              },
+                              "readOnly": Object {
+                                "type": "boolean",
+                              },
+                              "value": Object {
+                                "type": "string",
+                              },
+                            },
+                            "required": Array [
+                              "name",
+                              "value",
+                            ],
+                            "type": "object",
                           },
-                          "name": Object {
-                            "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
-                            "type": "string",
-                            "x-validation-error-id": "kubernetesDefinition.patternError",
+                          Object {
+                            "additionalProperties": false,
+                            "properties": Object {
+                              "description": Object {
+                                "type": "string",
+                              },
+                              "isSelector": Object {
+                                "type": "boolean",
+                              },
+                              "name": Object {
+                                "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
+                                "type": "string",
+                                "x-validation-error-id": "kubernetesDefinition.patternError",
+                              },
+                              "readOnly": Object {
+                                "type": "boolean",
+                              },
+                              "value": Object {
+                                "type": "string",
+                              },
+                            },
+                            "required": Array [
+                              "name",
+                              "value",
+                            ],
+                            "type": "object",
                           },
-                          "readOnly": Object {
-                            "type": "boolean",
-                          },
-                          "value": Object {
-                            "type": "string",
-                          },
-                        },
-                        "required": Array [
-                          "name",
-                          "value",
                         ],
-                        "type": "object",
                       },
                       "type": "array",
                     },
@@ -6558,28 +6589,59 @@ Object {
               },
               "labels": Object {
                 "items": Object {
-                  "additionalProperties": false,
-                  "properties": Object {
-                    "description": Object {
-                      "type": "string",
+                  "anyOf": Array [
+                    Object {
+                      "additionalProperties": false,
+                      "properties": Object {
+                        "description": Object {
+                          "type": "string",
+                        },
+                        "name": Object {
+                          "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
+                          "type": "string",
+                          "x-validation-error-id": "kubernetesDefinition.patternError",
+                        },
+                        "readOnly": Object {
+                          "type": "boolean",
+                        },
+                        "value": Object {
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "name",
+                        "value",
+                      ],
+                      "type": "object",
                     },
-                    "name": Object {
-                      "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
-                      "type": "string",
-                      "x-validation-error-id": "kubernetesDefinition.patternError",
+                    Object {
+                      "additionalProperties": false,
+                      "properties": Object {
+                        "description": Object {
+                          "type": "string",
+                        },
+                        "isSelector": Object {
+                          "type": "boolean",
+                        },
+                        "name": Object {
+                          "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
+                          "type": "string",
+                          "x-validation-error-id": "kubernetesDefinition.patternError",
+                        },
+                        "readOnly": Object {
+                          "type": "boolean",
+                        },
+                        "value": Object {
+                          "type": "string",
+                        },
+                      },
+                      "required": Array [
+                        "name",
+                        "value",
+                      ],
+                      "type": "object",
                     },
-                    "readOnly": Object {
-                      "type": "boolean",
-                    },
-                    "value": Object {
-                      "type": "string",
-                    },
-                  },
-                  "required": Array [
-                    "name",
-                    "value",
                   ],
-                  "type": "object",
                 },
                 "type": "array",
               },
