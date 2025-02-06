@@ -1205,6 +1205,11 @@
                 "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                 "type": "string"
               },
+              "repositoryUrl": {
+                "format": "uri-reference",
+                "type": "string",
+                "deprecated": true
+              },
               "type": {
                 "const": "plugin"
               }

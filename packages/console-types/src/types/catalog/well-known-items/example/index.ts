@@ -16,8 +16,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { JSONSchema, FromSchema } from 'json-schema-to-ts'
+import type { FromSchema } from 'json-schema-to-ts'
 
+import type { JSONSchema } from '../../../../commons/json-schema'
 import {
   archiveUrlSchema,
   containerPortsSchema,
@@ -36,6 +37,7 @@ import {
   descriptionSchema,
   nameSchema,
   pipelinesSchema,
+  repositoryUrlSchema,
 } from '../commons'
 
 const type = 'example'
@@ -60,6 +62,9 @@ export const catalogExampleSchema = {
     description: descriptionSchema,
     name: nameSchema,
     pipelines: pipelinesSchema,
+
+    /** @deprecated */
+    repositoryUrl: { ...repositoryUrlSchema, deprecated: true },
     type: { const: type },
   },
   required: ['name', 'type', 'archiveUrl'],

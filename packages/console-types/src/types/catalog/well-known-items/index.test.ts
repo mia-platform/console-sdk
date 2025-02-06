@@ -21,7 +21,8 @@ import t from 'tap'
 import addFormats from 'ajv-formats'
 import fs from 'fs/promises'
 import path from 'path'
-import { JSONSchema } from 'json-schema-to-ts'
+
+import type { JSONSchema } from '../../../commons/json-schema'
 
 type ItemModule = {
   default: {
