@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.4.3
+
+### Patch Changes
+
+- 155451d: Updated Kiota libraries to version `1.0.0-preview.81`
+
 ## 0.4.2
 
 ### Patch Changes

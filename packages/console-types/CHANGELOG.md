@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.28.0
+
+### Minor Changes
+
+- 19fdfd2: add support for marking labels as deployment selector
+
+### Patch Changes
+
+- 155451d: Added repositoryUrl to catalog items resources schema
+- 5e3d431: Fixed catalog proxy resources JSON schema
+
 ## 0.27.1
 
 ### Patch Changes
