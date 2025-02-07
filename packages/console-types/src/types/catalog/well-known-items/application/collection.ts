@@ -19,6 +19,8 @@
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { descriptionSchema, tagsSchema } from '../commons'
 
+const idSchema = { type: 'string' } as const satisfies JSONSchema
+
 const collectionNameSchema = {
   maxLength: 80,
   pattern: '(^[\\w-]+$)',
@@ -213,6 +215,7 @@ export const collectionSchema = {
         defaultName: collectionNameSchema,
         description: descriptionSchema,
         fields: fieldsSchema,
+        id: idSchema,
         indexes: indexesSchema,
         internalEndpoints: internalEndpointsSchema,
         tags: tagsSchema,
@@ -227,6 +230,7 @@ export const collectionSchema = {
         defaultName: collectionNameSchema,
         description: descriptionSchema,
         fields: fieldsSchema,
+        id: idSchema,
         indexes: indexesSchema,
         internalEndpoints: internalEndpointsSchema,
         tags: tagsSchema,
