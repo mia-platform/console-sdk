@@ -28,6 +28,7 @@ import { unsecretedVariableSchema } from './unsecreted-variable'
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
+import { listenerSchema } from '../commons'
 
 const type = 'application'
 
@@ -40,25 +41,7 @@ const resourcesSchema = {
     collections: { additionalProperties: collectionSchema, type: 'object' },
     endpoints: { additionalProperties: endpointSchema, type: 'object' },
     listeners: {
-      additionalProperties: {
-        additionalProperties: false,
-        properties: {
-          description: { type: 'string' },
-          name: { type: 'string' },
-          ownedBy: {
-            additionalProperties: false,
-            properties: {
-              componentIds: { items: { type: 'string' }, type: 'array' },
-            },
-            required: ['componentIds'],
-            type: 'object',
-          },
-          port: { type: 'string' },
-          selectedByDefault: { type: 'boolean' },
-        },
-        required: ['name', 'port', 'ownedBy'],
-        type: 'object',
-      },
+      additionalProperties: listenerSchema,
       type: 'object',
     },
     services: {

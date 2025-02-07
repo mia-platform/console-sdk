@@ -17,6 +17,7 @@
  */
 
 import type { JSONSchema } from '../../../../commons/json-schema'
+import { descriptionSchema, tagsSchema } from '../commons'
 
 const collectionNameSchema = {
   maxLength: 80,
@@ -84,26 +85,137 @@ const fieldsSchema = {
   type: 'array',
 } as const satisfies JSONSchema
 
+const internalEndpointsSchema = {
+  items: {
+    additionalProperties: false,
+    properties: {
+      basePath: { type: 'string' },
+      defaultState: {
+        type: 'string',
+        enum: ['DRAFT', 'PUBLIC'],
+      },
+    },
+    required: ['basePath'],
+    type: 'object',
+  },
+  maxItems: 1,
+  minItems: 1,
+  type: 'array',
+} as const satisfies JSONSchema
+
+const normalIndexSchema = {
+  type: 'object',
+  properties: {
+    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    type: { const: 'normal' },
+    unique: { type: 'boolean' },
+    description: { type: 'string' },
+    usePartialFilter: { type: 'boolean' },
+    partialFilterExpression: { type: 'string' },
+    fields: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          order: { type: 'number', enum: [1, -1] },
+        },
+        required: ['name', 'order'],
+      },
+    },
+  },
+  required: ['name', 'type', 'unique', 'fields'],
+} as const satisfies JSONSchema
+
+const geoIndexSchema = {
+  type: 'object',
+  properties: {
+    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    type: { const: 'geo' },
+    unique: { type: 'boolean' },
+    description: { type: 'string' },
+    usePartialFilter: { type: 'boolean' },
+    partialFilterExpression: { type: 'string' },
+    fields: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          order: { type: 'number', enum: [1, -1] },
+        },
+        required: ['name', 'order'],
+      },
+    },
+  },
+  required: ['name', 'type', 'unique', 'fields'],
+} as const satisfies JSONSchema
+
+const hashIndexSchema = {
+  type: 'object',
+  properties: {
+    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    type: { const: 'hash' },
+    unique: { const: false },
+    description: { type: 'string' },
+    usePartialFilter: { type: 'boolean' },
+    partialFilterExpression: { type: 'string' },
+    fields: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          order: { type: 'number', enum: [1, -1] },
+        },
+        required: ['name', 'order'],
+      },
+    },
+  },
+  required: ['name', 'type', 'unique', 'fields'],
+} as const satisfies JSONSchema
+
+const ttlIndexSchema = {
+  type: 'object',
+  properties: {
+    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    type: { const: 'ttl' },
+    unique: { type: 'boolean' },
+    description: { type: 'string' },
+    usePartialFilter: { type: 'boolean' },
+    partialFilterExpression: { type: 'string' },
+    fields: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          order: { type: 'number', enum: [1, -1] },
+        },
+        required: ['name', 'order'],
+      },
+    },
+    expireAfterSeconds: { type: 'number', minimum: 1 },
+  },
+  required: ['name', 'type', 'unique', 'fields', 'expireAfterSeconds'],
+} as const satisfies JSONSchema
+
+const indexesSchema = {
+  type: 'array',
+  items: { oneOf: [normalIndexSchema, geoIndexSchema, hashIndexSchema, ttlIndexSchema] },
+} as const satisfies JSONSchema
+
 export const collectionSchema = {
   oneOf: [
     {
       additionalProperties: false,
       properties: {
         defaultName: collectionNameSchema,
+        description: descriptionSchema,
         fields: fieldsSchema,
-        internalEndpoints: {
-          items: {
-            additionalProperties: false,
-            properties: {
-              basePath: { type: 'string' },
-            },
-            required: ['basePath'],
-            type: 'object',
-          },
-          maxItems: 1,
-          minItems: 1,
-          type: 'array',
-        },
+        indexes: indexesSchema,
+        internalEndpoints: internalEndpointsSchema,
+        tags: tagsSchema,
         type: { const: 'collection' },
       },
       required: ['type', 'defaultName', 'internalEndpoints'],
@@ -113,20 +225,11 @@ export const collectionSchema = {
       additionalProperties: false,
       properties: {
         defaultName: collectionNameSchema,
+        description: descriptionSchema,
         fields: fieldsSchema,
-        internalEndpoints: {
-          items: {
-            additionalProperties: false,
-            properties: {
-              basePath: { type: 'string' },
-            },
-            required: ['basePath'],
-            type: 'object',
-          },
-          maxItems: 1,
-          minItems: 1,
-          type: 'array',
-        },
+        indexes: indexesSchema,
+        internalEndpoints: internalEndpointsSchema,
+        tags: tagsSchema,
         type: { const: 'view' },
       },
       required: ['type', 'defaultName', 'internalEndpoints', 'startingCollection'],

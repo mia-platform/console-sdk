@@ -29,7 +29,9 @@ import {
   defaultResourcesSchema,
   defaultSecretsSchema,
   defaultTerminationGracePeriodSecondsSchema,
+  descriptionSchema,
   dockerImageSchema,
+  nameSchema,
 } from '../commons'
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
@@ -44,6 +46,7 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     componentId: componentIdSchema,
+    description: descriptionSchema,
     containerPorts: containerPortsSchema,
     defaultArgs: defaultArgsSchema,
     defaultConfigMaps: defaultConfigMapsSchema,
@@ -54,6 +57,7 @@ const resourcesSchema = {
     defaultTerminationGracePeriodSeconds: defaultTerminationGracePeriodSecondsSchema,
     dockerImage: dockerImageSchema,
     exclusiveServiceExposure: { type: 'boolean' },
+    name: nameSchema,
     owners: {
       items: {
         additionalProperties: true,
@@ -66,7 +70,7 @@ const resourcesSchema = {
       type: 'array',
     },
   },
-  required: ['dockerImage'],
+  required: ['dockerImage', 'name'],
   title: 'Catalog sidecar resources',
   type: 'object',
 } as const satisfies JSONSchema
