@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.0
+
+### Minor Changes
+
+- 0652cd6: expose serviceSecrets schema
+
 ## 0.28.0
 
 ### Minor Changes
