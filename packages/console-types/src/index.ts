@@ -226,6 +226,8 @@ export type {
   ContainerPorts,
   CoreService,
   CustomResource,
+  ServiceLabel,
+  ServiceAnnotation,
   LabelAnnotation,
 } from './types/services'
 
