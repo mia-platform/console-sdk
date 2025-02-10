@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.1
+
+### Patch Changes
+
+- efc6140: add missing ServiceLabel and ServiceAnnotation export in index file
+
 ## 0.29.0
 
 ### Minor Changes
