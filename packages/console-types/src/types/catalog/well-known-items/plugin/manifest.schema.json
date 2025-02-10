@@ -98,6 +98,21 @@
               "name": {
                 "type": "string"
               },
+              "ownedBy": {
+                "additionalProperties": false,
+                "properties": {
+                  "componentIds": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "componentIds"
+                ],
+                "type": "object"
+              },
               "port": {
                 "type": "string"
               },
@@ -117,6 +132,12 @@
           "additionalProperties": {
             "additionalProperties": false,
             "properties": {
+              "args": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
               "additionalContainers": {
                 "items": {
                   "additionalProperties": false,
@@ -280,9 +301,6 @@
                                   "type": "number"
                                 }
                               },
-                              "required": [
-                                "port"
-                              ],
                               "type": "object"
                             },
                             {
@@ -372,9 +390,6 @@
                                   "type": "number"
                                 }
                               },
-                              "required": [
-                                "port"
-                              ],
                               "type": "object"
                             },
                             {
@@ -464,9 +479,6 @@
                                   "type": "number"
                                 }
                               },
-                              "required": [
-                                "port"
-                              ],
                               "type": "object"
                             },
                             {
@@ -684,6 +696,12 @@
                       "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                       "type": "string"
                     },
+                    "subPaths": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "usePreserve": {
                       "type": "boolean"
                     },
@@ -769,6 +787,36 @@
                         "valueType",
                         "secretName",
                         "secretKey"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "description": {
+                          "type": "string"
+                        },
+                        "managedBy": {
+                          "type": "string"
+                        },
+                        "fieldPath": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "readOnly": {
+                          "type": "boolean"
+                        },
+                        "valueType": {
+                          "const": "downwardAPI"
+                        }
+                      },
+                      "required": [
+                        "fieldPath",
+                        "name",
+                        "valueType"
                       ],
                       "type": "object"
                     }
@@ -890,9 +938,6 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "port"
-                        ],
                         "type": "object"
                       },
                       {
@@ -982,9 +1027,6 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "port"
-                        ],
                         "type": "object"
                       },
                       {
@@ -1074,9 +1116,6 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "port"
-                        ],
                         "type": "object"
                       },
                       {
@@ -1180,6 +1219,12 @@
                 "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
                 "type": "string"
               },
+              "execPreStop": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "links": {
                 "items": {
                   "properties": {
@@ -1200,6 +1245,29 @@
                 },
                 "type": "array"
               },
+              "mapEnvVarToMountPath": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "file",
+                        "folder"
+                      ]
+                    },
+                    "envName": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "envName"
+                  ]
+                }
+              },
               "name": {
                 "minLength": 1,
                 "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
@@ -1209,6 +1277,12 @@
                 "format": "uri-reference",
                 "type": "string",
                 "deprecated": true
+              },
+              "tags": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
               },
               "type": {
                 "const": "plugin"

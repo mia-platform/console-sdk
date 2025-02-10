@@ -99,180 +99,7 @@
                     "pattern": "(^[\\w-]+$)",
                     "type": "string"
                   },
-                  "fields": {
-                    "items": {
-                      "oneOf": [
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "description": {
-                              "type": "string"
-                            },
-                            "encryptionEnabled": {
-                              "type": "boolean"
-                            },
-                            "encryptionSearchable": {
-                              "type": "boolean"
-                            },
-                            "name": {
-                              "pattern": "^[^$\\.]+$",
-                              "type": "string"
-                            },
-                            "nullable": {
-                              "type": "boolean"
-                            },
-                            "required": {
-                              "type": "boolean"
-                            },
-                            "schema": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "additionalProperties": {
-                                  "type": "boolean"
-                                },
-                                "encryption": {
-                                  "properties": {
-                                    "enabled": {
-                                      "type": "boolean"
-                                    },
-                                    "searchable": {
-                                      "type": "boolean"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "properties": {
-                                  "additionalProperties": true,
-                                  "type": "object"
-                                },
-                                "required": {
-                                  "items": {
-                                    "type": "string"
-                                  },
-                                  "type": "array"
-                                },
-                                "type": {
-                                  "const": "object"
-                                }
-                              },
-                              "type": "object"
-                            },
-                            "sensitivityDescription": {
-                              "type": "string"
-                            },
-                            "sensitivityValue": {
-                              "maximum": 4,
-                              "minimum": 0,
-                              "type": "number"
-                            },
-                            "type": {
-                              "enum": [
-                                "RawObject",
-                                "Array_RawObject"
-                              ],
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "name",
-                            "type",
-                            "required",
-                            "nullable"
-                          ],
-                          "type": "object"
-                        },
-                        {
-                          "additionalProperties": false,
-                          "properties": {
-                            "description": {
-                              "type": "string"
-                            },
-                            "encryptionEnabled": {
-                              "type": "boolean"
-                            },
-                            "encryptionSearchable": {
-                              "type": "boolean"
-                            },
-                            "name": {
-                              "pattern": "^[^$\\.]+$",
-                              "type": "string"
-                            },
-                            "nullable": {
-                              "type": "boolean"
-                            },
-                            "required": {
-                              "type": "boolean"
-                            },
-                            "sensitivityDescription": {
-                              "type": "string"
-                            },
-                            "sensitivityValue": {
-                              "maximum": 4,
-                              "minimum": 0,
-                              "type": "number"
-                            },
-                            "type": {
-                              "enum": [
-                                "ObjectId",
-                                "string",
-                                "Date",
-                                "boolean",
-                                "GeoPoint",
-                                "object",
-                                "number",
-                                "Array",
-                                "Array_string",
-                                "Array_number"
-                              ],
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "name",
-                            "type",
-                            "required",
-                            "nullable"
-                          ],
-                          "type": "object"
-                        }
-                      ]
-                    },
-                    "type": "array"
-                  },
-                  "internalEndpoints": {
-                    "items": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "basePath": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "basePath"
-                      ],
-                      "type": "object"
-                    },
-                    "maxItems": 1,
-                    "minItems": 1,
-                    "type": "array"
-                  },
-                  "type": {
-                    "const": "collection"
-                  }
-                },
-                "required": [
-                  "type",
-                  "defaultName",
-                  "internalEndpoints"
-                ],
-                "type": "object"
-              },
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "defaultName": {
-                    "maxLength": 80,
-                    "pattern": "(^[\\w-]+$)",
+                  "description": {
                     "type": "string"
                   },
                   "fields": {
@@ -415,12 +242,246 @@
                     },
                     "type": "array"
                   },
+                  "id": {
+                    "type": "string"
+                  },
+                  "indexes": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "normal"
+                            },
+                            "unique": {
+                              "type": "boolean"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "geo"
+                            },
+                            "unique": {
+                              "type": "boolean"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "hash"
+                            },
+                            "unique": {
+                              "const": false
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "ttl"
+                            },
+                            "unique": {
+                              "type": "boolean"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            },
+                            "expireAfterSeconds": {
+                              "type": "number",
+                              "minimum": 1
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields",
+                            "expireAfterSeconds"
+                          ]
+                        }
+                      ]
+                    }
+                  },
                   "internalEndpoints": {
                     "items": {
                       "additionalProperties": false,
                       "properties": {
                         "basePath": {
                           "type": "string"
+                        },
+                        "defaultState": {
+                          "type": "string",
+                          "enum": [
+                            "DRAFT",
+                            "PUBLIC"
+                          ]
                         }
                       },
                       "required": [
@@ -430,6 +491,431 @@
                     },
                     "maxItems": 1,
                     "minItems": 1,
+                    "type": "array"
+                  },
+                  "tags": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "type": {
+                    "const": "collection"
+                  }
+                },
+                "required": [
+                  "type",
+                  "defaultName",
+                  "internalEndpoints"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "defaultName": {
+                    "maxLength": 80,
+                    "pattern": "(^[\\w-]+$)",
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "fields": {
+                    "items": {
+                      "oneOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "encryptionEnabled": {
+                              "type": "boolean"
+                            },
+                            "encryptionSearchable": {
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "pattern": "^[^$\\.]+$",
+                              "type": "string"
+                            },
+                            "nullable": {
+                              "type": "boolean"
+                            },
+                            "required": {
+                              "type": "boolean"
+                            },
+                            "schema": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "additionalProperties": {
+                                  "type": "boolean"
+                                },
+                                "encryption": {
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    },
+                                    "searchable": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "properties": {
+                                  "additionalProperties": true,
+                                  "type": "object"
+                                },
+                                "required": {
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                },
+                                "type": {
+                                  "const": "object"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "sensitivityDescription": {
+                              "type": "string"
+                            },
+                            "sensitivityValue": {
+                              "maximum": 4,
+                              "minimum": 0,
+                              "type": "number"
+                            },
+                            "type": {
+                              "enum": [
+                                "RawObject",
+                                "Array_RawObject"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "required",
+                            "nullable"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "encryptionEnabled": {
+                              "type": "boolean"
+                            },
+                            "encryptionSearchable": {
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "pattern": "^[^$\\.]+$",
+                              "type": "string"
+                            },
+                            "nullable": {
+                              "type": "boolean"
+                            },
+                            "required": {
+                              "type": "boolean"
+                            },
+                            "sensitivityDescription": {
+                              "type": "string"
+                            },
+                            "sensitivityValue": {
+                              "maximum": 4,
+                              "minimum": 0,
+                              "type": "number"
+                            },
+                            "type": {
+                              "enum": [
+                                "ObjectId",
+                                "string",
+                                "Date",
+                                "boolean",
+                                "GeoPoint",
+                                "object",
+                                "number",
+                                "Array",
+                                "Array_string",
+                                "Array_number"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "required",
+                            "nullable"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "indexes": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "normal"
+                            },
+                            "unique": {
+                              "type": "boolean"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "geo"
+                            },
+                            "unique": {
+                              "type": "boolean"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "hash"
+                            },
+                            "unique": {
+                              "const": false
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-zA-Z_][\\w-]*$"
+                            },
+                            "type": {
+                              "const": "ttl"
+                            },
+                            "unique": {
+                              "type": "boolean"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "usePartialFilter": {
+                              "type": "boolean"
+                            },
+                            "partialFilterExpression": {
+                              "type": "string"
+                            },
+                            "fields": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "pattern": "^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$"
+                                  },
+                                  "order": {
+                                    "type": "number",
+                                    "enum": [
+                                      1,
+                                      -1
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "order"
+                                ]
+                              }
+                            },
+                            "expireAfterSeconds": {
+                              "type": "number",
+                              "minimum": 1
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "type",
+                            "unique",
+                            "fields",
+                            "expireAfterSeconds"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "internalEndpoints": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "basePath": {
+                          "type": "string"
+                        },
+                        "defaultState": {
+                          "type": "string",
+                          "enum": [
+                            "DRAFT",
+                            "PUBLIC"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "basePath"
+                      ],
+                      "type": "object"
+                    },
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "tags": {
+                    "items": {
+                      "type": "string"
+                    },
                     "type": "array"
                   },
                   "type": {
@@ -519,13 +1005,26 @@
                     },
                     "type": "object"
                   },
+                  "options": {
+                    "type": "object",
+                    "properties": {
+                      "iframePolicy": {
+                        "type": "string",
+                        "enum": [
+                          "all",
+                          "deny",
+                          "sameorigin"
+                        ]
+                      }
+                    }
+                  },
                   "public": {
                     "type": "boolean"
                   },
                   "routes": {
                     "additionalProperties": false,
                     "patternProperties": {
-                      "^(GET|POST|PUT|PATCH|DELETE)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$": {
+                      "^(GET|POST|PUT|PATCH|DELETE|HEAD)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$": {
                         "additionalProperties": false,
                         "properties": {
                           "acl": {
@@ -933,8 +1432,329 @@
                     },
                     "type": "object"
                   },
+                  "pathName": {
+                    "type": "string",
+                    "pattern": "^\\/(([\\w\\-:])\\/?)*$"
+                  },
+                  "options": {
+                    "type": "object",
+                    "properties": {
+                      "iframePolicy": {
+                        "type": "string",
+                        "enum": [
+                          "all",
+                          "deny",
+                          "sameorigin"
+                        ]
+                      }
+                    }
+                  },
                   "public": {
                     "type": "boolean"
+                  },
+                  "routes": {
+                    "additionalProperties": false,
+                    "patternProperties": {
+                      "^(GET|POST|PUT|PATCH|DELETE|HEAD)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "acl": {
+                            "default": {
+                              "inherited": true
+                            },
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": false
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": true
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "allowUnknownRequestContentType": {
+                            "default": {
+                              "inherited": true
+                            },
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": false
+                                  },
+                                  "value": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "inherited",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": true
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "allowUnknownResponseContentType": {
+                            "default": {
+                              "inherited": true
+                            },
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": false
+                                  },
+                                  "value": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "inherited",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": true
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "backofficeAcl": {
+                            "default": {
+                              "inherited": true
+                            },
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": false
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": true
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "catchDecorator": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "pattern": "^(GET|POST|PUT|PATCH|DELETE)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$",
+                            "type": "string"
+                          },
+                          "path": {
+                            "pattern": "^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$",
+                            "type": "string"
+                          },
+                          "postDecorators": {
+                            "default": [],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "preDecorators": {
+                            "default": [],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "public": {
+                            "default": {
+                              "inherited": true
+                            },
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": false
+                                  },
+                                  "value": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "inherited",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": true
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "schema": {
+                            "type": "object"
+                          },
+                          "secreted": {
+                            "default": {
+                              "inherited": true
+                            },
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": false
+                                  },
+                                  "value": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "inherited",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": true
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "showInDocumentation": {
+                            "default": {
+                              "inherited": true
+                            },
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": false
+                                  },
+                                  "value": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "inherited",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "inherited": {
+                                    "const": true
+                                  }
+                                },
+                                "required": [
+                                  "inherited"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "verb": {
+                            "enum": [
+                              "GET",
+                              "POST",
+                              "PUT",
+                              "PATCH",
+                              "DELETE"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "path",
+                          "verb",
+                          "public",
+                          "secreted",
+                          "acl",
+                          "showInDocumentation",
+                          "allowUnknownRequestContentType",
+                          "allowUnknownResponseContentType"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
                   },
                   "secreted": {
                     "type": "boolean"
@@ -1002,8 +1822,7 @@
             },
             "required": [
               "name",
-              "port",
-              "ownedBy"
+              "port"
             ],
             "type": "object"
           },
@@ -1015,6 +1834,12 @@
               {
                 "additionalProperties": false,
                 "properties": {
+                  "args": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
                   "additionalContainers": {
                     "items": {
                       "additionalProperties": false,
@@ -1178,9 +2003,6 @@
                                       "type": "number"
                                     }
                                   },
-                                  "required": [
-                                    "port"
-                                  ],
                                   "type": "object"
                                 },
                                 {
@@ -1270,9 +2092,6 @@
                                       "type": "number"
                                     }
                                   },
-                                  "required": [
-                                    "port"
-                                  ],
                                   "type": "object"
                                 },
                                 {
@@ -1362,9 +2181,6 @@
                                       "type": "number"
                                     }
                                   },
-                                  "required": [
-                                    "port"
-                                  ],
                                   "type": "object"
                                 },
                                 {
@@ -1582,6 +2398,12 @@
                           "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                           "type": "string"
                         },
+                        "subPaths": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
                         "usePreserve": {
                           "type": "boolean"
                         },
@@ -1667,6 +2489,36 @@
                             "valueType",
                             "secretName",
                             "secretKey"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "managedBy": {
+                              "type": "string"
+                            },
+                            "fieldPath": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "readOnly": {
+                              "type": "boolean"
+                            },
+                            "valueType": {
+                              "const": "downwardAPI"
+                            }
+                          },
+                          "required": [
+                            "fieldPath",
+                            "name",
+                            "valueType"
                           ],
                           "type": "object"
                         }
@@ -1788,9 +2640,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -1880,9 +2729,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -1972,9 +2818,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -2078,6 +2921,12 @@
                     "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
                     "type": "string"
                   },
+                  "execPreStop": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
                   "links": {
                     "items": {
                       "properties": {
@@ -2098,6 +2947,29 @@
                     },
                     "type": "array"
                   },
+                  "mapEnvVarToMountPath": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "file",
+                            "folder"
+                          ]
+                        },
+                        "envName": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "type",
+                        "envName"
+                      ]
+                    }
+                  },
                   "name": {
                     "minLength": 1,
                     "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
@@ -2107,6 +2979,12 @@
                     "format": "uri-reference",
                     "type": "string",
                     "deprecated": true
+                  },
+                  "tags": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
                   },
                   "type": {
                     "const": "plugin"
@@ -2248,6 +3126,12 @@
                           "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                           "type": "string"
                         },
+                        "subPaths": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
                         "usePreserve": {
                           "type": "boolean"
                         },
@@ -2333,6 +3217,36 @@
                             "valueType",
                             "secretName",
                             "secretKey"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "managedBy": {
+                              "type": "string"
+                            },
+                            "fieldPath": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "readOnly": {
+                              "type": "boolean"
+                            },
+                            "valueType": {
+                              "const": "downwardAPI"
+                            }
+                          },
+                          "required": [
+                            "fieldPath",
+                            "name",
+                            "valueType"
                           ],
                           "type": "object"
                         }
@@ -2454,9 +3368,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -2546,9 +3457,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -2638,9 +3546,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -2992,6 +3897,12 @@
                           "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                           "type": "string"
                         },
+                        "subPaths": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
                         "usePreserve": {
                           "type": "boolean"
                         },
@@ -3077,6 +3988,36 @@
                             "valueType",
                             "secretName",
                             "secretKey"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "managedBy": {
+                              "type": "string"
+                            },
+                            "fieldPath": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "readOnly": {
+                              "type": "boolean"
+                            },
+                            "valueType": {
+                              "const": "downwardAPI"
+                            }
+                          },
+                          "required": [
+                            "fieldPath",
+                            "name",
+                            "valueType"
                           ],
                           "type": "object"
                         }
@@ -3198,9 +4139,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -3290,9 +4228,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {
@@ -3382,9 +4317,6 @@
                                 "type": "number"
                               }
                             },
-                            "required": [
-                              "port"
-                            ],
                             "type": "object"
                           },
                           {

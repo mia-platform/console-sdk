@@ -91,6 +91,9 @@
         "componentId": {
           "type": "string"
         },
+        "description": {
+          "type": "string"
+        },
         "containerPorts": {
           "items": {
             "additionalProperties": false,
@@ -186,6 +189,12 @@
                 "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                 "type": "string"
               },
+              "subPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "usePreserve": {
                 "type": "boolean"
               },
@@ -269,6 +278,36 @@
                   "secretKey"
                 ],
                 "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "managedBy": {
+                    "type": "string"
+                  },
+                  "fieldPath": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  },
+                  "valueType": {
+                    "const": "downwardAPI"
+                  }
+                },
+                "required": [
+                  "fieldPath",
+                  "name",
+                  "valueType"
+                ],
+                "type": "object"
               }
             ]
           },
@@ -331,9 +370,6 @@
                       "type": "number"
                     }
                   },
-                  "required": [
-                    "port"
-                  ],
                   "type": "object"
                 },
                 {
@@ -423,9 +459,6 @@
                       "type": "number"
                     }
                   },
-                  "required": [
-                    "port"
-                  ],
                   "type": "object"
                 },
                 {
@@ -515,9 +548,6 @@
                       "type": "number"
                     }
                   },
-                  "required": [
-                    "port"
-                  ],
                   "type": "object"
                 },
                 {
@@ -621,6 +651,11 @@
         "exclusiveServiceExposure": {
           "type": "boolean"
         },
+        "name": {
+          "minLength": 1,
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "type": "string"
+        },
         "owners": {
           "items": {
             "additionalProperties": true,
@@ -638,7 +673,8 @@
         }
       },
       "required": [
-        "dockerImage"
+        "dockerImage",
+        "name"
       ],
       "type": "object"
     },

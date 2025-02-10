@@ -218,6 +218,12 @@
                       "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                       "type": "string"
                     },
+                    "subPaths": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "usePreserve": {
                       "type": "boolean"
                     },
@@ -303,6 +309,36 @@
                         "valueType",
                         "secretName",
                         "secretKey"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "description": {
+                          "type": "string"
+                        },
+                        "managedBy": {
+                          "type": "string"
+                        },
+                        "fieldPath": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "readOnly": {
+                          "type": "boolean"
+                        },
+                        "valueType": {
+                          "const": "downwardAPI"
+                        }
+                      },
+                      "required": [
+                        "fieldPath",
+                        "name",
+                        "valueType"
                       ],
                       "type": "object"
                     }
@@ -424,9 +460,6 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "port"
-                        ],
                         "type": "object"
                       },
                       {
@@ -516,9 +549,6 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "port"
-                        ],
                         "type": "object"
                       },
                       {
@@ -608,9 +638,6 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "port"
-                        ],
                         "type": "object"
                       },
                       {
