@@ -1,5 +1,11 @@
 # @mia-platform/console-sdk-vite-helpers
 
+## 0.0.93
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.53
+
 ## 0.0.92
 
 ### Patch Changes
