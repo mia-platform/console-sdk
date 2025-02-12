@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.3
+
+### Patch Changes
+
+- c667129: added: jsonSchema field to infrastructure-resource definitions
+
 ## 0.29.2
 
 ### Patch Changes
