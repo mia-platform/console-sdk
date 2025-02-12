@@ -71,4 +71,7 @@ export const catalogItemManifestSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
+export type CatalogItemManifest<
+  Type extends string = string,
+  Resources extends Record<string, unknown> = Record<string, unknown>
+> = FromSchema<typeof catalogItemManifestSchema> & { resources: Resources, type: Type }

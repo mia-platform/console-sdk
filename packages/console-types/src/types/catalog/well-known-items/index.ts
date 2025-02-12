@@ -17,7 +17,7 @@
  */
 
 import catalogApplication from './application'
-import catalogCRD from './crd'
+import catalogCRD from './custom-resource-definition'
 import catalogExample from './example'
 import catalogExtension from './extension'
 import catalogInfrastructureResource from './infrastructure-resource'
@@ -26,15 +26,15 @@ import catalogProxy from './proxy'
 import catalogSidecar from './sidecar'
 import catalogTemplate from './template'
 
-export type * from './application'
-export type * from './crd'
-export type * from './example'
-export type * from './extension'
-export type * from './infrastructure-resource'
-export type * from './plugin'
-export type * from './proxy'
-export type * from './sidecar'
-export type * from './template'
+export type { CatalogApplicationItem, CatalogApplicationManifest, CatalogApplicationResources, CatalogApplicationVersionedItem } from './application'
+export type { CatalogCRDItem, CatalogCRDManifest, CatalogCRDResources, CatalogCRDVersionedItem } from './custom-resource-definition'
+export type { CatalogExampleItem, CatalogExampleManifest, CatalogExampleResources, CatalogExampleVersionedItem } from './example'
+export type { CatalogExtensionItem, CatalogExtensionManifest, CatalogExtensionResources, CatalogExtensionVersionedItem } from './extension'
+export type { CatalogInfrastructureResourceItem, CatalogInfrastructureResourceManifest, CatalogInfrastructureResourceResources, CatalogInfrastructureResourceVersionedItem } from './infrastructure-resource'
+export type { CatalogPluginItem, CatalogPluginManifest, CatalogPluginResources, CatalogPluginVersionedItem } from './plugin'
+export type { CatalogProxyItem, CatalogProxyManifest, CatalogProxyResources, CatalogProxyVersionedItem } from './proxy'
+export type { CatalogSidecarItem, CatalogSidecarManifest, CatalogSidecarResources, CatalogSidecarVersionedItem } from './sidecar'
+export type { CatalogTemplateItem, CatalogTemplateManifest, CatalogTemplateResources, CatalogTemplateVersionedItem } from './template'
 
 export {
   catalogApplication,

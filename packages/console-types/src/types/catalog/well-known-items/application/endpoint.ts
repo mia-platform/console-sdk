@@ -67,6 +67,13 @@ const listenersSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+const optionsSchema = {
+  type: 'object',
+  properties: {
+    iframePolicy: { type: 'string', enum: ['all', 'deny', 'sameorigin'] },
+  },
+} as const satisfies JSONSchema
+
 const routeBooleanValueSchema = {
   default: { inherited: true },
   oneOf: [
@@ -93,7 +100,7 @@ const routeBooleanValueSchema = {
 const routesSchema = {
   additionalProperties: false,
   patternProperties: {
-    '^(GET|POST|PUT|PATCH|DELETE)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$': {
+    '^(GET|POST|PUT|PATCH|DELETE|HEAD)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$': {
       additionalProperties: false,
       properties: {
         acl: backofficeAclSchema,
@@ -142,6 +149,7 @@ export const endpointSchema = {
         description: descriptionSchema,
         forceMicroserviceGatewayProxy: forceMicroserviceGatewayProxySchema,
         listeners: listenersSchema,
+        options: optionsSchema,
         public: publicSchema,
         routes: routesSchema,
         secreted: secretedSchema,
@@ -166,7 +174,10 @@ export const endpointSchema = {
         description: descriptionSchema,
         forceMicroserviceGatewayProxy: forceMicroserviceGatewayProxySchema,
         listeners: listenersSchema,
+        pathName: { 'type': 'string', 'pattern': '^\\/(([\\w\\-:])\\/?)*$' },
+        options: optionsSchema,
         public: publicSchema,
+        routes: routesSchema,
         secreted: secretedSchema,
         showInDocumentation: showInDocumentationSchema,
         tags: tagsSchema,

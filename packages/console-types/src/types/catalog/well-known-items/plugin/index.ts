@@ -37,16 +37,24 @@ import {
   defaultTerminationGracePeriodSecondsSchema,
   descriptionSchema,
   dockerImageSchema,
+  execPreStopSchema,
   linksSchema,
+  listenerSchema,
+  mapEnvVarToMountPathSchema,
   nameSchema,
   repositoryUrlSchema,
+  tagsSchema,
 } from '../commons'
+import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'plugin'
 
 export const catalogPluginSchema = {
   additionalProperties: false,
   properties: {
+    args: defaultArgsSchema,
     additionalContainers: additionalContainersSchema,
     componentId: componentIdSchema,
     containerPorts: containerPortsSchema,
@@ -64,11 +72,14 @@ export const catalogPluginSchema = {
     defaultTerminationGracePeriodSeconds: defaultTerminationGracePeriodSecondsSchema,
     description: descriptionSchema,
     dockerImage: dockerImageSchema,
+    execPreStop: execPreStopSchema,
     links: linksSchema,
+    mapEnvVarToMountPath: mapEnvVarToMountPathSchema,
     name: nameSchema,
 
     /** @deprecated */
     repositoryUrl: { ...repositoryUrlSchema, deprecated: true },
+    tags: tagsSchema,
     type: { const: 'plugin' },
   },
   required: ['name', 'type', 'dockerImage'],
@@ -82,17 +93,7 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     listeners: {
-      additionalProperties: {
-        additionalProperties: false,
-        properties: {
-          description: { type: 'string' },
-          name: { type: 'string' },
-          port: { type: 'string' },
-          selectedByDefault: { type: 'boolean' },
-        },
-        required: ['name', 'port'],
-        type: 'object',
-      },
+      additionalProperties: listenerSchema,
       type: 'object',
     },
     services: {
@@ -108,5 +109,8 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogPluginResources = FromSchema<typeof resourcesSchema>
+export type CatalogPluginItem = CatalogItem<typeof type, CatalogPluginResources>
+export type CatalogPluginVersionedItem = CatalogVersionedItem<typeof type, CatalogPluginResources>
+export type CatalogPluginManifest = CatalogItemManifest<typeof type, CatalogPluginResources>
 
 export default { type, resourcesSchema }

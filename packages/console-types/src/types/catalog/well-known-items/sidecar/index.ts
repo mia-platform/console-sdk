@@ -29,8 +29,13 @@ import {
   defaultResourcesSchema,
   defaultSecretsSchema,
   defaultTerminationGracePeriodSecondsSchema,
+  descriptionSchema,
   dockerImageSchema,
+  nameSchema,
 } from '../commons'
+import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'sidecar'
 
@@ -41,6 +46,7 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     componentId: componentIdSchema,
+    description: descriptionSchema,
     containerPorts: containerPortsSchema,
     defaultArgs: defaultArgsSchema,
     defaultConfigMaps: defaultConfigMapsSchema,
@@ -51,6 +57,7 @@ const resourcesSchema = {
     defaultTerminationGracePeriodSeconds: defaultTerminationGracePeriodSecondsSchema,
     dockerImage: dockerImageSchema,
     exclusiveServiceExposure: { type: 'boolean' },
+    name: nameSchema,
     owners: {
       items: {
         additionalProperties: true,
@@ -63,11 +70,14 @@ const resourcesSchema = {
       type: 'array',
     },
   },
-  required: ['dockerImage'],
+  required: ['dockerImage', 'name'],
   title: 'Catalog sidecar resources',
   type: 'object',
 } as const satisfies JSONSchema
 
 export type CatalogSidecarResources = FromSchema<typeof resourcesSchema>
+export type CatalogSidecarItem = CatalogItem<typeof type, CatalogSidecarResources>
+export type CatalogSidecarVersionedItem = CatalogVersionedItem<typeof type, CatalogSidecarResources>
+export type CatalogSidecarManifest = CatalogItemManifest<typeof type, CatalogSidecarResources>
 
 export default { type, resourcesSchema }

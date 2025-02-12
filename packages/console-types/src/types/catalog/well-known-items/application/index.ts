@@ -25,6 +25,10 @@ import { catalogTemplateSchema } from '../template'
 import { collectionSchema } from './collection'
 import { endpointSchema } from './endpoint'
 import { unsecretedVariableSchema } from './unsecreted-variable'
+import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
+import { listenerSchema } from '../commons'
 
 const type = 'application'
 
@@ -37,25 +41,7 @@ const resourcesSchema = {
     collections: { additionalProperties: collectionSchema, type: 'object' },
     endpoints: { additionalProperties: endpointSchema, type: 'object' },
     listeners: {
-      additionalProperties: {
-        additionalProperties: false,
-        properties: {
-          description: { type: 'string' },
-          name: { type: 'string' },
-          ownedBy: {
-            additionalProperties: false,
-            properties: {
-              componentIds: { items: { type: 'string' }, type: 'array' },
-            },
-            required: ['componentIds'],
-            type: 'object',
-          },
-          port: { type: 'string' },
-          selectedByDefault: { type: 'boolean' },
-        },
-        required: ['name', 'port', 'ownedBy'],
-        type: 'object',
-      },
+      additionalProperties: listenerSchema,
       type: 'object',
     },
     services: {
@@ -73,5 +59,8 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogApplicationResources = FromSchema<typeof resourcesSchema>
+export type CatalogApplicationItem = CatalogItem<typeof type, CatalogApplicationResources>
+export type CatalogApplicationVersionedItem = CatalogVersionedItem<typeof type, CatalogApplicationResources>
+export type CatalogApplicationManifest = CatalogItemManifest<typeof type, CatalogApplicationResources>
 
 export default { type, resourcesSchema }

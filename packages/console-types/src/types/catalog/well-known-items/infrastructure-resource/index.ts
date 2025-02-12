@@ -20,6 +20,9 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { nameSchema } from '../commons'
+import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItem } from '../../item'
+import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'custom-resource'
 
@@ -105,5 +108,14 @@ const resourcesSchema = {
 } as const satisfies JSONSchema
 
 export type CatalogInfrastructureResourceResources = FromSchema<typeof resourcesSchema>
+export type CatalogInfrastructureResourceItem = CatalogItem<typeof type, CatalogInfrastructureResourceResources>
+export type CatalogInfrastructureResourceVersionedItem = CatalogVersionedItem<
+  typeof type,
+  CatalogInfrastructureResourceResources
+>
+export type CatalogInfrastructureResourceManifest = CatalogItemManifest<
+  typeof type,
+  CatalogInfrastructureResourceResources
+>
 
 export default { type, resourcesSchema }

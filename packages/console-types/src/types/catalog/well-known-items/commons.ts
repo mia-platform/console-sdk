@@ -91,9 +91,23 @@ export const secretEnvironmentVariableSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+export const downwardApiVariableSchema = {
+  additionalProperties: false,
+  properties: {
+    description: { type: 'string' },
+    managedBy: { type: 'string' },
+    fieldPath: { type: 'string' },
+    name: { minLength: 1, type: 'string' },
+    readOnly: { type: 'boolean' },
+    valueType: { const: 'downwardAPI' },
+  },
+  required: ['fieldPath', 'name', 'valueType'],
+  type: 'object',
+} as const satisfies JSONSchema
+
 export const defaultEnvironmentVariablesSchema = {
   items: {
-    oneOf: [plainEnvironmentVariableSchema, secretEnvironmentVariableSchema],
+    oneOf: [plainEnvironmentVariableSchema, secretEnvironmentVariableSchema, downwardApiVariableSchema],
   },
   type: 'array',
 } as const satisfies JSONSchema
@@ -121,6 +135,7 @@ export const defaultConfigMapsSchema = {
       },
       mountPath: { pattern: '^[a-zA-Z0-9-/_\\s.|\\\\!"£$%&()=?^"{}[\\]*+@]+$', type: 'string' },
       name: { pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$', type: 'string' },
+      subPaths: { type: 'array', items: { type: 'string' } },
       usePreserve: { type: 'boolean' },
       viewAsReadOnly: { type: 'boolean' },
     },
@@ -191,7 +206,6 @@ export const probeSchema = {
         successThreshold: { type: 'number' },
         timeoutSeconds: { type: 'number' },
       },
-      required: ['port'],
       type: 'object',
     },
     {
@@ -325,6 +339,24 @@ export const containerPortsSchema = {
   type: 'array',
 } as const satisfies JSONSchema
 
+export const execPreStopSchema = {
+  type: 'array',
+  items: { type: 'string' },
+} as const satisfies JSONSchema
+
+export const mapEnvVarToMountPathSchema = {
+  type: 'object',
+  additionalProperties: {
+    type: 'object',
+    properties: {
+      type: { type: 'string', enum: ['file', 'folder'] },
+      envName: { type: 'string' },
+    },
+    additionalProperties: false,
+    required: ['type', 'envName'],
+  },
+} as const satisfies JSONSchema
+
 export const additionalContainersSchema = {
   items: {
     additionalProperties: false,
@@ -418,5 +450,25 @@ export const pipelinesSchema = {
       type: 'object',
     },
   },
+  type: 'object',
+} as const satisfies JSONSchema
+
+export const listenerSchema = {
+  additionalProperties: false,
+  properties: {
+    description: { type: 'string' },
+    name: { type: 'string' },
+    ownedBy: {
+      additionalProperties: false,
+      properties: {
+        componentIds: { items: { type: 'string' }, type: 'array' },
+      },
+      required: ['componentIds'],
+      type: 'object',
+    },
+    port: { type: 'string' },
+    selectedByDefault: { type: 'boolean' },
+  },
+  required: ['name', 'port'],
   type: 'object',
 } as const satisfies JSONSchema

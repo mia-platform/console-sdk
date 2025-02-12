@@ -6,7 +6,8 @@
   "types": "build/index",
   "scripts": {
     "build:catalog-schemas": "ts-node scripts/build-catalog-schemas.ts",
-    "build": "rimraf build/ && pnpm build:catalog-schemas && tsc --project scripts/tsconfig.build.json",
+    "build:catalog-crd": "ts-node scripts/build-catalog-crd.ts",
+    "build": "rimraf build/ && pnpm build:catalog-schemas && tsc --project scripts/tsconfig.build.json && pnpm build:catalog-crd",
     "lint": "eslint .",
     "test": "tap --ts --test-ignore=\"(build/.*|src/types/validate-utils.test.ts)\"",
     "test:snapshot": "TAP_SNAPSHOT=1 npm run test",
@@ -29,6 +30,7 @@
     "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.31.0",
+    "glob": "^11.0.1",
     "json-schema-to-ts": "^2.9.2",
     "rimraf": "^5.0.5",
     "tap": "^16.3.10",
