@@ -199,6 +199,9 @@
           },
           "type": "object"
         },
+        "jsonSchema": {
+          "type": "object"
+        },
         "spec": {
           "type": "object"
         }

@@ -101,6 +101,7 @@ const resourcesSchema = {
       },
       type: 'object',
     },
+    jsonSchema: { type: 'object' },
     spec: { type: 'object' },
   },
   title: 'Catalog infrastructure resource resources',
