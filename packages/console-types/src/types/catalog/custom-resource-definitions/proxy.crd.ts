@@ -27,7 +27,6 @@ const proxyCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: false,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'proxy',
     validation: {

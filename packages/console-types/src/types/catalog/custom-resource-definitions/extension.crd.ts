@@ -27,7 +27,6 @@ const extensionCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: false,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'extension',
     validation: {

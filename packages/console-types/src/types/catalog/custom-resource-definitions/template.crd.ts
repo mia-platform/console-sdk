@@ -27,7 +27,6 @@ const templateCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: true,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'template',
     validation: {

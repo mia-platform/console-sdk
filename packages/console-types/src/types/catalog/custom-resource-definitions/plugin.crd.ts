@@ -27,7 +27,6 @@ const pluginCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: true,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'plugin',
     validation: {

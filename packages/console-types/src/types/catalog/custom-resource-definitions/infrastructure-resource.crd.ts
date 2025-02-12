@@ -27,7 +27,6 @@ const infrastructureResourceCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: true,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'custom-resource',
     validation: {

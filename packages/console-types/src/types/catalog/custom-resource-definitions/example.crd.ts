@@ -27,7 +27,6 @@ const exampleCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: true,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'example',
     validation: {

@@ -18,8 +18,11 @@
 
 import { CatalogCRDManifest } from '../well-known-items'
 
+/**
+ * This type is meant only as a way to ensure correctness of public CRDs.
+ * It should not be exposed nor used elsewhere.
+ */
 export type PublicCatalogCRD = CatalogCRDManifest & {
-  isLatest: true
   tenantId: 'mia-platform',
   visibility: { public: true },
 }

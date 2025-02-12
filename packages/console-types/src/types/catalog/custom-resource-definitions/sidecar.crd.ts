@@ -27,7 +27,6 @@ const sidecarCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: false,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'sidecar',
     validation: {

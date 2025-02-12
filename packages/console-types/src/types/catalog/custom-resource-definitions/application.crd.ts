@@ -27,7 +27,6 @@ const applicationCRD: PublicCatalogCRD = {
   tenantId: 'mia-platform',
   isVersioningSupported: false,
   visibility: { public: true },
-  isLatest: true,
   resources: {
     name: 'application',
     validation: {

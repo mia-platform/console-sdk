@@ -25,17 +25,8 @@ import { glob } from 'glob'
 import { JSONSchema } from '../../../commons/json-schema'
 import crdManifestSchema from '../well-known-items/custom-resource-definition/manifest.schema.json'
 import { PublicCatalogCRD } from '.'
-import { catalogIsLatestSchema } from '../commons'
 
 type CRDModule = { default: PublicCatalogCRD }
-
-const customCrdManifestSchema = {
-  ...crdManifestSchema,
-  properties: {
-    ...crdManifestSchema.properties,
-    isLatest: catalogIsLatestSchema,
-  },
-}
 
 t.test('catalog CRDs', async t => {
   const ajv = new Ajv()
@@ -47,7 +38,7 @@ t.test('catalog CRDs', async t => {
     t.test(`${path.basename(filePath)} should respect JSON schema`, async t => {
       const { default: crd } = await import(filePath) as CRDModule
 
-      const validate = ajv.compile(customCrdManifestSchema)
+      const validate = ajv.compile(crdManifestSchema)
       const isValid = validate(crd)
 
       t.ok(isValid, JSON.stringify(validate.errors))
