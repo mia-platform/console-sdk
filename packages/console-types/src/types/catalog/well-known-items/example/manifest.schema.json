@@ -393,6 +393,8 @@
                           "type": "string"
                         },
                         "port": {
+                          "minLength": 1,
+                          "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                           "type": "string"
                         }
                       },
@@ -451,6 +453,8 @@
                             "type": "number"
                           },
                           "port": {
+                            "minLength": 1,
+                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -479,6 +483,8 @@
                             "type": "number"
                           },
                           "port": {
+                            "minLength": 1,
+                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -540,6 +546,8 @@
                             "type": "number"
                           },
                           "port": {
+                            "minLength": 1,
+                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -568,6 +576,8 @@
                             "type": "number"
                           },
                           "port": {
+                            "minLength": 1,
+                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -629,6 +639,8 @@
                             "type": "number"
                           },
                           "port": {
+                            "minLength": 1,
+                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -657,6 +669,8 @@
                             "type": "number"
                           },
                           "port": {
+                            "minLength": 1,
+                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
