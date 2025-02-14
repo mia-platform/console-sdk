@@ -25,6 +25,7 @@ import { catalogItemSchema } from './item'
 export const catalogVersionedItemSchema = {
   $id: 'catalog-versioned-item.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
+  additionalProperties: false,
   description: 'Data model of a Catalog item with required version',
   properties: {
     ...catalogItemSchema.properties,

@@ -744,6 +744,9 @@
         }
       },
       "type": "object"
+    },
+    "$schema": {
+      "type": "string"
     }
   },
   "required": [
