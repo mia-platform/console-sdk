@@ -45,6 +45,7 @@ import {
 export const catalogItemSchema = {
   $id: 'catalog-item.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
+  additionalProperties: false,
   description: 'Data model of a Catalog item',
   properties: {
     _id: {

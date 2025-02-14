@@ -1018,6 +1018,11 @@
                       }
                     }
                   },
+                  "port": {
+                    "minLength": 1,
+                    "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
+                    "type": "string"
+                  },
                   "public": {
                     "type": "boolean"
                   },
@@ -1349,6 +1354,9 @@
                       "cross-projects"
                     ],
                     "type": "string"
+                  },
+                  "useDownstreamProtocol": {
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -1814,6 +1822,8 @@
                 "type": "object"
               },
               "port": {
+                "minLength": 1,
+                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                 "type": "string"
               },
               "selectedByDefault": {
@@ -1994,6 +2004,8 @@
                                       "type": "number"
                                     },
                                     "port": {
+                                      "minLength": 1,
+                                      "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                       "type": "string"
                                     },
                                     "successThreshold": {
@@ -2022,6 +2034,8 @@
                                       "type": "number"
                                     },
                                     "port": {
+                                      "minLength": 1,
+                                      "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                       "type": "string"
                                     },
                                     "successThreshold": {
@@ -2083,6 +2097,8 @@
                                       "type": "number"
                                     },
                                     "port": {
+                                      "minLength": 1,
+                                      "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                       "type": "string"
                                     },
                                     "successThreshold": {
@@ -2111,6 +2127,8 @@
                                       "type": "number"
                                     },
                                     "port": {
+                                      "minLength": 1,
+                                      "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                       "type": "string"
                                     },
                                     "successThreshold": {
@@ -2172,6 +2190,8 @@
                                       "type": "number"
                                     },
                                     "port": {
+                                      "minLength": 1,
+                                      "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                       "type": "string"
                                     },
                                     "successThreshold": {
@@ -2200,6 +2220,8 @@
                                       "type": "number"
                                     },
                                     "port": {
+                                      "minLength": 1,
+                                      "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                       "type": "string"
                                     },
                                     "successThreshold": {
@@ -2573,6 +2595,8 @@
                               "type": "string"
                             },
                             "port": {
+                              "minLength": 1,
+                              "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                               "type": "string"
                             }
                           },
@@ -2631,6 +2655,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -2659,6 +2685,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -2720,6 +2748,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -2748,6 +2778,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -2809,6 +2841,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -2837,6 +2871,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -3301,6 +3337,8 @@
                               "type": "string"
                             },
                             "port": {
+                              "minLength": 1,
+                              "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                               "type": "string"
                             }
                           },
@@ -3359,6 +3397,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -3387,6 +3427,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -3448,6 +3490,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -3476,6 +3520,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -3537,6 +3583,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -3565,6 +3613,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -4072,6 +4122,8 @@
                               "type": "string"
                             },
                             "port": {
+                              "minLength": 1,
+                              "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                               "type": "string"
                             }
                           },
@@ -4130,6 +4182,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -4158,6 +4212,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -4219,6 +4275,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -4247,6 +4305,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -4308,6 +4368,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -4336,6 +4398,8 @@
                                 "type": "number"
                               },
                               "port": {
+                                "minLength": 1,
+                                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                                 "type": "string"
                               },
                               "successThreshold": {
@@ -4623,6 +4687,9 @@
         }
       },
       "type": "object"
+    },
+    "$schema": {
+      "type": "string"
     }
   },
   "required": [

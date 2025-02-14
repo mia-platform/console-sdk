@@ -17,6 +17,13 @@
  */
 
 import type { JSONSchema } from '../../../commons/json-schema'
+import { DIGIT_OR_INTERPOLATION_PATTERN } from '../../../constants/services'
+
+export const portSchema = {
+  minLength: 1,
+  pattern: DIGIT_OR_INTERPOLATION_PATTERN,
+  type: 'string',
+} as const satisfies JSONSchema
 
 export const nameSchema = {
   minLength: 1,
@@ -202,7 +209,7 @@ export const probeSchema = {
         failureThreshold: { type: 'number' },
         initialDelaySeconds: { type: 'number' },
         periodSeconds: { type: 'number' },
-        port: { type: 'string' },
+        port: portSchema,
         successThreshold: { type: 'number' },
         timeoutSeconds: { type: 'number' },
       },
@@ -215,7 +222,7 @@ export const probeSchema = {
         initialDelaySeconds: { type: 'number' },
         path: { pattern: '^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$', type: 'string' },
         periodSeconds: { type: 'number' },
-        port: { type: 'string' },
+        port: portSchema,
         successThreshold: { type: 'number' },
         timeoutSeconds: { type: 'number' },
       },
@@ -260,7 +267,7 @@ export const defaultMonitoringSchema = {
         properties: {
           interval: { type: 'string' },
           path: { type: 'string' },
-          port: { type: 'string' },
+          port: portSchema,
         },
         type: 'object',
       },
@@ -466,7 +473,7 @@ export const listenerSchema = {
       required: ['componentIds'],
       type: 'object',
     },
-    port: { type: 'string' },
+    port: portSchema,
     selectedByDefault: { type: 'boolean' },
   },
   required: ['name', 'port'],

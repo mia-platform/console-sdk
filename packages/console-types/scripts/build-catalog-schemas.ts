@@ -43,6 +43,7 @@ const processItemType = async(dirent: Dirent): Promise<void> => {
     let manifest = clone({ $comment: comment, ...catalogItemManifestSchema }) as unknown as CatalogItemManifest
 
     manifest = set(lensPath(['$id']), `catalog-${module.default.type}.schema.json`, manifest)
+    manifest = set(lensPath(['properties', '$schema']), { type: 'string' }, manifest)
     manifest = set(lensPath(['properties', 'type']), { const: module.default.type }, manifest)
     manifest = set(lensPath(['properties', 'resources']), module.default.resourcesSchema, manifest)
     manifest = set(lensPath(['description']), undefined, manifest)

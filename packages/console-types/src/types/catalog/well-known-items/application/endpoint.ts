@@ -17,7 +17,7 @@
  */
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { tagsSchema } from '../commons'
+import { portSchema, tagsSchema } from '../commons'
 
 const defaultBasePathSchema = { pattern: '^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$', type: 'string' } as const satisfies JSONSchema
 
@@ -150,6 +150,7 @@ export const endpointSchema = {
         forceMicroserviceGatewayProxy: forceMicroserviceGatewayProxySchema,
         listeners: listenersSchema,
         options: optionsSchema,
+        port: portSchema,
         public: publicSchema,
         routes: routesSchema,
         secreted: secretedSchema,
@@ -157,6 +158,7 @@ export const endpointSchema = {
         showInDocumentation: showInDocumentationSchema,
         tags: tagsSchema,
         type: { enum: ['external', 'custom', 'cross-projects'], type: 'string' },
+        useDownstreamProtocol: { type: 'boolean' },
       },
       required: ['type', 'defaultBasePath', 'service', 'tags'],
       type: 'object',
