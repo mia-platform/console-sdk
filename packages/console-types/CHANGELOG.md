@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.4
+
+### Patch Changes
+
+- a4a63f3: Updated catalog endpoints schema
+
 ## 0.29.3
 
 ### Patch Changes
