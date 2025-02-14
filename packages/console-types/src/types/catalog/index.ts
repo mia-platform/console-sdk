@@ -16,10 +16,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { CatalogDocumentationType, CatalogReleaseStage } from './commons'
+
 export * from './well-known-items'
 export * from './category'
-export * from './commons'
 export * from './item-manifest'
 export * from './item'
 export * from './release'
 export * from './versioned-item'
+
+export { CatalogDocumentationType, CatalogReleaseStage }

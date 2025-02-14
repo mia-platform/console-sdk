@@ -16,8 +16,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { FromSchema } from 'json-schema-to-ts'
+
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { descriptionSchema, tagsSchema } from '../commons'
+import { catalogDescriptionSchema, catalogTagsSchema } from '../commons'
 
 const idSchema = { type: 'string' } as const satisfies JSONSchema
 
@@ -207,18 +209,18 @@ const indexesSchema = {
   items: { oneOf: [normalIndexSchema, geoIndexSchema, hashIndexSchema, ttlIndexSchema] },
 } as const satisfies JSONSchema
 
-export const collectionSchema = {
+export const catalogCollectionSchema = {
   oneOf: [
     {
       additionalProperties: false,
       properties: {
         defaultName: collectionNameSchema,
-        description: descriptionSchema,
+        description: catalogDescriptionSchema,
         fields: fieldsSchema,
         id: idSchema,
         indexes: indexesSchema,
         internalEndpoints: internalEndpointsSchema,
-        tags: tagsSchema,
+        tags: catalogTagsSchema,
         type: { const: 'collection' },
       },
       required: ['type', 'defaultName', 'internalEndpoints'],
@@ -228,12 +230,12 @@ export const collectionSchema = {
       additionalProperties: false,
       properties: {
         defaultName: collectionNameSchema,
-        description: descriptionSchema,
+        description: catalogDescriptionSchema,
         fields: fieldsSchema,
         id: idSchema,
         indexes: indexesSchema,
         internalEndpoints: internalEndpointsSchema,
-        tags: tagsSchema,
+        tags: catalogTagsSchema,
         type: { const: 'view' },
       },
       required: ['type', 'defaultName', 'internalEndpoints', 'startingCollection'],
@@ -241,3 +243,5 @@ export const collectionSchema = {
     },
   ],
 } as const satisfies JSONSchema
+
+export type CatalogCollection = FromSchema<typeof catalogCollectionSchema>

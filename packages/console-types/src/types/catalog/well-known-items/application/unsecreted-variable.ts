@@ -16,9 +16,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { FromSchema } from 'json-schema-to-ts'
+
 import type { JSONSchema } from '../../../../commons/json-schema'
 
-export const unsecretedVariableSchema = {
+export const catalogUnsecretedVariableSchema = {
   additionalProperties: false,
   properties: {
     noProductionEnv: { type: 'string' },
@@ -27,3 +29,5 @@ export const unsecretedVariableSchema = {
   required: ['productionEnv', 'noProductionEnv'],
   type: 'object',
 } as const satisfies JSONSchema
+
+export type CatalogUnsecretedVariable = FromSchema<typeof catalogUnsecretedVariableSchema>

@@ -18,32 +18,41 @@
 
 import catalogApplication from './application'
 import catalogCRD from './custom-resource-definition'
-import catalogExample from './example'
+import catalogExample, { catalogExampleSchema } from './example'
 import catalogExtension from './extension'
 import catalogInfrastructureResource from './infrastructure-resource'
-import catalogPlugin from './plugin'
-import catalogProxy from './proxy'
+import catalogPlugin, { catalogPluginSchema } from './plugin'
+import catalogProxy, { catalogProxySchema } from './proxy'
 import catalogSidecar from './sidecar'
-import catalogTemplate from './template'
+import catalogTemplate, { catalogTemplateSchema } from './template'
+
+export * from './commons'
+export * from './application/collection'
+export * from './application/endpoint'
+export * from './application/unsecreted-variable'
 
 export type { CatalogApplicationItem, CatalogApplicationManifest, CatalogApplicationResources, CatalogApplicationVersionedItem } from './application'
 export type { CatalogCRDItem, CatalogCRDManifest, CatalogCRDResources, CatalogCRDVersionedItem } from './custom-resource-definition'
-export type { CatalogExampleItem, CatalogExampleManifest, CatalogExampleResources, CatalogExampleVersionedItem } from './example'
+export type { CatalogExample, CatalogExampleItem, CatalogExampleManifest, CatalogExampleResources, CatalogExampleVersionedItem } from './example'
 export type { CatalogExtensionItem, CatalogExtensionManifest, CatalogExtensionResources, CatalogExtensionVersionedItem } from './extension'
 export type { CatalogInfrastructureResourceItem, CatalogInfrastructureResourceManifest, CatalogInfrastructureResourceResources, CatalogInfrastructureResourceVersionedItem } from './infrastructure-resource'
-export type { CatalogPluginItem, CatalogPluginManifest, CatalogPluginResources, CatalogPluginVersionedItem } from './plugin'
-export type { CatalogProxyItem, CatalogProxyManifest, CatalogProxyResources, CatalogProxyVersionedItem } from './proxy'
+export type { CatalogPlugin, CatalogPluginItem, CatalogPluginManifest, CatalogPluginResources, CatalogPluginVersionedItem } from './plugin'
+export type { CatalogProxy, CatalogProxyItem, CatalogProxyManifest, CatalogProxyResources, CatalogProxyVersionedItem } from './proxy'
 export type { CatalogSidecarItem, CatalogSidecarManifest, CatalogSidecarResources, CatalogSidecarVersionedItem } from './sidecar'
-export type { CatalogTemplateItem, CatalogTemplateManifest, CatalogTemplateResources, CatalogTemplateVersionedItem } from './template'
+export type { CatalogTemplate, CatalogTemplateItem, CatalogTemplateManifest, CatalogTemplateResources, CatalogTemplateVersionedItem } from './template'
 
 export {
   catalogApplication,
   catalogCRD,
   catalogExample,
+  catalogExampleSchema,
   catalogExtension,
   catalogInfrastructureResource,
   catalogPlugin,
+  catalogPluginSchema,
   catalogProxy,
+  catalogProxySchema,
   catalogSidecar,
   catalogTemplate,
+  catalogTemplateSchema,
 }
