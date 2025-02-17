@@ -16,8 +16,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { FromSchema } from 'json-schema-to-ts'
+
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { portSchema, tagsSchema } from '../commons'
+import { catalogPortSchema, catalogTagsSchema } from '../commons'
 
 const defaultBasePathSchema = { pattern: '^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$', type: 'string' } as const satisfies JSONSchema
 
@@ -135,7 +137,7 @@ const routesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export const endpointSchema = {
+export const catalogEndpointSchema = {
   oneOf: [
     {
       additionalProperties: false,
@@ -150,13 +152,13 @@ export const endpointSchema = {
         forceMicroserviceGatewayProxy: forceMicroserviceGatewayProxySchema,
         listeners: listenersSchema,
         options: optionsSchema,
-        port: portSchema,
+        port: catalogPortSchema,
         public: publicSchema,
         routes: routesSchema,
         secreted: secretedSchema,
         service: { minLength: 1, pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?$', type: 'string' },
         showInDocumentation: showInDocumentationSchema,
-        tags: tagsSchema,
+        tags: catalogTagsSchema,
         type: { enum: ['external', 'custom', 'cross-projects'], type: 'string' },
         useDownstreamProtocol: { type: 'boolean' },
       },
@@ -182,7 +184,7 @@ export const endpointSchema = {
         routes: routesSchema,
         secreted: secretedSchema,
         showInDocumentation: showInDocumentationSchema,
-        tags: tagsSchema,
+        tags: catalogTagsSchema,
         type: { enum: ['crud', 'view'], type: 'string' },
       },
       required: ['type', 'defaultBasePath', 'collectionId', 'tags'],
@@ -190,3 +192,5 @@ export const endpointSchema = {
     },
   ],
 } as const satisfies JSONSchema
+
+export type CatalogEndpoint = FromSchema<typeof catalogEndpointSchema>

@@ -26,7 +26,7 @@ export const catalogComingSoonSchema = {
   type: 'boolean',
 } as const satisfies JSONSchema
 
-export const catalogDescriptionSchema = {
+export const catalogItemDescriptionSchema = {
   description: 'Brief description of the item',
   type: 'string',
 } as const satisfies JSONSchema
@@ -70,7 +70,7 @@ export const catalogItemIdSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
-export const catalogNameSchema = {
+export const catalogItemNameSchema = {
   description: 'Human-readable name of the item',
   minLength: 1,
   type: 'string',
@@ -107,7 +107,7 @@ export const catalogReleaseStageSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
-export const catalogRepositoryUrlSchema = {
+export const catalogItemRepositoryUrlSchema = {
   description: 'URL of the repository containing the source code of the resource created by the item',
   format: 'uri-reference',
   nullable: true,

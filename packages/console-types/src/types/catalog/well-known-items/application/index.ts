@@ -22,13 +22,13 @@ import type { JSONSchema } from '../../../../commons/json-schema'
 import { catalogExampleSchema } from '../example'
 import { catalogPluginSchema } from '../plugin'
 import { catalogTemplateSchema } from '../template'
-import { collectionSchema } from './collection'
-import { endpointSchema } from './endpoint'
-import { unsecretedVariableSchema } from './unsecreted-variable'
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
-import { listenerSchema } from '../commons'
+import { catalogListenerSchema } from '../commons'
+import { catalogCollectionSchema } from './collection'
+import { catalogEndpointSchema } from './endpoint'
+import { catalogUnsecretedVariableSchema } from './unsecreted-variable'
 
 const type = 'application'
 
@@ -38,10 +38,10 @@ const resourcesSchema = {
   additionalProperties: false,
   description: `Resources of Catalog items of type ${type}`,
   properties: {
-    collections: { additionalProperties: collectionSchema, type: 'object' },
-    endpoints: { additionalProperties: endpointSchema, type: 'object' },
+    collections: { additionalProperties: catalogCollectionSchema, type: 'object' },
+    endpoints: { additionalProperties: catalogEndpointSchema, type: 'object' },
     listeners: {
-      additionalProperties: listenerSchema,
+      additionalProperties: catalogListenerSchema,
       type: 'object',
     },
     services: {
@@ -51,7 +51,7 @@ const resourcesSchema = {
       minProperties: 1,
       type: 'object',
     },
-    unsecretedVariables: { additionalProperties: unsecretedVariableSchema, type: 'object' },
+    unsecretedVariables: { additionalProperties: catalogUnsecretedVariableSchema, type: 'object' },
   },
   required: ['services'],
   title: 'Catalog application resources',

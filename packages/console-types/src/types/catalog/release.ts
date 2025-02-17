@@ -21,9 +21,9 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../commons/json-schema'
 import {
   catalogComingSoonSchema,
-  catalogDescriptionSchema,
+  catalogItemDescriptionSchema,
   catalogIsLatestSchema,
-  catalogNameSchema,
+  catalogItemNameSchema,
   catalogReleaseDateSchema,
   catalogReleaseStageSchema,
   catalogVersionSchema,
@@ -37,9 +37,9 @@ export const catalogReleaseSchema = {
   description: 'Data model of a Catalog item release',
   properties: {
     comingSoon: catalogComingSoonSchema,
-    description: catalogDescriptionSchema,
+    description: catalogItemDescriptionSchema,
     isLatest: catalogIsLatestSchema,
-    name: catalogNameSchema,
+    name: catalogItemNameSchema,
     reference: { description: 'Mongo objectId of the item', type: 'string' },
     releaseDate: catalogReleaseDateSchema,
     releaseNote: catalogVersionSchema.properties.releaseNote,

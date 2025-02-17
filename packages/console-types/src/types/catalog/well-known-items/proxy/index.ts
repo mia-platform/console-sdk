@@ -20,12 +20,42 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { host } from '../../../services'
-import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
+import { catalogDefaultHeadersSchema, catalogNameSchema, catalogDescriptionSchema } from '../commons'
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
 
 const type = 'proxy'
+
+export const catalogProxySchema = {
+  oneOf: [
+    {
+      additionalProperties: false,
+      properties: {
+        defaultHeaders: catalogDefaultHeadersSchema,
+        description: catalogDescriptionSchema,
+        name: catalogNameSchema,
+        type: { const: 'external' },
+        url: { format: 'uri', type: 'string' },
+      },
+      required: ['name', 'type', 'url'],
+      type: 'object',
+    },
+    {
+      additionalProperties: false,
+      properties: {
+        description: catalogDescriptionSchema,
+        host,
+        name: catalogNameSchema,
+        type: { const: 'cross-projects' },
+      },
+      required: ['name', 'type', 'host'],
+      type: 'object',
+    },
+  ],
+} as const satisfies JSONSchema
+
+export type CatalogProxy = FromSchema<typeof catalogProxySchema>
 
 const resourcesSchema = {
   $id: 'catalog-proxy-resources.schema.json',
@@ -34,33 +64,7 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
-      additionalProperties: {
-        oneOf: [
-          {
-            additionalProperties: false,
-            properties: {
-              defaultHeaders: defaultHeadersSchema,
-              description: descriptionSchema,
-              name: nameSchema,
-              type: { const: 'external' },
-              url: { format: 'uri', type: 'string' },
-            },
-            required: ['name', 'type', 'url'],
-            type: 'object',
-          },
-          {
-            additionalProperties: false,
-            properties: {
-              description: descriptionSchema,
-              host,
-              name: nameSchema,
-              type: { const: 'cross-projects' },
-            },
-            required: ['name', 'type', 'host'],
-            type: 'object',
-          },
-        ],
-      },
+      additionalProperties: catalogProxySchema,
       maxProperties: 1,
       minProperties: 1,
       type: 'object',

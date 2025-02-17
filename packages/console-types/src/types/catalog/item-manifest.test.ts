@@ -24,7 +24,7 @@ import { validationMessage } from '../validate-utils.test'
 import { CatalogItemManifest, catalogItemManifestSchema } from './item-manifest'
 import { CatalogDocumentationType, CatalogReleaseStage } from './commons'
 
-t.test('catalog', t => {
+t.test('catalog item manifest', t => {
   const ajv = new Ajv()
   addFormats(ajv)
   const validate = ajv.compile<CatalogItemManifest>(catalogItemManifestSchema)

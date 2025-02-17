@@ -23,7 +23,7 @@ import addFormats from 'ajv-formats'
 import { validationMessage } from '../validate-utils.test'
 import { CatalogRelease, catalogReleaseSchema } from './release'
 
-t.test('catalog', t => {
+t.test('catalog release', t => {
   const ajv = new Ajv()
   addFormats(ajv)
   const validate = ajv.compile<CatalogRelease>(catalogReleaseSchema)

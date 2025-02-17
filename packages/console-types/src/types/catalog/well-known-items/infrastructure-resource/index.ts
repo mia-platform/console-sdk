@@ -19,7 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { nameSchema } from '../commons'
+import { catalogNameSchema } from '../commons'
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
@@ -94,7 +94,7 @@ const resourcesSchema = {
       },
       type: 'object',
     },
-    name: nameSchema,
+    name: catalogNameSchema,
     service: {
       properties: {
         archive: { type: 'string' },
