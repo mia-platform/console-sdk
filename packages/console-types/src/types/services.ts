@@ -869,6 +869,10 @@ export const customResource = {
       type: 'object',
       additionalProperties: true,
     },
+    jsonSchema: {
+      type: 'object',
+      additionalProperties: true,
+    },
     annotations: {
       type: 'array',
       items: kubernetesDefinitionWithOnlyNameAndValue,
