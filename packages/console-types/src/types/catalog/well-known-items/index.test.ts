@@ -23,6 +23,7 @@ import fs from 'fs/promises'
 import path from 'path'
 
 import type { JSONSchema } from '../../../commons/json-schema'
+import { catalogExampleSchema, catalogPluginSchema, catalogTemplateSchema, catalogProxySchema } from '.'
 
 type ItemModule = {
   default: {
@@ -61,6 +62,15 @@ t.test('catalog well-known items', async t => {
       t.end()
     })
   }
+
+  t.test('auxiliary schemas should be valid', t => {
+    t.doesNotThrow(() => ajv.compile(catalogExampleSchema))
+    t.doesNotThrow(() => ajv.compile(catalogPluginSchema))
+    t.doesNotThrow(() => ajv.compile(catalogTemplateSchema))
+    t.doesNotThrow(() => ajv.compile(catalogProxySchema))
+
+    t.end()
+  })
 
   t.end()
 })
