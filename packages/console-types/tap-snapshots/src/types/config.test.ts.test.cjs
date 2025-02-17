@@ -4820,6 +4820,10 @@ Object {
                             },
                             "type": "object",
                           },
+                          "jsonSchema": Object {
+                            "additionalProperties": true,
+                            "type": "object",
+                          },
                           "labels": Object {
                             "items": Object {
                               "additionalProperties": false,

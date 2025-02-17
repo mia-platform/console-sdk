@@ -191,6 +191,21 @@
           "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
           "type": "string"
         },
+        "runtime": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "resourceId": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            }
+          }
+        },
         "service": {
           "properties": {
             "archive": {

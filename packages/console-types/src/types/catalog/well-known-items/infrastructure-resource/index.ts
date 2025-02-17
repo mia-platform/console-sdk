@@ -95,6 +95,15 @@ const resourcesSchema = {
       type: 'object',
     },
     name: catalogNameSchema,
+    runtime: {
+      type: 'object',
+      required: ['type'],
+      additionalProperties: false,
+      properties: {
+        resourceId: { type: 'string' },
+        type: { type: 'string' },
+      },
+    },
     service: {
       properties: {
         archive: { type: 'string' },
