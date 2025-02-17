@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.5
+
+### Patch Changes
+
+- 35bf29e: add Catalog Item Metadata schema and type
+
 ## 0.29.4
 
 ### Patch Changes
