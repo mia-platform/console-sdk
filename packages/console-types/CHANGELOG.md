@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.6
+
+### Patch Changes
+
+- 27bbeac: fixed: missed runtime object to infrastructure definition
+
 ## 0.29.5
 
 ### Patch Changes
