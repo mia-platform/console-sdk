@@ -97,6 +97,8 @@ const resourcesSchema = {
     name: catalogNameSchema,
     runtime: {
       type: 'object',
+      required: ['type'],
+      additionalProperties: false,
       properties: {
         resourceId: { type: 'string' },
         type: { type: 'string' },
