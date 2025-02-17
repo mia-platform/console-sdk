@@ -29,7 +29,6 @@ import { catalogListenerSchema } from '../commons'
 import { catalogCollectionSchema } from './collection'
 import { catalogEndpointSchema } from './endpoint'
 import { catalogUnsecretedVariableSchema } from './unsecreted-variable'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'application'
 
@@ -59,63 +58,9 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
-  name: 'application',
-  itemId: 'application-definition',
-  description: 'Application Custom Resource Definition',
-  type: 'custom-resource-definition',
-  tenantId: 'mia-platform',
-  isVersioningSupported: false,
-  visibility: { public: true },
-  resources: {
-    name: type,
-    validation: {
-      jsonSchema: {
-        ...resourcesSchema,
-        default: {
-          services: {
-            'change-with-your-plugin-name': {
-              name: 'change-with-your-plugin-name',
-              type: 'plugin',
-              dockerImage: 'change-with-your-plugin-docker-image',
-            },
-          },
-          endpoints: {
-            '/change-with-your-endpoint-base-path': {
-              defaultBasePath: '/change-with-your-endpoint-base-path',
-              service: 'change-with-the-service-exposing-the-endpoint',
-              type: 'custom',
-              tags: [
-                'custom',
-              ],
-            },
-          },
-          collections: {
-            'change-with-your-collection-name': {
-              defaultName: 'change-with-your-collection-name',
-              type: 'collection',
-              internalEndpoints: [
-                {
-                  basePath: 'change-with-the-collection-endpoint-base-path',
-                },
-              ],
-            },
-          },
-          unsecretedVariables: {
-            'change-with-your-variable-name': {
-              productionEnv: 'change-with-your-value',
-              noProductionEnv: 'change-with-your-value',
-            },
-          },
-        },
-      },
-    },
-  },
-} satisfies PublicCatalogCRD
-
 export type CatalogApplicationResources = FromSchema<typeof resourcesSchema>
 export type CatalogApplicationItem = CatalogItem<typeof type, CatalogApplicationResources>
 export type CatalogApplicationVersionedItem = CatalogVersionedItem<typeof type, CatalogApplicationResources>
 export type CatalogApplicationManifest = CatalogItemManifest<typeof type, CatalogApplicationResources>
 
-export default { type, resourcesSchema, crd }
+export default { type, resourcesSchema }

@@ -22,7 +22,6 @@ import type { JSONSchema } from '../../../../commons/json-schema'
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'extension'
 
@@ -125,33 +124,9 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
-  name: 'extension',
-  itemId: 'extension-definition',
-  description: 'Extension Custom Resource Definition',
-  type: 'custom-resource-definition',
-  tenantId: 'mia-platform',
-  isVersioningSupported: false,
-  visibility: { public: true },
-  resources: {
-    name: type,
-    validation: {
-      jsonSchema: {
-        ...resourcesSchema,
-        default: {
-          name: 'extension-name',
-          extensionType: 'iframe',
-          entry: 'https://example.com',
-          contexts: [],
-        },
-      },
-    },
-  },
-} satisfies PublicCatalogCRD
-
 export type CatalogExtensionResources = FromSchema<typeof resourcesSchema, { parseIfThenElseKeywords: true }>
 export type CatalogExtensionItem = CatalogItem<typeof type, CatalogExtensionResources>
 export type CatalogExtensionVersionedItem = CatalogVersionedItem<typeof type, CatalogExtensionResources>
 export type CatalogExtensionManifest = CatalogItemManifest<typeof type, CatalogExtensionResources>
 
-export default { type, resourcesSchema, crd }
+export default { type, resourcesSchema }

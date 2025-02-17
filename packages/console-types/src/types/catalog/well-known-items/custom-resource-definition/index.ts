@@ -106,12 +106,3 @@ export type CatalogCRDVersionedItem = CatalogVersionedItem<typeof type, CatalogC
 export type CatalogCRDManifest = CatalogItemManifest<typeof type, CatalogCRDResources>
 
 export default { type, resourcesSchema }
-
-/**
- * This type is meant only as a way to ensure correctness of public CRDs.
- * It should not be exposed nor used elsewhere.
- */
-export type PublicCatalogCRD = CatalogCRDManifest & {
-  tenantId: 'mia-platform',
-  visibility: { public: true },
-}

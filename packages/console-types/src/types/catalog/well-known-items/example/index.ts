@@ -42,7 +42,6 @@ import {
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'example'
 
@@ -95,36 +94,9 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
-  name: 'example',
-  itemId: 'example-definition',
-  description: 'Example Custom Resource Definition',
-  type: 'custom-resource-definition',
-  tenantId: 'mia-platform',
-  isVersioningSupported: true,
-  visibility: { public: true },
-  resources: {
-    name: type,
-    validation: {
-      jsonSchema: {
-        ...resourcesSchema,
-        default: {
-          services: {
-            'change-with-your-example-name': {
-              name: 'change-with-your-example-name',
-              type: 'example',
-              archiveUrl: 'https://archive-url',
-            },
-          },
-        },
-      },
-    },
-  },
-} satisfies PublicCatalogCRD
-
 export type CatalogExampleResources = FromSchema<typeof resourcesSchema>
 export type CatalogExampleItem = CatalogItem<typeof type, CatalogExampleResources>
 export type CatalogExampleVersionedItem = CatalogVersionedItem<typeof type, CatalogExampleResources>
 export type CatalogExampleManifest = CatalogItemManifest<typeof type, CatalogExampleResources>
 
-export default { type, resourcesSchema, crd }
+export default { type, resourcesSchema }
