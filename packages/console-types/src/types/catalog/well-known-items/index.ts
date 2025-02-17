@@ -41,7 +41,19 @@ export type { CatalogProxy, CatalogProxyItem, CatalogProxyManifest, CatalogProxy
 export type { CatalogSidecarItem, CatalogSidecarManifest, CatalogSidecarResources, CatalogSidecarVersionedItem } from './sidecar'
 export type { CatalogTemplate, CatalogTemplateItem, CatalogTemplateManifest, CatalogTemplateResources, CatalogTemplateVersionedItem } from './template'
 
+const catalogWellKnownItemsCustomResourceDefinitions = {
+  [catalogApplication.type]: catalogApplication.crd,
+  [catalogExample.type]: catalogExample.crd,
+  [catalogExtension.type]: catalogExtension.crd,
+  [catalogInfrastructureResource.type]: catalogInfrastructureResource.crd,
+  [catalogPlugin.type]: catalogPlugin.crd,
+  [catalogProxy.type]: catalogProxy.crd,
+  [catalogSidecar.type]: catalogSidecar.crd,
+  [catalogTemplate.type]: catalogTemplate.crd,
+}
+
 export {
+  catalogWellKnownItemsCustomResourceDefinitions,
   catalogApplication,
   catalogCRD,
   catalogExample,

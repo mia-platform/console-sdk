@@ -23,17 +23,18 @@ import fs from 'fs/promises'
 import path from 'path'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { catalogExampleSchema, catalogPluginSchema, catalogTemplateSchema, catalogProxySchema } from '.'
+import { catalogExampleSchema, catalogPluginSchema, catalogTemplateSchema, catalogProxySchema, CatalogCRDManifest, catalogCRD } from '.'
 
 type ItemModule = {
   default: {
     type: string
     resourcesSchema: JSONSchema
+    crd?: CatalogCRDManifest
   }
 }
 
 t.test('catalog well-known items', async t => {
-  const ajv = new Ajv()
+  const ajv = new Ajv({ addUsedSchema: false })
   addFormats(ajv)
 
   type TestCase = {
@@ -58,6 +59,25 @@ t.test('catalog well-known items', async t => {
       const { default: itemData } = await import(testCase.indexPath) as ItemModule
 
       t.doesNotThrow(() => ajv.compile(itemData.resourcesSchema))
+
+      t.end()
+    })
+
+    t.test(`${testCase.itemName} CRD should be valid`, async t => {
+      const { default: itemData } = await import(testCase.indexPath) as ItemModule
+
+      if (itemData.type === catalogCRD.type) {
+        t.pass()
+        return
+      }
+
+      t.hasProp(itemData, 'crd')
+
+      t.equal(itemData.crd!.resources.name, itemData.type)
+
+      if (itemData.crd!.resources.validation?.jsonSchema) {
+        t.doesNotThrow(() => ajv.compile(itemData.crd!.resources.validation!.jsonSchema as JSONSchema))
+      }
 
       t.end()
     })

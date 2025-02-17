@@ -24,6 +24,7 @@ import { catalogDefaultHeadersSchema, catalogNameSchema, catalogDescriptionSchem
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
+import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'proxy'
 
@@ -75,9 +76,36 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+const crd: CatalogCRDManifest = {
+  name: 'proxy',
+  itemId: 'proxy-definition',
+  description: 'Proxy Custom Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: false,
+  visibility: { public: true },
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            'change-with-your-proxy-name': {
+              name: 'change-with-your-proxy-name',
+              type: 'external',
+              url: 'https://example.com',
+            },
+          },
+        },
+      },
+    },
+  },
+} satisfies PublicCatalogCRD
+
 export type CatalogProxyResources = FromSchema<typeof resourcesSchema>
 export type CatalogProxyItem = CatalogItem<typeof type, CatalogProxyResources>
 export type CatalogProxyVersionedItem = CatalogVersionedItem<typeof type, CatalogProxyResources>
 export type CatalogProxyManifest = CatalogItemManifest<typeof type, CatalogProxyResources>
 
-export default { type, resourcesSchema }
+export default { type, resourcesSchema, crd }
