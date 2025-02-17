@@ -21,17 +21,41 @@ import t from 'tap'
 import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../validate-utils.test'
-import { CatalogCategory, catalogCategorySchema } from './category'
+import { CatalogItemMetadata, catalogItemMetadataSchema } from './item-metadata'
 
-t.test('catalog category', t => {
+t.test('catalog item metadata', t => {
   const ajv = new Ajv()
   addFormats(ajv)
-  const validate = ajv.compile<CatalogCategory>(catalogCategorySchema)
+  const validate = ajv.compile<CatalogItemMetadata>(catalogItemMetadataSchema)
+
+  t.test('only required fields', t => {
+    const data: CatalogItemMetadata = {
+      itemId: 'item-id',
+      tenantId: 'tenant-id',
+      type: 'plugin',
+      versions: [],
+    }
+
+    t.ok(validate(data), validationMessage(validate.errors))
+
+    t.end()
+  })
 
   t.test('all fields', t => {
-    const data: CatalogCategory = {
-      categoryId: 'category-id',
-      label: 'label',
+    const data: CatalogItemMetadata = {
+      itemId: 'item-id',
+      tenantId: 'tenant-id',
+      type: 'plugin',
+      versions: [
+        {
+          componentId: 'component-id',
+          dockerImage: 'docker-image',
+          id: 'uuid',
+          name: 'name',
+          url: 'url',
+          version: '1.0.0',
+        },
+      ],
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
