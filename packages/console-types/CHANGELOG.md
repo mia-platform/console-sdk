@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.29.7
+
+### Patch Changes
+
+- 28f78a1: Added controlled fields to Catalog Infrastructure Resource CRD
+- 28f78a1: Exposed catalog well-known items CRDs
+
 ## 0.29.6
 
 ### Patch Changes
