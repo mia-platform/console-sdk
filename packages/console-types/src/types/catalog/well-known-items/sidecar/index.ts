@@ -71,7 +71,7 @@ const resourcesSchema = {
       type: 'array',
     },
   },
-  required: ['dockerImage', 'name'],
+  required: ['name'],
   title: 'Catalog sidecar resources',
   type: 'object',
 } as const satisfies JSONSchema
