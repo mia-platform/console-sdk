@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.30.0
+
+### Minor Changes
+
+- 99ab857: fixed undeterministic service label schema type
+
 ## 0.29.8
 
 ### Patch Changes
