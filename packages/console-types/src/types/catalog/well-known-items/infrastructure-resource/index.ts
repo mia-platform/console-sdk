@@ -95,6 +95,15 @@ const resourcesSchema = {
       type: 'object',
     },
     name: nameSchema,
+    runtime: {
+      additionalProperties: false,
+      properties: {
+        resourceId: { type: 'string' },
+        type: { type: 'string' },
+      },
+      required: ['type'],
+      type: 'object',
+    },
     service: {
       properties: {
         archive: { type: 'string' },

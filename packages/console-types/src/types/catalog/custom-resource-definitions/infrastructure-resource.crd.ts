@@ -34,6 +34,12 @@ const infrastructureResourceCRD: PublicCatalogCRD = {
         ...catalogInfrastructureResource.resourcesSchema,
       },
     },
+    controlledFields: [
+      { key: 'apiVersion', jsonPath: 'meta.apiVersion' },
+      { key: 'kind', jsonPath: 'meta.kind' },
+      { key: 'type', jsonPath: 'runtime.type' },
+      { key: 'resourceId', jsonPath: 'runtime.resourceId' },
+    ],
   },
 }
 
