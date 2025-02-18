@@ -58,8 +58,19 @@ const resourcesSchema = {
         templates: {
           items: {
             properties: {
-              fileExtension: { description: 'The extension of the file to generate. If not set, default is .yml', type: 'string' },
-              folderName: { description: 'The name of the folder where the file will be created, below the configurationBaseFolder', type: 'string' },
+              'engine': {
+                'description': 'The template engine used for generating the file (default is `mustache`)',
+                'enum': ['mustache'],
+                'type': 'string',
+              },
+              fileExtension: {
+                description: 'The extension of the file to generate. If not set, default is .yml',
+                type: 'string',
+              },
+              folderName: {
+                description: 'The name of the folder where the file will be created, below the configurationBaseFolder',
+                type: 'string',
+              },
               name: { type: 'string' },
               template: { type: 'string' },
             },

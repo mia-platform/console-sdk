@@ -154,8 +154,7 @@
                   "required": [
                     "id",
                     "locationId",
-                    "labelIntl",
-                    "destinationPath"
+                    "labelIntl"
                   ],
                   "type": "object"
                 },

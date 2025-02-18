@@ -72,7 +72,6 @@ const resourcesSchema = {
                 'id',
                 'locationId',
                 'labelIntl',
-                'destinationPath',
               ],
               type: 'object',
             },

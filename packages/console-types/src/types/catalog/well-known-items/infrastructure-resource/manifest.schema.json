@@ -125,6 +125,13 @@
             "templates": {
               "items": {
                 "properties": {
+                  "engine": {
+                    "description": "The template engine used for generating the file (default is `mustache`)",
+                    "enum": [
+                      "mustache"
+                    ],
+                    "type": "string"
+                  },
                   "fileExtension": {
                     "description": "The extension of the file to generate. If not set, default is .yml",
                     "type": "string"
