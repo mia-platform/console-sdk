@@ -685,7 +685,6 @@
         }
       },
       "required": [
-        "dockerImage",
         "name"
       ],
       "type": "object"
