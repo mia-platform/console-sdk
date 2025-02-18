@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.4-hotfix.0
+
+### Patch Changes
+
+- 6cbbb26e: Fixed catalog infrastructure-resource CRD
+
 ## 0.29.4
 
 ### Patch Changes
