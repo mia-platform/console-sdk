@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.4-hotfix.1
+
+### Patch Changes
+
+- 9aa47b9f: Fixed Catalog custom resource definitions
+
 ## 0.29.4-hotfix.0
 
 ### Patch Changes
