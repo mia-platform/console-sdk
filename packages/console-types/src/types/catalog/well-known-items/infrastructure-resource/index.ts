@@ -23,6 +23,7 @@ import { catalogNameSchema } from '../commons'
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
+import { PublicCatalogCRD, CatalogCRDManifest } from '../custom-resource-definition'
 
 const type = 'custom-resource'
 
@@ -96,13 +97,13 @@ const resourcesSchema = {
     },
     name: catalogNameSchema,
     runtime: {
-      type: 'object',
-      required: ['type'],
       additionalProperties: false,
       properties: {
         resourceId: { type: 'string' },
         type: { type: 'string' },
       },
+      required: ['type'],
+      type: 'object',
     },
     service: {
       properties: {
@@ -117,6 +118,30 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+const crd: CatalogCRDManifest = {
+  name: 'custom-resource',
+  itemId: 'custom-resource',
+  description: 'Custom Workload Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: true,
+  visibility: { public: true },
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+      },
+    },
+    controlledFields: [
+      { key: 'apiVersion', jsonPath: 'meta.apiVersion' },
+      { key: 'kind', jsonPath: 'meta.kind' },
+      { key: 'type', jsonPath: 'runtime.type' },
+      { key: 'resourceId', jsonPath: 'runtime.resourceId' },
+    ],
+  },
+} satisfies PublicCatalogCRD
+
 export type CatalogInfrastructureResourceResources = FromSchema<typeof resourcesSchema>
 export type CatalogInfrastructureResourceItem = CatalogItem<typeof type, CatalogInfrastructureResourceResources>
 export type CatalogInfrastructureResourceVersionedItem = CatalogVersionedItem<
@@ -128,4 +153,4 @@ export type CatalogInfrastructureResourceManifest = CatalogItemManifest<
   CatalogInfrastructureResourceResources
 >
 
-export default { type, resourcesSchema }
+export default { type, resourcesSchema, crd }

@@ -36,6 +36,7 @@ import {
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
+import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'sidecar'
 
@@ -75,9 +76,31 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+const crd: CatalogCRDManifest = {
+  name: 'sidecar',
+  itemId: 'sidecar-definition',
+  description: 'Sidecar Custom Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: false,
+  visibility: { public: true },
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          name: 'change-with-your-sidecar-name',
+          dockerImage: 'change-with-your-sidecar-docker-image',
+        },
+      },
+    },
+  },
+} satisfies PublicCatalogCRD
+
 export type CatalogSidecarResources = FromSchema<typeof resourcesSchema>
 export type CatalogSidecarItem = CatalogItem<typeof type, CatalogSidecarResources>
 export type CatalogSidecarVersionedItem = CatalogVersionedItem<typeof type, CatalogSidecarResources>
 export type CatalogSidecarManifest = CatalogItemManifest<typeof type, CatalogSidecarResources>
 
-export default { type, resourcesSchema }
+export default { type, resourcesSchema, crd }

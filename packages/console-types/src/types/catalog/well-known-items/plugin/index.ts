@@ -48,6 +48,7 @@ import {
 import { CatalogItemManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
+import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'plugin'
 
@@ -110,9 +111,36 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+const crd: CatalogCRDManifest = {
+  name: 'plugin',
+  itemId: 'plugin-definition',
+  description: 'Plugin Custom Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: true,
+  visibility: { public: true },
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            'change-with-your-plugin-name': {
+              name: 'change-with-your-plugin-name',
+              type: 'plugin',
+              dockerImage: 'change-with-your-plugin-docker-image',
+            },
+          },
+        },
+      },
+    },
+  },
+} satisfies PublicCatalogCRD
+
 export type CatalogPluginResources = FromSchema<typeof resourcesSchema>
 export type CatalogPluginItem = CatalogItem<typeof type, CatalogPluginResources>
 export type CatalogPluginVersionedItem = CatalogVersionedItem<typeof type, CatalogPluginResources>
 export type CatalogPluginManifest = CatalogItemManifest<typeof type, CatalogPluginResources>
 
-export default { type, resourcesSchema }
+export default { type, resourcesSchema, crd }
