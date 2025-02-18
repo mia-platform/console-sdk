@@ -593,12 +593,7 @@ export const container = {
     },
     labels: {
       type: 'array',
-      items: {
-        anyOf: [
-          kubernetesDefinition,
-          serviceLabel,
-        ],
-      },
+      items: serviceLabel,
     },
     resources: serviceResources,
     probes,

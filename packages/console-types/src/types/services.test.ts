@@ -209,12 +209,12 @@ t.test('services', t => {
   })
 
   t.test('labels and annotations', t => {
-    const sharedType: FromSchema<typeof kubernetesDefinition> = {
+    const annotationType: FromSchema<typeof kubernetesDefinition> = {
       name: 'labelskey',
       value: 'labelsvalye',
     }
 
-    const newLabelType: FromSchema<typeof serviceLabel> = {
+    const labelType: FromSchema<typeof serviceLabel> = {
       name: 'labelskey',
       value: 'labelsvalue',
       readOnly: false,
@@ -228,22 +228,20 @@ t.test('services', t => {
       replicas: 1,
       dockerImage: 'helloworld:1.0.0',
       labels: [
-        newLabelType,
-        sharedType,
+        labelType,
       ],
       annotations: [
-        sharedType,
+        annotationType,
       ],
       additionalContainers: [
         {
           name: 'container',
           dockerImage: 'helloworld:1.0.0',
           labels: [
-            sharedType,
-            newLabelType,
+            labelType,
           ],
           annotations: [
-            sharedType,
+            annotationType,
           ],
         },
       ],
