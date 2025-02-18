@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.29.8
+
+### Patch Changes
+
+- 614a059: Fixed Catalog custom resource definitions
+
 ## 0.29.7
 
 ### Patch Changes
