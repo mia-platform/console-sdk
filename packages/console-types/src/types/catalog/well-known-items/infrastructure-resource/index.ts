@@ -97,13 +97,13 @@ const resourcesSchema = {
     },
     name: catalogNameSchema,
     runtime: {
-      type: 'object',
-      required: ['type'],
       additionalProperties: false,
       properties: {
         resourceId: { type: 'string' },
         type: { type: 'string' },
       },
+      required: ['type'],
+      type: 'object',
     },
     service: {
       properties: {
@@ -133,6 +133,12 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
       },
     },
+    controlledFields: [
+      { key: 'apiVersion', jsonPath: 'meta.apiVersion' },
+      { key: 'kind', jsonPath: 'meta.kind' },
+      { key: 'type', jsonPath: 'runtime.type' },
+      { key: 'resourceId', jsonPath: 'runtime.resourceId' },
+    ],
   },
 } satisfies PublicCatalogCRD
 

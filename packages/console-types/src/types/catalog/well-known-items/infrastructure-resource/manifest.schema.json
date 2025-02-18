@@ -192,10 +192,6 @@
           "type": "string"
         },
         "runtime": {
-          "type": "object",
-          "required": [
-            "type"
-          ],
           "additionalProperties": false,
           "properties": {
             "resourceId": {
@@ -204,7 +200,11 @@
             "type": {
               "type": "string"
             }
-          }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
         },
         "service": {
           "properties": {
