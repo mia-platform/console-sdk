@@ -15,9 +15,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-
+import type { JSONSchema } from '../../../commons/json-schema'
 import catalogApplication from './application'
-import catalogCRD from './custom-resource-definition'
+import catalogCRD, { CatalogCRDManifest } from './custom-resource-definition'
 import catalogExample, { catalogExampleSchema } from './example'
 import catalogExtension from './extension'
 import catalogInfrastructureResource from './infrastructure-resource'
@@ -41,6 +41,23 @@ export type { CatalogProxy, CatalogProxyItem, CatalogProxyManifest, CatalogProxy
 export type { CatalogSidecarItem, CatalogSidecarManifest, CatalogSidecarResources, CatalogSidecarVersionedItem } from './sidecar'
 export type { CatalogTemplate, CatalogTemplateItem, CatalogTemplateManifest, CatalogTemplateResources, CatalogTemplateVersionedItem } from './template'
 
+export type CatalogWellKnownItemData = {
+  type: string
+  resourcesSchema: JSONSchema
+  crd: CatalogCRDManifest
+}
+
+const catalogWellKnownItems: Record<string, CatalogWellKnownItemData> = {
+  [catalogApplication.type]: catalogApplication,
+  [catalogExample.type]: catalogExample,
+  [catalogExtension.type]: catalogExtension,
+  [catalogInfrastructureResource.type]: catalogInfrastructureResource,
+  [catalogPlugin.type]: catalogPlugin,
+  [catalogProxy.type]: catalogProxy,
+  [catalogSidecar.type]: catalogSidecar,
+  [catalogTemplate.type]: catalogTemplate,
+}
+
 const catalogWellKnownItemsCustomResourceDefinitions = {
   [catalogApplication.type]: catalogApplication.crd,
   [catalogExample.type]: catalogExample.crd,
@@ -53,6 +70,7 @@ const catalogWellKnownItemsCustomResourceDefinitions = {
 }
 
 export {
+  catalogWellKnownItems,
   catalogWellKnownItemsCustomResourceDefinitions,
   catalogApplication,
   catalogCRD,
