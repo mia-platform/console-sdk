@@ -85,6 +85,15 @@ export const configMapFileName = {
   [VALIDATION_ERROR_ID]: 'configMapFileName.patternError',
 } as const
 
+export const serviceAccountName = {
+  type: 'string',
+  // max lenght for a RFC 1123 DNS Subdomain
+  maxLength: 253,
+  // regex for RFC 1123 DNS Subdomain
+  pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$',
+  [VALIDATION_ERROR_ID]: 'serviceAccountName.patternError',
+} as const
+
 const envCommonProps = {
   name: {
     type: 'string',
@@ -544,6 +553,14 @@ const monitoring = {
   additionalProperties: false,
 } as const
 
+const serviceAccount = {
+  type: 'object',
+  properties: {
+    name: serviceAccountName,
+    deleted: { type: 'boolean' },
+  },
+} as const
+
 // refers to both annotations and labels keys
 export const kubernetesDefinitionName = {
   type: 'string',
@@ -673,6 +690,7 @@ export const customService = {
     advanced: { type: 'boolean', const: false },
     dockerImagePullSecrets,
     replicas: serviceReplicas,
+    serviceAccount,
     productionReplicas: replicasJsonSchema,
     logParser: { type: 'string' },
     additionalContainers: {

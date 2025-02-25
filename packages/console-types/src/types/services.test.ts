@@ -148,6 +148,58 @@ t.test('services', t => {
     t.end()
   })
 
+  t.test('service account field', t => {
+    t.test('can be an empty string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccount: {
+          name: '',
+          deleted: true,
+        },
+      }
+
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('accept valid string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccount: {
+          name: 'valid-dns.subdomain1',
+          deleted: true,
+        },
+      }
+
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('reject invalid string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccount: {
+          name: 'invalid-subdomain-',
+          deleted: true,
+        },
+      }
+
+      t.notOk(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.end()
+  })
+
   t.test('only required fields for cronjob', t => {
     const service: CronJob = {
       name: 'myservice',
