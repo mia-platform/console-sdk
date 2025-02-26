@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.30.1
+
+### Patch Changes
+
+- ca0e978: add serviceAccountName property to CustomService type
+- 7028f50: exposed catalogWellKnownItems map
+
 ## 0.30.0
 
 ### Minor Changes
