@@ -1599,6 +1599,8 @@ Object {
               "type": "string",
             },
             "name": Object {
+              "maxLength": 253,
+              "minLength": 1,
               "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
               "type": "string",
               "x-validation-error-id": "resourceName.patternError",
@@ -4038,6 +4040,7 @@ Object {
                 "type": "boolean",
               },
               "service": Object {
+                "maxLength": 253,
                 "minLength": 1,
                 "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                 "type": "string",
@@ -4861,6 +4864,7 @@ Object {
                             "type": "object",
                           },
                           "name": Object {
+                            "maxLength": 253,
                             "minLength": 1,
                             "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                             "type": "string",
@@ -4967,6 +4971,8 @@ Object {
                                 "x-validation-error-id": "configMountPath.patternError",
                               },
                               "name": Object {
+                                "maxLength": 253,
+                                "minLength": 1,
                                 "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                                 "type": "string",
                                 "x-validation-error-id": "resourceName.patternError",
@@ -5027,6 +5033,7 @@ Object {
                           "type": "array",
                         },
                         "name": Object {
+                          "maxLength": 253,
                           "minLength": 1,
                           "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                           "type": "string",
@@ -5042,6 +5049,8 @@ Object {
                                 "x-validation-error-id": "configMountPath.patternError",
                               },
                               "name": Object {
+                                "maxLength": 253,
+                                "minLength": 1,
                                 "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                                 "type": "string",
                                 "x-validation-error-id": "resourceName.patternError",
@@ -5080,6 +5089,7 @@ Object {
                         "type": "string",
                       },
                       "name": Object {
+                        "maxLength": 253,
                         "minLength": 1,
                         "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                         "type": "string",
@@ -5171,6 +5181,7 @@ Object {
                       "type": "string",
                     },
                     "name": Object {
+                      "maxLength": 253,
                       "minLength": 1,
                       "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                       "type": "string",
@@ -5249,6 +5260,7 @@ Object {
                     "type": "array",
                   },
                   "name": Object {
+                    "maxLength": 253,
                     "minLength": 1,
                     "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                     "type": "string",
@@ -5365,6 +5377,7 @@ Object {
                   "type": "array",
                 },
                 "name": Object {
+                  "maxLength": 253,
                   "minLength": 1,
                   "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                   "type": "string",
@@ -5495,6 +5508,8 @@ Object {
                             "x-validation-error-id": "configMountPath.patternError",
                           },
                           "name": Object {
+                            "maxLength": 253,
+                            "minLength": 1,
                             "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                             "type": "string",
                             "x-validation-error-id": "resourceName.patternError",
@@ -5635,6 +5650,8 @@ Object {
                                 "x-validation-error-id": "serviceSecretKey.patternError",
                               },
                               "secretName": Object {
+                                "maxLength": 253,
+                                "minLength": 1,
                                 "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                                 "type": "string",
                                 "x-validation-error-id": "resourceName.patternError",
@@ -5661,6 +5678,8 @@ Object {
                                 "x-validation-error-id": "configMapFileName.patternError",
                               },
                               "configMapName": Object {
+                                "maxLength": 253,
+                                "minLength": 1,
                                 "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                                 "type": "string",
                                 "x-validation-error-id": "resourceName.patternError",
@@ -5931,6 +5950,7 @@ Object {
                       "type": "object",
                     },
                     "name": Object {
+                      "maxLength": 253,
                       "minLength": 1,
                       "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                       "type": "string",
@@ -6104,6 +6124,8 @@ Object {
                             "x-validation-error-id": "configMountPath.patternError",
                           },
                           "name": Object {
+                            "maxLength": 253,
+                            "minLength": 1,
                             "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                             "type": "string",
                             "x-validation-error-id": "resourceName.patternError",
@@ -6219,6 +6241,8 @@ Object {
                       "x-validation-error-id": "configMountPath.patternError",
                     },
                     "name": Object {
+                      "maxLength": 253,
+                      "minLength": 1,
                       "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                       "type": "string",
                       "x-validation-error-id": "resourceName.patternError",
@@ -6374,6 +6398,8 @@ Object {
                           "x-validation-error-id": "serviceSecretKey.patternError",
                         },
                         "secretName": Object {
+                          "maxLength": 253,
+                          "minLength": 1,
                           "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                           "type": "string",
                           "x-validation-error-id": "resourceName.patternError",
@@ -6400,6 +6426,8 @@ Object {
                           "x-validation-error-id": "configMapFileName.patternError",
                         },
                         "configMapName": Object {
+                          "maxLength": 253,
+                          "minLength": 1,
                           "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                           "type": "string",
                           "x-validation-error-id": "resourceName.patternError",
@@ -6673,6 +6701,7 @@ Object {
                 "type": "object",
               },
               "name": Object {
+                "maxLength": 253,
                 "minLength": 1,
                 "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                 "type": "string",
@@ -6880,6 +6909,8 @@ Object {
                       "x-validation-error-id": "configMountPath.patternError",
                     },
                     "name": Object {
+                      "maxLength": 253,
+                      "minLength": 1,
                       "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
                       "type": "string",
                       "x-validation-error-id": "resourceName.patternError",
@@ -6955,6 +6986,8 @@ Object {
           "additionalProperties": false,
           "properties": Object {
             "name": Object {
+              "maxLength": 253,
+              "minLength": 1,
               "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
               "type": "string",
               "x-validation-error-id": "resourceName.patternError",
