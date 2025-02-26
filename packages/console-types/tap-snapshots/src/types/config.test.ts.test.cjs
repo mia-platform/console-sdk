@@ -6889,6 +6889,20 @@ Object {
                 },
                 "type": "array",
               },
+              "serviceAccount": Object {
+                "properties": Object {
+                  "deleted": Object {
+                    "type": "boolean",
+                  },
+                  "name": Object {
+                    "maxLength": 253,
+                    "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
+                    "type": "string",
+                    "x-validation-error-id": "serviceAccountName.patternError",
+                  },
+                },
+                "type": "object",
+              },
               "sourceComponentId": Object {
                 "type": "string",
               },

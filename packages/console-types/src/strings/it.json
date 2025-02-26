@@ -4,6 +4,7 @@
   "resourceName.patternError": "Deve iniziare con una lettera minuscola e può contenere lettere minuscole, numeri e il simbolo \"-\". Non può terminare con \"-\"",
   "dockerImage.patternError": "Deve rispettare il formato host/imagename:tag, con host e tag opzionali. I valori di imagename e tag possono essere interpolati",
   "configMapFileName.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\"",
+  "serviceAccountName.patternError": "Può contenere caratteri minuscoli alfanumerici, \"-\" o \".\", e deve cominciare e finire con un carattere alfanumerico",
   "swaggerPath.patternError": "Deve iniziare con \"/\". Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\"",
   "probesPath.patternError": "Deve iniziare con /. Può contenere caratteri alfanumerici e i simboli \"_\", \"-\", \":\", \".\", \"{\", \"}\", \"/\"",
   "serviceSecretKey.patternError": "Può contenere caratteri alfanumerici e i simboli \"_\", \"-\" e \".\". Può essere interpolato",
