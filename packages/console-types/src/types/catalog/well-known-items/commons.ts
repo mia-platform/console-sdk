@@ -20,6 +20,7 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 import { DIGIT_OR_INTERPOLATION_PATTERN } from '../../../constants/services'
+import { pathWithoutPort } from '../../services'
 
 export const catalogPortSchema = {
   minLength: 1,
@@ -228,7 +229,7 @@ const probeSchema = {
         failureThreshold: { type: 'number' },
         initialDelaySeconds: { type: 'number' },
         periodSeconds: { type: 'number' },
-        port: catalogPortSchema,
+        port: { type: 'string' },
         successThreshold: { type: 'number' },
         timeoutSeconds: { type: 'number' },
       },
@@ -241,7 +242,7 @@ const probeSchema = {
         initialDelaySeconds: { type: 'number' },
         path: { pattern: '^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$', type: 'string' },
         periodSeconds: { type: 'number' },
-        port: catalogPortSchema,
+        port: { type: 'string' },
         successThreshold: { type: 'number' },
         timeoutSeconds: { type: 'number' },
       },
@@ -292,11 +293,13 @@ export const catalogDefaultMonitoringSchema = {
   properties: {
     endpoints: {
       items: {
+        additionalProperties: false,
         properties: {
-          interval: { type: 'string' },
-          path: { type: 'string' },
-          port: catalogPortSchema,
+          interval: { type: 'string', pattern: '^(\\d)+[s]$' },
+          path: pathWithoutPort,
+          port: { type: 'string' },
         },
+        required: ['interval', 'path', 'port'],
         type: 'object',
       },
       type: 'array',

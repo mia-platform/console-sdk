@@ -21,6 +21,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import {
   catalogArchiveUrlSchema,
+  catalogComponentIdSchema,
   catalogContainerPortsSchema,
   catalogDefaultAnnotationsSchema,
   catalogDefaultArgsSchema,
@@ -35,6 +36,7 @@ import {
   catalogDefaultSecretsSchema,
   catalogDefaultTerminationGracePeriodSecondsSchema,
   catalogDescriptionSchema,
+  catalogMapEnvVarToMountPathSchema,
   catalogNameSchema,
   catalogPipelinesSchema,
   catalogRepositoryUrlSchema,
@@ -50,6 +52,7 @@ export const catalogExampleSchema = {
   additionalProperties: false,
   properties: {
     archiveUrl: catalogArchiveUrlSchema,
+    componentId: catalogComponentIdSchema,
     containerPorts: catalogContainerPortsSchema,
     defaultAnnotations: catalogDefaultAnnotationsSchema,
     defaultArgs: catalogDefaultArgsSchema,
@@ -64,6 +67,7 @@ export const catalogExampleSchema = {
     defaultSecrets: catalogDefaultSecretsSchema,
     defaultTerminationGracePeriodSeconds: catalogDefaultTerminationGracePeriodSecondsSchema,
     description: catalogDescriptionSchema,
+    mapEnvVarToMountPath: catalogMapEnvVarToMountPathSchema,
     name: catalogNameSchema,
     pipelines: catalogPipelinesSchema,
 
