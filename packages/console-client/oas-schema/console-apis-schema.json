@@ -2715,13 +2715,36 @@
                                                                 }
                                                             }
                                                         }
+                                                    },
+                                                    "errors": {
+                                                      "type": "array",
+                                                      "items": {
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                          "ajvError": {
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                              "instancePath": { "type": "string" },
+                                                              "keyword": { "type": "string" },
+                                                              "message": { "type": "string" },
+                                                              "params": { "additionalProperties": true, "type": "object" },
+                                                              "schemaPath": { "type": "string" }
+                                                            },
+                                                            "type": "object"
+                                                          },
+                                                          "message": { "type": "string" }
+                                                        },
+                                                        "required": ["message"],
+                                                        "type": "object"
+                                                      }
                                                     }
                                                 },
                                                 "required": [
                                                     "done",
                                                     "inserted",
                                                     "updated",
-                                                    "validationErrors"
+                                                    "validationErrors",
+                                                    "errors"
                                                 ]
                                             }
                                         }
