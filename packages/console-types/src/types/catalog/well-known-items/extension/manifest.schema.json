@@ -44,10 +44,6 @@
       "format": "uri-reference",
       "type": "string"
     },
-    "isVersioningSupported": {
-      "description": "States if versioning is supported for the custom resource defined by the CRD. Applicable only for type \"custom-resource-definition\"",
-      "type": "boolean"
-    },
     "itemId": {
       "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
       "minLength": 1,
@@ -244,29 +240,6 @@
     },
     "type": {
       "const": "extension"
-    },
-    "version": {
-      "description": "Version of the item following semver",
-      "properties": {
-        "name": {
-          "description": "Semantic version",
-          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-          "type": "string"
-        },
-        "releaseNote": {
-          "description": "Markdown release note",
-          "type": "string"
-        },
-        "security": {
-          "description": "Flag stating if the version addresses any vulnerability",
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "name",
-        "releaseNote"
-      ],
-      "type": "object"
     },
     "visibility": {
       "description": "Visibility of the item",

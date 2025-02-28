@@ -21,7 +21,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { host } from '../../../services'
 import { catalogDefaultHeadersSchema, catalogNameSchema, catalogDescriptionSchema } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItemNoVersionManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
 import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
@@ -91,8 +91,8 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
         default: {
           services: {
-            'change-with-your-proxy-name': {
-              name: 'change-with-your-proxy-name',
+            '<change-with-your-proxy-name>': {
+              name: '<change-with-your-proxy-name>',
               type: 'external',
               url: 'https://example.com',
             },
@@ -106,6 +106,6 @@ const crd: CatalogCRDManifest = {
 export type CatalogProxyResources = FromSchema<typeof resourcesSchema>
 export type CatalogProxyItem = CatalogItem<typeof type, CatalogProxyResources>
 export type CatalogProxyVersionedItem = CatalogVersionedItem<typeof type, CatalogProxyResources>
-export type CatalogProxyManifest = CatalogItemManifest<typeof type, CatalogProxyResources>
+export type CatalogProxyManifest = CatalogItemNoVersionManifest<typeof type, CatalogProxyResources>
 
 export default { type, resourcesSchema, crd }

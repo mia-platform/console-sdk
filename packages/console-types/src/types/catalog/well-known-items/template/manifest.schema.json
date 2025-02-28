@@ -44,10 +44,6 @@
       "format": "uri-reference",
       "type": "string"
     },
-    "isVersioningSupported": {
-      "description": "States if versioning is supported for the custom resource defined by the CRD. Applicable only for type \"custom-resource-definition\"",
-      "type": "boolean"
-    },
     "itemId": {
       "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
       "minLength": 1,
@@ -95,6 +91,9 @@
               "archiveUrl": {
                 "format": "uri-reference",
                 "minLength": 1,
+                "type": "string"
+              },
+              "componentId": {
                 "type": "string"
               },
               "containerPorts": {
@@ -385,19 +384,25 @@
                 "properties": {
                   "endpoints": {
                     "items": {
+                      "additionalProperties": false,
                       "properties": {
                         "interval": {
-                          "type": "string"
+                          "type": "string",
+                          "pattern": "^(\\d)+[s]$"
                         },
                         "path": {
-                          "type": "string"
+                          "type": "string",
+                          "pattern": "^\\/(([\\w-])\\/?)*$"
                         },
                         "port": {
-                          "minLength": 1,
-                          "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                           "type": "string"
                         }
                       },
+                      "required": [
+                        "interval",
+                        "path",
+                        "port"
+                      ],
                       "type": "object"
                     },
                     "type": "array"
@@ -453,8 +458,6 @@
                             "type": "number"
                           },
                           "port": {
-                            "minLength": 1,
-                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -483,8 +486,6 @@
                             "type": "number"
                           },
                           "port": {
-                            "minLength": 1,
-                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -546,8 +547,6 @@
                             "type": "number"
                           },
                           "port": {
-                            "minLength": 1,
-                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -576,8 +575,6 @@
                             "type": "number"
                           },
                           "port": {
-                            "minLength": 1,
-                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -639,8 +636,6 @@
                             "type": "number"
                           },
                           "port": {
-                            "minLength": 1,
-                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -669,8 +664,6 @@
                             "type": "number"
                           },
                           "port": {
-                            "minLength": 1,
-                            "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
                             "type": "string"
                           },
                           "successThreshold": {
@@ -750,6 +743,29 @@
               },
               "description": {
                 "type": "string"
+              },
+              "mapEnvVarToMountPath": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "file",
+                        "folder"
+                      ]
+                    },
+                    "envName": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "envName"
+                  ]
+                }
               },
               "name": {
                 "minLength": 1,

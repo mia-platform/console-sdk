@@ -22,7 +22,7 @@ import type { JSONSchema } from '../../../../commons/json-schema'
 import { catalogExampleSchema } from '../example'
 import { catalogPluginSchema } from '../plugin'
 import { catalogTemplateSchema } from '../template'
-import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItemNoVersionManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
 import { catalogListenerSchema } from '../commons'
@@ -74,16 +74,16 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
         default: {
           services: {
-            'change-with-your-plugin-name': {
-              name: 'change-with-your-plugin-name',
+            '<change-with-your-plugin-name>': {
+              name: '<change-with-your-plugin-name>',
               type: 'plugin',
-              dockerImage: 'change-with-your-plugin-docker-image',
+              dockerImage: '<change-with-your-plugin-docker-image>',
             },
           },
           endpoints: {
-            '/change-with-your-endpoint-base-path': {
-              defaultBasePath: '/change-with-your-endpoint-base-path',
-              service: 'change-with-the-service-exposing-the-endpoint',
+            '<change-with-your-endpoint-base-path>': {
+              defaultBasePath: '<change-with-your-endpoint-base-path>',
+              service: '<change-with-the-service-exposing-the-endpoint>',
               type: 'custom',
               tags: [
                 'custom',
@@ -91,20 +91,20 @@ const crd: CatalogCRDManifest = {
             },
           },
           collections: {
-            'change-with-your-collection-name': {
-              defaultName: 'change-with-your-collection-name',
+            '<change-with-your-collection-name>': {
+              defaultName: '<change-with-your-collection-name>',
               type: 'collection',
               internalEndpoints: [
                 {
-                  basePath: 'change-with-the-collection-endpoint-base-path',
+                  basePath: '<change-with-the-collection-endpoint-base-path>',
                 },
               ],
             },
           },
           unsecretedVariables: {
-            'change-with-your-variable-name': {
-              productionEnv: 'change-with-your-value',
-              noProductionEnv: 'change-with-your-value',
+            '<change-with-your-variable-name>': {
+              productionEnv: '<change-with-your-value>',
+              noProductionEnv: '<change-with-your-value>',
             },
           },
         },
@@ -116,6 +116,6 @@ const crd: CatalogCRDManifest = {
 export type CatalogApplicationResources = FromSchema<typeof resourcesSchema>
 export type CatalogApplicationItem = CatalogItem<typeof type, CatalogApplicationResources>
 export type CatalogApplicationVersionedItem = CatalogVersionedItem<typeof type, CatalogApplicationResources>
-export type CatalogApplicationManifest = CatalogItemManifest<typeof type, CatalogApplicationResources>
+export type CatalogApplicationManifest = CatalogItemNoVersionManifest<typeof type, CatalogApplicationResources>
 
 export default { type, resourcesSchema, crd }

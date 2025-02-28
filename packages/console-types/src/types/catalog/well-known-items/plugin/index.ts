@@ -126,10 +126,10 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
         default: {
           services: {
-            'change-with-your-plugin-name': {
-              name: 'change-with-your-plugin-name',
+            '<change-with-your-plugin-name>': {
+              name: '<change-with-your-plugin-name>',
               type: 'plugin',
-              dockerImage: 'change-with-your-plugin-docker-image',
+              dockerImage: '<change-with-your-plugin-docker-image>',
             },
           },
         },

@@ -186,29 +186,6 @@
     "type": {
       "const": "custom-resource-definition"
     },
-    "version": {
-      "description": "Version of the item following semver",
-      "properties": {
-        "name": {
-          "description": "Semantic version",
-          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-          "type": "string"
-        },
-        "releaseNote": {
-          "description": "Markdown release note",
-          "type": "string"
-        },
-        "security": {
-          "description": "Flag stating if the version addresses any vulnerability",
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "name",
-        "releaseNote"
-      ],
-      "type": "object"
-    },
     "visibility": {
       "description": "Visibility of the item",
       "properties": {

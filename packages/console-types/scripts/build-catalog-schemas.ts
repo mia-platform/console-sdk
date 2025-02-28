@@ -23,7 +23,7 @@ import path from 'path'
 import type { JSONSchema } from 'json-schema-to-ts'
 import { clone, lensPath, set } from 'ramda'
 
-import { CatalogItemManifest, catalogItemManifestSchema } from '../src'
+import { catalogCRD, CatalogItemManifest, catalogItemManifestSchema, catalogWellKnownItemsCustomResourceDefinitions } from '../src'
 
 type ItemModule = {
   default: {
@@ -43,15 +43,27 @@ const processItemType = async(dirent: Dirent): Promise<void> => {
     let manifest = clone({ $comment: comment, ...catalogItemManifestSchema }) as unknown as CatalogItemManifest
 
     manifest = set(lensPath(['$id']), `catalog-${module.default.type}.schema.json`, manifest)
-    manifest = set(lensPath(['properties', '$schema']), { type: 'string' }, manifest)
-    manifest = set(lensPath(['properties', 'type']), { const: module.default.type }, manifest)
-    manifest = set(lensPath(['properties', 'resources']), module.default.resourcesSchema, manifest)
     manifest = set(lensPath(['description']), undefined, manifest)
     manifest = set(lensPath(['title']), undefined, manifest)
+
+    manifest = set(lensPath(['properties', '$schema']), { type: 'string' }, manifest)
+    manifest = set(lensPath(['properties', 'type']), { const: module.default.type }, manifest)
+
+    manifest = set(lensPath(['properties', 'resources']), module.default.resourcesSchema, manifest)
     manifest = set(lensPath(['properties', 'resources', '$id']), undefined, manifest)
     manifest = set(lensPath(['properties', 'resources', '$schema']), undefined, manifest)
     manifest = set(lensPath(['properties', 'resources', 'description']), undefined, manifest)
     manifest = set(lensPath(['properties', 'resources', 'title']), undefined, manifest)
+
+    if (module.default.type !== catalogCRD.type) {
+      manifest = set(lensPath(['properties', 'isVersioningSupported']), undefined, manifest)
+    }
+
+    const crd = catalogWellKnownItemsCustomResourceDefinitions[module.default.type]
+    const isVersioningSupported = module.default.type !== catalogCRD.type && crd?.isVersioningSupported
+    if (!isVersioningSupported) {
+      manifest = set(lensPath(['properties', 'version']), undefined, manifest)
+    }
 
     await fs.writeFile(path.resolve(dirPath, 'manifest.schema.json'), JSON.stringify(manifest, null, 2))
 
