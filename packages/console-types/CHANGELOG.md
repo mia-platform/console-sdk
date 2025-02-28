@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.30.2
+
+### Patch Changes
+
+- ec54fb9: Updated catalog well-known-items schemas
+
 ## 0.30.1
 
 ### Patch Changes
