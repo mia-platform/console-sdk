@@ -71,7 +71,14 @@ export const catalogItemManifestSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
+
 export type CatalogItemManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = FromSchema<typeof catalogItemManifestSchema> & { resources: Resources, type: Type }
+> = _CatalogItemManifest & { resources: Resources, type: Type }
+
+export type CatalogItemNoVersionManifest<
+  Type extends string = string,
+  Resources extends Record<string, unknown> = Record<string, unknown>
+> = Omit<_CatalogItemManifest, 'version'> & { resources: Resources, type: Type }

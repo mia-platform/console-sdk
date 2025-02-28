@@ -33,7 +33,7 @@ import {
   catalogDockerImageSchema,
   catalogNameSchema,
 } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItemNoVersionManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
 import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
@@ -101,6 +101,6 @@ const crd: CatalogCRDManifest = {
 export type CatalogSidecarResources = FromSchema<typeof resourcesSchema>
 export type CatalogSidecarItem = CatalogItem<typeof type, CatalogSidecarResources>
 export type CatalogSidecarVersionedItem = CatalogVersionedItem<typeof type, CatalogSidecarResources>
-export type CatalogSidecarManifest = CatalogItemManifest<typeof type, CatalogSidecarResources>
+export type CatalogSidecarManifest = CatalogItemNoVersionManifest<typeof type, CatalogSidecarResources>
 
 export default { type, resourcesSchema, crd }

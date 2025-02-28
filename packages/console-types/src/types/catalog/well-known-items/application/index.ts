@@ -22,7 +22,7 @@ import type { JSONSchema } from '../../../../commons/json-schema'
 import { catalogExampleSchema } from '../example'
 import { catalogPluginSchema } from '../plugin'
 import { catalogTemplateSchema } from '../template'
-import { CatalogItemManifest } from '../../item-manifest'
+import { CatalogItemNoVersionManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
 import { catalogListenerSchema } from '../commons'
@@ -116,6 +116,6 @@ const crd: CatalogCRDManifest = {
 export type CatalogApplicationResources = FromSchema<typeof resourcesSchema>
 export type CatalogApplicationItem = CatalogItem<typeof type, CatalogApplicationResources>
 export type CatalogApplicationVersionedItem = CatalogVersionedItem<typeof type, CatalogApplicationResources>
-export type CatalogApplicationManifest = CatalogItemManifest<typeof type, CatalogApplicationResources>
+export type CatalogApplicationManifest = CatalogItemNoVersionManifest<typeof type, CatalogApplicationResources>
 
 export default { type, resourcesSchema, crd }
