@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.4.4
+
+### Patch Changes
+
+- 6018932: updated marketplace apply item API response
+
 ## 0.4.3
 
 ### Patch Changes
