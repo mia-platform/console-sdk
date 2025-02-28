@@ -91,8 +91,8 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
         default: {
           services: {
-            'change-with-your-proxy-name': {
-              name: 'change-with-your-proxy-name',
+            '<change-with-your-proxy-name>': {
+              name: '<change-with-your-proxy-name>',
               type: 'external',
               url: 'https://example.com',
             },

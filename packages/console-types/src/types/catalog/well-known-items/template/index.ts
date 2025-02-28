@@ -114,8 +114,8 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
         default: {
           services: {
-            'change-with-your-template-name': {
-              name: 'change-with-your-template-name',
+            '<change-with-your-template-name>': {
+              name: '<change-with-your-template-name>',
               type: 'template',
               archiveUrl: 'https://archive-url',
             },

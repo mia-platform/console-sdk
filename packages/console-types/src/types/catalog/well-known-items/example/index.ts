@@ -114,8 +114,8 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
         default: {
           services: {
-            'change-with-your-example-name': {
-              name: 'change-with-your-example-name',
+            '<change-with-your-example-name>': {
+              name: '<change-with-your-example-name>',
               type: 'example',
               archiveUrl: 'https://archive-url',
             },

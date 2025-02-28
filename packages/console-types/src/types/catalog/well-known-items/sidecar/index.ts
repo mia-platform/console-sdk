@@ -90,8 +90,8 @@ const crd: CatalogCRDManifest = {
       jsonSchema: {
         ...resourcesSchema,
         default: {
-          name: 'change-with-your-sidecar-name',
-          dockerImage: 'change-with-your-sidecar-docker-image',
+          name: '<change-with-your-sidecar-name>',
+          dockerImage: '<change-with-your-sidecar-docker-image>',
         },
       },
     },

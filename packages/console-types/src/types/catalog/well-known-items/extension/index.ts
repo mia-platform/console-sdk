@@ -138,7 +138,7 @@ const crd: CatalogCRDManifest = {
       jsonSchema: {
         ...resourcesSchema,
         default: {
-          name: 'extension-name',
+          name: '<change-with-your-extension-name>',
           extensionType: 'iframe',
           entry: 'https://example.com',
           contexts: [],

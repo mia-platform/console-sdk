@@ -74,16 +74,16 @@ const crd: CatalogCRDManifest = {
         ...resourcesSchema,
         default: {
           services: {
-            'change-with-your-plugin-name': {
-              name: 'change-with-your-plugin-name',
+            '<change-with-your-plugin-name>': {
+              name: '<change-with-your-plugin-name>',
               type: 'plugin',
-              dockerImage: 'change-with-your-plugin-docker-image',
+              dockerImage: '<change-with-your-plugin-docker-image>',
             },
           },
           endpoints: {
-            '/change-with-your-endpoint-base-path': {
-              defaultBasePath: '/change-with-your-endpoint-base-path',
-              service: 'change-with-the-service-exposing-the-endpoint',
+            '<change-with-your-endpoint-base-path>': {
+              defaultBasePath: '<change-with-your-endpoint-base-path>',
+              service: '<change-with-the-service-exposing-the-endpoint>',
               type: 'custom',
               tags: [
                 'custom',
@@ -91,20 +91,20 @@ const crd: CatalogCRDManifest = {
             },
           },
           collections: {
-            'change-with-your-collection-name': {
-              defaultName: 'change-with-your-collection-name',
+            '<change-with-your-collection-name>': {
+              defaultName: '<change-with-your-collection-name>',
               type: 'collection',
               internalEndpoints: [
                 {
-                  basePath: 'change-with-the-collection-endpoint-base-path',
+                  basePath: '<change-with-the-collection-endpoint-base-path>',
                 },
               ],
             },
           },
           unsecretedVariables: {
-            'change-with-your-variable-name': {
-              productionEnv: 'change-with-your-value',
-              noProductionEnv: 'change-with-your-value',
+            '<change-with-your-variable-name>': {
+              productionEnv: '<change-with-your-value>',
+              noProductionEnv: '<change-with-your-value>',
             },
           },
         },
