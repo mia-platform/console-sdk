@@ -155,10 +155,7 @@ t.test('services', t => {
         type: ServiceTypes.CUSTOM,
         advanced: false,
         dockerImage: 'helloworld:1.0.0',
-        serviceAccount: {
-          name: '',
-          deleted: true,
-        },
+        serviceAccountName: '',
       }
 
       t.ok(validate(service), validationMessage(validate.errors))
@@ -171,10 +168,7 @@ t.test('services', t => {
         type: ServiceTypes.CUSTOM,
         advanced: false,
         dockerImage: 'helloworld:1.0.0',
-        serviceAccount: {
-          name: 'valid-dns.subdomain1',
-          deleted: true,
-        },
+        serviceAccountName: 'valid-dns.subdomain1',
       }
 
       t.ok(validate(service), validationMessage(validate.errors))
@@ -187,10 +181,7 @@ t.test('services', t => {
         type: ServiceTypes.CUSTOM,
         advanced: false,
         dockerImage: 'helloworld:1.0.0',
-        serviceAccount: {
-          name: 'invalid-subdomain-',
-          deleted: true,
-        },
+        serviceAccountName: 'invalid-subdomain-',
       }
 
       t.notOk(validate(service), validationMessage(validate.errors))

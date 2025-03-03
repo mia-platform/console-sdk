@@ -4765,6 +4765,29 @@ Object {
       },
       "type": "array",
     },
+    "serviceAccounts": Object {
+      "patternProperties": Object {
+        "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$": Object {
+          "additionalProperties": false,
+          "properties": Object {
+            "deleted": Object {
+              "type": "boolean",
+            },
+            "name": Object {
+              "maxLength": 253,
+              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
+              "type": "string",
+              "x-validation-error-id": "serviceAccountName.patternError",
+            },
+          },
+          "required": Array [
+            "name",
+          ],
+          "type": "object",
+        },
+      },
+      "type": "object",
+    },
     "services": Object {
       "additionalProperties": false,
       "default": Object {},
@@ -6889,19 +6912,11 @@ Object {
                 },
                 "type": "array",
               },
-              "serviceAccount": Object {
-                "properties": Object {
-                  "deleted": Object {
-                    "type": "boolean",
-                  },
-                  "name": Object {
-                    "maxLength": 253,
-                    "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
-                    "type": "string",
-                    "x-validation-error-id": "serviceAccountName.patternError",
-                  },
-                },
-                "type": "object",
+              "serviceAccountName": Object {
+                "maxLength": 253,
+                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
+                "type": "string",
+                "x-validation-error-id": "serviceAccountName.patternError",
               },
               "sourceComponentId": Object {
                 "type": "string",
