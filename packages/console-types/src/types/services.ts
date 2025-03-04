@@ -463,9 +463,7 @@ export const serviceAccount = {
 
 export const serviceAccounts = {
   type: 'object',
-  patternProperties: {
-    [serviceAccountName.pattern]: serviceAccount,
-  },
+  additionalProperties: serviceAccount,
 } as const
 
 export type ServiceAccounts = FromSchema<typeof serviceAccounts>

@@ -4766,25 +4766,23 @@ Object {
       "type": "array",
     },
     "serviceAccounts": Object {
-      "patternProperties": Object {
-        "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$": Object {
-          "additionalProperties": false,
-          "properties": Object {
-            "deleted": Object {
-              "type": "boolean",
-            },
-            "name": Object {
-              "maxLength": 253,
-              "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
-              "type": "string",
-              "x-validation-error-id": "serviceAccountName.patternError",
-            },
+      "additionalProperties": Object {
+        "additionalProperties": false,
+        "properties": Object {
+          "deleted": Object {
+            "type": "boolean",
           },
-          "required": Array [
-            "name",
-          ],
-          "type": "object",
+          "name": Object {
+            "maxLength": 253,
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
+            "type": "string",
+            "x-validation-error-id": "serviceAccountName.patternError",
+          },
         },
+        "required": Array [
+          "name",
+        ],
+        "type": "object",
       },
       "type": "object",
     },
