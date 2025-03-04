@@ -450,6 +450,24 @@ export const serviceSecret = {
   additionalProperties: false,
 } as const
 
+
+export const serviceAccount = {
+  type: 'object',
+  properties: {
+    name: serviceAccountName,
+    deleted: { type: 'boolean' },
+  },
+  additionalProperties: false,
+  required: ['name'],
+} as const
+
+export const serviceAccounts = {
+  type: 'object',
+  additionalProperties: serviceAccount,
+} as const
+
+export type ServiceAccounts = FromSchema<typeof serviceAccounts>
+
 const dockerImagePullSecrets = {
   type: 'array',
   items: {
@@ -551,14 +569,6 @@ const monitoring = {
     },
   },
   additionalProperties: false,
-} as const
-
-const serviceAccount = {
-  type: 'object',
-  properties: {
-    name: serviceAccountName,
-    deleted: { type: 'boolean' },
-  },
 } as const
 
 // refers to both annotations and labels keys
@@ -690,7 +700,7 @@ export const customService = {
     advanced: { type: 'boolean', const: false },
     dockerImagePullSecrets,
     replicas: serviceReplicas,
-    serviceAccount,
+    serviceAccountName,
     productionReplicas: replicasJsonSchema,
     logParser: { type: 'string' },
     additionalContainers: {
