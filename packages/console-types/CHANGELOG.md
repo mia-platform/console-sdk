@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.31.0
+
+### Minor Changes
+
+- a4839b3: refactor service account implementation
+
 ## 0.30.2
 
 ### Patch Changes
