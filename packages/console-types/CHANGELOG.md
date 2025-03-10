@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.31.1
+
+### Patch Changes
+
+- fcb3d3e: Update catalog well-known items manifests
+
 ## 0.31.0
 
 ### Minor Changes
