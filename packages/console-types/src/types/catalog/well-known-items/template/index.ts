@@ -88,9 +88,9 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
-      additionalProperties: catalogTemplateSchema,
       maxProperties: 1,
       minProperties: 1,
+      patternProperties: { [catalogNameSchema.pattern]: catalogTemplateSchema },
       type: 'object',
     },
   },
