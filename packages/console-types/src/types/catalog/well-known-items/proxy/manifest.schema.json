@@ -85,86 +85,88 @@
       "additionalProperties": false,
       "properties": {
         "services": {
-          "additionalProperties": {
-            "oneOf": [
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "defaultHeaders": {
-                    "items": {
-                      "additionalProperties": false,
-                      "properties": {
-                        "description": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "value": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "name",
-                        "value"
-                      ],
-                      "type": "object"
-                    },
-                    "type": "array"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "minLength": 1,
-                    "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
-                    "type": "string"
-                  },
-                  "type": {
-                    "const": "external"
-                  },
-                  "url": {
-                    "format": "uri",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "name",
-                  "type",
-                  "url"
-                ],
-                "type": "object"
-              },
-              {
-                "additionalProperties": false,
-                "properties": {
-                  "description": {
-                    "type": "string"
-                  },
-                  "host": {
-                    "type": "string",
-                    "pattern": "^([-a-z0-9]+)\\.([-_{}a-z0-9A-Z]+)\\.svc\\.cluster\\.local(:([1-9]\\d{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?$"
-                  },
-                  "name": {
-                    "minLength": 1,
-                    "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
-                    "type": "string"
-                  },
-                  "type": {
-                    "const": "cross-projects"
-                  }
-                },
-                "required": [
-                  "name",
-                  "type",
-                  "host"
-                ],
-                "type": "object"
-              }
-            ]
-          },
           "maxProperties": 1,
           "minProperties": 1,
+          "patternProperties": {
+            "^[a-z]([-a-z0-9]*[a-z0-9])?$": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "defaultHeaders": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "external"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "url"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "host": {
+                      "type": "string",
+                      "pattern": "^([-a-z0-9]+)\\.([-_{}a-z0-9A-Z]+)\\.svc\\.cluster\\.local(:([1-9]\\d{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?$"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "cross-projects"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "host"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
           "type": "object"
         }
       },

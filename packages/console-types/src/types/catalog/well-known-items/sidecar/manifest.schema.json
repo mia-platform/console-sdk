@@ -97,9 +97,9 @@
               "from": {
                 "oneOf": [
                   {
-                    "maximum": 65535,
+                    "type": "integer",
                     "minimum": 0,
-                    "type": "integer"
+                    "maximum": 65535
                   },
                   {
                     "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
@@ -122,9 +122,9 @@
               "to": {
                 "oneOf": [
                   {
-                    "maximum": 65535,
+                    "type": "integer",
                     "minimum": 0,
-                    "type": "integer"
+                    "maximum": 65535
                   },
                   {
                     "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
@@ -256,7 +256,7 @@
                     "type": "boolean"
                   },
                   "secretKey": {
-                    "pattern": "^[a-zA-Z0-9-_.]*$",
+                    "pattern": "^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|[a-zA-Z0-9-_.]*)$",
                     "type": "string"
                   },
                   "secretName": {

@@ -65,9 +65,9 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
-      additionalProperties: catalogProxySchema,
       maxProperties: 1,
       minProperties: 1,
+      patternProperties: { [catalogNameSchema.pattern]: catalogProxySchema },
       type: 'object',
     },
   },

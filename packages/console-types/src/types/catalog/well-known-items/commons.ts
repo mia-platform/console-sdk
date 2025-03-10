@@ -20,7 +20,21 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 import { DIGIT_OR_INTERPOLATION_PATTERN } from '../../../constants/services'
-import { pathWithoutPort } from '../../services'
+import {
+  configMapMountPath,
+  configMapName,
+  container,
+  dockerImage,
+  kubernetesDefinitionName,
+  pathWithoutPort,
+  port,
+  probesPath,
+  serviceName,
+  serviceSecretKey,
+  serviceSecretMountPath,
+  serviceSecretName,
+  swaggerPath,
+} from '../../services'
 
 export const catalogPortSchema = {
   minLength: 1,
@@ -30,8 +44,8 @@ export const catalogPortSchema = {
 export type CatalogPort = FromSchema<typeof catalogPortSchema>
 
 export const catalogNameSchema = {
-  minLength: 1,
-  pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?$',
+  minLength: serviceName.minLength,
+  pattern: serviceName.pattern,
   type: 'string',
 } as const satisfies JSONSchema
 export type CatalogName = FromSchema<typeof catalogNameSchema>
@@ -53,7 +67,7 @@ export const catalogRepositoryUrlSchema = {
 export type CatalogRepositoryUrl = FromSchema<typeof catalogRepositoryUrlSchema>
 
 export const catalogDockerImageSchema = {
-  pattern: '^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$',
+  pattern: dockerImage.pattern,
   type: 'string',
 } as const satisfies JSONSchema
 export type CatalogDockerImage = FromSchema<typeof catalogDockerImageSchema>
@@ -106,8 +120,8 @@ const secretEnvironmentVariableSchema = {
     managedBy: { type: 'string' },
     name: { minLength: 1, type: 'string' },
     readOnly: { type: 'boolean' },
-    secretKey: { pattern: '^[a-zA-Z0-9-_.]*$', type: 'string' },
-    secretName: { pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$', type: 'string' },
+    secretKey: { pattern: serviceSecretKey.pattern, type: 'string' },
+    secretName: { pattern: serviceSecretName.pattern, type: 'string' },
     valueType: { const: 'secret' },
   },
   required: ['name', 'valueType', 'secretName', 'secretKey'],
@@ -157,8 +171,8 @@ export const catalogDefaultConfigMapsSchema = {
         },
         type: 'object',
       },
-      mountPath: { pattern: '^[a-zA-Z0-9-/_\\s.|\\\\!"£$%&()=?^"{}[\\]*+@]+$', type: 'string' },
-      name: { pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$', type: 'string' },
+      mountPath: { pattern: configMapMountPath.pattern, type: 'string' },
+      name: { pattern: configMapName.pattern, type: 'string' },
       subPaths: { type: 'array', items: { type: 'string' } },
       usePreserve: { type: 'boolean' },
       viewAsReadOnly: { type: 'boolean' },
@@ -174,8 +188,8 @@ export const catalogDefaultSecretsSchema = {
   items: {
     additionalProperties: false,
     properties: {
-      mountPath: { pattern: '^[a-zA-Z0-9-/_\\s.|\\\\!"£$%&()=?^"{}[\\]*+@]+$', type: 'string' },
-      name: { pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$', type: 'string' },
+      mountPath: { pattern: serviceSecretMountPath.pattern, type: 'string' },
+      name: { pattern: serviceSecretName.pattern, type: 'string' },
     },
     required: ['name', 'mountPath'],
     type: 'object',
@@ -190,16 +204,16 @@ export const catalogDefaultResourcesSchema = {
     cpuLimits: {
       additionalProperties: false,
       properties: {
-        max: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$', type: 'string' },
-        min: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$', type: 'string' },
+        max: { pattern: container.properties.resources.properties.cpuLimits.properties.max.pattern, type: 'string' },
+        min: { pattern: container.properties.resources.properties.cpuLimits.properties.min.pattern, type: 'string' },
       },
       type: 'object',
     },
     memoryLimits: {
       additionalProperties: false,
       properties: {
-        max: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$', type: 'string' },
-        min: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$', type: 'string' },
+        max: { pattern: container.properties.resources.properties.memoryLimits.properties.max.pattern, type: 'string' },
+        min: { pattern: container.properties.resources.properties.memoryLimits.properties.min.pattern, type: 'string' },
       },
       type: 'object',
     },
@@ -240,7 +254,7 @@ const probeSchema = {
       properties: {
         failureThreshold: { type: 'number' },
         initialDelaySeconds: { type: 'number' },
-        path: { pattern: '^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$', type: 'string' },
+        path: { pattern: probesPath.pattern, type: 'string' },
         periodSeconds: { type: 'number' },
         port: { type: 'string' },
         successThreshold: { type: 'number' },
@@ -283,7 +297,7 @@ export const catalogDefaultLogParserSchema = {
 export type CatalogDefaultLogParser = FromSchema<typeof catalogDefaultLogParserSchema>
 
 export const catalogDefaultDocumentationPathSchema = {
-  pattern: '^$|^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$',
+  pattern: swaggerPath.pattern,
   type: 'string',
 } as const satisfies JSONSchema
 export type CatalogDefaultDocumentationPath = FromSchema<typeof catalogDefaultDocumentationPathSchema>
@@ -295,7 +309,7 @@ export const catalogDefaultMonitoringSchema = {
       items: {
         additionalProperties: false,
         properties: {
-          interval: { type: 'string', pattern: '^(\\d)+[s]$' },
+          interval: { type: 'string', pattern: container.properties.monitoring.properties.endpoints.items.properties.interval.pattern },
           path: pathWithoutPort,
           port: { type: 'string' },
         },
@@ -329,7 +343,7 @@ export const catalogDefaultAnnotationsSchema = {
     additionalProperties: false,
     properties: {
       description: { type: 'string' },
-      name: { pattern: '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$', type: 'string' },
+      name: { pattern: kubernetesDefinitionName.pattern, type: 'string' },
       readOnly: { type: 'boolean' },
       value: { type: 'string' },
     },
@@ -345,7 +359,7 @@ export const catalogDefaultLabelsSchema = {
     additionalProperties: false,
     properties: {
       description: { type: 'string' },
-      name: { pattern: '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$', type: 'string' },
+      name: { pattern: kubernetesDefinitionName.pattern, type: 'string' },
       readOnly: { type: 'boolean' },
       value: { type: 'string' },
     },
@@ -361,18 +375,12 @@ export const catalogContainerPortsSchema = {
     additionalProperties: false,
     properties: {
       from: {
-        oneOf: [
-          { maximum: 65535, minimum: 0, type: 'integer' },
-          { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' },
-        ],
+        oneOf: [port, { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' }],
       },
-      name: { pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?$', type: 'string' },
+      name: { pattern: serviceName.pattern, type: 'string' },
       protocol: { default: 'TCP', enum: ['TCP', 'UDP'], type: 'string' },
       to: {
-        oneOf: [
-          { maximum: 65535, minimum: 0, type: 'integer' },
-          { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' },
-        ],
+        oneOf: [port, { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' }],
       },
     },
     required: ['name', 'from'],

@@ -19,17 +19,19 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { catalogExampleSchema } from '../example'
-import { catalogPluginSchema } from '../plugin'
-import { catalogTemplateSchema } from '../template'
+import { collection } from '../../../collections'
+import { endpoint } from '../../../endpoints'
 import { CatalogItemNoVersionManifest } from '../../item-manifest'
 import { CatalogItem } from '../../item'
 import { CatalogVersionedItem } from '../../versioned-item'
-import { catalogListenerSchema } from '../commons'
+import { catalogListenerSchema, catalogNameSchema } from '../commons'
+import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
+import { catalogExampleSchema } from '../example'
+import { catalogPluginSchema } from '../plugin'
+import { catalogTemplateSchema } from '../template'
 import { catalogCollectionSchema } from './collection'
 import { catalogEndpointSchema } from './endpoint'
 import { catalogUnsecretedVariableSchema } from './unsecreted-variable'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'application'
 
@@ -39,15 +41,26 @@ const resourcesSchema = {
   additionalProperties: false,
   description: `Resources of Catalog items of type ${type}`,
   properties: {
-    collections: { additionalProperties: catalogCollectionSchema, type: 'object' },
-    endpoints: { additionalProperties: catalogEndpointSchema, type: 'object' },
+    collections: {
+      description: 'Collections to be created with the application. The key of each collection MUST be equal to the collection `defaultName` property. Collections only work if a Mia-Platform CRUD Service is already in the project or is created through the application itself.',
+      patternProperties: { [collection.name.pattern]: catalogCollectionSchema },
+      type: 'object',
+    },
+    endpoints: {
+      description: 'Endpoints to be created with the application. The key of each endpoint MUST be equal to the endpoint `defaultBasePath` property. Endpoints only work if a Mia-Platform API Gateway is already in the project or is created through the application itself.',
+      patternProperties: { [endpoint.basePath.pattern]: catalogEndpointSchema },
+      type: 'object',
+    },
     listeners: {
       additionalProperties: catalogListenerSchema,
       type: 'object',
     },
     services: {
-      additionalProperties: {
-        oneOf: [catalogPluginSchema, catalogExampleSchema, catalogTemplateSchema],
+      description: 'Services to be created with the application. The key of each service MUST be equal to the service `name` property',
+      patternProperties: {
+        [catalogNameSchema.pattern]: {
+          oneOf: [catalogPluginSchema, catalogExampleSchema, catalogTemplateSchema],
+        },
       },
       minProperties: 1,
       type: 'object',

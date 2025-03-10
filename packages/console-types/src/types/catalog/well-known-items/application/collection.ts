@@ -20,12 +20,13 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { catalogDescriptionSchema, catalogTagsSchema } from '../commons'
+import { collectionFieldName, collectionName, index, indexFieldName } from '../../../collections'
 
 const idSchema = { type: 'string' } as const satisfies JSONSchema
 
 const collectionNameSchema = {
-  maxLength: 80,
-  pattern: '(^[\\w-]+$)',
+  maxLength: collectionName.maxLength,
+  pattern: collectionName.pattern,
   type: 'string',
 } as const satisfies JSONSchema
 
@@ -38,7 +39,7 @@ const fieldsSchema = {
           description: { type: 'string' },
           encryptionEnabled: { type: 'boolean' },
           encryptionSearchable: { type: 'boolean' },
-          name: { pattern: '^[^$\\.]+$', type: 'string' },
+          name: { pattern: collectionFieldName.pattern, type: 'string' },
           nullable: { type: 'boolean' },
           required: { type: 'boolean' },
           schema: {
@@ -71,7 +72,7 @@ const fieldsSchema = {
           description: { type: 'string' },
           encryptionEnabled: { type: 'boolean' },
           encryptionSearchable: { type: 'boolean' },
-          name: { pattern: '^[^$\\.]+$', type: 'string' },
+          name: { pattern: collectionFieldName.pattern, type: 'string' },
           nullable: { type: 'boolean' },
           required: { type: 'boolean' },
           sensitivityDescription: { type: 'string' },
@@ -110,7 +111,7 @@ const internalEndpointsSchema = {
 const normalIndexSchema = {
   type: 'object',
   properties: {
-    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    name: { type: 'string', pattern: index.name.pattern },
     type: { const: 'normal' },
     unique: { type: 'boolean' },
     description: { type: 'string' },
@@ -121,7 +122,7 @@ const normalIndexSchema = {
       items: {
         type: 'object',
         properties: {
-          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          name: { type: 'string', pattern: indexFieldName.pattern },
           order: { type: 'number', enum: [1, -1] },
         },
         required: ['name', 'order'],
@@ -134,7 +135,7 @@ const normalIndexSchema = {
 const geoIndexSchema = {
   type: 'object',
   properties: {
-    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    name: { type: 'string', pattern: index.name.pattern },
     type: { const: 'geo' },
     unique: { type: 'boolean' },
     description: { type: 'string' },
@@ -145,7 +146,7 @@ const geoIndexSchema = {
       items: {
         type: 'object',
         properties: {
-          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          name: { type: 'string', pattern: indexFieldName.pattern },
           order: { type: 'number', enum: [1, -1] },
         },
         required: ['name', 'order'],
@@ -158,7 +159,7 @@ const geoIndexSchema = {
 const hashIndexSchema = {
   type: 'object',
   properties: {
-    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    name: { type: 'string', pattern: index.name.pattern },
     type: { const: 'hash' },
     unique: { const: false },
     description: { type: 'string' },
@@ -169,7 +170,7 @@ const hashIndexSchema = {
       items: {
         type: 'object',
         properties: {
-          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          name: { type: 'string', pattern: indexFieldName.pattern },
           order: { type: 'number', enum: [1, -1] },
         },
         required: ['name', 'order'],
@@ -182,7 +183,7 @@ const hashIndexSchema = {
 const ttlIndexSchema = {
   type: 'object',
   properties: {
-    name: { type: 'string', pattern: '^[a-zA-Z_][\\w-]*$' },
+    name: { type: 'string', pattern: index.name.pattern },
     type: { const: 'ttl' },
     unique: { type: 'boolean' },
     description: { type: 'string' },
@@ -193,7 +194,7 @@ const ttlIndexSchema = {
       items: {
         type: 'object',
         properties: {
-          name: { type: 'string', pattern: '^_?[ \\w-]+(\\.[\\w-]+|(\\.\\$\\*\\*))*$|^(\\$\\*\\*)$' },
+          name: { type: 'string', pattern: indexFieldName.pattern },
           order: { type: 'number', enum: [1, -1] },
         },
         required: ['name', 'order'],

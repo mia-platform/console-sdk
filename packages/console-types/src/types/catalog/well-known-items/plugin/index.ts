@@ -100,9 +100,9 @@ const resourcesSchema = {
       type: 'object',
     },
     services: {
-      additionalProperties: catalogPluginSchema,
       maxProperties: 1,
       minProperties: 1,
+      patternProperties: { [catalogNameSchema.pattern]: catalogPluginSchema },
       type: 'object',
     },
   },

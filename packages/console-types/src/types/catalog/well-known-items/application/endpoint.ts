@@ -19,9 +19,11 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { catalogPortSchema, catalogTagsSchema } from '../commons'
+import { collectionName } from '../../../collections'
+import { basePath, endpoint, path } from '../../../endpoints'
+import { catalogNameSchema, catalogPortSchema, catalogTagsSchema } from '../commons'
 
-const defaultBasePathSchema = { pattern: '^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$', type: 'string' } as const satisfies JSONSchema
+const defaultBasePathSchema = { pattern: basePath.pattern, type: 'string' } as const satisfies JSONSchema
 
 const defaultPathRewriteSchema = { type: 'string' } as const satisfies JSONSchema
 
@@ -99,10 +101,11 @@ const routeBooleanValueSchema = {
   ],
 } as const satisfies JSONSchema
 
+const routeIdPattern = '^(GET|POST|PUT|PATCH|DELETE|HEAD)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$'
 const routesSchema = {
   additionalProperties: false,
   patternProperties: {
-    '^(GET|POST|PUT|PATCH|DELETE|HEAD)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$': {
+    [routeIdPattern]: {
       additionalProperties: false,
       properties: {
         acl: backofficeAclSchema,
@@ -110,8 +113,8 @@ const routesSchema = {
         allowUnknownResponseContentType: routeBooleanValueSchema,
         backofficeAcl: backofficeAclSchema,
         catchDecorator: { type: 'string' },
-        id: { pattern: '^(GET|POST|PUT|PATCH|DELETE|HEAD)(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$', type: 'string' },
-        path: { pattern: '^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*\\/?)+)$', type: 'string' },
+        id: { pattern: routeIdPattern, type: 'string' },
+        path: { pattern: endpoint.route.path.pattern, type: 'string' },
         postDecorators: { default: [], items: { type: 'string' }, type: 'array' },
         preDecorators: { default: [], items: { type: 'string' }, type: 'array' },
         public: routeBooleanValueSchema,
@@ -164,7 +167,7 @@ export const catalogEndpointSchema = {
         public: publicSchema,
         routes: routesSchema,
         secreted: secretedSchema,
-        service: { minLength: 1, pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?$', type: 'string' },
+        service: { minLength: 1, pattern: catalogNameSchema.pattern, type: 'string' },
         showInDocumentation: showInDocumentationSchema,
         tags: catalogTagsSchema,
         type: { enum: ['external', 'custom', 'cross-projects'], type: 'string' },
@@ -180,13 +183,13 @@ export const catalogEndpointSchema = {
         allowUnknownRequestContentType: allowUnknownRequestContentTypeSchema,
         allowUnknownResponseContentType: allowUnknownResponseContentTypeSchema,
         backofficeAcl: backofficeAclSchema,
-        collectionId: { maxLength: 80, pattern: '(^[\\w-]+$)', type: 'string' },
+        collectionId: { maxLength: collectionName.maxLength, pattern: collectionName.pattern, type: 'string' },
         defaultBasePath: defaultBasePathSchema,
         defaultPathRewrite: defaultPathRewriteSchema,
         description: descriptionSchema,
         forceMicroserviceGatewayProxy: forceMicroserviceGatewayProxySchema,
         listeners: listenersSchema,
-        pathName: { 'type': 'string', 'pattern': '^\\/(([\\w\\-:])\\/?)*$' },
+        pathName: { 'type': 'string', pattern: path.pattern },
         options: optionsSchema,
         public: publicSchema,
         routes: routesSchema,
