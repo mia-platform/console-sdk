@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.31.2
+
+### Patch Changes
+
+- dcfe9e6: add missing service account exports
+
 ## 0.31.1
 
 ### Patch Changes
