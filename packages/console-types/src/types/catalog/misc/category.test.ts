@@ -16,18 +16,28 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { FromSchema } from 'json-schema-to-ts'
+import Ajv from 'ajv'
+import t from 'tap'
+import addFormats from 'ajv-formats'
 
-import type { JSONSchema } from '../../../../commons/json-schema'
+import { validationMessage } from '../../validate-utils.test'
+import { catalogCategorySchema, type CatalogCategory } from './category'
 
-export const catalogUnsecretedVariableSchema = {
-  additionalProperties: false,
-  properties: {
-    noProductionEnv: { type: 'string' },
-    productionEnv: { type: 'string' },
-  },
-  required: ['productionEnv', 'noProductionEnv'],
-  type: 'object',
-} as const satisfies JSONSchema
+t.test('catalog category', t => {
+  const ajv = new Ajv()
+  addFormats(ajv)
+  const validate = ajv.compile<CatalogCategory>(catalogCategorySchema)
 
-export type UnsecretedVariable = FromSchema<typeof catalogUnsecretedVariableSchema>
+  t.test('all fields', t => {
+    const data: Required<CatalogCategory> = {
+      categoryId: 'category-id',
+      label: 'label',
+    }
+
+    t.ok(validate(data), validationMessage(validate.errors))
+
+    t.end()
+  })
+
+  t.end()
+})

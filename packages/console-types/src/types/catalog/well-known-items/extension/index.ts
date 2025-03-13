@@ -19,10 +19,9 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { CatalogItemNoVersionManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
+import type { CatalogWellKnownItemData } from '../commons'
 
 const type = 'extension'
 
@@ -124,14 +123,13 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
+const crd: CatalogCrd = {
   name: 'extension',
   itemId: 'extension-definition',
   description: 'Extension Custom Resource Definition',
   type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: false,
-  visibility: { public: true },
   resources: {
     name: type,
     validation: {
@@ -146,11 +144,11 @@ const crd: CatalogCRDManifest = {
       },
     },
   },
-} satisfies PublicCatalogCRD
+}
 
-export type CatalogExtensionResources = FromSchema<typeof resourcesSchema, { parseIfThenElseKeywords: true }>
-export type CatalogExtensionItem = CatalogItem<typeof type, CatalogExtensionResources>
-export type CatalogExtensionVersionedItem = CatalogVersionedItem<typeof type, CatalogExtensionResources>
-export type CatalogExtensionManifest = CatalogItemNoVersionManifest<typeof type, CatalogExtensionResources>
+export type Resources = FromSchema<typeof resourcesSchema, { parseIfThenElseKeywords: true }>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export default { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

@@ -19,11 +19,9 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { catalogNameSchema } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
-import { PublicCatalogCRD, CatalogCRDManifest } from '../custom-resource-definition'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
+import { catalogNameSchema, type CatalogWellKnownItemData } from '../commons'
 
 const type = 'custom-resource'
 
@@ -129,14 +127,13 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
+const crd: CatalogCrd = {
   name: 'custom-resource',
   itemId: 'custom-resource',
   description: 'Custom Workload Resource Definition',
   type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: true,
-  visibility: { public: true },
   resources: {
     name: type,
     validation: {
@@ -151,17 +148,11 @@ const crd: CatalogCRDManifest = {
       { key: 'resourceId', jsonPath: 'runtime.resourceId' },
     ],
   },
-} satisfies PublicCatalogCRD
+}
 
-export type CatalogInfrastructureResourceResources = FromSchema<typeof resourcesSchema>
-export type CatalogInfrastructureResourceItem = CatalogItem<typeof type, CatalogInfrastructureResourceResources>
-export type CatalogInfrastructureResourceVersionedItem = CatalogVersionedItem<
-  typeof type,
-  CatalogInfrastructureResourceResources
->
-export type CatalogInfrastructureResourceManifest = CatalogItemManifest<
-  typeof type,
-  CatalogInfrastructureResourceResources
->
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export default { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

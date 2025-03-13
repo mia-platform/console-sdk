@@ -16,9 +16,23 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { JSONSchema } from '../../commons/json-schema'
+import type { JSONSchema } from '../../../commons/json-schema'
 
-export const NA_VERSION = 'NA'
+export const CATALOG_ITEM_NA_VERSION = 'NA'
+
+export enum CatalogItemDocumentationType {
+  EXTERNAL_LINK = 'externalLink',
+  MARKDOWN = 'markdown'
+}
+
+export enum CatalogItemReleaseStage {
+  BETA = 'beta',
+  DEPRECATED = 'deprecated',
+  EMPTY = '',
+  PREVIEW = 'preview',
+  STABLE = 'stable'
+}
+
 
 export const catalogComingSoonSchema = {
   description: 'Flag that will prevent the use of the item',
@@ -31,16 +45,11 @@ export const catalogItemDescriptionSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
-export enum CatalogDocumentationType {
-  EXTERNAL_LINK = 'externalLink',
-  MARKDOWN = 'markdown'
-}
-
 export const catalogDocumentationSchema = {
   description: 'Documentation of the item',
   nullable: true,
   properties: {
-    type: { enum: Object.values(CatalogDocumentationType), type: 'string' },
+    type: { enum: Object.values(CatalogItemDocumentationType), type: 'string' },
     url: { format: 'uri-reference', type: 'string' },
   },
   required: ['type', 'url'],
@@ -55,11 +64,6 @@ export const catalogImageUrlSchema = {
 
 export const catalogIsLatestSchema = {
   description: 'Flag stating if the the current document is the latest version of the item',
-  type: 'boolean',
-} as const satisfies JSONSchema
-
-export const catalogIsVersioningSupportedSchema = {
-  description: 'States if versioning is supported for the custom resource defined by the CRD. Applicable only for type "custom-resource-definition"',
   type: 'boolean',
 } as const satisfies JSONSchema
 
@@ -93,17 +97,9 @@ export const catalogReleaseDateSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
-export enum CatalogReleaseStage {
-  BETA = 'beta',
-  DEPRECATED = 'deprecated',
-  EMPTY = '',
-  PREVIEW = 'preview',
-  STABLE = 'stable'
-}
-
 export const catalogReleaseStageSchema = {
   description: 'Release stage of the item',
-  enum: Object.values(CatalogReleaseStage),
+  enum: Object.values(CatalogItemReleaseStage),
   type: 'string',
 } as const satisfies JSONSchema
 
@@ -173,7 +169,7 @@ export const catalogVersionSchema = {
           type: 'string',
         },
         {
-          const: NA_VERSION,
+          const: CATALOG_ITEM_NA_VERSION,
           description: 'Fallback version',
         },
       ],

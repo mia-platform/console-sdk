@@ -204,4 +204,4 @@ export const catalogEndpointSchema = {
   ],
 } as const satisfies JSONSchema
 
-export type CatalogEndpoint = FromSchema<typeof catalogEndpointSchema>
+export type Endpoint = FromSchema<typeof catalogEndpointSchema>

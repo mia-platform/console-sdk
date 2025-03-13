@@ -20,8 +20,8 @@ import Ajv from 'ajv'
 import t from 'tap'
 import addFormats from 'ajv-formats'
 
-import { validationMessage } from '../validate-utils.test'
-import { CatalogItemMetadata, catalogItemMetadataSchema } from './item-metadata'
+import { validationMessage } from '../../validate-utils.test'
+import { catalogItemMetadataSchema, type CatalogItemMetadata } from './item-metadata'
 
 t.test('catalog item metadata', t => {
   const ajv = new Ajv()
@@ -42,7 +42,7 @@ t.test('catalog item metadata', t => {
   })
 
   t.test('all fields', t => {
-    const data: CatalogItemMetadata = {
+    const data: Required<CatalogItemMetadata> = {
       itemId: 'item-id',
       tenantId: 'tenant-id',
       type: 'plugin',

@@ -20,22 +20,21 @@ import Ajv from 'ajv'
 import t from 'tap'
 import addFormats from 'ajv-formats'
 
-import { validationMessage } from '../validate-utils.test'
-import { CatalogItem, catalogItemSchema } from './item'
-import { CatalogDocumentationType, CatalogReleaseStage } from './commons'
+import { validationMessage } from '../../validate-utils.test'
+import { catalogCrdSchema, type CatalogCrd } from './crd'
 
 t.test('catalog item', t => {
   const ajv = new Ajv()
   addFormats(ajv)
-  const validate = ajv.compile<CatalogItem>(catalogItemSchema)
+  const validate = ajv.compile<CatalogCrd>(catalogCrdSchema)
 
   t.test('only required fields', t => {
-    const data: CatalogItem = {
-      type: 'type',
+    const data: CatalogCrd = {
+      type: 'custom-resource-definition',
       itemId: 'item-id',
       name: 'name',
       tenantId: 'tenant-id',
-      _id: 'uuid',
+      resources: { name: 'item-type' },
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
@@ -44,30 +43,18 @@ t.test('catalog item', t => {
   })
 
   t.test('all fields', t => {
-    const data: CatalogItem = {
-      type: 'type',
+    const data: Required<CatalogCrd> = {
+      type: 'custom-resource-definition',
       itemId: 'item-id',
       name: 'name',
       tenantId: 'tenant-id',
-      _id: 'uuid',
-      category: { id: 'category-id', label: 'category-label' },
-      comingSoon: true,
-      componentsIds: ['component-id'],
       description: 'description',
-      documentation: { type: CatalogDocumentationType.EXTERNAL_LINK, url: 'http://example.com' },
-      imageUrl: 'http://example.com',
-      isLatest: true,
+      resources: {
+        controlledFields: [{ jsonPath: 'foo', key: 'bar' }],
+        name: 'item-type',
+        validation: { jsonSchema: { type: 'object' } },
+      },
       isVersioningSupported: true,
-      providerId: 'provider-id',
-      publishOnMiaDocumentation: true,
-      releaseDate: '2025-01-01T10:10:00.000Z',
-      releaseStage: CatalogReleaseStage.BETA,
-      repositoryUrl: 'http://example.com',
-      resources: { foo: 'bar' },
-      supportedBy: 'supported-by',
-      supportedByImageUrl: 'http://example.com',
-      version: { name: '1.0.0', releaseNote: 'release-note', security: true },
-      visibility: { allTenants: true, public: true },
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

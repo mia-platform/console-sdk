@@ -20,22 +20,21 @@ import Ajv from 'ajv'
 import t from 'tap'
 import addFormats from 'ajv-formats'
 
-import { validationMessage } from '../validate-utils.test'
-import { CatalogRelease, catalogReleaseSchema } from './release'
+import { validationMessage } from '../../validate-utils.test'
+import { catalogCrdManifestSchema, type CatalogCrdManifest } from './crd-manifest'
 
-t.test('catalog release', t => {
+t.test('catalog item manifest', t => {
   const ajv = new Ajv()
   addFormats(ajv)
-  const validate = ajv.compile<CatalogRelease>(catalogReleaseSchema)
+  const validate = ajv.compile<CatalogCrdManifest>(catalogCrdManifestSchema)
 
   t.test('only required fields', t => {
-    const data: CatalogRelease = {
-      description: 'description',
+    const data: CatalogCrdManifest = {
+      type: 'custom-resource-definition',
+      itemId: 'item-id',
       name: 'name',
-      releaseDate: '2025-01-01T10:10:00.000Z',
-      releaseNote: 'release-note',
-      version: '1.0.0',
-      reference: 'reference',
+      resources: { name: 'item-type' },
+      tenantId: 'tenant-id',
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
@@ -44,16 +43,18 @@ t.test('catalog release', t => {
   })
 
   t.test('all fields', t => {
-    const data: CatalogRelease = {
-      description: 'description',
+    const data: Required<CatalogCrdManifest> = {
+      type: 'custom-resource-definition',
+      itemId: 'item-id',
       name: 'name',
-      releaseDate: '2025-01-01T10:10:00.000Z',
-      releaseNote: 'release-note',
-      version: '1.0.0',
-      reference: 'reference',
-      comingSoon: true,
-      isLatest: true,
-      security: true,
+      resources: {
+        controlledFields: [{ jsonPath: 'foo', key: 'bar' }],
+        name: 'item-type',
+        validation: { jsonSchema: { type: 'object' } },
+      },
+      tenantId: 'tenant-id',
+      description: 'description',
+      isVersioningSupported: true,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

@@ -18,13 +18,12 @@
 
 import type { FromSchema } from 'json-schema-to-ts'
 
-import type { JSONSchema } from '../../commons/json-schema'
+import type { JSONSchema } from '../../../commons/json-schema'
 import {
   catalogComingSoonSchema,
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
   catalogImageUrlSchema,
-  catalogIsVersioningSupportedSchema,
   catalogItemIdSchema,
   catalogItemNameSchema,
   catalogProviderIdSchema,
@@ -43,15 +42,15 @@ import {
 export const catalogItemManifestSchema = {
   $id: 'catalog-item-manifest.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  additionalProperties: false,
+  title: 'Catalog item manifest',
   description: 'Data model of a Catalog item to apply',
+  type: 'object',
   properties: {
     categoryId: { description: 'Identifier of the item\'s category', type: 'string' },
     comingSoon: catalogComingSoonSchema,
     description: catalogItemDescriptionSchema,
     documentation: catalogDocumentationSchema,
     imageUrl: catalogImageUrlSchema,
-    isVersioningSupported: catalogIsVersioningSupportedSchema,
     itemId: catalogItemIdSchema,
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
@@ -66,9 +65,8 @@ export const catalogItemManifestSchema = {
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
   },
+  additionalProperties: false,
   required: ['name', 'itemId', 'tenantId', 'type', 'resources'],
-  title: 'Catalog item manifest',
-  type: 'object',
 } as const satisfies JSONSchema
 
 type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>

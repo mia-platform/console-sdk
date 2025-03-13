@@ -19,6 +19,8 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import {
   catalogComponentIdSchema,
   catalogContainerPortsSchema,
@@ -32,11 +34,8 @@ import {
   catalogDescriptionSchema,
   catalogDockerImageSchema,
   catalogNameSchema,
+  type CatalogWellKnownItemData,
 } from '../commons'
-import { CatalogItemNoVersionManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'sidecar'
 
@@ -76,14 +75,13 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
+const crd: CatalogCrd = {
   name: 'sidecar',
   itemId: 'sidecar-definition',
   description: 'Sidecar Custom Resource Definition',
   type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: false,
-  visibility: { public: true },
   resources: {
     name: type,
     validation: {
@@ -96,11 +94,11 @@ const crd: CatalogCRDManifest = {
       },
     },
   },
-} satisfies PublicCatalogCRD
+}
 
-export type CatalogSidecarResources = FromSchema<typeof resourcesSchema>
-export type CatalogSidecarItem = CatalogItem<typeof type, CatalogSidecarResources>
-export type CatalogSidecarVersionedItem = CatalogVersionedItem<typeof type, CatalogSidecarResources>
-export type CatalogSidecarManifest = CatalogItemNoVersionManifest<typeof type, CatalogSidecarResources>
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
 
-export default { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

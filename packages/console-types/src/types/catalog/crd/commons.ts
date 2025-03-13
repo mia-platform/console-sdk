@@ -16,19 +16,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { FromSchema } from 'json-schema-to-ts'
+import { JSONSchema } from '../../../commons/json-schema'
 
-import type { JSONSchema } from '../../../../commons/json-schema'
-import { CatalogItemNoVersionManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
+export const CATALOG_CRD_TYPE = 'custom-resource-definition'
 
-const type = 'custom-resource-definition'
+export const catalogCrdIsVersioningSupportedSchema = {
+  description: 'States if versioning is supported for the custom resource defined by the CRD',
+  type: 'boolean',
+} as const satisfies JSONSchema
 
-const resourcesSchema = {
-  $id: 'catalog-crd-resources.schema.json',
-  $schema: 'http://json-schema.org/draft-07/schema#',
-  description: `Resources of Catalog items of type ${type}`,
+export const catalogCrdResourcesSchema = {
+  type: 'object',
   properties: {
     controlledFields: {
       description: 'List detailing the fields that are managed by the Marketplace item',
@@ -95,23 +93,6 @@ const resourcesSchema = {
       ],
     },
   },
+  additionalProperties: false,
   required: ['name'],
-  title: 'Catalog CRD resources',
-  type: 'object',
 } as const satisfies JSONSchema
-
-export type CatalogCRDResources = FromSchema<typeof resourcesSchema>
-export type CatalogCRDItem = CatalogItem<typeof type, CatalogCRDResources>
-export type CatalogCRDVersionedItem = CatalogVersionedItem<typeof type, CatalogCRDResources>
-export type CatalogCRDManifest = CatalogItemNoVersionManifest<typeof type, CatalogCRDResources>
-
-export default { type, resourcesSchema }
-
-/**
- * This type is meant only as a way to ensure correctness of public CRDs.
- * It should not be exposed nor used elsewhere.
- */
-export type PublicCatalogCRD = CatalogCRDManifest & {
-  tenantId: 'mia-platform',
-  visibility: { public: true },
-}

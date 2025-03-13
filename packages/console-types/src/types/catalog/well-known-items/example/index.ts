@@ -19,6 +19,8 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import {
   catalogArchiveUrlSchema,
   catalogComponentIdSchema,
@@ -40,15 +42,12 @@ import {
   catalogNameSchema,
   catalogPipelinesSchema,
   catalogRepositoryUrlSchema,
+  type CatalogWellKnownItemData,
 } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
 
 const type = 'example'
 
-export const catalogExampleSchema = {
+export const catalogExampleServiceSchema = {
   additionalProperties: false,
   properties: {
     archiveUrl: catalogArchiveUrlSchema,
@@ -79,8 +78,6 @@ export const catalogExampleSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogExample = FromSchema<typeof catalogExampleSchema>
-
 const resourcesSchema = {
   $id: 'catalog-example-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
@@ -90,7 +87,7 @@ const resourcesSchema = {
     services: {
       maxProperties: 1,
       minProperties: 1,
-      patternProperties: { [catalogNameSchema.pattern]: catalogExampleSchema },
+      patternProperties: { [catalogNameSchema.pattern]: catalogExampleServiceSchema },
       type: 'object',
     },
   },
@@ -99,14 +96,13 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
+const crd: CatalogCrd = {
   name: 'example',
   itemId: 'example-definition',
   description: 'Example Custom Resource Definition',
   type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: true,
-  visibility: { public: true },
   resources: {
     name: type,
     validation: {
@@ -124,11 +120,12 @@ const crd: CatalogCRDManifest = {
       },
     },
   },
-} satisfies PublicCatalogCRD
+}
 
-export type CatalogExampleResources = FromSchema<typeof resourcesSchema>
-export type CatalogExampleItem = CatalogItem<typeof type, CatalogExampleResources>
-export type CatalogExampleVersionedItem = CatalogVersionedItem<typeof type, CatalogExampleResources>
-export type CatalogExampleManifest = CatalogItemManifest<typeof type, CatalogExampleResources>
+export type Service = FromSchema<typeof catalogExampleServiceSchema>
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export default { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

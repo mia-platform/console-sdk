@@ -2,7 +2,7 @@
   "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `build-catalog-schemas`.",
   "$id": "catalog-plugin.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "additionalProperties": false,
+  "type": "object",
   "properties": {
     "categoryId": {
       "description": "Identifier of the item's category",
@@ -1372,12 +1372,12 @@
       "type": "string"
     }
   },
+  "additionalProperties": false,
   "required": [
     "name",
     "itemId",
     "tenantId",
     "type",
     "resources"
-  ],
-  "type": "object"
+  ]
 }
