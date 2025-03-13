@@ -462,6 +462,7 @@ export const aiSettings = {
     },
   },
 } as const
+export type AISettings = FromSchema<typeof aiSettings>
 
 export const project = {
   type: 'object',
