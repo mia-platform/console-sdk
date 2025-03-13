@@ -16,28 +16,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Ajv from 'ajv'
-import t from 'tap'
-import addFormats from 'ajv-formats'
+import { CATALOG_CRD_TYPE } from './commons'
+import { catalogCrdManifestSchema, type CatalogCrdManifest } from './crd-manifest'
+import { catalogCrdSchema, type CatalogCrd } from './crd'
 
-import { validationMessage } from '../validate-utils.test'
-import { CatalogCategory, catalogCategorySchema } from './category'
+export {
+  CATALOG_CRD_TYPE,
+  catalogCrdManifestSchema,
+  catalogCrdSchema,
+}
 
-t.test('catalog category', t => {
-  const ajv = new Ajv()
-  addFormats(ajv)
-  const validate = ajv.compile<CatalogCategory>(catalogCategorySchema)
-
-  t.test('all fields', t => {
-    const data: CatalogCategory = {
-      categoryId: 'category-id',
-      label: 'label',
-    }
-
-    t.ok(validate(data), validationMessage(validate.errors))
-
-    t.end()
-  })
-
-  t.end()
-})
+export type {
+  CatalogCrdManifest,
+  CatalogCrd,
+}

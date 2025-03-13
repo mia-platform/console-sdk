@@ -18,22 +18,22 @@
 
 import type { FromSchema } from 'json-schema-to-ts'
 
-import type { JSONSchema } from '../../commons/json-schema'
+import type { JSONSchema } from '../../../commons/json-schema'
 import { catalogVersionSchema } from './commons'
 import { catalogItemSchema } from './item'
 
 export const catalogVersionedItemSchema = {
   $id: 'catalog-versioned-item.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  additionalProperties: false,
+  title: 'Catalog versioned item',
   description: 'Data model of a Catalog item with required version',
+  type: 'object',
   properties: {
     ...catalogItemSchema.properties,
     version: catalogVersionSchema,
   },
-  required: ['_id', 'name', 'itemId', 'tenantId', 'type', 'version'],
-  title: 'Catalog versioned item',
-  type: 'object',
+  additionalProperties: false,
+  required: [...catalogItemSchema.required, 'version'],
 } as const satisfies JSONSchema
 
 export type CatalogVersionedItem<

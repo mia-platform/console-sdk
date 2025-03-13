@@ -20,22 +20,23 @@ import Ajv from 'ajv'
 import t from 'tap'
 import addFormats from 'ajv-formats'
 
-import { validationMessage } from '../validate-utils.test'
-import { CatalogItemManifest, catalogItemManifestSchema } from './item-manifest'
-import { CatalogDocumentationType, CatalogReleaseStage } from './commons'
+import { validationMessage } from '../../validate-utils.test'
+import { catalogVersionedItemSchema, type CatalogVersionedItem } from './versioned-item'
+import { CatalogItemDocumentationType, CatalogItemReleaseStage } from './commons'
 
-t.test('catalog item manifest', t => {
+t.test('catalog versioned item', t => {
   const ajv = new Ajv()
   addFormats(ajv)
-  const validate = ajv.compile<CatalogItemManifest>(catalogItemManifestSchema)
+  const validate = ajv.compile<CatalogVersionedItem>(catalogVersionedItemSchema)
 
   t.test('only required fields', t => {
-    const data: CatalogItemManifest = {
+    const data: CatalogVersionedItem = {
       type: 'type',
       itemId: 'item-id',
       name: 'name',
-      resources: { foo: 'bar' },
       tenantId: 'tenant-id',
+      _id: 'uuid',
+      version: { name: '1.0.0', releaseNote: 'release-note', security: true },
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
@@ -44,26 +45,30 @@ t.test('catalog item manifest', t => {
   })
 
   t.test('all fields', t => {
-    const data: CatalogItemManifest = {
+    const data: Required<CatalogVersionedItem> = {
       type: 'type',
       itemId: 'item-id',
       name: 'name',
-      resources: { foo: 'bar' },
       tenantId: 'tenant-id',
-      categoryId: 'category-id',
+      _id: 'uuid',
+      category: { id: 'category-id', label: 'category-label' },
       comingSoon: true,
+      componentsIds: ['component-id'],
       description: 'description',
-      documentation: { type: CatalogDocumentationType.EXTERNAL_LINK, url: 'http://example.com' },
+      documentation: { type: CatalogItemDocumentationType.EXTERNAL_LINK, url: 'http://example.com' },
       imageUrl: 'http://example.com',
-      isVersioningSupported: true,
+      isLatest: true,
       providerId: 'provider-id',
       publishOnMiaDocumentation: true,
-      releaseStage: CatalogReleaseStage.BETA,
+      releaseDate: '2025-01-01T10:10:00.000Z',
+      releaseStage: CatalogItemReleaseStage.BETA,
       repositoryUrl: 'http://example.com',
+      resources: { foo: 'bar' },
       supportedBy: 'supported-by',
       supportedByImageUrl: 'http://example.com',
       version: { name: '1.0.0', releaseNote: 'release-note', security: true },
       visibility: { allTenants: true, public: true },
+      isVersioningSupported: false,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

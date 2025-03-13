@@ -18,7 +18,7 @@
 
 import type { FromSchema } from 'json-schema-to-ts'
 
-import type { JSONSchema } from '../../commons/json-schema'
+import type { JSONSchema } from '../../../commons/json-schema'
 import {
   catalogComingSoonSchema,
   catalogItemDescriptionSchema,
@@ -30,11 +30,12 @@ import {
   catalogVisibilitySchema,
 } from './commons'
 
-export const catalogReleaseSchema = {
+export const catalogItemReleaseSchema = {
   $id: 'catalog-release.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  additionalProperties: false,
+  title: 'Catalog release',
   description: 'Data model of a Catalog item release',
+  type: 'object',
   properties: {
     comingSoon: catalogComingSoonSchema,
     description: catalogItemDescriptionSchema,
@@ -48,9 +49,8 @@ export const catalogReleaseSchema = {
     version: catalogVersionSchema.properties.name,
     visibility: catalogVisibilitySchema,
   },
+  additionalProperties: false,
   required: ['name', 'description', 'version', 'reference', 'releaseNote', 'releaseDate'],
-  title: 'Catalog release',
-  type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogRelease = FromSchema<typeof catalogReleaseSchema>
+export type CatalogItemRelease = FromSchema<typeof catalogItemReleaseSchema>

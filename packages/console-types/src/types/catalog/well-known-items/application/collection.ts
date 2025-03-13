@@ -19,8 +19,8 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { catalogDescriptionSchema, catalogTagsSchema } from '../commons'
 import { collectionFieldName, collectionName, index, indexFieldName } from '../../../collections'
+import { catalogDescriptionSchema, catalogTagsSchema } from '../commons'
 
 const idSchema = { type: 'string' } as const satisfies JSONSchema
 
@@ -245,4 +245,4 @@ export const catalogCollectionSchema = {
   ],
 } as const satisfies JSONSchema
 
-export type CatalogCollection = FromSchema<typeof catalogCollectionSchema>
+export type Collection = FromSchema<typeof catalogCollectionSchema>

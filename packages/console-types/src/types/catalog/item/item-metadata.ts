@@ -18,19 +18,30 @@
 
 import type { FromSchema } from 'json-schema-to-ts'
 
-import type { JSONSchema } from '../../commons/json-schema'
-import { catalogComponentIdSchema, catalogDockerImageSchema } from './well-known-items/commons'
+import type { JSONSchema } from '../../../commons/json-schema'
+import { catalogComponentIdSchema, catalogDockerImageSchema } from '../well-known-items/commons'
 import { catalogItemIdSchema, catalogItemNameSchema, catalogTenantIdSchema, catalogVersionSchema } from './commons'
+import { catalogWellKnownItems } from '../well-known-items'
 
 export const catalogItemMetadataSchema = {
   $id: 'catalog-item-metadata.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  additionalProperties: false,
+  title: 'Catalog item metadata',
   description: 'Data model of a Catalog item metadata',
+  type: 'object',
   properties: {
     itemId: catalogItemIdSchema,
     tenantId: catalogTenantIdSchema,
-    type: { type: 'string', enum: ['template', 'plugin', 'example', 'proxy', 'sidecar'] },
+    type: {
+      type: 'string',
+      enum: [
+        catalogWellKnownItems.application.type,
+        catalogWellKnownItems.plugin.type,
+        catalogWellKnownItems.proxy.type,
+        catalogWellKnownItems.sidecar.type,
+        catalogWellKnownItems.template.type,
+      ],
+    },
     versions: {
       items: {
         additionalProperties: false,
@@ -48,9 +59,8 @@ export const catalogItemMetadataSchema = {
       type: 'array',
     },
   },
+  additionalProperties: false,
   required: ['itemId', 'tenantId', 'type', 'versions'],
-  title: 'Catalog item metadata',
-  type: 'object',
 } as const satisfies JSONSchema
 
 export type CatalogItemMetadata = FromSchema<typeof catalogItemMetadataSchema>

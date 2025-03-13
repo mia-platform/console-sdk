@@ -35,6 +35,15 @@ import {
   serviceSecretName,
   swaggerPath,
 } from '../../services'
+import { CatalogCrd } from '../crd'
+
+
+export type CatalogWellKnownItemData<T = string> = {
+  type: T
+  resourcesSchema: JSONSchema
+  crd: CatalogCrd
+}
+
 
 export const catalogPortSchema = {
   minLength: 1,

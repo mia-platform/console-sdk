@@ -18,14 +18,14 @@
 
 import type { FromSchema } from 'json-schema-to-ts'
 
-import type { JSONSchema } from '../../commons/json-schema'
+import type { JSONSchema } from '../../../commons/json-schema'
+import { catalogCrdIsVersioningSupportedSchema } from '../crd/commons'
 import {
   catalogComingSoonSchema,
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
   catalogImageUrlSchema,
   catalogIsLatestSchema,
-  catalogIsVersioningSupportedSchema,
   catalogItemIdSchema,
   catalogItemNameSchema,
   catalogProviderIdSchema,
@@ -45,22 +45,20 @@ import {
 export const catalogItemSchema = {
   $id: 'catalog-item.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  additionalProperties: false,
+  title: 'Catalog item',
   description: 'Data model of a Catalog item',
+  type: 'object',
   properties: {
-    _id: {
-      description: 'Database identifier of the item',
-      type: 'string',
-    },
+    _id: { description: 'Database identifier of the item', type: 'string' },
     category: {
-      additionalProperties: false,
       description: 'Identifier of the item\'s category',
+      type: 'object',
       properties: {
         id: { type: 'string' },
         label: { type: 'string' },
       },
+      additionalProperties: false,
       required: ['id', 'label'],
-      type: 'object',
     },
     comingSoon: catalogComingSoonSchema,
     componentsIds: {
@@ -72,7 +70,8 @@ export const catalogItemSchema = {
     documentation: catalogDocumentationSchema,
     imageUrl: catalogImageUrlSchema,
     isLatest: catalogIsLatestSchema,
-    isVersioningSupported: catalogIsVersioningSupportedSchema,
+    // TODO: remove once CRD-specify API is in place
+    isVersioningSupported: catalogCrdIsVersioningSupportedSchema,
     itemId: catalogItemIdSchema,
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
@@ -88,9 +87,8 @@ export const catalogItemSchema = {
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
   },
+  additionalProperties: false,
   required: ['_id', 'name', 'itemId', 'tenantId', 'type'],
-  title: 'Catalog item',
-  type: 'object',
 } as const satisfies JSONSchema
 
 export type CatalogItem<
