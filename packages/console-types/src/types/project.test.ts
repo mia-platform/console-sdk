@@ -247,6 +247,9 @@ t.test('project validated', t => {
         imagePullSecretName: 'some-secret',
         isDefault: true,
       }],
+      aiSettings: {
+        enableAgenticFeatures: true,
+      },
     }
 
     t.ok(validate(project), validationMessage(validate.errors))
@@ -416,6 +419,9 @@ t.test('project validated', t => {
         imagePullSecretName: 'some-secret',
         isDefault: true,
       }],
+      aiSettings: {
+        enableAgenticFeatures: true,
+      },
     }
 
     t.ok(validate(projectObj), validationMessage(validate.errors))
