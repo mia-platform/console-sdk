@@ -29,7 +29,7 @@ import { catalogPluginServiceSchema } from './plugin'
 import { catalogTemplateServiceSchema } from './template'
 import { catalogProxyServiceSchema } from './proxy'
 
-type ItemModule = { default: CatalogWellKnownItemData }
+type ItemModule = { data: CatalogWellKnownItemData }
 
 t.test('catalog well-known items', async t => {
   const ajv = new Ajv({ addUsedSchema: false })
@@ -54,7 +54,7 @@ t.test('catalog well-known items', async t => {
 
   for (const testCase of testCases) {
     t.test(`${testCase.itemName} resources should be a valid JSON schema`, async t => {
-      const { default: itemData } = await import(testCase.indexPath) as ItemModule
+      const { data: itemData } = await import(testCase.indexPath) as ItemModule
 
       t.doesNotThrow(() => ajv.compile(itemData.resourcesSchema))
 
@@ -62,7 +62,7 @@ t.test('catalog well-known items', async t => {
     })
 
     t.test(`${testCase.itemName} CRD should be valid`, async t => {
-      const { default: itemData } = await import(testCase.indexPath) as ItemModule
+      const { data: itemData } = await import(testCase.indexPath) as ItemModule
 
       t.hasProp(itemData, 'crd')
 
