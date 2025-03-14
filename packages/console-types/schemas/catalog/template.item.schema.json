@@ -1,17 +1,43 @@
 {
-  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `build-catalog-schemas`.",
-  "$id": "catalog-plugin.schema.json",
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-template.item.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog template item",
+  "description": "Data model of a Catalog template item",
   "type": "object",
   "properties": {
-    "categoryId": {
-      "description": "Identifier of the item's category",
+    "_id": {
+      "description": "Database identifier of the item",
       "type": "string"
+    },
+    "category": {
+      "description": "Identifier of the item's category",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label"
+      ]
     },
     "comingSoon": {
       "description": "Flag that will prevent the use of the item",
       "nullable": true,
       "type": "boolean"
+    },
+    "componentsIds": {
+      "description": "List of source component ids of the services in the item's resources",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     },
     "description": {
       "description": "Brief description of the item",
@@ -44,6 +70,14 @@
       "format": "uri-reference",
       "type": "string"
     },
+    "isLatest": {
+      "description": "Flag stating if the the current document is the latest version of the item",
+      "type": "boolean"
+    },
+    "isVersioningSupported": {
+      "description": "States if versioning is supported for the custom resource defined by the CRD",
+      "type": "boolean"
+    },
     "itemId": {
       "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
       "minLength": 1,
@@ -63,6 +97,11 @@
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
       "nullable": true,
       "type": "boolean"
+    },
+    "releaseDate": {
+      "description": "Creation date of this item's release",
+      "format": "date-time",
+      "type": "string"
     },
     "releaseStage": {
       "description": "Release stage of the item",
@@ -84,48 +123,6 @@
     "resources": {
       "additionalProperties": false,
       "properties": {
-        "listeners": {
-          "additionalProperties": {
-            "additionalProperties": false,
-            "properties": {
-              "description": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "ownedBy": {
-                "additionalProperties": false,
-                "properties": {
-                  "componentIds": {
-                    "items": {
-                      "type": "string"
-                    },
-                    "type": "array"
-                  }
-                },
-                "required": [
-                  "componentIds"
-                ],
-                "type": "object"
-              },
-              "port": {
-                "minLength": 1,
-                "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
-                "type": "string"
-              },
-              "selectedByDefault": {
-                "type": "boolean"
-              }
-            },
-            "required": [
-              "name",
-              "port"
-            ],
-            "type": "object"
-          },
-          "type": "object"
-        },
         "services": {
           "maxProperties": 1,
           "minProperties": 1,
@@ -133,445 +130,10 @@
             "^[a-z]([-a-z0-9]*[a-z0-9])?$": {
               "additionalProperties": false,
               "properties": {
-                "args": {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
-                "additionalContainers": {
-                  "items": {
-                    "additionalProperties": false,
-                    "properties": {
-                      "args": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      "componentId": {
-                        "type": "string"
-                      },
-                      "containerPorts": {
-                        "items": {
-                          "additionalProperties": false,
-                          "properties": {
-                            "from": {
-                              "oneOf": [
-                                {
-                                  "type": "integer",
-                                  "minimum": 0,
-                                  "maximum": 65535
-                                },
-                                {
-                                  "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
-                                  "type": "string"
-                                }
-                              ]
-                            },
-                            "name": {
-                              "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
-                              "type": "string"
-                            },
-                            "protocol": {
-                              "default": "TCP",
-                              "enum": [
-                                "TCP",
-                                "UDP"
-                              ],
-                              "type": "string"
-                            },
-                            "to": {
-                              "oneOf": [
-                                {
-                                  "type": "integer",
-                                  "minimum": 0,
-                                  "maximum": 65535
-                                },
-                                {
-                                  "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
-                                  "type": "string"
-                                }
-                              ]
-                            }
-                          },
-                          "required": [
-                            "name",
-                            "from"
-                          ],
-                          "type": "object"
-                        },
-                        "type": "array"
-                      },
-                      "defaultArgs": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      "defaultEnvironmentVariables": {
-                        "items": {
-                          "oneOf": [
-                            {
-                              "additionalProperties": false,
-                              "properties": {
-                                "description": {
-                                  "type": "string"
-                                },
-                                "managedBy": {
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "minLength": 1,
-                                  "type": "string"
-                                },
-                                "readOnly": {
-                                  "type": "boolean"
-                                },
-                                "value": {
-                                  "type": "string"
-                                },
-                                "valueType": {
-                                  "const": "plain"
-                                }
-                              },
-                              "required": [
-                                "name",
-                                "valueType"
-                              ],
-                              "type": "object"
-                            }
-                          ]
-                        },
-                        "type": "array"
-                      },
-                      "defaultProbes": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "liveness": {
-                            "oneOf": [
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "cmd": {
-                                    "items": {
-                                      "type": "string"
-                                    },
-                                    "type": "array"
-                                  },
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "cmd"
-                                ],
-                                "type": "object"
-                              },
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "port": {
-                                    "type": "string"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "type": "object"
-                              },
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "path": {
-                                    "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
-                                    "type": "string"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "port": {
-                                    "type": "string"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "path"
-                                ],
-                                "type": "object"
-                              }
-                            ]
-                          },
-                          "readiness": {
-                            "oneOf": [
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "cmd": {
-                                    "items": {
-                                      "type": "string"
-                                    },
-                                    "type": "array"
-                                  },
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "cmd"
-                                ],
-                                "type": "object"
-                              },
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "port": {
-                                    "type": "string"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "type": "object"
-                              },
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "path": {
-                                    "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
-                                    "type": "string"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "port": {
-                                    "type": "string"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "path"
-                                ],
-                                "type": "object"
-                              }
-                            ]
-                          },
-                          "startup": {
-                            "oneOf": [
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "cmd": {
-                                    "items": {
-                                      "type": "string"
-                                    },
-                                    "type": "array"
-                                  },
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "cmd"
-                                ],
-                                "type": "object"
-                              },
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "port": {
-                                    "type": "string"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "type": "object"
-                              },
-                              {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "failureThreshold": {
-                                    "type": "number"
-                                  },
-                                  "initialDelaySeconds": {
-                                    "type": "number"
-                                  },
-                                  "path": {
-                                    "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
-                                    "type": "string"
-                                  },
-                                  "periodSeconds": {
-                                    "type": "number"
-                                  },
-                                  "port": {
-                                    "type": "string"
-                                  },
-                                  "successThreshold": {
-                                    "type": "number"
-                                  },
-                                  "timeoutSeconds": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "path"
-                                ],
-                                "type": "object"
-                              }
-                            ]
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "defaultResources": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "cpuLimits": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "max": {
-                                "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
-                                "type": "string"
-                              },
-                              "min": {
-                                "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
-                                "type": "string"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "memoryLimits": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "max": {
-                                "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
-                                "type": "string"
-                              },
-                              "min": {
-                                "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
-                                "type": "string"
-                              }
-                            },
-                            "type": "object"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "dockerImage": {
-                        "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
-                        "type": "string"
-                      },
-                      "name": {
-                        "minLength": 1,
-                        "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "dockerImage"
-                    ],
-                    "type": "object"
-                  },
-                  "type": "array"
+                "archiveUrl": {
+                  "format": "uri-reference",
+                  "minLength": 1,
+                  "type": "string"
                 },
                 "componentId": {
                   "type": "string"
@@ -1224,36 +786,6 @@
                 "description": {
                   "type": "string"
                 },
-                "dockerImage": {
-                  "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
-                  "type": "string"
-                },
-                "execPreStop": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "links": {
-                  "items": {
-                    "properties": {
-                      "enableIf": {
-                        "type": "string"
-                      },
-                      "hidePrefix": {
-                        "type": "boolean"
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "targetSection": {
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "type": "array"
-                },
                 "mapEnvVarToMountPath": {
                   "type": "object",
                   "additionalProperties": {
@@ -1282,25 +814,121 @@
                   "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
                   "type": "string"
                 },
+                "pipelines": {
+                  "properties": {
+                    "azure-pipelines": {
+                      "properties": {
+                        "branch": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "providerId": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "github-actions": {
+                      "properties": {
+                        "branch": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "providerId": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "gitlab-ci": {
+                      "properties": {
+                        "branch": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "providerId": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "jenkins": {
+                      "properties": {
+                        "gitWebhookOptions": {
+                          "type": "object"
+                        },
+                        "gitlabWebhookOptions": {
+                          "$comment": "Deprecated",
+                          "type": "object"
+                        },
+                        "providerId": {
+                          "type": "string"
+                        },
+                        "xmlTemplate": {
+                          "properties": {
+                            "gitBranch": {
+                              "type": "string"
+                            },
+                            "gitPath": {
+                              "type": "string"
+                            },
+                            "gitProjectId": {
+                              "type": "string"
+                            },
+                            "gitlabBranch": {
+                              "$comment": "Deprecated",
+                              "type": "string"
+                            },
+                            "gitlabPath": {
+                              "$comment": "Deprecated",
+                              "type": "string"
+                            },
+                            "gitlabProjectId": {
+                              "$comment": "Deprecated",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "webhook": {
+                      "properties": {
+                        "providerId": {
+                          "type": "string"
+                        },
+                        "token": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
                 "repositoryUrl": {
                   "format": "uri-reference",
                   "type": "string",
                   "deprecated": true
                 },
-                "tags": {
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                },
                 "type": {
-                  "const": "plugin"
+                  "const": "template"
                 }
               },
               "required": [
                 "name",
                 "type",
-                "dockerImage"
+                "archiveUrl"
               ],
               "type": "object"
             }
@@ -1327,7 +955,7 @@
       "type": "string"
     },
     "type": {
-      "const": "plugin"
+      "const": "template"
     },
     "version": {
       "description": "Version of the item following semver",
@@ -1374,10 +1002,10 @@
   },
   "additionalProperties": false,
   "required": [
+    "_id",
     "name",
     "itemId",
     "tenantId",
-    "type",
-    "resources"
+    "type"
   ]
 }

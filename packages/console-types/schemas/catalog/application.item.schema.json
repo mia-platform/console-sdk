@@ -1,17 +1,43 @@
 {
-  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `build-catalog-schemas`.",
-  "$id": "catalog-application.schema.json",
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-application.item.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog application item",
+  "description": "Data model of a Catalog application item",
   "type": "object",
   "properties": {
-    "categoryId": {
-      "description": "Identifier of the item's category",
+    "_id": {
+      "description": "Database identifier of the item",
       "type": "string"
+    },
+    "category": {
+      "description": "Identifier of the item's category",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label"
+      ]
     },
     "comingSoon": {
       "description": "Flag that will prevent the use of the item",
       "nullable": true,
       "type": "boolean"
+    },
+    "componentsIds": {
+      "description": "List of source component ids of the services in the item's resources",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     },
     "description": {
       "description": "Brief description of the item",
@@ -44,6 +70,14 @@
       "format": "uri-reference",
       "type": "string"
     },
+    "isLatest": {
+      "description": "Flag stating if the the current document is the latest version of the item",
+      "type": "boolean"
+    },
+    "isVersioningSupported": {
+      "description": "States if versioning is supported for the custom resource defined by the CRD",
+      "type": "boolean"
+    },
     "itemId": {
       "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
       "minLength": 1,
@@ -63,6 +97,11 @@
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
       "nullable": true,
       "type": "boolean"
+    },
+    "releaseDate": {
+      "description": "Creation date of this item's release",
+      "format": "date-time",
+      "type": "string"
     },
     "releaseStage": {
       "description": "Release stage of the item",
@@ -4702,6 +4741,29 @@
     "type": {
       "const": "application"
     },
+    "version": {
+      "description": "Version of the item following semver",
+      "properties": {
+        "name": {
+          "description": "Semantic version",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "releaseNote": {
+          "description": "Markdown release note",
+          "type": "string"
+        },
+        "security": {
+          "description": "Flag stating if the version addresses any vulnerability",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "releaseNote"
+      ],
+      "type": "object"
+    },
     "visibility": {
       "description": "Visibility of the item",
       "properties": {
@@ -4724,10 +4786,10 @@
   },
   "additionalProperties": false,
   "required": [
+    "_id",
     "name",
     "itemId",
     "tenantId",
-    "type",
-    "resources"
+    "type"
   ]
 }

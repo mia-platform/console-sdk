@@ -1,17 +1,43 @@
 {
-  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `build-catalog-schemas`.",
-  "$id": "catalog-proxy.schema.json",
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-item.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog item",
+  "description": "Data model of a Catalog item",
   "type": "object",
   "properties": {
-    "categoryId": {
-      "description": "Identifier of the item's category",
+    "_id": {
+      "description": "Database identifier of the item",
       "type": "string"
+    },
+    "category": {
+      "description": "Identifier of the item's category",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label"
+      ]
     },
     "comingSoon": {
       "description": "Flag that will prevent the use of the item",
       "nullable": true,
       "type": "boolean"
+    },
+    "componentsIds": {
+      "description": "List of source component ids of the services in the item's resources",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     },
     "description": {
       "description": "Brief description of the item",
@@ -44,6 +70,14 @@
       "format": "uri-reference",
       "type": "string"
     },
+    "isLatest": {
+      "description": "Flag stating if the the current document is the latest version of the item",
+      "type": "boolean"
+    },
+    "isVersioningSupported": {
+      "description": "States if versioning is supported for the custom resource defined by the CRD",
+      "type": "boolean"
+    },
     "itemId": {
       "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
       "minLength": 1,
@@ -64,6 +98,11 @@
       "nullable": true,
       "type": "boolean"
     },
+    "releaseDate": {
+      "description": "Creation date of this item's release",
+      "format": "date-time",
+      "type": "string"
+    },
     "releaseStage": {
       "description": "Release stage of the item",
       "enum": [
@@ -82,97 +121,8 @@
       "type": "string"
     },
     "resources": {
-      "additionalProperties": false,
-      "properties": {
-        "services": {
-          "maxProperties": 1,
-          "minProperties": 1,
-          "patternProperties": {
-            "^[a-z]([-a-z0-9]*[a-z0-9])?$": {
-              "oneOf": [
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "defaultHeaders": {
-                      "items": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "description": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "name",
-                          "value"
-                        ],
-                        "type": "object"
-                      },
-                      "type": "array"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "minLength": 1,
-                      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
-                      "type": "string"
-                    },
-                    "type": {
-                      "const": "external"
-                    },
-                    "url": {
-                      "format": "uri",
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "name",
-                    "type",
-                    "url"
-                  ],
-                  "type": "object"
-                },
-                {
-                  "additionalProperties": false,
-                  "properties": {
-                    "description": {
-                      "type": "string"
-                    },
-                    "host": {
-                      "type": "string",
-                      "pattern": "^([-a-z0-9]+)\\.([-_{}a-z0-9A-Z]+)\\.svc\\.cluster\\.local(:([1-9]\\d{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?$"
-                    },
-                    "name": {
-                      "minLength": 1,
-                      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
-                      "type": "string"
-                    },
-                    "type": {
-                      "const": "cross-projects"
-                    }
-                  },
-                  "required": [
-                    "name",
-                    "type",
-                    "host"
-                  ],
-                  "type": "object"
-                }
-              ]
-            }
-          },
-          "type": "object"
-        }
-      },
-      "required": [
-        "services"
-      ],
+      "additionalProperties": true,
+      "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
       "type": "object"
     },
     "supportedBy": {
@@ -189,7 +139,31 @@
       "type": "string"
     },
     "type": {
-      "const": "proxy"
+      "description": "Type of the item. It must match a CRD resources.name property",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of the item following semver",
+      "properties": {
+        "name": {
+          "description": "Semantic version",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "releaseNote": {
+          "description": "Markdown release note",
+          "type": "string"
+        },
+        "security": {
+          "description": "Flag stating if the version addresses any vulnerability",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "releaseNote"
+      ],
+      "type": "object"
     },
     "visibility": {
       "description": "Visibility of the item",
@@ -213,10 +187,10 @@
   },
   "additionalProperties": false,
   "required": [
+    "_id",
     "name",
     "itemId",
     "tenantId",
-    "type",
-    "resources"
+    "type"
   ]
 }
