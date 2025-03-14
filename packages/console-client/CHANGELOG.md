@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.4.5
+
+### Patch Changes
+
+- 12f11c6: Updated marketplace APIs schemas
+
 ## 0.4.4
 
 ### Patch Changes
