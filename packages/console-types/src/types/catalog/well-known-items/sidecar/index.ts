@@ -22,20 +22,20 @@ import type { JSONSchema } from '../../../../commons/json-schema'
 import type { CatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import {
-  catalogComponentIdSchema,
-  catalogContainerPortsSchema,
-  catalogDefaultArgsSchema,
-  catalogDefaultConfigMapsSchema,
-  catalogDefaultEnvironmentVariablesSchema,
-  catalogDefaultProbesSchema,
-  catalogDefaultResourcesSchema,
-  catalogDefaultSecretsSchema,
-  catalogDefaultTerminationGracePeriodSecondsSchema,
-  catalogDescriptionSchema,
-  catalogDockerImageSchema,
-  catalogNameSchema,
-  type CatalogWellKnownItemData,
+  componentIdSchema,
+  containerPortsSchema,
+  defaultArgsSchema,
+  defaultConfigMapsSchema,
+  defaultEnvironmentVariablesSchema,
+  defaultProbesSchema,
+  defaultResourcesSchema,
+  defaultSecretsSchema,
+  defaultTerminationGracePeriodSecondsSchema,
+  descriptionSchema,
+  dockerImageSchema,
+  nameSchema,
 } from '../commons'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'sidecar'
 
@@ -45,19 +45,19 @@ const resourcesSchema = {
   additionalProperties: false,
   description: `Resources of Catalog items of type ${type}`,
   properties: {
-    componentId: catalogComponentIdSchema,
-    description: catalogDescriptionSchema,
-    containerPorts: catalogContainerPortsSchema,
-    defaultArgs: catalogDefaultArgsSchema,
-    defaultConfigMaps: catalogDefaultConfigMapsSchema,
-    defaultEnvironmentVariables: catalogDefaultEnvironmentVariablesSchema,
-    defaultProbes: catalogDefaultProbesSchema,
-    defaultResources: catalogDefaultResourcesSchema,
-    defaultSecrets: catalogDefaultSecretsSchema,
-    defaultTerminationGracePeriodSeconds: catalogDefaultTerminationGracePeriodSecondsSchema,
-    dockerImage: catalogDockerImageSchema,
+    componentId: componentIdSchema,
+    description: descriptionSchema,
+    containerPorts: containerPortsSchema,
+    defaultArgs: defaultArgsSchema,
+    defaultConfigMaps: defaultConfigMapsSchema,
+    defaultEnvironmentVariables: defaultEnvironmentVariablesSchema,
+    defaultProbes: defaultProbesSchema,
+    defaultResources: defaultResourcesSchema,
+    defaultSecrets: defaultSecretsSchema,
+    defaultTerminationGracePeriodSeconds: defaultTerminationGracePeriodSecondsSchema,
+    dockerImage: dockerImageSchema,
     exclusiveServiceExposure: { type: 'boolean' },
-    name: catalogNameSchema,
+    name: nameSchema,
     owners: {
       items: {
         additionalProperties: true,

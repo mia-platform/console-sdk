@@ -16,7 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { CatalogWellKnownItemData } from './commons'
+import type { JSONSchema } from '../../../commons/json-schema'
+import { CatalogCrd } from '../crd'
 import { data as catalogApplicationData } from './application'
 import type * as ICatalogApplication from './application'
 import { data as catalogExampleData } from './example'
@@ -33,6 +34,13 @@ import { data as catalogSidecarData } from './sidecar'
 import type * as ICatalogSidecar from './sidecar'
 import { data as catalogTemplateData } from './template'
 import type * as ICatalogTemplate from './template'
+import * as catalogWellKnownItemsCommonSchemas from './commons'
+
+type CatalogWellKnownItemData<T = string> = {
+  type: T
+  resourcesSchema: JSONSchema
+  crd: CatalogCrd
+}
 
 type CatalogWellKnownItemsType = |
   typeof catalogApplicationData.type |
@@ -55,7 +63,11 @@ export const catalogWellKnownItems: Record<CatalogWellKnownItemsType, CatalogWel
   [catalogTemplateData.type]: catalogTemplateData,
 }
 
-export {
+export { catalogWellKnownItemsCommonSchemas }
+
+export type {
+  CatalogWellKnownItemData,
+  CatalogWellKnownItemsType,
   ICatalogExample,
   ICatalogExtension,
   ICatalogInfrastructureResource,
@@ -64,9 +76,4 @@ export {
   ICatalogSidecar,
   ICatalogTemplate,
   ICatalogApplication,
-}
-
-export type {
-  CatalogWellKnownItemData,
-  CatalogWellKnownItemsType,
 }

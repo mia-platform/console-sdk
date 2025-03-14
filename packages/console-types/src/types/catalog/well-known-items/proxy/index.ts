@@ -22,7 +22,8 @@ import type { JSONSchema } from '../../../../commons/json-schema'
 import { host } from '../../../services'
 import type { CatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
-import { catalogDefaultHeadersSchema, catalogNameSchema, catalogDescriptionSchema, type CatalogWellKnownItemData } from '../commons'
+import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'proxy'
 
@@ -31,9 +32,9 @@ export const catalogProxyServiceSchema = {
     {
       additionalProperties: false,
       properties: {
-        defaultHeaders: catalogDefaultHeadersSchema,
-        description: catalogDescriptionSchema,
-        name: catalogNameSchema,
+        defaultHeaders: defaultHeadersSchema,
+        description: descriptionSchema,
+        name: nameSchema,
         type: { const: 'external' },
         url: { format: 'uri', type: 'string' },
       },
@@ -43,9 +44,9 @@ export const catalogProxyServiceSchema = {
     {
       additionalProperties: false,
       properties: {
-        description: catalogDescriptionSchema,
+        description: descriptionSchema,
         host,
-        name: catalogNameSchema,
+        name: nameSchema,
         type: { const: 'cross-projects' },
       },
       required: ['name', 'type', 'host'],
@@ -63,7 +64,7 @@ const resourcesSchema = {
     services: {
       maxProperties: 1,
       minProperties: 1,
-      patternProperties: { [catalogNameSchema.pattern]: catalogProxyServiceSchema },
+      patternProperties: { [nameSchema.pattern]: catalogProxyServiceSchema },
       type: 'object',
     },
   },
