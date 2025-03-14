@@ -15,74 +15,65 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import type { JSONSchema } from '../../../commons/json-schema'
-import catalogApplication from './application'
-import catalogCRD, { CatalogCRDManifest } from './custom-resource-definition'
-import catalogExample, { catalogExampleSchema } from './example'
-import catalogExtension from './extension'
-import catalogInfrastructureResource from './infrastructure-resource'
-import catalogPlugin, { catalogPluginSchema } from './plugin'
-import catalogProxy, { catalogProxySchema } from './proxy'
-import catalogSidecar from './sidecar'
-import catalogTemplate, { catalogTemplateSchema } from './template'
+import { CatalogCrd } from '../crd'
+import { data as catalogApplicationData } from './application'
+import type * as ICatalogApplication from './application'
+import { data as catalogExampleData } from './example'
+import type * as ICatalogExample from './example'
+import { data as catalogExtensionData } from './extension'
+import type * as ICatalogExtension from './extension'
+import { data as catalogInfrastructureResourceData } from './infrastructure-resource'
+import type * as ICatalogInfrastructureResource from './infrastructure-resource'
+import { data as catalogPluginData } from './plugin'
+import type * as ICatalogPlugin from './plugin'
+import { data as catalogProxyData } from './proxy'
+import type * as ICatalogProxy from './proxy'
+import { data as catalogSidecarData } from './sidecar'
+import type * as ICatalogSidecar from './sidecar'
+import { data as catalogTemplateData } from './template'
+import type * as ICatalogTemplate from './template'
+import * as catalogWellKnownItemsCommonSchemas from './commons'
 
-export * from './commons'
-export * from './application/collection'
-export * from './application/endpoint'
-export * from './application/unsecreted-variable'
-
-export type { CatalogApplicationItem, CatalogApplicationManifest, CatalogApplicationResources, CatalogApplicationVersionedItem } from './application'
-export type { CatalogCRDItem, CatalogCRDManifest, CatalogCRDResources, CatalogCRDVersionedItem } from './custom-resource-definition'
-export type { CatalogExample, CatalogExampleItem, CatalogExampleManifest, CatalogExampleResources, CatalogExampleVersionedItem } from './example'
-export type { CatalogExtensionItem, CatalogExtensionManifest, CatalogExtensionResources, CatalogExtensionVersionedItem } from './extension'
-export type { CatalogInfrastructureResourceItem, CatalogInfrastructureResourceManifest, CatalogInfrastructureResourceResources, CatalogInfrastructureResourceVersionedItem } from './infrastructure-resource'
-export type { CatalogPlugin, CatalogPluginItem, CatalogPluginManifest, CatalogPluginResources, CatalogPluginVersionedItem } from './plugin'
-export type { CatalogProxy, CatalogProxyItem, CatalogProxyManifest, CatalogProxyResources, CatalogProxyVersionedItem } from './proxy'
-export type { CatalogSidecarItem, CatalogSidecarManifest, CatalogSidecarResources, CatalogSidecarVersionedItem } from './sidecar'
-export type { CatalogTemplate, CatalogTemplateItem, CatalogTemplateManifest, CatalogTemplateResources, CatalogTemplateVersionedItem } from './template'
-
-export type CatalogWellKnownItemData = {
-  type: string
+type CatalogWellKnownItemData<T = string> = {
+  type: T
   resourcesSchema: JSONSchema
-  crd: CatalogCRDManifest
+  crd: CatalogCrd
 }
 
-const catalogWellKnownItems: Record<string, CatalogWellKnownItemData> = {
-  [catalogApplication.type]: catalogApplication,
-  [catalogExample.type]: catalogExample,
-  [catalogExtension.type]: catalogExtension,
-  [catalogInfrastructureResource.type]: catalogInfrastructureResource,
-  [catalogPlugin.type]: catalogPlugin,
-  [catalogProxy.type]: catalogProxy,
-  [catalogSidecar.type]: catalogSidecar,
-  [catalogTemplate.type]: catalogTemplate,
+type CatalogWellKnownItemsType = |
+  typeof catalogApplicationData.type |
+  typeof catalogExampleData.type |
+  typeof catalogExtensionData.type |
+  typeof catalogInfrastructureResourceData.type |
+  typeof catalogPluginData.type |
+  typeof catalogProxyData.type |
+  typeof catalogSidecarData.type |
+  typeof catalogTemplateData.type
+
+export const catalogWellKnownItems: Record<CatalogWellKnownItemsType, CatalogWellKnownItemData> = {
+  [catalogApplicationData.type]: catalogApplicationData,
+  [catalogExampleData.type]: catalogExampleData,
+  [catalogExtensionData.type]: catalogExtensionData,
+  [catalogInfrastructureResourceData.type]: catalogInfrastructureResourceData,
+  [catalogPluginData.type]: catalogPluginData,
+  [catalogProxyData.type]: catalogProxyData,
+  [catalogSidecarData.type]: catalogSidecarData,
+  [catalogTemplateData.type]: catalogTemplateData,
 }
 
-const catalogWellKnownItemsCustomResourceDefinitions = {
-  [catalogApplication.type]: catalogApplication.crd,
-  [catalogExample.type]: catalogExample.crd,
-  [catalogExtension.type]: catalogExtension.crd,
-  [catalogInfrastructureResource.type]: catalogInfrastructureResource.crd,
-  [catalogPlugin.type]: catalogPlugin.crd,
-  [catalogProxy.type]: catalogProxy.crd,
-  [catalogSidecar.type]: catalogSidecar.crd,
-  [catalogTemplate.type]: catalogTemplate.crd,
-}
+export { catalogWellKnownItemsCommonSchemas }
 
-export {
-  catalogWellKnownItems,
-  catalogWellKnownItemsCustomResourceDefinitions,
-  catalogApplication,
-  catalogCRD,
-  catalogExample,
-  catalogExampleSchema,
-  catalogExtension,
-  catalogInfrastructureResource,
-  catalogPlugin,
-  catalogPluginSchema,
-  catalogProxy,
-  catalogProxySchema,
-  catalogSidecar,
-  catalogTemplate,
-  catalogTemplateSchema,
+export type {
+  CatalogWellKnownItemData,
+  CatalogWellKnownItemsType,
+  ICatalogExample,
+  ICatalogExtension,
+  ICatalogInfrastructureResource,
+  ICatalogPlugin,
+  ICatalogProxy,
+  ICatalogSidecar,
+  ICatalogTemplate,
+  ICatalogApplication,
 }

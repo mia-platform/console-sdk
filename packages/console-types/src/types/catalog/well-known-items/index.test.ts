@@ -23,15 +23,13 @@ import fs from 'fs/promises'
 import path from 'path'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { catalogExampleSchema, catalogPluginSchema, catalogTemplateSchema, catalogProxySchema, CatalogCRDManifest, catalogCRD } from '.'
+import { catalogExampleServiceSchema } from './example'
+import { catalogPluginServiceSchema } from './plugin'
+import { catalogTemplateServiceSchema } from './template'
+import { catalogProxyServiceSchema } from './proxy'
+import { CatalogWellKnownItemData } from '.'
 
-type ItemModule = {
-  default: {
-    type: string
-    resourcesSchema: JSONSchema
-    crd?: CatalogCRDManifest
-  }
-}
+type ItemModule = { data: CatalogWellKnownItemData }
 
 t.test('catalog well-known items', async t => {
   const ajv = new Ajv({ addUsedSchema: false })
@@ -56,7 +54,7 @@ t.test('catalog well-known items', async t => {
 
   for (const testCase of testCases) {
     t.test(`${testCase.itemName} resources should be a valid JSON schema`, async t => {
-      const { default: itemData } = await import(testCase.indexPath) as ItemModule
+      const { data: itemData } = await import(testCase.indexPath) as ItemModule
 
       t.doesNotThrow(() => ajv.compile(itemData.resourcesSchema))
 
@@ -64,12 +62,7 @@ t.test('catalog well-known items', async t => {
     })
 
     t.test(`${testCase.itemName} CRD should be valid`, async t => {
-      const { default: itemData } = await import(testCase.indexPath) as ItemModule
-
-      if (itemData.type === catalogCRD.type) {
-        t.pass()
-        return
-      }
+      const { data: itemData } = await import(testCase.indexPath) as ItemModule
 
       t.hasProp(itemData, 'crd')
 
@@ -84,10 +77,10 @@ t.test('catalog well-known items', async t => {
   }
 
   t.test('auxiliary schemas should be valid', t => {
-    t.doesNotThrow(() => ajv.compile(catalogExampleSchema))
-    t.doesNotThrow(() => ajv.compile(catalogPluginSchema))
-    t.doesNotThrow(() => ajv.compile(catalogTemplateSchema))
-    t.doesNotThrow(() => ajv.compile(catalogProxySchema))
+    t.doesNotThrow(() => ajv.compile(catalogExampleServiceSchema))
+    t.doesNotThrow(() => ajv.compile(catalogPluginServiceSchema))
+    t.doesNotThrow(() => ajv.compile(catalogTemplateServiceSchema))
+    t.doesNotThrow(() => ajv.compile(catalogProxyServiceSchema))
 
     t.end()
   })
