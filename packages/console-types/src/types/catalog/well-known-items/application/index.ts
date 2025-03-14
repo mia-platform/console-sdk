@@ -23,10 +23,11 @@ import { collection } from '../../../collections'
 import { endpoint } from '../../../endpoints'
 import type { CatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
-import { catalogListenerSchema, catalogNameSchema, type CatalogWellKnownItemData } from '../commons'
+import { listenerSchema, nameSchema } from '../commons'
 import { catalogExampleServiceSchema } from '../example'
 import { catalogPluginServiceSchema } from '../plugin'
 import { catalogTemplateServiceSchema } from '../template'
+import type { CatalogWellKnownItemData } from '..'
 import { catalogCollectionSchema, type Collection } from './collection'
 import { catalogEndpointSchema, type Endpoint } from './endpoint'
 import { catalogUnsecretedVariableSchema, type UnsecretedVariable } from './unsecreted-variable'
@@ -50,13 +51,13 @@ const resourcesSchema = {
       type: 'object',
     },
     listeners: {
-      additionalProperties: catalogListenerSchema,
+      additionalProperties: listenerSchema,
       type: 'object',
     },
     services: {
       description: 'Services to be created with the application. The key of each service MUST be equal to the service `name` property',
       patternProperties: {
-        [catalogNameSchema.pattern]: {
+        [nameSchema.pattern]: {
           oneOf: [catalogPluginServiceSchema, catalogExampleServiceSchema, catalogTemplateServiceSchema],
         },
       },

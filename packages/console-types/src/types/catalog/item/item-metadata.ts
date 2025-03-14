@@ -19,7 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { catalogComponentIdSchema, catalogDockerImageSchema } from '../well-known-items/commons'
+import { componentIdSchema, dockerImageSchema } from '../well-known-items/commons'
 import { catalogItemIdSchema, catalogItemNameSchema, catalogTenantIdSchema, catalogVersionSchema } from './commons'
 import { catalogWellKnownItems } from '../well-known-items'
 
@@ -46,8 +46,8 @@ export const catalogItemMetadataSchema = {
       items: {
         additionalProperties: false,
         properties: {
-          componentId: catalogComponentIdSchema,
-          dockerImage: catalogDockerImageSchema,
+          componentId: componentIdSchema,
+          dockerImage: dockerImageSchema,
           id: { type: 'string' },
           name: catalogItemNameSchema,
           url: { type: 'string' },

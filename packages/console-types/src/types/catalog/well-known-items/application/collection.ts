@@ -20,7 +20,7 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { collectionFieldName, collectionName, index, indexFieldName } from '../../../collections'
-import { catalogDescriptionSchema, catalogTagsSchema } from '../commons'
+import { descriptionSchema, tagsSchema } from '../commons'
 
 const idSchema = { type: 'string' } as const satisfies JSONSchema
 
@@ -216,12 +216,12 @@ export const catalogCollectionSchema = {
       additionalProperties: false,
       properties: {
         defaultName: collectionNameSchema,
-        description: catalogDescriptionSchema,
+        description: descriptionSchema,
         fields: fieldsSchema,
         id: idSchema,
         indexes: indexesSchema,
         internalEndpoints: internalEndpointsSchema,
-        tags: catalogTagsSchema,
+        tags: tagsSchema,
         type: { const: 'collection' },
       },
       required: ['type', 'defaultName', 'internalEndpoints'],
@@ -231,12 +231,12 @@ export const catalogCollectionSchema = {
       additionalProperties: false,
       properties: {
         defaultName: collectionNameSchema,
-        description: catalogDescriptionSchema,
+        description: descriptionSchema,
         fields: fieldsSchema,
         id: idSchema,
         indexes: indexesSchema,
         internalEndpoints: internalEndpointsSchema,
-        tags: catalogTagsSchema,
+        tags: tagsSchema,
         type: { const: 'view' },
       },
       required: ['type', 'defaultName', 'internalEndpoints', 'startingCollection'],

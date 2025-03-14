@@ -21,7 +21,8 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import type { CatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
-import { catalogNameSchema, type CatalogWellKnownItemData } from '../commons'
+import { nameSchema } from '../commons'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'custom-resource'
 
@@ -104,7 +105,7 @@ const resourcesSchema = {
       },
       type: 'object',
     },
-    name: catalogNameSchema,
+    name: nameSchema,
     runtime: {
       additionalProperties: false,
       properties: {

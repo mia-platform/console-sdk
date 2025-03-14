@@ -21,7 +21,7 @@ import { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { collectionName } from '../../../collections'
 import { basePath, endpoint, path } from '../../../endpoints'
-import { catalogNameSchema, catalogPortSchema, catalogTagsSchema } from '../commons'
+import { nameSchema, portSchema, tagsSchema } from '../commons'
 
 const defaultBasePathSchema = { pattern: basePath.pattern, type: 'string' } as const satisfies JSONSchema
 
@@ -163,13 +163,13 @@ export const catalogEndpointSchema = {
         forceMicroserviceGatewayProxy: forceMicroserviceGatewayProxySchema,
         listeners: listenersSchema,
         options: optionsSchema,
-        port: catalogPortSchema,
+        port: portSchema,
         public: publicSchema,
         routes: routesSchema,
         secreted: secretedSchema,
-        service: { minLength: 1, pattern: catalogNameSchema.pattern, type: 'string' },
+        service: { minLength: 1, pattern: nameSchema.pattern, type: 'string' },
         showInDocumentation: showInDocumentationSchema,
-        tags: catalogTagsSchema,
+        tags: tagsSchema,
         type: { enum: ['external', 'custom', 'cross-projects'], type: 'string' },
         useDownstreamProtocol: { type: 'boolean' },
       },
@@ -195,7 +195,7 @@ export const catalogEndpointSchema = {
         routes: routesSchema,
         secreted: secretedSchema,
         showInDocumentation: showInDocumentationSchema,
-        tags: catalogTagsSchema,
+        tags: tagsSchema,
         type: { enum: ['crud', 'view'], type: 'string' },
       },
       required: ['type', 'defaultBasePath', 'collectionId', 'tags'],

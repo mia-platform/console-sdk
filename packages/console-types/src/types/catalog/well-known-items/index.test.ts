@@ -23,11 +23,11 @@ import fs from 'fs/promises'
 import path from 'path'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { CatalogWellKnownItemData } from './commons'
 import { catalogExampleServiceSchema } from './example'
 import { catalogPluginServiceSchema } from './plugin'
 import { catalogTemplateServiceSchema } from './template'
 import { catalogProxyServiceSchema } from './proxy'
+import { CatalogWellKnownItemData } from '.'
 
 type ItemModule = { data: CatalogWellKnownItemData }
 
