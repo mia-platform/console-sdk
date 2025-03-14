@@ -77,6 +77,51 @@ export function createMarketplaceItemVersionFromDiscriminatorValue(parseNode: Pa
     return deserializeIntoMarketplaceItemVersion;
 }
 /**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MarketplaceManifest_documentation}
+ */
+// @ts-ignore
+export function createMarketplaceManifest_documentationFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMarketplaceManifest_documentation;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MarketplaceManifest_resources}
+ */
+// @ts-ignore
+export function createMarketplaceManifest_resourcesFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMarketplaceManifest_resources;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MarketplaceManifest_version}
+ */
+// @ts-ignore
+export function createMarketplaceManifest_versionFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMarketplaceManifest_version;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MarketplaceManifest_visibility}
+ */
+// @ts-ignore
+export function createMarketplaceManifest_visibilityFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMarketplaceManifest_visibility;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {MarketplaceManifest}
+ */
+// @ts-ignore
+export function createMarketplaceManifestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoMarketplaceManifest;
+}
+/**
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -189,6 +234,76 @@ export function deserializeIntoMarketplaceItemVersion_visibility(marketplaceItem
     return {
         "allTenants": n => { marketplaceItemVersion_visibility.allTenants = n.getBooleanValue(); },
         "public": n => { marketplaceItemVersion_visibility.public = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMarketplaceManifest(marketplaceManifest: Partial<MarketplaceManifest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "categoryId": n => { marketplaceManifest.categoryId = n.getStringValue(); },
+        "comingSoon": n => { marketplaceManifest.comingSoon = n.getBooleanValue(); },
+        "description": n => { marketplaceManifest.description = n.getStringValue(); },
+        "documentation": n => { marketplaceManifest.documentation = n.getObjectValue<MarketplaceManifest_documentation>(createMarketplaceManifest_documentationFromDiscriminatorValue); },
+        "imageUrl": n => { marketplaceManifest.imageUrl = n.getStringValue(); },
+        "itemId": n => { marketplaceManifest.itemId = n.getStringValue(); },
+        "name": n => { marketplaceManifest.name = n.getStringValue(); },
+        "providerId": n => { marketplaceManifest.providerId = n.getStringValue(); },
+        "publishOnMiaDocumentation": n => { marketplaceManifest.publishOnMiaDocumentation = n.getBooleanValue(); },
+        "releaseStage": n => { marketplaceManifest.releaseStage = n.getEnumValue<MarketplaceManifest_releaseStage>(MarketplaceManifest_releaseStageObject); },
+        "repositoryUrl": n => { marketplaceManifest.repositoryUrl = n.getStringValue(); },
+        "resources": n => { marketplaceManifest.resources = n.getObjectValue<MarketplaceManifest_resources>(createMarketplaceManifest_resourcesFromDiscriminatorValue); },
+        "supportedBy": n => { marketplaceManifest.supportedBy = n.getStringValue(); },
+        "supportedByImageUrl": n => { marketplaceManifest.supportedByImageUrl = n.getStringValue(); },
+        "tenantId": n => { marketplaceManifest.tenantId = n.getStringValue(); },
+        "type": n => { marketplaceManifest.type = n.getStringValue(); },
+        "version": n => { marketplaceManifest.version = n.getObjectValue<MarketplaceManifest_version>(createMarketplaceManifest_versionFromDiscriminatorValue); },
+        "visibility": n => { marketplaceManifest.visibility = n.getObjectValue<MarketplaceManifest_visibility>(createMarketplaceManifest_visibilityFromDiscriminatorValue); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMarketplaceManifest_documentation(marketplaceManifest_documentation: Partial<MarketplaceManifest_documentation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "type": n => { marketplaceManifest_documentation.type = n.getEnumValue<MarketplaceManifest_documentation_type>(MarketplaceManifest_documentation_typeObject); },
+        "url": n => { marketplaceManifest_documentation.url = n.getStringValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMarketplaceManifest_resources(marketplaceManifest_resources: Partial<MarketplaceManifest_resources> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMarketplaceManifest_version(marketplaceManifest_version: Partial<MarketplaceManifest_version> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "name": n => { marketplaceManifest_version.name = n.getStringValue(); },
+        "releaseNote": n => { marketplaceManifest_version.releaseNote = n.getStringValue(); },
+        "security": n => { marketplaceManifest_version.security = n.getBooleanValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoMarketplaceManifest_visibility(marketplaceManifest_visibility: Partial<MarketplaceManifest_visibility> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "allTenants": n => { marketplaceManifest_visibility.allTenants = n.getBooleanValue(); },
+        "public": n => { marketplaceManifest_visibility.public = n.getBooleanValue(); },
     }
 }
 export interface MarketplaceItem extends AdditionalDataHolder, Parsable {
@@ -412,6 +527,147 @@ export interface MarketplaceItemVersion_visibility extends AdditionalDataHolder,
      */
     public?: boolean | null;
 }
+export interface MarketplaceManifest extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+    /**
+     * Identifier of the item's category
+     */
+    categoryId?: string | null;
+    /**
+     * Flag that will prevent the use of the item
+     */
+    comingSoon?: boolean | null;
+    /**
+     * Brief description of the item
+     */
+    description?: string | null;
+    /**
+     * Documentation of the item
+     */
+    documentation?: MarketplaceManifest_documentation | null;
+    /**
+     * Url of the image associated with the item
+     */
+    imageUrl?: string | null;
+    /**
+     * RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name
+     */
+    itemId?: string | null;
+    /**
+     * Human-readable name of the item
+     */
+    name?: string | null;
+    /**
+     * Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type
+     */
+    providerId?: string | null;
+    /**
+     * Flag stating if the resource documentation should be published on Mia-Platform public documentation
+     */
+    publishOnMiaDocumentation?: boolean | null;
+    /**
+     * Release stage of the item
+     */
+    releaseStage?: MarketplaceManifest_releaseStage | null;
+    /**
+     * URL of the repository containing the source code of the resource created by the item
+     */
+    repositoryUrl?: string | null;
+    /**
+     * The resources property
+     */
+    resources?: MarketplaceManifest_resources | null;
+    /**
+     * Identifier of the company that has produced the item
+     */
+    supportedBy?: string | null;
+    /**
+     * Url of the image associated with the company that has produced the item
+     */
+    supportedByImageUrl?: string | null;
+    /**
+     * Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name
+     */
+    tenantId?: string | null;
+    /**
+     * The type property
+     */
+    type?: string | null;
+    /**
+     * Version of the item following semver
+     */
+    version?: MarketplaceManifest_version | null;
+    /**
+     * Visibility of the item
+     */
+    visibility?: MarketplaceManifest_visibility | null;
+}
+/**
+ * Documentation of the item
+ */
+export interface MarketplaceManifest_documentation extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+    /**
+     * The type property
+     */
+    type?: MarketplaceManifest_documentation_type | null;
+    /**
+     * The url property
+     */
+    url?: string | null;
+}
+export type MarketplaceManifest_documentation_type = (typeof MarketplaceManifest_documentation_typeObject)[keyof typeof MarketplaceManifest_documentation_typeObject];
+export type MarketplaceManifest_releaseStage = (typeof MarketplaceManifest_releaseStageObject)[keyof typeof MarketplaceManifest_releaseStageObject];
+export interface MarketplaceManifest_resources extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+}
+/**
+ * Version of the item following semver
+ */
+export interface MarketplaceManifest_version extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+    /**
+     * Semantic version
+     */
+    name?: string | null;
+    /**
+     * Markdown release note
+     */
+    releaseNote?: string | null;
+    /**
+     * Flag stating if the version addresses any vulnerability
+     */
+    security?: boolean | null;
+}
+/**
+ * Visibility of the item
+ */
+export interface MarketplaceManifest_visibility extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+    /**
+     * If true, the item will be accessible to all companies
+     */
+    allTenants?: boolean | null;
+    /**
+     * If true, the item will be accessible from any user that access the Console, even if not authenticated
+     */
+    public?: boolean | null;
+}
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
@@ -535,9 +791,97 @@ export function serializeMarketplaceItemVersion_visibility(writer: Serialization
         writer.writeAdditionalData(marketplaceItemVersion_visibility.additionalData);
     }
 }
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMarketplaceManifest(writer: SerializationWriter, marketplaceManifest: Partial<MarketplaceManifest> | undefined | null = {}) : void {
+    if (marketplaceManifest) {
+        writer.writeStringValue("categoryId", marketplaceManifest.categoryId);
+        writer.writeBooleanValue("comingSoon", marketplaceManifest.comingSoon);
+        writer.writeStringValue("description", marketplaceManifest.description);
+        writer.writeObjectValue<MarketplaceManifest_documentation>("documentation", marketplaceManifest.documentation, serializeMarketplaceManifest_documentation);
+        writer.writeStringValue("imageUrl", marketplaceManifest.imageUrl);
+        writer.writeStringValue("itemId", marketplaceManifest.itemId);
+        writer.writeStringValue("name", marketplaceManifest.name);
+        writer.writeStringValue("providerId", marketplaceManifest.providerId);
+        writer.writeBooleanValue("publishOnMiaDocumentation", marketplaceManifest.publishOnMiaDocumentation);
+        writer.writeEnumValue<MarketplaceManifest_releaseStage>("releaseStage", marketplaceManifest.releaseStage);
+        writer.writeStringValue("repositoryUrl", marketplaceManifest.repositoryUrl);
+        writer.writeObjectValue<MarketplaceManifest_resources>("resources", marketplaceManifest.resources, serializeMarketplaceManifest_resources);
+        writer.writeStringValue("supportedBy", marketplaceManifest.supportedBy);
+        writer.writeStringValue("supportedByImageUrl", marketplaceManifest.supportedByImageUrl);
+        writer.writeStringValue("tenantId", marketplaceManifest.tenantId);
+        writer.writeStringValue("type", marketplaceManifest.type);
+        writer.writeObjectValue<MarketplaceManifest_version>("version", marketplaceManifest.version, serializeMarketplaceManifest_version);
+        writer.writeObjectValue<MarketplaceManifest_visibility>("visibility", marketplaceManifest.visibility, serializeMarketplaceManifest_visibility);
+        writer.writeAdditionalData(marketplaceManifest.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMarketplaceManifest_documentation(writer: SerializationWriter, marketplaceManifest_documentation: Partial<MarketplaceManifest_documentation> | undefined | null = {}) : void {
+    if (marketplaceManifest_documentation) {
+        writer.writeEnumValue<MarketplaceManifest_documentation_type>("type", marketplaceManifest_documentation.type);
+        writer.writeStringValue("url", marketplaceManifest_documentation.url);
+        writer.writeAdditionalData(marketplaceManifest_documentation.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMarketplaceManifest_resources(writer: SerializationWriter, marketplaceManifest_resources: Partial<MarketplaceManifest_resources> | undefined | null = {}) : void {
+    if (marketplaceManifest_resources) {
+        writer.writeAdditionalData(marketplaceManifest_resources.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMarketplaceManifest_version(writer: SerializationWriter, marketplaceManifest_version: Partial<MarketplaceManifest_version> | undefined | null = {}) : void {
+    if (marketplaceManifest_version) {
+        writer.writeStringValue("name", marketplaceManifest_version.name);
+        writer.writeStringValue("releaseNote", marketplaceManifest_version.releaseNote);
+        writer.writeBooleanValue("security", marketplaceManifest_version.security);
+        writer.writeAdditionalData(marketplaceManifest_version.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeMarketplaceManifest_visibility(writer: SerializationWriter, marketplaceManifest_visibility: Partial<MarketplaceManifest_visibility> | undefined | null = {}) : void {
+    if (marketplaceManifest_visibility) {
+        writer.writeBooleanValue("allTenants", marketplaceManifest_visibility.allTenants);
+        writer.writeBooleanValue("public", marketplaceManifest_visibility.public);
+        writer.writeAdditionalData(marketplaceManifest_visibility.additionalData);
+    }
+}
 export const MarketplaceItem_documentation_typeObject = {
     Markdown: "markdown",
     ExternalLink: "externalLink",
+} as const;
+export const MarketplaceManifest_documentation_typeObject = {
+    ExternalLink: "externalLink",
+    Markdown: "markdown",
+} as const;
+/**
+ * Release stage of the item
+ */
+export const MarketplaceManifest_releaseStageObject = {
+    Beta: "beta",
+    Deprecated: "deprecated",
+    Preview: "preview",
+    Stable: "stable",
 } as const;
 /* tslint:enable */
 /* eslint-enable */
