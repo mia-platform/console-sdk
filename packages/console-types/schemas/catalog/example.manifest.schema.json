@@ -1,7 +1,9 @@
 {
-  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `build-catalog-schemas`.",
-  "$id": "catalog-example.schema.json",
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-example.manifest.schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog example item manifest",
+  "description": "Data model of a Catalog example item to apply",
   "type": "object",
   "properties": {
     "categoryId": {
