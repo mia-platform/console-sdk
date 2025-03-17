@@ -35,6 +35,14 @@ export interface MarketplaceRequestBuilder extends BaseRequestBuilder<Marketplac
 }
 export interface MarketplaceRequestBuilderGetQueryParameters {
     /**
+     * A comma-separated string of possible item visibilities: 'public', 'all-tenants', 'preview'. It is mutually exclusive with 'includeTenantId'
+     */
+    availableTo?: string;
+    /**
+     * A comma-separated string of possible item categories
+     */
+    category?: string;
+    /**
      * The Id of the Tenant for which to return both the public and private marketplace resources
      */
     includeTenantId?: string;
@@ -43,10 +51,27 @@ export interface MarketplaceRequestBuilderGetQueryParameters {
      */
     itemUrns?: string;
     /**
+     * Regex for filtering items by name
+     */
+    name?: string;
+    /**
+     * Page number to be retrieved
+     */
+    page?: number;
+    /**
+     * Number of items per page
+     */
+    per_page?: number;
+    /**
      * Size of the page to be downloaded
+     * @deprecated 
      */
     perPage?: number;
     publishOnMiaDocumentation?: boolean;
+    /**
+     * A comma-separated string of possible item release stages: 'coming-soon', 'beta', 'preview', 'stable', 'deprecated'
+     */
+    releaseStage?: string;
     /**
      * If true the returned items contain also the resources data as well as metadata
      */
@@ -64,6 +89,13 @@ export interface MarketplaceRequestBuilderGetQueryParameters {
  * Uri template for the request builder.
  */
 export const MarketplaceRequestBuilderUriTemplate = "{+baseurl}/api/marketplace";
+/**
+ * Mapper for query parameters from symbol name to serialization name represented as a constant.
+ */
+const MarketplaceRequestBuilderGetQueryParametersMapper: Record<string, string> = {
+    "availableTo": "available_to",
+    "releaseStage": "release_stage",
+};
 /**
  * Metadata for all the navigation properties in the request builder.
  */
@@ -84,6 +116,7 @@ export const MarketplaceRequestBuilderRequestsMetadata: RequestsMetadata = {
         responseBodyContentType: "application/json",
         adapterMethodName: "sendCollection",
         responseBodyFactory:  createMarketplaceItemFromDiscriminatorValue,
+        queryParametersMapper: MarketplaceRequestBuilderGetQueryParametersMapper,
     },
 };
 /* tslint:enable */
