@@ -100,6 +100,9 @@ t.test('tenants validated', t => {
         imagePullSecretName: 'some-secret',
         isDefault: true,
       }],
+      aiSettings: {
+        enableAgenticFeatures: true,
+      },
     }
 
     t.ok(validate(tenant), validationMessage(validate.errors))

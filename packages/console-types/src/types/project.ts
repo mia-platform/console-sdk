@@ -453,6 +453,17 @@ export const dockerImageNameSuggestion = {
   default: { type: DOCKER_IMAGE_NAME_SUGGESTION_TYPES.PROJECT_ID },
 } as const
 
+export const aiSettings = {
+  type: 'object',
+  properties: {
+    enableAgenticFeatures: {
+      type: 'boolean',
+      default: true,
+    },
+  },
+} as const
+export type AISettings = FromSchema<typeof aiSettings>
+
 export const project = {
   type: 'object',
   properties: {
@@ -598,6 +609,7 @@ export const project = {
     },
     monitoring,
     configurationManagement,
+    aiSettings,
   },
   required: [
     '_id',

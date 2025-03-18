@@ -248,11 +248,13 @@ export type {
   IProject,
   QuickLink,
   ProjectEnvironmentLink,
+  AISettings,
 } from './types/project'
 
 export {
   projectEnvironmentLink,
   quickLink,
+  aiSettings,
 } from './types/project'
 
 export type { ITemplate } from './types/template'
