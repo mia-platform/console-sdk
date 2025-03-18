@@ -2608,7 +2608,7 @@
                         "in": "query",
                         "name": "available_to",
                         "required": false,
-                        "description": "A comma-separated string of possible item visibilities: 'public', 'all-tenants', 'preview'. It is mutually exclusive with 'includeTenantId'"
+                        "description": "A comma-separated string of possible item visibilities: 'public', 'all-tenants', 'private'. It is mutually exclusive with 'includeTenantId'"
                     },
                     {
                         "schema": {

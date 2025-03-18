@@ -35,7 +35,7 @@ export interface MarketplaceRequestBuilder extends BaseRequestBuilder<Marketplac
 }
 export interface MarketplaceRequestBuilderGetQueryParameters {
     /**
-     * A comma-separated string of possible item visibilities: 'public', 'all-tenants', 'preview'. It is mutually exclusive with 'includeTenantId'
+     * A comma-separated string of possible item visibilities: 'public', 'all-tenants', 'private'. It is mutually exclusive with 'includeTenantId'
      */
     availableTo?: string;
     /**
