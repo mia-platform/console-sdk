@@ -2532,6 +2532,7 @@
                         },
                         "in": "query",
                         "name": "perPage",
+                        "deprecated": true,
                         "required": false,
                         "description": "Size of the page to be downloaded"
                     },
@@ -2578,6 +2579,73 @@
                         "name": "resolveResourcesData",
                         "required": false,
                         "description": "If true the returned items contain also the resources data as well as metadata"
+                    },
+                    {
+                        "schema": {
+                            "type": "integer",
+                            "maximum": 200,
+                            "minimum": 1
+                        },
+                        "in": "query",
+                        "name": "per_page",
+                        "required": false,
+                        "description": "Number of items per page"
+                    },
+                    {
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "description": "Page number to be retrieved"
+                    },
+                    {
+                        "schema": {
+                            "type": "string",
+                            "enum": ["name", "-name", "type", "-type"]
+                        },
+                        "in": "query",
+                        "name": "sort",
+                        "required": false,
+                        "description": "The field to which sort results. Default sort is ascending, for descending order add a '-' before the field (e.g. -name)."
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "available_to",
+                        "required": false,
+                        "description": "A comma-separated string of possible item visibilities: 'public', 'all-tenants', 'private'. It is mutually exclusive with 'includeTenantId'"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "category",
+                        "required": false,
+                        "description": "A comma-separated string of possible item categories"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "name",
+                        "required": false,
+                        "description": "Regex for filtering items by name"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "release_stage",
+                        "required": false,
+                        "description": "A comma-separated string of possible item release stages: 'coming-soon', 'beta', 'preview', 'stable', 'deprecated'"
                     }
                 ],
                 "responses": {
