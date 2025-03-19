@@ -26,7 +26,6 @@ export function deserializeIntoWithVersionGetResponse(withVersionGetResponse: Pa
         ...deserializeIntoMarketplaceManifest(withVersionGetResponse as MarketplaceManifest),
     }
 }
-export type GetFormatQueryParameterType = (typeof GetFormatQueryParameterTypeObject)[keyof typeof GetFormatQueryParameterTypeObject];
 /**
  * Serializes information the current object
  * @param writer Serialization writer to use to serialize this model
@@ -65,15 +64,12 @@ export interface WithVersionItemRequestBuilderGetQueryParameters {
     /**
      * The format of the schema of the item returned
      */
-    format?: GetFormatQueryParameterType;
+    format?: string;
 }
 /**
  * Uri template for the request builder.
  */
 export const WithVersionItemRequestBuilderUriTemplate = "{+baseurl}/api/marketplace/tenants/{tenantId}/resources/{itemId}/versions/{version}{?format*}";
-export const GetFormatQueryParameterTypeObject = {
-    Manifest: "manifest",
-} as const;
 /**
  * Metadata for all the requests in the request builder.
  */

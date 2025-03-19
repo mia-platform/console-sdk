@@ -2832,8 +2832,7 @@
                     },
                     {
                       "schema": {
-                          "type": "string",
-                          "enum": ["manifest"]
+                          "type": "string"
                       },
                       "in": "query",
                       "name": "format",
