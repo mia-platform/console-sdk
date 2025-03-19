@@ -2603,6 +2603,16 @@
                     },
                     {
                         "schema": {
+                            "type": "string",
+                            "enum": ["name", "-name", "type", "-type"]
+                        },
+                        "in": "query",
+                        "name": "sort",
+                        "required": false,
+                        "description": "The field to which sort results. Default sort is ascending, for descending order add a '-' before the field (e.g. -name)."
+                    },
+                    {
+                        "schema": {
                             "type": "string"
                         },
                         "in": "query",

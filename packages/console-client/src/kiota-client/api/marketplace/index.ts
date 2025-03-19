@@ -10,6 +10,7 @@ import { TenantsRequestBuilderNavigationMetadata, type TenantsRequestBuilder } f
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
+export type GetSortQueryParameterType = (typeof GetSortQueryParameterTypeObject)[keyof typeof GetSortQueryParameterTypeObject];
 /**
  * Builds and executes requests for operations under /api/marketplace
  */
@@ -77,6 +78,10 @@ export interface MarketplaceRequestBuilderGetQueryParameters {
      */
     resolveResourcesData?: boolean;
     /**
+     * The field to which sort results. Default sort is ascending, for descending order add a '-' before the field (e.g. -name).
+     */
+    sort?: GetSortQueryParameterType;
+    /**
      * The Id of the Tenant for which to filter the marketplace resources
      */
     tenantId?: string;
@@ -89,6 +94,12 @@ export interface MarketplaceRequestBuilderGetQueryParameters {
  * Uri template for the request builder.
  */
 export const MarketplaceRequestBuilderUriTemplate = "{+baseurl}/api/marketplace";
+export const GetSortQueryParameterTypeObject = {
+    Name: "name",
+    Minus_name: "-name",
+    Type: "type",
+    Minus_type: "-type",
+} as const;
 /**
  * Mapper for query parameters from symbol name to serialization name represented as a constant.
  */
