@@ -1,5 +1,12 @@
 # @mia-platform/console-client
 
+## 0.4.6
+
+### Patch Changes
+
+- 72301b9: removed enum in `format` query parameter in marketplace item detail api
+- 3d8679b: Update GET /api/marketplace/ query parameters
+
 ## 0.4.5
 
 ### Patch Changes
