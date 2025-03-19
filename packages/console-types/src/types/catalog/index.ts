@@ -16,11 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export * from './well-known-items'
-export * from './category'
-export * from './commons'
-export * from './item-manifest'
-export * from './item-metadata'
+export * from './crd'
 export * from './item'
-export * from './release'
-export * from './versioned-item'
+export * from './misc'
+export * from './well-known-items'

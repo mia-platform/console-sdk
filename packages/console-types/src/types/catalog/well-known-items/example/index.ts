@@ -19,67 +19,64 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import {
-  catalogArchiveUrlSchema,
-  catalogComponentIdSchema,
-  catalogContainerPortsSchema,
-  catalogDefaultAnnotationsSchema,
-  catalogDefaultArgsSchema,
-  catalogDefaultConfigMapsSchema,
-  catalogDefaultDocumentationPathSchema,
-  catalogDefaultEnvironmentVariablesSchema,
-  catalogDefaultLabelsSchema,
-  catalogDefaultLogParserSchema,
-  catalogDefaultMonitoringSchema,
-  catalogDefaultProbesSchema,
-  catalogDefaultResourcesSchema,
-  catalogDefaultSecretsSchema,
-  catalogDefaultTerminationGracePeriodSecondsSchema,
-  catalogDescriptionSchema,
-  catalogMapEnvVarToMountPathSchema,
-  catalogNameSchema,
-  catalogPipelinesSchema,
-  catalogRepositoryUrlSchema,
+  archiveUrlSchema,
+  componentIdSchema,
+  containerPortsSchema,
+  defaultAnnotationsSchema,
+  defaultArgsSchema,
+  defaultConfigMapsSchema,
+  defaultDocumentationPathSchema,
+  defaultEnvironmentVariablesSchema,
+  defaultLabelsSchema,
+  defaultLogParserSchema,
+  defaultMonitoringSchema,
+  defaultProbesSchema,
+  defaultResourcesSchema,
+  defaultSecretsSchema,
+  defaultTerminationGracePeriodSecondsSchema,
+  descriptionSchema,
+  mapEnvVarToMountPathSchema,
+  nameSchema,
+  pipelinesSchema,
+  repositoryUrlSchema,
 } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'example'
 
-export const catalogExampleSchema = {
+export const catalogExampleServiceSchema = {
   additionalProperties: false,
   properties: {
-    archiveUrl: catalogArchiveUrlSchema,
-    componentId: catalogComponentIdSchema,
-    containerPorts: catalogContainerPortsSchema,
-    defaultAnnotations: catalogDefaultAnnotationsSchema,
-    defaultArgs: catalogDefaultArgsSchema,
-    defaultConfigMaps: catalogDefaultConfigMapsSchema,
-    defaultDocumentationPath: catalogDefaultDocumentationPathSchema,
-    defaultEnvironmentVariables: catalogDefaultEnvironmentVariablesSchema,
-    defaultLabels: catalogDefaultLabelsSchema,
-    defaultLogParser: catalogDefaultLogParserSchema,
-    defaultMonitoring: catalogDefaultMonitoringSchema,
-    defaultProbes: catalogDefaultProbesSchema,
-    defaultResources: catalogDefaultResourcesSchema,
-    defaultSecrets: catalogDefaultSecretsSchema,
-    defaultTerminationGracePeriodSeconds: catalogDefaultTerminationGracePeriodSecondsSchema,
-    description: catalogDescriptionSchema,
-    mapEnvVarToMountPath: catalogMapEnvVarToMountPathSchema,
-    name: catalogNameSchema,
-    pipelines: catalogPipelinesSchema,
+    archiveUrl: archiveUrlSchema,
+    componentId: componentIdSchema,
+    containerPorts: containerPortsSchema,
+    defaultAnnotations: defaultAnnotationsSchema,
+    defaultArgs: defaultArgsSchema,
+    defaultConfigMaps: defaultConfigMapsSchema,
+    defaultDocumentationPath: defaultDocumentationPathSchema,
+    defaultEnvironmentVariables: defaultEnvironmentVariablesSchema,
+    defaultLabels: defaultLabelsSchema,
+    defaultLogParser: defaultLogParserSchema,
+    defaultMonitoring: defaultMonitoringSchema,
+    defaultProbes: defaultProbesSchema,
+    defaultResources: defaultResourcesSchema,
+    defaultSecrets: defaultSecretsSchema,
+    defaultTerminationGracePeriodSeconds: defaultTerminationGracePeriodSecondsSchema,
+    description: descriptionSchema,
+    mapEnvVarToMountPath: mapEnvVarToMountPathSchema,
+    name: nameSchema,
+    pipelines: pipelinesSchema,
 
     /** @deprecated */
-    repositoryUrl: { ...catalogRepositoryUrlSchema, deprecated: true },
+    repositoryUrl: { ...repositoryUrlSchema, deprecated: true },
     type: { const: type },
   },
   required: ['name', 'type', 'archiveUrl'],
   type: 'object',
 } as const satisfies JSONSchema
-
-export type CatalogExample = FromSchema<typeof catalogExampleSchema>
 
 const resourcesSchema = {
   $id: 'catalog-example-resources.schema.json',
@@ -90,7 +87,7 @@ const resourcesSchema = {
     services: {
       maxProperties: 1,
       minProperties: 1,
-      patternProperties: { [catalogNameSchema.pattern]: catalogExampleSchema },
+      patternProperties: { [nameSchema.pattern]: catalogExampleServiceSchema },
       type: 'object',
     },
   },
@@ -99,14 +96,13 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
+const crd: CatalogCrd = {
   name: 'example',
   itemId: 'example-definition',
   description: 'Example Custom Resource Definition',
   type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: true,
-  visibility: { public: true },
   resources: {
     name: type,
     validation: {
@@ -124,11 +120,12 @@ const crd: CatalogCRDManifest = {
       },
     },
   },
-} satisfies PublicCatalogCRD
+}
 
-export type CatalogExampleResources = FromSchema<typeof resourcesSchema>
-export type CatalogExampleItem = CatalogItem<typeof type, CatalogExampleResources>
-export type CatalogExampleVersionedItem = CatalogVersionedItem<typeof type, CatalogExampleResources>
-export type CatalogExampleManifest = CatalogItemManifest<typeof type, CatalogExampleResources>
+export type Service = FromSchema<typeof catalogExampleServiceSchema>
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export default { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

@@ -21,17 +21,16 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { collection } from '../../../collections'
 import { endpoint } from '../../../endpoints'
-import { CatalogItemNoVersionManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
-import { catalogListenerSchema, catalogNameSchema } from '../commons'
-import { CatalogCRDManifest, PublicCatalogCRD } from '../custom-resource-definition'
-import { catalogExampleSchema } from '../example'
-import { catalogPluginSchema } from '../plugin'
-import { catalogTemplateSchema } from '../template'
-import { catalogCollectionSchema } from './collection'
-import { catalogEndpointSchema } from './endpoint'
-import { catalogUnsecretedVariableSchema } from './unsecreted-variable'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
+import { listenerSchema, nameSchema } from '../commons'
+import { catalogExampleServiceSchema } from '../example'
+import { catalogPluginServiceSchema } from '../plugin'
+import { catalogTemplateServiceSchema } from '../template'
+import type { CatalogWellKnownItemData } from '..'
+import { catalogCollectionSchema, type Collection } from './collection'
+import { catalogEndpointSchema, type Endpoint } from './endpoint'
+import { catalogUnsecretedVariableSchema, type UnsecretedVariable } from './unsecreted-variable'
 
 const type = 'application'
 
@@ -52,14 +51,14 @@ const resourcesSchema = {
       type: 'object',
     },
     listeners: {
-      additionalProperties: catalogListenerSchema,
+      additionalProperties: listenerSchema,
       type: 'object',
     },
     services: {
       description: 'Services to be created with the application. The key of each service MUST be equal to the service `name` property',
       patternProperties: {
-        [catalogNameSchema.pattern]: {
-          oneOf: [catalogPluginSchema, catalogExampleSchema, catalogTemplateSchema],
+        [nameSchema.pattern]: {
+          oneOf: [catalogPluginServiceSchema, catalogExampleServiceSchema, catalogTemplateServiceSchema],
         },
       },
       minProperties: 1,
@@ -72,14 +71,13 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCRDManifest = {
+const crd: CatalogCrd = {
   name: 'application',
   itemId: 'application-definition',
   description: 'Application Custom Resource Definition',
   type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: false,
-  visibility: { public: true },
   resources: {
     name: type,
     validation: {
@@ -124,11 +122,13 @@ const crd: CatalogCRDManifest = {
       },
     },
   },
-} satisfies PublicCatalogCRD
+}
 
-export type CatalogApplicationResources = FromSchema<typeof resourcesSchema>
-export type CatalogApplicationItem = CatalogItem<typeof type, CatalogApplicationResources>
-export type CatalogApplicationVersionedItem = CatalogVersionedItem<typeof type, CatalogApplicationResources>
-export type CatalogApplicationManifest = CatalogItemNoVersionManifest<typeof type, CatalogApplicationResources>
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
 
-export default { type, resourcesSchema, crd }
+export type { Collection, Endpoint, UnsecretedVariable }
+
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

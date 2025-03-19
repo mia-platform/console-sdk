@@ -16,18 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { FromSchema } from 'json-schema-to-ts'
+import { catalogCategorySchema, type CatalogCategory } from './category'
 
-import type { JSONSchema } from '../../../../commons/json-schema'
+export { catalogCategorySchema }
 
-export const catalogUnsecretedVariableSchema = {
-  additionalProperties: false,
-  properties: {
-    noProductionEnv: { type: 'string' },
-    productionEnv: { type: 'string' },
-  },
-  required: ['productionEnv', 'noProductionEnv'],
-  type: 'object',
-} as const satisfies JSONSchema
-
-export type UnsecretedVariable = FromSchema<typeof catalogUnsecretedVariableSchema>
+export type { CatalogCategory }

@@ -16,18 +16,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { FromSchema } from 'json-schema-to-ts'
+import { CATALOG_CRD_TYPE } from './commons'
+import { catalogCrdManifestSchema, type CatalogCrdManifest } from './crd-manifest'
+import { catalogCrdSchema, type CatalogCrd } from './crd'
 
-import type { JSONSchema } from '../../../../commons/json-schema'
+export {
+  CATALOG_CRD_TYPE,
+  catalogCrdManifestSchema,
+  catalogCrdSchema,
+}
 
-export const catalogUnsecretedVariableSchema = {
-  additionalProperties: false,
-  properties: {
-    noProductionEnv: { type: 'string' },
-    productionEnv: { type: 'string' },
-  },
-  required: ['productionEnv', 'noProductionEnv'],
-  type: 'object',
-} as const satisfies JSONSchema
-
-export type UnsecretedVariable = FromSchema<typeof catalogUnsecretedVariableSchema>
+export type {
+  CatalogCrdManifest,
+  CatalogCrd,
+}

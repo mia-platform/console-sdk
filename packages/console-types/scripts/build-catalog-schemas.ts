@@ -16,74 +16,118 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/* eslint-disable no-console */
-import type { Dirent } from 'fs'
+/* eslint-disable no-console, no-await-in-loop */
 import fs from 'fs/promises'
 import path from 'path'
-import type { JSONSchema } from 'json-schema-to-ts'
 import { clone, lensPath, set } from 'ramda'
 
-import { catalogCRD, CatalogItemManifest, catalogItemManifestSchema, catalogWellKnownItemsCustomResourceDefinitions } from '../src'
+import {
+  catalogItemSchema,
+  catalogItemManifestSchema,
+  catalogWellKnownItems,
+  type CatalogItemManifest,
+  type CatalogWellKnownItemData,
+  type CatalogItem,
+} from '../src'
+import { JSONSchema } from '../src/commons/json-schema'
 
-type ItemModule = {
-  default: {
-    type: string,
-    resourcesSchema: JSONSchema
-  }
+const comment = 'This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.'
+
+const outDir = path.resolve(process.cwd(), 'schemas/catalog')
+
+const buildItemSchema = async(): Promise<void> => {
+  let item = clone({ $comment: comment, ...catalogItemSchema }) as unknown as CatalogItem
+
+  item = set(lensPath(['properties', '$schema']), { type: 'string' }, item)
+
+  await fs.writeFile(path.resolve(outDir, 'item.schema.json'), JSON.stringify(item, null, 2))
+
+  console.log(`✓ Compiled schema from "item"`)
 }
 
-const comment = 'This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `build-catalog-schemas`.'
+const buildManifestSchema = async(): Promise<void> => {
+  let manifest = clone({ $comment: comment, ...catalogItemManifestSchema }) as unknown as CatalogItemManifest
 
-const processItemType = async(dirent: Dirent): Promise<void> => {
-  try {
-    const dirPath = path.resolve(dirent.parentPath, dirent.name)
+  manifest = set(lensPath(['properties', '$schema']), { type: 'string' }, manifest)
 
-    const module = await import(path.resolve(dirPath, 'index.ts')) as ItemModule
+  await fs.writeFile(path.resolve(outDir, 'item-manifest.schema.json'), JSON.stringify(manifest, null, 2))
 
+  console.log(`✓ Compiled schema from "item manifest"`)
+}
+
+const buildWellKnownItemsSchemas = async(): Promise<void> => {
+  const buildManifest = async(data: CatalogWellKnownItemData): Promise<void> => {
     let manifest = clone({ $comment: comment, ...catalogItemManifestSchema }) as unknown as CatalogItemManifest
 
-    manifest = set(lensPath(['$id']), `catalog-${module.default.type}.schema.json`, manifest)
-    manifest = set(lensPath(['description']), undefined, manifest)
-    manifest = set(lensPath(['title']), undefined, manifest)
+    manifest = set(lensPath(['$id']), `catalog-${data.type}.manifest.schema.json`, manifest)
+    manifest = set(lensPath(['title']), `Catalog ${data.type} item manifest`, manifest)
+    manifest = set(lensPath(['description']), `Data model of a Catalog ${data.type} item to apply`, manifest)
 
     manifest = set(lensPath(['properties', '$schema']), { type: 'string' }, manifest)
-    manifest = set(lensPath(['properties', 'type']), { const: module.default.type }, manifest)
+    manifest = set(lensPath(['properties', 'type']), { const: data.type }, manifest)
 
-    manifest = set(lensPath(['properties', 'resources']), module.default.resourcesSchema, manifest)
+    manifest = set(lensPath(['properties', 'resources']), data.resourcesSchema, manifest)
     manifest = set(lensPath(['properties', 'resources', '$id']), undefined, manifest)
     manifest = set(lensPath(['properties', 'resources', '$schema']), undefined, manifest)
     manifest = set(lensPath(['properties', 'resources', 'description']), undefined, manifest)
     manifest = set(lensPath(['properties', 'resources', 'title']), undefined, manifest)
 
-    if (module.default.type !== catalogCRD.type) {
-      manifest = set(lensPath(['properties', 'isVersioningSupported']), undefined, manifest)
-    }
-
-    const crd = catalogWellKnownItemsCustomResourceDefinitions[module.default.type]
-    const isVersioningSupported = module.default.type !== catalogCRD.type && crd?.isVersioningSupported
-    if (!isVersioningSupported) {
+    if (!data.crd.isVersioningSupported) {
       manifest = set(lensPath(['properties', 'version']), undefined, manifest)
     }
 
-    await fs.writeFile(path.resolve(dirPath, 'manifest.schema.json'), JSON.stringify(manifest, null, 2))
+    await fs.writeFile(path.resolve(outDir, `${data.type}.manifest.schema.json`), JSON.stringify(manifest, null, 2))
+  }
 
-    console.log(`✔️ Compiled manifest for ${dirent.name}`)
-  } catch (error) {
-    console.error(`⨯ Error compiling manifest for ${dirent.name}`)
-    console.error(error)
+  const buildItem = async(data: CatalogWellKnownItemData): Promise<void> => {
+    let item = clone({ $comment: comment, ...catalogItemSchema }) as unknown as CatalogItem
+
+    item = set(lensPath(['$id']), `catalog-${data.type}.item.schema.json`, item)
+    item = set(lensPath(['title']), `Catalog ${data.type} item`, item)
+    item = set(lensPath(['description']), `Data model of a Catalog ${data.type} item`, item)
+
+    item = set(lensPath(['properties', '$schema']), { type: 'string' }, item)
+    item = set(lensPath(['properties', 'type']), { const: data.type }, item)
+
+    item = set(lensPath(['properties', 'resources']), data.resourcesSchema, item)
+    item = set(lensPath(['properties', 'resources', '$id']), undefined, item)
+    item = set(lensPath(['properties', 'resources', '$schema']), undefined, item)
+    item = set(lensPath(['properties', 'resources', 'description']), undefined, item)
+    item = set(lensPath(['properties', 'resources', 'title']), undefined, item)
+
+    await fs.writeFile(path.resolve(outDir, `${data.type}.item.schema.json`), JSON.stringify(item, null, 2))
+  }
+
+  const buildResources = async(data: CatalogWellKnownItemData): Promise<void> => {
+    let resources = clone({ $comment: comment, ...data.resourcesSchema as object }) as JSONSchema
+
+    resources = set(lensPath(['$id']), `catalog-${data.type}.resources.schema.json`, resources)
+    resources = set(lensPath(['title']), `Catalog ${data.type} item resources`, resources)
+    resources = set(lensPath(['description']), `Data model of a Catalog ${data.type} item resources`, resources)
+
+    resources = set(lensPath(['properties', '$schema']), { type: 'string' }, resources)
+
+    await fs.writeFile(path.resolve(outDir, `${data.type}.resources.schema.json`), JSON.stringify(resources, null, 2))
+  }
+
+  for (const data of Object.values(catalogWellKnownItems)) {
+    await buildManifest(data)
+    await buildItem(data)
+    await buildResources(data)
+
+    console.log(`✓ Compiled schemas for "${data.type}"`)
   }
 }
 
 const main = async(): Promise<void> => {
-  const itemDirs = await fs.readdir(path.resolve(process.cwd(), 'src/types/catalog/well-known-items'), { withFileTypes: true })
+  console.log(`Compiling Software Catalog JSON schemas...`)
 
-  const promises = itemDirs.map((dirent) => {
-    if (!dirent.isDirectory()) { return Promise.resolve() }
+  await fs.rm(outDir, { recursive: true, force: true })
+  await fs.mkdir(outDir, { recursive: true })
 
-    return processItemType(dirent)
-  })
-
-  await Promise.all(promises)
+  await buildItemSchema()
+  await buildManifestSchema()
+  await buildWellKnownItemsSchemas()
 }
 
 main().catch(console.error)
