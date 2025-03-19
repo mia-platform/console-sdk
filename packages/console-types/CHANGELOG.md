@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.32.0
+
+### Minor Changes
+
+- cced7cd: Reorganized Software Catalog files and exports
+
+### Patch Changes
+
+- 873439e: add aiSettings to tenant and project settings
+
 ## 0.31.2
 
 ### Patch Changes

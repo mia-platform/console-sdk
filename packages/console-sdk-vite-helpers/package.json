@@ -1,6 +1,6 @@
 {
   "name": "@mia-platform/console-sdk-vite-helpers",
-  "version": "0.0.105",
+  "version": "0.0.106",
   "license": "Apache-2.0",
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
