@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.33.0
+
+### Minor Changes
+
+- 0087f5f: feat: infrastructure project flavor and type definitions
+
 ## 0.32.0
 
 ### Minor Changes
