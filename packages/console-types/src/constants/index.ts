@@ -46,6 +46,8 @@ import {
   VISIBILITY_PROJECT_FIELDS,
   KUSTOMIZE_PROJECT_STRUCTURE,
   DEFAULT_PROJECT_STRUCTURE,
+  PROJECT_APPLICATION_FLAVOR,
+  PROJECT_INFRASTRUCTURE_FLAVOR,
 } from './project'
 import {
   ARRAY,
@@ -214,6 +216,8 @@ const constants = {
   ENVIRONMENT_TYPES,
   clusterNamespacePattern,
   envIdPattern,
+  PROJECT_APPLICATION_FLAVOR,
+  PROJECT_INFRASTRUCTURE_FLAVOR,
 }
 export default constants
 

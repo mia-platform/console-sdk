@@ -249,6 +249,7 @@ export type {
   QuickLink,
   ProjectEnvironmentLink,
   AISettings,
+  InfrastructureComponent,
 } from './types/project'
 
 export {

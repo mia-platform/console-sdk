@@ -22,6 +22,9 @@ export const NUMERIC_VISIBILITY = {
   public: 3,
 }
 
+export const PROJECT_APPLICATION_FLAVOR = 'application' as const
+export const PROJECT_INFRASTRUCTURE_FLAVOR = 'infrastructure' as const
+
 export const PUSH_DEPLOY_STRATEGY = 'push' as const
 export const PULL_DEPLOY_STRATEGY = 'pull' as const
 

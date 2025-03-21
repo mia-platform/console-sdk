@@ -20,7 +20,7 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from '../constants/dashboard'
-import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../constants/project'
+import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROJECT_APPLICATION_FLAVOR, PROJECT_INFRASTRUCTURE_FLAVOR, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../constants/project'
 import { providerCommonProperties } from './provider'
 import { VALIDATION_ERROR_ID } from '../strings'
 import { ENVIRONMENT_TYPES } from '../constants/environments'
@@ -464,12 +464,74 @@ export const aiSettings = {
 } as const
 export type AISettings = FromSchema<typeof aiSettings>
 
+export const infrastructureComponent = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: 'component name',
+    },
+    tags: {
+      type: 'array',
+      description: 'List of tags that can help categorizing and searching items',
+      items: { type: 'string' },
+    },
+    gitInfo: {
+      type: 'object',
+      properties: {
+        repoUrl: {
+          type: 'string',
+          description: 'Repository URL for UI link and HTTPS clone',
+        },
+        sshUrl: {
+          type: 'string',
+          description: 'Repository SSH URL for clone',
+        },
+      },
+    },
+    pipelineInfo: {
+      type: 'object',
+      required: ['projectId'],
+      properties: {
+        providerId: {
+          type: 'string',
+          description: 'optional provider id to be used in case you want to override the main project provider',
+        },
+        projectId: {
+          type: 'string',
+          description: 'ID of the project in the git provider, used for pipeline triggers etc',
+        },
+        refName: {
+          type: 'string',
+          description: 'Name of the ref used to trigger the pipeline',
+        },
+        jobs: {
+          type: 'object',
+          properties: {
+            planJobName: { type: 'string' },
+            applyJobName: { type: 'string' },
+          },
+        },
+      },
+    },
+  },
+} as const
+export type InfrastructureComponent = FromSchema<typeof infrastructureComponent>
+
+export const infrastructureComponents = {
+  type: 'object',
+  patternProperties: {
+    '^[a-z]([-_a-z0-9]*[a-z0-9])?$': infrastructureComponent,
+  },
+} as const
+
 export const project = {
   type: 'object',
   properties: {
     _id: { type: 'string' },
     name: { type: 'string' },
     description: { type: 'string' },
+    flavor: { type: 'string', enum: [PROJECT_APPLICATION_FLAVOR, PROJECT_INFRASTRUCTURE_FLAVOR] },
     configurationGitPath: { type: 'string' },
     repositoryUrl: { type: 'string' },
     defaultBranch: { type: 'string' },
@@ -610,6 +672,7 @@ export const project = {
     monitoring,
     configurationManagement,
     aiSettings,
+    infrastructureComponents,
   },
   required: [
     '_id',
