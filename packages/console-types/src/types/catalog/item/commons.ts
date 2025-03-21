@@ -36,7 +36,6 @@ export enum CatalogItemReleaseStage {
 
 export const catalogComingSoonSchema = {
   description: 'Flag that will prevent the use of the item',
-  nullable: true,
   type: 'boolean',
 } as const satisfies JSONSchema
 
@@ -47,7 +46,6 @@ export const catalogItemDescriptionSchema = {
 
 export const catalogDocumentationSchema = {
   description: 'Documentation of the item',
-  nullable: true,
   properties: {
     type: { enum: Object.values(CatalogItemDocumentationType), type: 'string' },
     url: { format: 'uri-reference', type: 'string' },
@@ -87,7 +85,6 @@ export const catalogProviderIdSchema = {
 
 export const catalogPublishOnMiaDocumentationSchema = {
   description: 'Flag stating if the resource documentation should be published on Mia-Platform public documentation',
-  nullable: true,
   type: 'boolean',
 } as const satisfies JSONSchema
 
@@ -106,7 +103,6 @@ export const catalogReleaseStageSchema = {
 export const catalogItemRepositoryUrlSchema = {
   description: 'URL of the repository containing the source code of the resource created by the item',
   format: 'uri-reference',
-  nullable: true,
   type: 'string',
 } as const satisfies JSONSchema
 
