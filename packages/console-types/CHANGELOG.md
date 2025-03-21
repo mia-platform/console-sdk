@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.33.1
+
+### Patch Changes
+
+- 9f189ac: removed nullable from catalog item schemas
+
 ## 0.33.0
 
 ### Minor Changes
