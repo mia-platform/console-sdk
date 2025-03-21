@@ -12,7 +12,6 @@
     },
     "comingSoon": {
       "description": "Flag that will prevent the use of the item",
-      "nullable": true,
       "type": "boolean"
     },
     "description": {
@@ -21,7 +20,6 @@
     },
     "documentation": {
       "description": "Documentation of the item",
-      "nullable": true,
       "properties": {
         "type": {
           "enum": [
@@ -63,7 +61,6 @@
     },
     "publishOnMiaDocumentation": {
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
-      "nullable": true,
       "type": "boolean"
     },
     "releaseStage": {
@@ -80,7 +77,6 @@
     "repositoryUrl": {
       "description": "URL of the repository containing the source code of the resource created by the item",
       "format": "uri-reference",
-      "nullable": true,
       "type": "string"
     },
     "resources": {
