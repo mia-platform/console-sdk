@@ -4,7 +4,9 @@
 // @ts-ignore
 import { createMarketplaceItemFromDiscriminatorValue, createMarketplaceManifestFromDiscriminatorValue, deserializeIntoMarketplaceItem, deserializeIntoMarketplaceManifest, serializeMarketplaceItem, serializeMarketplaceManifest, type MarketplaceItem, type MarketplaceManifest } from '../../../../../../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
+import { MetadataRequestBuilderRequestsMetadata, type MetadataRequestBuilder } from './metadata/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -41,6 +43,10 @@ export type WithVersionGetResponse = MarketplaceItem | MarketplaceManifest;
  */
 export interface WithVersionItemRequestBuilder extends BaseRequestBuilder<WithVersionItemRequestBuilder> {
     /**
+     * The metadata property
+     */
+    get metadata(): MetadataRequestBuilder;
+    /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      */
      delete(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<void>;
@@ -70,6 +76,14 @@ export interface WithVersionItemRequestBuilderGetQueryParameters {
  * Uri template for the request builder.
  */
 export const WithVersionItemRequestBuilderUriTemplate = "{+baseurl}/api/marketplace/tenants/{tenantId}/resources/{itemId}/versions/{version}{?format*}";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const WithVersionItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithVersionItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    metadata: {
+        requestsMetadata: MetadataRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */
