@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.4.7
+
+### Patch Changes
+
+- 33919d4: added patch marketplace item metadata API
+
 ## 0.4.6
 
 ### Patch Changes
