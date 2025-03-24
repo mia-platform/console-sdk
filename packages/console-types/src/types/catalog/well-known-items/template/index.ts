@@ -88,6 +88,7 @@ const resourcesSchema = {
       maxProperties: 1,
       minProperties: 1,
       patternProperties: { [nameSchema.pattern]: catalogTemplateServiceSchema },
+      additionalProperties: false,
       type: 'object',
     },
   },

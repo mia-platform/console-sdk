@@ -966,6 +966,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "type": "object"
         },
         "endpoints": {
@@ -1857,6 +1858,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "type": "object"
         },
         "listeners": {
@@ -4693,6 +4695,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "minProperties": 1,
           "type": "object"
         },

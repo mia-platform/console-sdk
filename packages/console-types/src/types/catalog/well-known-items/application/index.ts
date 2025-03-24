@@ -43,11 +43,13 @@ const resourcesSchema = {
     collections: {
       description: 'Collections to be created with the application. The key of each collection MUST be equal to the collection `defaultName` property. Collections only work if a Mia-Platform CRUD Service is already in the project or is created through the application itself.',
       patternProperties: { [collection.name.pattern]: catalogCollectionSchema },
+      additionalProperties: false,
       type: 'object',
     },
     endpoints: {
       description: 'Endpoints to be created with the application. The key of each endpoint MUST be equal to the endpoint `defaultBasePath` property. Endpoints only work if a Mia-Platform API Gateway is already in the project or is created through the application itself.',
       patternProperties: { [endpoint.basePath.pattern]: catalogEndpointSchema },
+      additionalProperties: false,
       type: 'object',
     },
     listeners: {
@@ -61,6 +63,7 @@ const resourcesSchema = {
           oneOf: [catalogPluginServiceSchema, catalogExampleServiceSchema, catalogTemplateServiceSchema],
         },
       },
+      additionalProperties: false,
       minProperties: 1,
       type: 'object',
     },
