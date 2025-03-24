@@ -1226,6 +1226,7 @@
           "type": "object"
         }
       },
+      "additionalProperties": false,
       "type": "object"
     },
     "$schema": {

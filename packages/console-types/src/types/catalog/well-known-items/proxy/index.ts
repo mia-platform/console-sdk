@@ -65,6 +65,7 @@ const resourcesSchema = {
       maxProperties: 1,
       minProperties: 1,
       patternProperties: { [nameSchema.pattern]: catalogProxyServiceSchema },
+      additionalProperties: false,
       type: 'object',
     },
   },
