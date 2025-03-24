@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.33.2
+
+### Patch Changes
+
+- efbb7de: improve Catalog well-known items CRDs validation
+
 ## 0.33.1
 
 ### Patch Changes
