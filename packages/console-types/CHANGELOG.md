@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.33.3
+
+### Patch Changes
+
+- 3a8de18: feat: add providerType to infrastructureComponent pipelineInfo
+
 ## 0.33.2
 
 ### Patch Changes
