@@ -497,6 +497,10 @@ export const infrastructureComponent = {
           type: 'string',
           description: 'optional provider id to be used in case you want to override the main project provider',
         },
+        providerType: {
+          type: 'string',
+          description: 'type of the provider',
+        },
         projectId: {
           type: 'string',
           description: 'ID of the project in the git provider, used for pipeline triggers etc',
