@@ -16,16 +16,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { FromSchema } from 'json-schema-to-ts'
+
 import { JSONSchema } from '../../../commons/json-schema'
 
-export const CATALOG_CRD_TYPE = 'custom-resource-definition'
-
-export const catalogCrdIsVersioningSupportedSchema = {
+export const isVersioningSupportedSchema = {
   description: 'States if versioning is supported for the custom resource defined by the CRD',
   type: 'boolean',
 } as const satisfies JSONSchema
 
-export const catalogCrdResourcesSchema = {
+export const resourcesSchema = {
   type: 'object',
   properties: {
     controlledFields: {
@@ -96,3 +96,5 @@ export const catalogCrdResourcesSchema = {
   additionalProperties: false,
   required: ['name'],
 } as const satisfies JSONSchema
+
+export type Resources = FromSchema<typeof resourcesSchema>
