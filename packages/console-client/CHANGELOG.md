@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.5.0
+
+### Minor Changes
+
+- eb671c4: feat(IDP-2831): Exposed POST, PATCH and DELETE APIs for an extension App. Added App to GET extension by id
+
 ## 0.4.7
 
 ### Patch Changes
