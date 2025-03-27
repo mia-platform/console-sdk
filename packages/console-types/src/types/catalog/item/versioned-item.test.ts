@@ -31,6 +31,7 @@ t.test('catalog versioned item', t => {
 
   t.test('only required fields', t => {
     const data: CatalogVersionedItem = {
+      releaseDate: new Date().toISOString(),
       type: 'type',
       itemId: 'item-id',
       name: 'name',

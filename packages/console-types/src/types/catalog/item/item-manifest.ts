@@ -37,6 +37,7 @@ import {
   catalogTypeSchema,
   catalogSemverVersionSchema,
   catalogVisibilitySchema,
+  catalogReleaseDateSchema,
 } from './commons'
 
 export const catalogItemManifestSchema = {
@@ -55,6 +56,7 @@ export const catalogItemManifestSchema = {
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
     publishOnMiaDocumentation: catalogPublishOnMiaDocumentationSchema,
+    releaseDate: catalogReleaseDateSchema,
     releaseStage: catalogReleaseStageSchema,
     repositoryUrl: catalogItemRepositoryUrlSchema,
     resources: catalogResourcesSchema,

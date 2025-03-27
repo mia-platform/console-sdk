@@ -1409,6 +1409,7 @@
     "name",
     "itemId",
     "tenantId",
-    "type"
+    "type",
+    "releaseDate"
   ]
 }
