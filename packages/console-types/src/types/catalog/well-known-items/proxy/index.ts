@@ -20,21 +20,21 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { host } from '../../../services'
-import { catalogDefaultHeadersSchema, catalogNameSchema, catalogDescriptionSchema } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
+import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'proxy'
 
-export const catalogProxySchema = {
+export const catalogProxyServiceSchema = {
   oneOf: [
     {
       additionalProperties: false,
       properties: {
-        defaultHeaders: catalogDefaultHeadersSchema,
-        description: catalogDescriptionSchema,
-        name: catalogNameSchema,
+        defaultHeaders: defaultHeadersSchema,
+        description: descriptionSchema,
+        name: nameSchema,
         type: { const: 'external' },
         url: { format: 'uri', type: 'string' },
       },
@@ -44,9 +44,9 @@ export const catalogProxySchema = {
     {
       additionalProperties: false,
       properties: {
-        description: catalogDescriptionSchema,
+        description: descriptionSchema,
         host,
-        name: catalogNameSchema,
+        name: nameSchema,
         type: { const: 'cross-projects' },
       },
       required: ['name', 'type', 'host'],
@@ -55,8 +55,6 @@ export const catalogProxySchema = {
   ],
 } as const satisfies JSONSchema
 
-export type CatalogProxy = FromSchema<typeof catalogProxySchema>
-
 const resourcesSchema = {
   $id: 'catalog-proxy-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
@@ -64,9 +62,10 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
-      additionalProperties: catalogProxySchema,
       maxProperties: 1,
       minProperties: 1,
+      patternProperties: { [nameSchema.pattern]: catalogProxyServiceSchema },
+      additionalProperties: false,
       type: 'object',
     },
   },
@@ -75,9 +74,36 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogProxyResources = FromSchema<typeof resourcesSchema>
-export type CatalogProxyItem = CatalogItem<typeof type, CatalogProxyResources>
-export type CatalogProxyVersionedItem = CatalogVersionedItem<typeof type, CatalogProxyResources>
-export type CatalogProxyManifest = CatalogItemManifest<typeof type, CatalogProxyResources>
+const crd: CatalogCrd = {
+  name: 'proxy',
+  itemId: 'proxy-definition',
+  description: 'Proxy Custom Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: false,
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            '<change-with-your-proxy-name>': {
+              name: '<change-with-your-proxy-name>',
+              type: 'external',
+              url: 'https://example.com',
+            },
+          },
+        },
+      },
+    },
+  },
+}
 
-export default { type, resourcesSchema }
+export type Service = FromSchema<typeof catalogProxyServiceSchema>
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
+
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

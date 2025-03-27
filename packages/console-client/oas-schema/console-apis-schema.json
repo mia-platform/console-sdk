@@ -2884,6 +2884,7 @@
                         },
                         "in": "query",
                         "name": "perPage",
+                        "deprecated": true,
                         "required": false,
                         "description": "Size of the page to be downloaded"
                     },
@@ -2930,6 +2931,73 @@
                         "name": "resolveResourcesData",
                         "required": false,
                         "description": "If true the returned items contain also the resources data as well as metadata"
+                    },
+                    {
+                        "schema": {
+                            "type": "integer",
+                            "maximum": 200,
+                            "minimum": 1
+                        },
+                        "in": "query",
+                        "name": "per_page",
+                        "required": false,
+                        "description": "Number of items per page"
+                    },
+                    {
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "description": "Page number to be retrieved"
+                    },
+                    {
+                        "schema": {
+                            "type": "string",
+                            "enum": ["name", "-name", "type", "-type"]
+                        },
+                        "in": "query",
+                        "name": "sort",
+                        "required": false,
+                        "description": "The field to which sort results. Default sort is ascending, for descending order add a '-' before the field (e.g. -name)."
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "available_to",
+                        "required": false,
+                        "description": "A comma-separated string of possible item visibilities: 'public', 'all-tenants', 'private'. It is mutually exclusive with 'includeTenantId'"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "category",
+                        "required": false,
+                        "description": "A comma-separated string of possible item categories"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "name",
+                        "required": false,
+                        "description": "Regex for filtering items by name"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "release_stage",
+                        "required": false,
+                        "description": "A comma-separated string of possible item release stages: 'coming-soon', 'beta', 'preview', 'stable', 'deprecated'"
                     }
                 ],
                 "responses": {
@@ -2998,7 +3066,7 @@
                                     "resources": {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "#/components/schemas/marketplaceItem"
+                                            "$ref": "#/components/schemas/marketplaceManifest"
                                         }
                                     }
                                 },
@@ -3067,13 +3135,36 @@
                                                                 }
                                                             }
                                                         }
+                                                    },
+                                                    "errors": {
+                                                      "type": "array",
+                                                      "items": {
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                          "ajvError": {
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                              "instancePath": { "type": "string" },
+                                                              "keyword": { "type": "string" },
+                                                              "message": { "type": "string" },
+                                                              "params": { "additionalProperties": true, "type": "object" },
+                                                              "schemaPath": { "type": "string" }
+                                                            },
+                                                            "type": "object"
+                                                          },
+                                                          "message": { "type": "string" }
+                                                        },
+                                                        "required": ["message"],
+                                                        "type": "object"
+                                                      }
                                                     }
                                                 },
                                                 "required": [
                                                     "done",
                                                     "inserted",
                                                     "updated",
-                                                    "validationErrors"
+                                                    "validationErrors",
+                                                    "errors"
                                                 ]
                                             }
                                         }
@@ -3158,6 +3249,15 @@
                         "in": "path",
                         "name": "version",
                         "required": true
+                    },
+                    {
+                      "schema": {
+                          "type": "string"
+                      },
+                      "in": "query",
+                      "name": "format",
+                      "required": false,
+                      "description": "The format of the schema of the item returned"
                     }
                 ],
                 "responses": {
@@ -3166,7 +3266,10 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/marketplaceItem"
+                                    "oneOf": [
+                                      { "$ref": "#/components/schemas/marketplaceItem" },
+                                      { "$ref": "#/components/schemas/marketplaceManifest" }
+                                    ]
                                 }
                             }
                         }
@@ -3217,7 +3320,190 @@
                     }
                 }
             }
-        }
+        },
+        "/api/marketplace/tenants/{tenantId}/resources/{itemId}/versions/{version}/metadata": {
+          "patch": {
+              "tags": [
+                  "marketplace"
+              ],
+              "description": "Patches the metadata of a specific Marketplace item version",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "additionalProperties": false,
+                              "properties": {
+                                  "$set": {
+                                      "additionalProperties": false,
+                                      "properties": {
+                                          "categoryId": {
+                                              "description": "Identifier of the item's category",
+                                              "type": "string"
+                                          },
+                                          "comingSoon": {
+                                              "description": "Flag that will prevent the use of the item",
+                                              "type": "boolean"
+                                          },
+                                          "description": {
+                                              "description": "Brief description of the item",
+                                              "type": "string"
+                                          },
+                                          "documentation": {
+                                              "description": "Documentation of the item",
+                                              "properties": {
+                                                  "type": {
+                                                      "enum": [
+                                                          "externalLink",
+                                                          "markdown"
+                                                      ],
+                                                      "type": "string"
+                                                  },
+                                                  "url": {
+                                                      "type": "string"
+                                                  }
+                                              },
+                                              "required": [
+                                                  "type",
+                                                  "url"
+                                              ],
+                                              "type": "object"
+                                          },
+                                          "imageUrl": {
+                                              "description": "Url of the image associated with the item",
+                                              "type": "string"
+                                          },
+                                          "name": {
+                                              "description": "Human-readable name of the item",
+                                              "minLength": 1,
+                                              "type": "string"
+                                          },
+                                          "providerId": {
+                                              "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+                                              "type": "string"
+                                          },
+                                          "publishOnMiaDocumentation": {
+                                              "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+                                              "type": "boolean"
+                                          },
+                                          "releaseStage": {
+                                              "description": "Release stage of the item",
+                                              "enum": [
+                                                  "beta",
+                                                  "deprecated",
+                                                  "",
+                                                  "preview",
+                                                  "stable"
+                                              ],
+                                              "type": "string"
+                                          },
+                                          "repositoryUrl": {
+                                              "description": "URL of the repository containing the source code of the resource created by the item",
+                                              "type": "string"
+                                          },
+                                          "supportedBy": {
+                                              "description": "Identifier of the company that has produced the item",
+                                              "type": "string"
+                                          },
+                                          "supportedByImageUrl": {
+                                              "description": "Url of the image associated with the company that has produced the item",
+                                              "type": "string"
+                                          },
+                                          "version": {
+                                              "additionalProperties": false,
+                                              "properties": {
+                                                  "releaseNote": {
+                                                      "description": "Markdown release note",
+                                                      "type": "string"
+                                                  }
+                                              },
+                                              "required": [
+                                                  "releaseNote"
+                                              ],
+                                              "type": "object"
+                                          },
+                                          "visibility": {
+                                              "description": "Visibility of the item",
+                                              "properties": {
+                                                  "allTenants": {
+                                                      "default": false,
+                                                      "description": "If true, the item will be accessible to all companies",
+                                                      "type": "boolean"
+                                                  },
+                                                  "public": {
+                                                      "default": false,
+                                                      "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                                                      "type": "boolean"
+                                                  }
+                                              },
+                                              "type": "object"
+                                          }
+                                      },
+                                      "type": "object"
+                                  },
+                                  "$unset": {
+                                      "additionalProperties": false,
+                                      "properties": {
+                                          "categoryId": { "type": "boolean" },
+                                          "comingSoon": { "type": "boolean" },
+                                          "description": { "type": "boolean" },
+                                          "documentation": { "type": "boolean" },
+                                          "imageUrl": { "type": "boolean" },
+                                          "providerId": { "type": "boolean" },
+                                          "publishOnMiaDocumentation": { "type": "boolean" },
+                                          "releaseStage": { "type": "boolean" },
+                                          "repositoryUrl": { "type": "boolean" },
+                                          "supportedBy": { "type": "boolean" },
+                                          "supportedByImageUrl": { "type": "boolean" },
+                                          "visibility": { "type": "boolean" }
+                                      },
+                                      "type": "object"
+                                  }
+                              },
+                              "type": "object"
+                          }
+                      }
+                  }
+              },
+              "parameters": [
+                  {
+                      "schema": {
+                          "type": "string"
+                      },
+                      "in": "path",
+                      "name": "itemId",
+                      "required": true
+                  },
+                  {
+                      "schema": {
+                          "type": "string"
+                      },
+                      "in": "path",
+                      "name": "tenantId",
+                      "required": true
+                  },
+                  {
+                      "schema": {
+                          "type": "string"
+                      },
+                      "in": "path",
+                      "name": "version",
+                      "required": true
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Default Response",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/marketplaceItem"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
     },
     "components": {
         "securitySchemes": {
@@ -3361,7 +3647,14 @@
                     "isVersioningSupported": {
                         "type": "boolean"
                     }
-                }
+                },
+                "required": [
+                  "_id",
+                  "name",
+                  "itemId",
+                  "tenantId",
+                  "type"
+                ]
             },
             "marketplaceItemVersion": {
                 "type": "object",
@@ -3410,6 +3703,150 @@
                     "releaseNote",
                     "releaseDate"
                 ]
+            },
+            "marketplaceManifest": {
+              "type": "object",
+              "properties": {
+                "categoryId": {
+                  "description": "Identifier of the item's category",
+                  "type": "string"
+                },
+                "comingSoon": {
+                  "description": "Flag that will prevent the use of the item",
+                  "nullable": true,
+                  "type": "boolean"
+                },
+                "description": {
+                  "description": "Brief description of the item",
+                  "type": "string"
+                },
+                "documentation": {
+                  "description": "Documentation of the item",
+                  "nullable": true,
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "externalLink",
+                        "markdown"
+                      ],
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "url"
+                  ],
+                  "type": "object"
+                },
+                "imageUrl": {
+                  "description": "Url of the image associated with the item",
+                  "type": "string"
+                },
+                "itemId": {
+                  "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+                  "minLength": 1,
+                  "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Human-readable name of the item",
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "providerId": {
+                  "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+                  "type": "string"
+                },
+                "publishOnMiaDocumentation": {
+                  "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+                  "nullable": true,
+                  "type": "boolean"
+                },
+                "releaseStage": {
+                  "description": "Release stage of the item",
+                  "enum": [
+                    "beta",
+                    "deprecated",
+                    "",
+                    "preview",
+                    "stable"
+                  ],
+                  "type": "string"
+                },
+                "repositoryUrl": {
+                  "description": "URL of the repository containing the source code of the resource created by the item",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "resources": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "supportedBy": {
+                  "description": "Identifier of the company that has produced the item",
+                  "type": "string"
+                },
+                "supportedByImageUrl": {
+                  "description": "Url of the image associated with the company that has produced the item",
+                  "type": "string"
+                },
+                "tenantId": {
+                  "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "version": {
+                  "description": "Version of the item following semver",
+                  "properties": {
+                    "name": {
+                      "description": "Semantic version",
+                      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+                      "type": "string"
+                    },
+                    "releaseNote": {
+                      "description": "Markdown release note",
+                      "type": "string"
+                    },
+                    "security": {
+                      "description": "Flag stating if the version addresses any vulnerability",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "releaseNote"
+                  ],
+                  "type": "object"
+                },
+                "visibility": {
+                  "description": "Visibility of the item",
+                  "properties": {
+                    "allTenants": {
+                      "default": false,
+                      "description": "If true, the item will be accessible to all companies",
+                      "type": "boolean"
+                    },
+                    "public": {
+                      "default": false,
+                      "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name",
+                "itemId",
+                "tenantId",
+                "type",
+                "resources"
+              ]
             }
         }
     },

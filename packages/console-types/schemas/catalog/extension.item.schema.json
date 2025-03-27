@@ -1,0 +1,330 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-extension.item.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog extension item",
+  "description": "Data model of a Catalog extension item",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "description": "Database identifier of the item",
+      "type": "string"
+    },
+    "category": {
+      "description": "Identifier of the item's category",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label"
+      ]
+    },
+    "comingSoon": {
+      "description": "Flag that will prevent the use of the item",
+      "type": "boolean"
+    },
+    "componentsIds": {
+      "description": "List of source component ids of the services in the item's resources",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "description": {
+      "description": "Brief description of the item",
+      "type": "string"
+    },
+    "documentation": {
+      "description": "Documentation of the item",
+      "properties": {
+        "type": {
+          "enum": [
+            "externalLink",
+            "markdown"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "format": "uri-reference",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
+    "imageUrl": {
+      "description": "Url of the image associated with the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "isLatest": {
+      "description": "Flag stating if the the current document is the latest version of the item",
+      "type": "boolean"
+    },
+    "isVersioningSupported": {
+      "description": "States if versioning is supported for the custom resource defined by the CRD",
+      "type": "boolean"
+    },
+    "itemId": {
+      "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name of the item",
+      "minLength": 1,
+      "type": "string"
+    },
+    "providerId": {
+      "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+      "type": "string"
+    },
+    "publishOnMiaDocumentation": {
+      "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+      "type": "boolean"
+    },
+    "releaseDate": {
+      "description": "Creation date of this item's release",
+      "format": "date-time",
+      "type": "string"
+    },
+    "releaseStage": {
+      "description": "Release stage of the item",
+      "enum": [
+        "beta",
+        "deprecated",
+        "",
+        "preview",
+        "stable"
+      ],
+      "type": "string"
+    },
+    "repositoryUrl": {
+      "description": "URL of the repository containing the source code of the resource created by the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "resources": {
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "extensionType": {
+                "enum": [
+                  "iframe",
+                  "external-link"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "entry": {
+                "type": "string"
+              },
+              "routes": {
+                "items": {
+                  "properties": {
+                    "destinationPath": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "labelIntl": {
+                      "properties": {
+                        "en": {
+                          "type": "string"
+                        },
+                        "it": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "locationId": {
+                      "type": "string"
+                    },
+                    "matchExactMountPath": {
+                      "type": "boolean"
+                    },
+                    "order": {
+                      "type": "number"
+                    },
+                    "parentId": {
+                      "type": "string"
+                    },
+                    "renderType": {
+                      "enum": [
+                        "category"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "locationId",
+                    "labelIntl"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "entry"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "extensionType": {
+                "const": "composer-page"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "configuration": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "configuration"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "contexts": {
+          "items": {
+            "enum": [
+              "console",
+              "project",
+              "company"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extensionType": {
+          "enum": [
+            "iframe",
+            "external-link",
+            "composer-page"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "roleIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "extensionType",
+        "contexts"
+      ],
+      "type": "object"
+    },
+    "supportedBy": {
+      "description": "Identifier of the company that has produced the item",
+      "type": "string"
+    },
+    "supportedByImageUrl": {
+      "description": "Url of the image associated with the company that has produced the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "tenantId": {
+      "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+      "type": "string"
+    },
+    "type": {
+      "const": "extension"
+    },
+    "version": {
+      "description": "Version of the item following semver",
+      "properties": {
+        "name": {
+          "description": "Semantic version",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "releaseNote": {
+          "description": "Markdown release note",
+          "type": "string"
+        },
+        "security": {
+          "description": "Flag stating if the version addresses any vulnerability",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "releaseNote"
+      ],
+      "type": "object"
+    },
+    "visibility": {
+      "description": "Visibility of the item",
+      "properties": {
+        "allTenants": {
+          "default": false,
+          "description": "If true, the item will be accessible to all companies",
+          "type": "boolean"
+        },
+        "public": {
+          "default": false,
+          "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "_id",
+    "name",
+    "itemId",
+    "tenantId",
+    "type"
+  ]
+}

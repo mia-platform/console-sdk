@@ -16,61 +16,66 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { FromSchema } from 'json-schema-to-ts'
-
 import type { JSONSchema } from '../../../commons/json-schema'
 import { DIGIT_OR_INTERPOLATION_PATTERN } from '../../../constants/services'
+import {
+  configMapMountPath,
+  configMapName,
+  container,
+  dockerImage,
+  kubernetesDefinitionName,
+  pathWithoutPort,
+  port,
+  probesPath,
+  serviceName,
+  serviceSecretKey,
+  serviceSecretMountPath,
+  serviceSecretName,
+  swaggerPath,
+} from '../../services'
 
-export const catalogPortSchema = {
+export const portSchema = {
   minLength: 1,
   pattern: DIGIT_OR_INTERPOLATION_PATTERN,
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogPort = FromSchema<typeof catalogPortSchema>
 
-export const catalogNameSchema = {
-  minLength: 1,
-  pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?$',
+export const nameSchema = {
+  minLength: serviceName.minLength,
+  pattern: serviceName.pattern,
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogName = FromSchema<typeof catalogNameSchema>
 
-export const catalogDescriptionSchema = {
+export const descriptionSchema = {
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogDescription = FromSchema<typeof catalogDescriptionSchema>
 
-export const catalogComponentIdSchema = {
+export const componentIdSchema = {
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogComponentId = FromSchema<typeof catalogComponentIdSchema>
 
-export const catalogRepositoryUrlSchema = {
+export const repositoryUrlSchema = {
   format: 'uri-reference',
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogRepositoryUrl = FromSchema<typeof catalogRepositoryUrlSchema>
 
-export const catalogDockerImageSchema = {
-  pattern: '^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$',
+export const dockerImageSchema = {
+  pattern: dockerImage.pattern,
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogDockerImage = FromSchema<typeof catalogDockerImageSchema>
 
-export const catalogArchiveUrlSchema = {
+export const archiveUrlSchema = {
   format: 'uri-reference',
   minLength: 1,
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogArchiveUrl = FromSchema<typeof catalogArchiveUrlSchema>
 
-export const catalogTagsSchema = {
+export const tagsSchema = {
   items: { type: 'string' },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogTags = FromSchema<typeof catalogTagsSchema>
 
-export const catalogLinksSchema = {
+export const linksSchema = {
   items: {
     properties: {
       enableIf: { type: 'string' },
@@ -82,7 +87,6 @@ export const catalogLinksSchema = {
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogLinks = FromSchema<typeof catalogLinksSchema>
 
 const plainEnvironmentVariableSchema = {
   additionalProperties: false,
@@ -105,8 +109,8 @@ const secretEnvironmentVariableSchema = {
     managedBy: { type: 'string' },
     name: { minLength: 1, type: 'string' },
     readOnly: { type: 'boolean' },
-    secretKey: { pattern: '^[a-zA-Z0-9-_.]*$', type: 'string' },
-    secretName: { pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$', type: 'string' },
+    secretKey: { pattern: serviceSecretKey.pattern, type: 'string' },
+    secretName: { pattern: serviceSecretName.pattern, type: 'string' },
     valueType: { const: 'secret' },
   },
   required: ['name', 'valueType', 'secretName', 'secretKey'],
@@ -127,15 +131,14 @@ const downwardApiVariableSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export const catalogDefaultEnvironmentVariablesSchema = {
+export const defaultEnvironmentVariablesSchema = {
   items: {
     oneOf: [plainEnvironmentVariableSchema, secretEnvironmentVariableSchema, downwardApiVariableSchema],
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogDefaultEnvironmentVariables = FromSchema<typeof catalogDefaultEnvironmentVariablesSchema>
 
-export const catalogDefaultConfigMapsSchema = {
+export const defaultConfigMapsSchema = {
   items: {
     additionalProperties: false,
     properties: {
@@ -156,8 +159,8 @@ export const catalogDefaultConfigMapsSchema = {
         },
         type: 'object',
       },
-      mountPath: { pattern: '^[a-zA-Z0-9-/_\\s.|\\\\!"£$%&()=?^"{}[\\]*+@]+$', type: 'string' },
-      name: { pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$', type: 'string' },
+      mountPath: { pattern: configMapMountPath.pattern, type: 'string' },
+      name: { pattern: configMapName.pattern, type: 'string' },
       subPaths: { type: 'array', items: { type: 'string' } },
       usePreserve: { type: 'boolean' },
       viewAsReadOnly: { type: 'boolean' },
@@ -167,45 +170,42 @@ export const catalogDefaultConfigMapsSchema = {
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogDefaultConfigMaps = FromSchema<typeof catalogDefaultConfigMapsSchema>
 
-export const catalogDefaultSecretsSchema = {
+export const defaultSecretsSchema = {
   items: {
     additionalProperties: false,
     properties: {
-      mountPath: { pattern: '^[a-zA-Z0-9-/_\\s.|\\\\!"£$%&()=?^"{}[\\]*+@]+$', type: 'string' },
-      name: { pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$', type: 'string' },
+      mountPath: { pattern: serviceSecretMountPath.pattern, type: 'string' },
+      name: { pattern: serviceSecretName.pattern, type: 'string' },
     },
     required: ['name', 'mountPath'],
     type: 'object',
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogDefaultSecrets = FromSchema<typeof catalogDefaultSecretsSchema>
 
-export const catalogDefaultResourcesSchema = {
+export const defaultResourcesSchema = {
   additionalProperties: false,
   properties: {
     cpuLimits: {
       additionalProperties: false,
       properties: {
-        max: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$', type: 'string' },
-        min: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$', type: 'string' },
+        max: { pattern: container.properties.resources.properties.cpuLimits.properties.max.pattern, type: 'string' },
+        min: { pattern: container.properties.resources.properties.cpuLimits.properties.min.pattern, type: 'string' },
       },
       type: 'object',
     },
     memoryLimits: {
       additionalProperties: false,
       properties: {
-        max: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$', type: 'string' },
-        min: { pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$', type: 'string' },
+        max: { pattern: container.properties.resources.properties.memoryLimits.properties.max.pattern, type: 'string' },
+        min: { pattern: container.properties.resources.properties.memoryLimits.properties.min.pattern, type: 'string' },
       },
       type: 'object',
     },
   },
   type: 'object',
 } as const satisfies JSONSchema
-export type CatalogDefaultResources = FromSchema<typeof catalogDefaultResourcesSchema>
 
 const probeSchema = {
   oneOf: [
@@ -228,7 +228,7 @@ const probeSchema = {
         failureThreshold: { type: 'number' },
         initialDelaySeconds: { type: 'number' },
         periodSeconds: { type: 'number' },
-        port: catalogPortSchema,
+        port: { type: 'string' },
         successThreshold: { type: 'number' },
         timeoutSeconds: { type: 'number' },
       },
@@ -239,9 +239,9 @@ const probeSchema = {
       properties: {
         failureThreshold: { type: 'number' },
         initialDelaySeconds: { type: 'number' },
-        path: { pattern: '^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$', type: 'string' },
+        path: { pattern: probesPath.pattern, type: 'string' },
         periodSeconds: { type: 'number' },
-        port: catalogPortSchema,
+        port: { type: 'string' },
         successThreshold: { type: 'number' },
         timeoutSeconds: { type: 'number' },
       },
@@ -251,7 +251,7 @@ const probeSchema = {
   ],
 } as const satisfies JSONSchema
 
-export const catalogDefaultProbesSchema = {
+export const defaultProbesSchema = {
   additionalProperties: false,
   properties: {
     liveness: probeSchema,
@@ -260,43 +260,38 @@ export const catalogDefaultProbesSchema = {
   },
   type: 'object',
 } as const satisfies JSONSchema
-export type CatalogDefaultProbes = FromSchema<typeof catalogDefaultProbesSchema>
 
-export const catalogDefaultArgsSchema = {
+export const defaultArgsSchema = {
   items: { type: 'string' },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogDefaultArgs = FromSchema<typeof catalogDefaultArgsSchema>
 
-export const catalogDefaultTerminationGracePeriodSecondsSchema = {
+export const defaultTerminationGracePeriodSecondsSchema = {
   type: 'number',
 } as const satisfies JSONSchema
-export type CatalogDefaultTerminationGracePeriodSeconds = FromSchema<
-  typeof catalogDefaultTerminationGracePeriodSecondsSchema
->
 
-export const catalogDefaultLogParserSchema = {
+export const defaultLogParserSchema = {
   enum: ['mia-plain', 'mia-json', 'mia-nginx'],
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogDefaultLogParser = FromSchema<typeof catalogDefaultLogParserSchema>
 
-export const catalogDefaultDocumentationPathSchema = {
-  pattern: '^$|^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$',
+export const defaultDocumentationPathSchema = {
+  pattern: swaggerPath.pattern,
   type: 'string',
 } as const satisfies JSONSchema
-export type CatalogDefaultDocumentationPath = FromSchema<typeof catalogDefaultDocumentationPathSchema>
 
-export const catalogDefaultMonitoringSchema = {
+export const defaultMonitoringSchema = {
   additionalProperties: false,
   properties: {
     endpoints: {
       items: {
+        additionalProperties: false,
         properties: {
-          interval: { type: 'string' },
-          path: { type: 'string' },
-          port: catalogPortSchema,
+          interval: { type: 'string', pattern: container.properties.monitoring.properties.endpoints.items.properties.interval.pattern },
+          path: pathWithoutPort,
+          port: { type: 'string' },
         },
+        required: ['interval', 'path', 'port'],
         type: 'object',
       },
       type: 'array',
@@ -304,9 +299,8 @@ export const catalogDefaultMonitoringSchema = {
   },
   type: 'object',
 } as const satisfies JSONSchema
-export type CatalogDefaultMonitoring = FromSchema<typeof catalogDefaultMonitoringSchema>
 
-export const catalogDefaultHeadersSchema = {
+export const defaultHeadersSchema = {
   items: {
     additionalProperties: false,
     properties: {
@@ -319,14 +313,13 @@ export const catalogDefaultHeadersSchema = {
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogDefaultHeaders = FromSchema<typeof catalogDefaultHeadersSchema>
 
-export const catalogDefaultAnnotationsSchema = {
+export const defaultAnnotationsSchema = {
   items: {
     additionalProperties: false,
     properties: {
       description: { type: 'string' },
-      name: { pattern: '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$', type: 'string' },
+      name: { pattern: kubernetesDefinitionName.pattern, type: 'string' },
       readOnly: { type: 'boolean' },
       value: { type: 'string' },
     },
@@ -335,14 +328,13 @@ export const catalogDefaultAnnotationsSchema = {
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogDefaultAnnotations = FromSchema<typeof catalogDefaultAnnotationsSchema>
 
-export const catalogDefaultLabelsSchema = {
+export const defaultLabelsSchema = {
   items: {
     additionalProperties: false,
     properties: {
       description: { type: 'string' },
-      name: { pattern: '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$', type: 'string' },
+      name: { pattern: kubernetesDefinitionName.pattern, type: 'string' },
       readOnly: { type: 'boolean' },
       value: { type: 'string' },
     },
@@ -351,25 +343,18 @@ export const catalogDefaultLabelsSchema = {
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogDefaultLabels = FromSchema<typeof catalogDefaultLabelsSchema>
 
-export const catalogContainerPortsSchema = {
+export const containerPortsSchema = {
   items: {
     additionalProperties: false,
     properties: {
       from: {
-        oneOf: [
-          { maximum: 65535, minimum: 0, type: 'integer' },
-          { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' },
-        ],
+        oneOf: [port, { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' }],
       },
-      name: { pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?$', type: 'string' },
+      name: { pattern: serviceName.pattern, type: 'string' },
       protocol: { default: 'TCP', enum: ['TCP', 'UDP'], type: 'string' },
       to: {
-        oneOf: [
-          { maximum: 65535, minimum: 0, type: 'integer' },
-          { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' },
-        ],
+        oneOf: [port, { pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$', type: 'string' }],
       },
     },
     required: ['name', 'from'],
@@ -377,15 +362,13 @@ export const catalogContainerPortsSchema = {
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogContainerPorts = FromSchema<typeof catalogContainerPortsSchema>
 
-export const catalogExecPreStopSchema = {
+export const execPreStopSchema = {
   type: 'array',
   items: { type: 'string' },
 } as const satisfies JSONSchema
-export type CatalogExecPreStop = FromSchema<typeof catalogExecPreStopSchema>
 
-export const catalogMapEnvVarToMountPathSchema = {
+export const mapEnvVarToMountPathSchema = {
   type: 'object',
   additionalProperties: {
     type: 'object',
@@ -397,16 +380,15 @@ export const catalogMapEnvVarToMountPathSchema = {
     required: ['type', 'envName'],
   },
 } as const satisfies JSONSchema
-export type CatalogMapEnvVarToMountPath = FromSchema<typeof catalogMapEnvVarToMountPathSchema>
 
-export const catalogAdditionalContainersSchema = {
+export const additionalContainersSchema = {
   items: {
     additionalProperties: false,
     properties: {
-      args: catalogDefaultArgsSchema,
-      componentId: catalogComponentIdSchema,
-      containerPorts: catalogContainerPortsSchema,
-      defaultArgs: catalogDefaultArgsSchema,
+      args: defaultArgsSchema,
+      componentId: componentIdSchema,
+      containerPorts: containerPortsSchema,
+      defaultArgs: defaultArgsSchema,
 
       defaultEnvironmentVariables: {
         items: {
@@ -414,20 +396,19 @@ export const catalogAdditionalContainersSchema = {
         },
         type: 'array',
       },
-      defaultProbes: catalogDefaultProbesSchema,
-      defaultResources: catalogDefaultResourcesSchema,
-      description: catalogDescriptionSchema,
-      dockerImage: catalogDockerImageSchema,
-      name: catalogNameSchema,
+      defaultProbes: defaultProbesSchema,
+      defaultResources: defaultResourcesSchema,
+      description: descriptionSchema,
+      dockerImage: dockerImageSchema,
+      name: nameSchema,
     },
     required: ['name', 'dockerImage'],
     type: 'object',
   },
   type: 'array',
 } as const satisfies JSONSchema
-export type CatalogAdditionalContainers = FromSchema<typeof catalogAdditionalContainersSchema>
 
-export const catalogPipelinesSchema = {
+export const pipelinesSchema = {
   properties: {
     'azure-pipelines': {
       properties: {
@@ -495,9 +476,8 @@ export const catalogPipelinesSchema = {
   },
   type: 'object',
 } as const satisfies JSONSchema
-export type CatalogPipelines = FromSchema<typeof catalogPipelinesSchema>
 
-export const catalogListenerSchema = {
+export const listenerSchema = {
   additionalProperties: false,
   properties: {
     description: { type: 'string' },
@@ -510,10 +490,9 @@ export const catalogListenerSchema = {
       required: ['componentIds'],
       type: 'object',
     },
-    port: catalogPortSchema,
+    port: portSchema,
     selectedByDefault: { type: 'boolean' },
   },
   required: ['name', 'port'],
   type: 'object',
 } as const satisfies JSONSchema
-export type CatalogListener = FromSchema<typeof catalogListenerSchema>

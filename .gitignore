@@ -3,7 +3,7 @@
 # dependencies
 node_modules
 yarn.lock
-
+.pnpm-store
 # testing
 /coverage
 packages/*/coverage

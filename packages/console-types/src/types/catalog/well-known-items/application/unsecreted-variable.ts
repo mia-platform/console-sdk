@@ -30,4 +30,4 @@ export const catalogUnsecretedVariableSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogUnsecretedVariable = FromSchema<typeof catalogUnsecretedVariableSchema>
+export type UnsecretedVariable = FromSchema<typeof catalogUnsecretedVariableSchema>

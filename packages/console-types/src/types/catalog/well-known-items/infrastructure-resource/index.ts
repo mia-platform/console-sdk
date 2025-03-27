@@ -19,10 +19,10 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { catalogNameSchema } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
+import { nameSchema } from '../commons'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'custom-resource'
 
@@ -58,8 +58,19 @@ const resourcesSchema = {
         templates: {
           items: {
             properties: {
-              fileExtension: { description: 'The extension of the file to generate. If not set, default is .yml', type: 'string' },
-              folderName: { description: 'The name of the folder where the file will be created, below the configurationBaseFolder', type: 'string' },
+              'engine': {
+                'description': 'The template engine used for generating the file (default is `mustache`)',
+                'enum': ['mustache'],
+                'type': 'string',
+              },
+              fileExtension: {
+                description: 'The extension of the file to generate. If not set, default is .yml',
+                type: 'string',
+              },
+              folderName: {
+                description: 'The name of the folder where the file will be created, below the configurationBaseFolder',
+                type: 'string',
+              },
               name: { type: 'string' },
               template: { type: 'string' },
             },
@@ -94,15 +105,15 @@ const resourcesSchema = {
       },
       type: 'object',
     },
-    name: catalogNameSchema,
+    name: nameSchema,
     runtime: {
-      type: 'object',
-      required: ['type'],
       additionalProperties: false,
       properties: {
         resourceId: { type: 'string' },
         type: { type: 'string' },
       },
+      required: ['type'],
+      type: 'object',
     },
     service: {
       properties: {
@@ -117,15 +128,32 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogInfrastructureResourceResources = FromSchema<typeof resourcesSchema>
-export type CatalogInfrastructureResourceItem = CatalogItem<typeof type, CatalogInfrastructureResourceResources>
-export type CatalogInfrastructureResourceVersionedItem = CatalogVersionedItem<
-  typeof type,
-  CatalogInfrastructureResourceResources
->
-export type CatalogInfrastructureResourceManifest = CatalogItemManifest<
-  typeof type,
-  CatalogInfrastructureResourceResources
->
+const crd: CatalogCrd = {
+  name: 'custom-resource',
+  itemId: 'custom-resource',
+  description: 'Custom Workload Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: true,
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+      },
+    },
+    controlledFields: [
+      { key: 'apiVersion', jsonPath: 'meta.apiVersion' },
+      { key: 'kind', jsonPath: 'meta.kind' },
+      { key: 'type', jsonPath: 'runtime.type' },
+      { key: 'resourceId', jsonPath: 'runtime.resourceId' },
+    ],
+  },
+}
 
-export default { type, resourcesSchema }
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemManifest<typeof type, Resources>
+
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

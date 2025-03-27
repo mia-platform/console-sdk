@@ -1,5 +1,99 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.70
+
+### Patch Changes
+
+- Updated dependencies [3a8de18]
+  - @mia-platform/console-types@0.33.3
+
+## 0.2.69
+
+### Patch Changes
+
+- Updated dependencies [efbb7de]
+  - @mia-platform/console-types@0.33.2
+
+## 0.2.68
+
+### Patch Changes
+
+- Updated dependencies [9f189ac]
+  - @mia-platform/console-types@0.33.1
+
+## 0.2.67
+
+### Patch Changes
+
+- Updated dependencies [0087f5f]
+  - @mia-platform/console-types@0.33.0
+
+## 0.2.66
+
+### Patch Changes
+
+- Updated dependencies [cced7cd]
+- Updated dependencies [873439e]
+  - @mia-platform/console-types@0.32.0
+
+## 0.2.65
+
+### Patch Changes
+
+- Updated dependencies [dcfe9e6]
+  - @mia-platform/console-types@0.31.2
+
+## 0.2.64
+
+### Patch Changes
+
+- Updated dependencies [fcb3d3e]
+  - @mia-platform/console-types@0.31.1
+
+## 0.2.63
+
+### Patch Changes
+
+- Updated dependencies [a4839b3]
+  - @mia-platform/console-types@0.31.0
+
+## 0.2.62
+
+### Patch Changes
+
+- Updated dependencies [ec54fb9]
+  - @mia-platform/console-types@0.30.2
+
+## 0.2.61
+
+### Patch Changes
+
+- Updated dependencies [ca0e978]
+- Updated dependencies [7028f50]
+  - @mia-platform/console-types@0.30.1
+
+## 0.2.60
+
+### Patch Changes
+
+- Updated dependencies [99ab857]
+  - @mia-platform/console-types@0.30.0
+
+## 0.2.59
+
+### Patch Changes
+
+- Updated dependencies [614a059]
+  - @mia-platform/console-types@0.29.8
+
+## 0.2.58
+
+### Patch Changes
+
+- Updated dependencies [28f78a1]
+- Updated dependencies [28f78a1]
+  - @mia-platform/console-types@0.29.7
+
 ## 0.2.57
 
 ### Patch Changes

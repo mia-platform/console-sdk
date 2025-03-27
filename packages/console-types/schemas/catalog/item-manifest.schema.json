@@ -1,0 +1,155 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-item-manifest.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog item manifest",
+  "description": "Data model of a Catalog item to apply",
+  "type": "object",
+  "properties": {
+    "categoryId": {
+      "description": "Identifier of the item's category",
+      "type": "string"
+    },
+    "comingSoon": {
+      "description": "Flag that will prevent the use of the item",
+      "type": "boolean"
+    },
+    "description": {
+      "description": "Brief description of the item",
+      "type": "string"
+    },
+    "documentation": {
+      "description": "Documentation of the item",
+      "properties": {
+        "type": {
+          "enum": [
+            "externalLink",
+            "markdown"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "format": "uri-reference",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
+    "imageUrl": {
+      "description": "Url of the image associated with the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "itemId": {
+      "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name of the item",
+      "minLength": 1,
+      "type": "string"
+    },
+    "providerId": {
+      "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+      "type": "string"
+    },
+    "publishOnMiaDocumentation": {
+      "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+      "type": "boolean"
+    },
+    "releaseStage": {
+      "description": "Release stage of the item",
+      "enum": [
+        "beta",
+        "deprecated",
+        "",
+        "preview",
+        "stable"
+      ],
+      "type": "string"
+    },
+    "repositoryUrl": {
+      "description": "URL of the repository containing the source code of the resource created by the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "resources": {
+      "additionalProperties": true,
+      "description": "Representation of the resource that will be created starting from this item. It could be validated through the matching CRD",
+      "type": "object"
+    },
+    "supportedBy": {
+      "description": "Identifier of the company that has produced the item",
+      "type": "string"
+    },
+    "supportedByImageUrl": {
+      "description": "Url of the image associated with the company that has produced the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "tenantId": {
+      "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+      "type": "string"
+    },
+    "type": {
+      "description": "Type of the item. It must match a CRD resources.name property",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of the item following semver",
+      "properties": {
+        "name": {
+          "description": "Semantic version",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "releaseNote": {
+          "description": "Markdown release note",
+          "type": "string"
+        },
+        "security": {
+          "description": "Flag stating if the version addresses any vulnerability",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "releaseNote"
+      ],
+      "type": "object"
+    },
+    "visibility": {
+      "description": "Visibility of the item",
+      "properties": {
+        "allTenants": {
+          "default": false,
+          "description": "If true, the item will be accessible to all companies",
+          "type": "boolean"
+        },
+        "public": {
+          "default": false,
+          "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "itemId",
+    "tenantId",
+    "type",
+    "resources"
+  ]
+}

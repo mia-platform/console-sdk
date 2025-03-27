@@ -91,6 +91,9 @@ import {
   serviceSecretMountPath,
   serviceSecretName,
   services,
+  serviceAccount,
+  serviceAccounts,
+  serviceAccountName,
   configServiceSecrets,
   swaggerPath,
   url,
@@ -165,6 +168,9 @@ export {
   serviceEnvironmentVariables,
   serviceName,
   services,
+  serviceAccount,
+  serviceAccounts,
+  serviceAccountName,
   configServiceSecrets,
   serviceSecret,
   serviceSecretName,
@@ -222,6 +228,7 @@ export type {
   ExternalService,
   ServiceConfigMap,
   Services,
+  ServiceAccounts,
   ContainerPort,
   ContainerPorts,
   CoreService,
@@ -241,11 +248,14 @@ export type {
   IProject,
   QuickLink,
   ProjectEnvironmentLink,
+  AISettings,
+  InfrastructureComponent,
 } from './types/project'
 
 export {
   projectEnvironmentLink,
   quickLink,
+  aiSettings,
 } from './types/project'
 
 export type { ITemplate } from './types/template'

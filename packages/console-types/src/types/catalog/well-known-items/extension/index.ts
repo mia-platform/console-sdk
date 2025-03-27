@@ -19,9 +19,9 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { CatalogItemManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'extension'
 
@@ -72,7 +72,6 @@ const resourcesSchema = {
                 'id',
                 'locationId',
                 'labelIntl',
-                'destinationPath',
               ],
               type: 'object',
             },
@@ -124,9 +123,32 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogExtensionResources = FromSchema<typeof resourcesSchema, { parseIfThenElseKeywords: true }>
-export type CatalogExtensionItem = CatalogItem<typeof type, CatalogExtensionResources>
-export type CatalogExtensionVersionedItem = CatalogVersionedItem<typeof type, CatalogExtensionResources>
-export type CatalogExtensionManifest = CatalogItemManifest<typeof type, CatalogExtensionResources>
+const crd: CatalogCrd = {
+  name: 'extension',
+  itemId: 'extension-definition',
+  description: 'Extension Custom Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: false,
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          name: '<change-with-your-extension-name>',
+          extensionType: 'iframe',
+          entry: 'https://example.com',
+          contexts: [],
+        },
+      },
+    },
+  },
+}
 
-export default { type, resourcesSchema }
+export type Resources = FromSchema<typeof resourcesSchema, { parseIfThenElseKeywords: true }>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemManifest<typeof type, Resources>
+
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

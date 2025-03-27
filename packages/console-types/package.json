@@ -1,13 +1,12 @@
 {
   "name": "@mia-platform/console-types",
-  "version": "0.29.6",
+  "version": "0.33.3",
   "description": "",
   "main": "build/index.js",
   "types": "build/index",
   "scripts": {
     "build:catalog-schemas": "ts-node scripts/build-catalog-schemas.ts",
-    "build:catalog-crd": "ts-node scripts/build-catalog-crd.ts",
-    "build": "rimraf build/ && pnpm build:catalog-schemas && tsc --project scripts/tsconfig.build.json && pnpm build:catalog-crd",
+    "build": "rimraf build/ && pnpm build:catalog-schemas && tsc --project scripts/tsconfig.build.json",
     "lint": "eslint .",
     "test": "tap --ts --test-ignore=\"(build/.*|src/types/validate-utils.test.ts)\"",
     "test:snapshot": "TAP_SNAPSHOT=1 npm run test",

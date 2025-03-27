@@ -148,6 +148,49 @@ t.test('services', t => {
     t.end()
   })
 
+  t.test('service account field', t => {
+    t.test('can be an empty string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccountName: '',
+      }
+
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('accept valid string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccountName: 'valid-dns.subdomain1',
+      }
+
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('reject invalid string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccountName: 'invalid-subdomain-',
+      }
+
+      t.notOk(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.end()
+  })
+
   t.test('only required fields for cronjob', t => {
     const service: CronJob = {
       name: 'myservice',
@@ -209,12 +252,12 @@ t.test('services', t => {
   })
 
   t.test('labels and annotations', t => {
-    const sharedType: FromSchema<typeof kubernetesDefinition> = {
+    const annotationType: FromSchema<typeof kubernetesDefinition> = {
       name: 'labelskey',
       value: 'labelsvalye',
     }
 
-    const newLabelType: FromSchema<typeof serviceLabel> = {
+    const labelType: FromSchema<typeof serviceLabel> = {
       name: 'labelskey',
       value: 'labelsvalue',
       readOnly: false,
@@ -228,22 +271,20 @@ t.test('services', t => {
       replicas: 1,
       dockerImage: 'helloworld:1.0.0',
       labels: [
-        newLabelType,
-        sharedType,
+        labelType,
       ],
       annotations: [
-        sharedType,
+        annotationType,
       ],
       additionalContainers: [
         {
           name: 'container',
           dockerImage: 'helloworld:1.0.0',
           labels: [
-            sharedType,
-            newLabelType,
+            labelType,
           ],
           annotations: [
-            sharedType,
+            annotationType,
           ],
         },
       ],

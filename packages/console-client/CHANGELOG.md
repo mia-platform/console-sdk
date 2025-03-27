@@ -1,5 +1,30 @@
 # @mia-platform/console-client
 
+## 0.4.7
+
+### Patch Changes
+
+- 33919d4: added patch marketplace item metadata API
+
+## 0.4.6
+
+### Patch Changes
+
+- 72301b9: removed enum in `format` query parameter in marketplace item detail api
+- 3d8679b: Update GET /api/marketplace/ query parameters
+
+## 0.4.5
+
+### Patch Changes
+
+- 12f11c6: Updated marketplace APIs schemas
+
+## 0.4.4
+
+### Patch Changes
+
+- 6018932: updated marketplace apply item API response
+
 ## 0.4.3
 
 ### Patch Changes

@@ -19,62 +19,64 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
+import type { CatalogCrd } from '../../crd'
+import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import {
-  catalogArchiveUrlSchema,
-  catalogContainerPortsSchema,
-  catalogDefaultAnnotationsSchema,
-  catalogDefaultArgsSchema,
-  catalogDefaultConfigMapsSchema,
-  catalogDefaultDocumentationPathSchema,
-  catalogDefaultEnvironmentVariablesSchema,
-  catalogDefaultLabelsSchema,
-  catalogDefaultLogParserSchema,
-  catalogDefaultMonitoringSchema,
-  catalogDefaultProbesSchema,
-  catalogDefaultResourcesSchema,
-  catalogDefaultSecretsSchema,
-  catalogDefaultTerminationGracePeriodSecondsSchema,
-  catalogDescriptionSchema,
-  catalogNameSchema,
-  catalogPipelinesSchema,
-  catalogRepositoryUrlSchema,
+  archiveUrlSchema,
+  componentIdSchema,
+  containerPortsSchema,
+  defaultAnnotationsSchema,
+  defaultArgsSchema,
+  defaultConfigMapsSchema,
+  defaultDocumentationPathSchema,
+  defaultEnvironmentVariablesSchema,
+  defaultLabelsSchema,
+  defaultLogParserSchema,
+  defaultMonitoringSchema,
+  defaultProbesSchema,
+  defaultResourcesSchema,
+  defaultSecretsSchema,
+  defaultTerminationGracePeriodSecondsSchema,
+  descriptionSchema,
+  mapEnvVarToMountPathSchema,
+  nameSchema,
+  pipelinesSchema,
+  repositoryUrlSchema,
 } from '../commons'
-import { CatalogItemManifest } from '../../item-manifest'
-import { CatalogItem } from '../../item'
-import { CatalogVersionedItem } from '../../versioned-item'
+import type { CatalogWellKnownItemData } from '..'
 
 const type = 'template'
 
-export const catalogTemplateSchema = {
+export const catalogTemplateServiceSchema = {
   additionalProperties: false,
   properties: {
-    archiveUrl: catalogArchiveUrlSchema,
-    containerPorts: catalogContainerPortsSchema,
-    defaultAnnotations: catalogDefaultAnnotationsSchema,
-    defaultArgs: catalogDefaultArgsSchema,
-    defaultConfigMaps: catalogDefaultConfigMapsSchema,
-    defaultDocumentationPath: catalogDefaultDocumentationPathSchema,
-    defaultEnvironmentVariables: catalogDefaultEnvironmentVariablesSchema,
-    defaultLabels: catalogDefaultLabelsSchema,
-    defaultLogParser: catalogDefaultLogParserSchema,
-    defaultMonitoring: catalogDefaultMonitoringSchema,
-    defaultProbes: catalogDefaultProbesSchema,
-    defaultResources: catalogDefaultResourcesSchema,
-    defaultSecrets: catalogDefaultSecretsSchema,
-    defaultTerminationGracePeriodSeconds: catalogDefaultTerminationGracePeriodSecondsSchema,
-    description: catalogDescriptionSchema,
-    name: catalogNameSchema,
-    pipelines: catalogPipelinesSchema,
+    archiveUrl: archiveUrlSchema,
+    componentId: componentIdSchema,
+    containerPorts: containerPortsSchema,
+    defaultAnnotations: defaultAnnotationsSchema,
+    defaultArgs: defaultArgsSchema,
+    defaultConfigMaps: defaultConfigMapsSchema,
+    defaultDocumentationPath: defaultDocumentationPathSchema,
+    defaultEnvironmentVariables: defaultEnvironmentVariablesSchema,
+    defaultLabels: defaultLabelsSchema,
+    defaultLogParser: defaultLogParserSchema,
+    defaultMonitoring: defaultMonitoringSchema,
+    defaultProbes: defaultProbesSchema,
+    defaultResources: defaultResourcesSchema,
+    defaultSecrets: defaultSecretsSchema,
+    defaultTerminationGracePeriodSeconds: defaultTerminationGracePeriodSecondsSchema,
+    description: descriptionSchema,
+    mapEnvVarToMountPath: mapEnvVarToMountPathSchema,
+    name: nameSchema,
+    pipelines: pipelinesSchema,
 
     /** @deprecated */
-    repositoryUrl: { ...catalogRepositoryUrlSchema, deprecated: true },
+    repositoryUrl: { ...repositoryUrlSchema, deprecated: true },
     type: { const: 'template' },
   },
   required: ['name', 'type', 'archiveUrl'],
   type: 'object',
 } as const satisfies JSONSchema
-
-export type CatalogTemplate = FromSchema<typeof catalogTemplateSchema>
 
 const resourcesSchema = {
   $id: 'catalog-template-resources.schema.json',
@@ -83,9 +85,10 @@ const resourcesSchema = {
   description: `Resources of Catalog items of type ${type}`,
   properties: {
     services: {
-      additionalProperties: catalogTemplateSchema,
       maxProperties: 1,
       minProperties: 1,
+      patternProperties: { [nameSchema.pattern]: catalogTemplateServiceSchema },
+      additionalProperties: false,
       type: 'object',
     },
   },
@@ -94,9 +97,36 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-export type CatalogTemplateResources = FromSchema<typeof resourcesSchema>
-export type CatalogTemplateItem = CatalogItem<typeof type, CatalogTemplateResources>
-export type CatalogTemplateVersionedItem = CatalogVersionedItem<typeof type, CatalogTemplateResources>
-export type CatalogTemplateManifest = CatalogItemManifest<typeof type, CatalogTemplateResources>
+const crd: CatalogCrd = {
+  name: 'template',
+  itemId: 'template-definition',
+  description: 'Template Custom Resource Definition',
+  type: 'custom-resource-definition',
+  tenantId: 'mia-platform',
+  isVersioningSupported: true,
+  resources: {
+    name: type,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            '<change-with-your-template-name>': {
+              name: '<change-with-your-template-name>',
+              type: 'template',
+              archiveUrl: 'https://archive-url',
+            },
+          },
+        },
+      },
+    },
+  },
+}
 
-export default { type, resourcesSchema }
+export type Service = FromSchema<typeof catalogTemplateServiceSchema>
+export type Resources = FromSchema<typeof resourcesSchema>
+export type Item = CatalogItem<typeof type, Resources>
+export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
+export type Manifest = CatalogItemManifest<typeof type, Resources>
+
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }

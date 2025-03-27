@@ -85,6 +85,15 @@ export const configMapFileName = {
   [VALIDATION_ERROR_ID]: 'configMapFileName.patternError',
 } as const
 
+export const serviceAccountName = {
+  type: 'string',
+  // max lenght for a RFC 1123 DNS Subdomain
+  maxLength: 253,
+  // regex for RFC 1123 DNS Subdomain
+  pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$',
+  [VALIDATION_ERROR_ID]: 'serviceAccountName.patternError',
+} as const
+
 const envCommonProps = {
   name: {
     type: 'string',
@@ -441,6 +450,24 @@ export const serviceSecret = {
   additionalProperties: false,
 } as const
 
+
+export const serviceAccount = {
+  type: 'object',
+  properties: {
+    name: serviceAccountName,
+    deleted: { type: 'boolean' },
+  },
+  additionalProperties: false,
+  required: ['name'],
+} as const
+
+export const serviceAccounts = {
+  type: 'object',
+  additionalProperties: serviceAccount,
+} as const
+
+export type ServiceAccounts = FromSchema<typeof serviceAccounts>
+
 const dockerImagePullSecrets = {
   type: 'array',
   items: {
@@ -593,12 +620,7 @@ export const container = {
     },
     labels: {
       type: 'array',
-      items: {
-        anyOf: [
-          kubernetesDefinition,
-          serviceLabel,
-        ],
-      },
+      items: serviceLabel,
     },
     resources: serviceResources,
     probes,
@@ -678,6 +700,7 @@ export const customService = {
     advanced: { type: 'boolean', const: false },
     dockerImagePullSecrets,
     replicas: serviceReplicas,
+    serviceAccountName,
     productionReplicas: replicasJsonSchema,
     logParser: { type: 'string' },
     additionalContainers: {

@@ -1,5 +1,89 @@
 # CHANGELOG
 
+## 0.33.3
+
+### Patch Changes
+
+- 3a8de18: feat: add providerType to infrastructureComponent pipelineInfo
+
+## 0.33.2
+
+### Patch Changes
+
+- efbb7de: improve Catalog well-known items CRDs validation
+
+## 0.33.1
+
+### Patch Changes
+
+- 9f189ac: removed nullable from catalog item schemas
+
+## 0.33.0
+
+### Minor Changes
+
+- 0087f5f: feat: infrastructure project flavor and type definitions
+
+## 0.32.0
+
+### Minor Changes
+
+- cced7cd: Reorganized Software Catalog files and exports
+
+### Patch Changes
+
+- 873439e: add aiSettings to tenant and project settings
+
+## 0.31.2
+
+### Patch Changes
+
+- dcfe9e6: add missing service account exports
+
+## 0.31.1
+
+### Patch Changes
+
+- fcb3d3e: Update catalog well-known items manifests
+
+## 0.31.0
+
+### Minor Changes
+
+- a4839b3: refactor service account implementation
+
+## 0.30.2
+
+### Patch Changes
+
+- ec54fb9: Updated catalog well-known-items schemas
+
+## 0.30.1
+
+### Patch Changes
+
+- ca0e978: add serviceAccountName property to CustomService type
+- 7028f50: exposed catalogWellKnownItems map
+
+## 0.30.0
+
+### Minor Changes
+
+- 99ab857: fixed undeterministic service label schema type
+
+## 0.29.8
+
+### Patch Changes
+
+- 614a059: Fixed Catalog custom resource definitions
+
+## 0.29.7
+
+### Patch Changes
+
+- 28f78a1: Added controlled fields to Catalog Infrastructure Resource CRD
+- 28f78a1: Exposed catalog well-known items CRDs
+
 ## 0.29.6
 
 ### Patch Changes

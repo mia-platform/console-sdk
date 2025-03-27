@@ -1,0 +1,778 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-sidecar.item.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog sidecar item",
+  "description": "Data model of a Catalog sidecar item",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "description": "Database identifier of the item",
+      "type": "string"
+    },
+    "category": {
+      "description": "Identifier of the item's category",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label"
+      ]
+    },
+    "comingSoon": {
+      "description": "Flag that will prevent the use of the item",
+      "type": "boolean"
+    },
+    "componentsIds": {
+      "description": "List of source component ids of the services in the item's resources",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "description": {
+      "description": "Brief description of the item",
+      "type": "string"
+    },
+    "documentation": {
+      "description": "Documentation of the item",
+      "properties": {
+        "type": {
+          "enum": [
+            "externalLink",
+            "markdown"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "format": "uri-reference",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
+    "imageUrl": {
+      "description": "Url of the image associated with the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "isLatest": {
+      "description": "Flag stating if the the current document is the latest version of the item",
+      "type": "boolean"
+    },
+    "isVersioningSupported": {
+      "description": "States if versioning is supported for the custom resource defined by the CRD",
+      "type": "boolean"
+    },
+    "itemId": {
+      "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name of the item",
+      "minLength": 1,
+      "type": "string"
+    },
+    "providerId": {
+      "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+      "type": "string"
+    },
+    "publishOnMiaDocumentation": {
+      "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+      "type": "boolean"
+    },
+    "releaseDate": {
+      "description": "Creation date of this item's release",
+      "format": "date-time",
+      "type": "string"
+    },
+    "releaseStage": {
+      "description": "Release stage of the item",
+      "enum": [
+        "beta",
+        "deprecated",
+        "",
+        "preview",
+        "stable"
+      ],
+      "type": "string"
+    },
+    "repositoryUrl": {
+      "description": "URL of the repository containing the source code of the resource created by the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "componentId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "containerPorts": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "from": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65535
+                  },
+                  {
+                    "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
+                    "type": "string"
+                  }
+                ]
+              },
+              "name": {
+                "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                "type": "string"
+              },
+              "protocol": {
+                "default": "TCP",
+                "enum": [
+                  "TCP",
+                  "UDP"
+                ],
+                "type": "string"
+              },
+              "to": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65535
+                  },
+                  {
+                    "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "from"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "defaultArgs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "defaultConfigMaps": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "files": {
+                "items": {
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "content"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "link": {
+                "properties": {
+                  "targetSection": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "mountPath": {
+                "pattern": "^[a-zA-Z0-9-/_\\s.|\\\\!\"£$%&()=?^\"{}[\\]*+@]+$",
+                "type": "string"
+              },
+              "name": {
+                "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                "type": "string"
+              },
+              "subPaths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "usePreserve": {
+                "type": "boolean"
+              },
+              "viewAsReadOnly": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "files",
+              "mountPath"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "defaultEnvironmentVariables": {
+          "items": {
+            "oneOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "managedBy": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "valueType": {
+                    "const": "plain"
+                  }
+                },
+                "required": [
+                  "name",
+                  "valueType"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "managedBy": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  },
+                  "secretKey": {
+                    "pattern": "^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|[a-zA-Z0-9-_.]*)$",
+                    "type": "string"
+                  },
+                  "secretName": {
+                    "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                    "type": "string"
+                  },
+                  "valueType": {
+                    "const": "secret"
+                  }
+                },
+                "required": [
+                  "name",
+                  "valueType",
+                  "secretName",
+                  "secretKey"
+                ],
+                "type": "object"
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "managedBy": {
+                    "type": "string"
+                  },
+                  "fieldPath": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  },
+                  "valueType": {
+                    "const": "downwardAPI"
+                  }
+                },
+                "required": [
+                  "fieldPath",
+                  "name",
+                  "valueType"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "defaultProbes": {
+          "additionalProperties": false,
+          "properties": {
+            "liveness": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "cmd": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "cmd"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "port": {
+                      "type": "string"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "path": {
+                      "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
+                      "type": "string"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "port": {
+                      "type": "string"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "readiness": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "cmd": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "cmd"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "port": {
+                      "type": "string"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "path": {
+                      "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
+                      "type": "string"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "port": {
+                      "type": "string"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "startup": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "cmd": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "cmd"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "port": {
+                      "type": "string"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "failureThreshold": {
+                      "type": "number"
+                    },
+                    "initialDelaySeconds": {
+                      "type": "number"
+                    },
+                    "path": {
+                      "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
+                      "type": "string"
+                    },
+                    "periodSeconds": {
+                      "type": "number"
+                    },
+                    "port": {
+                      "type": "string"
+                    },
+                    "successThreshold": {
+                      "type": "number"
+                    },
+                    "timeoutSeconds": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "path"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "defaultResources": {
+          "additionalProperties": false,
+          "properties": {
+            "cpuLimits": {
+              "additionalProperties": false,
+              "properties": {
+                "max": {
+                  "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
+                  "type": "string"
+                },
+                "min": {
+                  "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "memoryLimits": {
+              "additionalProperties": false,
+              "properties": {
+                "max": {
+                  "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
+                  "type": "string"
+                },
+                "min": {
+                  "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "defaultSecrets": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "mountPath": {
+                "pattern": "^[a-zA-Z0-9-/_\\s.|\\\\!\"£$%&()=?^\"{}[\\]*+@]+$",
+                "type": "string"
+              },
+              "name": {
+                "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "mountPath"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "defaultTerminationGracePeriodSeconds": {
+          "type": "number"
+        },
+        "dockerImage": {
+          "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
+          "type": "string"
+        },
+        "exclusiveServiceExposure": {
+          "type": "boolean"
+        },
+        "name": {
+          "minLength": 1,
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "owner": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "owner"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
+    "supportedBy": {
+      "description": "Identifier of the company that has produced the item",
+      "type": "string"
+    },
+    "supportedByImageUrl": {
+      "description": "Url of the image associated with the company that has produced the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "tenantId": {
+      "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+      "type": "string"
+    },
+    "type": {
+      "const": "sidecar"
+    },
+    "version": {
+      "description": "Version of the item following semver",
+      "properties": {
+        "name": {
+          "description": "Semantic version",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "releaseNote": {
+          "description": "Markdown release note",
+          "type": "string"
+        },
+        "security": {
+          "description": "Flag stating if the version addresses any vulnerability",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "releaseNote"
+      ],
+      "type": "object"
+    },
+    "visibility": {
+      "description": "Visibility of the item",
+      "properties": {
+        "allTenants": {
+          "default": false,
+          "description": "If true, the item will be accessible to all companies",
+          "type": "boolean"
+        },
+        "public": {
+          "default": false,
+          "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "_id",
+    "name",
+    "itemId",
+    "tenantId",
+    "type"
+  ]
+}
