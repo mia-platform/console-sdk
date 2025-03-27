@@ -21,16 +21,15 @@ import t from 'tap'
 import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../../validate-utils.test'
-import { catalogCrdSchema, type CatalogCrd } from './crd'
+import { itemSchema, type Item } from './crd'
 
 t.test('catalog item', t => {
   const ajv = new Ajv()
   addFormats(ajv)
-  const validate = ajv.compile<CatalogCrd>(catalogCrdSchema)
+  const validate = ajv.compile<Item>(itemSchema)
 
   t.test('only required fields', t => {
-    const data: CatalogCrd = {
-      type: 'custom-resource-definition',
+    const data: Item = {
       itemId: 'item-id',
       name: 'name',
       tenantId: 'tenant-id',
@@ -43,8 +42,7 @@ t.test('catalog item', t => {
   })
 
   t.test('all fields', t => {
-    const data: Required<CatalogCrd> = {
-      type: 'custom-resource-definition',
+    const data: Required<Item> = {
       itemId: 'item-id',
       name: 'name',
       tenantId: 'tenant-id',

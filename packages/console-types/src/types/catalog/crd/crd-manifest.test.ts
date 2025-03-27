@@ -21,16 +21,15 @@ import t from 'tap'
 import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../../validate-utils.test'
-import { catalogCrdManifestSchema, type CatalogCrdManifest } from './crd-manifest'
+import { manifestSchema, type Manifest } from './crd-manifest'
 
 t.test('catalog item manifest', t => {
   const ajv = new Ajv()
   addFormats(ajv)
-  const validate = ajv.compile<CatalogCrdManifest>(catalogCrdManifestSchema)
+  const validate = ajv.compile<Manifest>(manifestSchema)
 
   t.test('only required fields', t => {
-    const data: CatalogCrdManifest = {
-      type: 'custom-resource-definition',
+    const data: Manifest = {
       itemId: 'item-id',
       name: 'name',
       resources: { name: 'item-type' },
@@ -43,8 +42,7 @@ t.test('catalog item manifest', t => {
   })
 
   t.test('all fields', t => {
-    const data: Required<CatalogCrdManifest> = {
-      type: 'custom-resource-definition',
+    const data: Required<Manifest> = {
       itemId: 'item-id',
       name: 'name',
       resources: {

@@ -20,9 +20,9 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 import { catalogItemDescriptionSchema, catalogItemIdSchema, catalogItemNameSchema, catalogTenantIdSchema } from '../item/commons'
-import { CATALOG_CRD_TYPE, catalogCrdIsVersioningSupportedSchema, catalogCrdResourcesSchema } from './commons'
+import { isVersioningSupportedSchema, resourcesSchema } from './commons'
 
-export const catalogCrdSchema = {
+export const itemSchema = {
   $id: 'catalog-crd.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'Catalog CRD',
@@ -30,15 +30,14 @@ export const catalogCrdSchema = {
   type: 'object',
   properties: {
     description: catalogItemDescriptionSchema,
-    isVersioningSupported: catalogCrdIsVersioningSupportedSchema,
+    isVersioningSupported: isVersioningSupportedSchema,
     itemId: catalogItemIdSchema,
     name: catalogItemNameSchema,
-    resources: catalogCrdResourcesSchema,
+    resources: resourcesSchema,
     tenantId: catalogTenantIdSchema,
-    type: { const: CATALOG_CRD_TYPE },
   },
   additionalProperties: false,
-  required: ['name', 'itemId', 'tenantId', 'type', 'resources'],
+  required: ['name', 'itemId', 'tenantId', 'resources'],
 } as const satisfies JSONSchema
 
-export type CatalogCrd = FromSchema<typeof catalogCrdSchema>
+export type Item = FromSchema<typeof itemSchema>

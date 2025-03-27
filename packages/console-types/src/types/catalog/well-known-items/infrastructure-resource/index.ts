@@ -19,7 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import type { CatalogCrd } from '../../crd'
+import type { Item as CatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import { nameSchema } from '../commons'
 import type { CatalogWellKnownItemData } from '..'
@@ -132,7 +132,6 @@ const crd: CatalogCrd = {
   name: 'custom-resource',
   itemId: 'custom-resource',
   description: 'Custom Workload Resource Definition',
-  type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: true,
   resources: {
