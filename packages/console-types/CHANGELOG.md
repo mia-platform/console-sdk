@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.33.4
+
+### Patch Changes
+
+- 58ae899: updated Catalog well-known items CRDs
+
 ## 0.33.3
 
 ### Patch Changes

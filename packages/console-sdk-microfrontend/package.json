@@ -1,7 +1,7 @@
 {
   "name": "@mia-platform/console-sdk-microfrontend",
   "license": "Apache-2.0",
-  "version": "0.2.70",
+  "version": "0.2.71",
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
   "module": "./build/index.js",
