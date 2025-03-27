@@ -20,7 +20,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { host } from '../../../services'
-import type { CatalogCrd } from '../../crd'
+import type { Item as CatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
 import type { CatalogWellKnownItemData } from '..'
@@ -78,7 +78,6 @@ const crd: CatalogCrd = {
   name: 'proxy',
   itemId: 'proxy-definition',
   description: 'Proxy Custom Resource Definition',
-  type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: false,
   resources: {

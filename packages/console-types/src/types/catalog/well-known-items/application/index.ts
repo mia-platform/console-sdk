@@ -21,7 +21,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { collection } from '../../../collections'
 import { endpoint } from '../../../endpoints'
-import type { CatalogCrd } from '../../crd'
+import type { Item as CatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import { listenerSchema, nameSchema } from '../commons'
 import { catalogExampleServiceSchema } from '../example'
@@ -78,7 +78,6 @@ const crd: CatalogCrd = {
   name: 'application',
   itemId: 'application-definition',
   description: 'Application Custom Resource Definition',
-  type: 'custom-resource-definition',
   tenantId: 'mia-platform',
   isVersioningSupported: false,
   resources: {
