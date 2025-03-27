@@ -668,6 +668,10 @@
             "description": {
               "type": "string"
             },
+            "dockerImage": {
+              "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
+              "type": "string"
+            },
             "mapEnvVarToMountPath": {
               "type": "object",
               "additionalProperties": {
@@ -797,11 +801,6 @@
                 }
               },
               "type": "object"
-            },
-            "repositoryUrl": {
-              "format": "uri-reference",
-              "type": "string",
-              "deprecated": true
             },
             "type": {
               "const": "template"

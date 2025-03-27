@@ -44,7 +44,6 @@ import {
   listenerSchema,
   mapEnvVarToMountPathSchema,
   nameSchema,
-  repositoryUrlSchema,
   tagsSchema,
 } from '../commons'
 import type { CatalogWellKnownItemData } from '..'
@@ -76,9 +75,6 @@ export const catalogPluginServiceSchema = {
     links: linksSchema,
     mapEnvVarToMountPath: mapEnvVarToMountPathSchema,
     name: nameSchema,
-
-    /** @deprecated */
-    repositoryUrl: { ...repositoryUrlSchema, deprecated: true },
     tags: tagsSchema,
     type: { const: 'plugin' },
   },

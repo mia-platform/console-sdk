@@ -19,7 +19,7 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { collectionFieldName, collectionName, index, indexFieldName } from '../../../collections'
+import { collectionFieldName, collectionName, index, indexFieldName, collection } from '../../../collections'
 import { descriptionSchema, tagsSchema } from '../commons'
 
 const idSchema = { type: 'string' } as const satisfies JSONSchema
@@ -231,6 +231,8 @@ export const catalogCollectionSchema = {
       additionalProperties: false,
       properties: {
         defaultName: collectionNameSchema,
+        defaultPipeline: { ...collection.pipeline, deprecated: true },
+        defaultSource: { ...collectionNameSchema, deprecated: true },
         description: descriptionSchema,
         fields: fieldsSchema,
         id: idSchema,
@@ -239,7 +241,7 @@ export const catalogCollectionSchema = {
         tags: tagsSchema,
         type: { const: 'view' },
       },
-      required: ['type', 'defaultName', 'internalEndpoints', 'startingCollection'],
+      required: ['type', 'defaultName', 'internalEndpoints'],
       type: 'object',
     },
   ],

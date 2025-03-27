@@ -38,10 +38,10 @@ import {
   defaultSecretsSchema,
   defaultTerminationGracePeriodSecondsSchema,
   descriptionSchema,
+  dockerImageSchema,
   mapEnvVarToMountPathSchema,
   nameSchema,
   pipelinesSchema,
-  repositoryUrlSchema,
 } from '../commons'
 import type { CatalogWellKnownItemData } from '..'
 
@@ -66,12 +66,10 @@ export const catalogTemplateServiceSchema = {
     defaultSecrets: defaultSecretsSchema,
     defaultTerminationGracePeriodSeconds: defaultTerminationGracePeriodSecondsSchema,
     description: descriptionSchema,
+    dockerImage: dockerImageSchema,
     mapEnvVarToMountPath: mapEnvVarToMountPathSchema,
     name: nameSchema,
     pipelines: pipelinesSchema,
-
-    /** @deprecated */
-    repositoryUrl: { ...repositoryUrlSchema, deprecated: true },
     type: { const: 'template' },
   },
   required: ['name', 'type', 'archiveUrl'],
