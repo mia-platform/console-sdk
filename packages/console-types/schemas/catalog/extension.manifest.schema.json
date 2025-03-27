@@ -63,6 +63,11 @@
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
       "type": "boolean"
     },
+    "releaseDate": {
+      "description": "Creation date of this item's release",
+      "format": "date-time",
+      "type": "string"
+    },
     "releaseStage": {
       "description": "Release stage of the item",
       "enum": [
