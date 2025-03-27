@@ -4,6 +4,8 @@
 // @ts-ignore
 import { ActivationRequestBuilderNavigationMetadata, ActivationRequestBuilderRequestsMetadata, type ActivationRequestBuilder } from './activation/index.js';
 // @ts-ignore
+import { AppsRequestBuilderNavigationMetadata, AppsRequestBuilderRequestsMetadata, type AppsRequestBuilder } from './apps/index.js';
+// @ts-ignore
 import { type WithContextTypeItemRequestBuilder, WithContextTypeItemRequestBuilderNavigationMetadata } from './item/index.js';
 // @ts-ignore
 import { ProxyRequestBuilderRequestsMetadata, type ProxyRequestBuilder } from './proxy/index.js';
@@ -65,6 +67,15 @@ export function createWithExtensionGetResponse_menu_labelIntlFromDiscriminatorVa
 // @ts-ignore
 export function createWithExtensionGetResponse_menuFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoWithExtensionGetResponse_menu;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {WithExtensionGetResponse_oauth2App}
+ */
+// @ts-ignore
+export function createWithExtensionGetResponse_oauth2AppFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoWithExtensionGetResponse_oauth2App;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -141,6 +152,7 @@ export function deserializeIntoWithExtensionGetResponse(withExtensionGetResponse
         "_id": n => { withExtensionGetResponse.id = n.getStringValue(); },
         "menu": n => { withExtensionGetResponse.menu = n.getObjectValue<WithExtensionGetResponse_menu>(createWithExtensionGetResponse_menuFromDiscriminatorValue); },
         "name": n => { withExtensionGetResponse.name = n.getStringValue(); },
+        "oauth2App": n => { withExtensionGetResponse.oauth2App = n.getObjectValue<WithExtensionGetResponse_oauth2App>(createWithExtensionGetResponse_oauth2AppFromDiscriminatorValue); },
         "permissions": n => { withExtensionGetResponse.permissions = n.getCollectionOfPrimitiveValues<string>(); },
         "proxy": n => { withExtensionGetResponse.proxy = n.getObjectValue<WithExtensionGetResponse_proxy>(createWithExtensionGetResponse_proxyFromDiscriminatorValue); },
         "roleIds": n => { withExtensionGetResponse.roleIds = n.getCollectionOfPrimitiveValues<string>(); },
@@ -200,6 +212,19 @@ export function deserializeIntoWithExtensionGetResponse_menu(withExtensionGetRes
 // @ts-ignore
 export function deserializeIntoWithExtensionGetResponse_menu_labelIntl(withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoWithExtensionGetResponse_oauth2App(withExtensionGetResponse_oauth2App: Partial<WithExtensionGetResponse_oauth2App> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "audience": n => { withExtensionGetResponse_oauth2App.audience = n.getCollectionOfPrimitiveValues<string>(); },
+        "id": n => { withExtensionGetResponse_oauth2App.id = n.getStringValue(); },
+        "name": n => { withExtensionGetResponse_oauth2App.name = n.getStringValue(); },
+        "redirectUrl": n => { withExtensionGetResponse_oauth2App.redirectUrl = n.getStringValue(); },
     }
 }
 /**
@@ -289,6 +314,7 @@ export function serializeWithExtensionGetResponse(writer: SerializationWriter, w
         writer.writeStringValue("_id", withExtensionGetResponse.id);
         writer.writeObjectValue<WithExtensionGetResponse_menu>("menu", withExtensionGetResponse.menu, serializeWithExtensionGetResponse_menu);
         writer.writeStringValue("name", withExtensionGetResponse.name);
+        writer.writeObjectValue<WithExtensionGetResponse_oauth2App>("oauth2App", withExtensionGetResponse.oauth2App, serializeWithExtensionGetResponse_oauth2App);
         writer.writeCollectionOfPrimitiveValues<string>("permissions", withExtensionGetResponse.permissions);
         writer.writeObjectValue<WithExtensionGetResponse_proxy>("proxy", withExtensionGetResponse.proxy, serializeWithExtensionGetResponse_proxy);
         writer.writeCollectionOfPrimitiveValues<string>("roleIds", withExtensionGetResponse.roleIds);
@@ -350,6 +376,19 @@ export function serializeWithExtensionGetResponse_menu(writer: SerializationWrit
 export function serializeWithExtensionGetResponse_menu_labelIntl(writer: SerializationWriter, withExtensionGetResponse_menu_labelIntl: Partial<WithExtensionGetResponse_menu_labelIntl> | undefined | null = {}) : void {
     if (withExtensionGetResponse_menu_labelIntl) {
         writer.writeAdditionalData(withExtensionGetResponse_menu_labelIntl.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeWithExtensionGetResponse_oauth2App(writer: SerializationWriter, withExtensionGetResponse_oauth2App: Partial<WithExtensionGetResponse_oauth2App> | undefined | null = {}) : void {
+    if (withExtensionGetResponse_oauth2App) {
+        writer.writeCollectionOfPrimitiveValues<string>("audience", withExtensionGetResponse_oauth2App.audience);
+        writer.writeStringValue("id", withExtensionGetResponse_oauth2App.id);
+        writer.writeStringValue("name", withExtensionGetResponse_oauth2App.name);
+        writer.writeStringValue("redirectUrl", withExtensionGetResponse_oauth2App.redirectUrl);
     }
 }
 /**
@@ -472,6 +511,10 @@ export interface WithExtensionGetResponse extends Parsable {
      */
     name?: string | null;
     /**
+     * The oauth2App property
+     */
+    oauth2App?: WithExtensionGetResponse_oauth2App | null;
+    /**
      * The permissions property
      */
     permissions?: string[] | null;
@@ -545,6 +588,24 @@ export interface WithExtensionGetResponse_menu_labelIntl extends AdditionalDataH
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
      */
     additionalData?: Record<string, unknown>;
+}
+export interface WithExtensionGetResponse_oauth2App extends Parsable {
+    /**
+     * The audience property
+     */
+    audience?: string[] | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The redirectUrl property
+     */
+    redirectUrl?: string | null;
 }
 export interface WithExtensionGetResponse_proxy extends Parsable {
     /**
@@ -643,6 +704,10 @@ export interface WithExtensionItemRequestBuilder extends BaseRequestBuilder<With
      */
     get activation(): ActivationRequestBuilder;
     /**
+     * The apps property
+     */
+    get apps(): AppsRequestBuilder;
+    /**
      * The proxy property
      */
     get proxy(): ProxyRequestBuilder;
@@ -705,6 +770,10 @@ export const WithExtensionItemRequestBuilderNavigationMetadata: Record<Exclude<k
     activation: {
         requestsMetadata: ActivationRequestBuilderRequestsMetadata,
         navigationMetadata: ActivationRequestBuilderNavigationMetadata,
+    },
+    apps: {
+        requestsMetadata: AppsRequestBuilderRequestsMetadata,
+        navigationMetadata: AppsRequestBuilderNavigationMetadata,
     },
     proxy: {
         requestsMetadata: ProxyRequestBuilderRequestsMetadata,
