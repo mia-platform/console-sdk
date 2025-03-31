@@ -52,7 +52,7 @@ export const catalogItemReleaseSchema = {
     type: catalogTypeSchema,
   },
   additionalProperties: false,
-  required: ['name', 'description', 'version', 'reference', 'releaseNote', 'releaseDate'],
+  required: ['name', 'description', 'version', 'reference', 'releaseNote', 'releaseDate', 'type'],
 } as const satisfies JSONSchema
 
 export type CatalogItemRelease = FromSchema<typeof catalogItemReleaseSchema>
