@@ -2880,16 +2880,6 @@
                     },
                     {
                         "schema": {
-                            "type": "integer"
-                        },
-                        "in": "query",
-                        "name": "perPage",
-                        "deprecated": true,
-                        "required": false,
-                        "description": "Size of the page to be downloaded"
-                    },
-                    {
-                        "schema": {
                             "type": "boolean"
                         },
                         "in": "query",
@@ -2936,7 +2926,8 @@
                         "schema": {
                             "type": "integer",
                             "maximum": 200,
-                            "minimum": 1
+                            "minimum": 1,
+                            "default": 50
                         },
                         "in": "query",
                         "name": "per_page",
@@ -2946,7 +2937,8 @@
                     {
                         "schema": {
                             "type": "integer",
-                            "minimum": 0
+                            "minimum": 0,
+                            "default": 0
                         },
                         "in": "query",
                         "name": "page",
