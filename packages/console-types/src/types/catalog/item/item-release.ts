@@ -28,6 +28,7 @@ import {
   catalogReleaseStageSchema,
   catalogVersionSchema,
   catalogVisibilitySchema,
+  catalogTypeSchema,
 } from './commons'
 
 export const catalogItemReleaseSchema = {
@@ -48,6 +49,7 @@ export const catalogItemReleaseSchema = {
     security: catalogVersionSchema.properties.security,
     version: catalogVersionSchema.properties.name,
     visibility: catalogVisibilitySchema,
+    type: catalogTypeSchema,
   },
   additionalProperties: false,
   required: ['name', 'description', 'version', 'reference', 'releaseNote', 'releaseDate'],

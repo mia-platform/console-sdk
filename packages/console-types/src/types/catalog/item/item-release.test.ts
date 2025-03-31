@@ -57,6 +57,7 @@ t.test('catalog release', t => {
       security: true,
       releaseStage: CatalogItemReleaseStage.STABLE,
       visibility: { public: true, allTenants: true },
+      type: 'plugin',
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
