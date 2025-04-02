@@ -62,11 +62,6 @@ export interface MarketplaceRequestBuilderGetQueryParameters {
     /**
      * Number of items per page
      */
-    per_page?: number;
-    /**
-     * Size of the page to be downloaded
-     * @deprecated 
-     */
     perPage?: number;
     publishOnMiaDocumentation?: boolean;
     /**
@@ -105,6 +100,7 @@ export const GetSortQueryParameterTypeObject = {
  */
 const MarketplaceRequestBuilderGetQueryParametersMapper: Record<string, string> = {
     "availableTo": "available_to",
+    "perPage": "per_page",
     "releaseStage": "release_stage",
 };
 /**
