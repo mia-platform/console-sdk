@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.33.5
+
+### Patch Changes
+
+- c080ef7: Added release-date to catalog items
+
 ## 0.33.4
 
 ### Patch Changes

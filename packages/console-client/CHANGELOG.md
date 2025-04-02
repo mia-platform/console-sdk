@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.5.1
+
+### Patch Changes
+
+- dec5325: Removed `perPage` query parameter from GET marketplace items list
+
 ## 0.5.0
 
 ### Minor Changes
