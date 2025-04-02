@@ -22,7 +22,7 @@ import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../../validate-utils.test'
 import { CatalogItemManifest, catalogItemManifestSchema } from './item-manifest'
-import { CatalogItemDocumentationType, CatalogItemReleaseStage } from './commons'
+import { CatalogItemDocumentationType, catalogItemLifecycleStatusEnum } from './commons'
 
 t.test('catalog item manifest', t => {
   const ajv = new Ajv()
@@ -51,13 +51,12 @@ t.test('catalog item manifest', t => {
       resources: { foo: 'bar' },
       tenantId: 'tenant-id',
       categoryId: 'category-id',
-      comingSoon: true,
       description: 'description',
       documentation: { type: CatalogItemDocumentationType.EXTERNAL_LINK, url: 'http://example.com' },
       imageUrl: 'http://example.com',
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
       providerId: 'provider-id',
       publishOnMiaDocumentation: true,
-      releaseStage: CatalogItemReleaseStage.BETA,
       repositoryUrl: 'http://example.com',
       supportedBy: 'supported-by',
       supportedByImageUrl: 'http://example.com',

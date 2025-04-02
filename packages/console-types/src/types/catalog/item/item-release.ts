@@ -20,14 +20,13 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 import {
-  catalogComingSoonSchema,
   catalogItemDescriptionSchema,
   catalogIsLatestSchema,
   catalogItemNameSchema,
   catalogReleaseDateSchema,
-  catalogReleaseStageSchema,
   catalogVersionSchema,
   catalogVisibilitySchema,
+  catalogLifecycleStatusSchema,
 } from './commons'
 
 export const catalogItemReleaseSchema = {
@@ -37,14 +36,13 @@ export const catalogItemReleaseSchema = {
   description: 'Data model of a Catalog item release',
   type: 'object',
   properties: {
-    comingSoon: catalogComingSoonSchema,
     description: catalogItemDescriptionSchema,
     isLatest: catalogIsLatestSchema,
+    lifecycleStatus: catalogLifecycleStatusSchema,
     name: catalogItemNameSchema,
     reference: { description: 'Mongo objectId of the item', type: 'string' },
     releaseDate: catalogReleaseDateSchema,
     releaseNote: catalogVersionSchema.properties.releaseNote,
-    releaseStage: catalogReleaseStageSchema,
     security: catalogVersionSchema.properties.security,
     version: catalogVersionSchema.properties.name,
     visibility: catalogVisibilitySchema,

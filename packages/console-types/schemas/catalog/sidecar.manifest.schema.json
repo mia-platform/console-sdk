@@ -10,10 +10,6 @@
       "description": "Identifier of the item's category",
       "type": "string"
     },
-    "comingSoon": {
-      "description": "Flag that will prevent the use of the item",
-      "type": "boolean"
-    },
     "description": {
       "description": "Brief description of the item",
       "type": "string"
@@ -50,6 +46,18 @@
       "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
       "type": "string"
     },
+    "lifecycleStatus": {
+      "description": "Lifecycle status of the item",
+      "enum": [
+        "coming-soon",
+        "draft",
+        "published",
+        "maintenance",
+        "deprecated",
+        "archived"
+      ],
+      "type": "string"
+    },
     "name": {
       "description": "Human-readable name of the item",
       "minLength": 1,
@@ -63,6 +71,7 @@
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
       "type": "boolean"
     },
+<<<<<<< HEAD
     "releaseDate": {
       "description": "Creation date of this item's release",
       "format": "date-time",
@@ -79,6 +88,8 @@
       ],
       "type": "string"
     },
+=======
+>>>>>>> 7b96979 (feat!(types): change "releaseStage" and "comingSoon" for "lifecycleStatus" in Software Catalog items)
     "repositoryUrl": {
       "description": "URL of the repository containing the source code of the resource created by the item",
       "format": "uri-reference",
