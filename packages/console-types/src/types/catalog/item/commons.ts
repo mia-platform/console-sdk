@@ -25,19 +25,17 @@ export enum CatalogItemDocumentationType {
   MARKDOWN = 'markdown'
 }
 
-export enum CatalogItemReleaseStage {
-  BETA = 'beta',
-  DEPRECATED = 'deprecated',
-  EMPTY = '',
-  PREVIEW = 'preview',
-  STABLE = 'stable'
-}
+export const catalogItemLifecycleStatusEnum = Object.freeze({
+  COMING_SOON: 'coming-soon',
+  DRAFT: 'draft',
+  PUBLISHED: 'published',
+  MAINTENANCE: 'maintenance',
+  DEPRECATED: 'deprecated',
+  ARCHIVED: 'archived',
+})
+export type CatalogItemLifecycleStatus =
+  typeof catalogItemLifecycleStatusEnum[keyof typeof catalogItemLifecycleStatusEnum]
 
-
-export const catalogComingSoonSchema = {
-  description: 'Flag that will prevent the use of the item',
-  type: 'boolean',
-} as const satisfies JSONSchema
 
 export const catalogItemDescriptionSchema = {
   description: 'Brief description of the item',
@@ -94,9 +92,9 @@ export const catalogReleaseDateSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
-export const catalogReleaseStageSchema = {
-  description: 'Release stage of the item',
-  enum: Object.values(CatalogItemReleaseStage),
+export const catalogLifecycleStatusSchema = {
+  description: 'Lifecycle status of the item',
+  enum: Object.values(catalogItemLifecycleStatusEnum),
   type: 'string',
 } as const satisfies JSONSchema
 
