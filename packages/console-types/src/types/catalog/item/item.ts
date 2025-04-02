@@ -21,7 +21,6 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../commons/json-schema'
 import { catalogCrdIsVersioningSupportedSchema } from '../crd/commons'
 import {
-  catalogComingSoonSchema,
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
   catalogImageUrlSchema,
@@ -31,7 +30,6 @@ import {
   catalogProviderIdSchema,
   catalogPublishOnMiaDocumentationSchema,
   catalogReleaseDateSchema,
-  catalogReleaseStageSchema,
   catalogItemRepositoryUrlSchema,
   catalogResourcesSchema,
   catalogSupportedByImageUrlSchema,
@@ -40,6 +38,7 @@ import {
   catalogTypeSchema,
   catalogSemverVersionSchema,
   catalogVisibilitySchema,
+  catalogLifecycleStatusSchema,
 } from './commons'
 
 export const catalogItemSchema = {
@@ -60,7 +59,6 @@ export const catalogItemSchema = {
       additionalProperties: false,
       required: ['id', 'label'],
     },
-    comingSoon: catalogComingSoonSchema,
     componentsIds: {
       description: 'List of source component ids of the services in the item\'s resources',
       items: { type: 'string' },
@@ -73,11 +71,11 @@ export const catalogItemSchema = {
     // TODO: remove once CRD-specify API is in place
     isVersioningSupported: catalogCrdIsVersioningSupportedSchema,
     itemId: catalogItemIdSchema,
+    lifecycleStatus: catalogLifecycleStatusSchema,
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
     publishOnMiaDocumentation: catalogPublishOnMiaDocumentationSchema,
     releaseDate: catalogReleaseDateSchema,
-    releaseStage: catalogReleaseStageSchema,
     repositoryUrl: catalogItemRepositoryUrlSchema,
     resources: catalogResourcesSchema,
     supportedBy: catalogSupportedBySchema,
