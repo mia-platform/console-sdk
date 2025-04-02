@@ -159,6 +159,7 @@ t.test('project validated', t => {
       flavor: PROJECT_APPLICATION_FLAVOR,
       infrastructureComponents: {},
       environments: [fullEnvironment],
+      originalTemplate: { id: 'templateid', name: 'template name' },
       monitoring: {
         systems: [{
           type: PROMETHEUS_OPERATOR,
@@ -319,6 +320,7 @@ t.test('project validated', t => {
       projectId: 'my-project-id',
       flavor: PROJECT_APPLICATION_FLAVOR,
       infrastructureComponents: {},
+      originalTemplate: { id: 'templateid', name: 'template name' },
       repositoryUrl: 'repo-url',
       _id: 'object-id',
       environments: [fullEnvironment],

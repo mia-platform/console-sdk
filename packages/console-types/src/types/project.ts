@@ -677,6 +677,13 @@ export const project = {
     configurationManagement,
     aiSettings,
     infrastructureComponents,
+    originalTemplate: {
+      type: 'object',
+      properties: {
+        id: { type: 'string' },
+        name: { type: 'string' },
+      },
+    },
   },
   required: [
     '_id',
