@@ -729,6 +729,7 @@
     "itemId",
     "tenantId",
     "type",
-    "resources"
+    "resources",
+    "lifecycleStatus"
   ]
 }

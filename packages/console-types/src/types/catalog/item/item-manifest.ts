@@ -66,7 +66,7 @@ export const catalogItemManifestSchema = {
     visibility: catalogVisibilitySchema,
   },
   additionalProperties: false,
-  required: ['name', 'itemId', 'tenantId', 'type', 'resources'],
+  required: ['name', 'itemId', 'tenantId', 'type', 'resources', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
 type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
