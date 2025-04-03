@@ -20,11 +20,6 @@ import { FromSchema } from 'json-schema-to-ts'
 
 import { JSONSchema } from '../../../commons/json-schema'
 
-export const isVersioningSupportedSchema = {
-  description: 'States if versioning is supported for the custom resource defined by the CRD',
-  type: 'boolean',
-} as const satisfies JSONSchema
-
 export const resourcesSchema = {
   type: 'object',
   properties: {
@@ -45,6 +40,10 @@ export const resourcesSchema = {
         type: 'object',
       },
       type: 'array',
+    },
+    isVersioningSupported: {
+      description: 'States if versioning is supported for the custom resource defined by the CRD',
+      type: 'boolean',
     },
     name: {
       description: 'Type of the described resource',

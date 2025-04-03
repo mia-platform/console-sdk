@@ -20,7 +20,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 import { catalogItemDescriptionSchema, catalogItemIdSchema, catalogItemNameSchema, catalogTenantIdSchema } from '../item/commons'
-import { isVersioningSupportedSchema, resourcesSchema } from './commons'
+import { resourcesSchema } from './commons'
 
 export const itemSchema = {
   $id: 'catalog-crd.schema.json',
@@ -30,7 +30,6 @@ export const itemSchema = {
   type: 'object',
   properties: {
     description: catalogItemDescriptionSchema,
-    isVersioningSupported: isVersioningSupportedSchema,
     itemId: catalogItemIdSchema,
     name: catalogItemNameSchema,
     resources: resourcesSchema,

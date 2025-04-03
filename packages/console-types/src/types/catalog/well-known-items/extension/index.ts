@@ -128,9 +128,9 @@ const crd: CatalogCrd = {
   itemId: 'extension-definition',
   description: 'Extension Custom Resource Definition',
   tenantId: 'mia-platform',
-  isVersioningSupported: false,
   resources: {
     name: type,
+    isVersioningSupported: false,
     validation: {
       jsonSchema: {
         ...resourcesSchema,

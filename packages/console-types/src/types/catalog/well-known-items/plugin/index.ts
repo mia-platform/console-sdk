@@ -110,9 +110,9 @@ const crd: CatalogCrd = {
   itemId: 'plugin-definition',
   description: 'Plugin Custom Resource Definition',
   tenantId: 'mia-platform',
-  isVersioningSupported: true,
   resources: {
     name: type,
+    isVersioningSupported: true,
     validation: {
       jsonSchema: {
         ...resourcesSchema,

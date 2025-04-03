@@ -79,9 +79,9 @@ const crd: CatalogCrd = {
   itemId: 'application-definition',
   description: 'Application Custom Resource Definition',
   tenantId: 'mia-platform',
-  isVersioningSupported: false,
   resources: {
     name: type,
+    isVersioningSupported: false,
     validation: {
       jsonSchema: {
         ...resourcesSchema,

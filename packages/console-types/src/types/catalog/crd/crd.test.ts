@@ -49,10 +49,10 @@ t.test('catalog item', t => {
       description: 'description',
       resources: {
         controlledFields: [{ jsonPath: 'foo', key: 'bar' }],
+        isVersioningSupported: true,
         name: 'item-type',
         validation: { jsonSchema: { type: 'object' } },
       },
-      isVersioningSupported: true,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

@@ -133,9 +133,9 @@ const crd: CatalogCrd = {
   itemId: 'custom-resource',
   description: 'Custom Workload Resource Definition',
   tenantId: 'mia-platform',
-  isVersioningSupported: true,
   resources: {
     name: type,
+    isVersioningSupported: true,
     validation: {
       jsonSchema: {
         ...resourcesSchema,

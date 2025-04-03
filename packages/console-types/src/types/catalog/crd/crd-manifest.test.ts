@@ -47,12 +47,12 @@ t.test('catalog item manifest', t => {
       name: 'name',
       resources: {
         controlledFields: [{ jsonPath: 'foo', key: 'bar' }],
+        isVersioningSupported: true,
         name: 'item-type',
         validation: { jsonSchema: { type: 'object' } },
       },
       tenantId: 'tenant-id',
       description: 'description',
-      isVersioningSupported: true,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

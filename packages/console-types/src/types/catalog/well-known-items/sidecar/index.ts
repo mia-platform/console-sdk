@@ -80,9 +80,9 @@ const crd: CatalogCrd = {
   itemId: 'sidecar-definition',
   description: 'Sidecar Custom Resource Definition',
   tenantId: 'mia-platform',
-  isVersioningSupported: false,
   resources: {
     name: type,
+    isVersioningSupported: false,
     validation: {
       jsonSchema: {
         ...resourcesSchema,

@@ -100,9 +100,9 @@ const crd: CatalogCrd = {
   itemId: 'template-definition',
   description: 'Template Custom Resource Definition',
   tenantId: 'mia-platform',
-  isVersioningSupported: true,
   resources: {
     name: type,
+    isVersioningSupported: true,
     validation: {
       jsonSchema: {
         ...resourcesSchema,
