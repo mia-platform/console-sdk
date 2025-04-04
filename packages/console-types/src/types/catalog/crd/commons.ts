@@ -55,7 +55,10 @@ export const resourcesSchema = {
         {
           description: 'Validation through JSON schema',
           properties: {
-            jsonSchema: { type: 'object' },
+            jsonSchema: {
+              additionalProperties: true,
+              type: 'object',
+            },
           },
           required: ['jsonSchema'],
           type: 'object',
