@@ -72,10 +72,6 @@
       "description": "Flag stating if the the current document is the latest version of the item",
       "type": "boolean"
     },
-    "isVersioningSupported": {
-      "description": "States if versioning is supported for the custom resource defined by the CRD",
-      "type": "boolean"
-    },
     "itemId": {
       "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
       "minLength": 1,
