@@ -1403,6 +1403,7 @@
     "itemId",
     "tenantId",
     "type",
-    "releaseDate"
+    "releaseDate",
+    "lifecycleStatus"
   ]
 }

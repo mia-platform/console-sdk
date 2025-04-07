@@ -38,6 +38,7 @@ t.test('catalog item', t => {
       name: 'name',
       tenantId: 'tenant-id',
       _id: 'uuid',
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

@@ -37,6 +37,7 @@ t.test('catalog release', t => {
       releaseNote: 'release-note',
       version: '1.0.0',
       reference: 'reference',
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

@@ -38,6 +38,7 @@ t.test('catalog versioned item', t => {
       tenantId: 'tenant-id',
       _id: 'uuid',
       version: { name: '1.0.0', releaseNote: 'release-note', security: true },
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
