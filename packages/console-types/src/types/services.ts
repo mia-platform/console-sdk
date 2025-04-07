@@ -67,6 +67,12 @@ export const serviceSecretName = {
   [VALIDATION_ERROR_ID]: 'resourceName.patternError',
 } as const
 
+export const emptyDirName = {
+  type: 'string',
+  pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$',
+  [VALIDATION_ERROR_ID]: 'resourceName.patternError',
+} as const
+
 export const serviceSecretKey = {
   type: 'string',
   pattern: '^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|[a-zA-Z0-9-_.]*)$',
@@ -281,10 +287,12 @@ const cpuValue = {
   type: 'string',
   pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$',
 } as const
+
 const memoryValue = {
   type: 'string',
   pattern: '(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$',
 } as const
+
 const serviceResources = {
   type: 'object',
   properties: {
@@ -450,6 +458,20 @@ export const serviceSecret = {
   additionalProperties: false,
 } as const
 
+export const emptyDirMountPath = {
+  type: 'string',
+  pattern: '^[a-zA-Z0-9-/_\\s.|\\\\!"£$%&()=?^"{}[\\]*+@]+$',
+  [VALIDATION_ERROR_ID]: 'configMountPath.patternError',
+} as const
+
+export const emptyDirMount = {
+  type: 'object',
+  properties: {
+    name: emptyDirName,
+    mountPath: emptyDirMountPath,
+  },
+  additionalProperties: false,
+} as const
 
 export const serviceAccount = {
   type: 'object',
@@ -503,11 +525,12 @@ const sourceMarketplaceItem = {
 } as const
 
 const numericContainerPort = { ...port } as const
+export type ContainerPortNumericValue = FromSchema<typeof numericContainerPort>
+
 const interpolatedContainerPort = {
   type: 'string',
   pattern: DIGIT_OR_INTERPOLATION_PATTERN,
 } as const
-export type ContainerPortNumericValue = FromSchema<typeof numericContainerPort>
 export type ContainerPortInterpolatedValue = FromSchema<typeof interpolatedContainerPort>
 
 export const containerPortProperties = {
@@ -644,6 +667,10 @@ export const container = {
       type: 'array',
       items: serviceSecret,
     },
+    emptyDirMounts: {
+      type: 'array',
+      items: emptyDirMount,
+    },
     sourceComponentId: { type: 'string' },
     sourceMarketplaceItem,
     mapEnvVarToMountPath: {
@@ -706,6 +733,20 @@ export const customService = {
     additionalContainers: {
       type: 'array',
       items: container,
+    },
+    emptyDirs: {
+      type: 'object',
+      additionalProperties: {
+        type: 'object',
+        required: ['type', ],
+        properties: {
+          type: {
+            type: 'string',
+            enum: ['default', 'memory'],
+          },
+          size: memoryValue,
+        },
+      },
     },
     ...container.properties,
   },

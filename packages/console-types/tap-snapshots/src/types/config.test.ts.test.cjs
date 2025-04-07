@@ -5600,6 +5600,25 @@ Object {
                       "type": "string",
                       "x-validation-error-id": "dockerImage.patternError",
                     },
+                    "emptyDirMounts": Object {
+                      "items": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "mountPath": Object {
+                            "pattern": "^[a-zA-Z0-9-/_\\\\s.|\\\\\\\\!\\"£$%&()=?^\\"{}[\\\\]*+@]+$",
+                            "type": "string",
+                            "x-validation-error-id": "configMountPath.patternError",
+                          },
+                          "name": Object {
+                            "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                            "type": "string",
+                            "x-validation-error-id": "resourceName.patternError",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "type": "array",
+                    },
                     "environment": Object {
                       "items": Object {
                         "oneOf": Array [
@@ -6338,6 +6357,47 @@ Object {
                   "type": "object",
                 },
                 "type": "array",
+              },
+              "emptyDirMounts": Object {
+                "items": Object {
+                  "additionalProperties": false,
+                  "properties": Object {
+                    "mountPath": Object {
+                      "pattern": "^[a-zA-Z0-9-/_\\\\s.|\\\\\\\\!\\"£$%&()=?^\\"{}[\\\\]*+@]+$",
+                      "type": "string",
+                      "x-validation-error-id": "configMountPath.patternError",
+                    },
+                    "name": Object {
+                      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                      "type": "string",
+                      "x-validation-error-id": "resourceName.patternError",
+                    },
+                  },
+                  "type": "object",
+                },
+                "type": "array",
+              },
+              "emptyDirs": Object {
+                "additionalProperties": Object {
+                  "properties": Object {
+                    "size": Object {
+                      "pattern": "(^((\\\\{\\\\{([A-Z])([A-Z0-9_]*)\\\\}\\\\})|(\\\\d+))Mi$)|^$",
+                      "type": "string",
+                    },
+                    "type": Object {
+                      "enum": Array [
+                        "default",
+                        "memory",
+                      ],
+                      "type": "string",
+                    },
+                  },
+                  "required": Array [
+                    "type",
+                  ],
+                  "type": "object",
+                },
+                "type": "object",
               },
               "environment": Object {
                 "items": Object {

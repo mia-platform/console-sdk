@@ -435,6 +435,29 @@ t.test('services', t => {
     t.end()
   })
 
+  t.test('emptyDir fileds', t => {
+    const service: CustomService = {
+      name: 'myservice',
+      type: ServiceTypes.CUSTOM,
+      advanced: false,
+      replicas: 3,
+      dockerImage: 'helloworld:1.0.0',
+      emptyDirMounts: [
+        {
+          name: 'mountemptydir',
+          mountPath: '/path',
+        },
+      ],
+      emptyDirs: {
+        mountemptydir: {
+          type: 'default',
+        },
+      },
+    }
+
+    t.ok(validate(service), validationMessage(validate.errors))
+    t.end()
+  })
 
   t.end()
 })
