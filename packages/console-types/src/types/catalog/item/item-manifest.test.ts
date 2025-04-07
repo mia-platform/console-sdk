@@ -36,6 +36,7 @@ t.test('catalog item manifest', t => {
       name: 'name',
       resources: { foo: 'bar' },
       tenantId: 'tenant-id',
+      lifecycleStatus: 'published',
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
