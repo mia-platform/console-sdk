@@ -69,7 +69,6 @@ t.test('catalog versioned item', t => {
       supportedByImageUrl: 'http://example.com',
       version: { name: '1.0.0', releaseNote: 'release-note', security: true },
       visibility: { allTenants: true, public: true },
-      isVersioningSupported: false,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

@@ -19,7 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import type { CatalogCrd } from '../../crd'
+import type { ICatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import type { CatalogWellKnownItemData } from '..'
 
@@ -123,15 +123,14 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCrd = {
+const crd: ICatalogCrd.Item = {
   name: 'extension',
   itemId: 'extension-definition',
   description: 'Extension Custom Resource Definition',
-  type: 'custom-resource-definition',
   tenantId: 'mia-platform',
-  isVersioningSupported: false,
   resources: {
     name: type,
+    isVersioningSupported: false,
     validation: {
       jsonSchema: {
         ...resourcesSchema,

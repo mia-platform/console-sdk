@@ -19,7 +19,6 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { catalogCrdIsVersioningSupportedSchema } from '../crd/commons'
 import {
   catalogComingSoonSchema,
   catalogItemDescriptionSchema,
@@ -70,8 +69,6 @@ export const catalogItemSchema = {
     documentation: catalogDocumentationSchema,
     imageUrl: catalogImageUrlSchema,
     isLatest: catalogIsLatestSchema,
-    // TODO: remove once CRD-specify API is in place
-    isVersioningSupported: catalogCrdIsVersioningSupportedSchema,
     itemId: catalogItemIdSchema,
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
