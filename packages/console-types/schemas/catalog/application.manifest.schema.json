@@ -71,25 +71,11 @@
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
       "type": "boolean"
     },
-<<<<<<< HEAD
     "releaseDate": {
       "description": "Creation date of this item's release",
       "format": "date-time",
       "type": "string"
     },
-    "releaseStage": {
-      "description": "Release stage of the item",
-      "enum": [
-        "beta",
-        "deprecated",
-        "",
-        "preview",
-        "stable"
-      ],
-      "type": "string"
-    },
-=======
->>>>>>> 7b96979 (feat!(types): change "releaseStage" and "comingSoon" for "lifecycleStatus" in Software Catalog items)
     "repositoryUrl": {
       "description": "URL of the repository containing the source code of the resource created by the item",
       "format": "uri-reference",
