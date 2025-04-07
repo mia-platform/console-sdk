@@ -16,18 +16,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { resourcesSchema, type Resources } from './commons'
-import { manifestSchema, type Manifest } from './crd-manifest'
-import { itemSchema, type Item } from './crd'
+import { itemSchema, resourcesSchema } from './crd'
+import type * as ICatalogCrd from './crd'
 
-export const data = {
-  manifestSchema,
+export const catalogCrdData = {
   itemSchema,
   resourcesSchema,
 }
 
 export type {
-  Manifest,
-  Item,
-  Resources,
+  ICatalogCrd,
 }

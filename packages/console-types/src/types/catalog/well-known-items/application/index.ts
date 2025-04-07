@@ -21,7 +21,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { collection } from '../../../collections'
 import { endpoint } from '../../../endpoints'
-import type { Item as CatalogCrd } from '../../crd'
+import type { ICatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import { listenerSchema, nameSchema } from '../commons'
 import { catalogExampleServiceSchema } from '../example'
@@ -74,7 +74,7 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const crd: CatalogCrd = {
+const crd: ICatalogCrd.Item = {
   name: 'application',
   itemId: 'application-definition',
   description: 'Application Custom Resource Definition',

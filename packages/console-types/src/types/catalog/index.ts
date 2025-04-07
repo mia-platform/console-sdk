@@ -16,12 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { data as catalogCrdData } from './crd'
-import type * as ICatalogCrd from './crd'
-
-export { catalogCrdData }
-export type { ICatalogCrd }
-
+export * from './crd'
 export * from './item'
 export * from './misc'
 export * from './well-known-items'

@@ -20,7 +20,85 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 import { catalogItemDescriptionSchema, catalogItemIdSchema, catalogItemNameSchema, catalogTenantIdSchema } from '../item/commons'
-import { resourcesSchema } from './commons'
+
+export const resourcesSchema = {
+  type: 'object',
+  properties: {
+    controlledFields: {
+      description: 'List detailing the fields that are managed by the Marketplace item',
+      items: {
+        properties: {
+          jsonPath: {
+            description: 'JSON path to access the marketplace item value',
+            type: 'string',
+          },
+          key: {
+            description: 'Unique name of the field',
+            type: 'string',
+          },
+        },
+        required: ['key', 'jsonPath'],
+        type: 'object',
+      },
+      type: 'array',
+    },
+    isVersioningSupported: {
+      description: 'States if versioning is supported for the custom resource defined by the CRD',
+      type: 'boolean',
+    },
+    name: {
+      description: 'Type of the described resource',
+      type: 'string',
+    },
+    validation: {
+      description: 'How to validate the defined resource',
+      oneOf: [
+        {
+          description: 'Validation through JSON schema',
+          properties: {
+            jsonSchema: {
+              additionalProperties: true,
+              type: 'object',
+            },
+          },
+          required: ['jsonSchema'],
+          type: 'object',
+        },
+        {
+          description: 'Validation through webhook',
+          properties: {
+            validationWebhook: {
+              properties: {
+                urls: {
+                  properties: {
+                    schema: {
+                      description: 'URL to the schema',
+                      pattern: '^https?:\\/\\/([^:\\/\\s]+)((:[0-9]{1,5})?(\\/.*)?)([^\\/:])\\/?$',
+                      type: 'string',
+                    },
+                    validation: {
+                      description: 'URL to the validation webhook',
+                      pattern: '^https?:\\/\\/([^:\\/\\s]+)((:[0-9]{1,5})?(\\/.*)?)([^\\/:])\\/?$',
+                      type: 'string',
+                    },
+                  },
+                  required: ['validation'],
+                  type: 'object',
+                },
+              },
+              required: ['urls'],
+              type: 'object',
+            },
+          },
+          required: ['validationWebhook'],
+          type: 'object',
+        },
+      ],
+    },
+  },
+  additionalProperties: false,
+  required: ['name'],
+} as const satisfies JSONSchema
 
 export const itemSchema = {
   $id: 'catalog-crd.schema.json',
@@ -39,4 +117,5 @@ export const itemSchema = {
   required: ['name', 'itemId', 'tenantId', 'resources'],
 } as const satisfies JSONSchema
 
+export type Resources = FromSchema<typeof resourcesSchema>
 export type Item = FromSchema<typeof itemSchema>
