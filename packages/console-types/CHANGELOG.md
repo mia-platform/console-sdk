@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.34.0
+
+### Minor Changes
+
+- 7a14433: Updated Catalog CRDs schema
+
 ## 0.33.5
 
 ### Patch Changes
