@@ -48,7 +48,7 @@ export const catalogItemReleaseSchema = {
     visibility: catalogVisibilitySchema,
   },
   additionalProperties: false,
-  required: ['name', 'description', 'version', 'reference', 'releaseNote', 'releaseDate'],
+  required: ['name', 'description', 'version', 'reference', 'releaseNote', 'releaseDate', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
 export type CatalogItemRelease = FromSchema<typeof catalogItemReleaseSchema>

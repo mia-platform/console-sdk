@@ -83,7 +83,7 @@ export const catalogItemSchema = {
     visibility: catalogVisibilitySchema,
   },
   additionalProperties: false,
-  required: ['_id', 'name', 'itemId', 'tenantId', 'type', 'releaseDate'],
+  required: ['_id', 'name', 'itemId', 'tenantId', 'type', 'releaseDate', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
 export type CatalogItem<
