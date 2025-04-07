@@ -738,7 +738,7 @@ export const customService = {
       type: 'object',
       additionalProperties: {
         type: 'object',
-        required: ['type', ],
+        required: ['type'],
         properties: {
           type: {
             type: 'string',
