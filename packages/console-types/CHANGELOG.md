@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.34.1
+
+### Patch Changes
+
+- 5da5a9f: add emptydir support on custom services
+
 ## 0.34.0
 
 ### Minor Changes
