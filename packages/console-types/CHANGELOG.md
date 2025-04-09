@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.35.0
+
+### Minor Changes
+
+- 8be43ca: Changed "releaseStage" and "comingSoon" for "lifecycleStatus" in Software Catalog items
+
 ## 0.34.1
 
 ### Patch Changes
