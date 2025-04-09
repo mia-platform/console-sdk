@@ -20,7 +20,6 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 import {
-  catalogComingSoonSchema,
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
   catalogImageUrlSchema,
@@ -30,7 +29,6 @@ import {
   catalogProviderIdSchema,
   catalogPublishOnMiaDocumentationSchema,
   catalogReleaseDateSchema,
-  catalogReleaseStageSchema,
   catalogItemRepositoryUrlSchema,
   catalogResourcesSchema,
   catalogSupportedByImageUrlSchema,
@@ -39,6 +37,7 @@ import {
   catalogTypeSchema,
   catalogSemverVersionSchema,
   catalogVisibilitySchema,
+  catalogLifecycleStatusSchema,
 } from './commons'
 
 export const catalogItemSchema = {
@@ -59,7 +58,6 @@ export const catalogItemSchema = {
       additionalProperties: false,
       required: ['id', 'label'],
     },
-    comingSoon: catalogComingSoonSchema,
     componentsIds: {
       description: 'List of source component ids of the services in the item\'s resources',
       items: { type: 'string' },
@@ -70,11 +68,11 @@ export const catalogItemSchema = {
     imageUrl: catalogImageUrlSchema,
     isLatest: catalogIsLatestSchema,
     itemId: catalogItemIdSchema,
+    lifecycleStatus: catalogLifecycleStatusSchema,
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
     publishOnMiaDocumentation: catalogPublishOnMiaDocumentationSchema,
     releaseDate: catalogReleaseDateSchema,
-    releaseStage: catalogReleaseStageSchema,
     repositoryUrl: catalogItemRepositoryUrlSchema,
     resources: catalogResourcesSchema,
     supportedBy: catalogSupportedBySchema,
@@ -85,7 +83,7 @@ export const catalogItemSchema = {
     visibility: catalogVisibilitySchema,
   },
   additionalProperties: false,
-  required: ['_id', 'name', 'itemId', 'tenantId', 'type', 'releaseDate'],
+  required: ['_id', 'name', 'itemId', 'tenantId', 'type', 'releaseDate', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
 export type CatalogItem<

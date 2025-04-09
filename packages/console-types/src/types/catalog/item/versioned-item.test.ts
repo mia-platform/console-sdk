@@ -22,7 +22,7 @@ import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../../validate-utils.test'
 import { catalogVersionedItemSchema, type CatalogVersionedItem } from './versioned-item'
-import { CatalogItemDocumentationType, CatalogItemReleaseStage } from './commons'
+import { CatalogItemDocumentationType, catalogItemLifecycleStatusEnum } from './commons'
 
 t.test('catalog versioned item', t => {
   const ajv = new Ajv()
@@ -38,6 +38,7 @@ t.test('catalog versioned item', t => {
       tenantId: 'tenant-id',
       _id: 'uuid',
       version: { name: '1.0.0', releaseNote: 'release-note', security: true },
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
@@ -53,16 +54,15 @@ t.test('catalog versioned item', t => {
       tenantId: 'tenant-id',
       _id: 'uuid',
       category: { id: 'category-id', label: 'category-label' },
-      comingSoon: true,
       componentsIds: ['component-id'],
       description: 'description',
       documentation: { type: CatalogItemDocumentationType.EXTERNAL_LINK, url: 'http://example.com' },
       imageUrl: 'http://example.com',
       isLatest: true,
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
       providerId: 'provider-id',
       publishOnMiaDocumentation: true,
       releaseDate: '2025-01-01T10:10:00.000Z',
-      releaseStage: CatalogItemReleaseStage.BETA,
       repositoryUrl: 'http://example.com',
       resources: { foo: 'bar' },
       supportedBy: 'supported-by',

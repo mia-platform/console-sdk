@@ -21,7 +21,7 @@ import t from 'tap'
 import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../../validate-utils.test'
-import { CatalogItemReleaseStage } from './commons'
+import { catalogItemLifecycleStatusEnum } from './commons'
 import { catalogItemReleaseSchema, type CatalogItemRelease } from './item-release'
 
 t.test('catalog release', t => {
@@ -37,6 +37,7 @@ t.test('catalog release', t => {
       releaseNote: 'release-note',
       version: '1.0.0',
       reference: 'reference',
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
@@ -52,10 +53,9 @@ t.test('catalog release', t => {
       releaseNote: 'release-note',
       version: '1.0.0',
       reference: 'reference',
-      comingSoon: true,
       isLatest: true,
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
       security: true,
-      releaseStage: CatalogItemReleaseStage.STABLE,
       visibility: { public: true, allTenants: true },
     }
 

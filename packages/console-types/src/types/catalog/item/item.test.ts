@@ -22,7 +22,8 @@ import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../../validate-utils.test'
 import { catalogItemSchema, type CatalogItem } from './item'
-import { CatalogItemDocumentationType, CatalogItemReleaseStage } from './commons'
+import { CatalogItemDocumentationType, catalogItemLifecycleStatusEnum,
+} from './commons'
 
 t.test('catalog item', t => {
   const ajv = new Ajv()
@@ -37,6 +38,7 @@ t.test('catalog item', t => {
       name: 'name',
       tenantId: 'tenant-id',
       _id: 'uuid',
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
     }
 
     t.ok(validate(data), validationMessage(validate.errors))
@@ -52,16 +54,15 @@ t.test('catalog item', t => {
       tenantId: 'tenant-id',
       _id: 'uuid',
       category: { id: 'category-id', label: 'category-label' },
-      comingSoon: true,
       componentsIds: ['component-id'],
       description: 'description',
       documentation: { type: CatalogItemDocumentationType.EXTERNAL_LINK, url: 'http://example.com' },
       imageUrl: 'http://example.com',
       isLatest: true,
+      lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
       providerId: 'provider-id',
       publishOnMiaDocumentation: true,
       releaseDate: '2025-01-01T10:10:00.000Z',
-      releaseStage: CatalogItemReleaseStage.BETA,
       repositoryUrl: 'http://example.com',
       resources: { foo: 'bar' },
       supportedBy: 'supported-by',

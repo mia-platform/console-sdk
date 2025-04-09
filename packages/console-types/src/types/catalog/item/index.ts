@@ -16,7 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { CATALOG_ITEM_NA_VERSION, CatalogItemDocumentationType, CatalogItemReleaseStage } from './commons'
+import { CATALOG_ITEM_NA_VERSION, CatalogItemDocumentationType, catalogItemLifecycleStatusEnum, type CatalogItemLifecycleStatus } from './commons'
 import { catalogItemManifestSchema, type CatalogItemManifest, type CatalogItemNoVersionManifest } from './item-manifest'
 import { catalogItemMetadataSchema, type CatalogItemMetadata } from './item-metadata'
 import { catalogItemReleaseSchema, type CatalogItemRelease } from './item-release'
@@ -26,7 +26,7 @@ import { catalogVersionedItemSchema, type CatalogVersionedItem } from './version
 export {
   CATALOG_ITEM_NA_VERSION,
   CatalogItemDocumentationType,
-  CatalogItemReleaseStage,
+  catalogItemLifecycleStatusEnum,
   catalogItemManifestSchema,
   catalogItemMetadataSchema,
   catalogItemReleaseSchema,
@@ -35,6 +35,7 @@ export {
 }
 
 export type {
+  CatalogItemLifecycleStatus,
   CatalogItemManifest,
   CatalogItemNoVersionManifest,
   CatalogItemMetadata,
