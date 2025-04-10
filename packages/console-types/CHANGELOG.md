@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.35.1
+
+### Patch Changes
+
+- move json-schema-to-ts from devDeps to desp
+
 ## 0.35.0
 
 ### Minor Changes
