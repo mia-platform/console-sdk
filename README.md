@@ -43,7 +43,7 @@ pnpm install && pnpm test
 To run tests on a specific package:
 
 ```bash
-pnpm --filter <package.json name> <script>
+pnpm --filter {package.json name} {script}
 ```
 
 or using the prepared script

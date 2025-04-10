@@ -22,7 +22,7 @@ import { CmsAnalytics, cmsAnalytics, cmsCategories, cmsDashboard, cmsSettings } 
 import { Collections, collections } from './collections'
 import { Endpoints, endpoints } from './endpoints'
 import { Listeners, listeners } from './listeners'
-import { Services, configMaps, configServiceSecrets, services } from './services'
+import { Services, configMaps, configServiceSecrets, serviceAccounts, services } from './services'
 import { apiKeys } from './apikeys'
 import { applications } from './applications'
 import { decorators } from './decorators'
@@ -52,6 +52,7 @@ export const config = {
     committedDate: { type: 'string' },
     configMaps,
     serviceSecrets: configServiceSecrets,
+    serviceAccounts,
     unsecretedVariables,
   },
   additionalProperties: false,

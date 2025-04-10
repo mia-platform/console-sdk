@@ -121,6 +121,26 @@ export const clientCredentialsCertificateSchema = {
   },
 } as const
 
+export const credentialsGithubAppSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['type', 'content'],
+  properties: {
+    expirationDate,
+    type: { type: 'string', const: CredentialsTypes.GITHUB_APP },
+    content: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['appId', 'installationId', 'privateKeyBase64'],
+      properties: {
+        appId: { type: 'string' },
+        installationId: { type: 'string' },
+        privateKeyBase64: { type: 'string' },
+      },
+    },
+  },
+} as const
+
 export const credentialsSchema = {
   oneOf: [
     credentialsTokenSchema,
@@ -128,6 +148,7 @@ export const credentialsSchema = {
     credentialsM2MSchema,
     clientCredentialsSchema,
     clientCredentialsCertificateSchema,
+    credentialsGithubAppSchema,
   ],
 } as const
 
@@ -136,4 +157,5 @@ export type CredentialsUserPass = FromSchema<typeof credentialsUserPassSchema>
 export type CredentialsM2M = FromSchema<typeof credentialsM2MSchema>
 export type CredentialsClientCredential = FromSchema<typeof clientCredentialsSchema>
 export type CredentialsClientCredentialCertificate = FromSchema<typeof clientCredentialsCertificateSchema>
+export type CredentialsGithubApp = FromSchema<typeof credentialsGithubAppSchema>
 export type Credentials = FromSchema<typeof credentialsSchema>

@@ -20,6 +20,7 @@ import {
   Credentials,
   CredentialsClientCredential,
   CredentialsClientCredentialCertificate,
+  CredentialsGithubApp,
   CredentialsM2M,
   CredentialsToken,
   CredentialsUserPass,
@@ -90,6 +91,10 @@ import {
   serviceSecretMountPath,
   serviceSecretName,
   services,
+  serviceAccount,
+  serviceAccounts,
+  serviceAccountName,
+  configServiceSecrets,
   swaggerPath,
   url,
   environment as serviceEnvironmentVariables,
@@ -163,6 +168,10 @@ export {
   serviceEnvironmentVariables,
   serviceName,
   services,
+  serviceAccount,
+  serviceAccounts,
+  serviceAccountName,
+  configServiceSecrets,
   serviceSecret,
   serviceSecretName,
   serviceSecretKey,
@@ -219,10 +228,13 @@ export type {
   ExternalService,
   ServiceConfigMap,
   Services,
+  ServiceAccounts,
   ContainerPort,
   ContainerPorts,
   CoreService,
   CustomResource,
+  ServiceLabel,
+  ServiceAnnotation,
   LabelAnnotation,
 } from './types/services'
 
@@ -236,11 +248,14 @@ export type {
   IProject,
   QuickLink,
   ProjectEnvironmentLink,
+  AISettings,
+  InfrastructureComponent,
 } from './types/project'
 
 export {
   projectEnvironmentLink,
   quickLink,
+  aiSettings,
 } from './types/project'
 
 export type { ITemplate } from './types/template'
@@ -281,6 +296,7 @@ export type {
   CredentialsUserPass,
   CredentialsClientCredential,
   CredentialsClientCredentialCertificate,
+  CredentialsGithubApp,
 }
 
 export type {
@@ -293,3 +309,5 @@ export type {
   GitProviderTypeCapability,
   PipelineStatus,
 }
+
+export * from './types/catalog'

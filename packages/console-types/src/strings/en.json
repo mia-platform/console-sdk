@@ -4,6 +4,7 @@
   "resourceName.patternError": "Must start with a lowercase character and can contain lowercase letters, numbers and the symbol \"-\". Cannot end with \"-\"",
   "dockerImage.patternError": "Must respect the format host/imagename:tag, where host and tag are optional. Image name and tag can be interpolated",
   "configMapFileName.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
+  "serviceAccountName.patternError": "Can contain lower case alphanumeric characters, \"-\" or \".\", and must start and end with an alphanumeric character",
   "swaggerPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\"",
   "probesPath.patternError": "Must start with \"/\". Can contain alphanumeric characters and the symbols \"_\", \"-\", \":\", \".\", \"{\", \"}\", \"/\"",
   "serviceSecretKey.patternError": "Can contain alphanumeric characters and the symbols \"_\", \"-\" and \".\". Can be interpolated",

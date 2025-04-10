@@ -4765,6 +4765,27 @@ Object {
       },
       "type": "array",
     },
+    "serviceAccounts": Object {
+      "additionalProperties": Object {
+        "additionalProperties": false,
+        "properties": Object {
+          "deleted": Object {
+            "type": "boolean",
+          },
+          "name": Object {
+            "maxLength": 253,
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
+            "type": "string",
+            "x-validation-error-id": "serviceAccountName.patternError",
+          },
+        },
+        "required": Array [
+          "name",
+        ],
+        "type": "object",
+      },
+      "type": "object",
+    },
     "services": Object {
       "additionalProperties": false,
       "default": Object {},
@@ -4818,6 +4839,10 @@ Object {
                                 "type": "string",
                               },
                             },
+                            "type": "object",
+                          },
+                          "jsonSchema": Object {
+                            "additionalProperties": true,
                             "type": "object",
                           },
                           "labels": Object {
@@ -5575,6 +5600,25 @@ Object {
                       "type": "string",
                       "x-validation-error-id": "dockerImage.patternError",
                     },
+                    "emptyDirMounts": Object {
+                      "items": Object {
+                        "additionalProperties": false,
+                        "properties": Object {
+                          "mountPath": Object {
+                            "pattern": "^[a-zA-Z0-9-/_\\\\s.|\\\\\\\\!\\"£$%&()=?^\\"{}[\\\\]*+@]+$",
+                            "type": "string",
+                            "x-validation-error-id": "configMountPath.patternError",
+                          },
+                          "name": Object {
+                            "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                            "type": "string",
+                            "x-validation-error-id": "resourceName.patternError",
+                          },
+                        },
+                        "type": "object",
+                      },
+                      "type": "array",
+                    },
                     "environment": Object {
                       "items": Object {
                         "oneOf": Array [
@@ -5826,6 +5870,9 @@ Object {
                         "properties": Object {
                           "description": Object {
                             "type": "string",
+                          },
+                          "isSelector": Object {
+                            "type": "boolean",
                           },
                           "name": Object {
                             "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
@@ -6311,6 +6358,47 @@ Object {
                 },
                 "type": "array",
               },
+              "emptyDirMounts": Object {
+                "items": Object {
+                  "additionalProperties": false,
+                  "properties": Object {
+                    "mountPath": Object {
+                      "pattern": "^[a-zA-Z0-9-/_\\\\s.|\\\\\\\\!\\"£$%&()=?^\\"{}[\\\\]*+@]+$",
+                      "type": "string",
+                      "x-validation-error-id": "configMountPath.patternError",
+                    },
+                    "name": Object {
+                      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                      "type": "string",
+                      "x-validation-error-id": "resourceName.patternError",
+                    },
+                  },
+                  "type": "object",
+                },
+                "type": "array",
+              },
+              "emptyDirs": Object {
+                "additionalProperties": Object {
+                  "properties": Object {
+                    "size": Object {
+                      "pattern": "(^((\\\\{\\\\{([A-Z])([A-Z0-9_]*)\\\\}\\\\})|(\\\\d+))Mi$)|^$",
+                      "type": "string",
+                    },
+                    "type": Object {
+                      "enum": Array [
+                        "default",
+                        "memory",
+                      ],
+                      "type": "string",
+                    },
+                  },
+                  "required": Array [
+                    "type",
+                  ],
+                  "type": "object",
+                },
+                "type": "object",
+              },
               "environment": Object {
                 "items": Object {
                   "oneOf": Array [
@@ -6562,6 +6650,9 @@ Object {
                   "properties": Object {
                     "description": Object {
                       "type": "string",
+                    },
+                    "isSelector": Object {
+                      "type": "boolean",
                     },
                     "name": Object {
                       "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,253}[\\\\/])?([a-zA-Z0-9][a-zA-Z0-9\\\\.\\\\-]{0,63}[a-zA-Z0-9]?)$",
@@ -6878,6 +6969,12 @@ Object {
                   "type": "object",
                 },
                 "type": "array",
+              },
+              "serviceAccountName": Object {
+                "maxLength": 253,
+                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$|^$",
+                "type": "string",
+                "x-validation-error-id": "serviceAccountName.patternError",
               },
               "sourceComponentId": Object {
                 "type": "string",

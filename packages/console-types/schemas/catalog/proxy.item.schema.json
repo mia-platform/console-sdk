@@ -1,0 +1,276 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-proxy.item.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Catalog proxy item",
+  "description": "Data model of a Catalog proxy item",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "description": "Database identifier of the item",
+      "type": "string"
+    },
+    "category": {
+      "description": "Identifier of the item's category",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label"
+      ]
+    },
+    "componentsIds": {
+      "description": "List of source component ids of the services in the item's resources",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "description": {
+      "description": "Brief description of the item",
+      "type": "string"
+    },
+    "documentation": {
+      "description": "Documentation of the item",
+      "properties": {
+        "type": {
+          "enum": [
+            "externalLink",
+            "markdown"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "format": "uri-reference",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ],
+      "type": "object"
+    },
+    "imageUrl": {
+      "description": "Url of the image associated with the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "isLatest": {
+      "description": "Flag stating if the the current document is the latest version of the item",
+      "type": "boolean"
+    },
+    "itemId": {
+      "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+      "type": "string"
+    },
+    "lifecycleStatus": {
+      "description": "Lifecycle status of the item",
+      "enum": [
+        "coming-soon",
+        "draft",
+        "published",
+        "maintenance",
+        "deprecated",
+        "archived"
+      ],
+      "type": "string"
+    },
+    "name": {
+      "description": "Human-readable name of the item",
+      "minLength": 1,
+      "type": "string"
+    },
+    "providerId": {
+      "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+      "type": "string"
+    },
+    "publishOnMiaDocumentation": {
+      "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
+      "type": "boolean"
+    },
+    "releaseDate": {
+      "description": "Creation date of this item's release",
+      "format": "date-time",
+      "type": "string"
+    },
+    "repositoryUrl": {
+      "description": "URL of the repository containing the source code of the resource created by the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "resources": {
+      "additionalProperties": false,
+      "properties": {
+        "services": {
+          "maxProperties": 1,
+          "minProperties": 1,
+          "patternProperties": {
+            "^[a-z]([-a-z0-9]*[a-z0-9])?$": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "defaultHeaders": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "external"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "url"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "host": {
+                      "type": "string",
+                      "pattern": "^([-a-z0-9]+)\\.([-_{}a-z0-9A-Z]+)\\.svc\\.cluster\\.local(:([1-9]\\d{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?$"
+                    },
+                    "name": {
+                      "minLength": 1,
+                      "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                      "type": "string"
+                    },
+                    "type": {
+                      "const": "cross-projects"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "host"
+                  ],
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "type": "object"
+        }
+      },
+      "required": [
+        "services"
+      ],
+      "type": "object"
+    },
+    "supportedBy": {
+      "description": "Identifier of the company that has produced the item",
+      "type": "string"
+    },
+    "supportedByImageUrl": {
+      "description": "Url of the image associated with the company that has produced the item",
+      "format": "uri-reference",
+      "type": "string"
+    },
+    "tenantId": {
+      "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+      "type": "string"
+    },
+    "type": {
+      "const": "proxy"
+    },
+    "version": {
+      "description": "Version of the item following semver",
+      "properties": {
+        "name": {
+          "description": "Semantic version",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "releaseNote": {
+          "description": "Markdown release note",
+          "type": "string"
+        },
+        "security": {
+          "description": "Flag stating if the version addresses any vulnerability",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "releaseNote"
+      ],
+      "type": "object"
+    },
+    "visibility": {
+      "description": "Visibility of the item",
+      "properties": {
+        "allTenants": {
+          "default": false,
+          "description": "If true, the item will be accessible to all companies",
+          "type": "boolean"
+        },
+        "public": {
+          "default": false,
+          "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "_id",
+    "name",
+    "itemId",
+    "tenantId",
+    "type",
+    "releaseDate",
+    "lifecycleStatus"
+  ]
+}

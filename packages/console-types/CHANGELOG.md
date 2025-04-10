@@ -1,5 +1,184 @@
 # CHANGELOG
 
+## 0.35.0
+
+### Minor Changes
+
+- 8be43ca: Changed "releaseStage" and "comingSoon" for "lifecycleStatus" in Software Catalog items
+
+## 0.34.1
+
+### Patch Changes
+
+- 5da5a9f: add emptydir support on custom services
+
+## 0.34.0
+
+### Minor Changes
+
+- 7a14433: Updated Catalog CRDs schema
+
+## 0.33.5
+
+### Patch Changes
+
+- c080ef7: Added release-date to catalog items
+
+## 0.33.4
+
+### Patch Changes
+
+- 58ae899: updated Catalog well-known items CRDs
+
+## 0.33.3
+
+### Patch Changes
+
+- 3a8de18: feat: add providerType to infrastructureComponent pipelineInfo
+
+## 0.33.2
+
+### Patch Changes
+
+- efbb7de: improve Catalog well-known items CRDs validation
+
+## 0.33.1
+
+### Patch Changes
+
+- 9f189ac: removed nullable from catalog item schemas
+
+## 0.33.0
+
+### Minor Changes
+
+- 0087f5f: feat: infrastructure project flavor and type definitions
+
+## 0.32.0
+
+### Minor Changes
+
+- cced7cd: Reorganized Software Catalog files and exports
+
+### Patch Changes
+
+- 873439e: add aiSettings to tenant and project settings
+
+## 0.31.2
+
+### Patch Changes
+
+- dcfe9e6: add missing service account exports
+
+## 0.31.1
+
+### Patch Changes
+
+- fcb3d3e: Update catalog well-known items manifests
+
+## 0.31.0
+
+### Minor Changes
+
+- a4839b3: refactor service account implementation
+
+## 0.30.2
+
+### Patch Changes
+
+- ec54fb9: Updated catalog well-known-items schemas
+
+## 0.30.1
+
+### Patch Changes
+
+- ca0e978: add serviceAccountName property to CustomService type
+- 7028f50: exposed catalogWellKnownItems map
+
+## 0.30.0
+
+### Minor Changes
+
+- 99ab857: fixed undeterministic service label schema type
+
+## 0.29.8
+
+### Patch Changes
+
+- 614a059: Fixed Catalog custom resource definitions
+
+## 0.29.7
+
+### Patch Changes
+
+- 28f78a1: Added controlled fields to Catalog Infrastructure Resource CRD
+- 28f78a1: Exposed catalog well-known items CRDs
+
+## 0.29.6
+
+### Patch Changes
+
+- 27bbeac: fixed: missed runtime object to infrastructure definition
+
+## 0.29.5
+
+### Patch Changes
+
+- 35bf29e: add Catalog Item Metadata schema and type
+
+## 0.29.4
+
+### Patch Changes
+
+- a4a63f3: Updated catalog endpoints schema
+
+## 0.29.3
+
+### Patch Changes
+
+- c667129: added: jsonSchema field to infrastructure-resource definitions
+
+## 0.29.2
+
+### Patch Changes
+
+- 00a1696: Added catalog items' Custom Resource Definitions
+
+## 0.29.1
+
+### Patch Changes
+
+- efc6140: add missing ServiceLabel and ServiceAnnotation export in index file
+
+## 0.29.0
+
+### Minor Changes
+
+- 0652cd6: expose serviceSecrets schema
+
+## 0.28.0
+
+### Minor Changes
+
+- 19fdfd2: add support for marking labels as deployment selector
+
+### Patch Changes
+
+- 155451d: Added repositoryUrl to catalog items resources schema
+- 5e3d431: Fixed catalog proxy resources JSON schema
+
+## 0.27.1
+
+### Patch Changes
+
+- 9eb8db2: added: github app credential type
+
+## 0.27.0
+
+### Minor Changes
+
+- 24bec4b: Added catalog-related types and schemas
+
 ## 0.26.5
 
 ### Patch Changes

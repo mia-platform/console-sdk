@@ -1,15 +1,16 @@
 {
   "name": "@mia-platform/console-types",
-  "version": "0.26.5",
+  "version": "0.35.0",
   "description": "",
   "main": "build/index.js",
   "types": "build/index",
   "scripts": {
-    "build": "rimraf build/ && tsc",
+    "build:catalog-schemas": "ts-node scripts/build-catalog-schemas.ts",
+    "build": "rimraf build/ && pnpm build:catalog-schemas && tsc --project scripts/tsconfig.build.json",
     "lint": "eslint .",
     "test": "tap --ts --test-ignore=\"(build/.*|src/types/validate-utils.test.ts)\"",
     "test:snapshot": "TAP_SNAPSHOT=1 npm run test",
-    "prepublish": "tsc",
+    "prepublish": "pnpm build:catalog-schemas && tsc --project scripts/tsconfig.build.json",
     "coverage": "npm run test",
     "postcoverage": "tap --coverage-report=lcov --no-browser",
     "update-changelog": "node ./scripts/update-changelog.js ${npm_package_version}",
@@ -28,6 +29,7 @@
     "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.31.0",
+    "glob": "^11.0.1",
     "rimraf": "^5.0.5",
     "tap": "^16.3.10",
     "ts-node": "^10.9.2",
@@ -39,8 +41,9 @@
     ]
   },
   "dependencies": {
-    "ramda": "^0.30.1",
-    "json-schema-to-ts": "^2.9.2"
+    "@types/json-schema": "^7.0.9",
+    "json-schema-to-ts": "^2.9.2",
+    "ramda": "^0.30.1"
   },
   "peerDependencies": {
     "@fastify/swagger": "^8 || ^6",

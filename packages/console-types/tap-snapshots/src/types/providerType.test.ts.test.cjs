@@ -158,7 +158,8 @@ exports[`src/types/providerType.test.ts TAP providerType match schema > must mat
           "userPass",
           "m2m",
           "client_credentials",
-          "client_credentials_certificate"
+          "client_credentials_certificate",
+          "github-app"
         ]
       }
     }

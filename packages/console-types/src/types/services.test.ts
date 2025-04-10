@@ -19,6 +19,7 @@
 /* eslint-disable max-lines */
 import Ajv from 'ajv'
 import t from 'tap'
+import { FromSchema } from 'json-schema-to-ts'
 
 import {
   CoreService,
@@ -35,6 +36,8 @@ import {
   host,
   probesPath,
   service,
+  serviceLabel,
+  kubernetesDefinition,
   serviceSecretMountPath,
   serviceSecretName,
   swaggerPath,
@@ -145,6 +148,49 @@ t.test('services', t => {
     t.end()
   })
 
+  t.test('service account field', t => {
+    t.test('can be an empty string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccountName: '',
+      }
+
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('accept valid string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccountName: 'valid-dns.subdomain1',
+      }
+
+      t.ok(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('reject invalid string', t => {
+      const service: CustomService = {
+        name: 'myservice',
+        type: ServiceTypes.CUSTOM,
+        advanced: false,
+        dockerImage: 'helloworld:1.0.0',
+        serviceAccountName: 'invalid-subdomain-',
+      }
+
+      t.notOk(validate(service), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.end()
+  })
+
   t.test('only required fields for cronjob', t => {
     const service: CronJob = {
       name: 'myservice',
@@ -202,6 +248,49 @@ t.test('services', t => {
       t.end()
     })
 
+    t.end()
+  })
+
+  t.test('labels and annotations', t => {
+    const annotationType: FromSchema<typeof kubernetesDefinition> = {
+      name: 'labelskey',
+      value: 'labelsvalye',
+    }
+
+    const labelType: FromSchema<typeof serviceLabel> = {
+      name: 'labelskey',
+      value: 'labelsvalue',
+      readOnly: false,
+      isSelector: true,
+    }
+
+    const service: CustomService = {
+      name: 'myservice',
+      type: ServiceTypes.CUSTOM,
+      advanced: false,
+      replicas: 1,
+      dockerImage: 'helloworld:1.0.0',
+      labels: [
+        labelType,
+      ],
+      annotations: [
+        annotationType,
+      ],
+      additionalContainers: [
+        {
+          name: 'container',
+          dockerImage: 'helloworld:1.0.0',
+          labels: [
+            labelType,
+          ],
+          annotations: [
+            annotationType,
+          ],
+        },
+      ],
+    }
+
+    t.ok(validate(service), validationMessage(validate.errors))
     t.end()
   })
 
@@ -346,6 +435,29 @@ t.test('services', t => {
     t.end()
   })
 
+  t.test('emptyDir fileds', t => {
+    const service: CustomService = {
+      name: 'myservice',
+      type: ServiceTypes.CUSTOM,
+      advanced: false,
+      replicas: 3,
+      dockerImage: 'helloworld:1.0.0',
+      emptyDirMounts: [
+        {
+          name: 'mountemptydir',
+          mountPath: '/path',
+        },
+      ],
+      emptyDirs: {
+        mountemptydir: {
+          type: 'default',
+        },
+      },
+    }
+
+    t.ok(validate(service), validationMessage(validate.errors))
+    t.end()
+  })
 
   t.end()
 })

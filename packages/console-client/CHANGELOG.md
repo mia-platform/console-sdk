@@ -1,5 +1,48 @@
 # @mia-platform/console-client
 
+## 0.5.1
+
+### Patch Changes
+
+- dec5325: Removed `perPage` query parameter from GET marketplace items list
+
+## 0.5.0
+
+### Minor Changes
+
+- eb671c4: feat(IDP-2831): Exposed POST, PATCH and DELETE APIs for an extension App. Added App to GET extension by id
+
+## 0.4.7
+
+### Patch Changes
+
+- 33919d4: added patch marketplace item metadata API
+
+## 0.4.6
+
+### Patch Changes
+
+- 72301b9: removed enum in `format` query parameter in marketplace item detail api
+- 3d8679b: Update GET /api/marketplace/ query parameters
+
+## 0.4.5
+
+### Patch Changes
+
+- 12f11c6: Updated marketplace APIs schemas
+
+## 0.4.4
+
+### Patch Changes
+
+- 6018932: updated marketplace apply item API response
+
+## 0.4.3
+
+### Patch Changes
+
+- 155451d: Updated Kiota libraries to version `1.0.0-preview.81`
+
 ## 0.4.2
 
 ### Patch Changes

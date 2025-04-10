@@ -1,5 +1,173 @@
 # @mia-platform/console-sdk-webpack-helpers
 
+## 0.0.115
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.75
+
+## 0.0.114
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.74
+
+## 0.0.113
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.73
+
+## 0.0.112
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.72
+
+## 0.0.111
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.71
+
+## 0.0.110
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.70
+
+## 0.0.109
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.69
+
+## 0.0.108
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.68
+
+## 0.0.107
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.67
+
+## 0.0.106
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.66
+
+## 0.0.105
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.65
+
+## 0.0.104
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.64
+
+## 0.0.103
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.63
+
+## 0.0.102
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.62
+
+## 0.0.101
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.61
+
+## 0.0.100
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.60
+
+## 0.0.99
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.59
+
+## 0.0.98
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.58
+
+## 0.0.97
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.57
+
+## 0.0.96
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.56
+
+## 0.0.95
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.55
+
+## 0.0.94
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.54
+
+## 0.0.93
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.53
+
+## 0.0.92
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.52
+
+## 0.0.91
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.51
+
+## 0.0.90
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.50
+
+## 0.0.89
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.49
+
+## 0.0.88
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.48
+
 ## 0.0.87
 
 ### Patch Changes

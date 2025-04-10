@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createMarketplaceItemVersionFromDiscriminatorValue, type MarketplaceItemVersion } from '../../../../../../../models/index.js';
 // @ts-ignore
-import { type WithVersionItemRequestBuilder, WithVersionItemRequestBuilderRequestsMetadata } from './item/index.js';
+import { type WithVersionItemRequestBuilder, WithVersionItemRequestBuilderNavigationMetadata, WithVersionItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -39,6 +39,7 @@ export const VersionsRequestBuilderUriTemplate = "{+baseurl}/api/marketplace/ten
 export const VersionsRequestBuilderNavigationMetadata: Record<Exclude<keyof VersionsRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     byVersion: {
         requestsMetadata: WithVersionItemRequestBuilderRequestsMetadata,
+        navigationMetadata: WithVersionItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["version"],
     },
 };
