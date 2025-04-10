@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.35.2
+
+### Patch Changes
+
+- b9838cc: feat: add originaltemplate project metadata
+
 ## 0.35.1
 
 ### Patch Changes
