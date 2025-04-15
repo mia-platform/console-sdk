@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       target: ${{ steps.check.outputs.target }}
-      package_name: ${{ steps.check.outputs.package_name }}
+      package: ${{ steps.check.outputs.package }}
     steps:
       - id: check
         run: |
           # We always always a tag in the form of `@owner/repo@version`.
           # If the tag has an invalid format this script will run into undefined behaviour.
           tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
-          # write package_name to outputs
-          echo "package_name=@mia-platform/$tag" >> $GITHUB_OUTPUT
+          # write package to outputs
+          echo "package=$tag" >> $GITHUB_OUTPUT
           # write target to outputs
           if [ "$tag" = "@mia-platform/console-client-wc" ]; then
             echo "target=cdn" >> $GITHUB_OUTPUT
@@ -46,10 +46,11 @@ jobs:
       - name: Build Monorepo and Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PACKAGE: ${{ needs.determine-publish-target.outputs.package }}
         run: |
           # Post install always builds every package in the workspace
           pnpm i --frozen-lockfile
-          pnpm --filter=${tag} publish --access public --no-git-checks
+          pnpm --filter=$PACKAGE publish --access public --no-git-checks
 
   publish-cdn:
     name: Publish to CDN
@@ -58,14 +59,17 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CDN_STORAGE_ACCESS_KEY: ${{ secrets.CDN_STORAGE_ACCESS_KEY }}
+      PACKAGE: ${{ needs.determine-publish-target.outputs.package }}
     steps:
       - name: Build Package
         run: |
           pnpm i --frozen-lockfile
-          pnpm --filter=${package_name} build
+          pnpm --filter=$PACKAGE build
 
       - name: Install CDN Publish CLI
         run: pnpm add -g @mia-platform/cdn-publish
     
       - name: Publish
-        run: cdn publish -p "packages/${package_name}" -k "$CDN_STORAGE_ACCESS_KEY" -s mia-platform
+        run: |
+          package_folder=$(echo "$PACKAGE" | awk -F'[@/]' '{print $3}')
+          cdn publish -p "packages/$package_folder" -k "$CDN_STORAGE_ACCESS_KEY" -s mia-platform
