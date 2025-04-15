@@ -14,7 +14,9 @@ pnpm-publish-summary.json
 
 # production
 /build
+/dist
 packages/*/build
+packages/*/dist
 
 # misc
 .DS_Store
