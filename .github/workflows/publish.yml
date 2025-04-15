@@ -58,7 +58,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CDN_STORAGE_ACCESS_KEY: ${{ secrets.CDN_STORAGE_ACCESS_KEY }}
-      CDN_STORAGE_ZONE: ${{ secrets.CDN_STORAGE_ZONE }}
     steps:
       - name: Build Package
         run: |
@@ -69,4 +68,4 @@ jobs:
         run: pnpm add -g @mia-platform/cdn-publish
     
       - name: Publish
-        run: cdn publish -p "packages/${package_name}" -k "$CDN_STORAGE_ACCESS_KEY" -s "$CDN_STORAGE_ZONE"
+        run: cdn publish -p "packages/${package_name}" -k "$CDN_STORAGE_ACCESS_KEY" -s mia-platform
