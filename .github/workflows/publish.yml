@@ -21,7 +21,7 @@ jobs:
           # write package_name to outputs
           echo "package_name=@mia-platform/$tag" >> $GITHUB_OUTPUT
           # write target to outputs
-          if [ "$tag" = "console-client-wc" ]; then
+          if [ "$tag" = "@mia-platform/console-client-wc" ]; then
             echo "target=cdn" >> $GITHUB_OUTPUT
           else
             echo "target=npm" >> $GITHUB_OUTPUT
