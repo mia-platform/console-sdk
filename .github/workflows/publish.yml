@@ -82,4 +82,4 @@ jobs:
       - name: Publish
         run: |
           package_folder=$(echo "$PACKAGE" | awk -F'[@/]' '{print $3}')
-          cdn publish -p "packages/$package_folder" -k "$CDN_STORAGE_ACCESS_KEY" -s mia-platform
+          cdn publish -p "packages/$package_folder/dist" -k "$CDN_STORAGE_ACCESS_KEY" -s mia-platform
