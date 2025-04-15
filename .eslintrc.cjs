@@ -12,6 +12,7 @@ module.exports = {
     ".eslintrc.cjs",
     "compiled",
     "build",
+    "dist",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {

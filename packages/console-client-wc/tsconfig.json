@@ -22,9 +22,8 @@
   "exclude": [
     "./node_modules",
     "./coverage",
-    "./build",
+    "./dist",
     "./tsconfig.json",
-    "./vite.*",
     "./settings.json"
   ],
 }
