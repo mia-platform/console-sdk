@@ -7,8 +7,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
-    name: Publish
+  determine-publish-target:
+    runs-on: ubuntu-latest
+    outputs:
+      target: ${{ steps.check.outputs.target }}
+      package_name: ${{ steps.check.outputs.package_name }}
+    steps:
+      - id: check
+        run: |
+          # We always always a tag in the form of `@owner/repo@version`.
+          # If the tag has an invalid format this script will run into undefined behaviour.
+          tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
+          # write package_name to outputs
+          echo "package_name=@mia-platform/$tag" >> $GITHUB_OUTPUT
+          # write target to outputs
+          if [ "$tag" = "console-client-wc" ]; then
+            echo "target=cdn" >> $GITHUB_OUTPUT
+          else
+            echo "target=npm" >> $GITHUB_OUTPUT
+          fi
+
+  publish-npm:
+    name: Publish packages to NPM
+    needs: determine-publish-target
+    if: needs.determine-publish-target.outputs.target == 'npm'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,10 +47,27 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # We expect always tag in the form of `@owner/repo@version`. If it is not true,
-          # this script will generate an invalid tag.
-          tag=$(echo "${{ github.ref_name }}" | awk -F'[@/]' '{print "@"$2"/"$3}')
-          # there is a post install that build every package in the workspace
+          # Post install always builds every package in the workspace
           pnpm i --frozen-lockfile
           pnpm --filter=${tag} publish --access public --no-git-checks
 
+  publish-cdn:
+    name: Publish to CDN
+    needs: determine-publish-target
+    if: needs.determine-publish-target.outputs.target == 'cdn'
+    runs-on: ubuntu-latest
+    env:
+      CDN_STORAGE_URL: ${{ secrets.CDN_STORAGE_URL }}
+      CDN_STORAGE_ACCESS_KEY: ${{ secrets.CDN_STORAGE_ACCESS_KEY }}
+      CDN_STORAGE_ZONE: ${{ secrets.CDN_STORAGE_ZONE }}
+    steps:
+      - name: Build Package
+        run: |
+          pnpm i --frozen-lockfile
+          pnpm --filter=${package_name} build
+
+      - name: Install CDN Publish CLI
+        run: pnpm add -g @mia-platform/cdn-publish
+    
+      - name: Publish
+        run: cdn publish -k "$CDN_STORAGE_ACCESS_KEY" -s "$CDN_STORAGE_ZONE" -u "$CDN_STORAGE_URL"
