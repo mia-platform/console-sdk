@@ -22,6 +22,7 @@
     "wh": "pnpm --filter @mia-platform/console-sdk-webpack-helpers",
     "types": "pnpm --filter @mia-platform/console-types",
     "client": "pnpm --filter @mia-platform/console-client",
+    "client-wc": "pnpm --filter @mia-platform/console-client-wc",
     "postinstall": "pnpm types build && pnpm sdk build && pnpm vh build && pnpm wh build",
     "build": "pnpm -r build",
     "test": "pnpm -r test",

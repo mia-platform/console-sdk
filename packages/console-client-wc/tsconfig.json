@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "./build",
+    "moduleResolution": "Bundler",
+    "noEmit": false,
+    "lib": ["esnext", "dom"],
+    "esModuleInterop": true,
+    "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "noUncheckedIndexedAccess": true,
+    "rootDir": ".",
+    "baseUrl": "."
+  },
+  "exclude": [
+    "./node_modules",
+    "./coverage",
+    "./dist",
+    "./tsconfig.json",
+    "./settings.json"
+  ],
+}
