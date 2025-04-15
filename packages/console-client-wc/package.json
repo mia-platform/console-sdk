@@ -8,10 +8,8 @@
     "build:catalog-schemas": "ts-node scripts/build-catalog-schemas.ts",
     "build": "vite build",
     "lint": "eslint .",
-    "test": "TODO",
     "prepublish": "tsc",
     "coverage": "npm run test",
-    "postcoverage": "TODO",
     "preview": "vite"
   },
   "author": "",
