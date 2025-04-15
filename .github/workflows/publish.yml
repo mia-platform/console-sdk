@@ -57,7 +57,6 @@ jobs:
     if: needs.determine-publish-target.outputs.target == 'cdn'
     runs-on: ubuntu-latest
     env:
-      CDN_STORAGE_URL: ${{ secrets.CDN_STORAGE_URL }}
       CDN_STORAGE_ACCESS_KEY: ${{ secrets.CDN_STORAGE_ACCESS_KEY }}
       CDN_STORAGE_ZONE: ${{ secrets.CDN_STORAGE_ZONE }}
     steps:
@@ -70,4 +69,4 @@ jobs:
         run: pnpm add -g @mia-platform/cdn-publish
     
       - name: Publish
-        run: cdn publish -p "packages/${package_name}" -k "$CDN_STORAGE_ACCESS_KEY" -s "$CDN_STORAGE_ZONE" -u "$CDN_STORAGE_URL"
+        run: cdn publish -p "packages/${package_name}" -k "$CDN_STORAGE_ACCESS_KEY" -s "$CDN_STORAGE_ZONE"
