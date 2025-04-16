@@ -12,7 +12,10 @@
     "coverage": "npm run test",
     "preview": "vite"
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "package.json"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {

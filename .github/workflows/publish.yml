@@ -83,4 +83,4 @@ jobs:
         run: |
           package_folder=$(echo "$PACKAGE" | awk -F'[@/]' '{print $3}')
           echo "Package folder to publish: packages/$package_folder"
-          cdn publish -p "packages/$package_folder/package.json" -k "$CDN_STORAGE_ACCESS_KEY" -s mia-platform --scope console
+          cdn publish -p "packages/$package_folder/package.json" -k "$CDN_STORAGE_ACCESS_KEY" -s mia-platform --scope console/console-client
