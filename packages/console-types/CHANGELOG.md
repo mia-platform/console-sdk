@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.36.0
+
+### Minor Changes
+
+- 9b35932: Added new Infrastructure Component Runtime data Catalog CRD
+
 ## 0.35.2
 
 ### Patch Changes
