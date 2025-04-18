@@ -46,7 +46,7 @@
     "ramda": "^0.30.1"
   },
   "peerDependencies": {
-    "@fastify/swagger": "^8 || ^6",
-    "fastify": "^4 || ^3"
+    "@fastify/swagger": ">= 8 || ^6",
+    "fastify": ">= 3 < 6"
   }
 }
