@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.37.0
+
+### Minor Changes
+
+- 41f3418: update peer dependencies for allowing fastify 5
+
 ## 0.36.0
 
 ### Minor Changes
