@@ -191,16 +191,18 @@
         },
         "name": {
           "minLength": 1,
-          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
           "type": "string"
         },
         "runtime": {
+          "description": "The object used to view the status of your current Kubernetes resources directly in the Console Runtime section",
           "additionalProperties": false,
           "properties": {
             "resourceId": {
+              "description": "The plural name for the infrastructure resource definition",
               "type": "string"
             },
             "type": {
+              "description": "The type of the infrastructure resource. At the moment the only supported type by the Catalog is \"kubernetes\"",
               "type": "string"
             }
           },
@@ -212,6 +214,7 @@
         "service": {
           "properties": {
             "archive": {
+              "description": "URL for an tar.gz archive to be used to generate a new repository",
               "type": "string"
             }
           },
@@ -224,7 +227,47 @@
           "type": "object"
         }
       },
-      "type": "object"
+      "type": "object",
+      "examples": [
+        {
+          "name": "ExternalOrchestratorLambda",
+          "meta": {
+            "kind": "ExternalOrchestratorLambda",
+            "apiVersion": "custom-generator.console.mia-platform.eu/v1"
+          },
+          "spec": {
+            "code": "the code"
+          },
+          "generator": {
+            "type": "template",
+            "configurationBaseFolder": "base-folder-name",
+            "templates": [
+              {
+                "template": "this template can take some values from the spec, such as %spec.code%",
+                "name": "template-name",
+                "fileExtension": "json",
+                "folderName": "template-folder-name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sleepInfo",
+          "meta": {
+            "apiVersion": "kube-green.com/v1alpha1",
+            "kind": "SleepInfo"
+          },
+          "spec": {
+            "sleepAt": "20:00",
+            "timeZone": "Europe/Rome",
+            "weekdays": "1-5"
+          },
+          "runtime": {
+            "type": "kubernetes",
+            "resourceId": "sleepinfos"
+          }
+        }
+      ]
     },
     "supportedBy": {
       "description": "Identifier of the company that has produced the item",

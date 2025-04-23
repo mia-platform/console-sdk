@@ -76,7 +76,7 @@ export const catalogExampleServiceSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
-const resourcesSchema = {
+const _resourcesSchema = {
   $id: 'catalog-example-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
@@ -94,6 +94,47 @@ const resourcesSchema = {
   title: 'Catalog example resources',
   type: 'object',
 } as const satisfies JSONSchema
+
+export type Resources = FromSchema<typeof _resourcesSchema>
+
+const resourcesExamples: Resources[] = [
+  {
+    services: {
+      'e-commerce-service': {
+        type: 'example',
+        name: 'e-commerce-service',
+        description: 'Backend for an E-Commerce',
+        componentId: 'e-commerce',
+        archiveUrl: 'https://github.com/e-commerce/backend/archive/refs/tags/v1.0.0.tar.gz',
+        containerPorts: [{ from: 3000, to: 80, name: 'http' }],
+        defaultAnnotations: [{ name: 'domain', value: 'orders' }],
+        defaultLabels: [{ name: 'technologies', value: 'javascript' }],
+        defaultDocumentationPath: '/documentation/json',
+        defaultLogParser: 'mia-json',
+        defaultEnvironmentVariables: [{ name: 'LOG_LEVEL', valueType: 'plain', value: 'info' }],
+        defaultConfigMaps: [
+          {
+            name: 'e-commerce-service-config',
+            mountPath: '/home/node',
+            files: [{ name: 'config.json', content: '{ "mongodbUrl": "{{MONGODB_URL}}" }' }],
+          },
+        ],
+        defaultSecrets: [{ name: 'private-key', mountPath: '/home/node' }],
+        defaultProbes: {
+          liveness: { port: '3000', path: '/healthz' },
+          readiness: { port: '3000', path: '/healthz' },
+          startup: { port: '3000', path: '/healthz' },
+        },
+        defaultResources: {
+          memoryLimits: { max: '250Mi', min: '150Mi' },
+          cpuLimits: { min: '150m', max: '200m' },
+        },
+      },
+    },
+  },
+]
+
+const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
 
 const crd: ICatalogCrd.Item = {
   name: 'example',
@@ -121,7 +162,6 @@ const crd: ICatalogCrd.Item = {
 }
 
 export type Service = FromSchema<typeof catalogExampleServiceSchema>
-export type Resources = FromSchema<typeof resourcesSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>

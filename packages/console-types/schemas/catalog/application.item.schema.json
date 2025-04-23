@@ -2006,20 +2006,28 @@
                                 {
                                   "additionalProperties": false,
                                   "properties": {
-                                    "description": {
-                                      "type": "string"
-                                    },
-                                    "managedBy": {
-                                      "type": "string"
-                                    },
                                     "name": {
+                                      "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
                                       "minLength": 1,
                                       "type": "string"
                                     },
+                                    "description": {
+                                      "description": "A brief description of the variable",
+                                      "type": "string"
+                                    },
+                                    "managedBy": {
+                                      "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                      "type": "string",
+                                      "enum": [
+                                        "fast-data"
+                                      ]
+                                    },
                                     "readOnly": {
+                                      "description": "A boolean that represents if you can change the value of the variable through the Console",
                                       "type": "boolean"
                                     },
                                     "value": {
+                                      "description": "The variable default value. It can contain placeholders that will be replaced with the actual values when the service is created",
                                       "type": "string"
                                     },
                                     "valueType": {
@@ -2037,6 +2045,7 @@
                             "type": "array"
                           },
                           "defaultProbes": {
+                            "description": "The readiness, liveness, and startup paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by the Console",
                             "additionalProperties": false,
                             "properties": {
                               "liveness": {
@@ -2310,6 +2319,7 @@
                             "type": "object"
                           },
                           "defaultResources": {
+                            "description": "CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by the Console for these parameters",
                             "additionalProperties": false,
                             "properties": {
                               "cpuLimits": {
@@ -2419,6 +2429,7 @@
                       "type": "array"
                     },
                     "defaultAnnotations": {
+                      "description": "The service annotations, which can be used to provide additional information about your services for various purposes. Annotations starting with `mia-platform.eu` are reserved",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -2451,6 +2462,7 @@
                       "type": "array"
                     },
                     "defaultConfigMaps": {
+                      "description": "The default ConfigMaps, if any, that will be mounted inside the container of the microservice",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -2511,29 +2523,39 @@
                       "type": "array"
                     },
                     "defaultDocumentationPath": {
+                      "description": "The APIs documentation path",
                       "pattern": "^$|^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$",
                       "type": "string"
                     },
                     "defaultEnvironmentVariables": {
+                      "description": "The environment variables that will overwrite the default environment variables applied by the Console",
                       "items": {
                         "oneOf": [
                           {
                             "additionalProperties": false,
                             "properties": {
-                              "description": {
-                                "type": "string"
-                              },
-                              "managedBy": {
-                                "type": "string"
-                              },
                               "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
                                 "minLength": 1,
                                 "type": "string"
                               },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
                               "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
                                 "type": "boolean"
                               },
                               "value": {
+                                "description": "The variable default value. It can contain placeholders that will be replaced with the actual values when the service is created",
                                 "type": "string"
                               },
                               "valueType": {
@@ -2549,17 +2571,67 @@
                           {
                             "additionalProperties": false,
                             "properties": {
-                              "description": {
-                                "type": "string"
-                              },
-                              "managedBy": {
-                                "type": "string"
-                              },
                               "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
                                 "minLength": 1,
                                 "type": "string"
                               },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
                               "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                "type": "boolean"
+                              },
+                              "configMapName": {
+                                "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                                "type": "string"
+                              },
+                              "configMapFileName": {
+                                "pattern": "^[-._a-zA-Z0-9]+$",
+                                "type": "string"
+                              },
+                              "valueType": {
+                                "const": "configmap"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "valueType",
+                              "secretName",
+                              "secretKey"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
+                              "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
                                 "type": "boolean"
                               },
                               "secretKey": {
@@ -2583,40 +2655,125 @@
                             "type": "object"
                           },
                           {
-                            "additionalProperties": false,
-                            "properties": {
-                              "description": {
-                                "type": "string"
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "name": {
+                                    "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "description": "A brief description of the variable",
+                                    "type": "string"
+                                  },
+                                  "managedBy": {
+                                    "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                    "type": "string",
+                                    "enum": [
+                                      "fast-data"
+                                    ]
+                                  },
+                                  "readOnly": {
+                                    "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                    "type": "boolean"
+                                  },
+                                  "fieldPath": {
+                                    "description": "The field path of the Downward API that contains the value of the variable",
+                                    "oneOf": [
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "metadata.name",
+                                          "metadata.namespace",
+                                          "metadata.uid",
+                                          "spec.serviceAccountName",
+                                          "spec.nodeName",
+                                          "status.hostIP",
+                                          "status.podIP",
+                                          "status.podIPs"
+                                        ]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "pattern": "^metadata.annotations\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "pattern": "^metadata.labels\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                                      }
+                                    ]
+                                  },
+                                  "valueType": {
+                                    "const": "downwardAPI"
+                                  }
+                                },
+                                "required": [
+                                  "fieldPath",
+                                  "name",
+                                  "valueType"
+                                ],
+                                "type": "object"
                               },
-                              "managedBy": {
-                                "type": "string"
-                              },
-                              "fieldPath": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "minLength": 1,
-                                "type": "string"
-                              },
-                              "readOnly": {
-                                "type": "boolean"
-                              },
-                              "valueType": {
-                                "const": "downwardAPI"
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "name": {
+                                    "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "description": "A brief description of the variable",
+                                    "type": "string"
+                                  },
+                                  "managedBy": {
+                                    "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                    "type": "string",
+                                    "enum": [
+                                      "fast-data"
+                                    ]
+                                  },
+                                  "readOnly": {
+                                    "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                    "type": "boolean"
+                                  },
+                                  "fieldPath": {
+                                    "type": "string",
+                                    "enum": [
+                                      "resource.limits.cpu",
+                                      "resource.requests.cpu",
+                                      "resource.limits.memory",
+                                      "resource.requests.memory",
+                                      "resource.limits.ephemeral-storage",
+                                      "resource.requests.ephemeral-storage"
+                                    ]
+                                  },
+                                  "valueType": {
+                                    "const": "downwardAPI"
+                                  },
+                                  "containerName": {
+                                    "description": "The name of the container where the field is located",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "fieldPath",
+                                  "name",
+                                  "valueType",
+                                  "containerName"
+                                ],
+                                "type": "object"
                               }
-                            },
-                            "required": [
-                              "fieldPath",
-                              "name",
-                              "valueType"
-                            ],
-                            "type": "object"
+                            ]
                           }
                         ]
                       },
                       "type": "array"
                     },
                     "defaultLabels": {
+                      "description": "The service labels, which can be used to categorize, group, and select your service. Labels starting with \"mia-platform.eu\" are reserved",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -2682,6 +2839,7 @@
                       "type": "object"
                     },
                     "defaultProbes": {
+                      "description": "The readiness, liveness, and startup paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by the Console",
                       "additionalProperties": false,
                       "properties": {
                         "liveness": {
@@ -2955,6 +3113,7 @@
                       "type": "object"
                     },
                     "defaultResources": {
+                      "description": "CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by the Console for these parameters",
                       "additionalProperties": false,
                       "properties": {
                         "cpuLimits": {
@@ -2989,6 +3148,7 @@
                       "type": "object"
                     },
                     "defaultSecrets": {
+                      "description": "The default secrets, if any, to be mounted inside the container of the microservice",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -3026,18 +3186,26 @@
                       }
                     },
                     "links": {
+                      "description": "Custom links to other Console pages",
                       "items": {
                         "properties": {
                           "enableIf": {
+                            "description": "The name of a feature toggle to be used to optionally display the link",
                             "type": "string"
                           },
                           "hidePrefix": {
+                            "description": "Flag stating if the `label` should not be prefixed by a \"View\" copy",
                             "type": "boolean"
                           },
                           "label": {
+                            "description": "The label to be shown in the link button. It does not support internationalization. Unless property `hidePrefix` is set to `false`, the label will be shown right next to a \"View\" copy",
                             "type": "string"
                           },
                           "targetSection": {
+                            "description": "The name of the registered microfrontend where the link should land",
+                            "examples": [
+                              "flow-manager"
+                            ],
                             "type": "string"
                           }
                         },
@@ -3153,6 +3321,7 @@
                       "type": "array"
                     },
                     "defaultAnnotations": {
+                      "description": "The service annotations, which can be used to provide additional information about your services for various purposes. Annotations starting with `mia-platform.eu` are reserved",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -3185,6 +3354,7 @@
                       "type": "array"
                     },
                     "defaultConfigMaps": {
+                      "description": "The default ConfigMaps, if any, that will be mounted inside the container of the microservice",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -3245,29 +3415,39 @@
                       "type": "array"
                     },
                     "defaultDocumentationPath": {
+                      "description": "The APIs documentation path",
                       "pattern": "^$|^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$",
                       "type": "string"
                     },
                     "defaultEnvironmentVariables": {
+                      "description": "The environment variables that will overwrite the default environment variables applied by the Console",
                       "items": {
                         "oneOf": [
                           {
                             "additionalProperties": false,
                             "properties": {
-                              "description": {
-                                "type": "string"
-                              },
-                              "managedBy": {
-                                "type": "string"
-                              },
                               "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
                                 "minLength": 1,
                                 "type": "string"
                               },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
                               "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
                                 "type": "boolean"
                               },
                               "value": {
+                                "description": "The variable default value. It can contain placeholders that will be replaced with the actual values when the service is created",
                                 "type": "string"
                               },
                               "valueType": {
@@ -3283,17 +3463,67 @@
                           {
                             "additionalProperties": false,
                             "properties": {
-                              "description": {
-                                "type": "string"
-                              },
-                              "managedBy": {
-                                "type": "string"
-                              },
                               "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
                                 "minLength": 1,
                                 "type": "string"
                               },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
                               "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                "type": "boolean"
+                              },
+                              "configMapName": {
+                                "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                                "type": "string"
+                              },
+                              "configMapFileName": {
+                                "pattern": "^[-._a-zA-Z0-9]+$",
+                                "type": "string"
+                              },
+                              "valueType": {
+                                "const": "configmap"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "valueType",
+                              "secretName",
+                              "secretKey"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
+                              "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
                                 "type": "boolean"
                               },
                               "secretKey": {
@@ -3317,40 +3547,125 @@
                             "type": "object"
                           },
                           {
-                            "additionalProperties": false,
-                            "properties": {
-                              "description": {
-                                "type": "string"
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "name": {
+                                    "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "description": "A brief description of the variable",
+                                    "type": "string"
+                                  },
+                                  "managedBy": {
+                                    "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                    "type": "string",
+                                    "enum": [
+                                      "fast-data"
+                                    ]
+                                  },
+                                  "readOnly": {
+                                    "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                    "type": "boolean"
+                                  },
+                                  "fieldPath": {
+                                    "description": "The field path of the Downward API that contains the value of the variable",
+                                    "oneOf": [
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "metadata.name",
+                                          "metadata.namespace",
+                                          "metadata.uid",
+                                          "spec.serviceAccountName",
+                                          "spec.nodeName",
+                                          "status.hostIP",
+                                          "status.podIP",
+                                          "status.podIPs"
+                                        ]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "pattern": "^metadata.annotations\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "pattern": "^metadata.labels\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                                      }
+                                    ]
+                                  },
+                                  "valueType": {
+                                    "const": "downwardAPI"
+                                  }
+                                },
+                                "required": [
+                                  "fieldPath",
+                                  "name",
+                                  "valueType"
+                                ],
+                                "type": "object"
                               },
-                              "managedBy": {
-                                "type": "string"
-                              },
-                              "fieldPath": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "minLength": 1,
-                                "type": "string"
-                              },
-                              "readOnly": {
-                                "type": "boolean"
-                              },
-                              "valueType": {
-                                "const": "downwardAPI"
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "name": {
+                                    "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "description": "A brief description of the variable",
+                                    "type": "string"
+                                  },
+                                  "managedBy": {
+                                    "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                    "type": "string",
+                                    "enum": [
+                                      "fast-data"
+                                    ]
+                                  },
+                                  "readOnly": {
+                                    "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                    "type": "boolean"
+                                  },
+                                  "fieldPath": {
+                                    "type": "string",
+                                    "enum": [
+                                      "resource.limits.cpu",
+                                      "resource.requests.cpu",
+                                      "resource.limits.memory",
+                                      "resource.requests.memory",
+                                      "resource.limits.ephemeral-storage",
+                                      "resource.requests.ephemeral-storage"
+                                    ]
+                                  },
+                                  "valueType": {
+                                    "const": "downwardAPI"
+                                  },
+                                  "containerName": {
+                                    "description": "The name of the container where the field is located",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "fieldPath",
+                                  "name",
+                                  "valueType",
+                                  "containerName"
+                                ],
+                                "type": "object"
                               }
-                            },
-                            "required": [
-                              "fieldPath",
-                              "name",
-                              "valueType"
-                            ],
-                            "type": "object"
+                            ]
                           }
                         ]
                       },
                       "type": "array"
                     },
                     "defaultLabels": {
+                      "description": "The service labels, which can be used to categorize, group, and select your service. Labels starting with \"mia-platform.eu\" are reserved",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -3416,6 +3731,7 @@
                       "type": "object"
                     },
                     "defaultProbes": {
+                      "description": "The readiness, liveness, and startup paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by the Console",
                       "additionalProperties": false,
                       "properties": {
                         "liveness": {
@@ -3689,6 +4005,7 @@
                       "type": "object"
                     },
                     "defaultResources": {
+                      "description": "CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by the Console for these parameters",
                       "additionalProperties": false,
                       "properties": {
                         "cpuLimits": {
@@ -3723,6 +4040,7 @@
                       "type": "object"
                     },
                     "defaultSecrets": {
+                      "description": "The default secrets, if any, to be mounted inside the container of the microservice",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -3957,6 +4275,7 @@
                       "type": "array"
                     },
                     "defaultAnnotations": {
+                      "description": "The service annotations, which can be used to provide additional information about your services for various purposes. Annotations starting with `mia-platform.eu` are reserved",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -3989,6 +4308,7 @@
                       "type": "array"
                     },
                     "defaultConfigMaps": {
+                      "description": "The default ConfigMaps, if any, that will be mounted inside the container of the microservice",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -4049,29 +4369,39 @@
                       "type": "array"
                     },
                     "defaultDocumentationPath": {
+                      "description": "The APIs documentation path",
                       "pattern": "^$|^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$",
                       "type": "string"
                     },
                     "defaultEnvironmentVariables": {
+                      "description": "The environment variables that will overwrite the default environment variables applied by the Console",
                       "items": {
                         "oneOf": [
                           {
                             "additionalProperties": false,
                             "properties": {
-                              "description": {
-                                "type": "string"
-                              },
-                              "managedBy": {
-                                "type": "string"
-                              },
                               "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
                                 "minLength": 1,
                                 "type": "string"
                               },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
                               "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
                                 "type": "boolean"
                               },
                               "value": {
+                                "description": "The variable default value. It can contain placeholders that will be replaced with the actual values when the service is created",
                                 "type": "string"
                               },
                               "valueType": {
@@ -4087,17 +4417,67 @@
                           {
                             "additionalProperties": false,
                             "properties": {
-                              "description": {
-                                "type": "string"
-                              },
-                              "managedBy": {
-                                "type": "string"
-                              },
                               "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
                                 "minLength": 1,
                                 "type": "string"
                               },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
                               "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                "type": "boolean"
+                              },
+                              "configMapName": {
+                                "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                                "type": "string"
+                              },
+                              "configMapFileName": {
+                                "pattern": "^[-._a-zA-Z0-9]+$",
+                                "type": "string"
+                              },
+                              "valueType": {
+                                "const": "configmap"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "valueType",
+                              "secretName",
+                              "secretKey"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "name": {
+                                "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "A brief description of the variable",
+                                "type": "string"
+                              },
+                              "managedBy": {
+                                "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                "type": "string",
+                                "enum": [
+                                  "fast-data"
+                                ]
+                              },
+                              "readOnly": {
+                                "description": "A boolean that represents if you can change the value of the variable through the Console",
                                 "type": "boolean"
                               },
                               "secretKey": {
@@ -4121,40 +4501,125 @@
                             "type": "object"
                           },
                           {
-                            "additionalProperties": false,
-                            "properties": {
-                              "description": {
-                                "type": "string"
+                            "oneOf": [
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "name": {
+                                    "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "description": "A brief description of the variable",
+                                    "type": "string"
+                                  },
+                                  "managedBy": {
+                                    "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                    "type": "string",
+                                    "enum": [
+                                      "fast-data"
+                                    ]
+                                  },
+                                  "readOnly": {
+                                    "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                    "type": "boolean"
+                                  },
+                                  "fieldPath": {
+                                    "description": "The field path of the Downward API that contains the value of the variable",
+                                    "oneOf": [
+                                      {
+                                        "type": "string",
+                                        "enum": [
+                                          "metadata.name",
+                                          "metadata.namespace",
+                                          "metadata.uid",
+                                          "spec.serviceAccountName",
+                                          "spec.nodeName",
+                                          "status.hostIP",
+                                          "status.podIP",
+                                          "status.podIPs"
+                                        ]
+                                      },
+                                      {
+                                        "type": "string",
+                                        "pattern": "^metadata.annotations\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "pattern": "^metadata.labels\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                                      }
+                                    ]
+                                  },
+                                  "valueType": {
+                                    "const": "downwardAPI"
+                                  }
+                                },
+                                "required": [
+                                  "fieldPath",
+                                  "name",
+                                  "valueType"
+                                ],
+                                "type": "object"
                               },
-                              "managedBy": {
-                                "type": "string"
-                              },
-                              "fieldPath": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "minLength": 1,
-                                "type": "string"
-                              },
-                              "readOnly": {
-                                "type": "boolean"
-                              },
-                              "valueType": {
-                                "const": "downwardAPI"
+                              {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "name": {
+                                    "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "description": "A brief description of the variable",
+                                    "type": "string"
+                                  },
+                                  "managedBy": {
+                                    "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                                    "type": "string",
+                                    "enum": [
+                                      "fast-data"
+                                    ]
+                                  },
+                                  "readOnly": {
+                                    "description": "A boolean that represents if you can change the value of the variable through the Console",
+                                    "type": "boolean"
+                                  },
+                                  "fieldPath": {
+                                    "type": "string",
+                                    "enum": [
+                                      "resource.limits.cpu",
+                                      "resource.requests.cpu",
+                                      "resource.limits.memory",
+                                      "resource.requests.memory",
+                                      "resource.limits.ephemeral-storage",
+                                      "resource.requests.ephemeral-storage"
+                                    ]
+                                  },
+                                  "valueType": {
+                                    "const": "downwardAPI"
+                                  },
+                                  "containerName": {
+                                    "description": "The name of the container where the field is located",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "fieldPath",
+                                  "name",
+                                  "valueType",
+                                  "containerName"
+                                ],
+                                "type": "object"
                               }
-                            },
-                            "required": [
-                              "fieldPath",
-                              "name",
-                              "valueType"
-                            ],
-                            "type": "object"
+                            ]
                           }
                         ]
                       },
                       "type": "array"
                     },
                     "defaultLabels": {
+                      "description": "The service labels, which can be used to categorize, group, and select your service. Labels starting with \"mia-platform.eu\" are reserved",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -4220,6 +4685,7 @@
                       "type": "object"
                     },
                     "defaultProbes": {
+                      "description": "The readiness, liveness, and startup paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by the Console",
                       "additionalProperties": false,
                       "properties": {
                         "liveness": {
@@ -4493,6 +4959,7 @@
                       "type": "object"
                     },
                     "defaultResources": {
+                      "description": "CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by the Console for these parameters",
                       "additionalProperties": false,
                       "properties": {
                         "cpuLimits": {
@@ -4527,6 +4994,7 @@
                       "type": "object"
                     },
                     "defaultSecrets": {
+                      "description": "The default secrets, if any, to be mounted inside the container of the microservice",
                       "items": {
                         "additionalProperties": false,
                         "properties": {
@@ -4728,7 +5196,145 @@
       "required": [
         "services"
       ],
-      "type": "object"
+      "type": "object",
+      "examples": [
+        {
+          "services": {
+            "e-commerce-service": {
+              "type": "plugin",
+              "name": "e-commerce-service",
+              "description": "Backend for an E-Commerce",
+              "tags": [
+                "e-commerce",
+                "backend"
+              ],
+              "links": [
+                {
+                  "label": "Configurator",
+                  "targetSection": "flow-manager"
+                }
+              ],
+              "componentId": "e-commerce",
+              "dockerImage": "e-commerce-service:1.0.0",
+              "containerPorts": [
+                {
+                  "from": 3000,
+                  "to": 80,
+                  "name": "http"
+                }
+              ],
+              "defaultAnnotations": [
+                {
+                  "name": "domain",
+                  "value": "orders"
+                }
+              ],
+              "defaultLabels": [
+                {
+                  "name": "technologies",
+                  "value": "javascript"
+                }
+              ],
+              "defaultDocumentationPath": "/documentation/json",
+              "defaultLogParser": "mia-json",
+              "defaultEnvironmentVariables": [
+                {
+                  "name": "LOG_LEVEL",
+                  "valueType": "plain",
+                  "value": "{{LOG_LEVEL}}"
+                }
+              ],
+              "defaultConfigMaps": [
+                {
+                  "name": "e-commerce-service-config",
+                  "mountPath": "/home/node",
+                  "files": [
+                    {
+                      "name": "config.json",
+                      "content": "{ \"mongodbUrl\": \"{{MONGODB_URL}}\" }"
+                    }
+                  ]
+                }
+              ],
+              "defaultSecrets": [
+                {
+                  "name": "private-key",
+                  "mountPath": "/home/node"
+                }
+              ],
+              "defaultProbes": {
+                "liveness": {
+                  "port": "3000",
+                  "path": "/healthz"
+                },
+                "readiness": {
+                  "port": "3000",
+                  "path": "/healthz"
+                },
+                "startup": {
+                  "port": "3000",
+                  "path": "/healthz"
+                }
+              },
+              "defaultResources": {
+                "memoryLimits": {
+                  "max": "250Mi",
+                  "min": "150Mi"
+                },
+                "cpuLimits": {
+                  "min": "150m",
+                  "max": "200m"
+                }
+              }
+            },
+            "crud-service": {
+              "type": "plugin",
+              "name": "crud-service",
+              "componentId": "crud-service",
+              "dockerImage": "nexus.mia-platform.eu/core/crud-service:7.2.3"
+            }
+          },
+          "endpoints": {
+            "/e-commerce": {
+              "defaultBasePath": "/e-commerce",
+              "defaultPathRewrite": "/",
+              "public": true,
+              "secreted": false,
+              "service": "e-commerce-service",
+              "tags": [
+                "e-commerce"
+              ],
+              "type": "custom"
+            }
+          },
+          "collections": {
+            "items": {
+              "id": "items",
+              "type": "collection",
+              "defaultName": "items",
+              "internalEndpoints": [
+                {
+                  "basePath": "/items"
+                }
+              ],
+              "fields": [
+                {
+                  "name": "name",
+                  "nullable": false,
+                  "required": true,
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "unsecretedVariables": {
+            "LOG_LEVEL": {
+              "noProductionEnv": "debug",
+              "productionEnv": "info"
+            }
+          }
+        }
+      ]
     },
     "supportedBy": {
       "description": "Identifier of the company that has produced the item",

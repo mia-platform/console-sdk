@@ -170,7 +170,7 @@ export enum DownwardAPIContainerPath {
   EPHEMERAL_STORAGE_REQUEST = 'resource.requests.ephemeral-storage',
 }
 
-const DOWNWARD_API_FIELD_PATHS = {
+export const DOWNWARD_API_FIELD_PATHS = {
   POD_LABELS: {
     type: 'string',
     // matches metadata.labels['<KEY>'], where <KEY> is a valid label key

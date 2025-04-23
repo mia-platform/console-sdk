@@ -99,5 +99,25 @@
     "services"
   ],
   "title": "Catalog proxy item resources",
-  "type": "object"
+  "type": "object",
+  "examples": [
+    {
+      "services": {
+        "external-proxy": {
+          "name": "external-proxy",
+          "type": "external",
+          "url": "https://example.com"
+        }
+      }
+    },
+    {
+      "services": {
+        "cross-project-proxy": {
+          "name": "cross-project-proxy",
+          "type": "cross-projects",
+          "host": "project-a-host:80"
+        }
+      }
+    }
+  ]
 }

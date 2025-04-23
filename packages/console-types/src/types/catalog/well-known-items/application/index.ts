@@ -34,7 +34,7 @@ import { catalogUnsecretedVariableSchema, type UnsecretedVariable } from './unse
 
 const type = 'application'
 
-const resourcesSchema = {
+const _resourcesSchema = {
   $id: 'catalog-application-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
@@ -73,6 +73,85 @@ const resourcesSchema = {
   title: 'Catalog application resources',
   type: 'object',
 } as const satisfies JSONSchema
+
+export type Resources = FromSchema<typeof _resourcesSchema>
+
+const resourcesExamples: Resources[] = [
+  {
+    services: {
+      'e-commerce-service': {
+        type: 'plugin',
+        name: 'e-commerce-service',
+        description: 'Backend for an E-Commerce',
+        tags: ['e-commerce', 'backend'],
+        links: [{ label: 'Configurator', targetSection: 'flow-manager' }],
+        componentId: 'e-commerce',
+        dockerImage: 'e-commerce-service:1.0.0',
+        containerPorts: [{ from: 3000, to: 80, name: 'http' }],
+        defaultAnnotations: [{ name: 'domain', value: 'orders' }],
+        defaultLabels: [{ name: 'technologies', value: 'javascript' }],
+        defaultDocumentationPath: '/documentation/json',
+        defaultLogParser: 'mia-json',
+        defaultEnvironmentVariables: [{ name: 'LOG_LEVEL', valueType: 'plain', value: '{{LOG_LEVEL}}' }],
+        defaultConfigMaps: [
+          {
+            name: 'e-commerce-service-config',
+            mountPath: '/home/node',
+            files: [{ name: 'config.json', content: '{ "mongodbUrl": "{{MONGODB_URL}}" }' }],
+          },
+        ],
+        defaultSecrets: [{ name: 'private-key', mountPath: '/home/node' }],
+        defaultProbes: {
+          liveness: { port: '3000', path: '/healthz' },
+          readiness: { port: '3000', path: '/healthz' },
+          startup: { port: '3000', path: '/healthz' },
+        },
+        defaultResources: {
+          memoryLimits: { max: '250Mi', min: '150Mi' },
+          cpuLimits: { min: '150m', max: '200m' },
+        },
+      },
+      'crud-service': {
+        type: 'plugin',
+        name: 'crud-service',
+        componentId: 'crud-service',
+        dockerImage: 'nexus.mia-platform.eu/core/crud-service:7.2.3',
+      },
+    },
+    endpoints: {
+      '/e-commerce': {
+        defaultBasePath: '/e-commerce',
+        defaultPathRewrite: '/',
+        public: true,
+        secreted: false,
+        service: 'e-commerce-service',
+        tags: ['e-commerce'],
+        type: 'custom',
+      },
+    },
+    collections: {
+      items: {
+        id: 'items',
+        type: 'collection',
+        defaultName: 'items',
+        internalEndpoints: [{ basePath: '/items' }],
+        fields: [
+          {
+            'name': 'name',
+            'nullable': false,
+            'required': true,
+            'type': 'string',
+          },
+        ],
+      },
+    },
+    unsecretedVariables: {
+      LOG_LEVEL: { noProductionEnv: 'debug', productionEnv: 'info' },
+    },
+  },
+]
+
+const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
 
 const crd: ICatalogCrd.Item = {
   name: 'application',
@@ -126,7 +205,6 @@ const crd: ICatalogCrd.Item = {
   },
 }
 
-export type Resources = FromSchema<typeof resourcesSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
