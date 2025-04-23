@@ -148,5 +148,31 @@
     "contexts"
   ],
   "title": "Catalog extension item resources",
-  "type": "object"
+  "type": "object",
+  "examples": [
+    {
+      "name": "E-Commerce configurator",
+      "extensionType": "iframe",
+      "contexts": [
+        "company"
+      ],
+      "entry": "https://e-commerce-configurator.com"
+    },
+    {
+      "name": "E-Commerce dashboard",
+      "extensionType": "external-link",
+      "contexts": [
+        "company"
+      ],
+      "entry": "https://e-commerce-dashboard.com"
+    },
+    {
+      "name": "E-Commerce CMS",
+      "extensionType": "composer-page",
+      "contexts": [
+        "project"
+      ],
+      "configuration": "{\"tag\":\"p\",\"content\":\"Hello!\"}"
+    }
+  ]
 }

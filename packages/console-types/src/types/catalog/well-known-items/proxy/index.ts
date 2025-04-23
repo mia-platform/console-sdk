@@ -55,7 +55,7 @@ export const catalogProxyServiceSchema = {
   ],
 } as const satisfies JSONSchema
 
-const resourcesSchema = {
+const _resourcesSchema = {
   $id: 'catalog-proxy-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
@@ -73,6 +73,31 @@ const resourcesSchema = {
   title: 'Catalog proxy resources',
   type: 'object',
 } as const satisfies JSONSchema
+
+export type Resources = FromSchema<typeof _resourcesSchema>
+
+const resourcesExamples: Resources[] = [
+  {
+    services: {
+      'external-proxy': {
+        name: 'external-proxy',
+        type: 'external',
+        url: 'https://example.com',
+      },
+    }
+  },
+  {
+    services: {
+      'cross-project-proxy': {
+        name: 'cross-project-proxy',
+        type: 'cross-projects',
+        host: 'project-a-host:80',
+      },
+    }
+  }
+]
+
+const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
 
 const crd: ICatalogCrd.Item = {
   name: 'proxy',
@@ -100,7 +125,6 @@ const crd: ICatalogCrd.Item = {
 }
 
 export type Service = FromSchema<typeof catalogProxyServiceSchema>
-export type Resources = FromSchema<typeof resourcesSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>

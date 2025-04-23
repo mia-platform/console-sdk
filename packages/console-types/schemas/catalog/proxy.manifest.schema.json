@@ -174,7 +174,27 @@
       "required": [
         "services"
       ],
-      "type": "object"
+      "type": "object",
+      "examples": [
+        {
+          "services": {
+            "external-proxy": {
+              "name": "external-proxy",
+              "type": "external",
+              "url": "https://example.com"
+            }
+          }
+        },
+        {
+          "services": {
+            "cross-project-proxy": {
+              "name": "cross-project-proxy",
+              "type": "cross-projects",
+              "host": "project-a-host:80"
+            }
+          }
+        }
+      ]
     },
     "supportedBy": {
       "description": "Identifier of the company that has produced the item",

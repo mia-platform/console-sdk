@@ -19,10 +19,12 @@
 import type { JSONSchema } from '../../../commons/json-schema'
 import { DIGIT_OR_INTERPOLATION_PATTERN } from '../../../constants/services'
 import {
+  configMapFileName,
   configMapMountPath,
   configMapName,
   container,
   dockerImage,
+  DOWNWARD_API_FIELD_PATHS,
   kubernetesDefinitionName,
   pathWithoutPort,
   port,
@@ -76,39 +78,83 @@ export const tagsSchema = {
 } as const satisfies JSONSchema
 
 export const linksSchema = {
+  description: 'Custom links to other Console pages',
   items: {
     properties: {
-      enableIf: { type: 'string' },
-      hidePrefix: { type: 'boolean' },
-      label: { type: 'string' },
-      targetSection: { type: 'string' },
+      enableIf: { 
+        description: 'The name of a feature toggle to be used to optionally display the link',
+        type: 'string' 
+      },
+      hidePrefix: { 
+        description: 'Flag stating if the `label` should not be prefixed by a "View" copy',
+        type: 'boolean'
+      },
+      label: { 
+        description: 'The label to be shown in the link button. It does not support internationalization. Unless property `hidePrefix` is set to `false`, the label will be shown right next to a "View" copy',
+        type: 'string' 
+      },
+      targetSection: {
+        description: 'The name of the registered microfrontend where the link should land', 
+        examples: ['flow-manager'],
+        type: 'string' 
+      },
     },
     type: 'object',
   },
   type: 'array',
 } as const satisfies JSONSchema
 
+const baseEnvironmentVariableProps = {
+  name: { 
+    description: 'The variable name (generally, a key written in UPPER_SNAKE_CASE)',
+    minLength: 1,
+    type: 'string' 
+  },
+  description: { 
+    description: 'A brief description of the variable',
+    type: 'string'
+   },
+  managedBy: { 
+    description: 'A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`',
+    type: 'string', 
+    enum: ['fast-data'] 
+  },
+  readOnly: { 
+    description: 'A boolean that represents if you can change the value of the variable through the Console',
+    type: 'boolean'
+  },
+} as const satisfies Record<string, JSONSchema>
+
 const plainEnvironmentVariableSchema = {
   additionalProperties: false,
   properties: {
-    description: { type: 'string' },
-    managedBy: { type: 'string' },
-    name: { minLength: 1, type: 'string' },
-    readOnly: { type: 'boolean' },
-    value: { type: 'string' },
+    ...baseEnvironmentVariableProps,
+    value: { 
+      description: 'The variable default value. It can contain placeholders that will be replaced with the actual values when the service is created',
+      type: 'string'
+     },
     valueType: { const: 'plain' },
   },
   required: ['name', 'valueType'],
   type: 'object',
 } as const satisfies JSONSchema
 
+const configMapEnvironmentVariableSchema = {
+  additionalProperties: false,
+  properties: {
+    ...baseEnvironmentVariableProps,
+    configMapName: { pattern: configMapName.pattern, type: 'string' },
+    configMapFileName: { pattern: configMapFileName.pattern, type: 'string' },
+    valueType: { const: 'configmap' },
+  },
+  required: ['name', 'valueType', 'secretName', 'secretKey'],
+  type: 'object',
+} as const satisfies JSONSchema
+
 const secretEnvironmentVariableSchema = {
   additionalProperties: false,
   properties: {
-    description: { type: 'string' },
-    managedBy: { type: 'string' },
-    name: { minLength: 1, type: 'string' },
-    readOnly: { type: 'boolean' },
+    ...baseEnvironmentVariableProps,
     secretKey: { pattern: serviceSecretKey.pattern, type: 'string' },
     secretName: { pattern: serviceSecretName.pattern, type: 'string' },
     valueType: { const: 'secret' },
@@ -118,27 +164,51 @@ const secretEnvironmentVariableSchema = {
 } as const satisfies JSONSchema
 
 const downwardApiVariableSchema = {
-  additionalProperties: false,
-  properties: {
-    description: { type: 'string' },
-    managedBy: { type: 'string' },
-    fieldPath: { type: 'string' },
-    name: { minLength: 1, type: 'string' },
-    readOnly: { type: 'boolean' },
-    valueType: { const: 'downwardAPI' },
-  },
-  required: ['fieldPath', 'name', 'valueType'],
-  type: 'object',
+  oneOf: [
+    {
+      additionalProperties: false,
+      properties: {
+        ...baseEnvironmentVariableProps,
+        fieldPath: { 
+          description: 'The field path of the Downward API that contains the value of the variable',
+          oneOf: [
+            DOWNWARD_API_FIELD_PATHS.POD,
+            DOWNWARD_API_FIELD_PATHS.POD_ANNOTATIONS,
+            DOWNWARD_API_FIELD_PATHS.POD_LABELS,
+          ],
+        },
+        valueType: { const: 'downwardAPI' },
+      },
+      required: ['fieldPath', 'name', 'valueType'],
+      type: 'object',
+    },
+    {
+      additionalProperties: false,
+      properties: {
+        ...baseEnvironmentVariableProps,
+        fieldPath: DOWNWARD_API_FIELD_PATHS.CONTAINER,
+        valueType: { const: 'downwardAPI' },
+        containerName: { 
+          description: 'The name of the container where the field is located',
+          type: 'string' 
+        },
+      },
+      required: ['fieldPath', 'name', 'valueType', 'containerName'],
+      type: 'object',
+    }
+  ]
 } as const satisfies JSONSchema
 
 export const defaultEnvironmentVariablesSchema = {
+  description: 'The environment variables that will overwrite the default environment variables applied by the Console',
   items: {
-    oneOf: [plainEnvironmentVariableSchema, secretEnvironmentVariableSchema, downwardApiVariableSchema],
+    oneOf: [plainEnvironmentVariableSchema, configMapEnvironmentVariableSchema, secretEnvironmentVariableSchema, downwardApiVariableSchema],
   },
   type: 'array',
 } as const satisfies JSONSchema
 
 export const defaultConfigMapsSchema = {
+  description: 'The default ConfigMaps, if any, that will be mounted inside the container of the microservice',
   items: {
     additionalProperties: false,
     properties: {
@@ -172,6 +242,7 @@ export const defaultConfigMapsSchema = {
 } as const satisfies JSONSchema
 
 export const defaultSecretsSchema = {
+  description: 'The default secrets, if any, to be mounted inside the container of the microservice',
   items: {
     additionalProperties: false,
     properties: {
@@ -185,6 +256,7 @@ export const defaultSecretsSchema = {
 } as const satisfies JSONSchema
 
 export const defaultResourcesSchema = {
+  description: 'CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by the Console for these parameters',
   additionalProperties: false,
   properties: {
     cpuLimits: {
@@ -252,6 +324,7 @@ const probeSchema = {
 } as const satisfies JSONSchema
 
 export const defaultProbesSchema = {
+  description: 'The readiness, liveness, and startup paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by the Console',
   additionalProperties: false,
   properties: {
     liveness: probeSchema,
@@ -276,6 +349,7 @@ export const defaultLogParserSchema = {
 } as const satisfies JSONSchema
 
 export const defaultDocumentationPathSchema = {
+  description: 'The APIs documentation path',
   pattern: swaggerPath.pattern,
   type: 'string',
 } as const satisfies JSONSchema
@@ -315,6 +389,7 @@ export const defaultHeadersSchema = {
 } as const satisfies JSONSchema
 
 export const defaultAnnotationsSchema = {
+  description: 'The service annotations, which can be used to provide additional information about your services for various purposes. Annotations starting with `mia-platform.eu` are reserved',
   items: {
     additionalProperties: false,
     properties: {
@@ -330,6 +405,7 @@ export const defaultAnnotationsSchema = {
 } as const satisfies JSONSchema
 
 export const defaultLabelsSchema = {
+  description: 'The service labels, which can be used to categorize, group, and select your service. Labels starting with "mia-platform.eu" are reserved',
   items: {
     additionalProperties: false,
     properties: {

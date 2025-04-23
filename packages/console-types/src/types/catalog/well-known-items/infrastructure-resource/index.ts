@@ -21,12 +21,11 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import type { ICatalogCrd } from '../../crd'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
-import { nameSchema } from '../commons'
 import type { CatalogWellKnownItemData } from '..'
 
 const type = 'custom-resource'
 
-const resourcesSchema = {
+const _resourcesSchema = {
   $id: 'catalog-infrastructure-resource-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
@@ -105,19 +104,32 @@ const resourcesSchema = {
       },
       type: 'object',
     },
-    name: nameSchema,
+    name: {
+      minLength: 1,
+      type: 'string',
+    },
     runtime: {
+      description: 'The object used to view the status of your current Kubernetes resources directly in the Console Runtime section',
       additionalProperties: false,
       properties: {
-        resourceId: { type: 'string' },
-        type: { type: 'string' },
+        resourceId: { 
+          description: 'The plural name for the infrastructure resource definition',
+          type: 'string' 
+        },
+        type: { 
+          description: 'The type of the infrastructure resource. At the moment the only supported type by the Catalog is "kubernetes"',
+          type: 'string'
+        },
       },
       required: ['type'],
       type: 'object',
     },
     service: {
       properties: {
-        archive: { type: 'string' },
+        archive: { 
+          description: 'URL for an tar.gz archive to be used to generate a new repository',
+          type: 'string' 
+        },
       },
       type: 'object',
     },
@@ -127,6 +139,49 @@ const resourcesSchema = {
   title: 'Catalog infrastructure resource resources',
   type: 'object',
 } as const satisfies JSONSchema
+
+export type Resources = FromSchema<typeof _resourcesSchema>
+
+const resourcesExamples: Resources[] = [
+  {
+    name: 'ExternalOrchestratorLambda',
+    meta: {
+      kind: 'ExternalOrchestratorLambda',
+      apiVersion: 'custom-generator.console.mia-platform.eu/v1'
+    },
+    spec: { code: 'the code' },
+    generator: {
+      type: 'template',
+      configurationBaseFolder: 'base-folder-name',
+      templates: [
+        {
+          template: 'this template can take some values from the spec, such as %spec.code%',
+          name: 'template-name',
+          fileExtension: 'json',
+          folderName: 'template-folder-name',
+        }
+      ]
+    }
+  },
+  {
+    name: 'sleepInfo',
+    meta: {
+      apiVersion: 'kube-green.com/v1alpha1',
+      kind: 'SleepInfo'
+    },
+    spec: {
+      sleepAt: '20:00',
+      timeZone: 'Europe/Rome',
+      weekdays: '1-5'
+    },
+    runtime: {
+      type: 'kubernetes',
+      resourceId: 'sleepinfos'
+    }
+  }
+]
+
+const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
 
 const crd: ICatalogCrd.Item = {
   name: 'custom-resource',
@@ -150,7 +205,6 @@ const crd: ICatalogCrd.Item = {
   },
 }
 
-export type Resources = FromSchema<typeof resourcesSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>

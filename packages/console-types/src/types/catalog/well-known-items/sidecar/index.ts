@@ -39,7 +39,7 @@ import type { CatalogWellKnownItemData } from '..'
 
 const type = 'sidecar'
 
-const resourcesSchema = {
+const _resourcesSchema = {
   $id: 'catalog-sidecar-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
@@ -75,6 +75,39 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+export type Resources = FromSchema<typeof _resourcesSchema>
+
+const resourcesExamples: Resources[] = [
+  {
+    name: 'e-commerce-audit-trail',
+    description: 'Collect audit logs from your E-Commerce',
+    componentId: 'e-commerce-audit',
+    dockerImage: 'e-commerce-audit-trail:0.2.0',
+    containerPorts: [{ from: 8080, to: 80, name: 'http' }],
+    defaultEnvironmentVariables: [{ name: 'LOG_LEVEL', valueType: 'plain', value: 'info' }],
+    defaultConfigMaps: [
+      {
+        name: 'e-commerce-audit-service-config',
+        mountPath: '/home/node',
+        files: [{ name: 'config.json', content: '{ "mongodbUrl": "{{MONGODB_URL}}" }' }]
+      }
+    ],
+    defaultSecrets: [{ name: 'private-key', mountPath: '/home/node' }],
+    defaultProbes: {
+      liveness: { port: '3000', path: '/healthz' },
+      readiness: { port: '3000', path: '/healthz' },
+      startup: { port: '3000', path: '/healthz' },
+    },
+    defaultResources: {
+      memoryLimits: { max: '250Mi', min: '150Mi' },
+      cpuLimits: { min: '150m', max: '200m' }
+    },
+    owners: [{ owner: 'e-commerce' }],
+  }
+]
+
+const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
+
 const crd: ICatalogCrd.Item = {
   name: 'sidecar',
   itemId: 'sidecar-definition',
@@ -95,7 +128,7 @@ const crd: ICatalogCrd.Item = {
   },
 }
 
-export type Resources = FromSchema<typeof resourcesSchema>
+
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>

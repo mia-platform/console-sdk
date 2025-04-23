@@ -25,7 +25,7 @@ import type { CatalogWellKnownItemData } from '..'
 
 const type = 'extension'
 
-const resourcesSchema = {
+const _resourcesSchema = {
   $id: 'catalog-extension-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   allOf: [
@@ -123,6 +123,31 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+export type Resources = FromSchema<typeof _resourcesSchema, { parseIfThenElseKeywords: true }>
+
+const resourcesExamples: Resources[] = [
+  {
+    name: 'E-Commerce configurator',
+    extensionType: 'iframe',
+    contexts: ['company'],
+    entry: 'https://e-commerce-configurator.com'
+  },
+  {
+    name: 'E-Commerce dashboard',
+    extensionType: 'external-link',
+    contexts: ['company'],
+    entry: 'https://e-commerce-dashboard.com'
+  },
+  {
+    name: 'E-Commerce CMS',
+    extensionType: 'composer-page',
+    contexts: ['project'],
+    configuration: '{"tag":"p","content":"Hello!"}'
+  }
+]
+
+const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
+
 const crd: ICatalogCrd.Item = {
   name: 'extension',
   itemId: 'extension-definition',
@@ -145,7 +170,6 @@ const crd: ICatalogCrd.Item = {
   },
 }
 
-export type Resources = FromSchema<typeof resourcesSchema, { parseIfThenElseKeywords: true }>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>
