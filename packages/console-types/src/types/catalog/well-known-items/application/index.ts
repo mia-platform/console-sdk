@@ -97,8 +97,8 @@ const resourcesExamples: Resources[] = [
           {
             name: 'e-commerce-service-config',
             mountPath: '/home/node',
-            files: [{ name: 'config.json', content: '{ "mongodbUrl": "{{MONGODB_URL}}" }' }]
-          }
+            files: [{ name: 'config.json', content: '{ "mongodbUrl": "{{MONGODB_URL}}" }' }],
+          },
         ],
         defaultSecrets: [{ name: 'private-key', mountPath: '/home/node' }],
         defaultProbes: {
@@ -108,25 +108,25 @@ const resourcesExamples: Resources[] = [
         },
         defaultResources: {
           memoryLimits: { max: '250Mi', min: '150Mi' },
-          cpuLimits: { min: '150m', max: '200m' }
+          cpuLimits: { min: '150m', max: '200m' },
         },
       },
       'crud-service': {
         type: 'plugin',
         name: 'crud-service',
         componentId: 'crud-service',
-        dockerImage: "nexus.mia-platform.eu/core/crud-service:7.2.3",
-      }
+        dockerImage: 'nexus.mia-platform.eu/core/crud-service:7.2.3',
+      },
     },
     endpoints: {
-      "/e-commerce": {
+      '/e-commerce': {
         defaultBasePath: '/e-commerce',
         defaultPathRewrite: '/',
         public: true,
         secreted: false,
         service: 'e-commerce-service',
         tags: ['e-commerce'],
-        type: 'custom'
+        type: 'custom',
       },
     },
     collections: {
@@ -137,17 +137,17 @@ const resourcesExamples: Resources[] = [
         internalEndpoints: [{ basePath: '/items' }],
         fields: [
           {
-            "name": "name",
-            "nullable": false,
-            "required": true,
-            "type": "string"
-          }
+            'name': 'name',
+            'nullable': false,
+            'required': true,
+            'type': 'string',
+          },
         ],
-      }
+      },
     },
     unsecretedVariables: {
-      LOG_LEVEL: { noProductionEnv: 'debug', productionEnv: 'info' }
-    }
+      LOG_LEVEL: { noProductionEnv: 'debug', productionEnv: 'info' },
+    },
   },
 ]
 

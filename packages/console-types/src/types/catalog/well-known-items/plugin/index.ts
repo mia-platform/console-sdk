@@ -128,8 +128,8 @@ const resourcesExamples: Resources[] = [
           {
             name: 'e-commerce-service-config',
             mountPath: '/home/node',
-            files: [{ name: 'config.json', content: '{ "mongodbUrl": "{{MONGODB_URL}}" }' }]
-          }
+            files: [{ name: 'config.json', content: '{ "mongodbUrl": "{{MONGODB_URL}}" }' }],
+          },
         ],
         defaultSecrets: [{ name: 'private-key', mountPath: '/home/node' }],
         defaultProbes: {
@@ -139,7 +139,7 @@ const resourcesExamples: Resources[] = [
         },
         defaultResources: {
           memoryLimits: { max: '250Mi', min: '150Mi' },
-          cpuLimits: { min: '150m', max: '200m' }
+          cpuLimits: { min: '150m', max: '200m' },
         },
       },
     },

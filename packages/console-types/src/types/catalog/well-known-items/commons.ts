@@ -16,6 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+/* eslint-disable max-lines */
+
 import type { JSONSchema } from '../../../commons/json-schema'
 import { DIGIT_OR_INTERPOLATION_PATTERN } from '../../../constants/services'
 import {
@@ -81,22 +83,22 @@ export const linksSchema = {
   description: 'Custom links to other Console pages',
   items: {
     properties: {
-      enableIf: { 
+      enableIf: {
         description: 'The name of a feature toggle to be used to optionally display the link',
-        type: 'string' 
+        type: 'string',
       },
-      hidePrefix: { 
+      hidePrefix: {
         description: 'Flag stating if the `label` should not be prefixed by a "View" copy',
-        type: 'boolean'
+        type: 'boolean',
       },
-      label: { 
+      label: {
         description: 'The label to be shown in the link button. It does not support internationalization. Unless property `hidePrefix` is set to `false`, the label will be shown right next to a "View" copy',
-        type: 'string' 
+        type: 'string',
       },
       targetSection: {
-        description: 'The name of the registered microfrontend where the link should land', 
+        description: 'The name of the registered microfrontend where the link should land',
         examples: ['flow-manager'],
-        type: 'string' 
+        type: 'string',
       },
     },
     type: 'object',
@@ -105,23 +107,23 @@ export const linksSchema = {
 } as const satisfies JSONSchema
 
 const baseEnvironmentVariableProps = {
-  name: { 
+  name: {
     description: 'The variable name (generally, a key written in UPPER_SNAKE_CASE)',
     minLength: 1,
-    type: 'string' 
+    type: 'string',
   },
-  description: { 
+  description: {
     description: 'A brief description of the variable',
-    type: 'string'
-   },
-  managedBy: { 
-    description: 'A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`',
-    type: 'string', 
-    enum: ['fast-data'] 
+    type: 'string',
   },
-  readOnly: { 
+  managedBy: {
+    description: 'A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`',
+    type: 'string',
+    enum: ['fast-data'],
+  },
+  readOnly: {
     description: 'A boolean that represents if you can change the value of the variable through the Console',
-    type: 'boolean'
+    type: 'boolean',
   },
 } as const satisfies Record<string, JSONSchema>
 
@@ -129,10 +131,10 @@ const plainEnvironmentVariableSchema = {
   additionalProperties: false,
   properties: {
     ...baseEnvironmentVariableProps,
-    value: { 
+    value: {
       description: 'The variable default value. It can contain placeholders that will be replaced with the actual values when the service is created',
-      type: 'string'
-     },
+      type: 'string',
+    },
     valueType: { const: 'plain' },
   },
   required: ['name', 'valueType'],
@@ -169,7 +171,7 @@ const downwardApiVariableSchema = {
       additionalProperties: false,
       properties: {
         ...baseEnvironmentVariableProps,
-        fieldPath: { 
+        fieldPath: {
           description: 'The field path of the Downward API that contains the value of the variable',
           oneOf: [
             DOWNWARD_API_FIELD_PATHS.POD,
@@ -188,21 +190,26 @@ const downwardApiVariableSchema = {
         ...baseEnvironmentVariableProps,
         fieldPath: DOWNWARD_API_FIELD_PATHS.CONTAINER,
         valueType: { const: 'downwardAPI' },
-        containerName: { 
+        containerName: {
           description: 'The name of the container where the field is located',
-          type: 'string' 
+          type: 'string',
         },
       },
       required: ['fieldPath', 'name', 'valueType', 'containerName'],
       type: 'object',
-    }
-  ]
+    },
+  ],
 } as const satisfies JSONSchema
 
 export const defaultEnvironmentVariablesSchema = {
   description: 'The environment variables that will overwrite the default environment variables applied by the Console',
   items: {
-    oneOf: [plainEnvironmentVariableSchema, configMapEnvironmentVariableSchema, secretEnvironmentVariableSchema, downwardApiVariableSchema],
+    oneOf: [
+      plainEnvironmentVariableSchema,
+      configMapEnvironmentVariableSchema,
+      secretEnvironmentVariableSchema,
+      downwardApiVariableSchema,
+    ],
   },
   type: 'array',
 } as const satisfies JSONSchema

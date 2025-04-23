@@ -112,13 +112,13 @@ const _resourcesSchema = {
       description: 'The object used to view the status of your current Kubernetes resources directly in the Console Runtime section',
       additionalProperties: false,
       properties: {
-        resourceId: { 
+        resourceId: {
           description: 'The plural name for the infrastructure resource definition',
-          type: 'string' 
+          type: 'string',
         },
-        type: { 
+        type: {
           description: 'The type of the infrastructure resource. At the moment the only supported type by the Catalog is "kubernetes"',
-          type: 'string'
+          type: 'string',
         },
       },
       required: ['type'],
@@ -126,9 +126,9 @@ const _resourcesSchema = {
     },
     service: {
       properties: {
-        archive: { 
+        archive: {
           description: 'URL for an tar.gz archive to be used to generate a new repository',
-          type: 'string' 
+          type: 'string',
         },
       },
       type: 'object',
@@ -147,7 +147,7 @@ const resourcesExamples: Resources[] = [
     name: 'ExternalOrchestratorLambda',
     meta: {
       kind: 'ExternalOrchestratorLambda',
-      apiVersion: 'custom-generator.console.mia-platform.eu/v1'
+      apiVersion: 'custom-generator.console.mia-platform.eu/v1',
     },
     spec: { code: 'the code' },
     generator: {
@@ -159,26 +159,26 @@ const resourcesExamples: Resources[] = [
           name: 'template-name',
           fileExtension: 'json',
           folderName: 'template-folder-name',
-        }
-      ]
-    }
+        },
+      ],
+    },
   },
   {
     name: 'sleepInfo',
     meta: {
       apiVersion: 'kube-green.com/v1alpha1',
-      kind: 'SleepInfo'
+      kind: 'SleepInfo',
     },
     spec: {
       sleepAt: '20:00',
       timeZone: 'Europe/Rome',
-      weekdays: '1-5'
+      weekdays: '1-5',
     },
     runtime: {
       type: 'kubernetes',
-      resourceId: 'sleepinfos'
-    }
-  }
+      resourceId: 'sleepinfos',
+    },
+  },
 ]
 
 const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }

@@ -84,7 +84,7 @@ const resourcesExamples: Resources[] = [
         type: 'external',
         url: 'https://example.com',
       },
-    }
+    },
   },
   {
     services: {
@@ -93,8 +93,8 @@ const resourcesExamples: Resources[] = [
         type: 'cross-projects',
         host: 'project-a-host:80',
       },
-    }
-  }
+    },
+  },
 ]
 
 const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }

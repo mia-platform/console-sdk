@@ -130,20 +130,20 @@ const resourcesExamples: Resources[] = [
     name: 'E-Commerce configurator',
     extensionType: 'iframe',
     contexts: ['company'],
-    entry: 'https://e-commerce-configurator.com'
+    entry: 'https://e-commerce-configurator.com',
   },
   {
     name: 'E-Commerce dashboard',
     extensionType: 'external-link',
     contexts: ['company'],
-    entry: 'https://e-commerce-dashboard.com'
+    entry: 'https://e-commerce-dashboard.com',
   },
   {
     name: 'E-Commerce CMS',
     extensionType: 'composer-page',
     contexts: ['project'],
-    configuration: '{"tag":"p","content":"Hello!"}'
-  }
+    configuration: '{"tag":"p","content":"Hello!"}',
+  },
 ]
 
 const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
