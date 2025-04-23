@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.37.1
+
+### Patch Changes
+
+- 1e9f9f8: Added examples to Catalog well-known items resources schemas
+
 ## 0.37.0
 
 ### Minor Changes
