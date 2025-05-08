@@ -214,6 +214,7 @@ export type {
 } from './types/publicVariables'
 
 export type {
+  ConfigMap,
   ConfigMaps,
   EnvironmentVariablesFromSecret,
   EnvironmentVariablesPlain,
