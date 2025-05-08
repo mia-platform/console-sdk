@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.37.3
+
+### Patch Changes
+
+- 6a8c235: fix: missing listeners type export
+
 ## 0.37.2
 
 ### Patch Changes
