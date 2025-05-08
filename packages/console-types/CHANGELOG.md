@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.37.2
+
+### Patch Changes
+
+- a61a136: fix: export configmap type
+
 ## 0.37.1
 
 ### Patch Changes

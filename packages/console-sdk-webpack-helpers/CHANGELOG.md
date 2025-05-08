@@ -1,5 +1,11 @@
 # @mia-platform/console-sdk-webpack-helpers
 
+## 0.0.121
+
+### Patch Changes
+
+- @mia-platform/console-sdk-microfrontend@0.2.81
+
 ## 0.0.120
 
 ### Patch Changes
