@@ -279,6 +279,7 @@ export type {
 
 export type {
   Listener,
+  Listeners,
 } from './types/listeners'
 
 export type {
