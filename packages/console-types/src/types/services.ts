@@ -387,6 +387,7 @@ export const configMap = {
   },
   additionalProperties: false,
 } as const
+export type ConfigMap = FromSchema<typeof configMap>
 
 export const configMaps = {
   type: 'object',
