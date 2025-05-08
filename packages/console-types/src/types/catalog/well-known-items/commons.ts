@@ -137,7 +137,7 @@ const plainEnvironmentVariableSchema = {
     },
     valueType: { const: 'plain' },
   },
-  required: ['name', 'valueType'],
+  required: ['name', 'valueType', 'value'],
   type: 'object',
 } as const satisfies JSONSchema
 
