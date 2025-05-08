@@ -98,7 +98,7 @@ const plainEnvironmentVariableSchema = {
     value: { type: 'string' },
     valueType: { const: 'plain' },
   },
-  required: ['name', 'valueType'],
+  required: ['name', 'valueType', 'value'],
   type: 'object',
 } as const satisfies JSONSchema
 
@@ -117,6 +117,21 @@ const secretEnvironmentVariableSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+const configMapEnvironmentVariableSchema = {
+  additionalProperties: false,
+  properties: {
+    description: { type: 'string' },
+    managedBy: { type: 'string' },
+    name: { minLength: 1, type: 'string' },
+    readOnly: { type: 'boolean' },
+    configMapFileName: { pattern: serviceSecretKey.pattern, type: 'string' },
+    configMapName: { pattern: serviceSecretName.pattern, type: 'string' },
+    valueType: { const: 'configmap' },
+  },
+  required: ['name', 'valueType', 'secretName', 'secretKey'],
+  type: 'object',
+} as const satisfies JSONSchema
+
 const downwardApiVariableSchema = {
   additionalProperties: false,
   properties: {
@@ -126,6 +141,7 @@ const downwardApiVariableSchema = {
     name: { minLength: 1, type: 'string' },
     readOnly: { type: 'boolean' },
     valueType: { const: 'downwardAPI' },
+    containerName: { type: 'string' },
   },
   required: ['fieldPath', 'name', 'valueType'],
   type: 'object',
@@ -133,7 +149,12 @@ const downwardApiVariableSchema = {
 
 export const defaultEnvironmentVariablesSchema = {
   items: {
-    oneOf: [plainEnvironmentVariableSchema, secretEnvironmentVariableSchema, downwardApiVariableSchema],
+    oneOf: [
+      plainEnvironmentVariableSchema,
+      secretEnvironmentVariableSchema,
+      configMapEnvironmentVariableSchema,
+      downwardApiVariableSchema,
+    ],
   },
   type: 'array',
 } as const satisfies JSONSchema
