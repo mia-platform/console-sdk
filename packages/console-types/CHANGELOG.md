@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.37.4
+
+### Patch Changes
+
+- af2f916: fix: export config service secret types
+
 ## 0.37.3
 
 ### Patch Changes
