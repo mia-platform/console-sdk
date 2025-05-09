@@ -436,6 +436,7 @@ const configServiceSecret = {
   },
   additionalProperties: false,
 } as const
+export type ConfigServiceSecret = FromSchema<typeof configServiceSecret>
 
 export const configServiceSecrets = {
   type: 'object',
@@ -443,6 +444,7 @@ export const configServiceSecrets = {
     [serviceSecretName.pattern]: configServiceSecret,
   },
 } as const
+export type ConfigServiceSecrets = FromSchema<typeof configServiceSecrets>
 
 export const serviceSecretMountPath = {
   type: 'string',
