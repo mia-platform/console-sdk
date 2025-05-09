@@ -216,6 +216,8 @@ export type {
 export type {
   ConfigMap,
   ConfigMaps,
+  ConfigServiceSecret,
+  ConfigServiceSecrets,
   EnvironmentVariablesFromSecret,
   EnvironmentVariablesPlain,
   EnvironmentVariablesFromConfigMap,
