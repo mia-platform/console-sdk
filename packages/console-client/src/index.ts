@@ -21,8 +21,6 @@ export type {
   UserinfoGetResponse_metadata as UserinfoGetResponseMetadata,
 } from './kiota-client/api/userinfo'
 
-export type { MarketplaceItem, MarketplaceItemVersion } from './kiota-client/models'
-export type { Categories as MarketplaceCategory } from './kiota-client/api/marketplace/categories'
 export type { ResourcesPostRequestBody as MarketplaceApplyBody } from './kiota-client/api/marketplace/tenants/item/resources'
 
 export {
