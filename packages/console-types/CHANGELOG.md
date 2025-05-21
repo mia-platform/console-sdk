@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.37.5
+
+### Patch Changes
+
+- 4777ea9: fix: export emptyDir schemas
+
 ## 0.37.4
 
 ### Patch Changes

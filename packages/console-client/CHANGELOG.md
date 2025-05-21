@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.6.0
+
+### Minor Changes
+
+- a703ca0: Updated software catalog APIs
+
 ## 0.5.1
 
 ### Patch Changes
