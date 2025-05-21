@@ -4804,7 +4804,7 @@
                             },
                             "releaseNote": {
                                 "type": "string"
-                            },K=
+                            },
                             "security": {
                                 "type": "boolean"
                             }
