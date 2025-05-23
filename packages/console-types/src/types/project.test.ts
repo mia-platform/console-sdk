@@ -23,7 +23,6 @@ import t from 'tap'
 import { IEnvironment, IProject, branchName, environment, environments, project } from './project'
 import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
 import { PROJECT_APPLICATION_FLAVOR, PROMETHEUS_OPERATOR } from '../constants/project'
-import { PROJECT_INFRASTRUCTURE_FLAVOR } from '../../build/constants/project'
 
 export const fullEnvironment: Required<IEnvironment> = {
   type: 'runtime',
@@ -492,7 +491,7 @@ t.test('project validated', t => {
       projectId: 'my-project-id',
       repositoryUrl: 'repo-url',
       _id: 'object-id',
-      flavor: PROJECT_INFRASTRUCTURE_FLAVOR,
+      flavor: 'infrastructure',
       infrastructureComponents: {
         'component-1': {
           name: 'component-1',
