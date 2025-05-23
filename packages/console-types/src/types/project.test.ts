@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * Copyright 2024 Mia srl
  *
@@ -482,6 +483,78 @@ t.test('project validated', t => {
     t.end()
   })
 
+  t.test('infrastructure project', t => {
+    // Includes two components, one with webhook active and one without
+    const project: IProject = {
+      name: 'template-name',
+      configurationGitPath: 'config-path',
+      projectId: 'my-project-id',
+      repositoryUrl: 'repo-url',
+      _id: 'object-id',
+      flavor: 'infrastructure',
+      infrastructureComponents: {
+        'component-1': {
+          name: 'component-1',
+          gitInfo: {
+            repoUrl: 'repo-url',
+          },
+          pipelineInfo: {
+            projectId: '120011',
+            refName: 'main',
+            isPipelineEventWebhookActive: true,
+            statusWebhookSecretCredentialsId: 'credential-id',
+          },
+        },
+        'component-2': {
+          name: 'component-2',
+          gitInfo: {
+            repoUrl: 'repo-url',
+          },
+          pipelineInfo: {
+            projectId: '120011',
+            refName: 'main',
+          },
+        },
+      },
+      originalTemplate: { id: 'templateid', name: 'template name' },
+      environments: [],
+      repository: {
+        providerId: 'provider-id',
+        provider: {
+          type: 'gitlab',
+          baseUrl: 'base-url',
+          apiBaseUrl: 'api-base-url',
+          accessToken: 'my-secret-access-token',
+          providerId: 'provider-id',
+        },
+      },
+      description: 'my description',
+      environmentsVariables: {
+        type: 'gitlab',
+        baseUrl: 'base-url',
+        storage: {
+          type: 'groups',
+          id: '123',
+        },
+      },
+      enabledServices: {},
+      pipelines: {
+        type: 'gitlab-ci',
+      },
+      tenantId: 'my-tenant',
+      color: '#666666',
+      info: {
+        projectOwner: 'the owner',
+        teamContact: 'the team contact',
+        technologies: ['node', 'golang'],
+      },
+      layerId: 'layer',
+    }
+
+    t.ok(validate(project), validationMessage(validate.errors))
+    t.end()
+  })
+
   t.end()
 })
 
@@ -520,4 +593,3 @@ t.test('branchName json schema pattern', t => {
 
   t.end()
 })
-

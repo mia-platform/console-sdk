@@ -509,6 +509,14 @@ export const infrastructureComponent = {
           type: 'string',
           description: 'Name of the ref used to trigger the pipeline',
         },
+        isPipelineEventWebhookActive: {
+          type: 'boolean',
+          description: 'Whether the pipeline event webhook is enabled or not',
+        },
+        statusWebhookSecretCredentialsId: {
+          type: 'string',
+          description: 'ID of the credential item that includes the secret used to authenticate the webhook',
+        },
         jobs: {
           type: 'object',
           properties: {
