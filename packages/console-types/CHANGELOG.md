@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.37.6
+
+### Patch Changes
+
+- 2b0db37: feat(infrastructure components): add properties related to the pipeline webhook and pipeline status
+- 45b422c: added: properties related to the pipeline webhook
+
 ## 0.37.5
 
 ### Patch Changes
