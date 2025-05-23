@@ -515,7 +515,7 @@ export const infrastructureComponent = {
         },
         statusWebhookSecretCredentialsId: {
           type: 'string',
-          description: 'ID of the secret used to authenticate the webhook',
+          description: 'ID of the credential item that includes the secret used to authenticate the webhook',
         },
         jobs: {
           type: 'object',
