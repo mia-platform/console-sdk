@@ -40,4 +40,5 @@ export const PIPELINE_STATUS = {
   RUNNING: 'running',
   PENDING: 'pending',
   LOADING: 'loading',
+  MANUAL: 'manual',
 }
