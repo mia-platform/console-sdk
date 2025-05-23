@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * Copyright 2024 Mia srl
  *
@@ -116,6 +117,188 @@ t.test('services', t => {
       secrets: [],
       groups: [],
       cmsDashboard: [],
+    }
+    t.ok(validate(config), validationMessage(validate.errors))
+    t.end()
+  })
+
+  t.test('test', t => {
+    const config: Config = {
+      'endpoints': {
+        '/secretbooks': {
+          'basePath': '/secretbooks',
+          'routes': {
+            'GET/': {
+              'id': 'GET/',
+              'path': '/',
+              'public': {
+                'inherited': true,
+              },
+              'showInDocumentation': {
+                'inherited': true,
+              },
+              'secreted': {
+                'inherited': true,
+              },
+              'acl': {
+                'inherited': true,
+              },
+              'backofficeAcl': {
+                'inherited': true,
+              },
+              'verb': 'GET',
+              'allowUnknownRequestContentType': {
+                'inherited': true,
+              },
+              'allowUnknownResponseContentType': {
+                'inherited': true,
+              },
+              'preDecorators': [],
+              'postDecorators': [],
+              'rateLimit': {
+                'inherited': true,
+              },
+            },
+            'POST/': {
+              'id': 'POST/',
+              'path': '/',
+              'public': {
+                'inherited': true,
+              },
+              'showInDocumentation': {
+                'inherited': true,
+              },
+              'secreted': {
+                'inherited': true,
+              },
+              'acl': {
+                'inherited': true,
+              },
+              'backofficeAcl': {
+                'inherited': true,
+              },
+              'verb': 'POST',
+              'allowUnknownRequestContentType': {
+                'inherited': true,
+              },
+              'allowUnknownResponseContentType': {
+                'inherited': true,
+              },
+              'preDecorators': [],
+              'postDecorators': [],
+              'rateLimit': {
+                'inherited': true,
+              },
+            },
+          },
+          'type': 'crud',
+          'public': true,
+          'showInDocumentation': true,
+          'secreted': true,
+          'acl': 'clientType == "secret_key"',
+          'pathName': '/',
+          'collectionId': 'books',
+          'pathRewrite': '/books',
+          'description': 'Endpoint /secretbooks',
+          'tags': [
+            'crud',
+          ],
+          'backofficeAcl': {
+            'inherited': true,
+          },
+          'allowUnknownRequestContentType': false,
+          'allowUnknownResponseContentType': false,
+          'forceMicroserviceGatewayProxy': false,
+          'listeners': {
+            'frontend': true,
+          },
+        },
+        '/active-users': {
+          'basePath': '/active-users',
+          'routes': {},
+          'type': 'crud',
+          'public': true,
+          'showInDocumentation': true,
+          'secreted': false,
+          'acl': 'true',
+          'pathName': '/',
+          'collectionId': 'active_users',
+          'pathRewrite': '/active-users',
+          'description': 'Endpoint /active-users',
+          'tags': [
+            'data analytics',
+          ],
+          'backofficeAcl': {
+            'inherited': true,
+          },
+          'allowUnknownRequestContentType': false,
+          'allowUnknownResponseContentType': false,
+          'forceMicroserviceGatewayProxy': false,
+          'listeners': {
+            'frontend': true,
+          },
+        },
+        '/echo': {
+          'basePath': '/echo',
+          'type': 'custom',
+          'public': true,
+          'showInDocumentation': true,
+          'secreted': false,
+          'acl': 'true',
+          'service': 'echo-service',
+          'port': '80',
+          'pathRewrite': '/',
+          'description': '',
+          'tags': [
+            'echo-service',
+          ],
+          'backofficeAcl': {
+            'inherited': true,
+          },
+          'allowUnknownRequestContentType': false,
+          'allowUnknownResponseContentType': false,
+          'forceMicroserviceGatewayProxy': false,
+          'listeners': {
+            'frontend': true,
+          },
+        },
+      },
+      'services': {
+        'echo-service': {
+          'type': 'custom',
+          'advanced': false,
+          'name': 'echo-service',
+          'dockerImage': 'docker.io/davidebianchi/echo-service',
+          'replicas': 1,
+          'logParser': 'mia-json',
+          'containerPorts': [
+            {
+              'name': 'http',
+              'from': 80,
+              'to': 3000,
+            },
+          ],
+          'environment': [
+            {
+              'name': 'HTTP_PORT',
+              'valueType': 'plain',
+              'value': '3000',
+            },
+          ],
+          'tags': [
+            'custom',
+          ],
+        },
+        'swagger-aggregator': {
+          'type': 'custom',
+          'name': 'swagger-aggregator',
+          'dockerImage': 'nexus.mia-platform.eu/core/swagger-aggregator:3.9.1',
+          'replicas': 1,
+          'description': 'Use Mia-Platform core Swagger Aggregator',
+        },
+      },
+      'version': '0.61.0',
+      'platformVersion': '10.1.0',
     }
     t.ok(validate(config), validationMessage(validate.errors))
     t.end()
