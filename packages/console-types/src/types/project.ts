@@ -387,8 +387,8 @@ const ruleSet = {
           action: {
             oneOf: [
               { type: 'string', enum: ['create', 'delete'] },
-              { type: 'array', items: { type: 'string', enum: ['create', 'delete'] } }
-            ]
+              { type: 'array', items: { type: 'string', enum: ['create', 'delete'] } },
+            ],
           },
           primaryKey: { type: 'string' },
         },
