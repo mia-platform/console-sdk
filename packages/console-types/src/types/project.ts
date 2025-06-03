@@ -384,15 +384,16 @@ const ruleSet = {
       processingOptions: {
         type: 'object',
         properties: {
-          action: {
-            oneOf: [
-              { type: 'string', enum: ['create', 'delete'] },
-              { type: 'array', items: { type: 'string', enum: ['create', 'delete'] } },
-            ],
+          actions: {
+            type: 'array',
+            items: {
+              type: 'string',
+              enum: ['create', 'delete'],
+            },
           },
           primaryKey: { type: 'string' },
         },
-        required: ['action'],
+        required: ['actions'],
       },
     },
   },
