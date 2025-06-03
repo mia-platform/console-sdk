@@ -410,12 +410,12 @@ t.test('project validated', t => {
           disallowedRuleSet: [{
             jsonPath: 'test',
             ruleId: 'somerule',
-            processingOptions: { action: 'create', primaryKey: 'somekey' },
+            processingOptions: { actions: ['create'], primaryKey: 'somekey' },
           }],
           allowedRuleSet: [{
             jsonPath: 'test1',
             ruleId: 'somerule1',
-            processingOptions: { action: 'create', primaryKey: 'somekey1' },
+            processingOptions: { actions: ['create'], primaryKey: 'somekey1' },
           }],
           roleIds: ['testrole'],
         }],
