@@ -374,29 +374,37 @@ export const monitoring = {
   },
 } as const
 
+const ruleSet = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      jsonPath: { type: 'string' },
+      ruleId: { type: 'string' },
+      processingOptions: {
+        type: 'object',
+        properties: {
+          action: {
+            oneOf: [
+              { type: 'string', enum: ['create', 'delete'] },
+              { type: 'array', items: { type: 'string', enum: ['create', 'delete'] } },
+            ],
+          },
+          primaryKey: { type: 'string' },
+        },
+        required: ['action'],
+      },
+    },
+  },
+} as const
+
 export const saveChangesRules = {
   type: 'array',
   items: {
     type: 'object',
     properties: {
-      disallowedRuleSet: {
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            jsonPath: { type: 'string' },
-            ruleId: { type: 'string' },
-            processingOptions: {
-              type: 'object',
-              properties: {
-                action: { type: 'string', enum: ['create', 'delete'] },
-                primaryKey: { type: 'string' },
-              },
-              required: ['action'],
-            },
-          },
-        },
-      },
+      disallowedRuleSet: ruleSet,
+      allowedRuleSet: ruleSet,
       roleIds: {
         type: 'array',
         items: { type: 'string' },

@@ -84,6 +84,7 @@ t.test('tenants validated', t => {
         },
         saveChangesRules: [{
           disallowedRuleSet: [{ jsonPath: 'test' }],
+          allowedRuleSet: [{ jsonPath: 'test1' }],
           roleIds: ['testrole'],
         }],
       },
