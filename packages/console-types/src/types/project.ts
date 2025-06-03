@@ -492,6 +492,7 @@ export const infrastructureComponent = {
     pipelineInfo: {
       type: 'object',
       required: ['projectId'],
+      additionalProperties: false,
       properties: {
         providerId: {
           type: 'string',
@@ -509,9 +510,9 @@ export const infrastructureComponent = {
           type: 'string',
           description: 'Name of the ref used to trigger the pipeline',
         },
-        isPipelineEventWebhookActive: {
-          type: 'boolean',
-          description: 'Whether the pipeline event webhook is enabled or not',
+        pipelineEventWebhookId: {
+          type: 'string',
+          description: 'ID of the pipeline event webhook configured in the git provider',
         },
         statusWebhookSecretCredentialsId: {
           type: 'string',
