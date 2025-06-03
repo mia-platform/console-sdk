@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.0
+
+### Minor Changes
+
+- ab6ee7a: renamed field `action` of project and tenant saveChangesRules to `actions` and changed type
+
 ## 0.37.7
 
 ### Patch Changes
