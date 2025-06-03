@@ -1,5 +1,13 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.86
+
+### Patch Changes
+
+- Updated dependencies [dc624e3]
+- Updated dependencies [dc624e3]
+  - @mia-platform/console-types@0.37.7
+
 ## 0.2.85
 
 ### Patch Changes

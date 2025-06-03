@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.37.7
+
+### Patch Changes
+
+- dc624e3: add `allowedRuleSet` to project and tenant `saveChangesRules` field
+- dc624e3: change type of `action` field in project and tenant `saveChangesRules` field
+
 ## 0.37.6
 
 ### Patch Changes
