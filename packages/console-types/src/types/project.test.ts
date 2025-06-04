@@ -506,7 +506,7 @@ t.test('project validated', t => {
           pipelineInfo: {
             projectId: '120011',
             refName: 'main',
-            isPipelineEventWebhookActive: true,
+            pipelineEventWebhookId: '12345',
             statusWebhookSecretCredentialsId: 'credential-id',
           },
         },
