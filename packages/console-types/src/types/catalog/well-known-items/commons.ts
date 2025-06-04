@@ -58,21 +58,14 @@ export const componentIdSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
-export const repositoryUrlSchema = {
-  format: 'uri-reference',
-  type: 'string',
-} as const satisfies JSONSchema
+export const repositoryUrlSchema = { type: 'string' } as const satisfies JSONSchema
 
 export const dockerImageSchema = {
   pattern: dockerImage.pattern,
   type: 'string',
 } as const satisfies JSONSchema
 
-export const archiveUrlSchema = {
-  format: 'uri-reference',
-  minLength: 1,
-  type: 'string',
-} as const satisfies JSONSchema
+export const archiveUrlSchema = { minLength: 1, type: 'string' } as const satisfies JSONSchema
 
 export const tagsSchema = {
   items: { type: 'string' },

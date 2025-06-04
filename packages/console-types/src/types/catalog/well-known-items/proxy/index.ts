@@ -36,7 +36,7 @@ export const catalogProxyServiceSchema = {
         description: descriptionSchema,
         name: nameSchema,
         type: { const: 'external' },
-        url: { format: 'uri', type: 'string' },
+        url: { type: 'string' },
       },
       required: ['name', 'type', 'url'],
       type: 'object',
