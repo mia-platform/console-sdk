@@ -49,7 +49,6 @@
           "type": "string"
         },
         "url": {
-          "format": "uri-reference",
           "type": "string"
         }
       },
@@ -61,7 +60,6 @@
     },
     "imageUrl": {
       "description": "Url of the image associated with the item",
-      "format": "uri-reference",
       "type": "string"
     },
     "isLatest": {
@@ -106,7 +104,6 @@
     },
     "repositoryUrl": {
       "description": "URL of the repository containing the source code of the resource created by the item",
-      "format": "uri-reference",
       "type": "string"
     },
     "resources": {
@@ -120,7 +117,6 @@
               "additionalProperties": false,
               "properties": {
                 "archiveUrl": {
-                  "format": "uri-reference",
                   "minLength": 1,
                   "type": "string"
                 },
@@ -1169,7 +1165,6 @@
     },
     "supportedByImageUrl": {
       "description": "Url of the image associated with the company that has produced the item",
-      "format": "uri-reference",
       "type": "string"
     },
     "tenantId": {

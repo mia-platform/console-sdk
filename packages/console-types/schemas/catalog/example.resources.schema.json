@@ -13,7 +13,6 @@
           "additionalProperties": false,
           "properties": {
             "archiveUrl": {
-              "format": "uri-reference",
               "minLength": 1,
               "type": "string"
             },

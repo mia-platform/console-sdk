@@ -48,7 +48,6 @@
                   "const": "external"
                 },
                 "url": {
-                  "format": "uri",
                   "type": "string"
                 }
               },

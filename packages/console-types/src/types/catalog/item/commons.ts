@@ -46,7 +46,7 @@ export const catalogDocumentationSchema = {
   description: 'Documentation of the item',
   properties: {
     type: { enum: Object.values(CatalogItemDocumentationType), type: 'string' },
-    url: { format: 'uri-reference', type: 'string' },
+    url: { type: 'string' },
   },
   required: ['type', 'url'],
   type: 'object',
@@ -54,7 +54,6 @@ export const catalogDocumentationSchema = {
 
 export const catalogImageUrlSchema = {
   description: 'Url of the image associated with the item',
-  format: 'uri-reference',
   type: 'string',
 } as const satisfies JSONSchema
 
@@ -100,7 +99,6 @@ export const catalogLifecycleStatusSchema = {
 
 export const catalogItemRepositoryUrlSchema = {
   description: 'URL of the repository containing the source code of the resource created by the item',
-  format: 'uri-reference',
   type: 'string',
 } as const satisfies JSONSchema
 
@@ -117,7 +115,6 @@ export const catalogSupportedBySchema = {
 
 export const catalogSupportedByImageUrlSchema = {
   description: 'Url of the image associated with the company that has produced the item',
-  format: 'uri-reference',
   type: 'string',
 } as const satisfies JSONSchema
 
