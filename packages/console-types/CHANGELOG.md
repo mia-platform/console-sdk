@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.1
+
+### Patch Changes
+
+- fix: tags
+
 ## 0.38.0
 
 ### Minor Changes
