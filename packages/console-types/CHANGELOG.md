@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.38.0
+
+### Minor Changes
+
+- a91a902: replaced not used `isPipelineEventWebhookActive` property with `pipelineEventWebhookId`
+- updates on infrastructure components, saveChangesRules, uri-reference in Catalog related schema
+- ab6ee7a: renamed field `action` of project and tenant saveChangesRules to `actions` and changed type
+
+### Patch Changes
+
+- 0c3582d: Removed "uri-reference" format from Catalog-related JSON schemas
+
 ## 0.37.7
 
 ### Patch Changes
