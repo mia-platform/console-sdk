@@ -546,6 +546,7 @@ export const infrastructureComponents = {
     '^[a-z]([-_a-z0-9]*[a-z0-9])?$': infrastructureComponent,
   },
 } as const
+export type InfrastructureComponents = FromSchema<typeof infrastructureComponents>
 
 export const project = {
   type: 'object',

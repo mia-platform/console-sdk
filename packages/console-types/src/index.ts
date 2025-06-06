@@ -64,6 +64,8 @@ import {
   project,
   tagName,
   containerRegistry,
+  infrastructureComponent,
+  infrastructureComponents,
 } from './types/project'
 import {
   configMap,
@@ -211,6 +213,9 @@ export {
   containerRegistryHostnameString,
 
   providerCapabilitiesSchema,
+
+  infrastructureComponent,
+  infrastructureComponents,
 }
 
 export type {
@@ -257,6 +262,7 @@ export type {
   ProjectEnvironmentLink,
   AISettings,
   InfrastructureComponent,
+  InfrastructureComponents,
 } from './types/project'
 
 export {
