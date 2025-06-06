@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.2
+
+### Patch Changes
+
+- 5115c7a: exported InfrastructureComponents type and schemas
+
 ## 0.38.1
 
 ### Patch Changes
