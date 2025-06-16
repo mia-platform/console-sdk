@@ -35,7 +35,7 @@ t.test('catalog item type definition', t => {
       metadata: {
         namespace: { scope: 'tenant', id: 'mia-platform' },
         name: 'plugin',
-        creationTimestamp: '2025-06-16T:12:00:00.000Z',
+        creationTimestamp: '2025-06-16T12:00:00.000Z',
         visibility: { scope: 'console' },
       },
       spec: {
@@ -52,13 +52,12 @@ t.test('catalog item type definition', t => {
 
   t.test('all fields', t => {
     const data: Required<Item> = {
-      $schema: 'schema-url',
       apiVersion: 'software-catalog.mia-platform.eu/v1',
       kind: 'item-type-definition',
       metadata: {
         namespace: { scope: 'tenant', id: 'my-company' },
         name: 'my-plugin',
-        creationTimestamp: '2025-06-16T:12:00:00.000Z',
+        creationTimestamp: '2025-06-16T12:00:00.000Z',
         visibility: { scope: 'tenant', ids: ['my-company'] },
         displayName: 'My plugin definition',
         description: 'Dentition for a custom plugin type',
