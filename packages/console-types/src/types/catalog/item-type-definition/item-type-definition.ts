@@ -52,12 +52,8 @@ export const itemSchema = {
   description: 'A resource of this kind extends the Software Catalog by adding a new custom item type',
   type: 'object',
   properties: {
-    $schema: { type: 'string' },
-
     apiVersion: { const: 'software-catalog.mia-platform.eu/v1' },
-
     kind: { const: 'item-type-definition' },
-
     metadata: {
       description: 'Descriptive properties referring to this type definition entity itself',
       type: 'object',
@@ -236,7 +232,6 @@ export const itemSchema = {
       additionalProperties: true,
       required: ['namespace', 'name', 'creationTimestamp', 'visibility'],
     },
-
     spec: {
       description: 'State definition referring to the items of the type defined by this type definition entity',
       type: 'object',
