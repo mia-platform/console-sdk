@@ -16,8 +16,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export * from './crd'
-export * from './item'
-export * from './item-type-definition'
-export * from './misc'
-export * from './well-known-items'
+import { itemSchema } from './item-type-definition'
+import type * as ICatalogItemTypeDefinition from './item-type-definition'
+
+export const catalogItemTypeDefinitionData = { itemSchema }
+
+export type {
+  ICatalogItemTypeDefinition,
+}
