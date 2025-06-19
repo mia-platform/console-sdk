@@ -22,9 +22,11 @@ import path from 'path'
 import { clone, lensPath, set } from 'ramda'
 
 import {
+  catalogItemTypeDefinitionSchema,
   catalogItemSchema,
   catalogItemManifestSchema,
   catalogWellKnownItems,
+  type CatalogItemTypeDefinition,
   type CatalogItemManifest,
   type CatalogWellKnownItemData,
   type CatalogItem,
@@ -34,6 +36,19 @@ import { JSONSchema } from '../src/commons/json-schema'
 const comment = 'This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.'
 
 const outDir = path.resolve(process.cwd(), 'schemas/catalog')
+
+const buildItemTypeDefinitionSchema = async(): Promise<void> => {
+  let itemTypeDefinition = clone({
+    $comment: comment,
+    ...catalogItemTypeDefinitionSchema,
+  }) as unknown as CatalogItemTypeDefinition
+
+  itemTypeDefinition = set(lensPath(['properties', '$schema']), { type: 'string' }, itemTypeDefinition)
+
+  await fs.writeFile(path.resolve(outDir, 'item-type-definition.schema.json'), JSON.stringify(itemTypeDefinition, null, 2))
+
+  console.log(`✓ Compiled schema from "item type definition"`)
+}
 
 const buildItemSchema = async(): Promise<void> => {
   let item = clone({ $comment: comment, ...catalogItemSchema }) as unknown as CatalogItem
@@ -125,6 +140,7 @@ const main = async(): Promise<void> => {
   await fs.rm(outDir, { recursive: true, force: true })
   await fs.mkdir(outDir, { recursive: true })
 
+  await buildItemTypeDefinitionSchema()
   await buildItemSchema()
   await buildManifestSchema()
   await buildWellKnownItemsSchemas()
