@@ -19,37 +19,13 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import { JSONSchema } from '../../../commons/json-schema'
-
-const typeReferenceJsonSchema = {
-  $id: 'http://json-schema.org/draft-07/schema',
-  type: 'object',
-  additionalProperties: true,
-} as const satisfies JSONSchema
-
-const imageSchema = {
-  description: 'Representation of an image resource',
-  type: 'object',
-  properties: {
-    mediaType: {
-      description: 'MIME type of the image',
-      type: 'string',
-      enum: ['image/png', 'image/svg+xml'],
-    },
-    base64Data: {
-      description: 'Image data encoded in Base64 format',
-      type: 'string',
-      contentEncoding: 'base64',
-    },
-  },
-  additionalProperties: false,
-  required: ['mediaType', 'base64Data'],
-} as const satisfies JSONSchema
+import { imageSchema } from './commons'
 
 export const itemSchema = {
   $id: 'catalog-itd.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'Software Catalog item type definition',
-  description: 'A resource of this kind extends the Software Catalog by adding a new custom item type',
+  title: 'Software Catalog Item Type Definition',
+  description: 'Data model of a Software Catalog Item Type Definition',
   type: 'object',
   properties: {
     apiVersion: { const: 'software-catalog.mia-platform.eu/v1' },
@@ -119,13 +95,19 @@ export const itemSchema = {
         },
 
         displayName: {
-          description: 'Display name of the resource',
+          description: 'Display name of the resource. Clients may also use it as the display name associated with the items of the defined type',
           type: 'string',
+          minLength: 1,
         },
 
         description: {
-          description: 'Human-readable description of the resource',
+          description: 'Display name of the resource. Clients may also use it as the description associated with the items of the defined type',
           type: 'string',
+        },
+
+        icon: {
+          ...imageSchema,
+          description: 'Icon of the resource. Clients may also use it as the icon associated with the items of the defined type',
         },
 
         labels: {
@@ -250,40 +232,6 @@ export const itemSchema = {
           enum: ['tenant'],
         },
 
-        displayName: {
-          description: 'Display name associated with the items of the defined type. Defaults to `type`',
-          oneOf: [
-            { type: 'string' },
-            {
-              type: 'object',
-              properties: {
-                singular: {
-                  description: 'Singular display name',
-                  type: 'string',
-                  minLength: 1,
-                },
-                plural: {
-                  description: 'Plural display name',
-                  type: 'string',
-                  minLength: 1,
-                },
-              },
-              additionalProperties: false,
-              required: ['singular'],
-            },
-          ],
-        },
-
-        description: {
-          description: 'Description associated with the items of the defined type',
-          type: 'string',
-        },
-
-        icon: {
-          ...imageSchema,
-          description: 'Icon associated with the items of the defined type',
-        },
-
         isVersioningSupported: {
           description: 'Whether the defined item type supports versioning',
           type: 'boolean',
@@ -298,11 +246,7 @@ export const itemSchema = {
               type: 'object',
               properties: {
                 mechanism: { const: 'json-schema' },
-                // schema: {
-                //   type: 'object',
-                //   additionalProperties: true,
-                // },
-                schema: { $ref: 'http://json-schema.org/draft-07/schema#' },
+                schema: { type: 'object', additionalProperties: true },
               },
               additionalProperties: false,
               required: ['mechanism'],
@@ -333,7 +277,6 @@ export const itemSchema = {
       additionalProperties: true,
       required: ['type', 'scope'],
     },
-
     __v: {
       description: 'Read-only opaque value that represents the internal version of the document',
       type: 'integer',
@@ -342,7 +285,7 @@ export const itemSchema = {
     },
   },
   additionalProperties: false,
-  required: ['apiVersion', 'kind', 'metadata', 'spec', '__v'],
+  required: ['apiVersion', 'kind', 'metadata', 'spec'],
 } as const satisfies JSONSchema
 
-export type Item = FromSchema<typeof itemSchema, { references: [typeof typeReferenceJsonSchema] }>
+export type Item = FromSchema<typeof itemSchema>

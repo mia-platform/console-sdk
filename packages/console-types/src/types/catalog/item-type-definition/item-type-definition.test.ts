@@ -59,8 +59,9 @@ t.test('catalog item type definition', t => {
         name: 'my-plugin',
         creationTimestamp: '2025-06-16T12:00:00.000Z',
         visibility: { scope: 'tenant', ids: ['my-company'] },
-        displayName: 'My plugin definition',
-        description: 'Dentition for a custom plugin type',
+        displayName: 'Plugin',
+        description: 'A custom plugin',
+        icon: { mediaType: 'image/svg+xml', base64Data: 'abc' },
         labels: { foo: 'bar' },
         annotations: { bar: 'foo' },
         tags: ['tag-1'],
@@ -76,9 +77,6 @@ t.test('catalog item type definition', t => {
       spec: {
         type: 'plugin',
         scope: 'tenant',
-        displayName: { singular: 'My plugin', plural: 'My plugins' },
-        description: 'A custom plugin',
-        icon: { mediaType: 'image/svg+xml', base64Data: 'abc' },
         isVersioningSupported: true,
         validation: {
           mechanism: 'json-schema',
