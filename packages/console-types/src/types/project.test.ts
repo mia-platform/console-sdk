@@ -489,7 +489,7 @@ t.test('project validated', t => {
   })
 
   t.test('infrastructure project', t => {
-    t.test('base project', t => {
+    t.test('project with gitlab', t => {
       // Includes two components, one with webhook active and one without
       const project: IProject = {
         name: 'template-name',
@@ -505,6 +505,7 @@ t.test('project validated', t => {
               repoUrl: 'repo-url',
             },
             pipelineInfo: {
+              providerType: 'gitlab-ci',
               projectId: '120011',
               refName: 'main',
               pipelineEventWebhookId: '12345',
@@ -561,7 +562,7 @@ t.test('project validated', t => {
       t.end()
     })
 
-    t.test('project with organization name and pipelineId', t => {
+    t.test('project with azure (requires organizationName and pipelineId)', t => {
       // Includes one component only
       const project: IProject = {
         name: 'template-name',
@@ -577,6 +578,7 @@ t.test('project validated', t => {
               repoUrl: 'repo-url',
             },
             pipelineInfo: {
+              providerType: 'azure-pipelines',
               organizationName: 'my-organization-name',
               projectId: 'my-project-id',
               pipelineId: 'my-pipeline-id',

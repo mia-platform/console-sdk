@@ -499,50 +499,94 @@ export const infrastructureComponent = {
       },
     },
     pipelineInfo: {
-      type: 'object',
-      required: ['projectId'],
-      additionalProperties: false,
-      properties: {
-        providerId: {
-          type: 'string',
-          description: 'Provider identifier. To be used in case you want to override the main project provider',
-        },
-        providerType: {
-          type: 'string',
-          description: 'Type of the provider',
-        },
-        organizationName: {
-          type: 'string',
-          description: 'Name of the organization in the Git provider that hosts the component. Required for Azure Pipelines and GitHub Actions',
-        },
-        projectId: {
-          type: 'string',
-          description: 'ID of the project in the git provider, used to call the provider API to handle the component deployment',
-        },
-        refName: {
-          type: 'string',
-          description: 'Name of the ref (branch/tag) used to trigger the pipeline and its jobs',
-        },
-        pipelineId: {
-          type: 'string',
-          description: 'ID of the pipeline configured in the git provider. Required for Azure Pipelines and GitHub Actions',
-        },
-        pipelineEventWebhookId: {
-          type: 'string',
-          description: 'ID of the pipeline event webhook configured in the git provider',
-        },
-        statusWebhookSecretCredentialsId: {
-          type: 'string',
-          description: 'ID of the credential item that includes the secret used to authenticate the webhook',
-        },
-        jobs: {
+      oneOf: [
+        {
           type: 'object',
+          required: ['projectId', 'refName'],
+          additionalProperties: false,
           properties: {
-            planJobName: { type: 'string' },
-            applyJobName: { type: 'string' },
+            providerType: {
+              type: 'string',
+              const: DEPLOYMENT_TYPES.GITLAB_CI,
+              description: 'Type of the provider',
+            },
+            providerId: {
+              type: 'string',
+              description: 'Provider identifier. To be used in case you want to override the main project provider',
+            },
+            projectId: {
+              type: 'string',
+              description: 'ID of the project in the git provider, used to call the provider API to handle the component deployment',
+            },
+            refName: {
+              type: 'string',
+              description: 'Name of the ref (branch/tag) used to trigger the pipeline and its jobs',
+            },
+            pipelineEventWebhookId: {
+              type: 'string',
+              description: 'ID of the pipeline event webhook configured in the git provider',
+            },
+            statusWebhookSecretCredentialsId: {
+              type: 'string',
+              description: 'ID of the credential item that includes the secret used to authenticate the webhook',
+            },
+            jobs: {
+              type: 'object',
+              properties: {
+                planJobName: { type: 'string' },
+                applyJobName: { type: 'string' },
+              },
+            },
           },
         },
-      },
+        {
+          type: 'object',
+          required: ['providerType', 'organizationName', 'projectId', 'pipelineId', 'refName'],
+          additionalProperties: false,
+          properties: {
+            providerType: {
+              type: 'string',
+              const: 'azure-pipelines',
+              description: 'Type of the provider',
+            },
+            providerId: {
+              type: 'string',
+              description: 'Provider identifier. To be used in case you want to override the main project provider',
+            },
+            organizationName: {
+              type: 'string',
+              description: 'Name of the organization in the Git provider that hosts the component. Required for Azure Pipelines and GitHub Actions',
+            },
+            projectId: {
+              type: 'string',
+              description: 'ID of the project in the git provider, used to call the provider API to handle the component deployment',
+            },
+            refName: {
+              type: 'string',
+              description: 'Name of the ref (branch/tag) used to trigger the pipeline and its jobs',
+            },
+            pipelineId: {
+              type: 'string',
+              description: 'ID of the pipeline configured in the git provider. Required for Azure Pipelines and GitHub Actions',
+            },
+            pipelineEventWebhookId: {
+              type: 'string',
+              description: 'ID of the pipeline event webhook configured in the git provider',
+            },
+            statusWebhookSecretCredentialsId: {
+              type: 'string',
+              description: 'ID of the credential item that includes the secret used to authenticate the webhook',
+            },
+            jobs: {
+              type: 'object',
+              properties: {
+                planJobName: { type: 'string' },
+                applyJobName: { type: 'string' },
+              },
+            },
+          },
+        },
+      ],
     },
   },
   required: ['name', 'gitInfo', 'pipelineInfo'],
