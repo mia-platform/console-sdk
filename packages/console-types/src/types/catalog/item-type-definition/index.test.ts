@@ -21,15 +21,15 @@ import t from 'tap'
 import addFormats from 'ajv-formats'
 
 import { validationMessage } from '../../validate-utils.test'
-import { type Item, itemSchema } from './item-type-definition'
+import { type CatalogItemTypeDefinition, catalogItemTypeDefinitionSchema } from '.'
 
 t.test('catalog item type definition', t => {
   const ajv = new Ajv()
   addFormats(ajv)
-  const validate = ajv.compile<Item>(itemSchema)
+  const validate = ajv.compile<CatalogItemTypeDefinition>(catalogItemTypeDefinitionSchema)
 
   t.test('only required fields', t => {
-    const data: Item = {
+    const data: CatalogItemTypeDefinition = {
       apiVersion: 'software-catalog.mia-platform.eu/v1',
       kind: 'item-type-definition',
       metadata: {
@@ -51,7 +51,7 @@ t.test('catalog item type definition', t => {
   })
 
   t.test('all fields', t => {
-    const data: Required<Item> = {
+    const data: Required<CatalogItemTypeDefinition> = {
       apiVersion: 'software-catalog.mia-platform.eu/v1',
       kind: 'item-type-definition',
       metadata: {
