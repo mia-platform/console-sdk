@@ -505,19 +505,27 @@ export const infrastructureComponent = {
       properties: {
         providerId: {
           type: 'string',
-          description: 'optional provider id to be used in case you want to override the main project provider',
+          description: 'Provider identifier. To be used in case you want to override the main project provider',
         },
         providerType: {
           type: 'string',
-          description: 'type of the provider',
+          description: 'Type of the provider',
+        },
+        organizationName: {
+          type: 'string',
+          description: 'Name of the organization in the Git provider that hosts the component. Required for Azure Pipelines and GitHub Actions',
         },
         projectId: {
           type: 'string',
-          description: 'ID of the project in the git provider, used for pipeline triggers etc',
+          description: 'ID of the project in the git provider, used to call the provider API to handle the component deployment',
         },
         refName: {
           type: 'string',
-          description: 'Name of the ref used to trigger the pipeline',
+          description: 'Name of the ref (branch/tag) used to trigger the pipeline and its jobs',
+        },
+        pipelineId: {
+          type: 'string',
+          description: 'ID of the pipeline configured in the git provider. Required for Azure Pipelines and GitHub Actions',
         },
         pipelineEventWebhookId: {
           type: 'string',
@@ -537,6 +545,7 @@ export const infrastructureComponent = {
       },
     },
   },
+  required: ['name', 'gitInfo', 'pipelineInfo'],
 } as const
 export type InfrastructureComponent = FromSchema<typeof infrastructureComponent>
 
