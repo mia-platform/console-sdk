@@ -507,7 +507,12 @@ export const infrastructureComponent = {
           properties: {
             providerType: {
               type: 'string',
-              const: DEPLOYMENT_TYPES.GITLAB_CI,
+              enum: [
+                DEPLOYMENT_TYPES.GITLAB_CI,
+                DEPLOYMENT_TYPES.GITHUB,
+                DEPLOYMENT_TYPES.WEBHOOK,
+                DEPLOYMENT_TYPES.JENKINS,
+              ],
               description: 'Type of the provider',
             },
             providerId: {
@@ -546,7 +551,7 @@ export const infrastructureComponent = {
           properties: {
             providerType: {
               type: 'string',
-              const: 'azure-pipelines',
+              const: DEPLOYMENT_TYPES.AZURE_PIPELINES,
               description: 'Type of the provider',
             },
             providerId: {
