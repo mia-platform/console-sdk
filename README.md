@@ -29,7 +29,7 @@ To use this repository
 ```bash
 npm install @mia-platform/console-sdk-microfrontend
 npm install @mia-platform/console-sdk-vite-helpers
-npm install @mia-platform/console-sdk-webapack-helpers
+npm install @mia-platform/console-sdk-webpack-helpers
 ```
 
 ## Local Development
