@@ -489,74 +489,135 @@ t.test('project validated', t => {
   })
 
   t.test('infrastructure project', t => {
-    // Includes two components, one with webhook active and one without
-    const project: IProject = {
-      name: 'template-name',
-      configurationGitPath: 'config-path',
-      projectId: 'my-project-id',
-      repositoryUrl: 'repo-url',
-      _id: 'object-id',
-      flavor: 'infrastructure',
-      infrastructureComponents: {
-        'component-1': {
-          name: 'component-1',
-          gitInfo: {
-            repoUrl: 'repo-url',
+    t.test('project with gitlab', t => {
+      // Includes two components, one with webhook active and one without
+      const project: IProject = {
+        name: 'template-name',
+        configurationGitPath: 'config-path',
+        projectId: 'my-project-id',
+        repositoryUrl: 'repo-url',
+        _id: 'object-id',
+        flavor: 'infrastructure',
+        infrastructureComponents: {
+          'component-1': {
+            name: 'component-1',
+            gitInfo: {
+              repoUrl: 'repo-url',
+            },
+            pipelineInfo: {
+              providerType: 'gitlab-ci',
+              projectId: '120011',
+              refName: 'main',
+              pipelineEventWebhookId: '12345',
+              statusWebhookSecretCredentialsId: 'credential-id',
+            },
           },
-          pipelineInfo: {
-            projectId: '120011',
-            refName: 'main',
-            pipelineEventWebhookId: '12345',
-            statusWebhookSecretCredentialsId: 'credential-id',
+          'component-2': {
+            name: 'component-2',
+            gitInfo: {
+              repoUrl: 'repo-url',
+            },
+            pipelineInfo: {
+              projectId: '120011',
+              refName: 'main',
+            },
           },
         },
-        'component-2': {
-          name: 'component-2',
-          gitInfo: {
-            repoUrl: 'repo-url',
-          },
-          pipelineInfo: {
-            projectId: '120011',
-            refName: 'main',
+        originalTemplate: { id: 'templateid', name: 'template name' },
+        environments: [],
+        repository: {
+          providerId: 'provider-id',
+          provider: {
+            type: 'gitlab',
+            baseUrl: 'base-url',
+            apiBaseUrl: 'api-base-url',
+            accessToken: 'my-secret-access-token',
+            providerId: 'provider-id',
           },
         },
-      },
-      originalTemplate: { id: 'templateid', name: 'template name' },
-      environments: [],
-      repository: {
-        providerId: 'provider-id',
-        provider: {
+        description: 'my description',
+        environmentsVariables: {
           type: 'gitlab',
           baseUrl: 'base-url',
-          apiBaseUrl: 'api-base-url',
-          accessToken: 'my-secret-access-token',
-          providerId: 'provider-id',
+          storage: {
+            type: 'groups',
+            id: '123',
+          },
         },
-      },
-      description: 'my description',
-      environmentsVariables: {
-        type: 'gitlab',
-        baseUrl: 'base-url',
-        storage: {
-          type: 'groups',
-          id: '123',
+        enabledServices: {},
+        pipelines: {
+          type: 'gitlab-ci',
         },
-      },
-      enabledServices: {},
-      pipelines: {
-        type: 'gitlab-ci',
-      },
-      tenantId: 'my-tenant',
-      color: '#666666',
-      info: {
-        projectOwner: 'the owner',
-        teamContact: 'the team contact',
-        technologies: ['node', 'golang'],
-      },
-      layerId: 'layer',
-    }
+        tenantId: 'my-tenant',
+        color: '#666666',
+        info: {
+          projectOwner: 'the owner',
+          teamContact: 'the team contact',
+          technologies: ['node', 'golang'],
+        },
+        layerId: 'layer',
+      }
 
-    t.ok(validate(project), validationMessage(validate.errors))
+      t.ok(validate(project), validationMessage(validate.errors))
+      t.end()
+    })
+
+    t.test('project with azure (requires organizationName and pipelineId)', t => {
+      // Includes one component only
+      const project: IProject = {
+        name: 'template-name',
+        configurationGitPath: 'config-path',
+        projectId: 'my-project-id',
+        repositoryUrl: 'repo-url',
+        _id: 'object-id',
+        flavor: 'infrastructure',
+        infrastructureComponents: {
+          'component-1': {
+            name: 'component-1',
+            gitInfo: {
+              repoUrl: 'repo-url',
+            },
+            pipelineInfo: {
+              providerType: 'azure-pipelines',
+              organizationName: 'my-organization-name',
+              projectId: 'my-project-id',
+              pipelineId: 'my-pipeline-id',
+              refName: 'main',
+              pipelineEventWebhookId: '12345',
+              statusWebhookSecretCredentialsId: 'credential-id',
+            },
+          },
+        },
+        originalTemplate: { id: 'templateid', name: 'template name' },
+        environments: [],
+        repository: {
+          providerId: 'provider-id',
+          provider: {
+            type: 'gitlab',
+            baseUrl: 'base-url',
+            apiBaseUrl: 'api-base-url',
+            accessToken: 'my-secret-access-token',
+            providerId: 'provider-id',
+          },
+        },
+        description: 'my description',
+        enabledServices: {},
+        pipelines: {
+          type: 'azure-pipelines',
+        },
+        tenantId: 'my-tenant',
+        color: '#666666',
+        info: {
+          projectOwner: 'the owner',
+          teamContact: 'the team contact',
+          technologies: ['node', 'golang'],
+        },
+        layerId: 'layer',
+      }
+
+      t.ok(validate(project), validationMessage(validate.errors))
+      t.end()
+    })
     t.end()
   })
 
