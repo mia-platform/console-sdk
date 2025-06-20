@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.3
+
+### Patch Changes
+
+- e0e3edc: feat(project): additional fields for infrastructure components
+
 ## 0.38.2
 
 ### Patch Changes
