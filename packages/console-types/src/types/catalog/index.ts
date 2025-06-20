@@ -16,7 +16,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export * from './crd'
 export * from './item'
 export * from './item-type-definition'
 export * from './misc'

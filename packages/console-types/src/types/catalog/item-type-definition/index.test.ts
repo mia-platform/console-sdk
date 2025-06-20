@@ -35,7 +35,6 @@ t.test('catalog item type definition', t => {
       metadata: {
         namespace: { scope: 'tenant', id: 'mia-platform' },
         name: 'plugin',
-        creationTimestamp: '2025-06-16T12:00:00.000Z',
         visibility: { scope: 'console' },
       },
       spec: {
@@ -57,11 +56,11 @@ t.test('catalog item type definition', t => {
       metadata: {
         namespace: { scope: 'tenant', id: 'my-company' },
         name: 'my-plugin',
-        creationTimestamp: '2025-06-16T12:00:00.000Z',
         visibility: { scope: 'tenant', ids: ['my-company'] },
         displayName: 'Plugin',
         description: 'A custom plugin',
         icon: { mediaType: 'image/svg+xml', base64Data: 'abc' },
+        documentation: { type: 'external', url: 'https://example.com' },
         labels: { foo: 'bar' },
         annotations: { bar: 'foo' },
         tags: ['tag-1'],

@@ -28,6 +28,7 @@ import { catalogPluginServiceSchema } from './plugin'
 import { catalogTemplateServiceSchema } from './template'
 import { catalogProxyServiceSchema } from './proxy'
 import { CatalogWellKnownItemData } from '.'
+import { wkiDefinitionMaintainers, wkiDefinitionNamespace, wkiDefinitionPublisher, wkiDefinitionVisibility } from './utils'
 
 type ItemModule = { data: CatalogWellKnownItemData }
 
@@ -61,16 +62,19 @@ t.test('catalog well-known items', async t => {
       t.end()
     })
 
-    t.test(`${testCase.itemName} CRD should be valid`, async t => {
+    t.test(`${testCase.itemName} ITD should be valid`, async t => {
       const { data: itemData } = await import(testCase.indexPath) as ItemModule
 
-      t.hasProp(itemData, 'crd')
+      t.hasProp(itemData, 'typeDefinition')
 
-      t.equal(itemData.crd!.resources.name, itemData.type)
+      t.same(itemData.typeDefinition.metadata.namespace, wkiDefinitionNamespace)
+      t.equal(itemData.typeDefinition.metadata.name, itemData.type)
+      t.same(itemData.typeDefinition.metadata.visibility, wkiDefinitionVisibility)
+      t.same(itemData.typeDefinition.metadata.maintainers, wkiDefinitionMaintainers)
+      t.same(itemData.typeDefinition.metadata.publisher, wkiDefinitionPublisher)
+      t.same(itemData.typeDefinition.spec.type, itemData.type)
 
-      if (itemData.crd!.resources.validation?.jsonSchema) {
-        t.doesNotThrow(() => ajv.compile(itemData.crd!.resources.validation!.jsonSchema as JSONSchema))
-      }
+      t.doesNotThrow(() => ajv.compile(itemData.typeDefinition.spec.validation?.schema as JSONSchema))
 
       t.end()
     })
