@@ -87,7 +87,7 @@ const buildWellKnownItemsSchemas = async(): Promise<void> => {
     manifest = set(lensPath(['properties', 'resources', 'description']), undefined, manifest)
     manifest = set(lensPath(['properties', 'resources', 'title']), undefined, manifest)
 
-    if (!data.crd.resources.isVersioningSupported) {
+    if (!data.typeDefinition.spec.isVersioningSupported) {
       manifest = set(lensPath(['properties', 'version']), undefined, manifest)
     }
 

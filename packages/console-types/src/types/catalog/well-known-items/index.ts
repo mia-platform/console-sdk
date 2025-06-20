@@ -17,7 +17,7 @@
  */
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import type { ICatalogCrd } from '../crd'
+import { CatalogItemTypeDefinition } from '../item-type-definition'
 import { data as catalogApplicationData } from './application'
 import type * as ICatalogApplication from './application'
 import { data as catalogExampleData } from './example'
@@ -41,7 +41,7 @@ import * as catalogWellKnownItemsCommonSchemas from './commons'
 type CatalogWellKnownItemData<T = string> = {
   type: T
   resourcesSchema: JSONSchema
-  crd: ICatalogCrd.Item
+  typeDefinition: CatalogItemTypeDefinition
 }
 
 type CatalogWellKnownItemsType = |

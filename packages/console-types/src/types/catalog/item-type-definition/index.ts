@@ -57,12 +57,6 @@ export const catalogItemTypeDefinitionSchema = {
           maxLength: 63,
         },
 
-        creationTimestamp: {
-          description: 'RFC 3339 date of the date and time the resource was created',
-          type: 'string',
-          pattern: '^((?:(\\d{4}-\\d{2}-\\d{2})T(\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?))(Z|[\\+-]\\d{2}:\\d{2})?)$',
-        },
-
         visibility: {
           description: 'Visibility on the resource',
           oneOf: [
@@ -110,8 +104,25 @@ export const catalogItemTypeDefinitionSchema = {
           description: 'Icon of the resource. Clients may also use it as the icon associated with the items of the defined type',
         },
 
+        documentation: {
+          description: 'Documentation regarding the resource. Clients may also use it as the documentation associated with the items of the defined type',
+          oneOf: [
+            {
+              description: 'External documentation',
+              type: 'object',
+              properties: {
+                type: { const: 'external' },
+                url: { type: 'string' },
+              },
+              additionalProperties: false,
+              required: ['type', 'url'],
+            },
+          ],
+        },
+
         labels: {
           description: 'Set of identifying key/value pairs akin to Kubernetes object labels',
+          type: 'object',
           patternProperties: {
             '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$': {
               type: 'string',
@@ -124,6 +135,7 @@ export const catalogItemTypeDefinitionSchema = {
 
         annotations: {
           description: 'Set of non-identifying key/value pairs akin to Kubernetes object annotations',
+          type: 'object',
           patternProperties: {
             '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$': {
               type: 'string',
@@ -212,7 +224,7 @@ export const catalogItemTypeDefinitionSchema = {
         },
       },
       additionalProperties: true,
-      required: ['namespace', 'name', 'creationTimestamp', 'visibility'],
+      required: ['namespace', 'name', 'visibility'],
     },
     spec: {
       description: 'State definition referring to the items of the type defined by this type definition entity',
