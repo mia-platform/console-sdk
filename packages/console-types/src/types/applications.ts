@@ -19,6 +19,7 @@
 import { collectionName } from './collections'
 import { endpoint } from './endpoints'
 import { serviceName } from './services'
+import { sourceMarketplaceItem } from './shared'
 
 const applicationName = {
   type: 'string',
@@ -91,6 +92,7 @@ export const application = {
         },
       },
     },
+    sourceMarketplaceItem,
   },
 } as const
 
