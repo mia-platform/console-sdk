@@ -105,6 +105,28 @@ Object {
               },
               "type": "object",
             },
+            "sourceMarketplaceItem": Object {
+              "properties": Object {
+                "detached": Object {
+                  "type": "boolean",
+                },
+                "itemId": Object {
+                  "type": "string",
+                },
+                "tenantId": Object {
+                  "type": "string",
+                },
+                "version": Object {
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "itemId",
+                "version",
+                "tenantId",
+              ],
+              "type": "object",
+            },
           },
           "type": "object",
         },
