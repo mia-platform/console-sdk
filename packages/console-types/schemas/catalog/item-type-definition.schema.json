@@ -53,7 +53,6 @@
                   "const": "console"
                 }
               },
-              "additionalProperties": false,
               "required": [
                 "scope"
               ]
@@ -75,7 +74,6 @@
                   "maxItems": 1
                 }
               },
-              "additionalProperties": false,
               "required": [
                 "scope",
                 "ids"
@@ -344,8 +342,7 @@
     "__v": {
       "description": "Read-only opaque value that represents the internal version of the document",
       "type": "integer",
-      "minimum": 0,
-      "default": 0
+      "minimum": 0
     },
     "$schema": {
       "type": "string"

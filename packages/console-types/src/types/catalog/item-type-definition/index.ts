@@ -66,7 +66,6 @@ export const catalogItemTypeDefinitionSchema = {
               properties: {
                 scope: { const: 'console' },
               },
-              additionalProperties: false,
               required: ['scope'],
             },
             {
@@ -82,7 +81,6 @@ export const catalogItemTypeDefinitionSchema = {
                   maxItems: 1,
                 },
               },
-              additionalProperties: false,
               required: ['scope', 'ids'],
             },
           ],
@@ -293,7 +291,6 @@ export const catalogItemTypeDefinitionSchema = {
       description: 'Read-only opaque value that represents the internal version of the document',
       type: 'integer',
       minimum: 0,
-      default: 0,
     },
   },
   additionalProperties: false,

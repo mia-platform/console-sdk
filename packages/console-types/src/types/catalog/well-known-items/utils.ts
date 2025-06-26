@@ -4,8 +4,9 @@ export const wkiDefinitionNamespace: CatalogItemTypeDefinition['metadata']['name
 
 export const wkiDefinitionVisibility: CatalogItemTypeDefinition['metadata']['visibility'] = { scope: 'console' }
 
-// TODO: define maintainers
-export const wkiDefinitionMaintainers: CatalogItemTypeDefinition['metadata']['maintainers'] = []
+export const wkiDefinitionMaintainers: CatalogItemTypeDefinition['metadata']['maintainers'] = [
+  { name: 'Mia-Platform', email: 'support@mia-platform.eu' },
+]
 
 export const wkiDefinitionPublisher: CatalogItemTypeDefinition['metadata']['publisher'] = {
   name: 'Mia-Platform',
