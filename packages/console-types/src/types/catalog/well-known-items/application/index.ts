@@ -21,6 +21,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { collection } from '../../../collections'
 import { endpoint } from '../../../endpoints'
+import type { ICatalogCrd } from '../../crd'
 import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import { listenerSchema, nameSchema } from '../commons'
@@ -224,10 +225,62 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
+const crd: ICatalogCrd.Item = {
+  name: 'application',
+  itemId: 'application-definition',
+  description: 'Application Custom Resource Definition',
+  tenantId: 'mia-platform',
+  resources: {
+    name: type,
+    isVersioningSupported: false,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            '<change-with-your-plugin-name>': {
+              name: '<change-with-your-plugin-name>',
+              type: 'plugin',
+              dockerImage: '<change-with-your-plugin-docker-image>',
+            },
+          },
+          endpoints: {
+            '<change-with-your-endpoint-base-path>': {
+              defaultBasePath: '<change-with-your-endpoint-base-path>',
+              service: '<change-with-the-service-exposing-the-endpoint>',
+              type: 'custom',
+              tags: [
+                'custom',
+              ],
+            },
+          },
+          collections: {
+            '<change-with-your-collection-name>': {
+              defaultName: '<change-with-your-collection-name>',
+              type: 'collection',
+              internalEndpoints: [
+                {
+                  basePath: '<change-with-the-collection-endpoint-base-path>',
+                },
+              ],
+            },
+          },
+          unsecretedVariables: {
+            '<change-with-your-variable-name>': {
+              productionEnv: '<change-with-your-value>',
+              noProductionEnv: '<change-with-your-value>',
+            },
+          },
+        },
+      },
+    },
+  },
+}
+
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
 
 export type { Collection, Endpoint, UnsecretedVariable }
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }

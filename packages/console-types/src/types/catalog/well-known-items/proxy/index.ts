@@ -20,6 +20,7 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
 import { host } from '../../../services'
+import { ICatalogCrd } from '../../crd'
 import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import { defaultHeadersSchema, nameSchema, descriptionSchema } from '../commons'
@@ -143,9 +144,34 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
+const crd: ICatalogCrd.Item = {
+  name: 'proxy',
+  itemId: 'proxy-definition',
+  description: 'Proxy Custom Resource Definition',
+  tenantId: 'mia-platform',
+  resources: {
+    name: type,
+    isVersioningSupported: false,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            '<change-with-your-proxy-name>': {
+              name: '<change-with-your-proxy-name>',
+              type: 'external',
+              url: 'https://example.com',
+            },
+          },
+        },
+      },
+    },
+  },
+}
+
 export type Service = FromSchema<typeof catalogProxyServiceSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }

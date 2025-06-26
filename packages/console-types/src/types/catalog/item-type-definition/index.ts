@@ -259,7 +259,7 @@ export const catalogItemTypeDefinitionSchema = {
                 schema: { type: 'object', additionalProperties: true },
               },
               additionalProperties: false,
-              required: ['mechanism'],
+              required: ['mechanism', 'schema'],
             },
           ],
         },

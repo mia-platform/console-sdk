@@ -19,6 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
+import { ICatalogCrd } from '../../crd'
 import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import { wkiDefinitionMaintainers, wkiDefinitionNamespace, wkiDefinitionPublisher, wkiDefinitionVersion, wkiDefinitionVisibility } from '../utils'
@@ -222,8 +223,30 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
+const crd: ICatalogCrd.Item = {
+  name: 'custom-resource',
+  itemId: 'custom-resource',
+  description: 'Custom Workload Resource Definition',
+  tenantId: 'mia-platform',
+  resources: {
+    name: type,
+    isVersioningSupported: true,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+      },
+    },
+    controlledFields: [
+      { key: 'apiVersion', jsonPath: 'meta.apiVersion' },
+      { key: 'kind', jsonPath: 'meta.kind' },
+      { key: 'type', jsonPath: 'runtime.type' },
+      { key: 'resourceId', jsonPath: 'runtime.resourceId' },
+    ],
+  },
+}
+
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }

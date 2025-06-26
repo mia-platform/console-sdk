@@ -19,6 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import { JSONSchema } from '../../../../commons/json-schema'
+import { ICatalogCrd } from '../../crd'
 import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import {
@@ -192,9 +193,34 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
+const crd: ICatalogCrd.Item = {
+  name: 'plugin',
+  itemId: 'plugin-definition',
+  description: 'Plugin Custom Resource Definition',
+  tenantId: 'mia-platform',
+  resources: {
+    name: type,
+    isVersioningSupported: true,
+    validation: {
+      jsonSchema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            '<change-with-your-plugin-name>': {
+              name: '<change-with-your-plugin-name>',
+              type: 'plugin',
+              dockerImage: '<change-with-your-plugin-docker-image>',
+            },
+          },
+        },
+      },
+    },
+  },
+}
+
 export type Service = FromSchema<typeof catalogPluginServiceSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }
