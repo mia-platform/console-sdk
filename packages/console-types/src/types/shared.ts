@@ -20,6 +20,17 @@ import { JSONSchema } from 'json-schema-to-ts'
 
 export const description = { type: 'string' } as const
 
+export const sourceMarketplaceItem = {
+  type: 'object',
+  properties: {
+    itemId: { type: 'string' },
+    version: { type: 'string' },
+    tenantId: { type: 'string' },
+    detached: { type: 'boolean' },
+  },
+  required: ['itemId', 'version', 'tenantId'],
+} as const
+
 export const buildType = (type: JSONSchema): JSONSchema => ({
   type: 'object',
   properties: {

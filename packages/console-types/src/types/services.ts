@@ -24,7 +24,7 @@ import { pick } from 'ramda'
 
 import { DIGIT_OR_INTERPOLATION_PATTERN, EnvironmentVariablesTypes, ServiceTypes } from '../constants/services'
 import { VALIDATION_ERROR_ID } from '../strings'
-import { description } from './shared'
+import { description, sourceMarketplaceItem } from './shared'
 import { ownersSchema } from './collections'
 
 export const serviceName = {
@@ -514,17 +514,6 @@ const serviceReplicas = {
     type: 'string',
     pattern: '^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$',
   },
-} as const
-
-const sourceMarketplaceItem = {
-  type: 'object',
-  properties: {
-    itemId: { type: 'string' },
-    version: { type: 'string' },
-    tenantId: { type: 'string' },
-    detached: { type: 'boolean' },
-  },
-  required: ['itemId', 'version', 'tenantId'],
 } as const
 
 const numericContainerPort = { ...port } as const
