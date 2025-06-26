@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.38.4
+
+### Patch Changes
+
+- 6ff869d: Add sourceMarketplaceItem to applications in GET /configuration
+- 0c537c8: fix: fix in infrastructureComponent schema to avoid usage of oneOf
+
 ## 0.38.3
 
 ### Patch Changes
