@@ -16,8 +16,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export * from './crd'
-export * from './item'
-export * from './item-type-definition'
-export * from './misc'
-export * from './well-known-items'
+import { JSONSchema } from '../../../commons/json-schema'
+
+export const imageSchema = {
+  description: 'Representation of an image resource',
+  type: 'object',
+  properties: {
+    mediaType: {
+      description: 'MIME type of the image',
+      type: 'string',
+      enum: ['image/png', 'image/svg+xml'],
+    },
+    base64Data: {
+      description: 'Image data encoded in Base64 format',
+      type: 'string',
+    },
+  },
+  additionalProperties: false,
+  required: ['mediaType', 'base64Data'],
+} as const satisfies JSONSchema

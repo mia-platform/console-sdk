@@ -23,7 +23,7 @@ import addFormats from 'ajv-formats'
 import { validationMessage } from '../../validate-utils.test'
 import { itemSchema, type Item } from './crd'
 
-t.test('catalog item', t => {
+t.test('catalog custom resource definition', t => {
   const ajv = new Ajv()
   addFormats(ajv)
   const validate = ajv.compile<Item>(itemSchema)

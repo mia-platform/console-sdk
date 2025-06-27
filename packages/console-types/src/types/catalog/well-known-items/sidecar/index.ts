@@ -19,7 +19,8 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import type { ICatalogCrd } from '../../crd'
+import { ICatalogCrd } from '../../crd'
+import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import {
   componentIdSchema,
@@ -35,6 +36,7 @@ import {
   dockerImageSchema,
   nameSchema,
 } from '../commons'
+import { wkiDefinitionMaintainers, wkiDefinitionNamespace, wkiDefinitionPublisher, wkiDefinitionVersion, wkiDefinitionVisibility } from '../utils'
 import type { CatalogWellKnownItemData } from '..'
 
 const type = 'sidecar'
@@ -108,6 +110,44 @@ const resourcesExamples: Resources[] = [
 
 const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
 
+const typeDefinition: CatalogItemTypeDefinition = {
+  apiVersion: 'software-catalog.mia-platform.eu/v1',
+  kind: 'item-type-definition',
+  metadata: {
+    namespace: wkiDefinitionNamespace,
+    name: type,
+    visibility: wkiDefinitionVisibility,
+    displayName: 'Sidecar',
+    description: 'A secondary container that enhances microservices with features like security, logging, or data synchronization.',
+    icon: {
+      mediaType: 'image/svg+xml',
+      base64Data: 'PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTguNTAwMzcgMkM4LjUwMDM3IDEuNzIzODYgOC4yNzY1MSAxLjUgOC4wMDAzNyAxLjVDNy43MjQyMiAxLjUgNy41MDAzNyAxLjcyMzg2IDcuNTAwMzcgMlYzLjcxMTMyTDQuMjg2MjUgNS41NjY5OUM0LjEzMTU1IDUuNjU2MyA0LjAzNjI1IDUuODIxMzcgNC4wMzYyNSA2VjdDNC4wMzYyNSA3LjI3NjE0IDQuMjYwMTEgNy41IDQuNTM2MjUgNy41QzQuODEyNCA3LjUgNS4wMzYyNSA3LjI3NjE0IDUuMDM2MjUgN1Y2LjI4ODY4TDguMDAwMzYgNC41NzczNUwxMC45NjQ1IDYuMjg4NjhWOS43MTEzMkw3Ljc1MDM2IDExLjU2N0M3LjUxMTIxIDExLjcwNTEgNy40MjkyNyAxMi4wMTA5IDcuNTY3MzQgMTIuMjVDNy43MDU0MSAxMi40ODkxIDguMDExMjEgMTIuNTcxMSA4LjI1MDM2IDEyLjQzM0wxMS40ODIxIDEwLjU2NzJMMTIuOTgyNCAxMS40MzM0QzEzLjIyMTYgMTEuNTcxNSAxMy41Mjc0IDExLjQ4OTUgMTMuNjY1NSAxMS4yNTA0QzEzLjgwMzUgMTEuMDExMiAxMy43MjE2IDEwLjcwNTUgMTMuNDgyNCAxMC41Njc0TDExLjk2NDUgOS42OTA5N1Y2QzExLjk2NDUgNS44MjEzNyAxMS44NjkyIDUuNjU2MyAxMS43MTQ1IDUuNTY2OTlMOC41MDAzNyAzLjcxMTMzVjJaIiBmaWxsPSJjdXJyZW50Y29sb3IiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMuNzAwNDIgOC41ODAzOEMzLjg4NjA2IDguNDczMjEgNC4xMTQ3OCA4LjQ3MzIxIDQuMzAwNDIgOC41ODAzOEw2LjI5ODUgOS43MzM5N0M2LjQ4NDE0IDkuODQxMTUgNi41OTg1IDEwLjAzOTIgNi41OTg1IDEwLjI1MzZWMTIuNTYwOEM2LjU5ODUgMTIuNzc1MSA2LjQ4NDE0IDEyLjk3MzIgNi4yOTg1IDEzLjA4MDRMNC4zMDA0MiAxNC4yMzRDNC4xMTQ3OCAxNC4zNDEyIDMuODg2MDYgMTQuMzQxMiAzLjcwMDQyIDE0LjIzNEwxLjcwMjM0IDEzLjA4MDRDMS41MTY3IDEyLjk3MzIgMS40MDIzNCAxMi43NzUxIDEuNDAyMzQgMTIuNTYwOFYxMC4yNTM2QzEuNDAyMzQgMTAuMDM5MiAxLjUxNjcgOS44NDExNSAxLjcwMjM0IDkuNzMzOTdMMy43MDA0MiA4LjU4MDM4Wk0yLjQwMjM0IDEwLjQ4NDVMNC4wMDA0MiA5LjU2MTg4TDUuNTk4NSAxMC40ODQ1VjEyLjMyOThMNC4wMDA0MiAxMy4yNTI1TDIuNDAyMzQgMTIuMzI5OFYxMC40ODQ1WiIgZmlsbD0iY3VycmVudGNvbG9yIi8+PC9zdmc+Cg==',
+    },
+    documentation: {
+      type: 'external',
+      url: 'https://docs.mia-platform.eu/docs/software-catalog/items-manifest/sidecar',
+    },
+    maintainers: wkiDefinitionMaintainers,
+    publisher: wkiDefinitionPublisher,
+  },
+  spec: {
+    type,
+    scope: 'tenant',
+    isVersioningSupported: false,
+    validation: {
+      mechanism: 'json-schema',
+      schema: {
+        ...resourcesSchema,
+        default: {
+          name: '<change-with-your-sidecar-name>',
+          dockerImage: '<change-with-your-sidecar-docker-image>',
+        },
+      },
+    },
+  },
+  __v: wkiDefinitionVersion,
+}
+
 const crd: ICatalogCrd.Item = {
   name: 'sidecar',
   itemId: 'sidecar-definition',
@@ -132,4 +172,4 @@ export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }

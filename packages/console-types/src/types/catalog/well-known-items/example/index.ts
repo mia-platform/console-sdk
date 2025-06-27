@@ -19,7 +19,8 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import type { ICatalogCrd } from '../../crd'
+import { ICatalogCrd } from '../../crd'
+import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import {
   archiveUrlSchema,
@@ -43,6 +44,7 @@ import {
   nameSchema,
   pipelinesSchema,
 } from '../commons'
+import { wkiDefinitionMaintainers, wkiDefinitionNamespace, wkiDefinitionPublisher, wkiDefinitionVersion, wkiDefinitionVisibility } from '../utils'
 import type { CatalogWellKnownItemData } from '..'
 
 const type = 'example'
@@ -136,6 +138,49 @@ const resourcesExamples: Resources[] = [
 
 const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
 
+const typeDefinition: CatalogItemTypeDefinition = {
+  apiVersion: 'software-catalog.mia-platform.eu/v1',
+  kind: 'item-type-definition',
+  metadata: {
+    namespace: wkiDefinitionNamespace,
+    name: type,
+    visibility: wkiDefinitionVisibility,
+    displayName: 'Example',
+    description: 'A pre-configured model with business logic, ready to modify for custom needs.',
+    icon: {
+      mediaType: 'image/svg+xml',
+      base64Data: 'PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTguNTAwMSAyLjVDOC41MDAxIDIuMjIzODYgOC4yNzYyNSAyIDguMDAwMSAyQzcuNzIzOTYgMiA3LjUwMDEgMi4yMjM4NiA3LjUwMDEgMi41VjQuMjA5OTZMNC4yNTIwNSA2LjA2NTg3QzQuMDk2MjUgNi4xNTQ4OSA0LjAwMDEgNi4zMjA1NyA0LjAwMDEgNi41VjEwLjIzMjRMMi4xNDI2MiAxMS40NzA3QzEuOTEyODYgMTEuNjIzOSAxLjg1MDc3IDExLjkzNDQgMi4wMDM5NSAxMi4xNjQxQzIuMTU3MTMgMTIuMzkzOSAyLjQ2NzU2IDEyLjQ1NiAyLjY5NzMzIDEyLjMwMjhMNC41MjAzNiAxMS4wODc0TDcuNzUyMjggMTIuOTM0MUM3LjkwNiAxMy4wMjIgOC4wOTQ3MSAxMy4wMjIgOC4yNDg0MiAxMi45MzQxTDExLjQ5OTEgMTEuMDc2NUwxMy40MTU2IDEyLjE4MjlDMTMuNjU0NyAxMi4zMjEgMTMuOTYwNSAxMi4yMzkxIDE0LjA5ODYgMTEuOTk5OUMxNC4yMzY2IDExLjc2MDggMTQuMTU0NyAxMS40NTUgMTMuOTE1NiAxMS4zMTY5TDEyLjAwMDEgMTAuMjExVjYuNUMxMi4wMDAxIDYuMzIwNTggMTEuOTA0IDYuMTU0OTEgMTEuNzQ4MiA2LjA2NTg5TDguNTAwMSA0LjIwOTcxVjIuNVpNNS4wMDAxIDEwLjIwOThWNi43OTAxN0w4LjAwMDMyIDUuMDc1ODhMMTEuMDAwMSA2Ljc5MDE1VjEwLjIwOThMOC4wMDAzMiAxMS45MjQxTDUuMDAwMSAxMC4yMDk4WiIgZmlsbD0iY3VycmVudGNvbG9yIiAvPjwvc3ZnPg==',
+    },
+    documentation: {
+      type: 'external',
+      url: 'https://docs.mia-platform.eu/docs/software-catalog/items-manifest/example',
+    },
+    maintainers: wkiDefinitionMaintainers,
+    publisher: wkiDefinitionPublisher,
+  },
+  spec: {
+    type,
+    scope: 'tenant',
+    isVersioningSupported: true,
+    validation: {
+      mechanism: 'json-schema',
+      schema: {
+        ...resourcesSchema,
+        default: {
+          services: {
+            '<change-with-your-example-name>': {
+              name: '<change-with-your-example-name>',
+              type: 'example',
+              archiveUrl: 'https://archive-url',
+            },
+          },
+        },
+      },
+    },
+  },
+  __v: wkiDefinitionVersion,
+}
+
 const crd: ICatalogCrd.Item = {
   name: 'example',
   itemId: 'example-definition',
@@ -161,9 +206,10 @@ const crd: ICatalogCrd.Item = {
   },
 }
 
+
 export type Service = FromSchema<typeof catalogExampleServiceSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }

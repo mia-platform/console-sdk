@@ -19,8 +19,10 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import type { ICatalogCrd } from '../../crd'
+import { ICatalogCrd } from '../../crd'
+import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
+import { wkiDefinitionMaintainers, wkiDefinitionNamespace, wkiDefinitionPublisher, wkiDefinitionVersion, wkiDefinitionVisibility } from '../utils'
 import type { CatalogWellKnownItemData } from '..'
 
 const type = 'infrastructure-component-runtime'
@@ -53,6 +55,38 @@ const resourcesSchema = {
   type: 'object',
 } as const satisfies JSONSchema
 
+const typeDefinition: CatalogItemTypeDefinition = {
+  apiVersion: 'software-catalog.mia-platform.eu/v1',
+  kind: 'item-type-definition',
+  metadata: {
+    namespace: wkiDefinitionNamespace,
+    name: type,
+    visibility: wkiDefinitionVisibility,
+    displayName: 'Infrastructure Component Runtime',
+    description: 'Infrastructure Component Runtime definition to be used in the Mia-Platform Console Infrastructure Projects to store runtime data from a Cloud Provider.',
+    icon: {
+      mediaType: 'image/svg+xml',
+      base64Data: 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9ImN1cnJlbnRjb2xvciIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yMjAuMjcsMTU4LjU0YTgsOCwwLDAsMC03LjctLjQ2LDIwLDIwLDAsMSwxLDAtMzYuMTZBOCw4LDAsMCwwLDIyNCwxMTQuNjlWNzJhMTYsMTYsMCwwLDAtMTYtMTZIMTcxLjc4YTM1LjM2LDM1LjM2LDAsMCwwLC4yMi00LDM2LjExLDM2LjExLDAsMCwwLTExLjM2LTI2LjI0LDM2LDM2LDAsMCwwLTYwLjU1LDIzLjYyLDM2LjU2LDM2LjU2LDAsMCwwLC4xNCw2LjYySDY0QTE2LDE2LDAsMCwwLDQ4LDcydjMyLjIyYTM1LjM2LDM1LjM2LDAsMCwwLTQtLjIyLDM2LjEyLDM2LjEyLDAsMCwwLTI2LjI0LDExLjM2LDM1LjcsMzUuNywwLDAsMC05LjY5LDI3LDM2LjA4LDM2LjA4LDAsMCwwLDMzLjMxLDMzLjYsMzUuNjgsMzUuNjgsMCwwLDAsNi42Mi0uMTRWMjA4YTE2LDE2LDAsMCwwLDE2LDE2SDIwOGExNiwxNiwwLDAsMCwxNi0xNlYxNjUuMzFBOCw4LDAsMCwwLDIyMC4yNywxNTguNTRaTTIwOCwyMDhINjRWMTY1LjMxYTgsOCwwLDAsMC0xMS40My03LjIzLDIwLDIwLDAsMSwxLDAtMzYuMTZBOCw4LDAsMCwwLDY0LDExNC42OVY3Mmg0Ni42OWE4LDgsMCwwLDAsNy4yMy0xMS40MywyMCwyMCwwLDEsMSwzNi4xNiwwQTgsOCwwLDAsMCwxNjEuMzEsNzJIMjA4djMyLjIzYTM1LjY4LDM1LjY4LDAsMCwwLTYuNjItLjE0QTM2LDM2LDAsMCwwLDIwNCwxNzZhMzUuMzYsMzUuMzYsMCwwLDAsNC0uMjJaIj48L3BhdGg+PC9zdmc+',
+    },
+    documentation: {
+      type: 'external',
+      url: 'https://docs.mia-platform.eu/docs/software-catalog/items-manifest/infrastructure-component-runtime',
+    },
+    maintainers: wkiDefinitionMaintainers,
+    publisher: wkiDefinitionPublisher,
+  },
+  spec: {
+    type,
+    scope: 'tenant',
+    isVersioningSupported: false,
+    validation: {
+      mechanism: 'json-schema',
+      schema: { ...resourcesSchema },
+    },
+  },
+  __v: wkiDefinitionVersion,
+}
+
 const crd: ICatalogCrd.Item = {
   name: 'infrastructure-component-runtime',
   itemId: 'infrastructure-component-runtime',
@@ -75,4 +109,4 @@ export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }
