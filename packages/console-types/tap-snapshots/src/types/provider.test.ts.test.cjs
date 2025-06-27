@@ -315,6 +315,9 @@ exports[`src/types/provider.test.ts TAP providers match schema > must match snap
                   }
                 }
               },
+              "defaultVisibility": {
+                "type": "string"
+              },
               "repositoryPathTemplate": {
                 "type": "string"
               }
