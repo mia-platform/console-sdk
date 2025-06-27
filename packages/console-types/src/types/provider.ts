@@ -70,6 +70,9 @@ const gitProviderCapabilitySchema = {
   properties: {
     name: { const: GIT_PROVIDER },
     functionalities: providerFunctionalitiesSchema,
+    defaultVisibility: {
+      type: 'string',
+    },
     repositoryPathTemplate: {
       type: 'string',
     },
