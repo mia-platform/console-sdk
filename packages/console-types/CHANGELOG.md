@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.5
+
+### Patch Changes
+
+- e6a042b: introduced Software Catalog Item Type Definition resource
+
 ## 0.38.4
 
 ### Patch Changes
