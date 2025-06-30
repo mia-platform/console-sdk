@@ -38,6 +38,7 @@ import {
   catalogSemverVersionSchema,
   catalogVisibilitySchema,
   catalogLifecycleStatusSchema,
+  catalogItemTypeDefinitionRefSchema,
 } from './commons'
 
 export const catalogItemSchema = {
@@ -79,11 +80,12 @@ export const catalogItemSchema = {
     supportedByImageUrl: catalogSupportedByImageUrlSchema,
     tenantId: catalogTenantIdSchema,
     type: catalogTypeSchema,
+    itemTypeDefinitionRef: catalogItemTypeDefinitionRefSchema,
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
   },
   additionalProperties: false,
-  required: ['_id', 'name', 'itemId', 'tenantId', 'type', 'releaseDate', 'lifecycleStatus'],
+  required: ['_id', 'name', 'itemId', 'tenantId', 'type', 'itemTypeDefinitionRef', 'releaseDate', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
 export type CatalogItem<

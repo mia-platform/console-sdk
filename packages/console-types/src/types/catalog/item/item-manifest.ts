@@ -37,6 +37,7 @@ import {
   catalogVisibilitySchema,
   catalogReleaseDateSchema,
   catalogLifecycleStatusSchema,
+  catalogItemTypeDefinitionRefSchema,
 } from './commons'
 
 export const catalogItemManifestSchema = {
@@ -62,11 +63,12 @@ export const catalogItemManifestSchema = {
     supportedByImageUrl: catalogSupportedByImageUrlSchema,
     tenantId: catalogTenantIdSchema,
     type: catalogTypeSchema,
+    itemTypeDefinitionRef: catalogItemTypeDefinitionRefSchema,
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
   },
   additionalProperties: false,
-  required: ['name', 'itemId', 'tenantId', 'type', 'resources', 'lifecycleStatus'],
+  required: ['name', 'itemId', 'tenantId', 'resources', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
 type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
@@ -74,9 +76,9 @@ type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
 export type CatalogItemManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = _CatalogItemManifest & { resources: Resources, type: Type }
+> = _CatalogItemManifest & { resources: Resources, type?: Type }
 
 export type CatalogItemNoVersionManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = Omit<_CatalogItemManifest, 'version'> & { resources: Resources, type: Type }
+> = Omit<_CatalogItemManifest, 'version'> & { resources: Resources, type?: Type }
