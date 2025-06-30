@@ -31,7 +31,6 @@ t.test('catalog item manifest', t => {
 
   t.test('only required fields', t => {
     const data: CatalogItemManifest = {
-      type: 'type',
       itemId: 'item-id',
       name: 'name',
       resources: { foo: 'bar' },
