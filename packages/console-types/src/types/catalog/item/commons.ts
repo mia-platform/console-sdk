@@ -123,9 +123,17 @@ export const catalogTenantIdSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
+/** @deprecated */
 export const catalogTypeSchema = {
-  description: 'Type of the item. It must match a CRD resources.name property',
+  description: 'Type of the item extracted from the `catalogItemTypeDefinitionRefSchema` property',
   type: 'string',
+  deprecated: true,
+} as const satisfies JSONSchema
+
+export const catalogItemTypeDefinitionRefSchema = {
+  description: 'URN of the Item Type Definition describing the item. It must be in the format `urn:<itd.metadata.namespace.id>:sc:itd:<itd.metadata.name>`',
+  type: 'string',
+  pattern: '^urn:[^:]+:sc:itd:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$',
 } as const satisfies JSONSchema
 
 export const catalogSemverVersionSchema = {
