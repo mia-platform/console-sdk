@@ -484,32 +484,38 @@ export const additionalContainersSchema = {
   type: 'array',
 } as const satisfies JSONSchema
 
+export const azurePipelineSchema = {
+  type: 'object',
+  properties: {
+    branch: { type: 'string' },
+    path: { type: 'string' },
+    providerId: { type: 'string' },
+  },
+} as const satisfies JSONSchema
+
+export const gitHubActionSchema = {
+  type: 'object',
+  properties: {
+    branch: { type: 'string' },
+    path: { type: 'string' },
+    providerId: { type: 'string' },
+  },
+} as const satisfies JSONSchema
+
+export const gitlabCiSchema = {
+  type: 'object',
+  properties: {
+    branch: { type: 'string' },
+    path: { type: 'string' },
+    providerId: { type: 'string' },
+  },
+} as const satisfies JSONSchema
+
 export const pipelinesSchema = {
   properties: {
-    'azure-pipelines': {
-      properties: {
-        branch: { type: 'string' },
-        path: { type: 'string' },
-        providerId: { type: 'string' },
-      },
-      type: 'object',
-    },
-    'github-actions': {
-      properties: {
-        branch: { type: 'string' },
-        path: { type: 'string' },
-        providerId: { type: 'string' },
-      },
-      type: 'object',
-    },
-    'gitlab-ci': {
-      properties: {
-        branch: { type: 'string' },
-        path: { type: 'string' },
-        providerId: { type: 'string' },
-      },
-      type: 'object',
-    },
+    'azure-pipelines': azurePipelineSchema,
+    'github-actions': gitHubActionSchema,
+    'gitlab-ci': gitlabCiSchema,
     jenkins: {
       properties: {
         gitWebhookOptions: { type: 'object' },

@@ -21,7 +21,7 @@ import t from 'tap'
 
 import { ITenant, tenant } from './tenant'
 import { DOCKER_IMAGE_NAME_SUGGESTION_TYPES, PROMETHEUS_OPERATOR } from '../constants/project'
-import { fullEnvironment } from './project.test'
+import { fullEnvironment } from './project/index.test'
 import { validationMessage } from './validate-utils.test'
 
 t.test('tenants validated', t => {

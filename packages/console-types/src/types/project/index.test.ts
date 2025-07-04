@@ -20,9 +20,9 @@
 import Ajv from 'ajv'
 import t from 'tap'
 
-import { IEnvironment, IProject, branchName, environment, environments, project } from './project'
-import { PatternTest, createTestsRegex, validationMessage } from './validate-utils.test'
-import { PROJECT_APPLICATION_FLAVOR, PROMETHEUS_OPERATOR } from '../constants/project'
+import { IEnvironment, IProject, branchName, environment, environments, project } from '.'
+import { PatternTest, createTestsRegex, validationMessage } from '../validate-utils.test'
+import { PROJECT_APPLICATION_FLAVOR, PROMETHEUS_OPERATOR } from '../../constants/project'
 
 export const fullEnvironment: Required<IEnvironment> = {
   type: 'runtime',

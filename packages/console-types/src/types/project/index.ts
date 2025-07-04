@@ -19,11 +19,12 @@
 
 import { FromSchema } from 'json-schema-to-ts'
 
-import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from '../constants/dashboard'
-import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROJECT_APPLICATION_FLAVOR, PROJECT_INFRASTRUCTURE_FLAVOR, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../constants/project'
-import { providerCommonProperties } from './provider'
-import { VALIDATION_ERROR_ID } from '../strings'
-import { ENVIRONMENT_TYPES } from '../constants/environments'
+import { DASHBOARD_TYPES, DASHBOARD_TYPE_IFRAME } from '../../constants/dashboard'
+import { DEPLOYMENT_TYPES, DOCKER_IMAGE_NAME_SUGGESTION_TYPES, ENVIRONMENTS_VARIABLES_TYPES, PROJECT_APPLICATION_FLAVOR, PROJECT_INFRASTRUCTURE_FLAVOR, PROMETHEUS_OPERATOR, PULL_DEPLOY_STRATEGY, PUSH_DEPLOY_STRATEGY, REPOSITORY_TYPES } from '../../constants/project'
+import { providerCommonProperties } from '../provider'
+import { VALIDATION_ERROR_ID } from '../../strings'
+import { ENVIRONMENT_TYPES } from '../../constants/environments'
+import { infrastructureComponents } from './infrastructure-component'
 
 export const enabledServicesSchema = {
   type: 'object',
@@ -472,97 +473,6 @@ export const aiSettings = {
   },
 } as const
 export type AISettings = FromSchema<typeof aiSettings>
-
-export const infrastructureComponent = {
-  type: 'object',
-  properties: {
-    name: {
-      type: 'string',
-      description: 'component name',
-    },
-    tags: {
-      type: 'array',
-      description: 'List of tags that can help categorizing and searching items',
-      items: { type: 'string' },
-    },
-    gitInfo: {
-      type: 'object',
-      properties: {
-        repoUrl: {
-          type: 'string',
-          description: 'Repository URL for UI link and HTTPS clone',
-        },
-        sshUrl: {
-          type: 'string',
-          description: 'Repository SSH URL for clone',
-        },
-      },
-    },
-    pipelineInfo: {
-      type: 'object',
-      required: ['refName'],
-      additionalProperties: false,
-      properties: {
-        providerType: {
-          type: 'string',
-          enum: [
-            DEPLOYMENT_TYPES.GITLAB_CI,
-            DEPLOYMENT_TYPES.GITHUB,
-            DEPLOYMENT_TYPES.AZURE_PIPELINES,
-            DEPLOYMENT_TYPES.JENKINS,
-            DEPLOYMENT_TYPES.WEBHOOK,
-          ],
-          description: 'Type of the provider',
-        },
-        providerId: {
-          type: 'string',
-          description: 'Provider identifier. To be used in case you want to override the main project provider',
-        },
-        organizationName: {
-          type: 'string',
-          description: 'Name of the organization in the Git provider that hosts the component. Required for Azure Pipelines and GitHub Actions',
-        },
-        projectId: {
-          type: 'string',
-          description: 'ID of the project in the git provider, used to call the provider API to handle the component deployment',
-        },
-        refName: {
-          type: 'string',
-          description: 'Name of the ref (branch/tag) used to trigger the pipeline and its jobs',
-        },
-        pipelineId: {
-          type: 'string',
-          description: 'ID of the pipeline configured in the git provider. Required for Azure Pipelines and GitHub Actions',
-        },
-        pipelineEventWebhookId: {
-          type: 'string',
-          description: 'ID of the pipeline event webhook configured in the git provider',
-        },
-        statusWebhookSecretCredentialsId: {
-          type: 'string',
-          description: 'ID of the credential item that includes the secret used to authenticate the webhook',
-        },
-        jobs: {
-          type: 'object',
-          properties: {
-            planJobName: { type: 'string' },
-            applyJobName: { type: 'string' },
-          },
-        },
-      },
-    },
-  },
-  required: ['name', 'gitInfo', 'pipelineInfo'],
-} as const
-export type InfrastructureComponent = FromSchema<typeof infrastructureComponent>
-
-export const infrastructureComponents = {
-  type: 'object',
-  patternProperties: {
-    '^[a-z]([-_a-z0-9]*[a-z0-9])?$': infrastructureComponent,
-  },
-} as const
-export type InfrastructureComponents = FromSchema<typeof infrastructureComponents>
 
 export const project = {
   type: 'object',
