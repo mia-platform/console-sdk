@@ -64,9 +64,11 @@ import {
   project,
   tagName,
   containerRegistry,
+} from './types/project'
+import {
   infrastructureComponent,
   infrastructureComponents,
-} from './types/project'
+} from './types/project/infrastructure-component'
 import {
   configMap,
   configMapFileName,
@@ -261,9 +263,12 @@ export type {
   QuickLink,
   ProjectEnvironmentLink,
   AISettings,
+} from './types/project'
+
+export type {
   InfrastructureComponent,
   InfrastructureComponents,
-} from './types/project'
+} from './types/project/infrastructure-component'
 
 export {
   projectEnvironmentLink,
