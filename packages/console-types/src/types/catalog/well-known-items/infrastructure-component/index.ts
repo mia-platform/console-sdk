@@ -27,7 +27,7 @@ import { azurePipelineSchema, gitHubActionSchema, gitlabCiSchema } from '../comm
 
 const type = 'infrastructure-component'
 
-const infrastructureComponentPipelineSchema = {
+const infrastructureComponentPipelineJobsSchema = {
   type: 'object',
   description: 'Plan and Apply jobs for the Azure Pipeline',
   properties: {
@@ -75,21 +75,21 @@ const _resourcesSchema = {
           type: 'object',
           properties: {
             ...gitlabCiSchema.properties,
-            jobs: infrastructureComponentPipelineSchema,
+            jobs: infrastructureComponentPipelineJobsSchema,
           },
         },
         'azure-pipelines': {
           type: 'object',
           properties: {
             ...azurePipelineSchema.properties,
-            jobs: infrastructureComponentPipelineSchema,
+            jobs: infrastructureComponentPipelineJobsSchema,
           },
         },
         'github-actions': {
           type: 'object',
           properties: {
             ...gitHubActionSchema.properties,
-            jobs: infrastructureComponentPipelineSchema,
+            jobs: infrastructureComponentPipelineJobsSchema,
           },
         },
       },
