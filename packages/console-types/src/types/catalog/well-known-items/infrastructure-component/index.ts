@@ -27,23 +27,17 @@ import { azurePipelineSchema, gitHubActionSchema, gitlabCiSchema } from '../comm
 
 const type = 'infrastructure-component'
 
-export const azurePipelineWithPlanAndApplyJobsSchema = {
+const infrastructureComponentPipelineSchema = {
   type: 'object',
+  description: 'Plan and Apply jobs for the Azure Pipeline',
   properties: {
-    ...azurePipelineSchema.properties,
-    jobs: {
-      type: 'object',
-      description: 'Plan and Apply jobs for the Azure Pipeline',
-      properties: {
-        planJobName: {
-          type: 'string',
-          description: 'Name of the job that runs the plan step',
-        },
-        applyJobName: {
-          type: 'string',
-          description: 'Name of the job that runs the apply step',
-        },
-      },
+    planJobName: {
+      type: 'string',
+      description: 'Name of the job that runs the plan step',
+    },
+    applyJobName: {
+      type: 'string',
+      description: 'Name of the job that runs the apply step',
     },
   },
 } as const satisfies JSONSchema
@@ -79,13 +73,25 @@ const _resourcesSchema = {
       properties: {
         'gitlab-ci': {
           type: 'object',
-          description: 'GitLab CI pipeline configuration',
           properties: {
             ...gitlabCiSchema.properties,
+            jobs: infrastructureComponentPipelineSchema,
           },
         },
-        'azure-pipelines': azurePipelineWithPlanAndApplyJobsSchema,
-        'github-actions': gitHubActionSchema,
+        'azure-pipelines': {
+          type: 'object',
+          properties: {
+            ...azurePipelineSchema.properties,
+            jobs: infrastructureComponentPipelineSchema,
+          },
+        },
+        'github-actions': {
+          type: 'object',
+          properties: {
+            ...gitHubActionSchema.properties,
+            jobs: infrastructureComponentPipelineSchema,
+          },
+        },
       },
     },
   },
