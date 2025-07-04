@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.7
+
+### Patch Changes
+
+- ab44ffb: added infrastructure component resource definition on catalog well known types
+
 ## 0.38.6
 
 ### Patch Changes
