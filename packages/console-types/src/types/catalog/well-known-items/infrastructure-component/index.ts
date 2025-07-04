@@ -140,16 +140,6 @@ const typeDefinition: CatalogItemTypeDefinition = {
     description: 'A reusable component that can be used to build infrastructure resources in the Software Catalog',
     maintainers: wkiDefinitionMaintainers,
     publisher: wkiDefinitionPublisher,
-    // FIXME: Use the correct URL for the documentation
-    // documentation: {
-    //   type: 'external',
-    //   url: 'https://docs.mia-platform.eu/docs/console/project-configuration/infrastructure-project#managing-infrastructure-components',
-    // },
-    // FIXME: Use the correct URL for the icon
-    // icon: {
-    //   mediaType: 'image/svg+xml',
-    //   base64Data: '',
-    // },
   },
   spec: {
     type,
