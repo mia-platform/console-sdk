@@ -37,6 +37,8 @@ import { data as catalogTemplateData } from './template'
 import type * as ICatalogTemplate from './template'
 import { data as catalogInfrastructureComponentRuntimeData } from './infrastructure-component-runtime'
 import type * as ICatalogInfrastructureComponentRuntime from './infrastructure-component-runtime'
+import { data as catalogInfrastructureComponentData } from './infrastructure-component'
+import type * as ICatalogInfrastructureComponent from './infrastructure-component'
 import * as catalogWellKnownItemsCommonSchemas from './commons'
 
 type CatalogWellKnownItemData<T = string> = {
@@ -55,7 +57,8 @@ type CatalogWellKnownItemsType = |
   typeof catalogProxyData.type |
   typeof catalogSidecarData.type |
   typeof catalogTemplateData.type |
-  typeof catalogInfrastructureComponentRuntimeData.type
+  typeof catalogInfrastructureComponentRuntimeData.type |
+  typeof catalogInfrastructureComponentData.type
 
 export const catalogWellKnownItems: Record<CatalogWellKnownItemsType, CatalogWellKnownItemData> = {
   [catalogApplicationData.type]: catalogApplicationData,
@@ -67,6 +70,7 @@ export const catalogWellKnownItems: Record<CatalogWellKnownItemsType, CatalogWel
   [catalogSidecarData.type]: catalogSidecarData,
   [catalogTemplateData.type]: catalogTemplateData,
   [catalogInfrastructureComponentRuntimeData.type]: catalogInfrastructureComponentRuntimeData,
+  [catalogInfrastructureComponentData.type]: catalogInfrastructureComponentData,
 }
 
 export { catalogWellKnownItemsCommonSchemas }
@@ -83,4 +87,5 @@ export type {
   ICatalogTemplate,
   ICatalogApplication,
   ICatalogInfrastructureComponentRuntime,
+  ICatalogInfrastructureComponent,
 }
