@@ -4098,6 +4098,7 @@
                     "pipelines": {
                       "properties": {
                         "azure-pipelines": {
+                          "type": "object",
                           "properties": {
                             "branch": {
                               "type": "string"
@@ -4108,10 +4109,10 @@
                             "providerId": {
                               "type": "string"
                             }
-                          },
-                          "type": "object"
+                          }
                         },
                         "github-actions": {
+                          "type": "object",
                           "properties": {
                             "branch": {
                               "type": "string"
@@ -4122,10 +4123,10 @@
                             "providerId": {
                               "type": "string"
                             }
-                          },
-                          "type": "object"
+                          }
                         },
                         "gitlab-ci": {
+                          "type": "object",
                           "properties": {
                             "branch": {
                               "type": "string"
@@ -4136,8 +4137,7 @@
                             "providerId": {
                               "type": "string"
                             }
-                          },
-                          "type": "object"
+                          }
                         },
                         "jenkins": {
                           "properties": {
@@ -5051,6 +5051,7 @@
                     "pipelines": {
                       "properties": {
                         "azure-pipelines": {
+                          "type": "object",
                           "properties": {
                             "branch": {
                               "type": "string"
@@ -5061,10 +5062,10 @@
                             "providerId": {
                               "type": "string"
                             }
-                          },
-                          "type": "object"
+                          }
                         },
                         "github-actions": {
+                          "type": "object",
                           "properties": {
                             "branch": {
                               "type": "string"
@@ -5075,10 +5076,10 @@
                             "providerId": {
                               "type": "string"
                             }
-                          },
-                          "type": "object"
+                          }
                         },
                         "gitlab-ci": {
+                          "type": "object",
                           "properties": {
                             "branch": {
                               "type": "string"
@@ -5089,8 +5090,7 @@
                             "providerId": {
                               "type": "string"
                             }
-                          },
-                          "type": "object"
+                          }
                         },
                         "jenkins": {
                           "properties": {

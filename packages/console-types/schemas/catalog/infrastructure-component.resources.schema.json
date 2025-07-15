@@ -1,0 +1,152 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:catalog-schemas`.",
+  "$id": "catalog-infrastructure-component.resources.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Data model of a Catalog infrastructure-component item resources",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the infrastructure component"
+    },
+    "gitInfo": {
+      "type": "object",
+      "description": "Information about the infrastructure component git repository",
+      "properties": {
+        "repoUrl": {
+          "type": "string",
+          "description": "The HTTPS URL of the git repository containing the infrastructure component"
+        },
+        "sshUrl": {
+          "type": "string",
+          "description": "The SSH URL of the git repository containing the infrastructure component"
+        }
+      }
+    },
+    "pipelineInfo": {
+      "type": "object",
+      "description": "Information about the pipeline used to deploy the infrastructure component",
+      "properties": {
+        "gitlab-ci": {
+          "type": "object",
+          "properties": {
+            "branch": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "providerId": {
+              "type": "string"
+            },
+            "jobs": {
+              "type": "object",
+              "description": "Plan and Apply jobs for the Azure Pipeline",
+              "properties": {
+                "planJobName": {
+                  "type": "string",
+                  "description": "Name of the job that runs the plan step"
+                },
+                "applyJobName": {
+                  "type": "string",
+                  "description": "Name of the job that runs the apply step"
+                }
+              }
+            }
+          }
+        },
+        "azure-pipelines": {
+          "type": "object",
+          "properties": {
+            "branch": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "providerId": {
+              "type": "string"
+            },
+            "jobs": {
+              "type": "object",
+              "description": "Plan and Apply jobs for the Azure Pipeline",
+              "properties": {
+                "planJobName": {
+                  "type": "string",
+                  "description": "Name of the job that runs the plan step"
+                },
+                "applyJobName": {
+                  "type": "string",
+                  "description": "Name of the job that runs the apply step"
+                }
+              }
+            }
+          }
+        },
+        "github-actions": {
+          "type": "object",
+          "properties": {
+            "branch": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "providerId": {
+              "type": "string"
+            },
+            "jobs": {
+              "type": "object",
+              "description": "Plan and Apply jobs for the Azure Pipeline",
+              "properties": {
+                "planJobName": {
+                  "type": "string",
+                  "description": "Name of the job that runs the plan step"
+                },
+                "applyJobName": {
+                  "type": "string",
+                  "description": "Name of the job that runs the apply step"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "gitInfo",
+    "pipelineInfo"
+  ],
+  "title": "Catalog infrastructure-component item resources",
+  "examples": [
+    {
+      "name": "example-infrastructure-component",
+      "gitInfo": {
+        "repoUrl": "https://gitlab.com/example/infrastructure-component.git",
+        "sshUrl": "ssh://gitlab.com/example/infrastructure-component.git"
+      },
+      "pipelineInfo": {
+        "gitlab-ci": {
+          "branch": "main",
+          "path": "infrastructure-component/.gitlab-ci.yml",
+          "providerId": "gitlab-provider"
+        },
+        "azure-pipelines": {
+          "branch": "main",
+          "path": "infrastructure-component/azure-pipelines.yml",
+          "providerId": "azure-provider",
+          "jobs": {
+            "planJobName": "plan",
+            "applyJobName": "apply"
+          }
+        }
+      }
+    }
+  ]
+}
