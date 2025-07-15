@@ -285,8 +285,7 @@
         },
         "isVersioningSupported": {
           "description": "Whether the defined item type supports versioning",
-          "type": "boolean",
-          "default": false
+          "type": "boolean"
         },
         "validation": {
           "description": "Indication on how to validate the defined item type resources",

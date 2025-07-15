@@ -245,7 +245,6 @@ export const catalogItemTypeDefinitionSchema = {
         isVersioningSupported: {
           description: 'Whether the defined item type supports versioning',
           type: 'boolean',
-          default: false,
         },
 
         validation: {
