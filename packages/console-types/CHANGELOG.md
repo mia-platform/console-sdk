@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.9
+
+### Patch Changes
+
+- bec199f: removed default from "isVersioningSupported" prop in Software Catalog ITD schema
+
 ## 0.38.8
 
 ### Patch Changes
