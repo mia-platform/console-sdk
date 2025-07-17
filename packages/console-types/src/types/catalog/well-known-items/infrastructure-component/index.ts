@@ -51,21 +51,12 @@ const _resourcesSchema = {
   properties: {
     name: {
       type: 'string',
-      description: 'The name of the infrastructure component',
+      pattern: '^[a-z]([-_a-z0-9]*[a-z0-9])?$',
+      description: 'Name of the component. Must start with a lowercase letter and can contain lowercase letters, numbers, dashes, and underscores. Must end with a lowercase letter or number.',
     },
-    gitInfo: {
-      type: 'object',
-      description: 'Information about the infrastructure component git repository',
-      properties: {
-        repoUrl: {
-          type: 'string',
-          description: 'The HTTPS URL of the git repository containing the infrastructure component',
-        },
-        sshUrl: {
-          type: 'string',
-          description: 'The SSH URL of the git repository containing the infrastructure component',
-        },
-      },
+    archiveUrl: {
+      type: 'string',
+      description: 'The URL of the archive containing the component source code',
     },
     pipelineInfo: {
       type: 'object',
@@ -95,7 +86,7 @@ const _resourcesSchema = {
       },
     },
   },
-  required: ['name', 'gitInfo', 'pipelineInfo'],
+  required: ['name', 'archiveUrl', 'pipelineInfo'],
   title: 'Catalog Infrastructure Component Resources',
 } as const satisfies JSONSchema
 
@@ -104,10 +95,7 @@ export type Resources = FromSchema<typeof _resourcesSchema>
 const resourcesExamples: Resources[] = [
   {
     name: 'example-infrastructure-component',
-    gitInfo: {
-      repoUrl: 'https://gitlab.com/example/infrastructure-component.git',
-      sshUrl: 'ssh://gitlab.com/example/infrastructure-component.git',
-    },
+    archiveUrl: 'https://github.com/mia-platform/infrastructure-component/archive/refs/tags/v1.0.0.tar.gz',
     pipelineInfo: {
       'gitlab-ci': {
         branch: 'main',
