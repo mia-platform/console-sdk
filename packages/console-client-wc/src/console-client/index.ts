@@ -16,7 +16,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Event as BkEvent, type ChangeQueryPayload, type EventBus, Filter, changeQuery, displayData, loadingData } from '@micro-lc/back-kit-engine'
+import {
+  type Event as BkEvent,
+  type ChangeQueryPayload,
+  type EventBus,
+  Filter,
+  changeQuery,
+  displayData,
+  loadingData,
+  countData,
+} from '@micro-lc/back-kit-engine'
 import { BkHttpBase } from '@micro-lc/back-kit-engine/base'
 import { type Manifest } from '@micro-lc/compose-toolkit'
 import { customElement, property } from 'lit/decorators.js'
@@ -95,7 +104,16 @@ function fetchData(this: ConsoleClient, payload: ChangeQueryPayload): void {
       params: urlParams,
     })
     // TODO: send pagination event
-    .then((res) => { this.eventBus?.next(displayData({ data: res.data ?? [] })) })
+    .then((res) => {
+      const totalItems = parseInt(res.headers.get('x-total-items') ?? '0', 10)
+
+      this.eventBus?.next(displayData({ data: res.data ?? [] }))
+      this.eventBus?.next(countData({
+        total: totalItems,
+        pageSize: this.currentPageSize || 10,
+        pageNumber: this.currentPage || 1,
+      }))
+    })
     .catch(() => { this.eventBus?.next(displayData({ data: [] })) })
     .finally(() => { this.eventBus?.next(loadingData({ loading: false })) })
 }
