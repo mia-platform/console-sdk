@@ -114,7 +114,14 @@ function fetchData(this: ConsoleClient, payload: ChangeQueryPayload): void {
         pageNumber: this.currentPage || 1,
       }))
     })
-    .catch(() => { this.eventBus?.next(displayData({ data: [] })) })
+    .catch(() => {
+      this.eventBus?.next(displayData({ data: [] }))
+      this.eventBus?.next(countData({
+        total: 0,
+        pageSize: this.currentPageSize || 10,
+        pageNumber: this.currentPage || 1,
+      }))
+    })
     .finally(() => { this.eventBus?.next(loadingData({ loading: false })) })
 }
 
