@@ -25,7 +25,8 @@ export const infrastructureComponent = {
   properties: {
     name: {
       type: 'string',
-      description: 'component name',
+      pattern: '^[a-z]([-_a-z0-9]*[a-z0-9])?$',
+      description: 'Name of the component. Must start with a lowercase letter and can contain lowercase letters, numbers, dashes, and underscores. Must end with a lowercase letter or number.',
     },
     tags: {
       type: 'array',
