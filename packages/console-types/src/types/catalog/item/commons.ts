@@ -128,7 +128,7 @@ export const catalogTenantIdSchema = {
 
 /** @deprecated */
 export const catalogTypeSchema = {
-  description: 'Type of the item extracted from the `catalogItemTypeDefinitionRefSchema` property',
+  description: 'Type of the item. Deprecated in favour of `itemTypeDefinitionRef` (it always matches `itemTypeDefinitionRef.name`)',
   type: 'string',
   deprecated: true,
 } as const satisfies JSONSchema
