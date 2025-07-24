@@ -34,7 +34,7 @@ t.test('catalog item', t => {
     const data: CatalogItem = {
       releaseDate: new Date().toISOString(),
       type: 'type',
-      itemTypeDefinitionRef: 'urn:mia-platform:sc:itd:type',
+      itemTypeDefinitionRef: { name: 'type', namespace: 'mia-platform' },
       itemId: 'item-id',
       name: 'name',
       tenantId: 'tenant-id',
@@ -50,7 +50,7 @@ t.test('catalog item', t => {
   t.test('all fields', t => {
     const data: Required<CatalogItem> = {
       type: 'type',
-      itemTypeDefinitionRef: 'urn:mia-platform:sc:itd:type',
+      itemTypeDefinitionRef: { name: 'type', namespace: 'mia-platform' },
       itemId: 'item-id',
       name: 'name',
       tenantId: 'tenant-id',

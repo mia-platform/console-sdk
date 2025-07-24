@@ -39,6 +39,7 @@ import {
   catalogVisibilitySchema,
   catalogLifecycleStatusSchema,
   catalogItemTypeDefinitionRefSchema,
+  CatalogItemTypeDefinitionRef,
 } from './commons'
 
 export const catalogItemSchema = {
@@ -91,4 +92,8 @@ export const catalogItemSchema = {
 export type CatalogItem<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = FromSchema<typeof catalogItemSchema> & { resources?: Resources, type: Type }
+> = FromSchema<typeof catalogItemSchema> & {
+  resources?: Resources,
+  type: Type,
+  itemTypeDefinitionRef: CatalogItemTypeDefinitionRef<Type>
+}

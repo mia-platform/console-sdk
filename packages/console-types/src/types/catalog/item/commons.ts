@@ -16,7 +16,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { FromSchema } from 'json-schema-to-ts'
+
 import type { JSONSchema } from '../../../commons/json-schema'
+import { catalogItemTypeDefinitionSchema } from '../item-type-definition'
 
 export const CATALOG_ITEM_NA_VERSION = 'NA'
 
@@ -131,10 +134,23 @@ export const catalogTypeSchema = {
 } as const satisfies JSONSchema
 
 export const catalogItemTypeDefinitionRefSchema = {
-  description: 'URN of the Item Type Definition describing the item. It must be in the format `urn:<itd.metadata.namespace.id>:sc:itd:<itd.metadata.name>`',
-  type: 'string',
-  pattern: '^urn:[^:]+:sc:itd:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$',
+  description: 'Reference to an Item Type Definition in the form of its composite primary key',
+  type: 'object',
+  properties: {
+    name: {
+      ...catalogItemTypeDefinitionSchema.properties.metadata.properties.name,
+      description: 'Name of the Item Type Definition (references `itd.metadata.name`)',
+    },
+    namespace: {
+      ...catalogItemTypeDefinitionSchema.properties.metadata.properties.namespace.properties.id,
+      description: 'ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)',
+    },
+  },
 } as const satisfies JSONSchema
+
+export type CatalogItemTypeDefinitionRef<T extends string = string> = &
+  FromSchema<typeof catalogItemTypeDefinitionRefSchema> &
+  { name: T }
 
 export const catalogSemverVersionSchema = {
   description: 'Version of the item following semver',

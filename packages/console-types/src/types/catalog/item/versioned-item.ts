@@ -19,7 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { catalogVersionSchema } from './commons'
+import { CatalogItemTypeDefinitionRef, catalogVersionSchema } from './commons'
 import { catalogItemSchema } from './item'
 
 export const catalogVersionedItemSchema = {
@@ -39,4 +39,8 @@ export const catalogVersionedItemSchema = {
 export type CatalogVersionedItem<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = FromSchema<typeof catalogVersionedItemSchema> & { resources?: Resources, type: Type }
+> = FromSchema<typeof catalogVersionedItemSchema> & {
+  resources?: Resources,
+  type: Type,
+  itemTypeDefinitionRef: CatalogItemTypeDefinitionRef<Type>
+}

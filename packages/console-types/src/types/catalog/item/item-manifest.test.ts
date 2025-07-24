@@ -46,6 +46,7 @@ t.test('catalog item manifest', t => {
   t.test('all fields', t => {
     const data: CatalogItemManifest = {
       type: 'type',
+      itemTypeDefinitionRef: { name: 'type', namespace: 'mia-platform' },
       itemId: 'item-id',
       name: 'name',
       resources: { foo: 'bar' },

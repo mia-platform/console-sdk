@@ -38,6 +38,7 @@ import {
   catalogReleaseDateSchema,
   catalogLifecycleStatusSchema,
   catalogItemTypeDefinitionRefSchema,
+  CatalogItemTypeDefinitionRef,
 } from './commons'
 
 export const catalogItemManifestSchema = {
@@ -76,9 +77,17 @@ type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
 export type CatalogItemManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = _CatalogItemManifest & { resources: Resources, type?: Type }
+> = _CatalogItemManifest & {
+  resources: Resources,
+  type?: Type,
+  itemTypeDefinitionRef?: CatalogItemTypeDefinitionRef<Type>
+}
 
 export type CatalogItemNoVersionManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = Omit<_CatalogItemManifest, 'version'> & { resources: Resources, type?: Type }
+> = Omit<_CatalogItemManifest, 'version'> & {
+  resources: Resources,
+  type?: Type,
+  itemTypeDefinitionRef?: CatalogItemTypeDefinitionRef<Type>
+}
