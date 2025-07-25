@@ -16,7 +16,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { FromSchema } from 'json-schema-to-ts'
+
 import type { JSONSchema } from '../../../commons/json-schema'
+import { catalogItemTypeDefinitionSchema } from '../item-type-definition'
 
 export const CATALOG_ITEM_NA_VERSION = 'NA'
 
@@ -123,10 +126,33 @@ export const catalogTenantIdSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
+/** @deprecated */
 export const catalogTypeSchema = {
-  description: 'Type of the item. It must match a CRD resources.name property',
+  description: 'Type of the item. Deprecated in favour of `itemTypeDefinitionRef` (it always matches `itemTypeDefinitionRef.name`)',
   type: 'string',
+  deprecated: true,
 } as const satisfies JSONSchema
+
+export const catalogItemTypeDefinitionRefSchema = {
+  description: 'Reference to an Item Type Definition in the form of its composite primary key',
+  type: 'object',
+  properties: {
+    name: {
+      ...catalogItemTypeDefinitionSchema.properties.metadata.properties.name,
+      description: 'Name of the Item Type Definition (references `itd.metadata.name`)',
+    },
+    namespace: {
+      ...catalogItemTypeDefinitionSchema.properties.metadata.properties.namespace.properties.id,
+      description: 'ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)',
+    },
+  },
+  required: ['name', 'namespace'],
+  additionalProperties: false,
+} as const satisfies JSONSchema
+
+export type CatalogItemTypeDefinitionRef<T extends string = string> = &
+  FromSchema<typeof catalogItemTypeDefinitionRefSchema> &
+  { name: T }
 
 export const catalogSemverVersionSchema = {
   description: 'Version of the item following semver',

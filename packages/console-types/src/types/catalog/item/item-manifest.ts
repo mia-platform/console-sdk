@@ -37,6 +37,8 @@ import {
   catalogVisibilitySchema,
   catalogReleaseDateSchema,
   catalogLifecycleStatusSchema,
+  catalogItemTypeDefinitionRefSchema,
+  CatalogItemTypeDefinitionRef,
 } from './commons'
 
 export const catalogItemManifestSchema = {
@@ -61,12 +63,19 @@ export const catalogItemManifestSchema = {
     supportedBy: catalogSupportedBySchema,
     supportedByImageUrl: catalogSupportedByImageUrlSchema,
     tenantId: catalogTenantIdSchema,
-    type: catalogTypeSchema,
+    type: {
+      ...catalogTypeSchema,
+      description: 'Type of the item. Deprecated in favour of `itemTypeDefinitionRef`. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
+    },
+    itemTypeDefinitionRef: {
+      ...catalogItemTypeDefinitionRefSchema,
+      description: 'Reference to an Item Type Definition in the form of its composite primary key. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
+    },
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
   },
   additionalProperties: false,
-  required: ['name', 'itemId', 'tenantId', 'type', 'resources', 'lifecycleStatus'],
+  required: ['name', 'itemId', 'tenantId', 'resources', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
 type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
@@ -74,9 +83,17 @@ type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
 export type CatalogItemManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = _CatalogItemManifest & { resources: Resources, type: Type }
+> = _CatalogItemManifest & {
+  resources: Resources,
+  type?: Type,
+  itemTypeDefinitionRef?: CatalogItemTypeDefinitionRef<Type>
+}
 
 export type CatalogItemNoVersionManifest<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = Omit<_CatalogItemManifest, 'version'> & { resources: Resources, type: Type }
+> = Omit<_CatalogItemManifest, 'version'> & {
+  resources: Resources,
+  type?: Type,
+  itemTypeDefinitionRef?: CatalogItemTypeDefinitionRef<Type>
+}

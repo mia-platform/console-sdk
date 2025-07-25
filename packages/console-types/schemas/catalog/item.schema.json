@@ -124,8 +124,32 @@
       "type": "string"
     },
     "type": {
-      "description": "Type of the item. It must match a CRD resources.name property",
-      "type": "string"
+      "description": "Type of the item. Deprecated in favour of `itemTypeDefinitionRef` (it always matches `itemTypeDefinitionRef.name`)",
+      "type": "string",
+      "deprecated": true
+    },
+    "itemTypeDefinitionRef": {
+      "description": "Reference to an Item Type Definition in the form of its composite primary key",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the Item Type Definition (references `itd.metadata.name`)",
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+          "minLength": 1,
+          "maxLength": 63
+        },
+        "namespace": {
+          "description": "ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "additionalProperties": false
     },
     "version": {
       "description": "Version of the item following semver",
@@ -177,6 +201,7 @@
     "itemId",
     "tenantId",
     "type",
+    "itemTypeDefinitionRef",
     "releaseDate",
     "lifecycleStatus"
   ]
