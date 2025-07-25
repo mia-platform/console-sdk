@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.11
+
+### Patch Changes
+
+- 5d9ce08: set validation as required in Catalog Item Type Definition schema
+
 ## 0.38.10
 
 ### Patch Changes
