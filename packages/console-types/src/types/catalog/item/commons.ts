@@ -146,6 +146,8 @@ export const catalogItemTypeDefinitionRefSchema = {
       description: 'ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)',
     },
   },
+  required: ['name', 'namespace'],
+  additionalProperties: false,
 } as const satisfies JSONSchema
 
 export type CatalogItemTypeDefinitionRef<T extends string = string> = &

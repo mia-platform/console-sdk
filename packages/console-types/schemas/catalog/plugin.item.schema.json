@@ -1626,7 +1626,12 @@
           "type": "string",
           "minLength": 1
         }
-      }
+      },
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "additionalProperties": false
     },
     "version": {
       "description": "Version of the item following semver",

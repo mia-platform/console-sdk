@@ -208,7 +208,7 @@
       "const": "proxy"
     },
     "itemTypeDefinitionRef": {
-      "description": "Reference to an Item Type Definition in the form of its composite primary key",
+      "description": "Reference to an Item Type Definition in the form of its composite primary key. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored",
       "type": "object",
       "properties": {
         "name": {
@@ -223,7 +223,12 @@
           "type": "string",
           "minLength": 1
         }
-      }
+      },
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "additionalProperties": false
     },
     "visibility": {
       "description": "Visibility of the item",

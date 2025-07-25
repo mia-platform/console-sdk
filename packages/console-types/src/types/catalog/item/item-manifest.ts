@@ -63,8 +63,14 @@ export const catalogItemManifestSchema = {
     supportedBy: catalogSupportedBySchema,
     supportedByImageUrl: catalogSupportedByImageUrlSchema,
     tenantId: catalogTenantIdSchema,
-    type: catalogTypeSchema,
-    itemTypeDefinitionRef: catalogItemTypeDefinitionRefSchema,
+    type: {
+      ...catalogTypeSchema,
+      description: 'Type of the item. Deprecated in favour of `itemTypeDefinitionRef`. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
+    },
+    itemTypeDefinitionRef: {
+      ...catalogItemTypeDefinitionRefSchema,
+      description: 'Reference to an Item Type Definition in the form of its composite primary key. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
+    },
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
   },
