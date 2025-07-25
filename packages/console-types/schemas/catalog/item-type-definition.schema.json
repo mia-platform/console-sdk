@@ -336,7 +336,8 @@
       "additionalProperties": true,
       "required": [
         "type",
-        "scope"
+        "scope",
+        "validation"
       ]
     },
     "__v": {

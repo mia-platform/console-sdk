@@ -40,6 +40,7 @@ t.test('catalog item type definition', t => {
       spec: {
         type: 'plugin',
         scope: 'tenant',
+        validation: { mechanism: 'json-schema', schema: { type: 'object' } },
       },
       __v: 0,
     }
@@ -77,10 +78,7 @@ t.test('catalog item type definition', t => {
         type: 'plugin',
         scope: 'tenant',
         isVersioningSupported: true,
-        validation: {
-          mechanism: 'json-schema',
-          schema: { type: 'object' },
-        },
+        validation: { mechanism: 'json-schema', schema: { type: 'object' } },
         controlledFields: [{ key: 'foo', jsonPath: 'bar' }],
         customSpec: 'foo',
       },

@@ -284,7 +284,7 @@ export const catalogItemTypeDefinitionSchema = {
         },
       },
       additionalProperties: true,
-      required: ['type', 'scope'],
+      required: ['type', 'scope', 'validation'],
     },
     __v: {
       description: 'Read-only opaque value that represents the internal version of the document',
