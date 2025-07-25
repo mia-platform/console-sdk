@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.10
+
+### Patch Changes
+
+- 8cc476f: add itemTypeDefinitionRef to Catalog item schemas
+
 ## 0.38.9
 
 ### Patch Changes
