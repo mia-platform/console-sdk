@@ -1173,6 +1173,7 @@ exports[`src/types/endpoints.test.ts TAP endpoints schema > must match snapshot 
           "service": {
             "type": "string",
             "minLength": 1,
+            "maxLength": 253,
             "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
             "x-validation-error-id": "resourceName.patternError"
           },
