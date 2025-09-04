@@ -19,6 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
+import { catalogAnnotationsSchema, catalogLabelsSchema, catalogLinksSchema, catalogMaintainersSchema, catalogRelationsSchema, catalogTagsSchema } from '../commons'
 import {
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
@@ -48,28 +49,34 @@ export const catalogItemManifestSchema = {
   description: 'Data model of a Catalog item to apply',
   type: 'object',
   properties: {
+    annotations: catalogAnnotationsSchema,
     categoryId: { description: 'Identifier of the item\'s category', type: 'string' },
     description: catalogItemDescriptionSchema,
     documentation: catalogDocumentationSchema,
     imageUrl: catalogImageUrlSchema,
     itemId: catalogItemIdSchema,
+    itemTypeDefinitionRef: {
+      ...catalogItemTypeDefinitionRefSchema,
+      description: 'Reference to an Item Type Definition in the form of its composite primary key. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
+    },
+    labels: catalogLabelsSchema,
     lifecycleStatus: catalogLifecycleStatusSchema,
+    links: catalogLinksSchema,
+    maintainers: catalogMaintainersSchema,
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
     publishOnMiaDocumentation: catalogPublishOnMiaDocumentationSchema,
+    relations: catalogRelationsSchema,
     releaseDate: catalogReleaseDateSchema,
     repositoryUrl: catalogItemRepositoryUrlSchema,
     resources: catalogResourcesSchema,
     supportedBy: catalogSupportedBySchema,
     supportedByImageUrl: catalogSupportedByImageUrlSchema,
+    tags: catalogTagsSchema,
     tenantId: catalogTenantIdSchema,
     type: {
       ...catalogTypeSchema,
       description: 'Type of the item. Deprecated in favour of `itemTypeDefinitionRef`. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
-    },
-    itemTypeDefinitionRef: {
-      ...catalogItemTypeDefinitionRefSchema,
-      description: 'Reference to an Item Type Definition in the form of its composite primary key. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
     },
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,

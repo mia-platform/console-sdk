@@ -10,6 +10,18 @@
       "description": "Database identifier of the item",
       "type": "string"
     },
+    "annotations": {
+      "description": "Set of non-identifying key/value pairs akin to Kubernetes object annotations",
+      "type": "object",
+      "patternProperties": {
+        "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$": {
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?$",
+          "maxLength": 63
+        }
+      },
+      "additionalProperties": false
+    },
     "category": {
       "description": "Identifier of the item's category",
       "type": "object",
@@ -68,9 +80,45 @@
     },
     "itemId": {
       "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
-      "minLength": 1,
+      "type": "string",
       "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
-      "type": "string"
+      "minLength": 1,
+      "maxLength": 63
+    },
+    "itemTypeDefinitionRef": {
+      "description": "Reference to an Item Type Definition in the form of its composite primary key",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the Item Type Definition (references `itd.metadata.name`)",
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+          "minLength": 1,
+          "maxLength": 63
+        },
+        "namespace": {
+          "description": "ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "additionalProperties": false
+    },
+    "labels": {
+      "description": "Set of identifying key/value pairs akin to Kubernetes object labels",
+      "type": "object",
+      "patternProperties": {
+        "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$": {
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?$",
+          "maxLength": 63
+        }
+      },
+      "additionalProperties": false
     },
     "lifecycleStatus": {
       "description": "Lifecycle status of the item",
@@ -84,6 +132,51 @@
       ],
       "type": "string"
     },
+    "links": {
+      "description": "List of external hyperlinks",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "URL in standard uri format",
+            "type": "string"
+          },
+          "displayName": {
+            "description": "User friendly display name for the link",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "url"
+        ]
+      }
+    },
+    "maintainers": {
+      "description": "List of organizational entities maintaining the resource",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Display name of the entity",
+            "type": "string",
+            "minLength": 1
+          },
+          "email": {
+            "description": "Contact email of the entity",
+            "type": "string",
+            "format": "email",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ]
+      }
+    },
     "name": {
       "description": "Human-readable name of the item",
       "minLength": 1,
@@ -96,6 +189,27 @@
     "publishOnMiaDocumentation": {
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
       "type": "boolean"
+    },
+    "relations": {
+      "description": "List of relations from the current Catalog entity to any other entity (either it part of the Catalog or not)",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "description": "The receiving end of the relation. It can be a URN-reference to another Catalog entity or an arbitrary string",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the relation. It can be one of the Catalog well-known relations or an arbitrary string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "target",
+          "type"
+        ]
+      }
     },
     "releaseDate": {
       "description": "Creation date of this item's release",
@@ -302,35 +416,22 @@
       "description": "Url of the image associated with the company that has produced the item",
       "type": "string"
     },
+    "tags": {
+      "description": "List of single-valued strings",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9:+#]+(-[a-z0-9:+#]+)*$",
+        "minLength": 1,
+        "maxLength": 63
+      }
+    },
     "tenantId": {
       "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
       "type": "string"
     },
     "type": {
       "const": "custom-resource"
-    },
-    "itemTypeDefinitionRef": {
-      "description": "Reference to an Item Type Definition in the form of its composite primary key",
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Name of the Item Type Definition (references `itd.metadata.name`)",
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
-          "minLength": 1,
-          "maxLength": 63
-        },
-        "namespace": {
-          "description": "ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)",
-          "type": "string",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "name",
-        "namespace"
-      ],
-      "additionalProperties": false
     },
     "version": {
       "description": "Version of the item following semver",

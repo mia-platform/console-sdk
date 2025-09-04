@@ -19,6 +19,7 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import { JSONSchema } from '../../../commons/json-schema'
+import { catalogAnnotationsSchema, catalogLabelsSchema, catalogLinksSchema, catalogMaintainersSchema, catalogTagsSchema, domainStringSchema } from '../commons'
 import { imageSchema } from './commons'
 
 export const catalogItemTypeDefinitionSchema = {
@@ -50,11 +51,8 @@ export const catalogItemTypeDefinitionSchema = {
         },
 
         name: {
+          ...domainStringSchema,
           description: 'Read-only RFC-1035 compliant string that uniquely identifies the resource within its namespace. Must match the `spec.itemType` field',
-          type: 'string',
-          pattern: '^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$',
-          minLength: 1,
-          maxLength: 63,
         },
 
         visibility: {
@@ -118,85 +116,15 @@ export const catalogItemTypeDefinitionSchema = {
           ],
         },
 
-        labels: {
-          description: 'Set of identifying key/value pairs akin to Kubernetes object labels',
-          type: 'object',
-          patternProperties: {
-            '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$': {
-              type: 'string',
-              pattern: '^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?$',
-              maxLength: 63,
-            },
-          },
-          additionalProperties: false,
-        },
+        labels: catalogLabelsSchema,
 
-        annotations: {
-          description: 'Set of non-identifying key/value pairs akin to Kubernetes object annotations',
-          type: 'object',
-          patternProperties: {
-            '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$': {
-              type: 'string',
-              pattern: '^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?$',
-              maxLength: 63,
-            },
-          },
-          additionalProperties: false,
-        },
+        annotations: catalogAnnotationsSchema,
 
-        tags: {
-          description: 'List of single-valued strings',
-          type: 'array',
-          items: {
-            type: 'string',
-            pattern: '^[a-z0-9:+#]+(-[a-z0-9:+#]+)*$',
-            minLength: 1,
-            maxLength: 63,
-          },
-        },
+        tags: catalogTagsSchema,
 
-        links: {
-          description: 'List of external hyperlinks',
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              url: {
-                description: 'URL in standard uri format',
-                type: 'string',
-              },
-              displayName: {
-                description: 'User friendly display name for the link',
-                type: 'string',
-              },
-            },
-            additionalProperties: false,
-            required: ['url'],
-          },
-        },
+        links: catalogLinksSchema,
 
-        maintainers: {
-          description: 'List of organizational entities maintaining the resource',
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              name: {
-                description: 'Display name of the entity',
-                type: 'string',
-                minLength: 1,
-              },
-              email: {
-                description: 'Contact email of the entity',
-                type: 'string',
-                format: 'email',
-                minLength: 1,
-              },
-            },
-            additionalProperties: false,
-            required: ['name'],
-          },
-        },
+        maintainers: catalogMaintainersSchema,
 
         publisher: {
           description: 'Entity providing the resource',

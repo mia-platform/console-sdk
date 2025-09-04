@@ -19,6 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
+import { catalogLabelsSchema, catalogAnnotationsSchema, catalogTagsSchema, catalogLinksSchema, catalogMaintainersSchema, catalogRelationsSchema } from '../commons'
 import {
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
@@ -42,6 +43,11 @@ import {
   CatalogItemTypeDefinitionRef,
 } from './commons'
 
+/*
+- Mia license (?)
+- relations
+*/
+
 export const catalogItemSchema = {
   $id: 'catalog-item.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
@@ -50,6 +56,7 @@ export const catalogItemSchema = {
   type: 'object',
   properties: {
     _id: { description: 'Database identifier of the item', type: 'string' },
+    annotations: catalogAnnotationsSchema,
     category: {
       description: 'Identifier of the item\'s category',
       type: 'object',
@@ -70,18 +77,23 @@ export const catalogItemSchema = {
     imageUrl: catalogImageUrlSchema,
     isLatest: catalogIsLatestSchema,
     itemId: catalogItemIdSchema,
+    itemTypeDefinitionRef: catalogItemTypeDefinitionRefSchema,
+    labels: catalogLabelsSchema,
     lifecycleStatus: catalogLifecycleStatusSchema,
+    links: catalogLinksSchema,
+    maintainers: catalogMaintainersSchema,
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
     publishOnMiaDocumentation: catalogPublishOnMiaDocumentationSchema,
+    relations: catalogRelationsSchema,
     releaseDate: catalogReleaseDateSchema,
     repositoryUrl: catalogItemRepositoryUrlSchema,
     resources: catalogResourcesSchema,
     supportedBy: catalogSupportedBySchema,
     supportedByImageUrl: catalogSupportedByImageUrlSchema,
+    tags: catalogTagsSchema,
     tenantId: catalogTenantIdSchema,
     type: catalogTypeSchema,
-    itemTypeDefinitionRef: catalogItemTypeDefinitionRefSchema,
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
   },
