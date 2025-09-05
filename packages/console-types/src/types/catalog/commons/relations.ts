@@ -19,15 +19,17 @@
 import { JSONSchema } from '../../../commons/json-schema'
 import { domainStringSchema } from '.'
 
-// TODO: review well-known relations
 export const CATALOG_WELL_KNOWN_RELATIONS: string[] = [
-  'owned-by', 'owner-of',
-  'provides-api', 'api-provided-by',
-  'consumes-api', 'api-consumed-by',
+  'uses', 'used-by',
   'depends-on', 'dependency-of',
-  'parent-of', 'child-of',
-  'member-of', 'has-member',
-  'part-of', 'has-part',
+  'consumes', 'consumed-by',
+  'exposes', 'exposed-by',
+  'produces', 'produced-by',
+  'contains', 'contained-in',
+  'outputs', 'outputted-by',
+  'triggers', 'triggered-by',
+  'deploys', 'deployed-by',
+  'owner-of', 'owned-by',
 ]
 
 export const catalogRelationsSchema = {
