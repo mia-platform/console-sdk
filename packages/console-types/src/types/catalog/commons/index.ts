@@ -18,7 +18,7 @@
 
 import { JSONSchema } from '../../../commons/json-schema'
 
-export * from './relations'
+export * from './relationships'
 
 /** @link https://datatracker.ietf.org/doc/html/rfc1035 */
 export const domainStringSchema = {

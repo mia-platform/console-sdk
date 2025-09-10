@@ -190,7 +190,7 @@
       "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
       "type": "boolean"
     },
-    "relations": {
+    "relationships": {
       "description": "List of relations from the current Catalog entity to any other entity (either it part of the Catalog or not)",
       "type": "array",
       "items": {

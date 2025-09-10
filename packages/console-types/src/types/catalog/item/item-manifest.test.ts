@@ -69,7 +69,7 @@ t.test('catalog item manifest', t => {
       links: [{ url: 'https://example.com', displayName: 'Example' }],
       maintainers: [{ name: 'Team A', email: 'team@a.com' }],
       releaseDate: '2025-01-01T10:00:00.000Z',
-      relations: [{ target: 'foo', type: 'bar' }],
+      relationships: [{ target: 'foo', type: 'bar' }],
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

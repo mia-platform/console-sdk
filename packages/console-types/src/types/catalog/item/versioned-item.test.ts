@@ -76,7 +76,7 @@ t.test('catalog versioned item', t => {
       tags: ['foo'],
       links: [{ url: 'https://example.com', displayName: 'Example' }],
       maintainers: [{ name: 'Team A', email: 'team@a.com' }],
-      relations: [{ target: 'foo', type: 'bar' }],
+      relationships: [{ target: 'foo', type: 'bar' }],
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

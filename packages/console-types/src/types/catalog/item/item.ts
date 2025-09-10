@@ -19,7 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { catalogLabelsSchema, catalogAnnotationsSchema, catalogTagsSchema, catalogLinksSchema, catalogMaintainersSchema, catalogRelationsSchema } from '../commons'
+import { catalogLabelsSchema, catalogAnnotationsSchema, catalogTagsSchema, catalogLinksSchema, catalogMaintainersSchema, catalogRelationshipSchema } from '../commons'
 import {
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
@@ -85,7 +85,7 @@ export const catalogItemSchema = {
     name: catalogItemNameSchema,
     providerId: catalogProviderIdSchema,
     publishOnMiaDocumentation: catalogPublishOnMiaDocumentationSchema,
-    relations: catalogRelationsSchema,
+    relationships: catalogRelationshipSchema,
     releaseDate: catalogReleaseDateSchema,
     repositoryUrl: catalogItemRepositoryUrlSchema,
     resources: catalogResourcesSchema,

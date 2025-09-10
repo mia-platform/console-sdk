@@ -19,7 +19,7 @@
 import { JSONSchema } from '../../../commons/json-schema'
 import { domainStringSchema } from '.'
 
-export const CATALOG_WELL_KNOWN_RELATIONS: string[] = [
+export const CATALOG_WELL_KNOWN_RELATIONSHIP_TYPES: string[] = [
   'uses', 'used-by',
   'depends-on', 'dependency-of',
   'consumes', 'consumed-by',
@@ -32,7 +32,7 @@ export const CATALOG_WELL_KNOWN_RELATIONS: string[] = [
   'owner-of', 'owned-by',
 ]
 
-export const catalogRelationsSchema = {
+export const catalogRelationshipSchema = {
   description: 'List of relations from the current Catalog entity to any other entity (either it part of the Catalog or not)',
   type: 'array',
   items: {

@@ -16,7 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { CATALOG_WELL_KNOWN_RELATIONS } from './commons'
+export { CATALOG_WELL_KNOWN_RELATIONSHIP_TYPES } from './commons'
 
 export * from './crd'
 export * from './item'
