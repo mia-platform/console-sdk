@@ -31,18 +31,18 @@ export const CATALOG_WELL_KNOWN_RELATIONSHIP_TYPES: string[] = [
   'owner-of', 'owned-by',
 ]
 
-export const catalogRelationshipSchema = {
-  description: 'List of relations from the current Catalog entity to any other entity (either it part of the Catalog or not)',
+export const catalogRelationshipsSchema = {
+  description: 'List of relationships from the current Catalog entity to any other entity (either it part of the Catalog or not)',
   type: 'array',
   items: {
     type: 'object',
     properties: {
       target: {
-        description: 'The receiving end of the relation. It can be a URN-reference to another Catalog entity or an arbitrary string',
+        description: 'The receiving end of the relationships. It can be a URN-reference to another Catalog entity or an arbitrary string',
         type: 'string',
       },
       type: {
-        description: 'The type of the relation. It can be one of the Catalog well-known relations or an arbitrary string',
+        description: 'The type of the relationships. It can be one of the Catalog well-known relationships or an arbitrary string',
         type: 'string',
       },
     },
