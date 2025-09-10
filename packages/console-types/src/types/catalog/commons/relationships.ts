@@ -17,7 +17,6 @@
  */
 
 import { JSONSchema } from '../../../commons/json-schema'
-import { domainStringSchema } from '.'
 
 export const CATALOG_WELL_KNOWN_RELATIONSHIP_TYPES: string[] = [
   'uses', 'used-by',
@@ -43,8 +42,8 @@ export const catalogRelationshipSchema = {
         type: 'string',
       },
       type: {
-        ...domainStringSchema,
         description: 'The type of the relation. It can be one of the Catalog well-known relations or an arbitrary string',
+        type: 'string',
       },
     },
     additionalProperties: false,

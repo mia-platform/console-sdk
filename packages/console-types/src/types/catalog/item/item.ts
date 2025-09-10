@@ -43,11 +43,6 @@ import {
   CatalogItemTypeDefinitionRef,
 } from './commons'
 
-/*
-- Mia license (?)
-- relations
-*/
-
 export const catalogItemSchema = {
   $id: 'catalog-item.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
