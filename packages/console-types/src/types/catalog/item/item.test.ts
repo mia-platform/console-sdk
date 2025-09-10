@@ -71,6 +71,12 @@ t.test('catalog item', t => {
       supportedByImageUrl: 'http://example.com',
       version: { name: '1.0.0', releaseNote: 'release-note', security: true },
       visibility: { allTenants: true, public: true },
+      annotations: { foo: 'bar' },
+      labels: { foo: 'bar' },
+      tags: ['foo'],
+      links: [{ url: 'https://example.com', displayName: 'Example' }],
+      maintainers: [{ name: 'Team A', email: 'team@a.com' }],
+      relationships: [{ target: 'foo', type: 'bar' }],
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

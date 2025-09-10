@@ -44,7 +44,7 @@ t.test('catalog item manifest', t => {
   })
 
   t.test('all fields', t => {
-    const data: CatalogItemManifest = {
+    const data: Required<CatalogItemManifest> = {
       type: 'type',
       itemTypeDefinitionRef: { name: 'type', namespace: 'mia-platform' },
       itemId: 'item-id',
@@ -63,6 +63,13 @@ t.test('catalog item manifest', t => {
       supportedByImageUrl: 'http://example.com',
       version: { name: '1.0.0', releaseNote: 'release-note', security: true },
       visibility: { allTenants: true, public: true },
+      annotations: { foo: 'bar' },
+      labels: { foo: 'bar' },
+      tags: ['foo'],
+      links: [{ url: 'https://example.com', displayName: 'Example' }],
+      maintainers: [{ name: 'Team A', email: 'team@a.com' }],
+      releaseDate: '2025-01-01T10:00:00.000Z',
+      relationships: [{ target: 'foo', type: 'bar' }],
     }
 
     t.ok(validate(data), validationMessage(validate.errors))

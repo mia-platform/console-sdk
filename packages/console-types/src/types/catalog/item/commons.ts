@@ -19,6 +19,7 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
+import { domainStringSchema } from '../commons'
 import { catalogItemTypeDefinitionSchema } from '../item-type-definition'
 
 export const CATALOG_ITEM_NA_VERSION = 'NA'
@@ -66,10 +67,8 @@ export const catalogIsLatestSchema = {
 } as const satisfies JSONSchema
 
 export const catalogItemIdSchema = {
+  ...domainStringSchema,
   description: 'RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name',
-  minLength: 1,
-  pattern: '^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$',
-  type: 'string',
 } as const satisfies JSONSchema
 
 export const catalogItemNameSchema = {
