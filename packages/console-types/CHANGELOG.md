@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.38.12
+
+### Patch Changes
+
+- 3b0b3a1: improved metadata and added relationships to Software Catalog item data model
+
 ## 0.38.11
 
 ### Patch Changes
