@@ -62,20 +62,6 @@ t.test('catalog well-known items', async t => {
       t.end()
     })
 
-    t.test(`${testCase.itemName} CRD should be valid`, async t => {
-      const { data: itemData } = await import(testCase.indexPath) as ItemModule
-
-      t.hasProp(itemData, 'crd')
-
-      t.equal(itemData.crd!.resources.name, itemData.type)
-
-      if (itemData.crd!.resources.validation?.jsonSchema) {
-        t.doesNotThrow(() => ajv.compile(itemData.crd!.resources.validation!.jsonSchema as JSONSchema))
-      }
-
-      t.end()
-    })
-
     t.test(`${testCase.itemName} ITD should be valid`, async t => {
       const { data: itemData } = await import(testCase.indexPath) as ItemModule
 

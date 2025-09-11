@@ -19,7 +19,6 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { ICatalogCrd } from '../../crd'
 import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../item'
 import {
@@ -181,35 +180,9 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
-const crd: ICatalogCrd.Item = {
-  name: 'example',
-  itemId: 'example-definition',
-  description: 'Example Custom Resource Definition',
-  tenantId: 'mia-platform',
-  resources: {
-    name: type,
-    isVersioningSupported: true,
-    validation: {
-      jsonSchema: {
-        ...resourcesSchema,
-        default: {
-          services: {
-            '<change-with-your-example-name>': {
-              name: '<change-with-your-example-name>',
-              type: 'example',
-              archiveUrl: 'https://archive-url',
-            },
-          },
-        },
-      },
-    },
-  },
-}
-
-
 export type Service = FromSchema<typeof catalogExampleServiceSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition }

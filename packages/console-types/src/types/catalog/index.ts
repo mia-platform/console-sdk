@@ -18,7 +18,6 @@
 
 export { CATALOG_WELL_KNOWN_RELATIONSHIP_TYPES } from './commons'
 
-export * from './crd'
 export * from './item'
 export * from './item-type-definition'
 export * from './misc'
