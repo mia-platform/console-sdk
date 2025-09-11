@@ -19,7 +19,6 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../../commons/json-schema'
-import { ICatalogCrd } from '../../crd'
 import { CatalogItemTypeDefinition } from '../../item-type-definition'
 import type { CatalogItem, CatalogItemNoVersionManifest, CatalogVersionedItem } from '../../item'
 import {
@@ -148,28 +147,8 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
-const crd: ICatalogCrd.Item = {
-  name: 'sidecar',
-  itemId: 'sidecar-definition',
-  description: 'Sidecar Custom Resource Definition',
-  tenantId: 'mia-platform',
-  resources: {
-    name: type,
-    isVersioningSupported: false,
-    validation: {
-      jsonSchema: {
-        ...resourcesSchema,
-        default: {
-          name: '<change-with-your-sidecar-name>',
-          dockerImage: '<change-with-your-sidecar-docker-image>',
-        },
-      },
-    },
-  },
-}
-
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemNoVersionManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition }

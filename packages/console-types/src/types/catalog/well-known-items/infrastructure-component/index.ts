@@ -22,7 +22,6 @@ import { CatalogItem, CatalogItemManifest, CatalogVersionedItem } from '../../it
 import { CatalogWellKnownItemData } from '..'
 import { wkiDefinitionMaintainers, wkiDefinitionNamespace, wkiDefinitionPublisher, wkiDefinitionVersion, wkiDefinitionVisibility } from '../utils'
 import { CatalogItemTypeDefinition } from '../../item-type-definition'
-import { ICatalogCrd } from '../../crd'
 import { azurePipelineSchema, gitHubActionSchema, gitlabCiSchema } from '../commons'
 
 const type = 'infrastructure-component'
@@ -152,24 +151,8 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
-const crd: ICatalogCrd.Item = {
-  name: 'infrastructure-component',
-  itemId: 'infrastructure-component',
-  description: 'Infrastructure Component Resource Definition',
-  tenantId: 'mia-platform',
-  resources: {
-    name: type,
-    isVersioningSupported: false,
-    validation: {
-      jsonSchema: {
-        ...resourcesSchema,
-      },
-    },
-  },
-}
-
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>
 
-export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition, crd }
+export const data: CatalogWellKnownItemData<typeof type> = { type, resourcesSchema, typeDefinition }
