@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.39.0
+
+### Minor Changes
+
+- 9525650: removed field `publishOnMiaDocumentation` from Software Catalog item models
+- 4adfbf2: removed Catalog Custom Resource Definition model
+
 ## 0.38.12
 
 ### Patch Changes
