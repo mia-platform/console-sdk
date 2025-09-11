@@ -82,11 +82,6 @@ export const catalogProviderIdSchema = {
   type: 'string',
 } as const satisfies JSONSchema
 
-export const catalogPublishOnMiaDocumentationSchema = {
-  description: 'Flag stating if the resource documentation should be published on Mia-Platform public documentation',
-  type: 'boolean',
-} as const satisfies JSONSchema
-
 export const catalogReleaseDateSchema = {
   description: 'Creation date of this item\'s release',
   format: 'date-time',

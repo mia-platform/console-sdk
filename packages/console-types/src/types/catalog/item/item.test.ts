@@ -63,7 +63,6 @@ t.test('catalog item', t => {
       isLatest: true,
       lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
       providerId: 'provider-id',
-      publishOnMiaDocumentation: true,
       releaseDate: '2025-01-01T10:10:00.000Z',
       repositoryUrl: 'http://example.com',
       resources: { foo: 'bar' },

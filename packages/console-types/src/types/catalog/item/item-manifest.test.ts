@@ -57,7 +57,6 @@ t.test('catalog item manifest', t => {
       imageUrl: 'http://example.com',
       lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
       providerId: 'provider-id',
-      publishOnMiaDocumentation: true,
       repositoryUrl: 'http://example.com',
       supportedBy: 'supported-by',
       supportedByImageUrl: 'http://example.com',

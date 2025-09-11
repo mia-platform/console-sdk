@@ -158,10 +158,6 @@
       "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
       "type": "string"
     },
-    "publishOnMiaDocumentation": {
-      "description": "Flag stating if the resource documentation should be published on Mia-Platform public documentation",
-      "type": "boolean"
-    },
     "relationships": {
       "description": "List of relationships from the current Catalog entity to any other entity (either it part of the Catalog or not)",
       "type": "array",
