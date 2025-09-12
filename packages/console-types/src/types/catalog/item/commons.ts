@@ -101,7 +101,7 @@ export const catalogItemRepositoryUrlSchema = {
 
 export const catalogResourcesSchema = {
   additionalProperties: true,
-  description: 'Representation of the resource that will be created starting from this item. It could be validated through the matching CRD',
+  description: 'Representation of the resource that will be created starting from this item. It could be validated through the matching Item Type Definition',
   type: 'object',
 } as const satisfies JSONSchema
 
