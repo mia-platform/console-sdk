@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.6.1
+
+### Patch Changes
+
+- 0e6ee9b: feat(IDP-3241): exposed `GET /extensions/:extensionId/apps` endpoint
+
 ## 0.6.0
 
 ### Minor Changes
