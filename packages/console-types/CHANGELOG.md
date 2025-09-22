@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.39.1
+
+### Patch Changes
+
+- 8faff6c: feat(types): add METHOD_OPTIONS to Verbs enum and ALLOWED_HTTP_VERBS
+
 ## 0.39.0
 
 ### Minor Changes
