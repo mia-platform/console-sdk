@@ -26,7 +26,8 @@ export enum Verbs {
   METHOD_POST = 'POST',
   METHOD_PATCH = 'PATCH',
   METHOD_DELETE = 'DELETE',
-  METHOD_HEAD = 'HEAD'
+  METHOD_HEAD = 'HEAD',
+  METHOD_OPTIONS = 'OPTIONS',
 }
 
 export const { METHOD_GET } = Verbs
@@ -37,6 +38,7 @@ export const ALLOWED_HTTP_VERBS = [
   Verbs.METHOD_PATCH,
   Verbs.METHOD_DELETE,
   Verbs.METHOD_HEAD,
+  Verbs.METHOD_OPTIONS,
 ]
 
 export enum EndpointTypes {
