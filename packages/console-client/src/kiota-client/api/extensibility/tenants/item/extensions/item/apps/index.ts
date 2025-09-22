@@ -6,6 +6,24 @@ import { type WithAppItemRequestBuilder, WithAppItemRequestBuilderRequestsMetada
 // @ts-ignore
 import { type AdditionalDataHolder, type ApiError, type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type ParseNode, type RequestConfiguration, type RequestInformation, type RequestsMetadata, type SerializationWriter } from '@microsoft/kiota-abstractions';
 
+export interface Apps extends Parsable {
+    /**
+     * The audience property
+     */
+    audience?: string[] | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The redirectUrl property
+     */
+    redirectUrl?: string | null;
+}
 export interface Apps400Error extends AdditionalDataHolder, ApiError, Parsable {
     /**
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -65,6 +83,13 @@ export interface AppsRequestBuilder extends BaseRequestBuilder<AppsRequestBuilde
      */
      byAppId(appId: string) : WithAppItemRequestBuilder;
     /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {Promise<Apps[]>}
+     * @throws {Apps400Error} error when the service returns a 400 status code
+     * @throws {Apps500Error} error when the service returns a 500 status code
+     */
+     get(requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<Apps[] | undefined>;
+    /**
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<AppsPostResponse>}
@@ -72,6 +97,11 @@ export interface AppsRequestBuilder extends BaseRequestBuilder<AppsRequestBuilde
      * @throws {Apps500Error} error when the service returns a 500 status code
      */
      post(body: AppsPostRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : Promise<AppsPostResponse | undefined>;
+    /**
+     * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
+     * @returns {RequestInformation}
+     */
+     toGetRequestInformation(requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
     /**
      * @param body The request body
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
@@ -100,6 +130,15 @@ export function createApps500ErrorFromDiscriminatorValue(parseNode: ParseNode | 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Apps}
+ */
+// @ts-ignore
+export function createAppsFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoApps;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {AppsPostRequestBody}
  */
 // @ts-ignore
@@ -114,6 +153,19 @@ export function createAppsPostRequestBodyFromDiscriminatorValue(parseNode: Parse
 // @ts-ignore
 export function createAppsPostResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoAppsPostResponse;
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoApps(apps: Partial<Apps> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "audience": n => { apps.audience = n.getCollectionOfPrimitiveValues<string>(); },
+        "id": n => { apps.id = n.getStringValue(); },
+        "name": n => { apps.name = n.getStringValue(); },
+        "redirectUrl": n => { apps.redirectUrl = n.getStringValue(); },
+    }
 }
 /**
  * The deserialization information for the current model
@@ -157,6 +209,19 @@ export function deserializeIntoAppsPostRequestBody(appsPostRequestBody: Partial<
 export function deserializeIntoAppsPostResponse(appsPostResponse: Partial<AppsPostResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "id": n => { appsPostResponse.id = n.getStringValue(); },
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeApps(writer: SerializationWriter, apps: Partial<Apps> | undefined | null = {}) : void {
+    if (apps) {
+        writer.writeCollectionOfPrimitiveValues<string>("audience", apps.audience);
+        writer.writeStringValue("id", apps.id);
+        writer.writeStringValue("name", apps.name);
+        writer.writeStringValue("redirectUrl", apps.redirectUrl);
     }
 }
 /**
@@ -222,6 +287,16 @@ export const AppsRequestBuilderNavigationMetadata: Record<Exclude<keyof AppsRequ
  * Metadata for all the requests in the request builder.
  */
 export const AppsRequestBuilderRequestsMetadata: RequestsMetadata = {
+    get: {
+        uriTemplate: AppsRequestBuilderUriTemplate,
+        responseBodyContentType: "application/json",
+        errorMappings: {
+            400: createApps400ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
+            500: createApps500ErrorFromDiscriminatorValue as ParsableFactory<Parsable>,
+        },
+        adapterMethodName: "sendCollection",
+        responseBodyFactory:  createAppsFromDiscriminatorValue,
+    },
     post: {
         uriTemplate: AppsRequestBuilderUriTemplate,
         responseBodyContentType: "application/json",
