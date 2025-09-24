@@ -20,9 +20,12 @@ import { JSONSchema } from '../../../commons/json-schema'
 
 export * from './relationships'
 
-/** @link https://datatracker.ietf.org/doc/html/rfc1035 */
+/**
+ * RFC-1035-compliant domain name
+ *
+ * @link https://datatracker.ietf.org/doc/html/rfc1035
+ */
 export const domainStringSchema = {
-  description: 'RFC-1035-compliant domain name',
   type: 'string',
   pattern: '^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$',
   minLength: 1,
@@ -30,7 +33,7 @@ export const domainStringSchema = {
 } as const satisfies JSONSchema
 
 export const catalogLabelsSchema = {
-  description: 'Set of identifying key/value pairs akin to Kubernetes object labels',
+  description: 'A map of string keys and values that can be used to organize and categorize (scope and select) objects.',
   type: 'object',
   patternProperties: {
     '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$': {
@@ -40,23 +43,35 @@ export const catalogLabelsSchema = {
     },
   },
   additionalProperties: false,
+  examples: [
+    {
+      environment: 'dev',
+      'mia-platform.eu/tenant': 'my-company',
+      track: '',
+    },
+  ],
 } as const satisfies JSONSchema
 
 export const catalogAnnotationsSchema = {
-  description: 'Set of non-identifying key/value pairs akin to Kubernetes object annotations',
+  description: 'An unstructured key value map that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying this object.',
   type: 'object',
   patternProperties: {
     '^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$': {
       type: 'string',
-      pattern: '^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?$',
-      maxLength: 63,
+      maxLength: 262144,
     },
   },
   additionalProperties: false,
+  examples: [
+    {
+      imageregistry: 'https://hub.docker.com/',
+      'mia-platform.eu/version': '14.0.0',
+    },
+  ],
 } as const satisfies JSONSchema
 
 export const catalogTagsSchema = {
-  description: 'List of single-valued strings',
+  description: 'A list of single-valued strings.',
   type: 'array',
   items: {
     type: 'string',
@@ -64,41 +79,47 @@ export const catalogTagsSchema = {
     minLength: 1,
     maxLength: 63,
   },
+  examples: [['ai', 'production']],
 } as const satisfies JSONSchema
 
 export const catalogLinksSchema = {
-  description: 'List of external hyperlinks',
+  description: 'A list of external hyperlinks.',
   type: 'array',
   items: {
     type: 'object',
     properties: {
       url: {
-        description: 'URL in standard uri format',
+        description: 'The URL in standard URI format.',
         type: 'string',
+        pattern: 'https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&\\/=]*)$',
       },
       displayName: {
-        description: 'User friendly display name for the link',
+        description: 'A user-friendly title for the link.',
         type: 'string',
       },
     },
     additionalProperties: false,
     required: ['url'],
+    examples: [
+      { url: 'https://mia-platform.eu/', displayName: 'Mia-Platform' },
+      { url: 'https://example.com' },
+    ],
   },
 } as const satisfies JSONSchema
 
 export const catalogMaintainersSchema = {
-  description: 'List of organizational entities maintaining the resource',
+  description: 'A list of organizational entities maintaining this object.',
   type: 'array',
   items: {
     type: 'object',
     properties: {
       name: {
-        description: 'Display name of the entity',
+        description: 'The display name of the maintainer.',
         type: 'string',
         minLength: 1,
       },
       email: {
-        description: 'Contact email of the entity',
+        description: 'A contact email of the maintainer.',
         type: 'string',
         format: 'email',
         minLength: 1,
@@ -106,5 +127,9 @@ export const catalogMaintainersSchema = {
     },
     additionalProperties: false,
     required: ['name'],
+    examples: [
+      { name: 'John Doe', email: 'john.doe@mail.com' },
+      { name: 'Mia-Platform core team' },
+    ],
   },
 } as const satisfies JSONSchema

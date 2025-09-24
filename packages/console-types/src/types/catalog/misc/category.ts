@@ -20,18 +20,28 @@ import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
 
-export const catalogCategorySchema = {
+const _catalogCategorySchema = {
   $id: 'catalog-category.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'Catalog category',
-  description: 'Data model of a Catalog category',
+  description: 'A category to cluster items of the Software Catalog.',
   type: 'object',
   properties: {
-    categoryId: { type: 'string' },
-    label: { type: 'string' },
+    categoryId: {
+      description: 'The unique identifier of the category.',
+      type: 'string',
+    },
+    label: {
+      description: 'A human-readable label for the category.',
+      type: 'string',
+    },
   },
   additionalProperties: false,
   required: ['categoryId', 'label'],
 } as const satisfies JSONSchema
 
-export type CatalogCategory = FromSchema<typeof catalogCategorySchema>
+export type CatalogCategory = FromSchema<typeof _catalogCategorySchema>
+
+const example: CatalogCategory = { categoryId: 'ai-agents', label: 'AI Agents' }
+
+export const catalogCategorySchema: JSONSchema = { ..._catalogCategorySchema, examples: [example] }
