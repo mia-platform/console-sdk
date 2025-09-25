@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.39.2
+
+### Patch Changes
+
+- c0ddde9: Added descriptions and examples to Software Catalog schemas
+- 44be352: Prefixed Software Catalog JSON schemas `$id` property with `software-catalog`
+
 ## 0.39.1
 
 ### Patch Changes
