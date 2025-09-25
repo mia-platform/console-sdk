@@ -67,7 +67,6 @@
                   "const": "console"
                 }
               },
-              "additionalProperties": false,
               "required": [
                 "scope"
               ]
@@ -89,7 +88,6 @@
                   "maxItems": 1
                 }
               },
-              "additionalProperties": false,
               "required": [
                 "scope",
                 "ids"

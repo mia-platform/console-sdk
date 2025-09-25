@@ -52,7 +52,7 @@ const _catalogItemSchema = {
   type: 'object',
   properties: {
     _id: {
-      description: 'MongoDB `_id` of this item\'s version\'s document.',
+      description: 'The MongoDB `_id` of this item\'s version\'s document.',
       type: 'string',
       examples: ['63775c07a09ac0996ebfb7bc'],
     },

@@ -82,7 +82,6 @@ const _catalogItemTypeDefinitionSchema = {
                   const: 'console',
                 },
               },
-              additionalProperties: false,
               required: ['scope'],
             },
             {
@@ -100,7 +99,6 @@ const _catalogItemTypeDefinitionSchema = {
                   maxItems: 1,
                 },
               },
-              additionalProperties: false,
               required: ['scope', 'ids'],
             },
           ],
