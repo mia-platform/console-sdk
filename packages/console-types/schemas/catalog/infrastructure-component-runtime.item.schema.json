@@ -336,7 +336,24 @@
           "additionalProperties": true
         }
       },
-      "type": "object"
+      "type": "object",
+      "examples": [
+        {
+          "name": "orders-gcp-bucket",
+          "projectId": "67e573d5ea16c05de9363dd2",
+          "runtimeData": {
+            "address": "google_storage_bucket.orders-gcp-bucket",
+            "mode": "managed",
+            "name": "orders-gcp-bucket",
+            "provider_name": "registry.terraform.io/hashicorp/google",
+            "schema_version": 3,
+            "type": "google_storage_bucket"
+          },
+          "tags": [
+            "gcp"
+          ]
+        }
+      ]
     },
     "supportedBy": {
       "description": "The identifier of the company that has produced this item.",

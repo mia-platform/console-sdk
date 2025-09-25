@@ -26,7 +26,7 @@ import type { CatalogWellKnownItemData } from '..'
 
 const type = 'infrastructure-component-runtime'
 
-const resourcesSchema = {
+const _resourcesSchema = {
   $id: 'catalog-infrastructure-compomnent-runtime-resources.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   additionalProperties: false,
@@ -53,6 +53,26 @@ const resourcesSchema = {
   title: 'Catalog infrastructure component runtime resources',
   type: 'object',
 } as const satisfies JSONSchema
+
+export type Resources = FromSchema<typeof _resourcesSchema>
+
+const resourcesExamples: Resources[] = [
+  {
+    name: 'orders-gcp-bucket',
+    projectId: '67e573d5ea16c05de9363dd2',
+    runtimeData: {
+      address: 'google_storage_bucket.orders-gcp-bucket',
+      mode: 'managed',
+      name: 'orders-gcp-bucket',
+      provider_name: 'registry.terraform.io/hashicorp/google',
+      schema_version: 3,
+      type: 'google_storage_bucket',
+    },
+    tags: ['gcp'],
+  },
+]
+
+const resourcesSchema: JSONSchema = { ..._resourcesSchema, examples: resourcesExamples }
 
 const typeDefinition: CatalogItemTypeDefinition = {
   apiVersion: 'software-catalog.mia-platform.eu/v1',
@@ -86,7 +106,6 @@ const typeDefinition: CatalogItemTypeDefinition = {
   __v: wkiDefinitionVersion,
 }
 
-export type Resources = FromSchema<typeof resourcesSchema>
 export type Item = CatalogItem<typeof type, Resources>
 export type VersionedItem = CatalogVersionedItem<typeof type, Resources>
 export type Manifest = CatalogItemManifest<typeof type, Resources>

@@ -29,6 +29,7 @@ import { catalogTemplateServiceSchema } from './template'
 import { catalogProxyServiceSchema } from './proxy'
 import { CatalogWellKnownItemData } from '.'
 import { wkiDefinitionMaintainers, wkiDefinitionNamespace, wkiDefinitionPublisher, wkiDefinitionVisibility } from './utils'
+import { validateJsonSchemaExamples } from '../../../commons/test-utils.test'
 
 type ItemModule = { data: CatalogWellKnownItemData }
 
@@ -54,6 +55,14 @@ t.test('catalog well-known items', async t => {
   }, [])
 
   for (const testCase of testCases) {
+    t.test(`validate examples of ${testCase.itemName} resources`, async t => {
+      const { data: itemData } = await import(testCase.indexPath) as ItemModule
+
+      t.doesNotThrow(() => validateJsonSchemaExamples(itemData.resourcesSchema as object))
+
+      t.end()
+    })
+
     t.test(`${testCase.itemName} resources should be a valid JSON schema`, async t => {
       const { data: itemData } = await import(testCase.indexPath) as ItemModule
 

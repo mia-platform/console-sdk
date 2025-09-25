@@ -20,9 +20,6 @@ import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 import { JSONPath } from 'jsonpath-plus'
 
-const ajv = new Ajv({ addUsedSchema: false })
-addFormats(ajv)
-
 /**
  * Validate the content of the `examples` keywords at any level of a JSON Schema against the portion of the schema it
  * is exemplifying.
@@ -32,38 +29,50 @@ addFormats(ajv)
  * @throws If any check fails
  */
 export const validateJsonSchemaExamples = (schema: object): void => {
+  const ajv = new Ajv({ addUsedSchema: false })
+  addFormats(ajv)
+
   const examplesPaths = JSONPath<string[]>({
     path: '$..examples',
     json: schema,
     resultType: 'path',
   })
 
-  const examplesData = examplesPaths.map((path) => {
-    const [examples] = JSONPath<unknown[][]>({ path, json: schema })
+type ExamplesData = {
+  examples: unknown[]
+  parentObject: object
+  path: string
+}
 
-    const parentPath = JSONPath.toPathArray(path).slice(0, -1)
-    const parentObject = parentPath.length > 0
-      ? JSONPath<object[]>({ path: parentPath, json: schema })[0]
-      : schema
+const examplesData: ExamplesData[] = []
 
-    return {
-      examples,
-      parentObject,
-      path: JSONPath.toPointer(JSONPath.toPathArray(path)),
+for (const path of examplesPaths) {
+  const [examples] = JSONPath<unknown[][]>({ path, json: schema })
+  if (!Array.isArray(examples)) { continue }
+
+  const parentPath = JSONPath.toPathArray(path).slice(0, -1)
+  const parentObject = parentPath.length > 0
+    ? JSONPath<object[]>({ path: parentPath, json: schema })[0]
+    : schema
+
+  examplesData.push({
+    examples,
+    parentObject,
+    path: JSONPath.toPointer(JSONPath.toPathArray(path)),
+  })
+}
+
+examplesData.forEach((exampleData) => {
+  const validate = ajv.compile(exampleData.parentObject)
+
+  exampleData.examples.forEach((example, idx) => {
+    const isValid = validate(example)
+
+    if (!isValid) {
+      throw new Error(`Example at "${exampleData.path}/${idx}" does not follow its own schema: ${JSON.stringify(validate.errors)}`)
     }
   })
+})
 
-  examplesData.forEach((exampleData) => {
-    const validate = ajv.compile(exampleData.parentObject)
-
-    exampleData.examples.forEach((example, idx) => {
-      const isValid = validate(example)
-
-      if (!isValid) {
-        throw new Error(`Example at "${exampleData.path}/${idx}" does not follow its own schema: ${JSON.stringify(validate.errors)}`)
-      }
-    })
-  })
-
-  return undefined
+return undefined
 }

@@ -46,7 +46,7 @@ import {
 const _catalogItemManifestSchema = {
   $id: 'catalog-item-manifest.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'Catalog item manifest',
+  title: 'Software Catalog item manifest',
   description: 'the data needed to apply a single version of a Software Catalog item.',
   type: 'object',
   properties: {
