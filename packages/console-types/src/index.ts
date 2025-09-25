@@ -329,4 +329,4 @@ export type {
   PipelineStatus,
 }
 
-export * from './types/catalog'
+export * from './types/software-catalog'

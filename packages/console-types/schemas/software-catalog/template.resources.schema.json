@@ -1,0 +1,1061 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:software-catalog-schemas`.",
+  "$id": "software-catalog-template.resources.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "The resources of a Software Catalog template item.",
+  "properties": {
+    "services": {
+      "maxProperties": 1,
+      "minProperties": 1,
+      "patternProperties": {
+        "^[a-z]([-a-z0-9]*[a-z0-9])?$": {
+          "additionalProperties": false,
+          "properties": {
+            "archiveUrl": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "componentId": {
+              "type": "string"
+            },
+            "containerPorts": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "from": {
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 65535
+                      },
+                      {
+                        "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+                    "type": "string"
+                  },
+                  "protocol": {
+                    "default": "TCP",
+                    "enum": [
+                      "TCP",
+                      "UDP"
+                    ],
+                    "type": "string"
+                  },
+                  "to": {
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 65535
+                      },
+                      {
+                        "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
+                        "type": "string"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "from"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "defaultAnnotations": {
+              "description": "The service annotations, which can be used to provide additional information about your services for various purposes. Annotations starting with `mia-platform.eu` are reserved",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$",
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "defaultArgs": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "defaultConfigMaps": {
+              "description": "The default ConfigMaps, if any, that will be mounted inside the container of the microservice",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "files": {
+                    "items": {
+                      "properties": {
+                        "content": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "content"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "link": {
+                    "properties": {
+                      "targetSection": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "mountPath": {
+                    "pattern": "^[a-zA-Z0-9-/_\\s.|\\\\!\"£$%&()=?^\"{}[\\]*+@]+$",
+                    "type": "string"
+                  },
+                  "name": {
+                    "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                    "type": "string"
+                  },
+                  "subPaths": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "usePreserve": {
+                    "type": "boolean"
+                  },
+                  "viewAsReadOnly": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "files",
+                  "mountPath"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "defaultDocumentationPath": {
+              "description": "The APIs documentation path",
+              "pattern": "^$|^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$",
+              "type": "string"
+            },
+            "defaultEnvironmentVariables": {
+              "description": "The environment variables that will overwrite the default environment variables applied by the Console",
+              "items": {
+                "oneOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "A brief description of the variable",
+                        "type": "string"
+                      },
+                      "managedBy": {
+                        "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                        "type": "string",
+                        "enum": [
+                          "fast-data"
+                        ]
+                      },
+                      "readOnly": {
+                        "description": "A boolean that represents if you can change the value of the variable through the Console",
+                        "type": "boolean"
+                      },
+                      "value": {
+                        "description": "The variable default value. It can contain placeholders that will be replaced with the actual values when the service is created",
+                        "type": "string"
+                      },
+                      "valueType": {
+                        "const": "plain"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "valueType"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "A brief description of the variable",
+                        "type": "string"
+                      },
+                      "managedBy": {
+                        "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                        "type": "string",
+                        "enum": [
+                          "fast-data"
+                        ]
+                      },
+                      "readOnly": {
+                        "description": "A boolean that represents if you can change the value of the variable through the Console",
+                        "type": "boolean"
+                      },
+                      "configMapName": {
+                        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                        "type": "string"
+                      },
+                      "configMapFileName": {
+                        "pattern": "^[-._a-zA-Z0-9]+$",
+                        "type": "string"
+                      },
+                      "valueType": {
+                        "const": "configmap"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "valueType",
+                      "secretName",
+                      "secretKey"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "description": {
+                        "description": "A brief description of the variable",
+                        "type": "string"
+                      },
+                      "managedBy": {
+                        "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                        "type": "string",
+                        "enum": [
+                          "fast-data"
+                        ]
+                      },
+                      "readOnly": {
+                        "description": "A boolean that represents if you can change the value of the variable through the Console",
+                        "type": "boolean"
+                      },
+                      "secretKey": {
+                        "pattern": "^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|[a-zA-Z0-9-_.]*)$",
+                        "type": "string"
+                      },
+                      "secretName": {
+                        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                        "type": "string"
+                      },
+                      "valueType": {
+                        "const": "secret"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "valueType",
+                      "secretName",
+                      "secretKey"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "oneOf": [
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "name": {
+                            "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "A brief description of the variable",
+                            "type": "string"
+                          },
+                          "managedBy": {
+                            "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                            "type": "string",
+                            "enum": [
+                              "fast-data"
+                            ]
+                          },
+                          "readOnly": {
+                            "description": "A boolean that represents if you can change the value of the variable through the Console",
+                            "type": "boolean"
+                          },
+                          "fieldPath": {
+                            "description": "The field path of the Downward API that contains the value of the variable",
+                            "oneOf": [
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "metadata.name",
+                                  "metadata.namespace",
+                                  "metadata.uid",
+                                  "spec.serviceAccountName",
+                                  "spec.nodeName",
+                                  "status.hostIP",
+                                  "status.podIP",
+                                  "status.podIPs"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "pattern": "^metadata.annotations\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                              },
+                              {
+                                "type": "string",
+                                "pattern": "^metadata.labels\\['([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)'\\]$"
+                              }
+                            ]
+                          },
+                          "valueType": {
+                            "const": "downwardAPI"
+                          }
+                        },
+                        "required": [
+                          "fieldPath",
+                          "name",
+                          "valueType"
+                        ],
+                        "type": "object"
+                      },
+                      {
+                        "additionalProperties": false,
+                        "properties": {
+                          "name": {
+                            "description": "The variable name (generally, a key written in UPPER_SNAKE_CASE)",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "A brief description of the variable",
+                            "type": "string"
+                          },
+                          "managedBy": {
+                            "description": "A string that represents the Console section that manages the variable. It only works used in combination with the `readOnly` property set to `true`",
+                            "type": "string",
+                            "enum": [
+                              "fast-data"
+                            ]
+                          },
+                          "readOnly": {
+                            "description": "A boolean that represents if you can change the value of the variable through the Console",
+                            "type": "boolean"
+                          },
+                          "fieldPath": {
+                            "type": "string",
+                            "enum": [
+                              "resource.limits.cpu",
+                              "resource.requests.cpu",
+                              "resource.limits.memory",
+                              "resource.requests.memory",
+                              "resource.limits.ephemeral-storage",
+                              "resource.requests.ephemeral-storage"
+                            ]
+                          },
+                          "valueType": {
+                            "const": "downwardAPI"
+                          },
+                          "containerName": {
+                            "description": "The name of the container where the field is located",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "fieldPath",
+                          "name",
+                          "valueType",
+                          "containerName"
+                        ],
+                        "type": "object"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "defaultLabels": {
+              "description": "The service labels, which can be used to categorize, group, and select your service. Labels starting with \"mia-platform.eu\" are reserved",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "pattern": "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$",
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "defaultLogParser": {
+              "enum": [
+                "mia-plain",
+                "mia-json",
+                "mia-nginx"
+              ],
+              "type": "string"
+            },
+            "defaultMonitoring": {
+              "additionalProperties": false,
+              "properties": {
+                "endpoints": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "interval": {
+                        "type": "string",
+                        "pattern": "^(\\d)+[s]$"
+                      },
+                      "path": {
+                        "type": "string",
+                        "pattern": "^\\/(([\\w-])\\/?)*$"
+                      },
+                      "port": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "interval",
+                      "path",
+                      "port"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "defaultProbes": {
+              "description": "The readiness, liveness, and startup paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by the Console",
+              "additionalProperties": false,
+              "properties": {
+                "liveness": {
+                  "oneOf": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "cmd": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "cmd"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "port": {
+                          "type": "string"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "path": {
+                          "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
+                          "type": "string"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "port": {
+                          "type": "string"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "path"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                },
+                "readiness": {
+                  "oneOf": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "cmd": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "cmd"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "port": {
+                          "type": "string"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "path": {
+                          "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
+                          "type": "string"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "port": {
+                          "type": "string"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "path"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                },
+                "startup": {
+                  "oneOf": [
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "cmd": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "cmd"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "port": {
+                          "type": "string"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "properties": {
+                        "failureThreshold": {
+                          "type": "number"
+                        },
+                        "initialDelaySeconds": {
+                          "type": "number"
+                        },
+                        "path": {
+                          "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
+                          "type": "string"
+                        },
+                        "periodSeconds": {
+                          "type": "number"
+                        },
+                        "port": {
+                          "type": "string"
+                        },
+                        "successThreshold": {
+                          "type": "number"
+                        },
+                        "timeoutSeconds": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "path"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "defaultResources": {
+              "description": "CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by the Console for these parameters",
+              "additionalProperties": false,
+              "properties": {
+                "cpuLimits": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "max": {
+                      "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
+                      "type": "string"
+                    },
+                    "min": {
+                      "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "memoryLimits": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "max": {
+                      "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
+                      "type": "string"
+                    },
+                    "min": {
+                      "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "defaultSecrets": {
+              "description": "The default secrets, if any, to be mounted inside the container of the microservice",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "mountPath": {
+                    "pattern": "^[a-zA-Z0-9-/_\\s.|\\\\!\"£$%&()=?^\"{}[\\]*+@]+$",
+                    "type": "string"
+                  },
+                  "name": {
+                    "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "mountPath"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "defaultTerminationGracePeriodSeconds": {
+              "type": "number"
+            },
+            "description": {
+              "type": "string"
+            },
+            "dockerImage": {
+              "pattern": "^(?:[a-z0-9.\\-\\/:]+\\/)?([\\w.}{\\-\\/]+)(:[\\w.}{\\-]+)?$",
+              "type": "string"
+            },
+            "mapEnvVarToMountPath": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "file",
+                      "folder"
+                    ]
+                  },
+                  "envName": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "envName"
+                ]
+              }
+            },
+            "name": {
+              "minLength": 1,
+              "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+              "type": "string"
+            },
+            "pipelines": {
+              "properties": {
+                "azure-pipelines": {
+                  "type": "object",
+                  "properties": {
+                    "branch": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "providerId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "github-actions": {
+                  "type": "object",
+                  "properties": {
+                    "branch": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "providerId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "gitlab-ci": {
+                  "type": "object",
+                  "properties": {
+                    "branch": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "providerId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "jenkins": {
+                  "properties": {
+                    "gitWebhookOptions": {
+                      "type": "object"
+                    },
+                    "gitlabWebhookOptions": {
+                      "$comment": "Deprecated",
+                      "type": "object"
+                    },
+                    "providerId": {
+                      "type": "string"
+                    },
+                    "xmlTemplate": {
+                      "properties": {
+                        "gitBranch": {
+                          "type": "string"
+                        },
+                        "gitPath": {
+                          "type": "string"
+                        },
+                        "gitProjectId": {
+                          "type": "string"
+                        },
+                        "gitlabBranch": {
+                          "$comment": "Deprecated",
+                          "type": "string"
+                        },
+                        "gitlabPath": {
+                          "$comment": "Deprecated",
+                          "type": "string"
+                        },
+                        "gitlabProjectId": {
+                          "$comment": "Deprecated",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "webhook": {
+                  "properties": {
+                    "providerId": {
+                      "type": "string"
+                    },
+                    "token": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": {
+              "const": "template"
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "archiveUrl"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "services"
+  ],
+  "title": "Software Catalog template item resources",
+  "type": "object",
+  "examples": [
+    {
+      "services": {
+        "e-commerce-service": {
+          "type": "template",
+          "name": "e-commerce-service",
+          "description": "Backend for an E-Commerce",
+          "componentId": "e-commerce",
+          "archiveUrl": "https://github.com/e-commerce/backend/archive/refs/tags/v1.0.0.tar.gz",
+          "containerPorts": [
+            {
+              "from": 3000,
+              "to": 80,
+              "name": "http"
+            }
+          ],
+          "defaultAnnotations": [
+            {
+              "name": "domain",
+              "value": "orders"
+            }
+          ],
+          "defaultLabels": [
+            {
+              "name": "technologies",
+              "value": "javascript"
+            }
+          ],
+          "defaultDocumentationPath": "/documentation/json",
+          "defaultLogParser": "mia-json",
+          "defaultEnvironmentVariables": [
+            {
+              "name": "LOG_LEVEL",
+              "valueType": "plain",
+              "value": "info"
+            }
+          ],
+          "defaultConfigMaps": [
+            {
+              "name": "e-commerce-service-config",
+              "mountPath": "/home/node",
+              "files": [
+                {
+                  "name": "config.json",
+                  "content": "{ \"mongodbUrl\": \"{{MONGODB_URL}}\" }"
+                }
+              ]
+            }
+          ],
+          "defaultSecrets": [
+            {
+              "name": "private-key",
+              "mountPath": "/home/node"
+            }
+          ],
+          "defaultProbes": {
+            "liveness": {
+              "port": "3000",
+              "path": "/healthz"
+            },
+            "readiness": {
+              "port": "3000",
+              "path": "/healthz"
+            },
+            "startup": {
+              "port": "3000",
+              "path": "/healthz"
+            }
+          },
+          "defaultResources": {
+            "memoryLimits": {
+              "max": "250Mi",
+              "min": "150Mi"
+            },
+            "cpuLimits": {
+              "min": "150m",
+              "max": "200m"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:software-catalog-schemas`.",
+  "$id": "software-catalog-custom-resource.resources.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "The resources of a Software Catalog custom-resource item.",
+  "properties": {
+    "annotations": {
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "attributes": {
+      "additionalProperties": {
+        "properties": {
+          "type": {
+            "enum": [
+              "input"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "description": "Attributes to be used to generate the form to manage the custom resource",
+      "type": "object"
+    },
+    "generator": {
+      "properties": {
+        "configurationBaseFolder": {
+          "type": "string"
+        },
+        "templates": {
+          "items": {
+            "properties": {
+              "engine": {
+                "description": "The template engine used for generating the file (default is `mustache`)",
+                "enum": [
+                  "mustache"
+                ],
+                "type": "string"
+              },
+              "fileExtension": {
+                "description": "The extension of the file to generate. If not set, default is .yml",
+                "type": "string"
+              },
+              "folderName": {
+                "description": "The name of the folder where the file will be created, below the configurationBaseFolder",
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "template": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "template",
+              "name"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "type": {
+          "enum": [
+            "template"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "templates"
+      ],
+      "type": "object"
+    },
+    "labels": {
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "meta": {
+      "properties": {
+        "apiVersion": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "runtime": {
+      "description": "The object used to view the status of your current Kubernetes resources directly in the Console Runtime section",
+      "additionalProperties": false,
+      "properties": {
+        "resourceId": {
+          "description": "The plural name for the infrastructure resource definition",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the infrastructure resource. At the moment the only supported type by the Software Catalog is \"kubernetes\"",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "service": {
+      "properties": {
+        "archive": {
+          "description": "URL for an tar.gz archive to be used to generate a new repository",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "jsonSchema": {
+      "type": "object"
+    },
+    "spec": {
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "title": "Software Catalog custom-resource item resources",
+  "type": "object",
+  "examples": [
+    {
+      "name": "ExternalOrchestratorLambda",
+      "meta": {
+        "kind": "ExternalOrchestratorLambda",
+        "apiVersion": "custom-generator.console.mia-platform.eu/v1"
+      },
+      "spec": {
+        "code": "the code"
+      },
+      "generator": {
+        "type": "template",
+        "configurationBaseFolder": "base-folder-name",
+        "templates": [
+          {
+            "template": "this template can take some values from the spec, such as %spec.code%",
+            "name": "template-name",
+            "fileExtension": "json",
+            "folderName": "template-folder-name"
+          }
+        ]
+      }
+    },
+    {
+      "name": "sleepInfo",
+      "meta": {
+        "apiVersion": "kube-green.com/v1alpha1",
+        "kind": "SleepInfo"
+      },
+      "spec": {
+        "sleepAt": "20:00",
+        "timeZone": "Europe/Rome",
+        "weekdays": "1-5"
+      },
+      "runtime": {
+        "type": "kubernetes",
+        "resourceId": "sleepinfos"
+      }
+    }
+  ]
+}

@@ -1,0 +1,665 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:software-catalog-schemas`.",
+  "$id": "software-catalog-extension.item.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Software Catalog extension item",
+  "description": "A single version of a Software Catalog extension item.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "description": "The MongoDB `_id` of this item's version's document.",
+      "type": "string",
+      "examples": [
+        "63775c07a09ac0996ebfb7bc"
+      ]
+    },
+    "annotations": {
+      "description": "An unstructured key value map that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying this object.",
+      "type": "object",
+      "patternProperties": {
+        "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$": {
+          "type": "string",
+          "maxLength": 262144
+        }
+      },
+      "additionalProperties": false,
+      "examples": [
+        {
+          "imageregistry": "https://hub.docker.com/",
+          "mia-platform.eu/version": "14.0.0"
+        }
+      ]
+    },
+    "category": {
+      "description": "The information regarding this item's version's category.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the category.",
+          "type": "string"
+        },
+        "label": {
+          "description": "The human-readable label of the category. Read-only.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label"
+      ],
+      "examples": [
+        {
+          "id": "ai-agents",
+          "label": "AI Agents"
+        }
+      ]
+    },
+    "componentsIds": {
+      "description": "A list aggregating any `sourceComponentId` declared in the `.resources.services` of this item's version. Read-only.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "examples": [
+        [
+          "api-gateway",
+          "crud-service"
+        ]
+      ]
+    },
+    "description": {
+      "description": "A brief description of this item.",
+      "type": "string"
+    },
+    "documentation": {
+      "description": "A reference to the documentation regarding this item.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of documentation.",
+          "type": "string",
+          "enum": [
+            "externalLink",
+            "markdown"
+          ]
+        },
+        "url": {
+          "description": "The URL where to reach for the documentation.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "url"
+      ],
+      "examples": [
+        {
+          "type": "externalLink",
+          "url": "https://example.com"
+        },
+        {
+          "type": "markdown",
+          "url": "https://raw.githubusercontent.com/mia-platform-marketplace/Go-Hello-World-Microservice-Example/refs/heads/1.20/README.md"
+        }
+      ]
+    },
+    "imageUrl": {
+      "description": "The URL of the image associated with this item.",
+      "type": "string"
+    },
+    "isLatest": {
+      "description": "A flag stating if the this item is the latest release of the item.",
+      "type": "boolean"
+    },
+    "itemId": {
+      "description": "A string that, alongside with `.version.name`, uniquely identifies this item within its namespace (`.tenantId`). Read-only.",
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+      "minLength": 1,
+      "maxLength": 63,
+      "examples": [
+        "crud-service",
+        "node-js-template"
+      ]
+    },
+    "itemTypeDefinitionRef": {
+      "description": "The reference to an Item Type Definition in the form of its composite primary key. Read-only.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the Item Type Definition (references its `.metadata.name`).",
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
+          "minLength": 1,
+          "maxLength": 63,
+          "examples": [
+            "plugin",
+            "custom-workload",
+            "ai-agent"
+          ]
+        },
+        "namespace": {
+          "description": "The identifier of the Item Type Definition namespace (references its `.metadata.namespace.id`).",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "namespace"
+      ],
+      "additionalProperties": false,
+      "examples": [
+        {
+          "name": "plugin",
+          "namespace": "mia-platform"
+        }
+      ]
+    },
+    "labels": {
+      "description": "A map of string keys and values that can be used to organize and categorize (scope and select) objects.",
+      "type": "object",
+      "patternProperties": {
+        "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$": {
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?$",
+          "maxLength": 63
+        }
+      },
+      "additionalProperties": false,
+      "examples": [
+        {
+          "environment": "dev",
+          "mia-platform.eu/tenant": "my-company",
+          "track": ""
+        }
+      ]
+    },
+    "lifecycleStatus": {
+      "description": "The lifecycle status of this item.",
+      "type": "string",
+      "enum": [
+        "coming-soon",
+        "draft",
+        "published",
+        "maintenance",
+        "deprecated",
+        "archived"
+      ]
+    },
+    "links": {
+      "description": "A list of external hyperlinks.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "The URL in standard URI format.",
+            "type": "string",
+            "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&\\/=]*)$"
+          },
+          "displayName": {
+            "description": "A user-friendly title for the link.",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "url"
+        ],
+        "examples": [
+          {
+            "url": "https://mia-platform.eu/",
+            "displayName": "Mia-Platform"
+          },
+          {
+            "url": "https://example.com"
+          }
+        ]
+      }
+    },
+    "maintainers": {
+      "description": "A list of organizational entities maintaining this object.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The display name of the maintainer.",
+            "type": "string",
+            "minLength": 1
+          },
+          "email": {
+            "description": "A contact email of the maintainer.",
+            "type": "string",
+            "format": "email",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "examples": [
+          {
+            "name": "John Doe",
+            "email": "john.doe@mail.com"
+          },
+          {
+            "name": "Mia-Platform core team"
+          }
+        ]
+      }
+    },
+    "name": {
+      "description": "The human-readable title of this item.",
+      "type": "string",
+      "minLength": 1,
+      "examples": [
+        "CRUD Service",
+        "Node.js template"
+      ]
+    },
+    "providerId": {
+      "description": "The identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item's type.",
+      "type": "string"
+    },
+    "relationships": {
+      "description": "A list of relationships from this item to any other entity (either part of the Software Catalog or not).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "description": "The receiving end of the relationships. It can be a URN-reference to another Software Catalog entity or an arbitrary string.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the relationships. It can be one of the Software Catalog well-known relationships or an arbitrary string.",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "target",
+          "type"
+        ]
+      },
+      "examples": [
+        [
+          {
+            "type": "uses",
+            "target": "urn:mia-platform:mktp:crud-service?=version=7.2.3"
+          },
+          {
+            "type": "stores-data-on",
+            "target": "In-memory DB"
+          }
+        ]
+      ]
+    },
+    "releaseDate": {
+      "description": "The time when this item was published.",
+      "type": "string",
+      "format": "date-time",
+      "examples": [
+        "2025-09-17T10:30:45Z",
+        "2024-01-01T12:30:10.199+00:00"
+      ]
+    },
+    "repositoryUrl": {
+      "description": "The URL of the repository containing the source code of the resource(s) created by this item.",
+      "type": "string"
+    },
+    "resources": {
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "extensionType": {
+                "enum": [
+                  "iframe",
+                  "external-link"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "entry": {
+                "type": "string"
+              },
+              "routes": {
+                "items": {
+                  "properties": {
+                    "destinationPath": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "labelIntl": {
+                      "properties": {
+                        "en": {
+                          "type": "string"
+                        },
+                        "it": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "locationId": {
+                      "type": "string"
+                    },
+                    "matchExactMountPath": {
+                      "type": "boolean"
+                    },
+                    "order": {
+                      "type": "number"
+                    },
+                    "parentId": {
+                      "type": "string"
+                    },
+                    "renderType": {
+                      "enum": [
+                        "category"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "locationId",
+                    "labelIntl"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "entry"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "extensionType": {
+                "const": "composer-page"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "configuration": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "configuration"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "contexts": {
+          "items": {
+            "enum": [
+              "console",
+              "project",
+              "company"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "extensionType": {
+          "enum": [
+            "iframe",
+            "external-link",
+            "composer-page"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "roleIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "extensionType",
+        "contexts"
+      ],
+      "type": "object",
+      "examples": [
+        {
+          "name": "E-Commerce configurator",
+          "extensionType": "iframe",
+          "contexts": [
+            "company"
+          ],
+          "entry": "https://e-commerce-configurator.com"
+        },
+        {
+          "name": "E-Commerce dashboard",
+          "extensionType": "external-link",
+          "contexts": [
+            "company"
+          ],
+          "entry": "https://e-commerce-dashboard.com"
+        },
+        {
+          "name": "E-Commerce CMS",
+          "extensionType": "composer-page",
+          "contexts": [
+            "project"
+          ],
+          "configuration": "{\"tag\":\"p\",\"content\":\"Hello!\"}"
+        }
+      ]
+    },
+    "supportedBy": {
+      "description": "The identifier of the company that has produced this item.",
+      "type": "string"
+    },
+    "supportedByImageUrl": {
+      "description": "The URL of the image associated with the company that has produced this item.",
+      "type": "string"
+    },
+    "tags": {
+      "description": "A list of single-valued strings.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9:+#]+(-[a-z0-9:+#]+)*$",
+        "minLength": 1,
+        "maxLength": 63
+      },
+      "examples": [
+        [
+          "ai",
+          "production"
+        ]
+      ]
+    },
+    "tenantId": {
+      "description": "The identifier of the tenant to which this item belongs. Within this tenant, the combination of the `.name` and the `.version.name` of this item must be unique. Read-only.",
+      "type": "string"
+    },
+    "type": {
+      "const": "extension"
+    },
+    "version": {
+      "description": "The Semantic version of this item.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of this version. It should follow Semantic Versioning. Read-only.",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "type": "string"
+        },
+        "releaseNote": {
+          "description": "The release note of this version. It should support Markdown.",
+          "type": "string"
+        },
+        "security": {
+          "description": "A flag stating if this version addresses any vulnerability.",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "name",
+        "releaseNote"
+      ],
+      "examples": [
+        {
+          "name": "1.0.0",
+          "releaseNote": "# What's new\n\nHere comes some new **amazing** features!\n"
+        }
+      ]
+    },
+    "visibility": {
+      "description": "The visibility of this item. It can be public (i.e., visible to any user calling the APIs, even if not authenticated with the Console), \"all tenants\" (i.e., visible to all tenants of the Console installation), or private (i.e., only visible to the item's tenant).",
+      "type": "object",
+      "properties": {
+        "allTenants": {
+          "description": "A flag stating whether this item's release should be visible to all tenants of the Console installation.",
+          "type": "boolean",
+          "default": false
+        },
+        "public": {
+          "description": "A flag stating whether this item's release should be visible to any user calling the APIs, even if not authenticated with the Console.",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false,
+      "examples": [
+        {
+          "allTenants": false,
+          "public": true
+        }
+      ]
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "_id",
+    "name",
+    "itemId",
+    "tenantId",
+    "type",
+    "itemTypeDefinitionRef",
+    "releaseDate",
+    "lifecycleStatus"
+  ],
+  "examples": [
+    {
+      "_id": "63775c07a09ac0996ebfb7bc",
+      "annotations": {
+        "mia-platform.eu/version": "14.0.0"
+      },
+      "category": {
+        "id": "e-commerce",
+        "label": "E-Commerce"
+      },
+      "description": "A standardized service to handle orders from an e-commerce website.",
+      "documentation": {
+        "type": "externalLink",
+        "url": "https://docs.mia-platform.eu/"
+      },
+      "imageUrl": "https://mia-platform.eu/wp-content/uploads/mia.svg",
+      "isLatest": true,
+      "itemId": "order-service",
+      "itemTypeDefinitionRef": {
+        "name": "plugin",
+        "namespace": "mia-platform"
+      },
+      "labels": {
+        "environment": "prod"
+      },
+      "lifecycleStatus": "published",
+      "links": [
+        {
+          "displayName": "E-Commerce",
+          "url": "https://example.com/"
+        }
+      ],
+      "maintainers": [
+        {
+          "name": "E-Commerce Team",
+          "email": "e-commerce@mail.eu"
+        }
+      ],
+      "name": "Order Service",
+      "relationships": [
+        {
+          "type": "depends-on",
+          "target": "MongoDB v8"
+        }
+      ],
+      "releaseDate": "2025-09-17T10:30:45Z",
+      "repositoryUrl": "https://github.com/mia-platform-marketplace/public-catalog",
+      "resources": {
+        "services": {
+          "order-service": {
+            "type": "plugin",
+            "name": "order-service",
+            "dockerImage": "order-service:1.0.0",
+            "defaultEnvironmentVariables": [
+              {
+                "name": "LOG_LEVEL",
+                "value": "info",
+                "valueType": "plain"
+              }
+            ]
+          }
+        }
+      },
+      "supportedBy": "My Company",
+      "supportedByImageUrl": "https://mia-platform.eu/wp-content/uploads/mia.svg",
+      "tags": [
+        "e-commerce"
+      ],
+      "tenantId": "my-company",
+      "type": "plugin",
+      "version": {
+        "name": "1.0.0",
+        "releaseNote": "# About this version\n\nThe first release of the service 🎉\n"
+      },
+      "visibility": {
+        "public": false,
+        "allTenants": false
+      }
+    }
+  ]
+}
