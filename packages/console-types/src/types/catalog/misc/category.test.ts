@@ -20,6 +20,7 @@ import Ajv from 'ajv'
 import t from 'tap'
 import addFormats from 'ajv-formats'
 
+import { validateJsonSchemaExamples } from '../../../commons/test-utils.test'
 import { validationMessage } from '../../validate-utils.test'
 import { catalogCategorySchema, type CatalogCategory } from './category'
 
@@ -27,6 +28,12 @@ t.test('catalog category', t => {
   const ajv = new Ajv()
   addFormats(ajv)
   const validate = ajv.compile<CatalogCategory>(catalogCategorySchema)
+
+  t.test('validate examples', t => {
+    t.doesNotThrow(() => validateJsonSchemaExamples(catalogCategorySchema))
+
+    t.end()
+  })
 
   t.test('all fields', t => {
     const data: Required<CatalogCategory> = {

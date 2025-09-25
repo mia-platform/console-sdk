@@ -20,6 +20,7 @@ import Ajv from 'ajv'
 import t from 'tap'
 import addFormats from 'ajv-formats'
 
+import { validateJsonSchemaExamples } from '../../../commons/test-utils.test'
 import { validationMessage } from '../../validate-utils.test'
 import { catalogVersionedItemSchema, type CatalogVersionedItem } from './versioned-item'
 import { CatalogItemDocumentationType, catalogItemLifecycleStatusEnum } from './commons'
@@ -28,6 +29,12 @@ t.test('catalog versioned item', t => {
   const ajv = new Ajv()
   addFormats(ajv)
   const validate = ajv.compile<CatalogVersionedItem>(catalogVersionedItemSchema)
+
+  t.test('validate examples', t => {
+    t.doesNotThrow(() => validateJsonSchemaExamples(catalogVersionedItemSchema))
+
+    t.end()
+  })
 
   t.test('only required fields', t => {
     const data: CatalogVersionedItem = {

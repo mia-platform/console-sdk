@@ -23,7 +23,7 @@ import type { JSONSchema } from '../../../commons/json-schema'
 const _catalogCategorySchema = {
   $id: 'catalog-category.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'Catalog category',
+  title: 'Software Catalog category',
   description: 'A category to cluster items of the Software Catalog.',
   type: 'object',
   properties: {
@@ -44,4 +44,4 @@ export type CatalogCategory = FromSchema<typeof _catalogCategorySchema>
 
 const example: CatalogCategory = { categoryId: 'ai-agents', label: 'AI Agents' }
 
-export const catalogCategorySchema: JSONSchema = { ..._catalogCategorySchema, examples: [example] }
+export const catalogCategorySchema = { ..._catalogCategorySchema, examples: [example] }

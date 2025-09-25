@@ -20,9 +20,9 @@ import Ajv from 'ajv'
 import t from 'tap'
 import addFormats from 'ajv-formats'
 
+import { validateJsonSchemaExamples } from '../../../commons/test-utils.test'
 import { validationMessage } from '../../validate-utils.test'
 import { type CatalogItemTypeDefinition, catalogItemTypeDefinitionSchema } from '.'
-import { validateJsonSchemaExamples } from '../../../commons/test-utils.test'
 
 t.test('catalog item type definition', t => {
   const ajv = new Ajv()

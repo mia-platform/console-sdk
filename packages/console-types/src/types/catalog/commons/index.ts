@@ -18,20 +18,6 @@
 
 import { JSONSchema } from '../../../commons/json-schema'
 
-export * from './relationships'
-
-/**
- * RFC-1035-compliant domain name
- *
- * @link https://datatracker.ietf.org/doc/html/rfc1035
- */
-export const domainStringSchema = {
-  type: 'string',
-  pattern: '^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$',
-  minLength: 1,
-  maxLength: 63,
-} as const satisfies JSONSchema
-
 export const catalogLabelsSchema = {
   description: 'A map of string keys and values that can be used to organize and categorize (scope and select) objects.',
   type: 'object',

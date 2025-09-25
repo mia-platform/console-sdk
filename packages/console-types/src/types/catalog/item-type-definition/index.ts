@@ -33,7 +33,7 @@ const typeSchema = {
 const _catalogItemTypeDefinitionSchema = {
   $id: 'catalog-itd.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'Software Catalog Item Type Definition',
+  title: 'Software Catalog item type definition',
   description: 'An entity used to extend the Software Catalog beyond its built-in capabilities defining a new type of items.',
   type: 'object',
   properties: {
@@ -72,7 +72,7 @@ const _catalogItemTypeDefinitionSchema = {
           ...typeSchema,
         },
         visibility: {
-          description: 'The visibility on this object. It can be public (i.e., visible to all tenants of the Console installation), or private (i.e., visible only by the namespace this object belongs to).',
+          description: 'The visibility on this object. It can be public (i.e., visible to all tenants of the Console installation), or private (i.e., only visible to the namespace this object belongs to).',
           oneOf: [
             {
               type: 'object',

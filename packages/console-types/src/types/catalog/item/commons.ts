@@ -19,7 +19,6 @@
 import { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { domainStringSchema } from '../commons'
 import { catalogItemTypeDefinitionSchema } from '../item-type-definition'
 
 export const CATALOG_ITEM_NA_VERSION = 'NA'
@@ -42,106 +41,118 @@ export type CatalogItemLifecycleStatus =
 
 
 export const catalogItemDescriptionSchema = {
-  description: 'Brief description of the item',
+  description: 'A brief description of this item.',
   type: 'string',
 } as const satisfies JSONSchema
 
 export const catalogDocumentationSchema = {
-  description: 'Documentation of the item',
-  properties: {
-    type: { enum: Object.values(CatalogItemDocumentationType), type: 'string' },
-    url: { type: 'string' },
-  },
-  required: ['type', 'url'],
+  description: 'A reference to the documentation regarding this item.',
   type: 'object',
+  properties: {
+    type: {
+      description: 'The type of documentation.',
+      type: 'string',
+      enum: Object.values(CatalogItemDocumentationType),
+    },
+    url: {
+      description: 'The URL where to reach for the documentation.',
+      type: 'string',
+    },
+  },
+  additionalProperties: false,
+  required: ['type', 'url'],
+  examples: [
+    { type: 'externalLink', url: 'https://example.com' },
+    { type: 'markdown', url: 'https://raw.githubusercontent.com/mia-platform-marketplace/Go-Hello-World-Microservice-Example/refs/heads/1.20/README.md' },
+  ],
 } as const satisfies JSONSchema
 
 export const catalogImageUrlSchema = {
-  description: 'Url of the image associated with the item',
+  description: 'The URL of the image associated with this item.',
   type: 'string',
 } as const satisfies JSONSchema
 
 export const catalogIsLatestSchema = {
-  description: 'Flag stating if the the current document is the latest version of the item',
+  description: 'A flag stating if the this item is the latest release of the item.',
   type: 'boolean',
 } as const satisfies JSONSchema
 
 export const catalogItemIdSchema = {
-  ...domainStringSchema,
-  description: 'RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name',
+  description: 'A string that, alongside with `.version.name`, uniquely identifies this item within its namespace (`.tenantId`). Read-only.',
+  type: 'string',
+  pattern: '^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$',
+  minLength: 1,
+  maxLength: 63,
+  examples: ['crud-service', 'node-js-template'],
 } as const satisfies JSONSchema
 
 export const catalogItemNameSchema = {
-  description: 'Human-readable name of the item',
-  minLength: 1,
+  description: 'The human-readable title of this item.',
   type: 'string',
+  minLength: 1,
+  examples: ['CRUD Service', 'Node.js template'],
 } as const satisfies JSONSchema
 
 export const catalogProviderIdSchema = {
-  description: 'Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type',
+  description: 'The identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item\'s type.',
   type: 'string',
 } as const satisfies JSONSchema
 
 export const catalogReleaseDateSchema = {
-  description: 'Creation date of this item\'s release',
-  format: 'date-time',
+  description: 'The time when this item was published.',
   type: 'string',
+  format: 'date-time',
+  examples: ['2025-09-17T10:30:45Z', '2024-01-01T12:30:10.199+00:00'],
 } as const satisfies JSONSchema
 
 export const catalogLifecycleStatusSchema = {
-  description: 'Lifecycle status of the item',
-  enum: Object.values(catalogItemLifecycleStatusEnum),
+  description: 'The lifecycle status of this item.',
   type: 'string',
+  enum: Object.values(catalogItemLifecycleStatusEnum),
 } as const satisfies JSONSchema
 
 export const catalogItemRepositoryUrlSchema = {
-  description: 'URL of the repository containing the source code of the resource created by the item',
+  description: 'The URL of the repository containing the source code of the resource(s) created by this item.',
   type: 'string',
 } as const satisfies JSONSchema
 
 export const catalogResourcesSchema = {
-  additionalProperties: true,
-  description: 'Representation of the resource that will be created starting from this item. It could be validated through the matching Item Type Definition',
+  description: 'The representation of the resource(s) that will be created starting from this item. It should be validated through the matching Item Type Definition.',
   type: 'object',
+  additionalProperties: true,
 } as const satisfies JSONSchema
 
 export const catalogSupportedBySchema = {
-  description: 'Identifier of the company that has produced the item',
+  description: 'The identifier of the company that has produced this item.',
   type: 'string',
 } as const satisfies JSONSchema
 
 export const catalogSupportedByImageUrlSchema = {
-  description: 'Url of the image associated with the company that has produced the item',
+  description: 'The URL of the image associated with the company that has produced this item.',
   type: 'string',
 } as const satisfies JSONSchema
 
 export const catalogTenantIdSchema = {
-  description: 'Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name',
+  description: 'The identifier of the tenant to which this item belongs. Within this tenant, the combination of the `.name` and the `.version.name` of this item must be unique. Read-only.',
   type: 'string',
-} as const satisfies JSONSchema
-
-/** @deprecated */
-export const catalogTypeSchema = {
-  description: 'Type of the item. Deprecated in favour of `itemTypeDefinitionRef` (it always matches `itemTypeDefinitionRef.name`)',
-  type: 'string',
-  deprecated: true,
 } as const satisfies JSONSchema
 
 export const catalogItemTypeDefinitionRefSchema = {
-  description: 'Reference to an Item Type Definition in the form of its composite primary key',
+  description: 'The reference to an Item Type Definition in the form of its composite primary key. Read-only.',
   type: 'object',
   properties: {
     name: {
       ...catalogItemTypeDefinitionSchema.properties.metadata.properties.name,
-      description: 'Name of the Item Type Definition (references `itd.metadata.name`)',
+      description: 'The name of the Item Type Definition (references its `.metadata.name`).',
     },
     namespace: {
       ...catalogItemTypeDefinitionSchema.properties.metadata.properties.namespace.properties.id,
-      description: 'ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)',
+      description: 'The identifier of the Item Type Definition namespace (references its `.metadata.namespace.id`).',
     },
   },
   required: ['name', 'namespace'],
   additionalProperties: false,
+  examples: [{ name: 'plugin', namespace: 'mia-platform' }],
 } as const satisfies JSONSchema
 
 export type CatalogItemTypeDefinitionRef<T extends string = string> = &
@@ -149,68 +160,114 @@ export type CatalogItemTypeDefinitionRef<T extends string = string> = &
   { name: T }
 
 export const catalogSemverVersionSchema = {
-  description: 'Version of the item following semver',
+  description: 'The Semantic version of this item.',
+  type: 'object',
   properties: {
     name: {
-      description: 'Semantic version',
+      description: 'The name of this version. It should follow Semantic Versioning. Read-only.',
       pattern: '^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$',
       type: 'string',
     },
     releaseNote: {
-      description: 'Markdown release note',
+      description: 'The release note of this version. It should support Markdown.',
       type: 'string',
     },
     security: {
-      description: 'Flag stating if the version addresses any vulnerability',
+      description: 'A flag stating if this version addresses any vulnerability.',
       type: 'boolean',
     },
   },
+  additionalProperties: true,
   required: ['name', 'releaseNote'],
-  type: 'object',
+  examples: [
+    { name: '1.0.0', releaseNote: '# What\'s new\n\nHere comes some new **amazing** features!\n' },
+  ],
 } as const satisfies JSONSchema
 
 export const catalogVersionSchema = {
-  description: 'Version of the item',
+  description: 'The version of this item.',
+  type: 'object',
   properties: {
     name: {
+      description: `The name of this version. It should follow Semantic Versioning. A fallback version \`${CATALOG_ITEM_NA_VERSION}\` is also accepted for items of types that do not support versioning, or for retro-compatibility reasons. Read-only.`,
       oneOf: [
         {
-          description: 'Semantic version',
           pattern: '^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$',
           type: 'string',
         },
-        {
-          const: CATALOG_ITEM_NA_VERSION,
-          description: 'Fallback version',
-        },
+        { const: CATALOG_ITEM_NA_VERSION },
       ],
     },
     releaseNote: {
-      description: 'Markdown release note',
+      description: 'The release note of this version. It should support Markdown.',
       type: 'string',
     },
     security: {
-      description: 'Flag stating if the version addresses any vulnerability',
+      description: 'A flag stating if this version addresses any vulnerability.',
       type: 'boolean',
     },
   },
+  additionalProperties: false,
   required: ['name', 'releaseNote'],
-  type: 'object',
+  examples: [
+    { name: '1.0.0', releaseNote: '# What\'s new\n\nHere comes some new **amazing** features!\n' },
+    { name: CATALOG_ITEM_NA_VERSION, releaseNote: '-' },
+  ],
 } as const satisfies JSONSchema
 
 export const catalogVisibilitySchema = {
-  description: 'Visibility of the item',
+  description: 'The visibility of this item. It can be public (i.e., visible to any user calling the APIs, even if not authenticated with the Console), "all tenants" (i.e., visible to all tenants of the Console installation), or private (i.e., only visible to the item\'s tenant).',
+  type: 'object',
   properties: {
     allTenants: {
-      default: false,
-      description: 'If true, the item will be accessible to all companies',
+      description: 'A flag stating whether this item\'s release should be visible to all tenants of the Console installation.',
       type: 'boolean',
+      default: false,
     },
     public: {
-      default: false,
-      description: 'If true, the item will be accessible from any user that access the Console, even if not authenticated',
+      description: 'A flag stating whether this item\'s release should be visible to any user calling the APIs, even if not authenticated with the Console.',
       type: 'boolean',
+      default: false,
     },
   },
-  type: 'object',
+  additionalProperties: false,
+  examples: [{ allTenants: false, public: true }],
+} as const satisfies JSONSchema
+
+
+export const CATALOG_WELL_KNOWN_RELATIONSHIP_TYPES: string[] = [
+  'uses', 'used-by',
+  'depends-on', 'dependency-of',
+  'consumes', 'consumed-by',
+  'exposes', 'exposed-by',
+  'produces', 'produced-by',
+  'contains', 'contained-in',
+  'outputs', 'outputted-by',
+  'triggers', 'triggered-by',
+  'deploys', 'deployed-by',
+  'owner-of', 'owned-by',
+]
+
+export const catalogRelationshipsSchema = {
+  description: 'A list of relationships from this item to any other entity (either part of the Software Catalog or not).',
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      target: {
+        description: 'The receiving end of the relationships. It can be a URN-reference to another Software Catalog entity or an arbitrary string.',
+        type: 'string',
+      },
+      type: {
+        description: 'The type of the relationships. It can be one of the Software Catalog well-known relationships or an arbitrary string.',
+        type: 'string',
+      },
+    },
+    additionalProperties: false,
+    required: ['target', 'type'],
+  },
+  examples: [[
+    { type: 'uses', target: 'urn:mia-platform:mktp:crud-service?=version=7.2.3' },
+    { type: 'stores-data-on', target: 'In-memory DB' },
+  ]],
 } as const satisfies JSONSchema
