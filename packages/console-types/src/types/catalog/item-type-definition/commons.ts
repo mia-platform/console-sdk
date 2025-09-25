@@ -18,20 +18,24 @@
 
 import { JSONSchema } from '../../../commons/json-schema'
 
+/** A representation of an image resource */
 export const imageSchema = {
-  description: 'Representation of an image resource',
   type: 'object',
   properties: {
     mediaType: {
-      description: 'MIME type of the image',
+      description: 'The MIME type of the image.',
       type: 'string',
       enum: ['image/png', 'image/svg+xml'],
     },
     base64Data: {
-      description: 'Image data encoded in Base64 format',
+      description: 'The image data encoded in Base64 format.',
       type: 'string',
     },
   },
   additionalProperties: false,
   required: ['mediaType', 'base64Data'],
+  examples: [
+    { mediaType: 'image/png', base64Data: 'iVBORw==' },
+    { mediaType: 'image/svg+xml', base64Data: 'w0KGgoAA' },
+  ],
 } as const satisfies JSONSchema

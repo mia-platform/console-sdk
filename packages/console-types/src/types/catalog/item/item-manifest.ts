@@ -19,7 +19,7 @@
 import type { FromSchema } from 'json-schema-to-ts'
 
 import type { JSONSchema } from '../../../commons/json-schema'
-import { catalogAnnotationsSchema, catalogLabelsSchema, catalogLinksSchema, catalogMaintainersSchema, catalogRelationshipsSchema, catalogTagsSchema } from '../commons'
+import { catalogAnnotationsSchema, catalogLabelsSchema, catalogLinksSchema, catalogMaintainersSchema, catalogTagsSchema } from '../commons'
 import {
   catalogItemDescriptionSchema,
   catalogDocumentationSchema,
@@ -32,32 +32,34 @@ import {
   catalogSupportedByImageUrlSchema,
   catalogSupportedBySchema,
   catalogTenantIdSchema,
-  catalogTypeSchema,
   catalogSemverVersionSchema,
   catalogVisibilitySchema,
   catalogReleaseDateSchema,
   catalogLifecycleStatusSchema,
   catalogItemTypeDefinitionRefSchema,
   CatalogItemTypeDefinitionRef,
+  catalogRelationshipsSchema,
+  CatalogItemDocumentationType,
+  catalogItemLifecycleStatusEnum,
 } from './commons'
 
-export const catalogItemManifestSchema = {
+const _catalogItemManifestSchema = {
   $id: 'catalog-item-manifest.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'Catalog item manifest',
-  description: 'Data model of a Catalog item to apply',
+  title: 'Software Catalog item manifest',
+  description: 'the data needed to apply a single version of a Software Catalog item.',
   type: 'object',
   properties: {
     annotations: catalogAnnotationsSchema,
-    categoryId: { description: 'Identifier of the item\'s category', type: 'string' },
+    categoryId: {
+      description: 'The unique identifier of this item\'s version\'s category.',
+      type: 'string',
+    },
     description: catalogItemDescriptionSchema,
     documentation: catalogDocumentationSchema,
     imageUrl: catalogImageUrlSchema,
     itemId: catalogItemIdSchema,
-    itemTypeDefinitionRef: {
-      ...catalogItemTypeDefinitionRefSchema,
-      description: 'Reference to an Item Type Definition in the form of its composite primary key. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
-    },
+    itemTypeDefinitionRef: catalogItemTypeDefinitionRefSchema,
     labels: catalogLabelsSchema,
     lifecycleStatus: catalogLifecycleStatusSchema,
     links: catalogLinksSchema,
@@ -73,8 +75,9 @@ export const catalogItemManifestSchema = {
     tags: catalogTagsSchema,
     tenantId: catalogTenantIdSchema,
     type: {
-      ...catalogTypeSchema,
-      description: 'Type of the item. Deprecated in favour of `itemTypeDefinitionRef`. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored',
+      description: 'The type of this item\'s version. Deprecated in favour of `.itemTypeDefinitionRef`. Must be set if `.itemTypeDefinitionRef` is not set, otherwise it will be ignored. Read-only.',
+      type: 'string',
+      deprecated: true,
     },
     version: catalogSemverVersionSchema,
     visibility: catalogVisibilitySchema,
@@ -83,7 +86,7 @@ export const catalogItemManifestSchema = {
   required: ['name', 'itemId', 'tenantId', 'resources', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
-type _CatalogItemManifest = FromSchema<typeof catalogItemManifestSchema>
+type _CatalogItemManifest = FromSchema<typeof _catalogItemManifestSchema>
 
 export type CatalogItemManifest<
   Type extends string = string,
@@ -102,3 +105,42 @@ export type CatalogItemNoVersionManifest<
   type?: Type,
   itemTypeDefinitionRef?: CatalogItemTypeDefinitionRef<Type>
 }
+
+const example: CatalogItemManifest = {
+  annotations: { 'mia-platform.eu/version': '14.0.0' },
+  categoryId: 'e-commerce',
+  description: 'A standardized service to handle orders from an e-commerce website.',
+  documentation: { type: CatalogItemDocumentationType.EXTERNAL_LINK, url: 'https://docs.mia-platform.eu/' },
+  imageUrl: 'https://mia-platform.eu/wp-content/uploads/mia.svg',
+  itemId: 'order-service',
+  itemTypeDefinitionRef: { name: 'plugin', namespace: 'mia-platform' },
+  labels: { environment: 'prod' },
+  lifecycleStatus: catalogItemLifecycleStatusEnum.PUBLISHED,
+  links: [{ displayName: 'E-Commerce', url: 'https://example.com/' }],
+  maintainers: [{ name: 'E-Commerce Team', email: 'e-commerce@mail.eu' }],
+  name: 'Order Service',
+  relationships: [{ type: 'depends-on', target: 'MongoDB v8' }],
+  releaseDate: '2025-09-17T10:30:45Z',
+  repositoryUrl: 'https://github.com/mia-platform-marketplace/public-catalog',
+  resources: {
+    services: {
+      'order-service': {
+        type: 'plugin',
+        name: 'order-service',
+        dockerImage: 'order-service:1.0.0',
+        'defaultEnvironmentVariables': [{ 'name': 'LOG_LEVEL', 'value': 'info', 'valueType': 'plain' }],
+      },
+    },
+  },
+  supportedBy: 'My Company',
+  supportedByImageUrl: 'https://mia-platform.eu/wp-content/uploads/mia.svg',
+  tags: ['e-commerce'],
+  tenantId: 'my-company',
+  version: {
+    name: '1.0.0',
+    releaseNote: '# About this version\n\nThe first release of the service 🎉\n',
+  },
+  visibility: { public: false, allTenants: false },
+}
+
+export const catalogItemManifestSchema = { ..._catalogItemManifestSchema, examples: [example] }

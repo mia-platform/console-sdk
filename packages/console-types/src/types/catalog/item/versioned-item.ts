@@ -22,11 +22,11 @@ import type { JSONSchema } from '../../../commons/json-schema'
 import { CatalogItemTypeDefinitionRef, catalogVersionSchema } from './commons'
 import { catalogItemSchema } from './item'
 
-export const catalogVersionedItemSchema = {
+const _catalogVersionedItemSchema = {
   $id: 'catalog-versioned-item.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
   title: 'Catalog versioned item',
-  description: 'Data model of a Catalog item with required version',
+  description: 'A single version of a Software Catalog item with required version.',
   type: 'object',
   properties: {
     ...catalogItemSchema.properties,
@@ -39,8 +39,13 @@ export const catalogVersionedItemSchema = {
 export type CatalogVersionedItem<
   Type extends string = string,
   Resources extends Record<string, unknown> = Record<string, unknown>
-> = FromSchema<typeof catalogVersionedItemSchema> & {
+> = FromSchema<typeof _catalogVersionedItemSchema> & {
   resources?: Resources,
   type: Type,
   itemTypeDefinitionRef: CatalogItemTypeDefinitionRef<Type>
+}
+
+export const catalogVersionedItemSchema = {
+  ..._catalogVersionedItemSchema,
+  examples: catalogItemSchema.examples,
 }

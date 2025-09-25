@@ -92,7 +92,7 @@ const resourcesExamples: Resources[] = [
       'cross-project-proxy': {
         name: 'cross-project-proxy',
         type: 'cross-projects',
-        host: 'project-a-host:80',
+        host: 'my-service.default.svc.cluster.local:8080',
       },
     },
   },

@@ -7,69 +7,96 @@
   "type": "object",
   "properties": {
     "annotations": {
-      "description": "Set of non-identifying key/value pairs akin to Kubernetes object annotations",
+      "description": "An unstructured key value map that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying this object.",
       "type": "object",
       "patternProperties": {
         "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$": {
           "type": "string",
-          "pattern": "^$|^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{0,61}[a-zA-Z0-9])?$",
-          "maxLength": 63
+          "maxLength": 262144
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "examples": [
+        {
+          "imageregistry": "https://hub.docker.com/",
+          "mia-platform.eu/version": "14.0.0"
+        }
+      ]
     },
     "categoryId": {
-      "description": "Identifier of the item's category",
+      "description": "The unique identifier of this item's version's category.",
       "type": "string"
     },
     "description": {
-      "description": "Brief description of the item",
+      "description": "A brief description of this item.",
       "type": "string"
     },
     "documentation": {
-      "description": "Documentation of the item",
+      "description": "A reference to the documentation regarding this item.",
+      "type": "object",
       "properties": {
         "type": {
+          "description": "The type of documentation.",
+          "type": "string",
           "enum": [
             "externalLink",
             "markdown"
-          ],
-          "type": "string"
+          ]
         },
         "url": {
+          "description": "The URL where to reach for the documentation.",
           "type": "string"
         }
       },
+      "additionalProperties": false,
       "required": [
         "type",
         "url"
       ],
-      "type": "object"
+      "examples": [
+        {
+          "type": "externalLink",
+          "url": "https://example.com"
+        },
+        {
+          "type": "markdown",
+          "url": "https://raw.githubusercontent.com/mia-platform-marketplace/Go-Hello-World-Microservice-Example/refs/heads/1.20/README.md"
+        }
+      ]
     },
     "imageUrl": {
-      "description": "Url of the image associated with the item",
+      "description": "The URL of the image associated with this item.",
       "type": "string"
     },
     "itemId": {
-      "description": "RFC-1035 compliant identifier of the item. It forms a composite PK with tenantId and, if present, version.name",
+      "description": "A string that, alongside with `.version.name`, uniquely identifies this item within its namespace (`.tenantId`). Read-only.",
       "type": "string",
       "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
       "minLength": 1,
-      "maxLength": 63
+      "maxLength": 63,
+      "examples": [
+        "crud-service",
+        "node-js-template"
+      ]
     },
     "itemTypeDefinitionRef": {
-      "description": "Reference to an Item Type Definition in the form of its composite primary key. At least one among `type` and `itemTypeDefinitionRef` must be set. If both are set, `type` will be ignored",
+      "description": "The reference to an Item Type Definition in the form of its composite primary key. Read-only.",
       "type": "object",
       "properties": {
         "name": {
-          "description": "Name of the Item Type Definition (references `itd.metadata.name`)",
+          "description": "The name of the Item Type Definition (references its `.metadata.name`).",
           "type": "string",
           "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$",
           "minLength": 1,
-          "maxLength": 63
+          "maxLength": 63,
+          "examples": [
+            "plugin",
+            "custom-workload",
+            "ai-agent"
+          ]
         },
         "namespace": {
-          "description": "ID of the Item Type Definition namespace (references `itd.metadata.namespace.id`)",
+          "description": "The identifier of the Item Type Definition namespace (references its `.metadata.namespace.id`).",
           "type": "string",
           "minLength": 1
         }
@@ -78,10 +105,16 @@
         "name",
         "namespace"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "examples": [
+        {
+          "name": "plugin",
+          "namespace": "mia-platform"
+        }
+      ]
     },
     "labels": {
-      "description": "Set of identifying key/value pairs akin to Kubernetes object labels",
+      "description": "A map of string keys and values that can be used to organize and categorize (scope and select) objects.",
       "type": "object",
       "patternProperties": {
         "^([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,253}[\\/])?([a-zA-Z0-9][a-zA-Z0-9\\.\\-]{0,63}[a-zA-Z0-9]?)$": {
@@ -90,10 +123,18 @@
           "maxLength": 63
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "examples": [
+        {
+          "environment": "dev",
+          "mia-platform.eu/tenant": "my-company",
+          "track": ""
+        }
+      ]
     },
     "lifecycleStatus": {
-      "description": "Lifecycle status of the item",
+      "description": "The lifecycle status of this item.",
+      "type": "string",
       "enum": [
         "coming-soon",
         "draft",
@@ -101,43 +142,52 @@
         "maintenance",
         "deprecated",
         "archived"
-      ],
-      "type": "string"
+      ]
     },
     "links": {
-      "description": "List of external hyperlinks",
+      "description": "A list of external hyperlinks.",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "url": {
-            "description": "URL in standard uri format",
-            "type": "string"
+            "description": "The URL in standard URI format.",
+            "type": "string",
+            "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&\\/=]*)$"
           },
           "displayName": {
-            "description": "User friendly display name for the link",
+            "description": "A user-friendly title for the link.",
             "type": "string"
           }
         },
         "additionalProperties": false,
         "required": [
           "url"
+        ],
+        "examples": [
+          {
+            "url": "https://mia-platform.eu/",
+            "displayName": "Mia-Platform"
+          },
+          {
+            "url": "https://example.com"
+          }
         ]
       }
     },
     "maintainers": {
-      "description": "List of organizational entities maintaining the resource",
+      "description": "A list of organizational entities maintaining this object.",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "name": {
-            "description": "Display name of the entity",
+            "description": "The display name of the maintainer.",
             "type": "string",
             "minLength": 1
           },
           "email": {
-            "description": "Contact email of the entity",
+            "description": "A contact email of the maintainer.",
             "type": "string",
             "format": "email",
             "minLength": 1
@@ -146,30 +196,43 @@
         "additionalProperties": false,
         "required": [
           "name"
+        ],
+        "examples": [
+          {
+            "name": "John Doe",
+            "email": "john.doe@mail.com"
+          },
+          {
+            "name": "Mia-Platform core team"
+          }
         ]
       }
     },
     "name": {
-      "description": "Human-readable name of the item",
+      "description": "The human-readable title of this item.",
+      "type": "string",
       "minLength": 1,
-      "type": "string"
+      "examples": [
+        "CRUD Service",
+        "Node.js template"
+      ]
     },
     "providerId": {
-      "description": "Identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item type",
+      "description": "The identifier of the provider used to retrieve markdown documentation content and external resources, if supported by the item's type.",
       "type": "string"
     },
     "relationships": {
-      "description": "List of relationships from the current Catalog entity to any other entity (either it part of the Catalog or not)",
+      "description": "A list of relationships from this item to any other entity (either part of the Software Catalog or not).",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "target": {
-            "description": "The receiving end of the relationships. It can be a URN-reference to another Catalog entity or an arbitrary string",
+            "description": "The receiving end of the relationships. It can be a URN-reference to another Software Catalog entity or an arbitrary string.",
             "type": "string"
           },
           "type": {
-            "description": "The type of the relationships. It can be one of the Catalog well-known relationships or an arbitrary string",
+            "description": "The type of the relationships. It can be one of the Software Catalog well-known relationships or an arbitrary string.",
             "type": "string"
           }
         },
@@ -178,15 +241,31 @@
           "target",
           "type"
         ]
-      }
+      },
+      "examples": [
+        [
+          {
+            "type": "uses",
+            "target": "urn:mia-platform:mktp:crud-service?=version=7.2.3"
+          },
+          {
+            "type": "stores-data-on",
+            "target": "In-memory DB"
+          }
+        ]
+      ]
     },
     "releaseDate": {
-      "description": "Creation date of this item's release",
+      "description": "The time when this item was published.",
+      "type": "string",
       "format": "date-time",
-      "type": "string"
+      "examples": [
+        "2025-09-17T10:30:45Z",
+        "2024-01-01T12:30:10.199+00:00"
+      ]
     },
     "repositoryUrl": {
-      "description": "URL of the repository containing the source code of the resource created by the item",
+      "description": "The URL of the repository containing the source code of the resource(s) created by this item.",
       "type": "string"
     },
     "resources": {
@@ -998,45 +1077,58 @@
       ]
     },
     "supportedBy": {
-      "description": "Identifier of the company that has produced the item",
+      "description": "The identifier of the company that has produced this item.",
       "type": "string"
     },
     "supportedByImageUrl": {
-      "description": "Url of the image associated with the company that has produced the item",
+      "description": "The URL of the image associated with the company that has produced this item.",
       "type": "string"
     },
     "tags": {
-      "description": "List of single-valued strings",
+      "description": "A list of single-valued strings.",
       "type": "array",
       "items": {
         "type": "string",
         "pattern": "^[a-z0-9:+#]+(-[a-z0-9:+#]+)*$",
         "minLength": 1,
         "maxLength": 63
-      }
+      },
+      "examples": [
+        [
+          "ai",
+          "production"
+        ]
+      ]
     },
     "tenantId": {
-      "description": "Identifier of the tenant to which the item belongs. It forms a composite PK with itemId and, if present, version.name",
+      "description": "The identifier of the tenant to which this item belongs. Within this tenant, the combination of the `.name` and the `.version.name` of this item must be unique. Read-only.",
       "type": "string"
     },
     "type": {
       "const": "sidecar"
     },
     "visibility": {
-      "description": "Visibility of the item",
+      "description": "The visibility of this item. It can be public (i.e., visible to any user calling the APIs, even if not authenticated with the Console), \"all tenants\" (i.e., visible to all tenants of the Console installation), or private (i.e., only visible to the item's tenant).",
+      "type": "object",
       "properties": {
         "allTenants": {
-          "default": false,
-          "description": "If true, the item will be accessible to all companies",
-          "type": "boolean"
+          "description": "A flag stating whether this item's release should be visible to all tenants of the Console installation.",
+          "type": "boolean",
+          "default": false
         },
         "public": {
-          "default": false,
-          "description": "If true, the item will be accessible from any user that access the Console, even if not authenticated",
-          "type": "boolean"
+          "description": "A flag stating whether this item's release should be visible to any user calling the APIs, even if not authenticated with the Console.",
+          "type": "boolean",
+          "default": false
         }
       },
-      "type": "object"
+      "additionalProperties": false,
+      "examples": [
+        {
+          "allTenants": false,
+          "public": true
+        }
+      ]
     },
     "$schema": {
       "type": "string"
@@ -1049,5 +1141,79 @@
     "tenantId",
     "resources",
     "lifecycleStatus"
+  ],
+  "examples": [
+    {
+      "annotations": {
+        "mia-platform.eu/version": "14.0.0"
+      },
+      "categoryId": "e-commerce",
+      "description": "A standardized service to handle orders from an e-commerce website.",
+      "documentation": {
+        "type": "externalLink",
+        "url": "https://docs.mia-platform.eu/"
+      },
+      "imageUrl": "https://mia-platform.eu/wp-content/uploads/mia.svg",
+      "itemId": "order-service",
+      "itemTypeDefinitionRef": {
+        "name": "plugin",
+        "namespace": "mia-platform"
+      },
+      "labels": {
+        "environment": "prod"
+      },
+      "lifecycleStatus": "published",
+      "links": [
+        {
+          "displayName": "E-Commerce",
+          "url": "https://example.com/"
+        }
+      ],
+      "maintainers": [
+        {
+          "name": "E-Commerce Team",
+          "email": "e-commerce@mail.eu"
+        }
+      ],
+      "name": "Order Service",
+      "relationships": [
+        {
+          "type": "depends-on",
+          "target": "MongoDB v8"
+        }
+      ],
+      "releaseDate": "2025-09-17T10:30:45Z",
+      "repositoryUrl": "https://github.com/mia-platform-marketplace/public-catalog",
+      "resources": {
+        "services": {
+          "order-service": {
+            "type": "plugin",
+            "name": "order-service",
+            "dockerImage": "order-service:1.0.0",
+            "defaultEnvironmentVariables": [
+              {
+                "name": "LOG_LEVEL",
+                "value": "info",
+                "valueType": "plain"
+              }
+            ]
+          }
+        }
+      },
+      "supportedBy": "My Company",
+      "supportedByImageUrl": "https://mia-platform.eu/wp-content/uploads/mia.svg",
+      "tags": [
+        "e-commerce"
+      ],
+      "tenantId": "my-company",
+      "version": {
+        "name": "1.0.0",
+        "releaseNote": "# About this version\n\nThe first release of the service 🎉\n"
+      },
+      "visibility": {
+        "public": false,
+        "allTenants": false
+      }
+    }
   ]
 }

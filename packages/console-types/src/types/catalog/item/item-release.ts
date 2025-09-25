@@ -29,18 +29,22 @@ import {
   catalogLifecycleStatusSchema,
 } from './commons'
 
-export const catalogItemReleaseSchema = {
+const _catalogItemReleaseSchema = {
   $id: 'catalog-release.schema.json',
   $schema: 'http://json-schema.org/draft-07/schema#',
-  title: 'Catalog release',
-  description: 'Data model of a Catalog item release',
+  title: 'Software Catalog item release',
+  description: 'A single release of a Software Catalog item.',
   type: 'object',
   properties: {
     description: catalogItemDescriptionSchema,
     isLatest: catalogIsLatestSchema,
     lifecycleStatus: catalogLifecycleStatusSchema,
     name: catalogItemNameSchema,
-    reference: { description: 'Mongo objectId of the item', type: 'string' },
+    reference: {
+      description: 'The reference to the item in the form of the MongoDB `_id` of the corresponding document.',
+      type: 'string',
+      examples: ['63775c07a09ac0996ebfb7bc'],
+    },
     releaseDate: catalogReleaseDateSchema,
     releaseNote: catalogVersionSchema.properties.releaseNote,
     security: catalogVersionSchema.properties.security,
@@ -51,4 +55,19 @@ export const catalogItemReleaseSchema = {
   required: ['name', 'description', 'version', 'reference', 'releaseNote', 'releaseDate', 'lifecycleStatus'],
 } as const satisfies JSONSchema
 
-export type CatalogItemRelease = FromSchema<typeof catalogItemReleaseSchema>
+export type CatalogItemRelease = FromSchema<typeof _catalogItemReleaseSchema>
+
+const example: CatalogItemRelease = {
+  name: 'Order Service',
+  description: 'A standardized service to handle orders from an e-commerce website.',
+  version: '1.0.0',
+  lifecycleStatus: 'published',
+  isLatest: true,
+  reference: '63775c07a09ac0996ebfb7bc',
+  releaseDate: '2025-09-17T10:30:45Z',
+  releaseNote: '# About this version\n\nThe first release of the service 🎉\n',
+  security: false,
+  visibility: { public: false, allTenants: false },
+}
+
+export const catalogItemReleaseSchema = { ..._catalogItemReleaseSchema, examples: [example] }
