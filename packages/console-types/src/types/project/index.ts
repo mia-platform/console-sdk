@@ -552,6 +552,7 @@ export const project = {
     info: {
       type: 'object',
       properties: {
+        createdAt: { type: 'string' },
         projectOwner: { type: 'string' },
         teamContact: { type: 'string' },
         technologies: {
