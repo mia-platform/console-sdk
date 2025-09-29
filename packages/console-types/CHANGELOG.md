@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.39.3
+
+### Patch Changes
+
+- 343d80f: added: createdAt to project.info schema
+
 ## 0.39.2
 
 ### Patch Changes
