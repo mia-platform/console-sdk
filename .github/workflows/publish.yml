@@ -6,9 +6,13 @@ on:
       - '**'
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   determine-publish-target:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       target: ${{ steps.check.outputs.target }}
       package: ${{ steps.check.outputs.package }}
@@ -32,20 +36,24 @@ jobs:
     needs: determine-publish-target
     if: needs.determine-publish-target.outputs.target == 'npm'
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 22
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
-          node-version: 22
+          show-progress: false
+      - name: Use Node.js 24
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
         name: Install pnpm
         with:
           run_install: false
       - name: Build Monorepo and Publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           PACKAGE: ${{ needs.determine-publish-target.outputs.package }}
         run: |
           # Post install always builds every package in the workspace
@@ -57,17 +65,21 @@ jobs:
     needs: determine-publish-target
     if: needs.determine-publish-target.outputs.target == 'cdn'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       CDN_STORAGE_ACCESS_KEY: ${{ secrets.CDN_STORAGE_ACCESS_KEY }}
       PACKAGE: ${{ needs.determine-publish-target.outputs.package }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 22
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
-          node-version: 22
+          show-progress: false
+      - name: Use Node.js 22
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
         name: Install pnpm
         with:
           run_install: false
@@ -78,7 +90,7 @@ jobs:
 
       - name: Install CDN Publish CLI
         run: pnpm add -g @mia-platform/cdn-publish
-    
+
       - name: Publish
         run: |
           package_folder=$(echo "$PACKAGE" | awk -F'[@/]' '{print $3}')
