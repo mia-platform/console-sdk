@@ -412,6 +412,20 @@
                     },
                     {
                         "in": "query",
+                        "name": "page",
+                        "schema": {
+                        "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "schema": {
+                        "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
                         "name": "resolveDetails",
                         "schema": {
                             "type": "boolean"
@@ -420,6 +434,20 @@
                 ],
                 "responses": {
                     "200": {
+                        "headers": {
+                            "x-total-items": {
+                                "schema": {
+                                    "type": "number"
+                                },
+                                "description": "Total number of items available"
+                            },
+                            "x-total-pages": {
+                                "schema": {
+                                    "type": "number"
+                                },
+                                "description": "Total number of pages available"
+                            }
+                        },
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -511,6 +539,33 @@
                                             },
                                             "name": {
                                                 "type": "string"
+                                            },
+                                            "oauth2App": {
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "audience": {
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "redirectUrl": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "name",
+                                                    "redirectUrl",
+                                                    "audience"
+                                                ],
+                                                "type": "object"
                                             },
                                             "permissions": {
                                                 "items": {
