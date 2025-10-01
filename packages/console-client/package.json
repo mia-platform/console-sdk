@@ -4,7 +4,7 @@
     "url": "git+https://github.com/mia-platform/console-sdk.git"
   },
   "license": "Apache-2.0",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "main": "build/index.js",
   "typings": "./build/index.d.ts",
   "module": "./build/index.js",

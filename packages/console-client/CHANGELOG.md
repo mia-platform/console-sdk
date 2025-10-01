@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.6.3
+
+### Patch Changes
+
+- e4e6d21: fixed npm repository url in package.json
+
 ## 0.6.2
 
 ### Patch Changes

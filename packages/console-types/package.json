@@ -1,5 +1,8 @@
 {
   "name": "@mia-platform/console-types",
+  "repository": {
+    "url": "https://github.com/mia-platform/console-sdk"
+  },
   "version": "0.39.3",
   "description": "",
   "main": "build/index.js",
