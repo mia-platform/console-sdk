@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.39.4
+
+### Patch Changes
+
+- a91b59a: added repository.url to package json
+
 ## 0.39.3
 
 ### Patch Changes
