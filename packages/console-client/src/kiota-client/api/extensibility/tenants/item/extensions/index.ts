@@ -1128,13 +1128,7 @@ export function serializeExtensionsPutResponse(writer: SerializationWriter, exte
 /**
  * Uri template for the request builder.
  */
-export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions{?page*,per_page*,resolveDetails*}";
-/**
- * Mapper for query parameters from symbol name to serialization name represented as a constant.
- */
-const ExtensionsRequestBuilderGetQueryParametersMapper: Record<string, string> = {
-    "perPage": "per_page",
-};
+export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions{?page*,perPage*,resolveDetails*}";
 /**
  * Metadata for all the navigation properties in the request builder.
  */
@@ -1157,7 +1151,6 @@ export const ExtensionsRequestBuilderRequestsMetadata: RequestsMetadata = {
         },
         adapterMethodName: "sendCollection",
         responseBodyFactory:  createExtensionsFromDiscriminatorValue,
-        queryParametersMapper: ExtensionsRequestBuilderGetQueryParametersMapper,
     },
     put: {
         uriTemplate: ExtensionsRequestBuilderUriTemplate,

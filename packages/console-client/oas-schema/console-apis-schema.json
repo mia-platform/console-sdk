@@ -419,7 +419,7 @@
                     },
                     {
                         "in": "query",
-                        "name": "per_page",
+                        "name": "perPage",
                         "schema": {
                         "type": "integer"
                         }
