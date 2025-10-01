@@ -1,5 +1,8 @@
 {
   "name": "@mia-platform/console-client",
+  "repository": {
+    "url": "git+https://github.com/mia-platform/console-sdk.git"
+  },
   "license": "Apache-2.0",
   "version": "0.6.2",
   "main": "build/index.js",
