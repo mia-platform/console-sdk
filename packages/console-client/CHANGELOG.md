@@ -1,5 +1,11 @@
 # @mia-platform/console-client
 
+## 0.6.2
+
+### Patch Changes
+
+- c626496: added pagination to extensibility /extensions API
+
 ## 0.6.1
 
 ### Patch Changes
