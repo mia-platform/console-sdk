@@ -414,14 +414,14 @@
                         "in": "query",
                         "name": "page",
                         "schema": {
-                        "type": "integer"
+                            "type": "integer"
                         }
                     },
                     {
                         "in": "query",
                         "name": "perPage",
                         "schema": {
-                        "type": "integer"
+                            "type": "integer"
                         }
                     },
                     {
