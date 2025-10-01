@@ -22,7 +22,7 @@
     "@microsoft/kiota-serialization-json": "1.0.0-preview.81",
     "@microsoft/kiota-serialization-text": "1.0.0-preview.81",
     "@microsoft/kiota-serialization-form": "1.0.0-preview.81",
-    "@microsoft/kiota-serialization-multipart": "1.0.0-preview.81",
+    "@microsoft/kiota-serialization-multipart": "1.0.0-preview.98",
     "axios": "^1.7.7"
   },
   "devDependencies": {
