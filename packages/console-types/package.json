@@ -1,7 +1,7 @@
 {
   "name": "@mia-platform/console-types",
   "repository": {
-    "url": "https://github.com/mia-platform/console-sdk"
+    "url": "git+https://github.com/mia-platform/console-sdk.git"
   },
   "version": "0.39.3",
   "description": "",
