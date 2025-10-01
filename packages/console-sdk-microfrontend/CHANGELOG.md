@@ -1,5 +1,11 @@
 # @mia-platform/console-sdk-microfrontend
 
+## 0.2.105
+
+### Patch Changes
+
+- a4c43fd: fixed repository.url on package.json
+
 ## 0.2.104
 
 ### Patch Changes

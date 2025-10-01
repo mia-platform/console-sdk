@@ -1,5 +1,13 @@
 # @mia-platform/console-sdk-vite-helpers
 
+## 0.0.145
+
+### Patch Changes
+
+- a4c43fd: fixed repository.url on package.json
+- Updated dependencies [a4c43fd]
+  - @mia-platform/console-sdk-microfrontend@0.2.105
+
 ## 0.0.144
 
 ### Patch Changes
