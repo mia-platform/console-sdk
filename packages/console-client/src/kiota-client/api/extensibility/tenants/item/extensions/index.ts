@@ -54,6 +54,15 @@ export function createExtensions_menuFromDiscriminatorValue(parseNode: ParseNode
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {Extensions_oauth2App}
+ */
+// @ts-ignore
+export function createExtensions_oauth2AppFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoExtensions_oauth2App;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {Extensions_proxy}
  */
 // @ts-ignore
@@ -195,6 +204,7 @@ export function deserializeIntoExtensions(extensions: Partial<Extensions> | unde
         "_id": n => { extensions.id = n.getStringValue(); },
         "menu": n => { extensions.menu = n.getObjectValue<Extensions_menu>(createExtensions_menuFromDiscriminatorValue); },
         "name": n => { extensions.name = n.getStringValue(); },
+        "oauth2App": n => { extensions.oauth2App = n.getObjectValue<Extensions_oauth2App>(createExtensions_oauth2AppFromDiscriminatorValue); },
         "permissions": n => { extensions.permissions = n.getCollectionOfPrimitiveValues<string>(); },
         "proxy": n => { extensions.proxy = n.getObjectValue<Extensions_proxy>(createExtensions_proxyFromDiscriminatorValue); },
         "roleIds": n => { extensions.roleIds = n.getCollectionOfPrimitiveValues<string>(); },
@@ -254,6 +264,19 @@ export function deserializeIntoExtensions_menu(extensions_menu: Partial<Extensio
 // @ts-ignore
 export function deserializeIntoExtensions_menu_labelIntl(extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoExtensions_oauth2App(extensions_oauth2App: Partial<Extensions_oauth2App> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "audience": n => { extensions_oauth2App.audience = n.getCollectionOfPrimitiveValues<string>(); },
+        "id": n => { extensions_oauth2App.id = n.getStringValue(); },
+        "name": n => { extensions_oauth2App.name = n.getStringValue(); },
+        "redirectUrl": n => { extensions_oauth2App.redirectUrl = n.getStringValue(); },
     }
 }
 /**
@@ -467,6 +490,10 @@ export interface Extensions extends Parsable {
      */
     name?: string | null;
     /**
+     * The oauth2App property
+     */
+    oauth2App?: Extensions_oauth2App | null;
+    /**
      * The permissions property
      */
     permissions?: string[] | null;
@@ -540,6 +567,24 @@ export interface Extensions_menu_labelIntl extends AdditionalDataHolder, Parsabl
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
      */
     additionalData?: Record<string, unknown>;
+}
+export interface Extensions_oauth2App extends Parsable {
+    /**
+     * The audience property
+     */
+    audience?: string[] | null;
+    /**
+     * The id property
+     */
+    id?: string | null;
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The redirectUrl property
+     */
+    redirectUrl?: string | null;
 }
 export interface Extensions_proxy extends Parsable {
     /**
@@ -812,6 +857,8 @@ export interface ExtensionsRequestBuilder extends BaseRequestBuilder<ExtensionsR
      toPutRequestInformation(body: ExtensionsPutRequestBody, requestConfiguration?: RequestConfiguration<object> | undefined) : RequestInformation;
 }
 export interface ExtensionsRequestBuilderGetQueryParameters {
+    page?: number;
+    perPage?: number;
     resolveDetails?: boolean;
 }
 /**
@@ -832,6 +879,7 @@ export function serializeExtensions(writer: SerializationWriter, extensions: Par
         writer.writeStringValue("_id", extensions.id);
         writer.writeObjectValue<Extensions_menu>("menu", extensions.menu, serializeExtensions_menu);
         writer.writeStringValue("name", extensions.name);
+        writer.writeObjectValue<Extensions_oauth2App>("oauth2App", extensions.oauth2App, serializeExtensions_oauth2App);
         writer.writeCollectionOfPrimitiveValues<string>("permissions", extensions.permissions);
         writer.writeObjectValue<Extensions_proxy>("proxy", extensions.proxy, serializeExtensions_proxy);
         writer.writeCollectionOfPrimitiveValues<string>("roleIds", extensions.roleIds);
@@ -893,6 +941,19 @@ export function serializeExtensions_menu(writer: SerializationWriter, extensions
 export function serializeExtensions_menu_labelIntl(writer: SerializationWriter, extensions_menu_labelIntl: Partial<Extensions_menu_labelIntl> | undefined | null = {}) : void {
     if (extensions_menu_labelIntl) {
         writer.writeAdditionalData(extensions_menu_labelIntl.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeExtensions_oauth2App(writer: SerializationWriter, extensions_oauth2App: Partial<Extensions_oauth2App> | undefined | null = {}) : void {
+    if (extensions_oauth2App) {
+        writer.writeCollectionOfPrimitiveValues<string>("audience", extensions_oauth2App.audience);
+        writer.writeStringValue("id", extensions_oauth2App.id);
+        writer.writeStringValue("name", extensions_oauth2App.name);
+        writer.writeStringValue("redirectUrl", extensions_oauth2App.redirectUrl);
     }
 }
 /**
@@ -1067,7 +1128,7 @@ export function serializeExtensionsPutResponse(writer: SerializationWriter, exte
 /**
  * Uri template for the request builder.
  */
-export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions{?resolveDetails*}";
+export const ExtensionsRequestBuilderUriTemplate = "{+baseurl}/api/extensibility/tenants/{tenantId}/extensions{?page*,perPage*,resolveDetails*}";
 /**
  * Metadata for all the navigation properties in the request builder.
  */
