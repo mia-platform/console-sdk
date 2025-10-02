@@ -33,7 +33,8 @@
   "homepage": "https://github.com/mia-platform/console-sdk-microfrontend#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mia-platform/console-sdk.git"
+    "url": "git+https://github.com/mia-platform/console-sdk.git",
+    "directory": "packages/console-sdk-vite-helpers"
   },
   "bugs": {
     "url": "https://github.com/mia-platform/console-sdk-microfrontend/issues"

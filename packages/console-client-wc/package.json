@@ -4,6 +4,11 @@
   "description": "",
   "main": "build/index.js",
   "types": "build/index",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mia-platform/console-sdk.git",
+    "directory": "packages/console-client-wc"
+  },
   "scripts": {
     "build:catalog-schemas": "ts-node scripts/build-catalog-schemas.ts",
     "build": "vite build",
