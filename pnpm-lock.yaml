@@ -281,6 +281,9 @@ importers:
       '@mia-platform/eslint-config-mia':
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.57.1)
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.14.1
       '@types/ramda':
         specifier: ^0.30.0
         version: 0.30.2

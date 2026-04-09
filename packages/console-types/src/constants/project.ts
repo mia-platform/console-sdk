@@ -36,9 +36,11 @@ export const VISIBILITY_PROJECT_FIELDS = [
 
 export const GITLAB_CI = 'gitlab-ci'
 export const AZURE_PIPELINES = 'azure-pipelines'
+export const BITBUCKET_PIPELINES = 'bitbucket-pipelines'
 
 export const REPOSITORY_TYPES = {
   BITBUCKET: 'bitbucket',
+  BITBUCKET_CLOUD: 'bitbucket-cloud',
   GITHUB: 'github',
   GITLAB: 'gitlab',
   AZURE: 'azure-devops',
@@ -56,12 +58,14 @@ export const DEPLOYMENT_TYPES = {
   GITLAB_CI,
   GITHUB: 'github-actions',
   AZURE_PIPELINES,
+  BITBUCKET_PIPELINES,
 } as const
 
 export const PIPELINE_FROM_TEMPLATE = [
   DEPLOYMENT_TYPES.GITLAB_CI,
   DEPLOYMENT_TYPES.AZURE_PIPELINES,
   DEPLOYMENT_TYPES.GITHUB,
+  DEPLOYMENT_TYPES.BITBUCKET_PIPELINES,
 ]
 
 export const MLP = 'mlp'
@@ -92,4 +96,5 @@ export enum ProjectPipelinesTypes {
   GITLAB_CI = 'gitlab-ci',
   AZURE_PIPELINES = 'azure-pipelines',
   GITHUB = 'github-actions',
+  BITBUCKET_PIPELINES = 'bitbucket-pipelines',
 }
