@@ -55,6 +55,7 @@ export const infrastructureComponent = {
           enum: [
             DEPLOYMENT_TYPES.GITLAB_CI,
             DEPLOYMENT_TYPES.GITHUB,
+            DEPLOYMENT_TYPES.BITBUCKET_PIPELINES,
             DEPLOYMENT_TYPES.AZURE_PIPELINES,
             DEPLOYMENT_TYPES.JENKINS,
             DEPLOYMENT_TYPES.WEBHOOK,

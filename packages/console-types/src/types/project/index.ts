@@ -75,7 +75,7 @@ export const pipelines = {
         providerId: { type: 'string' },
         type: {
           type: 'string',
-          enum: [DEPLOYMENT_TYPES.GITLAB_CI, DEPLOYMENT_TYPES.GITHUB, DEPLOYMENT_TYPES.WEBHOOK],
+          enum: [DEPLOYMENT_TYPES.GITLAB_CI, DEPLOYMENT_TYPES.GITHUB, DEPLOYMENT_TYPES.BITBUCKET_PIPELINES, DEPLOYMENT_TYPES.WEBHOOK],
         },
         statusWebhookSecretCredentialsId: { type: 'string' },
       },

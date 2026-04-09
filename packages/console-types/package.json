@@ -5,7 +5,7 @@
     "url": "git+https://github.com/mia-platform/console-sdk.git",
     "directory": "packages/console-types"
   },
-  "version": "0.39.4",
+  "version": "0.40.0",
   "description": "",
   "main": "build/index.js",
   "types": "build/index",
@@ -25,6 +25,7 @@
   "license": "ISC",
   "devDependencies": {
     "@mia-platform/eslint-config-mia": "^3.0.0",
+    "@types/node": "^22.0.0",
     "@types/ramda": "^0.30.0",
     "@types/tap": "^15.0.11",
     "@typescript-eslint/eslint-plugin": "^7.13.0",

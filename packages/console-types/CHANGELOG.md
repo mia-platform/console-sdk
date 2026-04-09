@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.40.0
+
+### Minor Changes
+
+- 21e6aaa: Add Bitbucket Cloud provider support
+
 ## 0.39.4
 
 ### Patch Changes
