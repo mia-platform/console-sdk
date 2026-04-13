@@ -108,6 +108,21 @@ t.test('environment validated', t => {
     t.end()
   })
 
+  t.test('with bitbucket-cloud secret manager', t => {
+    const env: IEnvironment = {
+      envId: 'env-id',
+      environmentsVariables: {
+        type: 'bitbucket-cloud',
+        providerId: 'my-provider-id',
+        workspace: 'my-workspace',
+        baseUrl: 'https://bitbucket.org',
+      },
+    }
+
+    t.ok(validate(env), validationMessage(validate.errors))
+    t.end()
+  })
+
   t.end()
 })
 
@@ -434,6 +449,29 @@ t.test('project validated', t => {
       }],
       aiSettings: {
         enableAgenticFeatures: true,
+      },
+    }
+
+    t.ok(validate(projectObj), validationMessage(validate.errors))
+    t.end()
+  })
+
+  t.test('with bitbucket-cloud secret manager', t => {
+    const ajv = new Ajv()
+    const validate = ajv.compile<IProject>(project)
+
+    const projectObj: IProject = {
+      name: 'template-name',
+      configurationGitPath: 'config-path',
+      projectId: 'my-project-id',
+      _id: 'object-id',
+      environments: [],
+      repository: {},
+      environmentsVariables: {
+        type: 'bitbucket-cloud',
+        providerId: 'my-provider-id',
+        workspace: 'my-workspace',
+        baseUrl: 'https://bitbucket.org',
       },
     }
 

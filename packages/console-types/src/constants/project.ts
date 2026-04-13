@@ -50,6 +50,7 @@ export const ENVIRONMENTS_VARIABLES_TYPES = {
   GITLAB: 'gitlab',
   VAULT: 'vault',
   AZURE_KEY_VAULT: 'azure-key-vault',
+  BITBUCKET_CLOUD: 'bitbucket-cloud',
 } as const
 
 export const DEPLOYMENT_TYPES = {

@@ -110,5 +110,21 @@ t.test('tenants validated', t => {
     t.end()
   })
 
+  t.test('with bitbucket-cloud secret manager', t => {
+    const tenantObj: ITenant = {
+      name: 'tenant-name',
+      tenantId: 'my-tenant-id',
+      environmentsVariables: {
+        type: 'bitbucket-cloud',
+        providerId: 'my-provider-id',
+        workspace: 'my-workspace',
+        baseUrl: 'https://bitbucket.org',
+      },
+    }
+
+    t.ok(validate(tenantObj), validationMessage(validate.errors))
+    t.end()
+  })
+
   t.end()
 })

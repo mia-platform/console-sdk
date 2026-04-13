@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.41.0
+
+### Minor Changes
+
+- Added Bitbucket Cloud support for environment variables
+
 ## 0.40.1
 
 ### Patch Changes

@@ -162,6 +162,20 @@ export const environmentsVariables = {
         serviceAccountName: { type: 'string' },
       },
     },
+    {
+      type: 'object',
+      required: ['type'],
+      properties: {
+        type: {
+          type: 'string',
+          const: ENVIRONMENTS_VARIABLES_TYPES.BITBUCKET_CLOUD,
+        },
+        providerId: { type: 'string' },
+        workspace: { type: 'string' },
+        baseUrl: { type: 'string' },
+      },
+      additionalProperties: false,
+    },
   ],
 } as const
 
