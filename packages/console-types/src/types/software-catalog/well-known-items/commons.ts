@@ -511,9 +511,19 @@ export const gitlabCiSchema = {
   },
 } as const satisfies JSONSchema
 
+export const bitbucketPipelinesSchema = {
+  type: 'object',
+  properties: {
+    branch: { type: 'string' },
+    path: { type: 'string' },
+    providerId: { type: 'string' },
+  },
+} as const satisfies JSONSchema
+
 export const pipelinesSchema = {
   properties: {
     'azure-pipelines': azurePipelineSchema,
+    'bitbucket-pipelines': bitbucketPipelinesSchema,
     'github-actions': gitHubActionSchema,
     'gitlab-ci': gitlabCiSchema,
     jenkins: {

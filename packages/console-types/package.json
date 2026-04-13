@@ -5,7 +5,7 @@
     "url": "git+https://github.com/mia-platform/console-sdk.git",
     "directory": "packages/console-types"
   },
-  "version": "0.40.0",
+  "version": "0.40.1",
   "description": "",
   "main": "build/index.js",
   "types": "build/index",

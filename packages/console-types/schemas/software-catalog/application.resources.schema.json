@@ -4007,6 +4007,20 @@
                         }
                       }
                     },
+                    "bitbucket-pipelines": {
+                      "type": "object",
+                      "properties": {
+                        "branch": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "providerId": {
+                          "type": "string"
+                        }
+                      }
+                    },
                     "github-actions": {
                       "type": "object",
                       "properties": {
@@ -4947,6 +4961,20 @@
                 "pipelines": {
                   "properties": {
                     "azure-pipelines": {
+                      "type": "object",
+                      "properties": {
+                        "branch": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "providerId": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "bitbucket-pipelines": {
                       "type": "object",
                       "properties": {
                         "branch": {

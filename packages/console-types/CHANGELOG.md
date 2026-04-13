@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.40.1
+
+### Patch Changes
+
+- Fixed Bitbucket Pipelines schemas for Bitbucket Cloud
+
 ## 0.40.0
 
 ### Minor Changes
