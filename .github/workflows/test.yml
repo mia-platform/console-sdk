@@ -39,7 +39,7 @@ jobs:
     - run: pnpm lint
     - run: pnpm test
     - name: Coveralls
-      uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # v2.3.6
+      uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2.3.7
       with:
         flag-name: coverage for node:${{ matrix.node-version }}
         files: 'packages/*/coverage/clover.xml'
@@ -61,6 +61,6 @@ jobs:
       contents: read
     steps:
       - name: Close coverage report
-        uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # v2.3.6
+        uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2.3.7
         with:
           parallel-finished: true
