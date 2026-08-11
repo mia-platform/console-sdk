@@ -30,6 +30,7 @@ import { ownersSchema } from './collections'
 export const serviceName = {
   type: 'string',
   minLength: 1,
+  maxLength: 253,
   pattern: '^[a-z]([-a-z0-9]*[a-z0-9])?$',
   [VALIDATION_ERROR_ID]: 'resourceName.patternError',
 } as const
@@ -63,6 +64,8 @@ export const swaggerPath = {
 
 export const serviceSecretName = {
   type: 'string',
+  minLength: 1,
+  maxLength: 253,
   pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$',
   [VALIDATION_ERROR_ID]: 'resourceName.patternError',
 } as const
@@ -81,6 +84,8 @@ export const serviceSecretKey = {
 
 export const configMapName = {
   type: 'string',
+  minLength: 1,
+  maxLength: 253,
   pattern: '^[a-z][a-z0-9]*(-[a-z0-9]+)*$',
   [VALIDATION_ERROR_ID]: 'resourceName.patternError',
 } as const
