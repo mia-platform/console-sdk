@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.42.0
+
+### Minor Changes
+
+- c4fb1d4: Added `helm-chart` Software Catalog well-known item
+
 ## 0.41.0
 
 ### Minor Changes
