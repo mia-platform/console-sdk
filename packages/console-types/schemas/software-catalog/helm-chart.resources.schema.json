@@ -1,0 +1,87 @@
+{
+  "$comment": "This file was automatically generated, do not modify it by hand. Instead, modify the source Typescript file, and run `pnpm types build:software-catalog-schemas`.",
+  "$id": "software-catalog-helm-chart.resources.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "The resources of a Software Catalog helm-chart item.",
+  "properties": {
+    "source": {
+      "additionalProperties": false,
+      "description": "The registry the chart has been imported from",
+      "properties": {
+        "repository": {
+          "description": "The chart repository URL (e.g. `oci://registry.example.com/charts`)",
+          "minLength": 1,
+          "type": "string"
+        },
+        "digest": {
+          "description": "The digest of the chart package (e.g. `sha256:...`)",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository",
+        "digest"
+      ],
+      "type": "object"
+    },
+    "chart": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "The chart files, keyed by their path relative to the chart root, with their content as value",
+      "properties": {
+        "Chart.yaml": {
+          "description": "The chart metadata",
+          "minLength": 1,
+          "type": "string"
+        },
+        "values.yaml": {
+          "description": "The default configuration values of the chart",
+          "type": "string"
+        },
+        "values.schema.json": {
+          "description": "The JSON Schema used to validate the chart values",
+          "type": "string"
+        },
+        "README.md": {
+          "description": "The chart documentation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Chart.yaml"
+      ],
+      "type": "object"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "chart"
+  ],
+  "title": "Software Catalog helm-chart item resources",
+  "type": "object",
+  "examples": [
+    {
+      "chart": {
+        "Chart.yaml": "apiVersion: v2\nname: my-chart\nversion: 0.1.0\n"
+      }
+    },
+    {
+      "source": {
+        "repository": "oci://registry.example.com/platform-team/charts",
+        "digest": "sha256:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
+      },
+      "chart": {
+        "Chart.yaml": "apiVersion: v2\nname: orders-api\nversion: 2.3.1\nappVersion: 5.8.0\ntype: application\n",
+        "values.yaml": "replicaCount: 2\nimage:\n  repository: registry.example.com/orders/orders-api\n  tag: \"\"\n",
+        "values.schema.json": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"replicaCount\": { \"type\": \"integer\", \"minimum\": 1 }\n  }\n}\n",
+        "README.md": "# orders-api\n\nOrders API chart curated by the platform team.\n",
+        "templates/deployment.yaml": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: {{ .Release.Name }}-orders-api\nspec:\n  replicas: {{ .Values.replicaCount }}\n"
+      }
+    }
+  ]
+}

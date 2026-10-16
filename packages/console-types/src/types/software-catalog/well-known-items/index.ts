@@ -24,6 +24,8 @@ import { data as catalogExampleData } from './example'
 import type * as ICatalogExample from './example'
 import { data as catalogExtensionData } from './extension'
 import type * as ICatalogExtension from './extension'
+import { data as catalogHelmChartData } from './helm-chart'
+import type * as ICatalogHelmChart from './helm-chart'
 import { data as catalogInfrastructureResourceData } from './infrastructure-resource'
 import type * as ICatalogInfrastructureResource from './infrastructure-resource'
 import { data as catalogPluginData } from './plugin'
@@ -50,6 +52,7 @@ type CatalogWellKnownItemsType = |
   typeof catalogApplicationData.type |
   typeof catalogExampleData.type |
   typeof catalogExtensionData.type |
+  typeof catalogHelmChartData.type |
   typeof catalogInfrastructureResourceData.type |
   typeof catalogPluginData.type |
   typeof catalogProxyData.type |
@@ -62,6 +65,7 @@ export const catalogWellKnownItems: Record<CatalogWellKnownItemsType, CatalogWel
   [catalogApplicationData.type]: catalogApplicationData,
   [catalogExampleData.type]: catalogExampleData,
   [catalogExtensionData.type]: catalogExtensionData,
+  [catalogHelmChartData.type]: catalogHelmChartData,
   [catalogInfrastructureResourceData.type]: catalogInfrastructureResourceData,
   [catalogPluginData.type]: catalogPluginData,
   [catalogProxyData.type]: catalogProxyData,
@@ -78,6 +82,7 @@ export type {
   CatalogWellKnownItemsType,
   ICatalogExample,
   ICatalogExtension,
+  ICatalogHelmChart,
   ICatalogInfrastructureResource,
   ICatalogPlugin,
   ICatalogProxy,
