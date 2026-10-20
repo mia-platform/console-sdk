@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.42.1
+
+### Patch Changes
+
+- 3006fbc: Made `source.digest` of the `helm-chart` Software Catalog well-known item optional
+
 ## 0.42.0
 
 ### Minor Changes
