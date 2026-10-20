@@ -47,7 +47,7 @@ const _chartSchema = {
           type: 'string',
         },
       },
-      required: ['repository', 'digest'],
+      required: ['repository'],
       type: 'object',
     },
     chart: {
