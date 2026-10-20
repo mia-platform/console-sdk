@@ -21,8 +21,7 @@
         }
       },
       "required": [
-        "repository",
-        "digest"
+        "repository"
       ],
       "type": "object"
     },
